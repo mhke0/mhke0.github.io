@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cyclist Data Dashboard</title>
+    <title>Velo Data Dash</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
@@ -266,8 +266,8 @@
                 Plotly.newPlot('top50Chart', [trace], layout);
 
                 // Create league scores stacked bar chart
-                const baseData = [0, 7405, 8128, 9297];
-                const middleData = [9062, 9530, 8964, 7506];
+                const baseData = [0, 7405, 9297, 8128];
+                const middleData = [9062, 9530, 7506, 8964];
                 const topData = leagueScores.map(team => team.points);
 
                 const leagueTrace1 = {

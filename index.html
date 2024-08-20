@@ -6,6 +6,7 @@
     <title>Cyclist Data Dashboard</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -56,8 +57,9 @@
         }
         .chart-container {
             width: 100%;
-            max-width: 600px;
+            max-width: 1000px;
             margin: 0 auto 20px;
+            height: 500px;
         }
     </style>
 </head>
@@ -69,6 +71,9 @@
         <div class="stats-container" id="stats"></div>
         <div class="chart-container">
             <canvas id="roleChart"></canvas>
+        </div>
+        <div class="chart-container">
+            <div id="top50Chart"></div>
         </div>
         <h2>Cyclist Data</h2>
         <table id="cyclistTable">
@@ -168,6 +173,50 @@
                         }
                     }
                 });
+
+                // Create top 50 efficiency chart
+                const trace = {
+                    x: cyclists.map(c => c.name),
+                    y: cyclists.map(c => c.cost_per_point === "Infinity" ? 0 : c.cost_per_point),
+                    type: 'bar',
+                    marker: {
+                        color: cyclists.map(c => {
+                            switch(c.role) {
+                                case 'All Rounder': return 'red';
+                                case 'Climber': return 'blue';
+                                case 'Sprinter': return 'green';
+                                default: return 'gray';
+                            }
+                        })
+                    },
+                    text: cyclists.map(c => `Points: ${c.points}<br>Cost: ${c.cost}`),
+                    hoverinfo: 'text+y'
+                };
+
+                const layout = {
+                    title: 'Top 50 Cyclists by Cost Efficiency (Lower is Better)',
+                    xaxis: {
+                        title: 'Cyclist Name',
+                        tickangle: -45
+                    },
+                    yaxis: {
+                        title: 'Cost per Point'
+                    },
+                    font: {
+                        size: 10
+                    },
+                    height: 500,
+                    margin: {
+                        l: 50,
+                        r: 50,
+                        b: 100,
+                        t: 50,
+                        pad: 4
+                    }
+                };
+
+                Plotly.newPlot('top50Chart', [trace], layout);
+
             }).fail(function(jqxhr, textStatus, error) {
                 $('#loading').hide();
                 $('#error').text("Error fetching data: " + error).show();

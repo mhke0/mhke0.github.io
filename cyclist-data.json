@@ -97,7 +97,7 @@
       "cost": 12.0,
       "ownership": 44.2,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Mattias Skjelmose",
@@ -169,7 +169,7 @@
       "cost": 10.0,
       "ownership": 9.9,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Jhonatan Narváez",
@@ -178,7 +178,7 @@
       "cost": 10.0,
       "ownership": 16.7,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Giulio Ciccone",
@@ -223,7 +223,7 @@
       "cost": 10.0,
       "ownership": 4.5,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Brandon McNulty",
@@ -259,7 +259,7 @@
       "cost": 8.0,
       "ownership": 1.9,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Guillaume Martin",
@@ -268,7 +268,7 @@
       "cost": 8.0,
       "ownership": 1.6,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Victor Lafay",
@@ -394,7 +394,7 @@
       "cost": 8.0,
       "ownership": 2.1,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Pavel Bittner",
@@ -466,7 +466,7 @@
       "cost": 6.0,
       "ownership": 0.2,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Thibault Guernalec",
@@ -475,7 +475,7 @@
       "cost": 6.0,
       "ownership": 0.2,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Cristián Rodríguez",
@@ -493,7 +493,7 @@
       "cost": 6.0,
       "ownership": 0.3,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Lorenzo Fortunato",
@@ -511,7 +511,7 @@
       "cost": 6.0,
       "ownership": 0.3,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Harold Tejada",
@@ -520,7 +520,7 @@
       "cost": 6.0,
       "ownership": 4.2,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Jack Haig",
@@ -538,7 +538,7 @@
       "cost": 6.0,
       "ownership": 1.2,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Kenny Elissonde",
@@ -547,7 +547,7 @@
       "cost": 6.0,
       "ownership": 1.4,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Jesús Herrada",
@@ -556,7 +556,7 @@
       "cost": 6.0,
       "ownership": 1.6,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Ion Izagirre",
@@ -565,7 +565,7 @@
       "cost": 6.0,
       "ownership": 1.3,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Bruno Armirail",
@@ -610,7 +610,7 @@
       "cost": 6.0,
       "ownership": 0.8,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Rui Costa",
@@ -619,7 +619,7 @@
       "cost": 6.0,
       "ownership": 2.5,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Owain Doull",
@@ -628,7 +628,7 @@
       "cost": 6.0,
       "ownership": 0.8,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Darren Rafferty",
@@ -637,7 +637,7 @@
       "cost": 6.0,
       "ownership": 1.2,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "James Shaw",
@@ -646,7 +646,7 @@
       "cost": 6.0,
       "ownership": 1.3,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Harry Sweeny",
@@ -655,7 +655,7 @@
       "cost": 6.0,
       "ownership": 0.7,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Rigoberto Urán",
@@ -664,7 +664,7 @@
       "cost": 6.0,
       "ownership": 1.5,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Pablo Castrillo",
@@ -754,7 +754,7 @@
       "cost": 6.0,
       "ownership": 0.3,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Kevin Geniets",
@@ -763,7 +763,7 @@
       "cost": 6.0,
       "ownership": 0.3,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Stefan Küng",
@@ -781,7 +781,7 @@
       "cost": 6.0,
       "ownership": 3.9,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Rémy Rochas",
@@ -790,7 +790,7 @@
       "cost": 6.0,
       "ownership": 0.3,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Laurens De Plus",
@@ -799,7 +799,7 @@
       "cost": 6.0,
       "ownership": 1.8,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Kim Heiduk",
@@ -826,7 +826,7 @@
       "cost": 6.0,
       "ownership": 1.0,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Vito Braet",
@@ -835,7 +835,7 @@
       "cost": 6.0,
       "ownership": 0.3,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Kobe Goossens",
@@ -844,7 +844,7 @@
       "cost": 6.0,
       "ownership": 0.7,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Arne Marit",
@@ -862,7 +862,7 @@
       "cost": 6.0,
       "ownership": 2.0,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Lorenzo Rota",
@@ -880,7 +880,7 @@
       "cost": 6.0,
       "ownership": 0.4,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "George Bennett",
@@ -1078,7 +1078,7 @@
       "cost": 6.0,
       "ownership": 1.4,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "William Junior Lecerf",
@@ -1087,7 +1087,7 @@
       "cost": 6.0,
       "ownership": 1.1,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Casper Pedersen",
@@ -1096,7 +1096,7 @@
       "cost": 6.0,
       "ownership": 2.5,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Louis Vervaeke",
@@ -1105,7 +1105,7 @@
       "cost": 6.0,
       "ownership": 0.3,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Chris Hamilton",
@@ -1114,7 +1114,7 @@
       "cost": 6.0,
       "ownership": 0.7,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Gijs Leemreize",
@@ -1123,7 +1123,7 @@
       "cost": 6.0,
       "ownership": 0.3,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Alessandro De Marchi",
@@ -1132,7 +1132,7 @@
       "cost": 6.0,
       "ownership": 1.4,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Eddie Dunbar",
@@ -1141,7 +1141,7 @@
       "cost": 6.0,
       "ownership": 2.1,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Felix Engelhardt",
@@ -1150,7 +1150,7 @@
       "cost": 6.0,
       "ownership": 0.9,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Chris Harper",
@@ -1159,7 +1159,7 @@
       "cost": 6.0,
       "ownership": 0.6,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Callum Scotson",
@@ -1168,7 +1168,7 @@
       "cost": 6.0,
       "ownership": 0.2,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Filippo Zana",
@@ -1285,7 +1285,7 @@
       "cost": 4.0,
       "ownership": 1.0,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Mathis Le Berre",
@@ -1303,7 +1303,7 @@
       "cost": 4.0,
       "ownership": 0.4,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Michel Ries",
@@ -1312,7 +1312,7 @@
       "cost": 4.0,
       "ownership": 1.2,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Gianmarco Garofoli",
@@ -1330,7 +1330,7 @@
       "cost": 4.0,
       "ownership": 2.1,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Nicolas Vinokurov",
@@ -1339,7 +1339,7 @@
       "cost": 4.0,
       "ownership": 4.8,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Kamil Gradek",
@@ -1348,7 +1348,7 @@
       "cost": 4.0,
       "ownership": 1.7,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Rainer Kepplinger",
@@ -1357,7 +1357,7 @@
       "cost": 4.0,
       "ownership": 1.8,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Fran Miholjević",
@@ -1366,7 +1366,7 @@
       "cost": 4.0,
       "ownership": 1.3,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Jasha Sütterlin",
@@ -1375,7 +1375,7 @@
       "cost": 4.0,
       "ownership": 2.4,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Thomas Champion",
@@ -1384,7 +1384,7 @@
       "cost": 4.0,
       "ownership": 5.1,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Rubén Fernández",
@@ -1393,7 +1393,7 @@
       "cost": 4.0,
       "ownership": 5.6,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Jonathan Lastra",
@@ -1402,7 +1402,7 @@
       "cost": 4.0,
       "ownership": 3.8,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Urko Berrade",
@@ -1411,7 +1411,7 @@
       "cost": 4.0,
       "ownership": 8.0,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Jorge Gutiérrez",
@@ -1420,7 +1420,7 @@
       "cost": 4.0,
       "ownership": 2.4,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Unai Iribar",
@@ -1438,7 +1438,7 @@
       "cost": 4.0,
       "ownership": 4.4,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Ibon Ruiz",
@@ -1474,7 +1474,7 @@
       "cost": 4.0,
       "ownership": 1.5,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Reuben Thompson",
@@ -1483,7 +1483,7 @@
       "cost": 4.0,
       "ownership": 1.3,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Tom Paquot",
@@ -1492,7 +1492,7 @@
       "cost": 4.0,
       "ownership": 1.1,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Simone Petilli",
@@ -1501,7 +1501,7 @@
       "cost": 4.0,
       "ownership": 1.7,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Nadav Raisberg",
@@ -1546,7 +1546,7 @@
       "cost": 4.0,
       "ownership": 0.7,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Tim Naberman",
@@ -1555,7 +1555,7 @@
       "cost": 4.0,
       "ownership": 0.5,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Martijn Tusveld",
@@ -1564,7 +1564,7 @@
       "cost": 4.0,
       "ownership": 1.1,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Julius Van Den Berg",
@@ -1573,7 +1573,7 @@
       "cost": 4.0,
       "ownership": 3.7,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     },
     {
       "name": "Welay Berhe",
@@ -1582,7 +1582,7 @@
       "cost": 4.0,
       "ownership": 3.2,
       "points": 0.0,
-      "cost_per_point": Infinity
+      "cost_per_point": "Infinity"
     }
   ]
 }

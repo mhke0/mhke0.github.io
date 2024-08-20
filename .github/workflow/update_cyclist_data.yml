@@ -22,7 +22,7 @@ jobs:
       run: python cyclist_analyzer.py > cyclist-data.json
     - name: Commit and push if changed
       run: |
-        git config --global user.email "action@github.com"
-        git config --global user.name "GitHub Action"
+        git config --global user.email "moritzhacke@gmail.com"
+        git config --global user.name "mhke0"
         git add cyclist-data.json
         git diff --quiet && git diff --staged --quiet || (git commit -m "Update cyclist data" && git push)

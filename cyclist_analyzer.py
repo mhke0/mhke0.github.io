@@ -151,12 +151,13 @@ def main():
         json.dump(output, sys.stdout, default=numpy_to_python, ensure_ascii=False, indent=2)
         
         print("Script completed successfully", file=sys.stderr)
+        sys.exit(0)  # Explicitly exit with status 0 on success
         
     except Exception as e:
         print(f"An error occurred: {str(e)}", file=sys.stderr)
         print("Traceback:", file=sys.stderr)
         traceback.print_exc(file=sys.stderr)
-        sys.exit(1)
+        sys.exit(1)  # Explicitly exit with status 1 on error
 
 if __name__ == '__main__':
     main()

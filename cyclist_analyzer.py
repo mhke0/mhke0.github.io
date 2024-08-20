@@ -5,6 +5,7 @@ import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 import plotly.express as px
+import numpy as np
 
 def fetch_html_content(url):
     try:
@@ -107,6 +108,19 @@ def calculate_statistics(cyclists):
         'avg_points': avg_points,
         'role_stats': role_stats
     }
+def numpy_to_python(obj):
+    if isinstance(obj, np.integer):
+        return int(obj)
+    elif isinstance(obj, np.floating):
+        return float(obj)
+    elif isinstance(obj, np.ndarray):
+        return obj.tolist()
+    elif isinstance(obj, pd.Series):
+        return obj.tolist()
+    elif isinstance(obj, pd.DataFrame):
+        return obj.to_dict(orient='records')
+    return obj
+
 def main():
     url = "https://www.velogames.com/spain/2024/riders.php"
     
@@ -134,7 +148,7 @@ def main():
         }
         
         print("Writing JSON output", file=sys.stderr)
-        json.dump(output, sys.stdout, ensure_ascii=False, indent=2)
+        json.dump(output, sys.stdout, default=numpy_to_python, ensure_ascii=False, indent=2)
         
         print("Script completed successfully", file=sys.stderr)
         

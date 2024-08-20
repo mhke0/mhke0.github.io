@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyclist Data Analyzer</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
+        #cyclist-table { border-collapse: collapse; width: 100%; }
+        #cyclist-table th, #cyclist-table td { border: 1px solid #ddd; padding: 8px; }
+        #cyclist-table tr:nth-child(even) { background-color: #f2f2f2; }
+        #cyclist-table th { padding-top: 12px; padding-bottom: 12px; text-align: left; background-color: #4CAF50; color: white; }
+    </style>
+</head>
+<body>
+    <h1>Cyclist Data Analyzer</h1>
+    <div id="loading">Loading data, please wait...</div>
+    <div id="error" style="color: red;"></div>
+    <div id="top-50-chart"></div>
+    <table id="cyclist-table"></table>
+
+    <script>
+        $(document).ready(function() {
+            // URL of your JSON data (hosted separately)
+            const dataUrl = 'cyclist-data.json';
+
+            $.getJSON(dataUrl)
+                .done(function(data) {
+                    $('#loading').hide();
+
+                    // Display the top 50 efficiency chart
+                    Plotly.newPlot('top-50-chart', data.top_50_chart.data, data.top_50_chart.layout);
+
+                    // Display the cyclist data table
+                    let table = '<tr><th>Name</th><th>Team</th><th>Role</th><th>Cost</th><th>Points</th><th>Cost per Point</th></tr>';
+                    data.cyclists.forEach(function(cyclist) {
+                        table += `<tr>
+                            <td>${cyclist.name}</td>
+                            <td>${cyclist.team}</td>
+                            <td>${cyclist.role}</td>
+                            <td>${cyclist.cost}</td>
+                            <td>${cyclist.points}</td>
+                            <td>${cyclist.cost_per_point.toFixed(2)}</td>
+                        </tr>`;
+                    });
+                    $('#cyclist-table').html(table);
+                })
+                .fail(function(jqxhr, textStatus, error) {
+                    $('#loading').hide();
+                    $('#error').text("Error fetching data: " + error);
+                });
+        });
+    </script>
+</body>
+</html>

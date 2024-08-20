@@ -30,6 +30,8 @@ jobs:
         pip list
         echo "Running script..."
         python cyclist_analyzer.py > cyclist-data.json 2>error.log
+        SCRIPT_EXIT_CODE=$?
+        echo "Script exit code: $SCRIPT_EXIT_CODE"
         echo "Error log contents:"
         cat error.log
         echo "First 1000 characters of cyclist-data.json (if it exists):"
@@ -38,17 +40,12 @@ jobs:
         else
           echo "cyclist-data.json does not exist"
         fi
-        if [ ! -s cyclist-data.json ]; then
-          echo "Error: cyclist-data.json is empty or does not exist"
+        if [ $SCRIPT_EXIT_CODE -ne 0 ]; then
+          echo "Error: Python script exited with non-zero status"
           exit 1
         fi
-      continue-on-error: true
-
-    - name: Check for errors
-      run: |
-        if [ -s error.log ]; then
-          echo "Errors occurred during script execution:"
-          cat error.log
+        if [ ! -s cyclist-data.json ]; then
+          echo "Error: cyclist-data.json is empty or does not exist"
           exit 1
         fi
 
@@ -63,7 +60,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Upload artifact
-      uses: actions/upload-artifact@v4  # Updated to v4
+      uses: actions/upload-artifact@v4
       if: always()
       with:
         name: cyclist-data

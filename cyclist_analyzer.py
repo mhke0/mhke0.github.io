@@ -59,7 +59,7 @@ def analyze_cyclists(html_content):
     
     return cyclists
 
-def create_top_50_efficiency_chart(cyclists, output_file='top_50_efficiency_chart.png'):
+def create_top_50_efficiency_chart(cyclists):
     top_50_efficiency = sorted(cyclists, key=lambda x: x['cost_per_point'])[:50]
     df = pd.DataFrame(top_50_efficiency)
     
@@ -76,11 +76,8 @@ def create_top_50_efficiency_chart(cyclists, output_file='top_50_efficiency_char
         font=dict(size=10),
     )
     
-    # Save the figure as a PNG file
-    fig.write_image(output_file)
-    
     return fig.to_dict()
-    
+
 def numpy_to_python(obj):
     if isinstance(obj, np.integer):
         return int(obj)
@@ -109,9 +106,6 @@ def main():
 
         print(f"Extracted data for {len(cyclists)} cyclists", file=sys.stderr)
 
-        print("Creating and saving the chart", file=sys.stderr)
-        create_top_50_efficiency_chart(cyclists, output_file='top_50_efficiency_chart.png')
-
         print("Preparing output", file=sys.stderr)
         output = {
             'cyclists': cyclists,
@@ -131,4 +125,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-

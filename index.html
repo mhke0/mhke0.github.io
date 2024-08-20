@@ -269,69 +269,76 @@
 
                 Plotly.newPlot('top50Chart', [trace], layout);
 
-                // Create league scores stacked bar chart
-                const baseData = {
-                    "Team Name": 0,
-                    "Iberische Halbpinsel ": 7405,
-                    "Fiestina": 9297,
-                    "Team Fiestina": 8128
-                };
-                const middleData = {
-                    "Team Name": 9062,
-                    "Iberische Halbpinsel ": 9530,
-                    "Fiestina": 7506,
-                    "Team Fiestina": 8964
-                };
+// Create league scores stacked bar chart
+const baseData = {
+    "Team Name": 0,
+    "Iberische Halbpinsel": 7405,
+    "Fiestina": 9297,
+    "Team Fiestina": 8128
+};
+const middleData = {
+    "Team Name": 9062,
+    "Iberische Halbpinsel": 9530,
+    "Fiestina": 7506,
+    "Team Fiestina": 8964
+};
 
-                const leagueTrace1 = {
-                    x: leagueScores.map(team => team.name),
-                    y: leagueScores.map(team => baseData[team.name] || 0),
-                    name: 'Base',
-                    type: 'bar',
-                    marker: { color: 'pink' }
-                };
+// Function to find the closest matching key
+function findClosestMatch(obj, searchKey) {
+    return Object.keys(obj).find(key => 
+        key.toLowerCase().includes(searchKey.toLowerCase()) || 
+        searchKey.toLowerCase().includes(key.toLowerCase())
+    ) || searchKey;
+}
 
-                const leagueTrace2 = {
-                    x: leagueScores.map(team => team.name),
-                    y: leagueScores.map(team => middleData[team.name] || 0),
-                    name: 'Middle',
-                    type: 'bar',
-                    marker: { color: 'yellow' }
-                };
+const leagueTrace1 = {
+    x: leagueScores.map(team => team.name),
+    y: leagueScores.map(team => baseData[findClosestMatch(baseData, team.name)] || 0),
+    name: 'Base',
+    type: 'bar',
+    marker: { color: 'pink' }
+};
 
-                const leagueTrace3 = {
-                    x: leagueScores.map(team => team.name),
-                    y: leagueScores.map(team => team.points),
-                    name: 'Top',
-                    type: 'bar',
-                    marker: { color: 'red' }
-                };
+const leagueTrace2 = {
+    x: leagueScores.map(team => team.name),
+    y: leagueScores.map(team => middleData[findClosestMatch(middleData, team.name)] || 0),
+    name: 'Middle',
+    type: 'bar',
+    marker: { color: 'yellow' }
+};
 
-                const leagueLayout = {
-                    title: 'League Scores (Stacked)',
-                    barmode: 'stack',
-                    xaxis: {
-                        title: 'Team Name',
-                        tickangle: -45
-                    },
-                    yaxis: {
-                        title: 'Points'
-                    },
-                    font: {
-                        size: 10
-                    },
-                    height: 500,
-                    margin: {
-                        l: 50,
-                        r: 50,
-                        b: 100,
-                        t: 50,
-                        pad: 4
-                    }
-                };
+const leagueTrace3 = {
+    x: leagueScores.map(team => team.name),
+    y: leagueScores.map(team => team.points),
+    name: 'Top',
+    type: 'bar',
+    marker: { color: 'red' }
+};
 
-                Plotly.newPlot('leagueScoresChart', [leagueTrace1, leagueTrace2, leagueTrace3], leagueLayout);
+const leagueLayout = {
+    title: 'League Scores (Stacked)',
+    barmode: 'stack',
+    xaxis: {
+        title: 'Team Name',
+        tickangle: -45
+    },
+    yaxis: {
+        title: 'Points'
+    },
+    font: {
+        size: 10
+    },
+    height: 500,
+    margin: {
+        l: 50,
+        r: 50,
+        b: 100,
+        t: 50,
+        pad: 4
+    }
+};
 
+Plotly.newPlot('leagueScoresChart', [leagueTrace1, leagueTrace2, leagueTrace3], leagueLayout);
                 // Open the default tab
                 document.getElementById("defaultOpen").click();
 

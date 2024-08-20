@@ -4,1409 +4,2878 @@
       "name": "Primož Roglič",
       "team": "Red Bull - BORA - hansgrohe",
       "role": "All Rounder",
-      "cost": "24",
-      "ownership": "38.1%",
-      "points": "395"
+      "cost": 24.0,
+      "ownership": 38.1,
+      "points": 395.0,
+      "cost_per_point": 0.060759493670886074
     },
     {
       "name": "Sepp Kuss",
       "team": "Team Visma | Lease a Bike",
       "role": "Climber",
-      "cost": "20",
-      "ownership": "28.6%",
-      "points": "90"
+      "cost": 20.0,
+      "ownership": 28.6,
+      "points": 90.0,
+      "cost_per_point": 0.2222222222222222
     },
     {
       "name": "João Almeida",
       "team": "UAE Team Emirates",
       "role": "All Rounder",
-      "cost": "20",
-      "ownership": "47.9%",
-      "points": "318"
+      "cost": 20.0,
+      "ownership": 47.9,
+      "points": 318.0,
+      "cost_per_point": 0.06289308176100629
     },
     {
       "name": "Adam Yates",
       "team": "UAE Team Emirates",
       "role": "All Rounder",
-      "cost": "20",
-      "ownership": "29.7%",
-      "points": "38"
+      "cost": 20.0,
+      "ownership": 29.7,
+      "points": 38.0,
+      "cost_per_point": 0.5263157894736842
     },
     {
       "name": "Wout Van Aert",
       "team": "Team Visma | Lease a Bike",
       "role": "Sprinter",
-      "cost": "18",
-      "ownership": "53.5%",
-      "points": "704"
+      "cost": 18.0,
+      "ownership": 53.5,
+      "points": 704.0,
+      "cost_per_point": 0.02556818181818182
     },
     {
       "name": "Enric Mas",
       "team": "Movistar Team",
       "role": "Climber",
-      "cost": "16",
-      "ownership": "8.9%",
-      "points": "166"
+      "cost": 16.0,
+      "ownership": 8.9,
+      "points": 166.0,
+      "cost_per_point": 0.0963855421686747
     },
     {
       "name": "Carlos Rodríguez",
       "team": "INEOS Grenadiers",
       "role": "All Rounder",
-      "cost": "14",
-      "ownership": "23.4%",
-      "points": "3"
+      "cost": 14.0,
+      "ownership": 23.4,
+      "points": 3.0,
+      "cost_per_point": 4.666666666666667
     },
     {
       "name": "Daniel Martínez",
       "team": "Red Bull - BORA - hansgrohe",
       "role": "All Rounder",
-      "cost": "14",
-      "ownership": "12.0%",
-      "points": "20"
+      "cost": 14.0,
+      "ownership": 12.0,
+      "points": 20.0,
+      "cost_per_point": 0.7
     },
     {
       "name": "Mikel Landa",
       "team": "Soudal - Quick Step",
       "role": "Climber",
-      "cost": "14",
-      "ownership": "26.0%",
-      "points": "107"
+      "cost": 14.0,
+      "ownership": 26.0,
+      "points": 107.0,
+      "cost_per_point": 0.1308411214953271
     },
     {
       "name": "Kaden Groves",
       "team": "Alpecin-Deceuninck",
       "role": "Sprinter",
-      "cost": "12",
-      "ownership": "24.5%",
-      "points": "452"
+      "cost": 12.0,
+      "ownership": 24.5,
+      "points": 452.0,
+      "cost_per_point": 0.02654867256637168
     },
     {
       "name": "Richard Carapaz",
       "team": "EF Education-EasyPost",
       "role": "Climber",
-      "cost": "12",
-      "ownership": "44.2%",
-      "points": "0"
+      "cost": 12.0,
+      "ownership": 44.2,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Mattias Skjelmose",
       "team": "Lidl - Trek",
       "role": "All Rounder",
-      "cost": "12",
-      "ownership": "25.2%",
-      "points": "105"
+      "cost": 12.0,
+      "ownership": 25.2,
+      "points": 105.0,
+      "cost_per_point": 0.11428571428571428
     },
     {
       "name": "Cian Uijtdebroeks",
       "team": "Team Visma | Lease a Bike",
       "role": "Climber",
-      "cost": "12",
-      "ownership": "8.2%",
-      "points": "32"
+      "cost": 12.0,
+      "ownership": 8.2,
+      "points": 32.0,
+      "cost_per_point": 0.375
     },
     {
       "name": "Isaac Del Toro",
       "team": "UAE Team Emirates",
       "role": "Climber",
-      "cost": "12",
-      "ownership": "14.9%",
-      "points": "46"
+      "cost": 12.0,
+      "ownership": 14.9,
+      "points": 46.0,
+      "cost_per_point": 0.2608695652173913
     },
     {
       "name": "Antonio Tiberi",
       "team": "Bahrain - Victorious",
       "role": "All Rounder",
-      "cost": "10",
-      "ownership": "10.9%",
-      "points": "120"
+      "cost": 10.0,
+      "ownership": 10.9,
+      "points": 120.0,
+      "cost_per_point": 0.08333333333333333
     },
     {
       "name": "Bryan Coquard",
       "team": "Cofidis",
       "role": "Sprinter",
-      "cost": "10",
-      "ownership": "6.5%",
-      "points": "110"
+      "cost": 10.0,
+      "ownership": 6.5,
+      "points": 110.0,
+      "cost_per_point": 0.09090909090909091
     },
     {
       "name": "Felix Gall",
       "team": "Decathlon AG2R La Mondiale Team",
       "role": "Climber",
-      "cost": "10",
-      "ownership": "5.4%",
-      "points": "139"
+      "cost": 10.0,
+      "ownership": 5.4,
+      "points": 139.0,
+      "cost_per_point": 0.07194244604316546
     },
     {
       "name": "Ben O'Connor",
       "team": "Decathlon AG2R La Mondiale Team",
       "role": "Climber",
-      "cost": "10",
-      "ownership": "15.7%",
-      "points": "2"
+      "cost": 10.0,
+      "ownership": 15.7,
+      "points": 2.0,
+      "cost_per_point": 5.0
     },
     {
       "name": "Thymen Arensman",
       "team": "INEOS Grenadiers",
       "role": "All Rounder",
-      "cost": "10",
-      "ownership": "9.9%",
-      "points": "0"
+      "cost": 10.0,
+      "ownership": 9.9,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Jhonatan Narváez",
       "team": "INEOS Grenadiers",
       "role": "Unclassed",
-      "cost": "10",
-      "ownership": "16.7%",
-      "points": "0"
+      "cost": 10.0,
+      "ownership": 16.7,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Giulio Ciccone",
       "team": "Lidl - Trek",
       "role": "Climber",
-      "cost": "10",
-      "ownership": "11.5%",
-      "points": "12"
+      "cost": 10.0,
+      "ownership": 11.5,
+      "points": 12.0,
+      "cost_per_point": 0.8333333333333334
     },
     {
       "name": "Tao Geoghegan Hart",
       "team": "Lidl - Trek",
       "role": "All Rounder",
-      "cost": "10",
-      "ownership": "7.6%",
-      "points": "12"
+      "cost": 10.0,
+      "ownership": 7.6,
+      "points": 12.0,
+      "cost_per_point": 0.8333333333333334
     },
     {
       "name": "Lennert Van Eetvelt",
       "team": "Lotto Dstny",
       "role": "Climber",
-      "cost": "10",
-      "ownership": "10.6%",
-      "points": "327"
+      "cost": 10.0,
+      "ownership": 10.6,
+      "points": 327.0,
+      "cost_per_point": 0.03058103975535168
     },
     {
       "name": "Aleksandr Vlasov",
       "team": "Red Bull - BORA - hansgrohe",
       "role": "All Rounder",
-      "cost": "10",
-      "ownership": "3.0%",
-      "points": "159"
+      "cost": 10.0,
+      "ownership": 3.0,
+      "points": 159.0,
+      "cost_per_point": 0.06289308176100629
     },
     {
       "name": "Max Poole",
       "team": "Team dsm-firmenich PostNL",
       "role": "Climber",
-      "cost": "10",
-      "ownership": "4.5%",
-      "points": "0"
+      "cost": 10.0,
+      "ownership": 4.5,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Brandon McNulty",
       "team": "UAE Team Emirates",
       "role": "All Rounder",
-      "cost": "10",
-      "ownership": "4.3%",
-      "points": "362"
+      "cost": 10.0,
+      "ownership": 4.3,
+      "points": 362.0,
+      "cost_per_point": 0.027624309392265192
     },
     {
       "name": "Jay Vine",
       "team": "UAE Team Emirates",
       "role": "All Rounder",
-      "cost": "10",
-      "ownership": "3.0%",
-      "points": "90"
+      "cost": 10.0,
+      "ownership": 3.0,
+      "points": 90.0,
+      "cost_per_point": 0.1111111111111111
     },
     {
       "name": "Ide Schelling",
       "team": "Astana Qazaqstan Team",
       "role": "Sprinter",
-      "cost": "8",
-      "ownership": "0.8%",
-      "points": "20"
+      "cost": 8.0,
+      "ownership": 0.8,
+      "points": 20.0,
+      "cost_per_point": 0.4
     },
     {
       "name": "Damiano Caruso",
       "team": "Bahrain - Victorious",
       "role": "All Rounder",
-      "cost": "8",
-      "ownership": "1.9%",
-      "points": "0"
+      "cost": 8.0,
+      "ownership": 1.9,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Guillaume Martin",
       "team": "Cofidis",
       "role": "Climber",
-      "cost": "8",
-      "ownership": "1.6%",
-      "points": "0"
+      "cost": 8.0,
+      "ownership": 1.6,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Victor Lafay",
       "team": "Decathlon AG2R La Mondiale Team",
       "role": "Unclassed",
-      "cost": "8",
-      "ownership": "6.6%",
-      "points": "2"
+      "cost": 8.0,
+      "ownership": 6.6,
+      "points": 2.0,
+      "cost_per_point": 4.0
     },
     {
       "name": "Valentin Paret-Peintre",
       "team": "Decathlon AG2R La Mondiale Team",
       "role": "Climber",
-      "cost": "8",
-      "ownership": "5.8%",
-      "points": "2"
+      "cost": 8.0,
+      "ownership": 5.8,
+      "points": 2.0,
+      "cost_per_point": 4.0
     },
     {
       "name": "David Gaudu",
       "team": "Groupama - FDJ",
       "role": "Climber",
-      "cost": "8",
-      "ownership": "4.7%",
-      "points": "31"
+      "cost": 8.0,
+      "ownership": 4.7,
+      "points": 31.0,
+      "cost_per_point": 0.25806451612903225
     },
     {
       "name": "Joshua Tarling",
       "team": "INEOS Grenadiers",
       "role": "Unclassed",
-      "cost": "8",
-      "ownership": "29.5%",
-      "points": "141"
+      "cost": 8.0,
+      "ownership": 29.5,
+      "points": 141.0,
+      "cost_per_point": 0.05673758865248227
     },
     {
       "name": "Matthew Riccitello",
       "team": "Israel - Premier Tech",
       "role": "Climber",
-      "cost": "8",
-      "ownership": "6.6%",
-      "points": "121"
+      "cost": 8.0,
+      "ownership": 6.6,
+      "points": 121.0,
+      "cost_per_point": 0.06611570247933884
     },
     {
       "name": "Corbin Strong",
       "team": "Israel - Premier Tech",
       "role": "Sprinter",
-      "cost": "8",
-      "ownership": "5.2%",
-      "points": "279"
+      "cost": 8.0,
+      "ownership": 5.2,
+      "points": 279.0,
+      "cost_per_point": 0.02867383512544803
     },
     {
       "name": "Michael Woods",
       "team": "Israel - Premier Tech",
       "role": "Climber",
-      "cost": "8",
-      "ownership": "3.3%",
-      "points": "2"
+      "cost": 8.0,
+      "ownership": 3.3,
+      "points": 2.0,
+      "cost_per_point": 4.0
     },
     {
       "name": "Patrick Konrad",
       "team": "Lidl - Trek",
       "role": "Unclassed",
-      "cost": "8",
-      "ownership": "3.4%",
-      "points": "12"
+      "cost": 8.0,
+      "ownership": 3.4,
+      "points": 12.0,
+      "cost_per_point": 0.6666666666666666
     },
     {
       "name": "Oier Lazkano",
       "team": "Movistar Team",
       "role": "Unclassed",
-      "cost": "8",
-      "ownership": "15.4%",
-      "points": "2"
+      "cost": 8.0,
+      "ownership": 15.4,
+      "points": 2.0,
+      "cost_per_point": 4.0
     },
     {
       "name": "Nairo Quintana",
       "team": "Movistar Team",
       "role": "Climber",
-      "cost": "8",
-      "ownership": "3.5%",
-      "points": "2"
+      "cost": 8.0,
+      "ownership": 3.5,
+      "points": 2.0,
+      "cost_per_point": 4.0
     },
     {
       "name": "Einer Rubio",
       "team": "Movistar Team",
       "role": "Climber",
-      "cost": "8",
-      "ownership": "2.9%",
-      "points": "14"
+      "cost": 8.0,
+      "ownership": 2.9,
+      "points": 14.0,
+      "cost_per_point": 0.5714285714285714
     },
     {
       "name": "Pelayo Sánchez",
       "team": "Movistar Team",
       "role": "Unclassed",
-      "cost": "8",
-      "ownership": "9.1%",
-      "points": "2"
+      "cost": 8.0,
+      "ownership": 9.1,
+      "points": 2.0,
+      "cost_per_point": 4.0
     },
     {
       "name": "Florian Lipowitz",
       "team": "Red Bull - BORA - hansgrohe",
       "role": "Climber",
-      "cost": "8",
-      "ownership": "4.3%",
-      "points": "89"
+      "cost": 8.0,
+      "ownership": 4.3,
+      "points": 89.0,
+      "cost_per_point": 0.0898876404494382
     },
     {
       "name": "Mauri Vansevenant",
       "team": "Soudal - Quick Step",
       "role": "Unclassed",
-      "cost": "8",
-      "ownership": "2.1%",
-      "points": "0"
+      "cost": 8.0,
+      "ownership": 2.1,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Pavel Bittner",
       "team": "Team dsm-firmenich PostNL",
       "role": "Sprinter",
-      "cost": "8",
-      "ownership": "4.8%",
-      "points": "230"
+      "cost": 8.0,
+      "ownership": 4.8,
+      "points": 230.0,
+      "cost_per_point": 0.034782608695652174
     },
     {
       "name": "Mauro Schmid",
       "team": "Team Jayco AlUla",
       "role": "Unclassed",
-      "cost": "8",
-      "ownership": "3.8%",
-      "points": "138"
+      "cost": 8.0,
+      "ownership": 3.8,
+      "points": 138.0,
+      "cost_per_point": 0.057971014492753624
     },
     {
       "name": "Pavel Sivakov",
       "team": "UAE Team Emirates",
       "role": "Climber",
-      "cost": "8",
-      "ownership": "1.4%",
-      "points": "108"
+      "cost": 8.0,
+      "ownership": 1.4,
+      "points": 108.0,
+      "cost_per_point": 0.07407407407407407
     },
     {
       "name": "Marc Soler",
       "team": "UAE Team Emirates",
       "role": "All Rounder",
-      "cost": "8",
-      "ownership": "3.9%",
-      "points": "38"
+      "cost": 8.0,
+      "ownership": 3.9,
+      "points": 38.0,
+      "cost_per_point": 0.21052631578947367
     },
     {
       "name": "Maurice Ballerstedt",
       "team": "Alpecin-Deceuninck",
       "role": "Sprinter",
-      "cost": "6",
-      "ownership": "0.5%",
-      "points": "16"
+      "cost": 6.0,
+      "ownership": 0.5,
+      "points": 16.0,
+      "cost_per_point": 0.375
     },
     {
       "name": "Quinten Hermans",
       "team": "Alpecin-Deceuninck",
       "role": "Unclassed",
-      "cost": "6",
-      "ownership": "3.0%",
-      "points": "12"
+      "cost": 6.0,
+      "ownership": 3.0,
+      "points": 12.0,
+      "cost_per_point": 0.5
     },
     {
       "name": "Xandro Meurisse",
       "team": "Alpecin-Deceuninck",
       "role": "Unclassed",
-      "cost": "6",
-      "ownership": "0.1%",
-      "points": "12"
+      "cost": 6.0,
+      "ownership": 0.1,
+      "points": 12.0,
+      "cost_per_point": 0.5
     },
     {
       "name": "Élie Gesbert",
       "team": "Arkéa - B&B Hotels",
       "role": "Unclassed",
-      "cost": "6",
-      "ownership": "0.2%",
-      "points": "0"
+      "cost": 6.0,
+      "ownership": 0.2,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Thibault Guernalec",
       "team": "Arkéa - B&B Hotels",
       "role": "Unclassed",
-      "cost": "6",
-      "ownership": "0.2%",
-      "points": "0"
+      "cost": 6.0,
+      "ownership": 0.2,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Cristián Rodríguez",
       "team": "Arkéa - B&B Hotels",
       "role": "Climber",
-      "cost": "6",
-      "ownership": "0.9%",
-      "points": "8"
+      "cost": 6.0,
+      "ownership": 0.9,
+      "points": 8.0,
+      "cost_per_point": 0.75
     },
     {
       "name": "Gleb Brussenskiy",
       "team": "Astana Qazaqstan Team",
       "role": "Unclassed",
-      "cost": "6",
-      "ownership": "0.3%",
-      "points": "0"
+      "cost": 6.0,
+      "ownership": 0.3,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Lorenzo Fortunato",
       "team": "Astana Qazaqstan Team",
       "role": "Climber",
-      "cost": "6",
-      "ownership": "5.1%",
-      "points": "35"
+      "cost": 6.0,
+      "ownership": 5.1,
+      "points": 35.0,
+      "cost_per_point": 0.17142857142857143
     },
     {
       "name": "Harold Martin López",
       "team": "Astana Qazaqstan Team",
       "role": "Unclassed",
-      "cost": "6",
-      "ownership": "0.3%",
-      "points": "0"
+      "cost": 6.0,
+      "ownership": 0.3,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Harold Tejada",
       "team": "Astana Qazaqstan Team",
       "role": "Unclassed",
-      "cost": "6",
-      "ownership": "4.2%",
-      "points": "0"
+      "cost": 6.0,
+      "ownership": 4.2,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Jack Haig",
       "team": "Bahrain - Victorious",
       "role": "Climber",
-      "cost": "6",
-      "ownership": "1.9%",
-      "points": "23"
+      "cost": 6.0,
+      "ownership": 1.9,
+      "points": 23.0,
+      "cost_per_point": 0.2608695652173913
     },
     {
       "name": "Torstein Træen",
       "team": "Bahrain - Victorious",
       "role": "Unclassed",
-      "cost": "6",
-      "ownership": "1.2%",
-      "points": "0"
+      "cost": 6.0,
+      "ownership": 1.2,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Kenny Elissonde",
       "team": "Cofidis",
       "role": "Unclassed",
-      "cost": "6",
-      "ownership": "1.4%",
-      "points": "0"
+      "cost": 6.0,
+      "ownership": 1.4,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Jesús Herrada",
       "team": "Cofidis",
       "role": "Climber",
-      "cost": "6",
-      "ownership": "1.6%",
-      "points": "0"
+      "cost": 6.0,
+      "ownership": 1.6,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Ion Izagirre",
       "team": "Cofidis",
       "role": "All Rounder",
-      "cost": "6",
-      "ownership": "1.3%",
-      "points": "0"
+      "cost": 6.0,
+      "ownership": 1.3,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Bruno Armirail",
       "team": "Decathlon AG2R La Mondiale Team",
       "role": "Unclassed",
-      "cost": "6",
-      "ownership": "5.1%",
-      "points": "153"
+      "cost": 6.0,
+      "ownership": 5.1,
+      "points": 153.0,
+      "cost_per_point": 0.0392156862745098
     },
     {
       "name": "Clément Berthet",
       "team": "Decathlon AG2R La Mondiale Team",
       "role": "Unclassed",
-      "cost": "6",
-      "ownership": "1.5%",
-      "points": "2"
+      "cost": 6.0,
+      "ownership": 1.5,
+      "points": 2.0,
+      "cost_per_point": 3.0
     },
     {
       "name": "Geoffrey Bouchard",
       "team": "Decathlon AG2R La Mondiale Team",
       "role": "Climber",
-      "cost": "6",
-      "ownership": "0.5%",
-      "points": "2"
+      "cost": 6.0,
+      "ownership": 0.5,
+      "points": 2.0,
+      "cost_per_point": 3.0
     },
     {
       "name": "Sander De Pestel",
       "team": "Decathlon AG2R La Mondiale Team",
       "role": "Sprinter",
-      "cost": "6",
-      "ownership": "0.2%",
-      "points": "2"
+      "cost": 6.0,
+      "ownership": 0.2,
+      "points": 2.0,
+      "cost_per_point": 3.0
     },
     {
       "name": "Jefferson Alexander Cepeda",
       "team": "EF Education-EasyPost",
       "role": "Climber",
-      "cost": "6",
-      "ownership": "0.8%",
-      "points": "0"
+      "cost": 6.0,
+      "ownership": 0.8,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Rui Costa",
       "team": "EF Education-EasyPost",
       "role": "All Rounder",
-      "cost": "6",
-      "ownership": "2.5%",
-      "points": "0"
+      "cost": 6.0,
+      "ownership": 2.5,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Owain Doull",
       "team": "EF Education-EasyPost",
       "role": "Sprinter",
-      "cost": "6",
-      "ownership": "0.8%",
-      "points": "0"
+      "cost": 6.0,
+      "ownership": 0.8,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Darren Rafferty",
       "team": "EF Education-EasyPost",
       "role": "Unclassed",
-      "cost": "6",
-      "ownership": "1.2%",
-      "points": "0"
+      "cost": 6.0,
+      "ownership": 1.2,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "James Shaw",
       "team": "EF Education-EasyPost",
       "role": "Unclassed",
-      "cost": "6",
-      "ownership": "1.3%",
-      "points": "0"
+      "cost": 6.0,
+      "ownership": 1.3,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Harry Sweeny",
       "team": "EF Education-EasyPost",
       "role": "Unclassed",
-      "cost": "6",
-      "ownership": "0.7%",
-      "points": "0"
+      "cost": 6.0,
+      "ownership": 0.7,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Rigoberto Urán",
       "team": "EF Education-EasyPost",
       "role": "All Rounder",
-      "cost": "6",
-      "ownership": "1.5%",
-      "points": "0"
+      "cost": 6.0,
+      "ownership": 1.5,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Pablo Castrillo",
       "team": "Equipo Kern Pharma",
       "role": "Unclassed",
-      "cost": "6",
-      "ownership": "3.7%",
-      "points": "43"
+      "cost": 6.0,
+      "ownership": 3.7,
+      "points": 43.0,
+      "cost_per_point": 0.13953488372093023
     },
     {
       "name": "Pau Miquel",
       "team": "Equipo Kern Pharma",
       "role": "Sprinter",
-      "cost": "6",
-      "ownership": "0.2%",
-      "points": "190"
+      "cost": 6.0,
+      "ownership": 0.2,
+      "points": 190.0,
+      "cost_per_point": 0.031578947368421054
     },
     {
       "name": "Antonio Jesús Soto",
       "team": "Equipo Kern Pharma",
       "role": "Sprinter",
-      "cost": "6",
-      "ownership": "0.2%",
-      "points": "120"
+      "cost": 6.0,
+      "ownership": 0.2,
+      "points": 120.0,
+      "cost_per_point": 0.05
     },
     {
       "name": "Jon Aberasturi",
       "team": "Euskaltel - Euskadi",
       "role": "Sprinter",
-      "cost": "6",
-      "ownership": "1.7%",
-      "points": "259"
+      "cost": 6.0,
+      "ownership": 1.7,
+      "points": 259.0,
+      "cost_per_point": 0.023166023166023165
     },
     {
       "name": "Mikel Bizkarra",
       "team": "Euskaltel - Euskadi",
       "role": "Unclassed",
-      "cost": "6",
-      "ownership": "2.3%",
-      "points": "26"
+      "cost": 6.0,
+      "ownership": 2.3,
+      "points": 26.0,
+      "cost_per_point": 0.23076923076923078
     },
     {
       "name": "Joan Bou",
       "team": "Euskaltel - Euskadi",
       "role": "Unclassed",
-      "cost": "6",
-      "ownership": "1.0%",
-      "points": "2"
+      "cost": 6.0,
+      "ownership": 1.0,
+      "points": 2.0,
+      "cost_per_point": 3.0
     },
     {
       "name": "Txomin Juaristi",
       "team": "Euskaltel - Euskadi",
       "role": "Unclassed",
-      "cost": "6",
-      "ownership": "0.5%",
-      "points": "2"
+      "cost": 6.0,
+      "ownership": 0.5,
+      "points": 2.0,
+      "cost_per_point": 3.0
     },
     {
       "name": "Gotzon Martín",
       "team": "Euskaltel - Euskadi",
       "role": "Unclassed",
-      "cost": "6",
-      "ownership": "0.2%",
-      "points": "41"
+      "cost": 6.0,
+      "ownership": 0.2,
+      "points": 41.0,
+      "cost_per_point": 0.14634146341463414
     },
     {
       "name": "Luis Ángel Maté",
       "team": "Euskaltel - Euskadi",
       "role": "Unclassed",
-      "cost": "6",
-      "ownership": "1.0%",
-      "points": "112"
+      "cost": 6.0,
+      "ownership": 1.0,
+      "points": 112.0,
+      "cost_per_point": 0.05357142857142857
     },
     {
       "name": "Sven Erik Bystrøm",
       "team": "Groupama - FDJ",
       "role": "Unclassed",
-      "cost": "6",
-      "ownership": "0.3%",
-      "points": "0"
+      "cost": 6.0,
+      "ownership": 0.3,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Kevin Geniets",
       "team": "Groupama - FDJ",
       "role": "Unclassed",
-      "cost": "6",
-      "ownership": "0.3%",
-      "points": "0"
+      "cost": 6.0,
+      "ownership": 0.3,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Stefan Küng",
       "team": "Groupama - FDJ",
       "role": "Unclassed",
-      "cost": "6",
-      "ownership": "8.6%",
-      "points": "260"
+      "cost": 6.0,
+      "ownership": 8.6,
+      "points": 260.0,
+      "cost_per_point": 0.023076923076923078
     },
     {
       "name": "Quentin Pacher",
       "team": "Groupama - FDJ",
       "role": "Unclassed",
-      "cost": "6",
-      "ownership": "3.9%",
-      "points": "0"
+      "cost": 6.0,
+      "ownership": 3.9,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Rémy Rochas",
       "team": "Groupama - FDJ",
       "role": "Unclassed",
-      "cost": "6",
-      "ownership": "0.3%",
-      "points": "0"
+      "cost": 6.0,
+      "ownership": 0.3,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Laurens De Plus",
       "team": "INEOS Grenadiers",
       "role": "All Rounder",
-      "cost": "6",
-      "ownership": "1.8%",
-      "points": "0"
+      "cost": 6.0,
+      "ownership": 1.8,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Kim Heiduk",
       "team": "INEOS Grenadiers",
       "role": "Sprinter",
-      "cost": "6",
-      "ownership": "0.3%",
-      "points": "25"
+      "cost": 6.0,
+      "ownership": 0.3,
+      "points": 25.0,
+      "cost_per_point": 0.24
     },
     {
       "name": "Brandon Smith Rivera",
       "team": "INEOS Grenadiers",
       "role": "Unclassed",
-      "cost": "6",
-      "ownership": "0.9%",
-      "points": "70"
+      "cost": 6.0,
+      "ownership": 0.9,
+      "points": 70.0,
+      "cost_per_point": 0.08571428571428572
     },
     {
       "name": "Óscar Rodríguez",
       "team": "INEOS Grenadiers",
       "role": "Climber",
-      "cost": "6",
-      "ownership": "1.0%",
-      "points": "0"
+      "cost": 6.0,
+      "ownership": 1.0,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Vito Braet",
       "team": "Intermarché - Wanty",
       "role": "Sprinter",
-      "cost": "6",
-      "ownership": "0.3%",
-      "points": "0"
+      "cost": 6.0,
+      "ownership": 0.3,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Kobe Goossens",
       "team": "Intermarché - Wanty",
       "role": "Unclassed",
-      "cost": "6",
-      "ownership": "0.7%",
-      "points": "0"
+      "cost": 6.0,
+      "ownership": 0.7,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Arne Marit",
       "team": "Intermarché - Wanty",
       "role": "Sprinter",
-      "cost": "6",
-      "ownership": "0.6%",
-      "points": "160"
+      "cost": 6.0,
+      "ownership": 0.6,
+      "points": 160.0,
+      "cost_per_point": 0.0375
     },
     {
       "name": "Louis Meintjes",
       "team": "Intermarché - Wanty",
       "role": "Climber",
-      "cost": "6",
-      "ownership": "2.0%",
-      "points": "0"
+      "cost": 6.0,
+      "ownership": 2.0,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Lorenzo Rota",
       "team": "Intermarché - Wanty",
       "role": "Unclassed",
-      "cost": "6",
-      "ownership": "0.8%",
-      "points": "60"
+      "cost": 6.0,
+      "ownership": 0.8,
+      "points": 60.0,
+      "cost_per_point": 0.1
     },
     {
       "name": "Rein Taaramäe",
       "team": "Intermarché - Wanty",
       "role": "Climber",
-      "cost": "6",
-      "ownership": "0.4%",
-      "points": "0"
+      "cost": 6.0,
+      "ownership": 0.4,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "George Bennett",
       "team": "Israel - Premier Tech",
       "role": "Unclassed",
-      "cost": "6",
-      "ownership": "10.7%",
-      "points": "77"
+      "cost": 6.0,
+      "ownership": 10.7,
+      "points": 77.0,
+      "cost_per_point": 0.07792207792207792
     },
     {
       "name": "Marco Frigo",
       "team": "Israel - Premier Tech",
       "role": "Unclassed",
-      "cost": "6",
-      "ownership": "0.9%",
-      "points": "17"
+      "cost": 6.0,
+      "ownership": 0.9,
+      "points": 17.0,
+      "cost_per_point": 0.35294117647058826
     },
     {
       "name": "Riley Sheehan",
       "team": "Israel - Premier Tech",
       "role": "Sprinter",
-      "cost": "6",
-      "ownership": "0.5%",
-      "points": "2"
+      "cost": 6.0,
+      "ownership": 0.5,
+      "points": 2.0,
+      "cost_per_point": 3.0
     },
     {
       "name": "Dylan Teuns",
       "team": "Israel - Premier Tech",
       "role": "Climber",
-      "cost": "6",
-      "ownership": "1.5%",
-      "points": "2"
+      "cost": 6.0,
+      "ownership": 1.5,
+      "points": 2.0,
+      "cost_per_point": 3.0
     },
     {
       "name": "Sam Oomen",
       "team": "Lidl - Trek",
       "role": "Unclassed",
-      "cost": "6",
-      "ownership": "0.5%",
-      "points": "12"
+      "cost": 6.0,
+      "ownership": 0.5,
+      "points": 12.0,
+      "cost_per_point": 0.5
     },
     {
       "name": "Mathias Vacek",
       "team": "Lidl - Trek",
       "role": "Sprinter",
-      "cost": "6",
-      "ownership": "8.3%",
-      "points": "316"
+      "cost": 6.0,
+      "ownership": 8.3,
+      "points": 316.0,
+      "cost_per_point": 0.0189873417721519
     },
     {
       "name": "Carlos Verona",
       "team": "Lidl - Trek",
       "role": "Unclassed",
-      "cost": "6",
-      "ownership": "1.7%",
-      "points": "12"
+      "cost": 6.0,
+      "ownership": 1.7,
+      "points": 12.0,
+      "cost_per_point": 0.5
     },
     {
       "name": "Victor Campenaerts",
       "team": "Lotto Dstny",
       "role": "Unclassed",
-      "cost": "6",
-      "ownership": "19.1%",
-      "points": "4"
+      "cost": 6.0,
+      "ownership": 19.1,
+      "points": 4.0,
+      "cost_per_point": 1.5
     },
     {
       "name": "Thomas De Gendt",
       "team": "Lotto Dstny",
       "role": "Unclassed",
-      "cost": "6",
-      "ownership": "6.6%",
-      "points": "4"
+      "cost": 6.0,
+      "ownership": 6.6,
+      "points": 4.0,
+      "cost_per_point": 1.5
     },
     {
       "name": "Jonas Gregaard",
       "team": "Lotto Dstny",
       "role": "Unclassed",
-      "cost": "6",
-      "ownership": "0.3%",
-      "points": "4"
+      "cost": 6.0,
+      "ownership": 0.3,
+      "points": 4.0,
+      "cost_per_point": 1.5
     },
     {
       "name": "Andreas Kron",
       "team": "Lotto Dstny",
       "role": "Unclassed",
-      "cost": "6",
-      "ownership": "9.0%",
-      "points": "36"
+      "cost": 6.0,
+      "ownership": 9.0,
+      "points": 36.0,
+      "cost_per_point": 0.16666666666666666
     },
     {
       "name": "Sylvain Moniquet",
       "team": "Lotto Dstny",
       "role": "Unclassed",
-      "cost": "6",
-      "ownership": "0.2%",
-      "points": "51"
+      "cost": 6.0,
+      "ownership": 0.2,
+      "points": 51.0,
+      "cost_per_point": 0.11764705882352941
     },
     {
       "name": "Eduardo Sepúlveda",
       "team": "Lotto Dstny",
       "role": "Unclassed",
-      "cost": "6",
-      "ownership": "0.4%",
-      "points": "4"
+      "cost": 6.0,
+      "ownership": 0.4,
+      "points": 4.0,
+      "cost_per_point": 1.5
     },
     {
       "name": "Carlos Canal",
       "team": "Movistar Team",
       "role": "Sprinter",
-      "cost": "6",
-      "ownership": "0.6%",
-      "points": "70"
+      "cost": 6.0,
+      "ownership": 0.6,
+      "points": 70.0,
+      "cost_per_point": 0.08571428571428572
     },
     {
       "name": "Nelson Oliveira",
       "team": "Movistar Team",
       "role": "Unclassed",
-      "cost": "6",
-      "ownership": "2.5%",
-      "points": "83"
+      "cost": 6.0,
+      "ownership": 2.5,
+      "points": 83.0,
+      "cost_per_point": 0.07228915662650602
     },
     {
       "name": "Roger Adrià",
       "team": "Red Bull - BORA - hansgrohe",
       "role": "Sprinter",
-      "cost": "6",
-      "ownership": "1.9%",
-      "points": "28"
+      "cost": 6.0,
+      "ownership": 1.9,
+      "points": 28.0,
+      "cost_per_point": 0.21428571428571427
     },
     {
       "name": "Giovanni Aleotti",
       "team": "Red Bull - BORA - hansgrohe",
       "role": "Unclassed",
-      "cost": "6",
-      "ownership": "2.0%",
-      "points": "20"
+      "cost": 6.0,
+      "ownership": 2.0,
+      "points": 20.0,
+      "cost_per_point": 0.3
     },
     {
       "name": "Nico Denz",
       "team": "Red Bull - BORA - hansgrohe",
       "role": "Unclassed",
-      "cost": "6",
-      "ownership": "1.9%",
-      "points": "20"
+      "cost": 6.0,
+      "ownership": 1.9,
+      "points": 20.0,
+      "cost_per_point": 0.3
     },
     {
       "name": "Patrick Gamper",
       "team": "Red Bull - BORA - hansgrohe",
       "role": "Unclassed",
-      "cost": "6",
-      "ownership": "0.4%",
-      "points": "20"
+      "cost": 6.0,
+      "ownership": 0.4,
+      "points": 20.0,
+      "cost_per_point": 0.3
     },
     {
       "name": "Kasper Asgreen",
       "team": "Soudal - Quick Step",
       "role": "Unclassed",
-      "cost": "6",
-      "ownership": "12.0%",
-      "points": "56"
+      "cost": 6.0,
+      "ownership": 12.0,
+      "points": 56.0,
+      "cost_per_point": 0.10714285714285714
     },
     {
       "name": "Mattia Cattaneo",
       "team": "Soudal - Quick Step",
       "role": "Unclassed",
-      "cost": "6",
-      "ownership": "1.3%",
-      "points": "29"
+      "cost": 6.0,
+      "ownership": 1.3,
+      "points": 29.0,
+      "cost_per_point": 0.20689655172413793
     },
     {
       "name": "James Knox",
       "team": "Soudal - Quick Step",
       "role": "Unclassed",
-      "cost": "6",
-      "ownership": "1.4%",
-      "points": "0"
+      "cost": 6.0,
+      "ownership": 1.4,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "William Junior Lecerf",
       "team": "Soudal - Quick Step",
       "role": "Unclassed",
-      "cost": "6",
-      "ownership": "1.1%",
-      "points": "0"
+      "cost": 6.0,
+      "ownership": 1.1,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Casper Pedersen",
       "team": "Soudal - Quick Step",
       "role": "Sprinter",
-      "cost": "6",
-      "ownership": "2.5%",
-      "points": "0"
+      "cost": 6.0,
+      "ownership": 2.5,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Louis Vervaeke",
       "team": "Soudal - Quick Step",
       "role": "Unclassed",
-      "cost": "6",
-      "ownership": "0.3%",
-      "points": "0"
+      "cost": 6.0,
+      "ownership": 0.3,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Chris Hamilton",
       "team": "Team dsm-firmenich PostNL",
       "role": "Unclassed",
-      "cost": "6",
-      "ownership": "0.7%",
-      "points": "0"
+      "cost": 6.0,
+      "ownership": 0.7,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Gijs Leemreize",
       "team": "Team dsm-firmenich PostNL",
       "role": "Unclassed",
-      "cost": "6",
-      "ownership": "0.3%",
-      "points": "0"
+      "cost": 6.0,
+      "ownership": 0.3,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Alessandro De Marchi",
       "team": "Team Jayco AlUla",
       "role": "Unclassed",
-      "cost": "6",
-      "ownership": "1.4%",
-      "points": "0"
+      "cost": 6.0,
+      "ownership": 1.4,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Eddie Dunbar",
       "team": "Team Jayco AlUla",
       "role": "All Rounder",
-      "cost": "6",
-      "ownership": "2.1%",
-      "points": "0"
+      "cost": 6.0,
+      "ownership": 2.1,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Felix Engelhardt",
       "team": "Team Jayco AlUla",
       "role": "Unclassed",
-      "cost": "6",
-      "ownership": "0.9%",
-      "points": "0"
+      "cost": 6.0,
+      "ownership": 0.9,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Chris Harper",
       "team": "Team Jayco AlUla",
       "role": "Climber",
-      "cost": "6",
-      "ownership": "0.6%",
-      "points": "0"
+      "cost": 6.0,
+      "ownership": 0.6,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Callum Scotson",
       "team": "Team Jayco AlUla",
       "role": "Unclassed",
-      "cost": "6",
-      "ownership": "0.2%",
-      "points": "0"
+      "cost": 6.0,
+      "ownership": 0.2,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Filippo Zana",
       "team": "Team Jayco AlUla",
       "role": "Climber",
-      "cost": "6",
-      "ownership": "4.9%",
-      "points": "38"
+      "cost": 6.0,
+      "ownership": 4.9,
+      "points": 38.0,
+      "cost_per_point": 0.15789473684210525
     },
     {
       "name": "Edoardo Affini",
       "team": "Team Visma | Lease a Bike",
       "role": "Sprinter",
-      "cost": "6",
-      "ownership": "2.1%",
-      "points": "202"
+      "cost": 6.0,
+      "ownership": 2.1,
+      "points": 202.0,
+      "cost_per_point": 0.0297029702970297
     },
     {
       "name": "Robert Gesink",
       "team": "Team Visma | Lease a Bike",
       "role": "Unclassed",
-      "cost": "6",
-      "ownership": "1.8%",
-      "points": "32"
+      "cost": 6.0,
+      "ownership": 1.8,
+      "points": 32.0,
+      "cost_per_point": 0.1875
     },
     {
       "name": "Steven Kruijswijk",
       "team": "Team Visma | Lease a Bike",
       "role": "Unclassed",
-      "cost": "6",
-      "ownership": "3.3%",
-      "points": "32"
+      "cost": 6.0,
+      "ownership": 3.3,
+      "points": 32.0,
+      "cost_per_point": 0.1875
     },
     {
       "name": "Attila Valter",
       "team": "Team Visma | Lease a Bike",
       "role": "Climber",
-      "cost": "6",
-      "ownership": "1.5%",
-      "points": "32"
+      "cost": 6.0,
+      "ownership": 1.5,
+      "points": 32.0,
+      "cost_per_point": 0.1875
     },
     {
       "name": "Dylan Van Baarle",
       "team": "Team Visma | Lease a Bike",
       "role": "Unclassed",
-      "cost": "6",
-      "ownership": "3.2%",
-      "points": "14"
+      "cost": 6.0,
+      "ownership": 3.2,
+      "points": 14.0,
+      "cost_per_point": 0.42857142857142855
     },
     {
       "name": "Filippo Baroncini",
       "team": "UAE Team Emirates",
       "role": "Unclassed",
-      "cost": "6",
-      "ownership": "2.1%",
-      "points": "134"
+      "cost": 6.0,
+      "ownership": 2.1,
+      "points": 134.0,
+      "cost_per_point": 0.04477611940298507
     },
     {
       "name": "Juri Hollmann",
       "team": "Alpecin-Deceuninck",
       "role": "Unclassed",
-      "cost": "4",
-      "ownership": "1.9%",
-      "points": "12"
+      "cost": 4.0,
+      "ownership": 1.9,
+      "points": 12.0,
+      "cost_per_point": 0.3333333333333333
     },
     {
       "name": "Edward Planckaert",
       "team": "Alpecin-Deceuninck",
       "role": "Unclassed",
-      "cost": "4",
-      "ownership": "2.3%",
-      "points": "16"
+      "cost": 4.0,
+      "ownership": 2.3,
+      "points": 16.0,
+      "cost_per_point": 0.25
     },
     {
       "name": "Oscar Riesebeek",
       "team": "Alpecin-Deceuninck",
       "role": "Unclassed",
-      "cost": "4",
-      "ownership": "1.7%",
-      "points": "12"
+      "cost": 4.0,
+      "ownership": 1.7,
+      "points": 12.0,
+      "cost_per_point": 0.3333333333333333
     },
     {
       "name": "Luca Vergallito",
       "team": "Alpecin-Deceuninck",
       "role": "Unclassed",
-      "cost": "4",
-      "ownership": "3.6%",
-      "points": "12"
+      "cost": 4.0,
+      "ownership": 3.6,
+      "points": 12.0,
+      "cost_per_point": 0.3333333333333333
     },
     {
       "name": "Simon Guglielmi",
       "team": "Arkéa - B&B Hotels",
       "role": "Unclassed",
-      "cost": "4",
-      "ownership": "1.1%",
-      "points": "16"
+      "cost": 4.0,
+      "ownership": 1.1,
+      "points": 16.0,
+      "cost_per_point": 0.25
     },
     {
       "name": "Laurens Huys",
       "team": "Arkéa - B&B Hotels",
       "role": "Unclassed",
-      "cost": "4",
-      "ownership": "1.0%",
-      "points": "0"
+      "cost": 4.0,
+      "ownership": 1.0,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Mathis Le Berre",
       "team": "Arkéa - B&B Hotels",
       "role": "Unclassed",
-      "cost": "4",
-      "ownership": "4.4%",
-      "points": "12"
+      "cost": 4.0,
+      "ownership": 4.4,
+      "points": 12.0,
+      "cost_per_point": 0.3333333333333333
     },
     {
       "name": "Łukasz Owsian",
       "team": "Arkéa - B&B Hotels",
       "role": "Unclassed",
-      "cost": "4",
-      "ownership": "0.4%",
-      "points": "0"
+      "cost": 4.0,
+      "ownership": 0.4,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Michel Ries",
       "team": "Arkéa - B&B Hotels",
       "role": "Unclassed",
-      "cost": "4",
-      "ownership": "1.2%",
-      "points": "0"
+      "cost": 4.0,
+      "ownership": 1.2,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Gianmarco Garofoli",
       "team": "Astana Qazaqstan Team",
       "role": "Unclassed",
-      "cost": "4",
-      "ownership": "1.1%",
-      "points": "8"
+      "cost": 4.0,
+      "ownership": 1.1,
+      "points": 8.0,
+      "cost_per_point": 0.5
     },
     {
       "name": "Santiago Umba",
       "team": "Astana Qazaqstan Team",
       "role": "Unclassed",
-      "cost": "4",
-      "ownership": "2.1%",
-      "points": "0"
+      "cost": 4.0,
+      "ownership": 2.1,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Nicolas Vinokurov",
       "team": "Astana Qazaqstan Team",
       "role": "Unclassed",
-      "cost": "4",
-      "ownership": "4.8%",
-      "points": "0"
+      "cost": 4.0,
+      "ownership": 4.8,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Kamil Gradek",
       "team": "Bahrain - Victorious",
       "role": "Unclassed",
-      "cost": "4",
-      "ownership": "1.7%",
-      "points": "0"
+      "cost": 4.0,
+      "ownership": 1.7,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Rainer Kepplinger",
       "team": "Bahrain - Victorious",
       "role": "Unclassed",
-      "cost": "4",
-      "ownership": "1.8%",
-      "points": "0"
+      "cost": 4.0,
+      "ownership": 1.8,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Fran Miholjević",
       "team": "Bahrain - Victorious",
       "role": "Unclassed",
-      "cost": "4",
-      "ownership": "1.3%",
-      "points": "0"
+      "cost": 4.0,
+      "ownership": 1.3,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Jasha Sütterlin",
       "team": "Bahrain - Victorious",
       "role": "Unclassed",
-      "cost": "4",
-      "ownership": "2.4%",
-      "points": "0"
+      "cost": 4.0,
+      "ownership": 2.4,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Thomas Champion",
       "team": "Cofidis",
       "role": "Unclassed",
-      "cost": "4",
-      "ownership": "5.1%",
-      "points": "0"
+      "cost": 4.0,
+      "ownership": 5.1,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Rubén Fernández",
       "team": "Cofidis",
       "role": "Unclassed",
-      "cost": "4",
-      "ownership": "5.6%",
-      "points": "0"
+      "cost": 4.0,
+      "ownership": 5.6,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Jonathan Lastra",
       "team": "Cofidis",
       "role": "Unclassed",
-      "cost": "4",
-      "ownership": "3.8%",
-      "points": "0"
+      "cost": 4.0,
+      "ownership": 3.8,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Urko Berrade",
       "team": "Equipo Kern Pharma",
       "role": "Unclassed",
-      "cost": "4",
-      "ownership": "8.0%",
-      "points": "0"
+      "cost": 4.0,
+      "ownership": 8.0,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Jorge Gutiérrez",
       "team": "Equipo Kern Pharma",
       "role": "Unclassed",
-      "cost": "4",
-      "ownership": "2.4%",
-      "points": "0"
+      "cost": 4.0,
+      "ownership": 2.4,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Unai Iribar",
       "team": "Equipo Kern Pharma",
       "role": "Unclassed",
-      "cost": "4",
-      "ownership": "1.3%",
-      "points": "28"
+      "cost": 4.0,
+      "ownership": 1.3,
+      "points": 28.0,
+      "cost_per_point": 0.14285714285714285
     },
     {
       "name": "José Félix Parra",
       "team": "Equipo Kern Pharma",
       "role": "Unclassed",
-      "cost": "4",
-      "ownership": "4.4%",
-      "points": "0"
+      "cost": 4.0,
+      "ownership": 4.4,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Ibon Ruiz",
       "team": "Equipo Kern Pharma",
       "role": "Unclassed",
-      "cost": "4",
-      "ownership": "1.7%",
-      "points": "84"
+      "cost": 4.0,
+      "ownership": 1.7,
+      "points": 84.0,
+      "cost_per_point": 0.047619047619047616
     },
     {
       "name": "Xabier Berasategi",
       "team": "Euskaltel - Euskadi",
       "role": "Unclassed",
-      "cost": "4",
-      "ownership": "5.6%",
-      "points": "2"
+      "cost": 4.0,
+      "ownership": 5.6,
+      "points": 2.0,
+      "cost_per_point": 2.0
     },
     {
       "name": "Xabier Isasa",
       "team": "Euskaltel - Euskadi",
       "role": "Unclassed",
-      "cost": "4",
-      "ownership": "3.3%",
-      "points": "50"
+      "cost": 4.0,
+      "ownership": 3.3,
+      "points": 50.0,
+      "cost_per_point": 0.08
     },
     {
       "name": "Lorenzo Germani",
       "team": "Groupama - FDJ",
       "role": "Unclassed",
-      "cost": "4",
-      "ownership": "1.5%",
-      "points": "0"
+      "cost": 4.0,
+      "ownership": 1.5,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Reuben Thompson",
       "team": "Groupama - FDJ",
       "role": "Unclassed",
-      "cost": "4",
-      "ownership": "1.3%",
-      "points": "0"
+      "cost": 4.0,
+      "ownership": 1.3,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Tom Paquot",
       "team": "Intermarché - Wanty",
       "role": "Unclassed",
-      "cost": "4",
-      "ownership": "1.1%",
-      "points": "0"
+      "cost": 4.0,
+      "ownership": 1.1,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Simone Petilli",
       "team": "Intermarché - Wanty",
       "role": "Unclassed",
-      "cost": "4",
-      "ownership": "1.7%",
-      "points": "0"
+      "cost": 4.0,
+      "ownership": 1.7,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Nadav Raisberg",
       "team": "Israel - Premier Tech",
       "role": "Unclassed",
-      "cost": "4",
-      "ownership": "0.5%",
-      "points": "42"
+      "cost": 4.0,
+      "ownership": 0.5,
+      "points": 42.0,
+      "cost_per_point": 0.09523809523809523
     },
     {
       "name": "Otto Vergaerde",
       "team": "Lidl - Trek",
       "role": "Unclassed",
-      "cost": "4",
-      "ownership": "3.1%",
-      "points": "12"
+      "cost": 4.0,
+      "ownership": 3.1,
+      "points": 12.0,
+      "cost_per_point": 0.3333333333333333
     },
     {
       "name": "Arjen Livyns",
       "team": "Lotto Dstny",
       "role": "Unclassed",
-      "cost": "4",
-      "ownership": "1.4%",
-      "points": "99"
+      "cost": 4.0,
+      "ownership": 1.4,
+      "points": 99.0,
+      "cost_per_point": 0.04040404040404041
     },
     {
       "name": "Jorge Arcas",
       "team": "Movistar Team",
       "role": "Unclassed",
-      "cost": "4",
-      "ownership": "7.1%",
-      "points": "2"
+      "cost": 4.0,
+      "ownership": 7.1,
+      "points": 2.0,
+      "cost_per_point": 2.0
     },
     {
       "name": "Enzo Leijnse",
       "team": "Team dsm-firmenich PostNL",
       "role": "Unclassed",
-      "cost": "4",
-      "ownership": "0.7%",
-      "points": "0"
+      "cost": 4.0,
+      "ownership": 0.7,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Tim Naberman",
       "team": "Team dsm-firmenich PostNL",
       "role": "Unclassed",
-      "cost": "4",
-      "ownership": "0.5%",
-      "points": "0"
+      "cost": 4.0,
+      "ownership": 0.5,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Martijn Tusveld",
       "team": "Team dsm-firmenich PostNL",
       "role": "Unclassed",
-      "cost": "4",
-      "ownership": "1.1%",
-      "points": "0"
+      "cost": 4.0,
+      "ownership": 1.1,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Julius Van Den Berg",
       "team": "Team dsm-firmenich PostNL",
       "role": "Unclassed",
-      "cost": "4",
-      "ownership": "3.7%",
-      "points": "0"
+      "cost": 4.0,
+      "ownership": 3.7,
+      "points": 0.0,
+      "cost_per_point": Infinity
     },
     {
       "name": "Welay Berhe",
       "team": "Team Jayco AlUla",
       "role": "Unclassed",
-      "cost": "4",
-      "ownership": "3.2%",
-      "points": "0"
+      "cost": 4.0,
+      "ownership": 3.2,
+      "points": 0.0,
+      "cost_per_point": Infinity
     }
-  ]
+  ],
+  "top_50_chart": {
+    "data": [
+      {
+        "alignmentgroup": "True",
+        "customdata": [
+          [
+            316.0,
+            6.0
+          ],
+          [
+            259.0,
+            6.0
+          ],
+          [
+            704.0,
+            18.0
+          ],
+          [
+            452.0,
+            12.0
+          ],
+          [
+            279.0,
+            8.0
+          ],
+          [
+            202.0,
+            6.0
+          ],
+          [
+            190.0,
+            6.0
+          ],
+          [
+            230.0,
+            8.0
+          ],
+          [
+            160.0,
+            6.0
+          ],
+          [
+            120.0,
+            6.0
+          ],
+          [
+            70.0,
+            6.0
+          ],
+          [
+            110.0,
+            10.0
+          ]
+        ],
+        "hovertemplate": "role=Sprinter<br>Cyclist Name=%{x}<br>Cost per Point=%{y}<br>points=%{customdata[0]}<br>cost=%{customdata[1]}<extra></extra>",
+        "legendgroup": "Sprinter",
+        "marker": {
+          "color": "#636efa",
+          "pattern": {
+            "shape": ""
+          }
+        },
+        "name": "Sprinter",
+        "offsetgroup": "Sprinter",
+        "orientation": "v",
+        "showlegend": true,
+        "textposition": "auto",
+        "x": [
+          "Mathias Vacek",
+          "Jon Aberasturi",
+          "Wout Van Aert",
+          "Kaden Groves",
+          "Corbin Strong",
+          "Edoardo Affini",
+          "Pau Miquel",
+          "Pavel Bittner",
+          "Arne Marit",
+          "Antonio Jesús Soto",
+          "Carlos Canal",
+          "Bryan Coquard"
+        ],
+        "xaxis": "x",
+        "y": [
+          0.0189873417721519,
+          0.023166023166023165,
+          0.02556818181818182,
+          0.02654867256637168,
+          0.02867383512544803,
+          0.0297029702970297,
+          0.031578947368421054,
+          0.034782608695652174,
+          0.0375,
+          0.05,
+          0.08571428571428572,
+          0.09090909090909091
+        ],
+        "yaxis": "y",
+        "type": "bar"
+      },
+      {
+        "alignmentgroup": "True",
+        "customdata": [
+          [
+            260.0,
+            6.0
+          ],
+          [
+            153.0,
+            6.0
+          ],
+          [
+            99.0,
+            4.0
+          ],
+          [
+            134.0,
+            6.0
+          ],
+          [
+            84.0,
+            4.0
+          ],
+          [
+            112.0,
+            6.0
+          ],
+          [
+            141.0,
+            8.0
+          ],
+          [
+            138.0,
+            8.0
+          ],
+          [
+            83.0,
+            6.0
+          ],
+          [
+            77.0,
+            6.0
+          ],
+          [
+            50.0,
+            4.0
+          ],
+          [
+            70.0,
+            6.0
+          ],
+          [
+            42.0,
+            4.0
+          ],
+          [
+            60.0,
+            6.0
+          ],
+          [
+            56.0,
+            6.0
+          ],
+          [
+            51.0,
+            6.0
+          ],
+          [
+            43.0,
+            6.0
+          ],
+          [
+            28.0,
+            4.0
+          ],
+          [
+            41.0,
+            6.0
+          ],
+          [
+            36.0,
+            6.0
+          ],
+          [
+            32.0,
+            6.0
+          ],
+          [
+            32.0,
+            6.0
+          ]
+        ],
+        "hovertemplate": "role=Unclassed<br>Cyclist Name=%{x}<br>Cost per Point=%{y}<br>points=%{customdata[0]}<br>cost=%{customdata[1]}<extra></extra>",
+        "legendgroup": "Unclassed",
+        "marker": {
+          "color": "#EF553B",
+          "pattern": {
+            "shape": ""
+          }
+        },
+        "name": "Unclassed",
+        "offsetgroup": "Unclassed",
+        "orientation": "v",
+        "showlegend": true,
+        "textposition": "auto",
+        "x": [
+          "Stefan Küng",
+          "Bruno Armirail",
+          "Arjen Livyns",
+          "Filippo Baroncini",
+          "Ibon Ruiz",
+          "Luis Ángel Maté",
+          "Joshua Tarling",
+          "Mauro Schmid",
+          "Nelson Oliveira",
+          "George Bennett",
+          "Xabier Isasa",
+          "Brandon Smith Rivera",
+          "Nadav Raisberg",
+          "Lorenzo Rota",
+          "Kasper Asgreen",
+          "Sylvain Moniquet",
+          "Pablo Castrillo",
+          "Unai Iribar",
+          "Gotzon Martín",
+          "Andreas Kron",
+          "Robert Gesink",
+          "Steven Kruijswijk"
+        ],
+        "xaxis": "x",
+        "y": [
+          0.023076923076923078,
+          0.0392156862745098,
+          0.04040404040404041,
+          0.04477611940298507,
+          0.047619047619047616,
+          0.05357142857142857,
+          0.05673758865248227,
+          0.057971014492753624,
+          0.07228915662650602,
+          0.07792207792207792,
+          0.08,
+          0.08571428571428572,
+          0.09523809523809523,
+          0.1,
+          0.10714285714285714,
+          0.11764705882352941,
+          0.13953488372093023,
+          0.14285714285714285,
+          0.14634146341463414,
+          0.16666666666666666,
+          0.1875,
+          0.1875
+        ],
+        "yaxis": "y",
+        "type": "bar"
+      },
+      {
+        "alignmentgroup": "True",
+        "customdata": [
+          [
+            362.0,
+            10.0
+          ],
+          [
+            395.0,
+            24.0
+          ],
+          [
+            318.0,
+            20.0
+          ],
+          [
+            159.0,
+            10.0
+          ],
+          [
+            120.0,
+            10.0
+          ],
+          [
+            90.0,
+            10.0
+          ],
+          [
+            105.0,
+            12.0
+          ]
+        ],
+        "hovertemplate": "role=All Rounder<br>Cyclist Name=%{x}<br>Cost per Point=%{y}<br>points=%{customdata[0]}<br>cost=%{customdata[1]}<extra></extra>",
+        "legendgroup": "All Rounder",
+        "marker": {
+          "color": "#00cc96",
+          "pattern": {
+            "shape": ""
+          }
+        },
+        "name": "All Rounder",
+        "offsetgroup": "All Rounder",
+        "orientation": "v",
+        "showlegend": true,
+        "textposition": "auto",
+        "x": [
+          "Brandon McNulty",
+          "Primož Roglič",
+          "João Almeida",
+          "Aleksandr Vlasov",
+          "Antonio Tiberi",
+          "Jay Vine",
+          "Mattias Skjelmose"
+        ],
+        "xaxis": "x",
+        "y": [
+          0.027624309392265192,
+          0.060759493670886074,
+          0.06289308176100629,
+          0.06289308176100629,
+          0.08333333333333333,
+          0.1111111111111111,
+          0.11428571428571428
+        ],
+        "yaxis": "y",
+        "type": "bar"
+      },
+      {
+        "alignmentgroup": "True",
+        "customdata": [
+          [
+            327.0,
+            10.0
+          ],
+          [
+            121.0,
+            8.0
+          ],
+          [
+            139.0,
+            10.0
+          ],
+          [
+            108.0,
+            8.0
+          ],
+          [
+            89.0,
+            8.0
+          ],
+          [
+            166.0,
+            16.0
+          ],
+          [
+            107.0,
+            14.0
+          ],
+          [
+            38.0,
+            6.0
+          ],
+          [
+            35.0,
+            6.0
+          ]
+        ],
+        "hovertemplate": "role=Climber<br>Cyclist Name=%{x}<br>Cost per Point=%{y}<br>points=%{customdata[0]}<br>cost=%{customdata[1]}<extra></extra>",
+        "legendgroup": "Climber",
+        "marker": {
+          "color": "#ab63fa",
+          "pattern": {
+            "shape": ""
+          }
+        },
+        "name": "Climber",
+        "offsetgroup": "Climber",
+        "orientation": "v",
+        "showlegend": true,
+        "textposition": "auto",
+        "x": [
+          "Lennert Van Eetvelt",
+          "Matthew Riccitello",
+          "Felix Gall",
+          "Pavel Sivakov",
+          "Florian Lipowitz",
+          "Enric Mas",
+          "Mikel Landa",
+          "Filippo Zana",
+          "Lorenzo Fortunato"
+        ],
+        "xaxis": "x",
+        "y": [
+          0.03058103975535168,
+          0.06611570247933884,
+          0.07194244604316546,
+          0.07407407407407407,
+          0.0898876404494382,
+          0.0963855421686747,
+          0.1308411214953271,
+          0.15789473684210525,
+          0.17142857142857143
+        ],
+        "yaxis": "y",
+        "type": "bar"
+      }
+    ],
+    "layout": {
+      "template": {
+        "data": {
+          "histogram2dcontour": [
+            {
+              "type": "histogram2dcontour",
+              "colorbar": {
+                "outlinewidth": 0,
+                "ticks": ""
+              },
+              "colorscale": [
+                [
+                  0.0,
+                  "#0d0887"
+                ],
+                [
+                  0.1111111111111111,
+                  "#46039f"
+                ],
+                [
+                  0.2222222222222222,
+                  "#7201a8"
+                ],
+                [
+                  0.3333333333333333,
+                  "#9c179e"
+                ],
+                [
+                  0.4444444444444444,
+                  "#bd3786"
+                ],
+                [
+                  0.5555555555555556,
+                  "#d8576b"
+                ],
+                [
+                  0.6666666666666666,
+                  "#ed7953"
+                ],
+                [
+                  0.7777777777777778,
+                  "#fb9f3a"
+                ],
+                [
+                  0.8888888888888888,
+                  "#fdca26"
+                ],
+                [
+                  1.0,
+                  "#f0f921"
+                ]
+              ]
+            }
+          ],
+          "choropleth": [
+            {
+              "type": "choropleth",
+              "colorbar": {
+                "outlinewidth": 0,
+                "ticks": ""
+              }
+            }
+          ],
+          "histogram2d": [
+            {
+              "type": "histogram2d",
+              "colorbar": {
+                "outlinewidth": 0,
+                "ticks": ""
+              },
+              "colorscale": [
+                [
+                  0.0,
+                  "#0d0887"
+                ],
+                [
+                  0.1111111111111111,
+                  "#46039f"
+                ],
+                [
+                  0.2222222222222222,
+                  "#7201a8"
+                ],
+                [
+                  0.3333333333333333,
+                  "#9c179e"
+                ],
+                [
+                  0.4444444444444444,
+                  "#bd3786"
+                ],
+                [
+                  0.5555555555555556,
+                  "#d8576b"
+                ],
+                [
+                  0.6666666666666666,
+                  "#ed7953"
+                ],
+                [
+                  0.7777777777777778,
+                  "#fb9f3a"
+                ],
+                [
+                  0.8888888888888888,
+                  "#fdca26"
+                ],
+                [
+                  1.0,
+                  "#f0f921"
+                ]
+              ]
+            }
+          ],
+          "heatmap": [
+            {
+              "type": "heatmap",
+              "colorbar": {
+                "outlinewidth": 0,
+                "ticks": ""
+              },
+              "colorscale": [
+                [
+                  0.0,
+                  "#0d0887"
+                ],
+                [
+                  0.1111111111111111,
+                  "#46039f"
+                ],
+                [
+                  0.2222222222222222,
+                  "#7201a8"
+                ],
+                [
+                  0.3333333333333333,
+                  "#9c179e"
+                ],
+                [
+                  0.4444444444444444,
+                  "#bd3786"
+                ],
+                [
+                  0.5555555555555556,
+                  "#d8576b"
+                ],
+                [
+                  0.6666666666666666,
+                  "#ed7953"
+                ],
+                [
+                  0.7777777777777778,
+                  "#fb9f3a"
+                ],
+                [
+                  0.8888888888888888,
+                  "#fdca26"
+                ],
+                [
+                  1.0,
+                  "#f0f921"
+                ]
+              ]
+            }
+          ],
+          "heatmapgl": [
+            {
+              "type": "heatmapgl",
+              "colorbar": {
+                "outlinewidth": 0,
+                "ticks": ""
+              },
+              "colorscale": [
+                [
+                  0.0,
+                  "#0d0887"
+                ],
+                [
+                  0.1111111111111111,
+                  "#46039f"
+                ],
+                [
+                  0.2222222222222222,
+                  "#7201a8"
+                ],
+                [
+                  0.3333333333333333,
+                  "#9c179e"
+                ],
+                [
+                  0.4444444444444444,
+                  "#bd3786"
+                ],
+                [
+                  0.5555555555555556,
+                  "#d8576b"
+                ],
+                [
+                  0.6666666666666666,
+                  "#ed7953"
+                ],
+                [
+                  0.7777777777777778,
+                  "#fb9f3a"
+                ],
+                [
+                  0.8888888888888888,
+                  "#fdca26"
+                ],
+                [
+                  1.0,
+                  "#f0f921"
+                ]
+              ]
+            }
+          ],
+          "contourcarpet": [
+            {
+              "type": "contourcarpet",
+              "colorbar": {
+                "outlinewidth": 0,
+                "ticks": ""
+              }
+            }
+          ],
+          "contour": [
+            {
+              "type": "contour",
+              "colorbar": {
+                "outlinewidth": 0,
+                "ticks": ""
+              },
+              "colorscale": [
+                [
+                  0.0,
+                  "#0d0887"
+                ],
+                [
+                  0.1111111111111111,
+                  "#46039f"
+                ],
+                [
+                  0.2222222222222222,
+                  "#7201a8"
+                ],
+                [
+                  0.3333333333333333,
+                  "#9c179e"
+                ],
+                [
+                  0.4444444444444444,
+                  "#bd3786"
+                ],
+                [
+                  0.5555555555555556,
+                  "#d8576b"
+                ],
+                [
+                  0.6666666666666666,
+                  "#ed7953"
+                ],
+                [
+                  0.7777777777777778,
+                  "#fb9f3a"
+                ],
+                [
+                  0.8888888888888888,
+                  "#fdca26"
+                ],
+                [
+                  1.0,
+                  "#f0f921"
+                ]
+              ]
+            }
+          ],
+          "surface": [
+            {
+              "type": "surface",
+              "colorbar": {
+                "outlinewidth": 0,
+                "ticks": ""
+              },
+              "colorscale": [
+                [
+                  0.0,
+                  "#0d0887"
+                ],
+                [
+                  0.1111111111111111,
+                  "#46039f"
+                ],
+                [
+                  0.2222222222222222,
+                  "#7201a8"
+                ],
+                [
+                  0.3333333333333333,
+                  "#9c179e"
+                ],
+                [
+                  0.4444444444444444,
+                  "#bd3786"
+                ],
+                [
+                  0.5555555555555556,
+                  "#d8576b"
+                ],
+                [
+                  0.6666666666666666,
+                  "#ed7953"
+                ],
+                [
+                  0.7777777777777778,
+                  "#fb9f3a"
+                ],
+                [
+                  0.8888888888888888,
+                  "#fdca26"
+                ],
+                [
+                  1.0,
+                  "#f0f921"
+                ]
+              ]
+            }
+          ],
+          "mesh3d": [
+            {
+              "type": "mesh3d",
+              "colorbar": {
+                "outlinewidth": 0,
+                "ticks": ""
+              }
+            }
+          ],
+          "scatter": [
+            {
+              "fillpattern": {
+                "fillmode": "overlay",
+                "size": 10,
+                "solidity": 0.2
+              },
+              "type": "scatter"
+            }
+          ],
+          "parcoords": [
+            {
+              "type": "parcoords",
+              "line": {
+                "colorbar": {
+                  "outlinewidth": 0,
+                  "ticks": ""
+                }
+              }
+            }
+          ],
+          "scatterpolargl": [
+            {
+              "type": "scatterpolargl",
+              "marker": {
+                "colorbar": {
+                  "outlinewidth": 0,
+                  "ticks": ""
+                }
+              }
+            }
+          ],
+          "bar": [
+            {
+              "error_x": {
+                "color": "#2a3f5f"
+              },
+              "error_y": {
+                "color": "#2a3f5f"
+              },
+              "marker": {
+                "line": {
+                  "color": "#E5ECF6",
+                  "width": 0.5
+                },
+                "pattern": {
+                  "fillmode": "overlay",
+                  "size": 10,
+                  "solidity": 0.2
+                }
+              },
+              "type": "bar"
+            }
+          ],
+          "scattergeo": [
+            {
+              "type": "scattergeo",
+              "marker": {
+                "colorbar": {
+                  "outlinewidth": 0,
+                  "ticks": ""
+                }
+              }
+            }
+          ],
+          "scatterpolar": [
+            {
+              "type": "scatterpolar",
+              "marker": {
+                "colorbar": {
+                  "outlinewidth": 0,
+                  "ticks": ""
+                }
+              }
+            }
+          ],
+          "histogram": [
+            {
+              "marker": {
+                "pattern": {
+                  "fillmode": "overlay",
+                  "size": 10,
+                  "solidity": 0.2
+                }
+              },
+              "type": "histogram"
+            }
+          ],
+          "scattergl": [
+            {
+              "type": "scattergl",
+              "marker": {
+                "colorbar": {
+                  "outlinewidth": 0,
+                  "ticks": ""
+                }
+              }
+            }
+          ],
+          "scatter3d": [
+            {
+              "type": "scatter3d",
+              "line": {
+                "colorbar": {
+                  "outlinewidth": 0,
+                  "ticks": ""
+                }
+              },
+              "marker": {
+                "colorbar": {
+                  "outlinewidth": 0,
+                  "ticks": ""
+                }
+              }
+            }
+          ],
+          "scattermapbox": [
+            {
+              "type": "scattermapbox",
+              "marker": {
+                "colorbar": {
+                  "outlinewidth": 0,
+                  "ticks": ""
+                }
+              }
+            }
+          ],
+          "scatterternary": [
+            {
+              "type": "scatterternary",
+              "marker": {
+                "colorbar": {
+                  "outlinewidth": 0,
+                  "ticks": ""
+                }
+              }
+            }
+          ],
+          "scattercarpet": [
+            {
+              "type": "scattercarpet",
+              "marker": {
+                "colorbar": {
+                  "outlinewidth": 0,
+                  "ticks": ""
+                }
+              }
+            }
+          ],
+          "carpet": [
+            {
+              "aaxis": {
+                "endlinecolor": "#2a3f5f",
+                "gridcolor": "white",
+                "linecolor": "white",
+                "minorgridcolor": "white",
+                "startlinecolor": "#2a3f5f"
+              },
+              "baxis": {
+                "endlinecolor": "#2a3f5f",
+                "gridcolor": "white",
+                "linecolor": "white",
+                "minorgridcolor": "white",
+                "startlinecolor": "#2a3f5f"
+              },
+              "type": "carpet"
+            }
+          ],
+          "table": [
+            {
+              "cells": {
+                "fill": {
+                  "color": "#EBF0F8"
+                },
+                "line": {
+                  "color": "white"
+                }
+              },
+              "header": {
+                "fill": {
+                  "color": "#C8D4E3"
+                },
+                "line": {
+                  "color": "white"
+                }
+              },
+              "type": "table"
+            }
+          ],
+          "barpolar": [
+            {
+              "marker": {
+                "line": {
+                  "color": "#E5ECF6",
+                  "width": 0.5
+                },
+                "pattern": {
+                  "fillmode": "overlay",
+                  "size": 10,
+                  "solidity": 0.2
+                }
+              },
+              "type": "barpolar"
+            }
+          ],
+          "pie": [
+            {
+              "automargin": true,
+              "type": "pie"
+            }
+          ]
+        },
+        "layout": {
+          "autotypenumbers": "strict",
+          "colorway": [
+            "#636efa",
+            "#EF553B",
+            "#00cc96",
+            "#ab63fa",
+            "#FFA15A",
+            "#19d3f3",
+            "#FF6692",
+            "#B6E880",
+            "#FF97FF",
+            "#FECB52"
+          ],
+          "font": {
+            "color": "#2a3f5f"
+          },
+          "hovermode": "closest",
+          "hoverlabel": {
+            "align": "left"
+          },
+          "paper_bgcolor": "white",
+          "plot_bgcolor": "#E5ECF6",
+          "polar": {
+            "bgcolor": "#E5ECF6",
+            "angularaxis": {
+              "gridcolor": "white",
+              "linecolor": "white",
+              "ticks": ""
+            },
+            "radialaxis": {
+              "gridcolor": "white",
+              "linecolor": "white",
+              "ticks": ""
+            }
+          },
+          "ternary": {
+            "bgcolor": "#E5ECF6",
+            "aaxis": {
+              "gridcolor": "white",
+              "linecolor": "white",
+              "ticks": ""
+            },
+            "baxis": {
+              "gridcolor": "white",
+              "linecolor": "white",
+              "ticks": ""
+            },
+            "caxis": {
+              "gridcolor": "white",
+              "linecolor": "white",
+              "ticks": ""
+            }
+          },
+          "coloraxis": {
+            "colorbar": {
+              "outlinewidth": 0,
+              "ticks": ""
+            }
+          },
+          "colorscale": {
+            "sequential": [
+              [
+                0.0,
+                "#0d0887"
+              ],
+              [
+                0.1111111111111111,
+                "#46039f"
+              ],
+              [
+                0.2222222222222222,
+                "#7201a8"
+              ],
+              [
+                0.3333333333333333,
+                "#9c179e"
+              ],
+              [
+                0.4444444444444444,
+                "#bd3786"
+              ],
+              [
+                0.5555555555555556,
+                "#d8576b"
+              ],
+              [
+                0.6666666666666666,
+                "#ed7953"
+              ],
+              [
+                0.7777777777777778,
+                "#fb9f3a"
+              ],
+              [
+                0.8888888888888888,
+                "#fdca26"
+              ],
+              [
+                1.0,
+                "#f0f921"
+              ]
+            ],
+            "sequentialminus": [
+              [
+                0.0,
+                "#0d0887"
+              ],
+              [
+                0.1111111111111111,
+                "#46039f"
+              ],
+              [
+                0.2222222222222222,
+                "#7201a8"
+              ],
+              [
+                0.3333333333333333,
+                "#9c179e"
+              ],
+              [
+                0.4444444444444444,
+                "#bd3786"
+              ],
+              [
+                0.5555555555555556,
+                "#d8576b"
+              ],
+              [
+                0.6666666666666666,
+                "#ed7953"
+              ],
+              [
+                0.7777777777777778,
+                "#fb9f3a"
+              ],
+              [
+                0.8888888888888888,
+                "#fdca26"
+              ],
+              [
+                1.0,
+                "#f0f921"
+              ]
+            ],
+            "diverging": [
+              [
+                0,
+                "#8e0152"
+              ],
+              [
+                0.1,
+                "#c51b7d"
+              ],
+              [
+                0.2,
+                "#de77ae"
+              ],
+              [
+                0.3,
+                "#f1b6da"
+              ],
+              [
+                0.4,
+                "#fde0ef"
+              ],
+              [
+                0.5,
+                "#f7f7f7"
+              ],
+              [
+                0.6,
+                "#e6f5d0"
+              ],
+              [
+                0.7,
+                "#b8e186"
+              ],
+              [
+                0.8,
+                "#7fbc41"
+              ],
+              [
+                0.9,
+                "#4d9221"
+              ],
+              [
+                1,
+                "#276419"
+              ]
+            ]
+          },
+          "xaxis": {
+            "gridcolor": "white",
+            "linecolor": "white",
+            "ticks": "",
+            "title": {
+              "standoff": 15
+            },
+            "zerolinecolor": "white",
+            "automargin": true,
+            "zerolinewidth": 2
+          },
+          "yaxis": {
+            "gridcolor": "white",
+            "linecolor": "white",
+            "ticks": "",
+            "title": {
+              "standoff": 15
+            },
+            "zerolinecolor": "white",
+            "automargin": true,
+            "zerolinewidth": 2
+          },
+          "scene": {
+            "xaxis": {
+              "backgroundcolor": "#E5ECF6",
+              "gridcolor": "white",
+              "linecolor": "white",
+              "showbackground": true,
+              "ticks": "",
+              "zerolinecolor": "white",
+              "gridwidth": 2
+            },
+            "yaxis": {
+              "backgroundcolor": "#E5ECF6",
+              "gridcolor": "white",
+              "linecolor": "white",
+              "showbackground": true,
+              "ticks": "",
+              "zerolinecolor": "white",
+              "gridwidth": 2
+            },
+            "zaxis": {
+              "backgroundcolor": "#E5ECF6",
+              "gridcolor": "white",
+              "linecolor": "white",
+              "showbackground": true,
+              "ticks": "",
+              "zerolinecolor": "white",
+              "gridwidth": 2
+            }
+          },
+          "shapedefaults": {
+            "line": {
+              "color": "#2a3f5f"
+            }
+          },
+          "annotationdefaults": {
+            "arrowcolor": "#2a3f5f",
+            "arrowhead": 0,
+            "arrowwidth": 1
+          },
+          "geo": {
+            "bgcolor": "white",
+            "landcolor": "#E5ECF6",
+            "subunitcolor": "white",
+            "showland": true,
+            "showlakes": true,
+            "lakecolor": "white"
+          },
+          "title": {
+            "x": 0.05
+          },
+          "mapbox": {
+            "style": "light"
+          }
+        }
+      },
+      "xaxis": {
+        "anchor": "y",
+        "domain": [
+          0.0,
+          1.0
+        ],
+        "title": {
+          "text": "Cyclist Name"
+        },
+        "tickangle": -45
+      },
+      "yaxis": {
+        "anchor": "x",
+        "domain": [
+          0.0,
+          1.0
+        ],
+        "title": {
+          "text": "Cost per Point"
+        }
+      },
+      "legend": {
+        "title": {
+          "text": "Rider Role"
+        },
+        "tracegroupgap": 0
+      },
+      "title": {
+        "text": "Top 50 Cyclists by Cost Efficiency (Lower is Better)"
+      },
+      "barmode": "relative",
+      "font": {
+        "size": 10
+      }
+    }
+  },
+  "statistics": {
+    "total_cyclists": 176,
+    "total_cost": 1208.0,
+    "total_points": 8435.0,
+    "avg_cost": 6.863636363636363,
+    "avg_points": 47.92613636363637,
+    "role_stats": {
+      "All Rounder": {
+        "count": 19,
+        "total_cost": 210.0,
+        "total_points": 1660.0,
+        "avg_cost": 11.052631578947368,
+        "avg_points": 87.36842105263158
+      },
+      "Climber": {
+        "count": 33,
+        "total_cost": 286.0,
+        "total_points": 1430.0,
+        "avg_cost": 8.666666666666666,
+        "avg_points": 43.333333333333336
+      },
+      "Sprinter": {
+        "count": 21,
+        "total_cost": 154.0,
+        "total_points": 3185.0,
+        "avg_cost": 7.333333333333333,
+        "avg_points": 151.66666666666666
+      },
+      "Unclassed": {
+        "count": 103,
+        "total_cost": 558.0,
+        "total_points": 2160.0,
+        "avg_cost": 5.41747572815534,
+        "avg_points": 20.97087378640777
+      }
+    }
+  }
 }

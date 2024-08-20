@@ -38,6 +38,7 @@
         th {
             background-color: #f2f2f2;
             font-weight: bold;
+            cursor: pointer; /* Make headers clickable */
         }
         tr:nth-child(even) {
             background-color: #f9f9f9;
@@ -73,13 +74,13 @@
         <table id="cyclistTable">
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Team</th>
-                    <th>Role</th>
-                    <th>Cost</th>
-                    <th>Ownership (%)</th>
-                    <th>Points</th>
-                    <th>Cost per Point</th>
+                    <th onclick="sortTable(0)">Name</th>
+                    <th onclick="sortTable(1)">Team</th>
+                    <th onclick="sortTable(2)">Role</th>
+                    <th onclick="sortTable(3)">Cost</th>
+                    <th onclick="sortTable(4)">Ownership (%)</th>
+                    <th onclick="sortTable(5)">Points</th>
+                    <th onclick="sortTable(6)">Cost per Point</th>
                 </tr>
             </thead>
             <tbody></tbody>
@@ -172,6 +173,54 @@
                 $('#error').text("Error fetching data: " + error).show();
             });
         });
+
+        // Function to sort the table based on the clicked column
+        function sortTable(columnIndex) {
+            const table = document.getElementById("cyclistTable");
+            let rows, switching, i, x, y, shouldSwitch, direction, switchcount = 0;
+            switching = true;
+            direction = "asc"; 
+            while (switching) {
+                switching = false;
+                rows = table.rows;
+                for (i = 1; i < (rows.length - 1); i++) {
+                    shouldSwitch = false;
+                    x = rows[i].getElementsByTagName("TD")[columnIndex];
+                    y = rows[i + 1].getElementsByTagName("TD")[columnIndex];
+                    if (direction == "asc") {
+                        if (columnIndex === 3 || columnIndex === 4 || columnIndex === 5 || columnIndex === 6) {
+                            if (parseFloat(x.innerHTML) > parseFloat(y.innerHTML)) {
+                                shouldSwitch = true;
+                                break;
+                            }
+                        } else if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    } else if (direction == "desc") {
+                        if (columnIndex === 3 || columnIndex === 4 || columnIndex === 5 || columnIndex === 6) {
+                            if (parseFloat(x.innerHTML) < parseFloat(y.innerHTML)) {
+                                shouldSwitch = true;
+                                break;
+                            }
+                        } else if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    }
+                }
+                if (shouldSwitch) {
+                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                    switching = true;
+                    switchcount++;
+                } else {
+                    if (switchcount == 0 && direction == "asc") {
+                        direction = "desc";
+                        switching = true;
+                    }
+                }
+            }
+        }
     </script>
 </body>
 </html>

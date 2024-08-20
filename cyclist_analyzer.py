@@ -40,7 +40,7 @@ def analyze_cyclists(html_content):
                 ownership = extract_numeric(cols[5].text)
                 points = extract_numeric(cols[6].text)
                 
-                cost_per_point = cost / points if points > 0 else float('inf')
+                cost_per_point = "Infinity" if points == 0 else cost / points
                 
                 cyclists.append({
                     'name': name,
@@ -63,8 +63,6 @@ def numpy_to_python(obj):
     if isinstance(obj, np.integer):
         return int(obj)
     elif isinstance(obj, np.floating):
-        if np.isinf(obj):
-            return "Infinity"
         return float(obj)
     elif isinstance(obj, np.ndarray):
         return obj.tolist()
@@ -73,7 +71,7 @@ def numpy_to_python(obj):
     elif isinstance(obj, pd.DataFrame):
         return obj.to_dict(orient='records')
     return obj
-
+    
 def main():
     url = "https://www.velogames.com/spain/2024/riders.php"
     

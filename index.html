@@ -75,7 +75,7 @@
                     }
 
                     // Display cyclist data table
-                    let tableHtml = `
+                  let tableHtml = `
                         <tr>
                             <th>Name</th>
                             <th>Team</th>
@@ -86,6 +86,7 @@
                         </tr>
                     `;
                     data.cyclists.forEach(function(cyclist) {
+                        const costPerPoint = cyclist.cost_per_point === "Infinity" ? "∞" : cyclist.cost_per_point.toFixed(4);
                         tableHtml += `
                             <tr>
                                 <td>${cyclist.name}</td>
@@ -93,7 +94,7 @@
                                 <td>${cyclist.role}</td>
                                 <td>${cyclist.cost}</td>
                                 <td>${cyclist.points}</td>
-                                <td>${cyclist.cost_per_point.toFixed(4)}</td>
+                                <td>${costPerPoint}</td>
                             </tr>
                         `;
                     });

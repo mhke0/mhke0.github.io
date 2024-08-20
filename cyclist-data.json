@@ -1584,5 +1584,357 @@
       "points": 0.0,
       "cost_per_point": "Infinity"
     }
+  ],
+  "top_50_efficiency": [
+    {
+      "name": "Mathias Vacek",
+      "cost_per_point": 0.0189873417721519,
+      "role": "Sprinter",
+      "points": 316.0,
+      "cost": 6.0
+    },
+    {
+      "name": "Stefan Küng",
+      "cost_per_point": 0.023076923076923078,
+      "role": "Unclassed",
+      "points": 260.0,
+      "cost": 6.0
+    },
+    {
+      "name": "Jon Aberasturi",
+      "cost_per_point": 0.023166023166023165,
+      "role": "Sprinter",
+      "points": 259.0,
+      "cost": 6.0
+    },
+    {
+      "name": "Wout Van Aert",
+      "cost_per_point": 0.02556818181818182,
+      "role": "Sprinter",
+      "points": 704.0,
+      "cost": 18.0
+    },
+    {
+      "name": "Kaden Groves",
+      "cost_per_point": 0.02654867256637168,
+      "role": "Sprinter",
+      "points": 452.0,
+      "cost": 12.0
+    },
+    {
+      "name": "Brandon McNulty",
+      "cost_per_point": 0.027624309392265192,
+      "role": "All Rounder",
+      "points": 362.0,
+      "cost": 10.0
+    },
+    {
+      "name": "Corbin Strong",
+      "cost_per_point": 0.02867383512544803,
+      "role": "Sprinter",
+      "points": 279.0,
+      "cost": 8.0
+    },
+    {
+      "name": "Edoardo Affini",
+      "cost_per_point": 0.0297029702970297,
+      "role": "Sprinter",
+      "points": 202.0,
+      "cost": 6.0
+    },
+    {
+      "name": "Lennert Van Eetvelt",
+      "cost_per_point": 0.03058103975535168,
+      "role": "Climber",
+      "points": 327.0,
+      "cost": 10.0
+    },
+    {
+      "name": "Pau Miquel",
+      "cost_per_point": 0.031578947368421054,
+      "role": "Sprinter",
+      "points": 190.0,
+      "cost": 6.0
+    },
+    {
+      "name": "Pavel Bittner",
+      "cost_per_point": 0.034782608695652174,
+      "role": "Sprinter",
+      "points": 230.0,
+      "cost": 8.0
+    },
+    {
+      "name": "Arne Marit",
+      "cost_per_point": 0.0375,
+      "role": "Sprinter",
+      "points": 160.0,
+      "cost": 6.0
+    },
+    {
+      "name": "Bruno Armirail",
+      "cost_per_point": 0.0392156862745098,
+      "role": "Unclassed",
+      "points": 153.0,
+      "cost": 6.0
+    },
+    {
+      "name": "Arjen Livyns",
+      "cost_per_point": 0.04040404040404041,
+      "role": "Unclassed",
+      "points": 99.0,
+      "cost": 4.0
+    },
+    {
+      "name": "Filippo Baroncini",
+      "cost_per_point": 0.04477611940298507,
+      "role": "Unclassed",
+      "points": 134.0,
+      "cost": 6.0
+    },
+    {
+      "name": "Ibon Ruiz",
+      "cost_per_point": 0.047619047619047616,
+      "role": "Unclassed",
+      "points": 84.0,
+      "cost": 4.0
+    },
+    {
+      "name": "Antonio Jesús Soto",
+      "cost_per_point": 0.05,
+      "role": "Sprinter",
+      "points": 120.0,
+      "cost": 6.0
+    },
+    {
+      "name": "Luis Ángel Maté",
+      "cost_per_point": 0.05357142857142857,
+      "role": "Unclassed",
+      "points": 112.0,
+      "cost": 6.0
+    },
+    {
+      "name": "Joshua Tarling",
+      "cost_per_point": 0.05673758865248227,
+      "role": "Unclassed",
+      "points": 141.0,
+      "cost": 8.0
+    },
+    {
+      "name": "Mauro Schmid",
+      "cost_per_point": 0.057971014492753624,
+      "role": "Unclassed",
+      "points": 138.0,
+      "cost": 8.0
+    },
+    {
+      "name": "Primož Roglič",
+      "cost_per_point": 0.060759493670886074,
+      "role": "All Rounder",
+      "points": 395.0,
+      "cost": 24.0
+    },
+    {
+      "name": "João Almeida",
+      "cost_per_point": 0.06289308176100629,
+      "role": "All Rounder",
+      "points": 318.0,
+      "cost": 20.0
+    },
+    {
+      "name": "Aleksandr Vlasov",
+      "cost_per_point": 0.06289308176100629,
+      "role": "All Rounder",
+      "points": 159.0,
+      "cost": 10.0
+    },
+    {
+      "name": "Matthew Riccitello",
+      "cost_per_point": 0.06611570247933884,
+      "role": "Climber",
+      "points": 121.0,
+      "cost": 8.0
+    },
+    {
+      "name": "Felix Gall",
+      "cost_per_point": 0.07194244604316546,
+      "role": "Climber",
+      "points": 139.0,
+      "cost": 10.0
+    },
+    {
+      "name": "Nelson Oliveira",
+      "cost_per_point": 0.07228915662650602,
+      "role": "Unclassed",
+      "points": 83.0,
+      "cost": 6.0
+    },
+    {
+      "name": "Pavel Sivakov",
+      "cost_per_point": 0.07407407407407407,
+      "role": "Climber",
+      "points": 108.0,
+      "cost": 8.0
+    },
+    {
+      "name": "George Bennett",
+      "cost_per_point": 0.07792207792207792,
+      "role": "Unclassed",
+      "points": 77.0,
+      "cost": 6.0
+    },
+    {
+      "name": "Xabier Isasa",
+      "cost_per_point": 0.08,
+      "role": "Unclassed",
+      "points": 50.0,
+      "cost": 4.0
+    },
+    {
+      "name": "Antonio Tiberi",
+      "cost_per_point": 0.08333333333333333,
+      "role": "All Rounder",
+      "points": 120.0,
+      "cost": 10.0
+    },
+    {
+      "name": "Brandon Smith Rivera",
+      "cost_per_point": 0.08571428571428572,
+      "role": "Unclassed",
+      "points": 70.0,
+      "cost": 6.0
+    },
+    {
+      "name": "Carlos Canal",
+      "cost_per_point": 0.08571428571428572,
+      "role": "Sprinter",
+      "points": 70.0,
+      "cost": 6.0
+    },
+    {
+      "name": "Florian Lipowitz",
+      "cost_per_point": 0.0898876404494382,
+      "role": "Climber",
+      "points": 89.0,
+      "cost": 8.0
+    },
+    {
+      "name": "Bryan Coquard",
+      "cost_per_point": 0.09090909090909091,
+      "role": "Sprinter",
+      "points": 110.0,
+      "cost": 10.0
+    },
+    {
+      "name": "Nadav Raisberg",
+      "cost_per_point": 0.09523809523809523,
+      "role": "Unclassed",
+      "points": 42.0,
+      "cost": 4.0
+    },
+    {
+      "name": "Enric Mas",
+      "cost_per_point": 0.0963855421686747,
+      "role": "Climber",
+      "points": 166.0,
+      "cost": 16.0
+    },
+    {
+      "name": "Lorenzo Rota",
+      "cost_per_point": 0.1,
+      "role": "Unclassed",
+      "points": 60.0,
+      "cost": 6.0
+    },
+    {
+      "name": "Kasper Asgreen",
+      "cost_per_point": 0.10714285714285714,
+      "role": "Unclassed",
+      "points": 56.0,
+      "cost": 6.0
+    },
+    {
+      "name": "Jay Vine",
+      "cost_per_point": 0.1111111111111111,
+      "role": "All Rounder",
+      "points": 90.0,
+      "cost": 10.0
+    },
+    {
+      "name": "Mattias Skjelmose",
+      "cost_per_point": 0.11428571428571428,
+      "role": "All Rounder",
+      "points": 105.0,
+      "cost": 12.0
+    },
+    {
+      "name": "Sylvain Moniquet",
+      "cost_per_point": 0.11764705882352941,
+      "role": "Unclassed",
+      "points": 51.0,
+      "cost": 6.0
+    },
+    {
+      "name": "Mikel Landa",
+      "cost_per_point": 0.1308411214953271,
+      "role": "Climber",
+      "points": 107.0,
+      "cost": 14.0
+    },
+    {
+      "name": "Pablo Castrillo",
+      "cost_per_point": 0.13953488372093023,
+      "role": "Unclassed",
+      "points": 43.0,
+      "cost": 6.0
+    },
+    {
+      "name": "Unai Iribar",
+      "cost_per_point": 0.14285714285714285,
+      "role": "Unclassed",
+      "points": 28.0,
+      "cost": 4.0
+    },
+    {
+      "name": "Gotzon Martín",
+      "cost_per_point": 0.14634146341463414,
+      "role": "Unclassed",
+      "points": 41.0,
+      "cost": 6.0
+    },
+    {
+      "name": "Filippo Zana",
+      "cost_per_point": 0.15789473684210525,
+      "role": "Climber",
+      "points": 38.0,
+      "cost": 6.0
+    },
+    {
+      "name": "Andreas Kron",
+      "cost_per_point": 0.16666666666666666,
+      "role": "Unclassed",
+      "points": 36.0,
+      "cost": 6.0
+    },
+    {
+      "name": "Lorenzo Fortunato",
+      "cost_per_point": 0.17142857142857143,
+      "role": "Climber",
+      "points": 35.0,
+      "cost": 6.0
+    },
+    {
+      "name": "Robert Gesink",
+      "cost_per_point": 0.1875,
+      "role": "Unclassed",
+      "points": 32.0,
+      "cost": 6.0
+    },
+    {
+      "name": "Steven Kruijswijk",
+      "cost_per_point": 0.1875,
+      "role": "Unclassed",
+      "points": 32.0,
+      "cost": 6.0
+    }
   ]
 }

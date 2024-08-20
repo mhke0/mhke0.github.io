@@ -40,6 +40,8 @@ def analyze_cyclists(html_content):
                 ownership = extract_numeric(cols[5].text)
                 points = extract_numeric(cols[6].text)
                 
+                cost_per_point = cost / points if points > 0 else float('inf')
+                
                 cyclists.append({
                     'name': name,
                     'team': team,
@@ -47,7 +49,7 @@ def analyze_cyclists(html_content):
                     'cost': cost,
                     'ownership': ownership,
                     'points': points,
-                    'cost_per_point': cost / points if points > 0 else float('inf')
+                    'cost_per_point': cost_per_point
                 })
             except Exception as e:
                 print(f"Error processing row: {e}", file=sys.stderr)
@@ -57,57 +59,6 @@ def analyze_cyclists(html_content):
     
     return cyclists
 
-def create_top_50_efficiency_chart(cyclists):
-    if not cyclists:
-        print("No cyclists data available for chart creation.", file=sys.stderr)
-        return None
-
-    top_50_efficiency = sorted(cyclists, key=lambda x: x['cost_per_point'])[:50]
-    df = pd.DataFrame(top_50_efficiency)
-    
-    fig = px.bar(df, x='name', y='cost_per_point', color='role',
-                 title='Top 50 Cyclists by Cost Efficiency (Lower is Better)',
-                 labels={'cost_per_point': 'Cost per Point', 'name': 'Cyclist Name'},
-                 hover_data=['points', 'cost'])
-    
-    fig.update_layout(
-        xaxis_tickangle=-45,
-        xaxis_title="Cyclist Name",
-        yaxis_title="Cost per Point",
-        legend_title="Rider Role",
-        font=dict(size=10),
-    )
-    
-    return fig.to_dict()
-
-def calculate_statistics(cyclists):
-    total_cyclists = len(cyclists)
-    total_cost = sum(c['cost'] for c in cyclists)
-    total_points = sum(c['points'] for c in cyclists)
-    avg_cost = total_cost / total_cyclists if total_cyclists > 0 else 0
-    avg_points = total_points / total_cyclists if total_cyclists > 0 else 0
-
-    role_stats = {}
-    for cyclist in cyclists:
-        role = cyclist['role']
-        if role not in role_stats:
-            role_stats[role] = {'count': 0, 'total_cost': 0, 'total_points': 0}
-        role_stats[role]['count'] += 1
-        role_stats[role]['total_cost'] += cyclist['cost']
-        role_stats[role]['total_points'] += cyclist['points']
-
-    for role, stats in role_stats.items():
-        stats['avg_cost'] = stats['total_cost'] / stats['count']
-        stats['avg_points'] = stats['total_points'] / stats['count']
-
-    return {
-        'total_cyclists': total_cyclists,
-        'total_cost': total_cost,
-        'total_points': total_points,
-        'avg_cost': avg_cost,
-        'avg_points': avg_points,
-        'role_stats': role_stats
-    }
 def numpy_to_python(obj):
     if isinstance(obj, np.integer):
         return int(obj)
@@ -136,17 +87,11 @@ def main():
         if not cyclists:
             raise ValueError("No cyclist data was extracted")
 
-        print("Creating top 50 efficiency chart", file=sys.stderr)
-        chart_data = create_top_50_efficiency_chart(cyclists)
-        
-        print("Calculating statistics", file=sys.stderr)
-        stats = calculate_statistics(cyclists)
-        
+        print(f"Extracted data for {len(cyclists)} cyclists", file=sys.stderr)
+
         print("Preparing output", file=sys.stderr)
         output = {
             'cyclists': cyclists,
-            'top_50_chart': chart_data,
-            'statistics': stats
         }
         
         print("Writing JSON output", file=sys.stderr)

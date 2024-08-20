@@ -39,8 +39,7 @@
             <table id="cyclist-table"></table>
         </div>
     </div>
-
-    <script>
+  <script>
         $(document).ready(function() {
             const dataUrl = 'cyclist-data.json';  // Make sure this points to the correct location of your JSON file
 
@@ -75,7 +74,7 @@
                     }
 
                     // Display cyclist data table
-                  let tableHtml = `
+                    let tableHtml = `
                         <tr>
                             <th>Name</th>
                             <th>Team</th>
@@ -86,7 +85,7 @@
                         </tr>
                     `;
                     data.cyclists.forEach(function(cyclist) {
-                        const costPerPoint = cyclist.cost_per_point === "Infinity" ? "∞" : cyclist.cost_per_point.toFixed(4);
+                        const costPerPoint = cyclist.cost_per_point === "Infinity" ? "∞" : parseFloat(cyclist.cost_per_point).toFixed(4);
                         tableHtml += `
                             <tr>
                                 <td>${cyclist.name}</td>

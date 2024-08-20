@@ -265,20 +265,44 @@
 
                 Plotly.newPlot('top50Chart', [trace], layout);
 
-                // Create league scores chart
-                const leagueTrace = {
+                // Create league scores stacked bar chart
+                const baseData = [0, 7405, 8128, 9297];
+                const middleData = [9062, 9530, 8964, 7506];
+                const topData = leagueScores.map(team => team.points);
+
+                const leagueTrace1 = {
                     x: leagueScores.map(team => team.name),
-                    y: leagueScores.map(team => team.points),
+                    y: baseData,
+                    name: 'Base',
                     type: 'bar',
                     marker: {
-                        color: 'red'  // Set the bar color to red
-                    },
-                    text: leagueScores.map(team => `${team.points} points`),
-                    hoverinfo: 'text+x'
+                        color: 'pink'
+                    }
+                };
+
+                const leagueTrace2 = {
+                    x: leagueScores.map(team => team.name),
+                    y: middleData,
+                    name: 'Middle',
+                    type: 'bar',
+                    marker: {
+                        color: 'yellow'
+                    }
+                };
+
+                const leagueTrace3 = {
+                    x: leagueScores.map(team => team.name),
+                    y: topData,
+                    name: 'Top',
+                    type: 'bar',
+                    marker: {
+                        color: 'red'
+                    }
                 };
 
                 const leagueLayout = {
-                    title: 'League Scores',
+                    title: 'League Scores (Stacked)',
+                    barmode: 'stack',
                     xaxis: {
                         title: 'Team Name',
                         tickangle: -45
@@ -299,7 +323,7 @@
                     }
                 };
 
-                Plotly.newPlot('leagueScoresChart', [leagueTrace], leagueLayout);
+                Plotly.newPlot('leagueScoresChart', [leagueTrace1, leagueTrace2, leagueTrace3], leagueLayout);
 
                 // Open the default tab
                 document.getElementById("defaultOpen").click();

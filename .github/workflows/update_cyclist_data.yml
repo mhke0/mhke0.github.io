@@ -13,7 +13,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
-        python-version: '3.9'  # Specify the Python version you're using
+        python-version: '3.9'
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
@@ -21,18 +21,14 @@ jobs:
     - name: Run cyclist analyzer script
       run: |
         python cyclist_analyzer.py > cyclist-data.json 2>error.log
-        if [ $? -ne 0 ]; then
-          echo "Python script encountered an error:"
-          cat error.log
+        echo "Python script output (if any):"
+        cat cyclist-data.json || echo "No output to cyclist-data.json"
+        echo "Error log contents (if any):"
+        cat error.log || echo "No error log generated"
+        if [ -s error.log ]; then
+          echo "Python script encountered an error"
           exit 1
         fi
-    - name: Check script output
-      if: failure()
-      run: |
-        echo "Contents of cyclist-data.json:"
-        cat cyclist-data.json || echo "cyclist-data.json does not exist"
-        echo "Contents of error.log:"
-        cat error.log || echo "error.log does not exist"
     - name: Commit and push if changed
       if: success()
       run: |

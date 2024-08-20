@@ -39,7 +39,7 @@
         th {
             background-color: #f2f2f2;
             font-weight: bold;
-            cursor: pointer; /* Make headers clickable */
+            cursor: pointer;
         }
         tr:nth-child(even) {
             background-color: #f9f9f9;
@@ -75,6 +75,9 @@
         <div class="chart-container">
             <div id="top50Chart"></div>
         </div>
+        <div class="chart-container">
+            <div id="leagueScoresChart"></div>
+        </div>
         <h2>Cyclist Data</h2>
         <table id="cyclistTable">
             <thead>
@@ -99,6 +102,7 @@
                 $('#dashboard').show();
 
                 let cyclists = data.cyclists;
+                let leagueScores = data.league_scores;
 
                 // Sort cyclists by cost_per_point (convert "Infinity" to a large number for sorting)
                 cyclists.sort((a, b) => {
@@ -216,6 +220,42 @@
                 };
 
                 Plotly.newPlot('top50Chart', [trace], layout);
+
+                // Create league scores chart
+                const leagueTrace = {
+                    x: leagueScores.map(team => team.name),
+                    y: leagueScores.map(team => team.points),
+                    type: 'bar',
+                    marker: {
+                        color: 'red'  // Set the bar color to red
+                    },
+                    text: leagueScores.map(team => `${team.points} points`),
+                    hoverinfo: 'text+x'
+                };
+
+                const leagueLayout = {
+                    title: 'League Scores',
+                    xaxis: {
+                        title: 'Team Name',
+                        tickangle: -45
+                    },
+                    yaxis: {
+                        title: 'Points'
+                    },
+                    font: {
+                        size: 10
+                    },
+                    height: 500,
+                    margin: {
+                        l: 50,
+                        r: 50,
+                        b: 100,
+                        t: 50,
+                        pad: 4
+                    }
+                };
+
+                Plotly.newPlot('leagueScoresChart', [leagueTrace], leagueLayout);
 
             }).fail(function(jqxhr, textStatus, error) {
                 $('#loading').hide();

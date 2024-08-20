@@ -59,25 +59,6 @@ def analyze_cyclists(html_content):
     
     return cyclists
 
-def create_top_50_efficiency_chart(cyclists):
-    top_50_efficiency = sorted(cyclists, key=lambda x: x['cost_per_point'])[:50]
-    df = pd.DataFrame(top_50_efficiency)
-    
-    fig = px.bar(df, x='name', y='cost_per_point', color='role',
-                 title='Top 50 Cyclists by Cost Efficiency (Lower is Better)',
-                 labels={'cost_per_point': 'Cost per Point', 'name': 'Cyclist Name'},
-                 hover_data=['points', 'cost'])
-    
-    fig.update_layout(
-        xaxis_tickangle=-45,
-        xaxis_title="Cyclist Name",
-        yaxis_title="Cost per Point",
-        legend_title="Rider Role",
-        font=dict(size=10),
-    )
-    
-    return fig.to_dict()
-
 def numpy_to_python(obj):
     if isinstance(obj, np.integer):
         return int(obj)
@@ -91,6 +72,20 @@ def numpy_to_python(obj):
         return obj.to_dict(orient='records')
     return obj
     
+def create_top_50_efficiency_data(cyclists):
+    top_50_efficiency = sorted(
+        [c for c in cyclists if c['cost_per_point'] != "Infinity"],
+        key=lambda x: x['cost_per_point']
+    )[:50]
+    
+    return [{
+        'name': c['name'],
+        'cost_per_point': c['cost_per_point'],
+        'role': c['role'],
+        'points': c['points'],
+        'cost': c['cost']
+    } for c in top_50_efficiency]
+
 def main():
     url = "https://www.velogames.com/spain/2024/riders.php"
     
@@ -106,9 +101,12 @@ def main():
 
         print(f"Extracted data for {len(cyclists)} cyclists", file=sys.stderr)
 
+        top_50_data = create_top_50_efficiency_data(cyclists)
+
         print("Preparing output", file=sys.stderr)
         output = {
             'cyclists': cyclists,
+            'top_50_efficiency': top_50_data
         }
         
         print("Writing JSON output", file=sys.stderr)
@@ -116,7 +114,7 @@ def main():
         
         print("Script completed successfully", file=sys.stderr)
         sys.exit(0)
-
+        
     except Exception as e:
         print(f"An error occurred: {str(e)}", file=sys.stderr)
         print("Traceback:", file=sys.stderr)

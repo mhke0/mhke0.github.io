@@ -92,7 +92,18 @@
                 $('#loading').hide();
                 $('#dashboard').show();
 
-                const cyclists = data.cyclists;
+                let cyclists = data.cyclists;
+
+                // Sort cyclists by cost_per_point (convert "Infinity" to a large number for sorting)
+                cyclists.sort((a, b) => {
+                    const costPerPointA = a.cost_per_point === "Infinity" ? Infinity : parseFloat(a.cost_per_point);
+                    const costPerPointB = b.cost_per_point === "Infinity" ? Infinity : parseFloat(b.cost_per_point);
+                    return costPerPointA - costPerPointB;
+                });
+
+                // Get the top 50 cyclists
+                cyclists = cyclists.slice(0, 50);
+
                 let totalCost = 0;
                 let totalPoints = 0;
                 const roles = {};

@@ -9,11 +9,11 @@ jobs:
   update-data:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Set up Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v5
       with:
-        python-version: '3.x'
+        python-version: '3.9'  # Specify the Python version you're using
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
@@ -22,7 +22,7 @@ jobs:
       run: python cyclist_analyzer.py > cyclist-data.json
     - name: Commit and push if changed
       run: |
-        git config --global user.email "moritzhacke@gmail.com"
-        git config --global user.name "mhke0"
+        git config --global user.email "your-github-email@example.com"
+        git config --global user.name "Your Name"
         git add cyclist-data.json
-        git diff --quiet && git diff --staged --quiet || (git commit -m "Update cyclist data" && git push)
+        git diff --quiet && git diff --staged --quiet || (git commit -m "Update cyclist data [skip ci]" && git push)

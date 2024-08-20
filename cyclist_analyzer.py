@@ -59,6 +59,25 @@ def analyze_cyclists(html_content):
     
     return cyclists
 
+def create_top_50_efficiency_chart(cyclists):
+    top_50_efficiency = sorted(cyclists, key=lambda x: x['cost_per_point'])[:50]
+    df = pd.DataFrame(top_50_efficiency)
+    
+    fig = px.bar(df, x='name', y='cost_per_point', color='role',
+                 title='Top 50 Cyclists by Cost Efficiency (Lower is Better)',
+                 labels={'cost_per_point': 'Cost per Point', 'name': 'Cyclist Name'},
+                 hover_data=['points', 'cost'])
+    
+    fig.update_layout(
+        xaxis_tickangle=-45,
+        xaxis_title="Cyclist Name",
+        yaxis_title="Cost per Point",
+        legend_title="Rider Role",
+        font=dict(size=10),
+    )
+    
+    return fig.to_dict()
+
 def numpy_to_python(obj):
     if isinstance(obj, np.integer):
         return int(obj)
@@ -97,7 +116,7 @@ def main():
         
         print("Script completed successfully", file=sys.stderr)
         sys.exit(0)
-        
+
     except Exception as e:
         print(f"An error occurred: {str(e)}", file=sys.stderr)
         print("Traceback:", file=sys.stderr)

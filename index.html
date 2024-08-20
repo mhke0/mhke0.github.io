@@ -23,12 +23,17 @@
 
     <script>
         $(document).ready(function() {
-            // URL of your JSON data (hosted separately)
-            const dataUrl = 'cyclist-data.json';
+            // URL of your JSON data (hosted on GitHub)
+            const dataUrl = 'https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO_NAME/main/cyclist-data.json';
 
             $.getJSON(dataUrl)
                 .done(function(data) {
                     $('#loading').hide();
+
+                    if (data.error) {
+                        $('#error').text("Error: " + data.error);
+                        return;
+                    }
 
                     // Display the top 50 efficiency chart
                     Plotly.newPlot('top-50-chart', data.top_50_chart.data, data.top_50_chart.layout);

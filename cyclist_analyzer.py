@@ -59,19 +59,6 @@ def analyze_cyclists(html_content):
     
     return cyclists
 
-def numpy_to_python(obj):
-    if isinstance(obj, np.integer):
-        return int(obj)
-    elif isinstance(obj, np.floating):
-        return float(obj)
-    elif isinstance(obj, np.ndarray):
-        return obj.tolist()
-    elif isinstance(obj, pd.Series):
-        return obj.tolist()
-    elif isinstance(obj, pd.DataFrame):
-        return obj.to_dict(orient='records')
-    return obj
-    
 def create_top_50_efficiency_data(cyclists):
     top_50_efficiency = sorted(
         [c for c in cyclists if c['cost_per_point'] != "Infinity"],
@@ -86,12 +73,41 @@ def create_top_50_efficiency_data(cyclists):
         'cost': c['cost']
     } for c in top_50_efficiency]
 
+def fetch_league_scores():
+    url = "https://www.velogames.com/spain/2024/leaguescores.php?league=764413216"
+    response = requests.get(url)
+    soup = BeautifulSoup(response.content, 'html.parser')
+
+    teams = []
+    for li in soup.select('#users .list li'):
+        team_name = li.select_one('h3.name a').text.strip()
+        points = int(li.select_one('p.born b').text.strip())
+        teams.append({"name": team_name, "points": points})
+
+    # Sort teams by points in descending order
+    teams.sort(key=lambda x: x['points'], reverse=True)
+
+    return teams
+
+def numpy_to_python(obj):
+    if isinstance(obj, np.integer):
+        return int(obj)
+    elif isinstance(obj, np.floating):
+        return float(obj)
+    elif isinstance(obj, np.ndarray):
+        return obj.tolist()
+    elif isinstance(obj, pd.Series):
+        return obj.tolist()
+    elif isinstance(obj, pd.DataFrame):
+        return obj.to_dict(orient='records')
+    return obj
+
 def main():
-    url = "https://www.velogames.com/spain/2024/riders.php"
+    cyclist_url = "https://www.velogames.com/spain/2024/riders.php"
     
     try:
-        print(f"Fetching data from {url}", file=sys.stderr)
-        html_content = fetch_html_content(url)
+        print(f"Fetching cyclist data from {cyclist_url}", file=sys.stderr)
+        html_content = fetch_html_content(cyclist_url)
         
         print("Analyzing cyclist data", file=sys.stderr)
         cyclists = analyze_cyclists(html_content)
@@ -103,10 +119,14 @@ def main():
 
         top_50_data = create_top_50_efficiency_data(cyclists)
 
+        print("Fetching league scores", file=sys.stderr)
+        league_scores = fetch_league_scores()
+
         print("Preparing output", file=sys.stderr)
         output = {
             'cyclists': cyclists,
-            'top_50_efficiency': top_50_data
+            'top_50_efficiency': top_50_data,
+            'league_scores': league_scores
         }
         
         print("Writing JSON output", file=sys.stderr)

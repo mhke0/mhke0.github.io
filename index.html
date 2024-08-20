@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Velo Data Dash</title>
+    <title>Cyclist Data Dashboard</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
@@ -90,15 +90,15 @@
     </style>
 </head>
 <body>
-    <h1>Cyclist Data Dash</h1>
+    <h1>Cyclist Data Dashboard</h1>
     <div id="loading">Loading data, please wait...</div>
     <div id="error" style="display:none;"></div>
     <div id="dashboard" style="display:none;">
         <div class="tab">
-            <button class="tablinks" onclick="openTab(event, 'LeagueScoresTab', id="defaultOpen")">League Scores</button>
-            <button class="tablinks" onclick="openTab(event, 'OverviewTab')">Stats</button>
+            <button class="tablinks" onclick="openTab(event, 'OverviewTab')" id="defaultOpen">Overview</button>
             <button class="tablinks" onclick="openTab(event, 'Top50Tab')">Top 50 Cyclists</button>
-            <button class="tablinks" onclick="openTab(event, 'CyclistDataTab')">Cyclist Data Table</button>
+            <button class="tablinks" onclick="openTab(event, 'LeagueScoresTab')">League Scores</button>
+            <button class="tablinks" onclick="openTab(event, 'CyclistDataTab')">Cyclist Data</button>
         </div>
 
         <div id="OverviewTab" class="tabcontent">
@@ -266,56 +266,64 @@
                 Plotly.newPlot('top50Chart', [trace], layout);
 
                 // Create league scores stacked bar chart
-const baseData = {
-    "Team Name": 0,
-    "Iberische Halbpinsel ": 7405,
-    "Fiestina": 9297,
-    "Team Fiestina": 8128
-};
-const middleData = {
-    "Team Name": 9062,
-    "Iberische Halbpinsel ": 9530,
-    "Fiestina": 7506,
-    "Team Fiestina": 8964
-};
+                const baseData = [0, 7405, 8128, 9297];
+                const middleData = [9062, 9530, 8964, 7506];
+                const topData = leagueScores.map(team => team.points);
 
-const leagueTrace1 = {
-    x: leagueScores.map(team => team.name),
-    y: leagueScores.map(team => baseData[team.name] || 0),
-    name: 'Base',
-    type: 'bar',
-    marker: { color: 'pink' }
-};
+                const leagueTrace1 = {
+                    x: leagueScores.map(team => team.name),
+                    y: baseData,
+                    name: 'Base',
+                    type: 'bar',
+                    marker: {
+                        color: 'pink'
+                    }
+                };
 
-const leagueTrace2 = {
-    x: leagueScores.map(team => team.name),
-    y: leagueScores.map(team => middleData[team.name] || 0),
-    name: 'Middle',
-    type: 'bar',
-    marker: { color: 'yellow' }
-};
+                const leagueTrace2 = {
+                    x: leagueScores.map(team => team.name),
+                    y: middleData,
+                    name: 'Middle',
+                    type: 'bar',
+                    marker: {
+                        color: 'yellow'
+                    }
+                };
 
-const leagueTrace3 = {
-    x: leagueScores.map(team => team.name),
-    y: leagueScores.map(team => team.points),
-    name: 'Top',
-    type: 'bar',
-    marker: { color: 'red' }
-};
+                const leagueTrace3 = {
+                    x: leagueScores.map(team => team.name),
+                    y: topData,
+                    name: 'Top',
+                    type: 'bar',
+                    marker: {
+                        color: 'red'
+                    }
+                };
 
-const leagueLayout = {
-    title: 'League Scores (Stacked)',
-    barmode: 'stack',
-    xaxis: { title: 'Team Name', tickangle: -45 },
-    yaxis: { title: 'Points' },
-    font: { size: 10 },
-    height: 500,
-    margin: { l: 50, r: 50, b: 100, t: 50, pad: 4 }
-};
+                const leagueLayout = {
+                    title: 'League Scores (Stacked)',
+                    barmode: 'stack',
+                    xaxis: {
+                        title: 'Team Name',
+                        tickangle: -45
+                    },
+                    yaxis: {
+                        title: 'Points'
+                    },
+                    font: {
+                        size: 10
+                    },
+                    height: 500,
+                    margin: {
+                        l: 50,
+                        r: 50,
+                        b: 100,
+                        t: 50,
+                        pad: 4
+                    }
+                };
 
-Plotly.newPlot('leagueScoresChart', [leagueTrace1, leagueTrace2, leagueTrace3], leagueLayout);
-
-
+                Plotly.newPlot('leagueScoresChart', [leagueTrace1, leagueTrace2, leagueTrace3], leagueLayout);
 
                 // Open the default tab
                 document.getElementById("defaultOpen").click();

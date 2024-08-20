@@ -157,4 +157,10 @@
                     }
                 });
             }).fail(function(jqxhr, textStatus, error) {
-                $('#loading').hide(
+                $('#loading').hide();
+                $('#error').text("Error fetching data: " + error).show();
+            });
+        });
+    </script>
+</body>
+</html>

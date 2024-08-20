@@ -32,7 +32,12 @@ def main():
         print(f"Extracted data for {len(cyclists)} cyclists", file=sys.stderr)
         
         output = {'cyclists': cyclists}
-        json.dump(output, sys.stdout, ensure_ascii=False, indent=2)
+        json_output = json.dumps(output, ensure_ascii=False, indent=2)
+        
+        print("JSON output:", file=sys.stderr)
+        print(json_output, file=sys.stderr)
+        
+        print(json_output)  # Print to stdout as well
         
     except Exception as e:
         print(f"An error occurred: {e}", file=sys.stderr)

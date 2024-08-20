@@ -1,0 +1,1412 @@
+{
+  "cyclists": [
+    {
+      "name": "Primož Roglič",
+      "team": "Red Bull - BORA - hansgrohe",
+      "role": "All Rounder",
+      "cost": "24",
+      "ownership": "38.1%",
+      "points": "395"
+    },
+    {
+      "name": "Sepp Kuss",
+      "team": "Team Visma | Lease a Bike",
+      "role": "Climber",
+      "cost": "20",
+      "ownership": "28.6%",
+      "points": "90"
+    },
+    {
+      "name": "João Almeida",
+      "team": "UAE Team Emirates",
+      "role": "All Rounder",
+      "cost": "20",
+      "ownership": "47.9%",
+      "points": "318"
+    },
+    {
+      "name": "Adam Yates",
+      "team": "UAE Team Emirates",
+      "role": "All Rounder",
+      "cost": "20",
+      "ownership": "29.7%",
+      "points": "38"
+    },
+    {
+      "name": "Wout Van Aert",
+      "team": "Team Visma | Lease a Bike",
+      "role": "Sprinter",
+      "cost": "18",
+      "ownership": "53.5%",
+      "points": "704"
+    },
+    {
+      "name": "Enric Mas",
+      "team": "Movistar Team",
+      "role": "Climber",
+      "cost": "16",
+      "ownership": "8.9%",
+      "points": "166"
+    },
+    {
+      "name": "Carlos Rodríguez",
+      "team": "INEOS Grenadiers",
+      "role": "All Rounder",
+      "cost": "14",
+      "ownership": "23.4%",
+      "points": "3"
+    },
+    {
+      "name": "Daniel Martínez",
+      "team": "Red Bull - BORA - hansgrohe",
+      "role": "All Rounder",
+      "cost": "14",
+      "ownership": "12.0%",
+      "points": "20"
+    },
+    {
+      "name": "Mikel Landa",
+      "team": "Soudal - Quick Step",
+      "role": "Climber",
+      "cost": "14",
+      "ownership": "26.0%",
+      "points": "107"
+    },
+    {
+      "name": "Kaden Groves",
+      "team": "Alpecin-Deceuninck",
+      "role": "Sprinter",
+      "cost": "12",
+      "ownership": "24.5%",
+      "points": "452"
+    },
+    {
+      "name": "Richard Carapaz",
+      "team": "EF Education-EasyPost",
+      "role": "Climber",
+      "cost": "12",
+      "ownership": "44.2%",
+      "points": "0"
+    },
+    {
+      "name": "Mattias Skjelmose",
+      "team": "Lidl - Trek",
+      "role": "All Rounder",
+      "cost": "12",
+      "ownership": "25.2%",
+      "points": "105"
+    },
+    {
+      "name": "Cian Uijtdebroeks",
+      "team": "Team Visma | Lease a Bike",
+      "role": "Climber",
+      "cost": "12",
+      "ownership": "8.2%",
+      "points": "32"
+    },
+    {
+      "name": "Isaac Del Toro",
+      "team": "UAE Team Emirates",
+      "role": "Climber",
+      "cost": "12",
+      "ownership": "14.9%",
+      "points": "46"
+    },
+    {
+      "name": "Antonio Tiberi",
+      "team": "Bahrain - Victorious",
+      "role": "All Rounder",
+      "cost": "10",
+      "ownership": "10.9%",
+      "points": "120"
+    },
+    {
+      "name": "Bryan Coquard",
+      "team": "Cofidis",
+      "role": "Sprinter",
+      "cost": "10",
+      "ownership": "6.5%",
+      "points": "110"
+    },
+    {
+      "name": "Felix Gall",
+      "team": "Decathlon AG2R La Mondiale Team",
+      "role": "Climber",
+      "cost": "10",
+      "ownership": "5.4%",
+      "points": "139"
+    },
+    {
+      "name": "Ben O'Connor",
+      "team": "Decathlon AG2R La Mondiale Team",
+      "role": "Climber",
+      "cost": "10",
+      "ownership": "15.7%",
+      "points": "2"
+    },
+    {
+      "name": "Thymen Arensman",
+      "team": "INEOS Grenadiers",
+      "role": "All Rounder",
+      "cost": "10",
+      "ownership": "9.9%",
+      "points": "0"
+    },
+    {
+      "name": "Jhonatan Narváez",
+      "team": "INEOS Grenadiers",
+      "role": "Unclassed",
+      "cost": "10",
+      "ownership": "16.7%",
+      "points": "0"
+    },
+    {
+      "name": "Giulio Ciccone",
+      "team": "Lidl - Trek",
+      "role": "Climber",
+      "cost": "10",
+      "ownership": "11.5%",
+      "points": "12"
+    },
+    {
+      "name": "Tao Geoghegan Hart",
+      "team": "Lidl - Trek",
+      "role": "All Rounder",
+      "cost": "10",
+      "ownership": "7.6%",
+      "points": "12"
+    },
+    {
+      "name": "Lennert Van Eetvelt",
+      "team": "Lotto Dstny",
+      "role": "Climber",
+      "cost": "10",
+      "ownership": "10.6%",
+      "points": "327"
+    },
+    {
+      "name": "Aleksandr Vlasov",
+      "team": "Red Bull - BORA - hansgrohe",
+      "role": "All Rounder",
+      "cost": "10",
+      "ownership": "3.0%",
+      "points": "159"
+    },
+    {
+      "name": "Max Poole",
+      "team": "Team dsm-firmenich PostNL",
+      "role": "Climber",
+      "cost": "10",
+      "ownership": "4.5%",
+      "points": "0"
+    },
+    {
+      "name": "Brandon McNulty",
+      "team": "UAE Team Emirates",
+      "role": "All Rounder",
+      "cost": "10",
+      "ownership": "4.3%",
+      "points": "362"
+    },
+    {
+      "name": "Jay Vine",
+      "team": "UAE Team Emirates",
+      "role": "All Rounder",
+      "cost": "10",
+      "ownership": "3.0%",
+      "points": "90"
+    },
+    {
+      "name": "Ide Schelling",
+      "team": "Astana Qazaqstan Team",
+      "role": "Sprinter",
+      "cost": "8",
+      "ownership": "0.8%",
+      "points": "20"
+    },
+    {
+      "name": "Damiano Caruso",
+      "team": "Bahrain - Victorious",
+      "role": "All Rounder",
+      "cost": "8",
+      "ownership": "1.9%",
+      "points": "0"
+    },
+    {
+      "name": "Guillaume Martin",
+      "team": "Cofidis",
+      "role": "Climber",
+      "cost": "8",
+      "ownership": "1.6%",
+      "points": "0"
+    },
+    {
+      "name": "Victor Lafay",
+      "team": "Decathlon AG2R La Mondiale Team",
+      "role": "Unclassed",
+      "cost": "8",
+      "ownership": "6.6%",
+      "points": "2"
+    },
+    {
+      "name": "Valentin Paret-Peintre",
+      "team": "Decathlon AG2R La Mondiale Team",
+      "role": "Climber",
+      "cost": "8",
+      "ownership": "5.8%",
+      "points": "2"
+    },
+    {
+      "name": "David Gaudu",
+      "team": "Groupama - FDJ",
+      "role": "Climber",
+      "cost": "8",
+      "ownership": "4.7%",
+      "points": "31"
+    },
+    {
+      "name": "Joshua Tarling",
+      "team": "INEOS Grenadiers",
+      "role": "Unclassed",
+      "cost": "8",
+      "ownership": "29.5%",
+      "points": "141"
+    },
+    {
+      "name": "Matthew Riccitello",
+      "team": "Israel - Premier Tech",
+      "role": "Climber",
+      "cost": "8",
+      "ownership": "6.6%",
+      "points": "121"
+    },
+    {
+      "name": "Corbin Strong",
+      "team": "Israel - Premier Tech",
+      "role": "Sprinter",
+      "cost": "8",
+      "ownership": "5.2%",
+      "points": "279"
+    },
+    {
+      "name": "Michael Woods",
+      "team": "Israel - Premier Tech",
+      "role": "Climber",
+      "cost": "8",
+      "ownership": "3.3%",
+      "points": "2"
+    },
+    {
+      "name": "Patrick Konrad",
+      "team": "Lidl - Trek",
+      "role": "Unclassed",
+      "cost": "8",
+      "ownership": "3.4%",
+      "points": "12"
+    },
+    {
+      "name": "Oier Lazkano",
+      "team": "Movistar Team",
+      "role": "Unclassed",
+      "cost": "8",
+      "ownership": "15.4%",
+      "points": "2"
+    },
+    {
+      "name": "Nairo Quintana",
+      "team": "Movistar Team",
+      "role": "Climber",
+      "cost": "8",
+      "ownership": "3.5%",
+      "points": "2"
+    },
+    {
+      "name": "Einer Rubio",
+      "team": "Movistar Team",
+      "role": "Climber",
+      "cost": "8",
+      "ownership": "2.9%",
+      "points": "14"
+    },
+    {
+      "name": "Pelayo Sánchez",
+      "team": "Movistar Team",
+      "role": "Unclassed",
+      "cost": "8",
+      "ownership": "9.1%",
+      "points": "2"
+    },
+    {
+      "name": "Florian Lipowitz",
+      "team": "Red Bull - BORA - hansgrohe",
+      "role": "Climber",
+      "cost": "8",
+      "ownership": "4.3%",
+      "points": "89"
+    },
+    {
+      "name": "Mauri Vansevenant",
+      "team": "Soudal - Quick Step",
+      "role": "Unclassed",
+      "cost": "8",
+      "ownership": "2.1%",
+      "points": "0"
+    },
+    {
+      "name": "Pavel Bittner",
+      "team": "Team dsm-firmenich PostNL",
+      "role": "Sprinter",
+      "cost": "8",
+      "ownership": "4.8%",
+      "points": "230"
+    },
+    {
+      "name": "Mauro Schmid",
+      "team": "Team Jayco AlUla",
+      "role": "Unclassed",
+      "cost": "8",
+      "ownership": "3.8%",
+      "points": "138"
+    },
+    {
+      "name": "Pavel Sivakov",
+      "team": "UAE Team Emirates",
+      "role": "Climber",
+      "cost": "8",
+      "ownership": "1.4%",
+      "points": "108"
+    },
+    {
+      "name": "Marc Soler",
+      "team": "UAE Team Emirates",
+      "role": "All Rounder",
+      "cost": "8",
+      "ownership": "3.9%",
+      "points": "38"
+    },
+    {
+      "name": "Maurice Ballerstedt",
+      "team": "Alpecin-Deceuninck",
+      "role": "Sprinter",
+      "cost": "6",
+      "ownership": "0.5%",
+      "points": "16"
+    },
+    {
+      "name": "Quinten Hermans",
+      "team": "Alpecin-Deceuninck",
+      "role": "Unclassed",
+      "cost": "6",
+      "ownership": "3.0%",
+      "points": "12"
+    },
+    {
+      "name": "Xandro Meurisse",
+      "team": "Alpecin-Deceuninck",
+      "role": "Unclassed",
+      "cost": "6",
+      "ownership": "0.1%",
+      "points": "12"
+    },
+    {
+      "name": "Élie Gesbert",
+      "team": "Arkéa - B&B Hotels",
+      "role": "Unclassed",
+      "cost": "6",
+      "ownership": "0.2%",
+      "points": "0"
+    },
+    {
+      "name": "Thibault Guernalec",
+      "team": "Arkéa - B&B Hotels",
+      "role": "Unclassed",
+      "cost": "6",
+      "ownership": "0.2%",
+      "points": "0"
+    },
+    {
+      "name": "Cristián Rodríguez",
+      "team": "Arkéa - B&B Hotels",
+      "role": "Climber",
+      "cost": "6",
+      "ownership": "0.9%",
+      "points": "8"
+    },
+    {
+      "name": "Gleb Brussenskiy",
+      "team": "Astana Qazaqstan Team",
+      "role": "Unclassed",
+      "cost": "6",
+      "ownership": "0.3%",
+      "points": "0"
+    },
+    {
+      "name": "Lorenzo Fortunato",
+      "team": "Astana Qazaqstan Team",
+      "role": "Climber",
+      "cost": "6",
+      "ownership": "5.1%",
+      "points": "35"
+    },
+    {
+      "name": "Harold Martin López",
+      "team": "Astana Qazaqstan Team",
+      "role": "Unclassed",
+      "cost": "6",
+      "ownership": "0.3%",
+      "points": "0"
+    },
+    {
+      "name": "Harold Tejada",
+      "team": "Astana Qazaqstan Team",
+      "role": "Unclassed",
+      "cost": "6",
+      "ownership": "4.2%",
+      "points": "0"
+    },
+    {
+      "name": "Jack Haig",
+      "team": "Bahrain - Victorious",
+      "role": "Climber",
+      "cost": "6",
+      "ownership": "1.9%",
+      "points": "23"
+    },
+    {
+      "name": "Torstein Træen",
+      "team": "Bahrain - Victorious",
+      "role": "Unclassed",
+      "cost": "6",
+      "ownership": "1.2%",
+      "points": "0"
+    },
+    {
+      "name": "Kenny Elissonde",
+      "team": "Cofidis",
+      "role": "Unclassed",
+      "cost": "6",
+      "ownership": "1.4%",
+      "points": "0"
+    },
+    {
+      "name": "Jesús Herrada",
+      "team": "Cofidis",
+      "role": "Climber",
+      "cost": "6",
+      "ownership": "1.6%",
+      "points": "0"
+    },
+    {
+      "name": "Ion Izagirre",
+      "team": "Cofidis",
+      "role": "All Rounder",
+      "cost": "6",
+      "ownership": "1.3%",
+      "points": "0"
+    },
+    {
+      "name": "Bruno Armirail",
+      "team": "Decathlon AG2R La Mondiale Team",
+      "role": "Unclassed",
+      "cost": "6",
+      "ownership": "5.1%",
+      "points": "153"
+    },
+    {
+      "name": "Clément Berthet",
+      "team": "Decathlon AG2R La Mondiale Team",
+      "role": "Unclassed",
+      "cost": "6",
+      "ownership": "1.5%",
+      "points": "2"
+    },
+    {
+      "name": "Geoffrey Bouchard",
+      "team": "Decathlon AG2R La Mondiale Team",
+      "role": "Climber",
+      "cost": "6",
+      "ownership": "0.5%",
+      "points": "2"
+    },
+    {
+      "name": "Sander De Pestel",
+      "team": "Decathlon AG2R La Mondiale Team",
+      "role": "Sprinter",
+      "cost": "6",
+      "ownership": "0.2%",
+      "points": "2"
+    },
+    {
+      "name": "Jefferson Alexander Cepeda",
+      "team": "EF Education-EasyPost",
+      "role": "Climber",
+      "cost": "6",
+      "ownership": "0.8%",
+      "points": "0"
+    },
+    {
+      "name": "Rui Costa",
+      "team": "EF Education-EasyPost",
+      "role": "All Rounder",
+      "cost": "6",
+      "ownership": "2.5%",
+      "points": "0"
+    },
+    {
+      "name": "Owain Doull",
+      "team": "EF Education-EasyPost",
+      "role": "Sprinter",
+      "cost": "6",
+      "ownership": "0.8%",
+      "points": "0"
+    },
+    {
+      "name": "Darren Rafferty",
+      "team": "EF Education-EasyPost",
+      "role": "Unclassed",
+      "cost": "6",
+      "ownership": "1.2%",
+      "points": "0"
+    },
+    {
+      "name": "James Shaw",
+      "team": "EF Education-EasyPost",
+      "role": "Unclassed",
+      "cost": "6",
+      "ownership": "1.3%",
+      "points": "0"
+    },
+    {
+      "name": "Harry Sweeny",
+      "team": "EF Education-EasyPost",
+      "role": "Unclassed",
+      "cost": "6",
+      "ownership": "0.7%",
+      "points": "0"
+    },
+    {
+      "name": "Rigoberto Urán",
+      "team": "EF Education-EasyPost",
+      "role": "All Rounder",
+      "cost": "6",
+      "ownership": "1.5%",
+      "points": "0"
+    },
+    {
+      "name": "Pablo Castrillo",
+      "team": "Equipo Kern Pharma",
+      "role": "Unclassed",
+      "cost": "6",
+      "ownership": "3.7%",
+      "points": "43"
+    },
+    {
+      "name": "Pau Miquel",
+      "team": "Equipo Kern Pharma",
+      "role": "Sprinter",
+      "cost": "6",
+      "ownership": "0.2%",
+      "points": "190"
+    },
+    {
+      "name": "Antonio Jesús Soto",
+      "team": "Equipo Kern Pharma",
+      "role": "Sprinter",
+      "cost": "6",
+      "ownership": "0.2%",
+      "points": "120"
+    },
+    {
+      "name": "Jon Aberasturi",
+      "team": "Euskaltel - Euskadi",
+      "role": "Sprinter",
+      "cost": "6",
+      "ownership": "1.7%",
+      "points": "259"
+    },
+    {
+      "name": "Mikel Bizkarra",
+      "team": "Euskaltel - Euskadi",
+      "role": "Unclassed",
+      "cost": "6",
+      "ownership": "2.3%",
+      "points": "26"
+    },
+    {
+      "name": "Joan Bou",
+      "team": "Euskaltel - Euskadi",
+      "role": "Unclassed",
+      "cost": "6",
+      "ownership": "1.0%",
+      "points": "2"
+    },
+    {
+      "name": "Txomin Juaristi",
+      "team": "Euskaltel - Euskadi",
+      "role": "Unclassed",
+      "cost": "6",
+      "ownership": "0.5%",
+      "points": "2"
+    },
+    {
+      "name": "Gotzon Martín",
+      "team": "Euskaltel - Euskadi",
+      "role": "Unclassed",
+      "cost": "6",
+      "ownership": "0.2%",
+      "points": "41"
+    },
+    {
+      "name": "Luis Ángel Maté",
+      "team": "Euskaltel - Euskadi",
+      "role": "Unclassed",
+      "cost": "6",
+      "ownership": "1.0%",
+      "points": "112"
+    },
+    {
+      "name": "Sven Erik Bystrøm",
+      "team": "Groupama - FDJ",
+      "role": "Unclassed",
+      "cost": "6",
+      "ownership": "0.3%",
+      "points": "0"
+    },
+    {
+      "name": "Kevin Geniets",
+      "team": "Groupama - FDJ",
+      "role": "Unclassed",
+      "cost": "6",
+      "ownership": "0.3%",
+      "points": "0"
+    },
+    {
+      "name": "Stefan Küng",
+      "team": "Groupama - FDJ",
+      "role": "Unclassed",
+      "cost": "6",
+      "ownership": "8.6%",
+      "points": "260"
+    },
+    {
+      "name": "Quentin Pacher",
+      "team": "Groupama - FDJ",
+      "role": "Unclassed",
+      "cost": "6",
+      "ownership": "3.9%",
+      "points": "0"
+    },
+    {
+      "name": "Rémy Rochas",
+      "team": "Groupama - FDJ",
+      "role": "Unclassed",
+      "cost": "6",
+      "ownership": "0.3%",
+      "points": "0"
+    },
+    {
+      "name": "Laurens De Plus",
+      "team": "INEOS Grenadiers",
+      "role": "All Rounder",
+      "cost": "6",
+      "ownership": "1.8%",
+      "points": "0"
+    },
+    {
+      "name": "Kim Heiduk",
+      "team": "INEOS Grenadiers",
+      "role": "Sprinter",
+      "cost": "6",
+      "ownership": "0.3%",
+      "points": "25"
+    },
+    {
+      "name": "Brandon Smith Rivera",
+      "team": "INEOS Grenadiers",
+      "role": "Unclassed",
+      "cost": "6",
+      "ownership": "0.9%",
+      "points": "70"
+    },
+    {
+      "name": "Óscar Rodríguez",
+      "team": "INEOS Grenadiers",
+      "role": "Climber",
+      "cost": "6",
+      "ownership": "1.0%",
+      "points": "0"
+    },
+    {
+      "name": "Vito Braet",
+      "team": "Intermarché - Wanty",
+      "role": "Sprinter",
+      "cost": "6",
+      "ownership": "0.3%",
+      "points": "0"
+    },
+    {
+      "name": "Kobe Goossens",
+      "team": "Intermarché - Wanty",
+      "role": "Unclassed",
+      "cost": "6",
+      "ownership": "0.7%",
+      "points": "0"
+    },
+    {
+      "name": "Arne Marit",
+      "team": "Intermarché - Wanty",
+      "role": "Sprinter",
+      "cost": "6",
+      "ownership": "0.6%",
+      "points": "160"
+    },
+    {
+      "name": "Louis Meintjes",
+      "team": "Intermarché - Wanty",
+      "role": "Climber",
+      "cost": "6",
+      "ownership": "2.0%",
+      "points": "0"
+    },
+    {
+      "name": "Lorenzo Rota",
+      "team": "Intermarché - Wanty",
+      "role": "Unclassed",
+      "cost": "6",
+      "ownership": "0.8%",
+      "points": "60"
+    },
+    {
+      "name": "Rein Taaramäe",
+      "team": "Intermarché - Wanty",
+      "role": "Climber",
+      "cost": "6",
+      "ownership": "0.4%",
+      "points": "0"
+    },
+    {
+      "name": "George Bennett",
+      "team": "Israel - Premier Tech",
+      "role": "Unclassed",
+      "cost": "6",
+      "ownership": "10.7%",
+      "points": "77"
+    },
+    {
+      "name": "Marco Frigo",
+      "team": "Israel - Premier Tech",
+      "role": "Unclassed",
+      "cost": "6",
+      "ownership": "0.9%",
+      "points": "17"
+    },
+    {
+      "name": "Riley Sheehan",
+      "team": "Israel - Premier Tech",
+      "role": "Sprinter",
+      "cost": "6",
+      "ownership": "0.5%",
+      "points": "2"
+    },
+    {
+      "name": "Dylan Teuns",
+      "team": "Israel - Premier Tech",
+      "role": "Climber",
+      "cost": "6",
+      "ownership": "1.5%",
+      "points": "2"
+    },
+    {
+      "name": "Sam Oomen",
+      "team": "Lidl - Trek",
+      "role": "Unclassed",
+      "cost": "6",
+      "ownership": "0.5%",
+      "points": "12"
+    },
+    {
+      "name": "Mathias Vacek",
+      "team": "Lidl - Trek",
+      "role": "Sprinter",
+      "cost": "6",
+      "ownership": "8.3%",
+      "points": "316"
+    },
+    {
+      "name": "Carlos Verona",
+      "team": "Lidl - Trek",
+      "role": "Unclassed",
+      "cost": "6",
+      "ownership": "1.7%",
+      "points": "12"
+    },
+    {
+      "name": "Victor Campenaerts",
+      "team": "Lotto Dstny",
+      "role": "Unclassed",
+      "cost": "6",
+      "ownership": "19.1%",
+      "points": "4"
+    },
+    {
+      "name": "Thomas De Gendt",
+      "team": "Lotto Dstny",
+      "role": "Unclassed",
+      "cost": "6",
+      "ownership": "6.6%",
+      "points": "4"
+    },
+    {
+      "name": "Jonas Gregaard",
+      "team": "Lotto Dstny",
+      "role": "Unclassed",
+      "cost": "6",
+      "ownership": "0.3%",
+      "points": "4"
+    },
+    {
+      "name": "Andreas Kron",
+      "team": "Lotto Dstny",
+      "role": "Unclassed",
+      "cost": "6",
+      "ownership": "9.0%",
+      "points": "36"
+    },
+    {
+      "name": "Sylvain Moniquet",
+      "team": "Lotto Dstny",
+      "role": "Unclassed",
+      "cost": "6",
+      "ownership": "0.2%",
+      "points": "51"
+    },
+    {
+      "name": "Eduardo Sepúlveda",
+      "team": "Lotto Dstny",
+      "role": "Unclassed",
+      "cost": "6",
+      "ownership": "0.4%",
+      "points": "4"
+    },
+    {
+      "name": "Carlos Canal",
+      "team": "Movistar Team",
+      "role": "Sprinter",
+      "cost": "6",
+      "ownership": "0.6%",
+      "points": "70"
+    },
+    {
+      "name": "Nelson Oliveira",
+      "team": "Movistar Team",
+      "role": "Unclassed",
+      "cost": "6",
+      "ownership": "2.5%",
+      "points": "83"
+    },
+    {
+      "name": "Roger Adrià",
+      "team": "Red Bull - BORA - hansgrohe",
+      "role": "Sprinter",
+      "cost": "6",
+      "ownership": "1.9%",
+      "points": "28"
+    },
+    {
+      "name": "Giovanni Aleotti",
+      "team": "Red Bull - BORA - hansgrohe",
+      "role": "Unclassed",
+      "cost": "6",
+      "ownership": "2.0%",
+      "points": "20"
+    },
+    {
+      "name": "Nico Denz",
+      "team": "Red Bull - BORA - hansgrohe",
+      "role": "Unclassed",
+      "cost": "6",
+      "ownership": "1.9%",
+      "points": "20"
+    },
+    {
+      "name": "Patrick Gamper",
+      "team": "Red Bull - BORA - hansgrohe",
+      "role": "Unclassed",
+      "cost": "6",
+      "ownership": "0.4%",
+      "points": "20"
+    },
+    {
+      "name": "Kasper Asgreen",
+      "team": "Soudal - Quick Step",
+      "role": "Unclassed",
+      "cost": "6",
+      "ownership": "12.0%",
+      "points": "56"
+    },
+    {
+      "name": "Mattia Cattaneo",
+      "team": "Soudal - Quick Step",
+      "role": "Unclassed",
+      "cost": "6",
+      "ownership": "1.3%",
+      "points": "29"
+    },
+    {
+      "name": "James Knox",
+      "team": "Soudal - Quick Step",
+      "role": "Unclassed",
+      "cost": "6",
+      "ownership": "1.4%",
+      "points": "0"
+    },
+    {
+      "name": "William Junior Lecerf",
+      "team": "Soudal - Quick Step",
+      "role": "Unclassed",
+      "cost": "6",
+      "ownership": "1.1%",
+      "points": "0"
+    },
+    {
+      "name": "Casper Pedersen",
+      "team": "Soudal - Quick Step",
+      "role": "Sprinter",
+      "cost": "6",
+      "ownership": "2.5%",
+      "points": "0"
+    },
+    {
+      "name": "Louis Vervaeke",
+      "team": "Soudal - Quick Step",
+      "role": "Unclassed",
+      "cost": "6",
+      "ownership": "0.3%",
+      "points": "0"
+    },
+    {
+      "name": "Chris Hamilton",
+      "team": "Team dsm-firmenich PostNL",
+      "role": "Unclassed",
+      "cost": "6",
+      "ownership": "0.7%",
+      "points": "0"
+    },
+    {
+      "name": "Gijs Leemreize",
+      "team": "Team dsm-firmenich PostNL",
+      "role": "Unclassed",
+      "cost": "6",
+      "ownership": "0.3%",
+      "points": "0"
+    },
+    {
+      "name": "Alessandro De Marchi",
+      "team": "Team Jayco AlUla",
+      "role": "Unclassed",
+      "cost": "6",
+      "ownership": "1.4%",
+      "points": "0"
+    },
+    {
+      "name": "Eddie Dunbar",
+      "team": "Team Jayco AlUla",
+      "role": "All Rounder",
+      "cost": "6",
+      "ownership": "2.1%",
+      "points": "0"
+    },
+    {
+      "name": "Felix Engelhardt",
+      "team": "Team Jayco AlUla",
+      "role": "Unclassed",
+      "cost": "6",
+      "ownership": "0.9%",
+      "points": "0"
+    },
+    {
+      "name": "Chris Harper",
+      "team": "Team Jayco AlUla",
+      "role": "Climber",
+      "cost": "6",
+      "ownership": "0.6%",
+      "points": "0"
+    },
+    {
+      "name": "Callum Scotson",
+      "team": "Team Jayco AlUla",
+      "role": "Unclassed",
+      "cost": "6",
+      "ownership": "0.2%",
+      "points": "0"
+    },
+    {
+      "name": "Filippo Zana",
+      "team": "Team Jayco AlUla",
+      "role": "Climber",
+      "cost": "6",
+      "ownership": "4.9%",
+      "points": "38"
+    },
+    {
+      "name": "Edoardo Affini",
+      "team": "Team Visma | Lease a Bike",
+      "role": "Sprinter",
+      "cost": "6",
+      "ownership": "2.1%",
+      "points": "202"
+    },
+    {
+      "name": "Robert Gesink",
+      "team": "Team Visma | Lease a Bike",
+      "role": "Unclassed",
+      "cost": "6",
+      "ownership": "1.8%",
+      "points": "32"
+    },
+    {
+      "name": "Steven Kruijswijk",
+      "team": "Team Visma | Lease a Bike",
+      "role": "Unclassed",
+      "cost": "6",
+      "ownership": "3.3%",
+      "points": "32"
+    },
+    {
+      "name": "Attila Valter",
+      "team": "Team Visma | Lease a Bike",
+      "role": "Climber",
+      "cost": "6",
+      "ownership": "1.5%",
+      "points": "32"
+    },
+    {
+      "name": "Dylan Van Baarle",
+      "team": "Team Visma | Lease a Bike",
+      "role": "Unclassed",
+      "cost": "6",
+      "ownership": "3.2%",
+      "points": "14"
+    },
+    {
+      "name": "Filippo Baroncini",
+      "team": "UAE Team Emirates",
+      "role": "Unclassed",
+      "cost": "6",
+      "ownership": "2.1%",
+      "points": "134"
+    },
+    {
+      "name": "Juri Hollmann",
+      "team": "Alpecin-Deceuninck",
+      "role": "Unclassed",
+      "cost": "4",
+      "ownership": "1.9%",
+      "points": "12"
+    },
+    {
+      "name": "Edward Planckaert",
+      "team": "Alpecin-Deceuninck",
+      "role": "Unclassed",
+      "cost": "4",
+      "ownership": "2.3%",
+      "points": "16"
+    },
+    {
+      "name": "Oscar Riesebeek",
+      "team": "Alpecin-Deceuninck",
+      "role": "Unclassed",
+      "cost": "4",
+      "ownership": "1.7%",
+      "points": "12"
+    },
+    {
+      "name": "Luca Vergallito",
+      "team": "Alpecin-Deceuninck",
+      "role": "Unclassed",
+      "cost": "4",
+      "ownership": "3.6%",
+      "points": "12"
+    },
+    {
+      "name": "Simon Guglielmi",
+      "team": "Arkéa - B&B Hotels",
+      "role": "Unclassed",
+      "cost": "4",
+      "ownership": "1.1%",
+      "points": "16"
+    },
+    {
+      "name": "Laurens Huys",
+      "team": "Arkéa - B&B Hotels",
+      "role": "Unclassed",
+      "cost": "4",
+      "ownership": "1.0%",
+      "points": "0"
+    },
+    {
+      "name": "Mathis Le Berre",
+      "team": "Arkéa - B&B Hotels",
+      "role": "Unclassed",
+      "cost": "4",
+      "ownership": "4.4%",
+      "points": "12"
+    },
+    {
+      "name": "Łukasz Owsian",
+      "team": "Arkéa - B&B Hotels",
+      "role": "Unclassed",
+      "cost": "4",
+      "ownership": "0.4%",
+      "points": "0"
+    },
+    {
+      "name": "Michel Ries",
+      "team": "Arkéa - B&B Hotels",
+      "role": "Unclassed",
+      "cost": "4",
+      "ownership": "1.2%",
+      "points": "0"
+    },
+    {
+      "name": "Gianmarco Garofoli",
+      "team": "Astana Qazaqstan Team",
+      "role": "Unclassed",
+      "cost": "4",
+      "ownership": "1.1%",
+      "points": "8"
+    },
+    {
+      "name": "Santiago Umba",
+      "team": "Astana Qazaqstan Team",
+      "role": "Unclassed",
+      "cost": "4",
+      "ownership": "2.1%",
+      "points": "0"
+    },
+    {
+      "name": "Nicolas Vinokurov",
+      "team": "Astana Qazaqstan Team",
+      "role": "Unclassed",
+      "cost": "4",
+      "ownership": "4.8%",
+      "points": "0"
+    },
+    {
+      "name": "Kamil Gradek",
+      "team": "Bahrain - Victorious",
+      "role": "Unclassed",
+      "cost": "4",
+      "ownership": "1.7%",
+      "points": "0"
+    },
+    {
+      "name": "Rainer Kepplinger",
+      "team": "Bahrain - Victorious",
+      "role": "Unclassed",
+      "cost": "4",
+      "ownership": "1.8%",
+      "points": "0"
+    },
+    {
+      "name": "Fran Miholjević",
+      "team": "Bahrain - Victorious",
+      "role": "Unclassed",
+      "cost": "4",
+      "ownership": "1.3%",
+      "points": "0"
+    },
+    {
+      "name": "Jasha Sütterlin",
+      "team": "Bahrain - Victorious",
+      "role": "Unclassed",
+      "cost": "4",
+      "ownership": "2.4%",
+      "points": "0"
+    },
+    {
+      "name": "Thomas Champion",
+      "team": "Cofidis",
+      "role": "Unclassed",
+      "cost": "4",
+      "ownership": "5.1%",
+      "points": "0"
+    },
+    {
+      "name": "Rubén Fernández",
+      "team": "Cofidis",
+      "role": "Unclassed",
+      "cost": "4",
+      "ownership": "5.6%",
+      "points": "0"
+    },
+    {
+      "name": "Jonathan Lastra",
+      "team": "Cofidis",
+      "role": "Unclassed",
+      "cost": "4",
+      "ownership": "3.8%",
+      "points": "0"
+    },
+    {
+      "name": "Urko Berrade",
+      "team": "Equipo Kern Pharma",
+      "role": "Unclassed",
+      "cost": "4",
+      "ownership": "8.0%",
+      "points": "0"
+    },
+    {
+      "name": "Jorge Gutiérrez",
+      "team": "Equipo Kern Pharma",
+      "role": "Unclassed",
+      "cost": "4",
+      "ownership": "2.4%",
+      "points": "0"
+    },
+    {
+      "name": "Unai Iribar",
+      "team": "Equipo Kern Pharma",
+      "role": "Unclassed",
+      "cost": "4",
+      "ownership": "1.3%",
+      "points": "28"
+    },
+    {
+      "name": "José Félix Parra",
+      "team": "Equipo Kern Pharma",
+      "role": "Unclassed",
+      "cost": "4",
+      "ownership": "4.4%",
+      "points": "0"
+    },
+    {
+      "name": "Ibon Ruiz",
+      "team": "Equipo Kern Pharma",
+      "role": "Unclassed",
+      "cost": "4",
+      "ownership": "1.7%",
+      "points": "84"
+    },
+    {
+      "name": "Xabier Berasategi",
+      "team": "Euskaltel - Euskadi",
+      "role": "Unclassed",
+      "cost": "4",
+      "ownership": "5.6%",
+      "points": "2"
+    },
+    {
+      "name": "Xabier Isasa",
+      "team": "Euskaltel - Euskadi",
+      "role": "Unclassed",
+      "cost": "4",
+      "ownership": "3.3%",
+      "points": "50"
+    },
+    {
+      "name": "Lorenzo Germani",
+      "team": "Groupama - FDJ",
+      "role": "Unclassed",
+      "cost": "4",
+      "ownership": "1.5%",
+      "points": "0"
+    },
+    {
+      "name": "Reuben Thompson",
+      "team": "Groupama - FDJ",
+      "role": "Unclassed",
+      "cost": "4",
+      "ownership": "1.3%",
+      "points": "0"
+    },
+    {
+      "name": "Tom Paquot",
+      "team": "Intermarché - Wanty",
+      "role": "Unclassed",
+      "cost": "4",
+      "ownership": "1.1%",
+      "points": "0"
+    },
+    {
+      "name": "Simone Petilli",
+      "team": "Intermarché - Wanty",
+      "role": "Unclassed",
+      "cost": "4",
+      "ownership": "1.7%",
+      "points": "0"
+    },
+    {
+      "name": "Nadav Raisberg",
+      "team": "Israel - Premier Tech",
+      "role": "Unclassed",
+      "cost": "4",
+      "ownership": "0.5%",
+      "points": "42"
+    },
+    {
+      "name": "Otto Vergaerde",
+      "team": "Lidl - Trek",
+      "role": "Unclassed",
+      "cost": "4",
+      "ownership": "3.1%",
+      "points": "12"
+    },
+    {
+      "name": "Arjen Livyns",
+      "team": "Lotto Dstny",
+      "role": "Unclassed",
+      "cost": "4",
+      "ownership": "1.4%",
+      "points": "99"
+    },
+    {
+      "name": "Jorge Arcas",
+      "team": "Movistar Team",
+      "role": "Unclassed",
+      "cost": "4",
+      "ownership": "7.1%",
+      "points": "2"
+    },
+    {
+      "name": "Enzo Leijnse",
+      "team": "Team dsm-firmenich PostNL",
+      "role": "Unclassed",
+      "cost": "4",
+      "ownership": "0.7%",
+      "points": "0"
+    },
+    {
+      "name": "Tim Naberman",
+      "team": "Team dsm-firmenich PostNL",
+      "role": "Unclassed",
+      "cost": "4",
+      "ownership": "0.5%",
+      "points": "0"
+    },
+    {
+      "name": "Martijn Tusveld",
+      "team": "Team dsm-firmenich PostNL",
+      "role": "Unclassed",
+      "cost": "4",
+      "ownership": "1.1%",
+      "points": "0"
+    },
+    {
+      "name": "Julius Van Den Berg",
+      "team": "Team dsm-firmenich PostNL",
+      "role": "Unclassed",
+      "cost": "4",
+      "ownership": "3.7%",
+      "points": "0"
+    },
+    {
+      "name": "Welay Berhe",
+      "team": "Team Jayco AlUla",
+      "role": "Unclassed",
+      "cost": "4",
+      "ownership": "3.2%",
+      "points": "0"
+    }
+  ]
+}

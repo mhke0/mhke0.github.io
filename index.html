@@ -294,7 +294,7 @@ function findClosestMatch(obj, searchKey) {
 const leagueTrace1 = {
     x: leagueScores.map(team => team.name),
     y: leagueScores.map(team => baseData[findClosestMatch(baseData, team.name)] || 0),
-    name: 'Base',
+    name: 'Giro',
     type: 'bar',
     marker: { color: 'pink' }
 };
@@ -302,7 +302,7 @@ const leagueTrace1 = {
 const leagueTrace2 = {
     x: leagueScores.map(team => team.name),
     y: leagueScores.map(team => middleData[findClosestMatch(middleData, team.name)] || 0),
-    name: 'Middle',
+    name: 'TdF',
     type: 'bar',
     marker: { color: 'yellow' }
 };
@@ -310,7 +310,7 @@ const leagueTrace2 = {
 const leagueTrace3 = {
     x: leagueScores.map(team => team.name),
     y: leagueScores.map(team => team.points),
-    name: 'Top',
+    name: 'Vuelta',
     type: 'bar',
     marker: { color: 'red' }
 };

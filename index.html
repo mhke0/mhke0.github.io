@@ -35,10 +35,6 @@
                 <h2>Top 50 Cyclists by Cost Efficiency</h2>
                 <div id="top-50-chart"></div>
             </div>
-            <div class="chart-container">
-                <h2>Role Distribution</h2>
-                <canvas id="role-distribution-chart"></canvas>
-            </div>
             <h2>Cyclist Data</h2>
             <table id="cyclist-table"></table>
         </div>
@@ -46,7 +42,7 @@
 
     <script>
         $(document).ready(function() {
-            const dataUrl = 'cyclist-data.json';  // Update this to the correct path of your JSON file
+            const dataUrl = 'cyclist-data.json';  // Make sure this points to the correct location of your JSON file
 
             $.getJSON(dataUrl)
                 .done(function(data) {
@@ -54,47 +50,29 @@
                     $('#dashboard').show();
 
                     // Display overall statistics
+                    const stats = data.statistics;
                     const statsHtml = `
                         <div class="stat-card">
                             <h3>Total Cyclists</h3>
-                            <div class="stat-value">${data.statistics.total_cyclists}</div>
+                            <div class="stat-value">${stats.total_cyclists}</div>
                         </div>
                         <div class="stat-card">
                             <h3>Average Cost</h3>
-                            <div class="stat-value">${data.statistics.avg_cost.toFixed(2)}</div>
+                            <div class="stat-value">${stats.avg_cost.toFixed(2)}</div>
                         </div>
                         <div class="stat-card">
                             <h3>Average Points</h3>
-                            <div class="stat-value">${data.statistics.avg_points.toFixed(2)}</div>
+                            <div class="stat-value">${stats.avg_points.toFixed(2)}</div>
                         </div>
                     `;
                     $('#overall-stats').html(statsHtml);
 
                     // Display top 50 efficiency chart
-                    Plotly.newPlot('top-50-chart', data.top_50_chart.data, data.top_50_chart.layout);
-
-                    // Create role distribution chart
-                    const roleStats = data.statistics.role_stats;
-                    const roles = Object.keys(roleStats);
-                    const cyclistCounts = roles.map(role => roleStats[role].count);
-                    const ctx = document.getElementById('role-distribution-chart').getContext('2d');
-                    new Chart(ctx, {
-                        type: 'pie',
-                        data: {
-                            labels: roles,
-                            datasets: [{
-                                data: cyclistCounts,
-                                backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF']
-                            }]
-                        },
-                        options: {
-                            responsive: true,
-                            title: {
-                                display: true,
-                                text: 'Cyclist Role Distribution'
-                            }
-                        }
-                    });
+                    if (data.top_50_chart) {
+                        Plotly.newPlot('top-50-chart', data.top_50_chart.data, data.top_50_chart.layout);
+                    } else {
+                        $('#top-50-chart').html('Top 50 chart data not available');
+                    }
 
                     // Display cyclist data table
                     let tableHtml = `
@@ -115,7 +93,7 @@
                                 <td>${cyclist.role}</td>
                                 <td>${cyclist.cost}</td>
                                 <td>${cyclist.points}</td>
-                                <td>${cyclist.cost_per_point.toFixed(2)}</td>
+                                <td>${cyclist.cost_per_point.toFixed(4)}</td>
                             </tr>
                         `;
                     });

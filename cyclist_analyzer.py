@@ -76,13 +76,11 @@ def main():
         }
         
         # Print JSON output
-        print(json.dumps(output))
+        json.dump(output, sys.stdout, ensure_ascii=False, indent=2)
         
-    except requests.RequestException as e:
-        print(json.dumps({"error": f"An error occurred while fetching the data: {str(e)}"}), file=sys.stderr)
-        sys.exit(1)
     except Exception as e:
-        print(json.dumps({"error": f"An unexpected error occurred: {str(e)}"}), file=sys.stderr)
+        # Ensure we always output valid JSON, even in case of an error
+        json.dump({"error": str(e)}, sys.stdout, ensure_ascii=False, indent=2)
         sys.exit(1)
 
 if __name__ == '__main__':

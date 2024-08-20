@@ -112,6 +112,8 @@ def numpy_to_python(obj):
     if isinstance(obj, np.integer):
         return int(obj)
     elif isinstance(obj, np.floating):
+        if np.isinf(obj):
+            return "Infinity"
         return float(obj)
     elif isinstance(obj, np.ndarray):
         return obj.tolist()
@@ -151,13 +153,13 @@ def main():
         json.dump(output, sys.stdout, default=numpy_to_python, ensure_ascii=False, indent=2)
         
         print("Script completed successfully", file=sys.stderr)
-        sys.exit(0)  # Explicitly exit with status 0 on success
+        sys.exit(0)
         
     except Exception as e:
         print(f"An error occurred: {str(e)}", file=sys.stderr)
         print("Traceback:", file=sys.stderr)
         traceback.print_exc(file=sys.stderr)
-        sys.exit(1)  # Explicitly exit with status 1 on error
+        sys.exit(1)
 
 if __name__ == '__main__':
     main()

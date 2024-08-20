@@ -30,38 +30,42 @@ jobs:
         pip list
         echo "Running script..."
         python cyclist_analyzer.py > cyclist-data.json 2>error.log
-        SCRIPT_EXIT_CODE=$?
-        echo "Script exit code: $SCRIPT_EXIT_CODE"
+        echo "Script execution completed"
         echo "Error log contents:"
         cat error.log
-        echo "First 1000 characters of cyclist-data.json (if it exists):"
-        if [ -f cyclist-data.json ]; then
-          head -c 1000 cyclist-data.json
-        else
-          echo "cyclist-data.json does not exist"
-        fi
-        if [ $SCRIPT_EXIT_CODE -ne 0 ]; then
-          echo "Error: Python script exited with non-zero status"
-          exit 1
-        fi
+        echo "First 1000 characters of cyclist-data.json:"
+        head -c 1000 cyclist-data.json
+        echo "File size of cyclist-data.json:"
+        ls -l cyclist-data.json
         if [ ! -s cyclist-data.json ]; then
           echo "Error: cyclist-data.json is empty or does not exist"
           exit 1
         fi
 
-    - name: Commit and push if changed
-      if: success()
+    - name: Check for changes
+      id: git-check
       run: |
+        git status
+        git diff --exit-code cyclist-data.json || echo "changes=true" >> $GITHUB_OUTPUT
+
+    - name: Commit and push if changed
+      if: steps.git-check.outputs.changes == 'true'
+      run: |
+        echo "Changes detected, committing and pushing..."
         git config --global user.name 'mhke0'
         git config --global user.email 'moritzhacke@gmail.com'
         git add cyclist-data.json
-        git diff --quiet && git diff --staged --quiet || (git commit -m "Update cyclist data [skip ci]" && git push)
+        git commit -m "Update cyclist data [skip ci]"
+        git push
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+    - name: No changes detected
+      if: steps.git-check.outputs.changes != 'true'
+      run: echo "No changes in cyclist-data.json, skipping commit"
+
     - name: Upload artifact
       uses: actions/upload-artifact@v4
-      if: always()
       with:
         name: cyclist-data
         path: |

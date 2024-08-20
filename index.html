@@ -95,9 +95,9 @@
     <div id="error" style="display:none;"></div>
     <div id="dashboard" style="display:none;">
         <div class="tab">
-            <button class="tablinks" onclick="openTab(event, 'OverviewTab')" id="defaultOpen">Overview</button>
-            <button class="tablinks" onclick="openTab(event, 'Top50Tab')">Top 50 Cyclists</button>
+            <button class="tablinks" onclick="openTab(event, 'OverviewTab')" id="defaultOpen">Stats</button>
             <button class="tablinks" onclick="openTab(event, 'LeagueScoresTab')">League Scores</button>
+            <button class="tablinks" onclick="openTab(event, 'Top50Tab')">Top 50 Cyclists</button>
             <button class="tablinks" onclick="openTab(event, 'CyclistDataTab')">Cyclist Data</button>
         </div>
 
@@ -145,6 +145,10 @@
                 $('#loading').hide();
                 $('#dashboard').show();
 
+                if (!data.cyclists || !data.league_scores) {
+                    throw new Error("Missing required data in JSON file");
+                }
+
                 let cyclists = data.cyclists;
                 let leagueScores = data.league_scores;
 
@@ -167,7 +171,7 @@
                     totalPoints += cyclist.points;
                     roles[cyclist.role] = (roles[cyclist.role] || 0) + 1;
 
-                    const costPerPoint = cyclist.cost_per_point === "Infinity" ? "∞" : parseFloat(cyclist.cost_per_point).toFixed(2);
+                    const costPerPoint = cyclist.points === 0 ? "∞" : (cyclist.cost / cyclist.points).toFixed(2);
                     $('#cyclistTable tbody').append(`
                         <tr>
                             <td>${cyclist.name}</td>
@@ -266,38 +270,41 @@
                 Plotly.newPlot('top50Chart', [trace], layout);
 
                 // Create league scores stacked bar chart
-                const baseData = [0, 7405, 8128, 9297];
-                const middleData = [9062, 9530, 8964, 7506];
-                const topData = leagueScores.map(team => team.points);
+                const baseData = {
+                    "Team Name": 0,
+                    "Iberische Halbpinsel ": 7405,
+                    "Fiestina": 9297,
+                    "Team Fiestina": 8128
+                };
+                const middleData = {
+                    "Team Name": 9062,
+                    "Iberische Halbpinsel ": 9530,
+                    "Fiestina": 7506,
+                    "Team Fiestina": 8964
+                };
 
                 const leagueTrace1 = {
                     x: leagueScores.map(team => team.name),
-                    y: baseData,
+                    y: leagueScores.map(team => baseData[team.name] || 0),
                     name: 'Base',
                     type: 'bar',
-                    marker: {
-                        color: 'pink'
-                    }
+                    marker: { color: 'pink' }
                 };
 
                 const leagueTrace2 = {
                     x: leagueScores.map(team => team.name),
-                    y: middleData,
+                    y: leagueScores.map(team => middleData[team.name] || 0),
                     name: 'Middle',
                     type: 'bar',
-                    marker: {
-                        color: 'yellow'
-                    }
+                    marker: { color: 'yellow' }
                 };
 
                 const leagueTrace3 = {
                     x: leagueScores.map(team => team.name),
-                    y: topData,
+                    y: leagueScores.map(team => team.points),
                     name: 'Top',
                     type: 'bar',
-                    marker: {
-                        color: 'red'
-                    }
+                    marker: { color: 'red' }
                 };
 
                 const leagueLayout = {

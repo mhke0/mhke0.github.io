@@ -107,7 +107,6 @@ def calculate_statistics(cyclists):
         'avg_points': avg_points,
         'role_stats': role_stats
     }
-
 def main():
     url = "https://www.velogames.com/spain/2024/riders.php"
     
@@ -140,7 +139,7 @@ def main():
         print("Script completed successfully", file=sys.stderr)
         
     except Exception as e:
-        print(f"An error occurred: {e}", file=sys.stderr)
+        print(f"An error occurred: {str(e)}", file=sys.stderr)
         print("Traceback:", file=sys.stderr)
         traceback.print_exc(file=sys.stderr)
         sys.exit(1)

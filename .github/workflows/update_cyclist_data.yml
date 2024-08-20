@@ -9,15 +9,19 @@ jobs:
   update-data:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
         python-version: '3.9'
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install requests beautifulsoup4 pandas plotly
+
     - name: Run cyclist analyzer script
       run: |
         echo "Python version:"
@@ -28,18 +32,41 @@ jobs:
         python cyclist_analyzer.py > cyclist-data.json 2>error.log
         echo "Error log contents:"
         cat error.log
-        echo "First 1000 characters of cyclist-data.json:"
-        head -c 1000 cyclist-data.json
+        echo "First 1000 characters of cyclist-data.json (if it exists):"
+        if [ -f cyclist-data.json ]; then
+          head -c 1000 cyclist-data.json
+        else
+          echo "cyclist-data.json does not exist"
+        fi
         if [ ! -s cyclist-data.json ]; then
-          echo "Error: cyclist-data.json is empty"
+          echo "Error: cyclist-data.json is empty or does not exist"
           exit 1
         fi
+      continue-on-error: true
+
+    - name: Check for errors
+      run: |
+        if [ -s error.log ]; then
+          echo "Errors occurred during script execution:"
+          cat error.log
+          exit 1
+        fi
+
     - name: Commit and push if changed
       if: success()
       run: |
-        git config --global user.email "moritzhacke@gmail.com"
-        git config --global user.name "mhke0"
+        git config --global user.name 'mhke0'
+        git config --global user.email 'moritzhacke@gmail.com'
         git add cyclist-data.json
         git diff --quiet && git diff --staged --quiet || (git commit -m "Update cyclist data [skip ci]" && git push)
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: cyclist-data
+        path: |
+          cyclist-data.json
+          error.log

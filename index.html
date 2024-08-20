@@ -3,54 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cyclist Data Analyzer</title>
+    <title>Cyclist Data Analyzer Dashboard</title>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
-        #cyclist-table { border-collapse: collapse; width: 100%; }
-        #cyclist-table th, #cyclist-table td { border: 1px solid #ddd; padding: 8px; }
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f0f0f0; }
+        .container { max-width: 1200px; margin: 0 auto; background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        h1, h2 { color: #333; }
+        #loading { text-align: center; padding: 20px; }
+        #error { color: red; text-align: center; padding: 20px; }
+        .chart-container { margin-bottom: 30px; }
+        #cyclist-table { width: 100%; border-collapse: collapse; }
+        #cyclist-table th, #cyclist-table td { border: 1px solid #ddd; padding: 8px; text-align: left; }
         #cyclist-table tr:nth-child(even) { background-color: #f2f2f2; }
-        #cyclist-table th { padding-top: 12px; padding-bottom: 12px; text-align: left; background-color: #4CAF50; color: white; }
+        #cyclist-table th { background-color: #4CAF50; color: white; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 30px; }
+        .stat-card { background-color: #e9e9e9; padding: 15px; border-radius: 8px; text-align: center; }
+        .stat-card h3 { margin-top: 0; color: #333; }
+        .stat-value { font-size: 24px; font-weight: bold; color: #4CAF50; }
     </style>
 </head>
 <body>
-    <h1>Cyclist Data Analyzer</h1>
-    <div id="loading">Loading data, please wait...</div>
-    <div id="error" style="color: red;"></div>
-    <div id="top-50-chart"></div>
-    <table id="cyclist-table"></table>
+    <div class="container">
+        <h1>Cyclist Data Analyzer Dashboard</h1>
+        <div id="loading">Loading data, please wait...</div>
+        <div id="error"></div>
+        <div id="dashboard" style="display:none;">
+            <div class="stats-grid" id="overall-stats"></div>
+            <div class="chart-container">
+                <h2>Top 50 Cyclists by Cost Efficiency</h2>
+                <div id="top-50-chart"></div>
+            </div>
+            <div class="chart-container">
+                <h2>Role Distribution</h2>
+                <canvas id="role-distribution-chart"></canvas>
+            </div>
+            <h2>Cyclist Data</h2>
+            <table id="cyclist-table"></table>
+        </div>
+    </div>
 
     <script>
         $(document).ready(function() {
-            // URL of your JSON data (hosted on GitHub)
-            const dataUrl = 'https://raw.githubusercontent.com/mhke0/mhke0.github.io/main/cyclist-data.json';
+            const dataUrl = 'cyclist-data.json';  // Update this to the correct path of your JSON file
 
             $.getJSON(dataUrl)
                 .done(function(data) {
                     $('#loading').hide();
+                    $('#dashboard').show();
 
-                    if (data.error) {
-                        $('#error').text("Error: " + data.error);
-                        return;
-                    }
+                    // Display overall statistics
+                    const statsHtml = `
+                        <div class="stat-card">
+                            <h3>Total Cyclists</h3>
+                            <div class="stat-value">${data.statistics.total_cyclists}</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Average Cost</h3>
+                            <div class="stat-value">${data.statistics.avg_cost.toFixed(2)}</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Average Points</h3>
+                            <div class="stat-value">${data.statistics.avg_points.toFixed(2)}</div>
+                        </div>
+                    `;
+                    $('#overall-stats').html(statsHtml);
 
-                    // Display the top 50 efficiency chart
+                    // Display top 50 efficiency chart
                     Plotly.newPlot('top-50-chart', data.top_50_chart.data, data.top_50_chart.layout);
 
-                    // Display the cyclist data table
-                    let table = '<tr><th>Name</th><th>Team</th><th>Role</th><th>Cost</th><th>Points</th><th>Cost per Point</th></tr>';
-                    data.cyclists.forEach(function(cyclist) {
-                        table += `<tr>
-                            <td>${cyclist.name}</td>
-                            <td>${cyclist.team}</td>
-                            <td>${cyclist.role}</td>
-                            <td>${cyclist.cost}</td>
-                            <td>${cyclist.points}</td>
-                            <td>${cyclist.cost_per_point.toFixed(2)}</td>
-                        </tr>`;
+                    // Create role distribution chart
+                    const roleStats = data.statistics.role_stats;
+                    const roles = Object.keys(roleStats);
+                    const cyclistCounts = roles.map(role => roleStats[role].count);
+                    const ctx = document.getElementById('role-distribution-chart').getContext('2d');
+                    new Chart(ctx, {
+                        type: 'pie',
+                        data: {
+                            labels: roles,
+                            datasets: [{
+                                data: cyclistCounts,
+                                backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF']
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            title: {
+                                display: true,
+                                text: 'Cyclist Role Distribution'
+                            }
+                        }
                     });
-                    $('#cyclist-table').html(table);
+
+                    // Display cyclist data table
+                    let tableHtml = `
+                        <tr>
+                            <th>Name</th>
+                            <th>Team</th>
+                            <th>Role</th>
+                            <th>Cost</th>
+                            <th>Points</th>
+                            <th>Cost per Point</th>
+                        </tr>
+                    `;
+                    data.cyclists.forEach(function(cyclist) {
+                        tableHtml += `
+                            <tr>
+                                <td>${cyclist.name}</td>
+                                <td>${cyclist.team}</td>
+                                <td>${cyclist.role}</td>
+                                <td>${cyclist.cost}</td>
+                                <td>${cyclist.points}</td>
+                                <td>${cyclist.cost_per_point.toFixed(2)}</td>
+                            </tr>
+                        `;
+                    });
+                    $('#cyclist-table').html(tableHtml);
                 })
                 .fail(function(jqxhr, textStatus, error) {
                     $('#loading').hide();

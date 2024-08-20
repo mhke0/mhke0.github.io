@@ -1936,5 +1936,23 @@
       "points": 32.0,
       "cost": 6.0
     }
+  ],
+  "league_scores": [
+    {
+      "name": "Team Name",
+      "points": 1577
+    },
+    {
+      "name": "Iberische Halbpinsel",
+      "points": 775
+    },
+    {
+      "name": "Fiestina",
+      "points": 731
+    },
+    {
+      "name": "Team Fiestina",
+      "points": 672
+    }
   ]
 }

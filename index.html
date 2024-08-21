@@ -145,16 +145,21 @@
             </table>
         </div>
 
-               <div id="IdealTeamTab" class="tabcontent">
-            <h2>Dream Team (Max Cost: 100)</h2>
-            <div id="idealTeam"></div>
-            <div class="chart-container">
-                <canvas id="idealTeamChart"></canvas>
+            <div id="IdealTeamTab" class="tabcontent">
+                <h2>Dream Team (Max Cost: 100)</h2>
+                <div id="dreamTeamStats"></div>
+                <div id="dreamTeamRiders"></div>
+                <div class="chart-container">
+                    <canvas id="dreamTeamChart"></canvas>
+                </div>
             </div>
-        </div>
        
     </div>
     <p>Besuch Nummer: <span id="visit-count">0</span></p>
+
+
+
+
 
  <script>
     $(document).ready(function() {
@@ -409,9 +414,10 @@
 
             Plotly.newPlot('costVsPointsChart', [costVsPointsTrace], costVsPointsLayout);
 
-            // Calculate and display the ideal team
-            const idealTeam = calculateIdealTeam(cyclists);
-            displayIdealTeam(idealTeam);
+            // Display dream team data
+            if (data.dream_team) {
+                displayDreamTeam(data.dream_team);
+            }
 
             // Open the default tab
             document.getElementById("defaultOpen").click();
@@ -493,106 +499,45 @@
         })
         .catch(error => console.error('Error updating visit count:', error));
     }
+     
+  function displayDreamTeam(dreamTeam) {
+        let statsHtml = `<h3>Total Cost: ${dreamTeam.total_cost.toFixed(2)} | Total Points: ${dreamTeam.total_points}</h3>`;
+        $('#dreamTeamStats').html(statsHtml);
 
-function calculateIdealTeam(cyclists) {
-    // Sort cyclists by points (highest to lowest)
-    cyclists.sort((a, b) => b.points - a.points);
+        let ridersHtml = '<h4>Riders:</h4><ul>';
+        dreamTeam.riders.forEach(rider => {
+            ridersHtml += `<li>${rider.name} (${rider.role}) - Cost: ${rider.cost}, Points: ${rider.points}</li>`;
+        });
+        ridersHtml += '</ul>';
+        $('#dreamTeamRiders').html(ridersHtml);
 
-    const team = {
-        allRounders: [],
-        climbers: [],
-        sprinters: [],
-        unclassed: [],
-        anyRole: null,
-        totalCost: 0,
-        totalPoints: 0
-    };
+        // Create a pie chart for the dream team
+        const ctx = document.getElementById('dreamTeamChart').getContext('2d');
+        const roleData = {};
+        dreamTeam.riders.forEach(rider => {
+            roleData[rider.role] = (roleData[rider.role] || 0) + rider.points;
+        });
 
-    function addToTeam(cyclist) {
-        if (team.totalCost + cyclist.cost <= 100) {
-            team.totalCost += cyclist.cost;
-            team.totalPoints += cyclist.points;
-            return true;
-        }
-        return false;
-    }
-
-    // First pass: fill required roles with highest point scorers
-    for (let cyclist of cyclists) {
-        if (team.allRounders.length < 2 && cyclist.role === 'All Rounder' && addToTeam(cyclist)) {
-            team.allRounders.push(cyclist);
-        } else if (team.climbers.length < 2 && cyclist.role === 'Climber' && addToTeam(cyclist)) {
-            team.climbers.push(cyclist);
-        } else if (team.sprinters.length < 1 && cyclist.role === 'Sprinter' && addToTeam(cyclist)) {
-            team.sprinters.push(cyclist);
-        } else if (team.unclassed.length < 3 && cyclist.role === 'Unclassed' && addToTeam(cyclist)) {
-            team.unclassed.push(cyclist);
-        }
-
-        if (team.allRounders.length === 2 && team.climbers.length === 2 && 
-            team.sprinters.length === 1 && team.unclassed.length === 3) {
-            break;
-        }
-    }
-
-    // Second pass: fill the "any role" slot with the highest point scorer that fits
-    for (let cyclist of cyclists) {
-        if (!team.anyRole && addToTeam(cyclist)) {
-            team.anyRole = cyclist;
-            break;
-        }
-    }
-
-    return team;
-}
-      
-             function displayIdealTeam(team) {
-            let html = '<h3>Total Cost: ' + team.totalCost.toFixed(2) + ' | Total Points: ' + team.totalPoints + '</h3>';
-            html += '<h4>All-Rounders:</h4><ul>';
-            team.allRounders.forEach(c => html += '<li>' + c.name + ' (Cost: ' + c.cost + ', Points: ' + c.points + ')</li>');
-            html += '</ul><h4>Climbers:</h4><ul>';
-            team.climbers.forEach(c => html += '<li>' + c.name + ' (Cost: ' + c.cost + ', Points: ' + c.points + ')</li>');
-            html += '</ul><h4>Sprinter:</h4><ul>';
-            team.sprinters.forEach(c => html += '<li>' + c.name + ' (Cost: ' + c.cost + ', Points: ' + c.points + ')</li>');
-            html += '</ul><h4>Unclassed:</h4><ul>';
-            team.unclassed.forEach(c => html += '<li>' + c.name + ' (Cost: ' + c.cost + ', Points: ' + c.points + ')</li>');
-            html += '</ul><h4>Any Role:</h4><ul>';
-            if (team.anyRole) {
-                html += '<li>' + team.anyRole.name + ' (Cost: ' + team.anyRole.cost + ', Points: ' + team.anyRole.points + ')</li>';
-            }
-            html += '</ul>';
-
-            $('#idealTeam').html(html);
-
-            // Create a pie chart for the ideal team
-            const ctx = document.getElementById('idealTeamChart').getContext('2d');
-            new Chart(ctx, {
-                type: 'pie',
-                data: {
-                    labels: ['All-Rounders', 'Climbers', 'Sprinter', 'Unclassed', 'Any Role'],
-                    datasets: [{
-                        data: [
-                            team.allRounders.reduce((sum, c) => sum + c.points, 0),
-                            team.climbers.reduce((sum, c) => sum + c.points, 0),
-                            team.sprinters.reduce((sum, c) => sum + c.points, 0),
-                            team.unclassed.reduce((sum, c) => sum + c.points, 0),
-                            team.anyRole ? team.anyRole.points : 0
-                        ],
-                        backgroundColor: ['#ff6384', '#36a2eb', '#cc65fe', '#ffce56', '#4bc0c0']
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        title: {
-                            display: true,
-                            text: 'Ideal Team Points Distribution'
-                        }
+        new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: Object.keys(roleData),
+                datasets: [{
+                    data: Object.values(roleData),
+                    backgroundColor: ['#ff6384', '#36a2eb', '#cc65fe', '#ffce56', '#4bc0c0', '#ff9f40']
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Dream Team Points Distribution by Role'
                     }
                 }
-            });
-        }
-
+            }
+        });
+    }
 
     </script>
     

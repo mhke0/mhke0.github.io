@@ -98,6 +98,7 @@
             <button class="tablinks" onclick="openTab(event, 'OverviewTab')" id="defaultOpen">Stats</button>
             <button class="tablinks" onclick="openTab(event, 'LeagueScoresTab')">League Scores</button>
             <button class="tablinks" onclick="openTab(event, 'Top50Tab')">Top 50 Cyclists</button>
+            <button class="tablinks" onclick="openTab(event, 'CostVsPointsTab')">Cost vs Points</button>
             <button class="tablinks" onclick="openTab(event, 'CyclistDataTab')">Cyclist Data Table</button>
         </div>
 
@@ -113,7 +114,13 @@
                 <div id="top50Chart"></div>
             </div>
         </div>
-
+        
+        <div id="CostVsPointsTab" class="tabcontent">
+            <div class="chart-container">
+                <div id="costVsPointsChart"></div>
+            </div>
+        </div>
+        
         <div id="LeagueScoresTab" class="tabcontent">
             <div class="chart-container">
                 <div id="leagueScoresChart"></div>
@@ -350,6 +357,51 @@ const leagueLayout = {
 };
 
 Plotly.newPlot('leagueScoresChart', [leagueTrace1, leagueTrace2, leagueTrace3], leagueLayout);
+
+// Create cost vs points scatter plot for top 50
+const costVsPointsTrace = {
+    x: top50Cyclists.map(c => c.points),
+    y: top50Cyclists.map(c => c.cost),
+    mode: 'markers',
+    type: 'scatter',
+    text: top50Cyclists.map(c => c.name),
+    marker: {
+        size: 10,
+        color: top50Cyclists.map(c => {
+            switch(c.role) {
+                case 'All Rounder': return 'red';
+                case 'Climber': return 'blue';
+                case 'Sprinter': return 'green';
+                default: return 'gray';
+            }
+        })
+    },
+    hoverinfo: 'text+x+y'
+};
+
+const costVsPointsLayout = {
+    title: 'Cost vs Points for Top 50 Cyclists',
+    xaxis: {
+        title: 'Points'
+    },
+    yaxis: {
+        title: 'Cost'
+    },
+    font: {
+        size: 10
+    },
+    height: 500,
+    margin: {
+        l: 50,
+        r: 50,
+        b: 50,
+        t: 50,
+        pad: 4
+    }
+};
+
+Plotly.newPlot('costVsPointsChart', [costVsPointsTrace], costVsPointsLayout);
+
                 // Open the default tab
                 document.getElementById("defaultOpen").click();
                 

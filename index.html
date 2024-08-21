@@ -136,7 +136,6 @@
                         <th onclick="sortTable(1)">Team</th>
                         <th onclick="sortTable(2)">Role</th>
                         <th onclick="sortTable(3)">Cost</th>
-                        <th onclick="sortTable(4)">Ownership (%)</th>
                         <th onclick="sortTable(5)">Points</th>
                         <th onclick="sortTable(6)">Cost per Point</th>
                     </tr>
@@ -474,13 +473,13 @@ Plotly.newPlot('costVsPointsChart', [costVsPointsTrace], costVsPointsLayout);
             }
         }
         // Page view counter
-function updateVisitCount() {
-    fetch('https://api.countapi.xyz/hit/mhke0.github.io/visits')
-    .then(response => response.json())
-    .then(data => {
-        document.getElementById('visit-count').innerText = data.value;
-    })
-    .catch(error => console.error('Error updating visit count:', error));
+ function updateVisitCount() {
+            fetch('https://api.countapi.xyz/update/mhke0.github.io/visits/?amount=1')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('visit-count').innerText = data.value;
+            })
+            .catch(error => console.error('Error updating visit count:', error));
 }
 
 

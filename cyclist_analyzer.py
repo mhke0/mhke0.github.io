@@ -124,7 +124,7 @@ def select_dream_team_optimized(cyclists):
         # Constraints
         # Total cost must be 100 or less
         prob += pulp.lpSum(cyclist['cost'] * cyclist_vars[cyclist['name'], cyclist['role']] 
-                           for cyclists) <= 100
+                           for cyclist in cyclists) <= 100
 
         # Total number of cyclists must be 9
         prob += pulp.lpSum(cyclist_vars) == 9

@@ -495,9 +495,6 @@
     }
 
 function calculateIdealTeam(cyclists) {
-    // Sort cyclists by points (highest to lowest)
-    cyclists.sort((a, b) => b.points - a.points);
-
     const team = {
         allRounders: [],
         climbers: [],
@@ -508,8 +505,9 @@ function calculateIdealTeam(cyclists) {
         totalPoints: 0
     };
 
-    function addToTeam(cyclist) {
+    function addToTeam(cyclist, category) {
         if (team.totalCost + cyclist.cost <= 100) {
+            team[category].push(cyclist);
             team.totalCost += cyclist.cost;
             team.totalPoints += cyclist.points;
             return true;
@@ -517,71 +515,69 @@ function calculateIdealTeam(cyclists) {
         return false;
     }
 
-    // First pass: fill required roles with highest point scorers
-    for (let cyclist of cyclists) {
-        if (team.allRounders.length < 2 && cyclist.role === 'All Rounder' && addToTeam(cyclist)) {
-            team.allRounders.push(cyclist);
-        } else if (team.climbers.length < 2 && cyclist.role === 'Climber' && addToTeam(cyclist)) {
-            team.climbers.push(cyclist);
-        } else if (team.sprinters.length < 1 && cyclist.role === 'Sprinter' && addToTeam(cyclist)) {
-            team.sprinters.push(cyclist);
-        } else if (team.unclassed.length < 3 && cyclist.role === 'Unclassed' && addToTeam(cyclist)) {
-            team.unclassed.push(cyclist);
-        }
+    // Helper function to get the best cyclist for a role
+    function getBestCyclist(role, excludeList) {
+        return cyclists
+            .filter(c => c.role === role && !excludeList.includes(c))
+            .sort((a, b) => b.points - a.points)[0];
+    }
 
-        if (team.allRounders.length === 2 && team.climbers.length === 2 && 
-            team.sprinters.length === 1 && team.unclassed.length === 3) {
-            break;
+    // Fill required roles
+    const requiredRoles = [
+        { role: 'All Rounder', category: 'allRounders', count: 2 },
+        { role: 'Climber', category: 'climbers', count: 2 },
+        { role: 'Sprinter', category: 'sprinters', count: 1 },
+        { role: 'Unclassed', category: 'unclassed', count: 3 }
+    ];
+
+    for (let roleReq of requiredRoles) {
+        for (let i = 0; i < roleReq.count; i++) {
+            let selectedCyclist = null;
+            let allCyclists = cyclists.filter(c => c.role === roleReq.role);
+            
+            // Sort cyclists by points descending
+            allCyclists.sort((a, b) => b.points - a.points);
+            
+            for (let cyclist of allCyclists) {
+                if (addToTeam(cyclist, roleReq.category)) {
+                    selectedCyclist = cyclist;
+                    break;
+                }
+            }
+            
+            if (!selectedCyclist) {
+                // If we couldn't add any cyclist, the team is invalid
+                return null;
+            }
         }
     }
 
-    // Second pass: fill the "any role" slot with the highest point scorer that fits
-    for (let cyclist of cyclists) {
-        if (!team.allRounders.includes(cyclist) && 
-            !team.climbers.includes(cyclist) && 
-            !team.sprinters.includes(cyclist) && 
-            !team.unclassed.includes(cyclist) && 
-            !team.anyRole && 
-            addToTeam(cyclist)) {
+    // Fill the "any role" slot
+    let allRemainingCyclists = cyclists.filter(c => 
+        !team.allRounders.includes(c) && 
+        !team.climbers.includes(c) && 
+        !team.sprinters.includes(c) && 
+        !team.unclassed.includes(c)
+    );
+
+    // Sort remaining cyclists by points descending
+    allRemainingCyclists.sort((a, b) => b.points - a.points);
+
+    for (let cyclist of allRemainingCyclists) {
+        if (addToTeam(cyclist, 'anyRole')) {
             team.anyRole = cyclist;
             break;
         }
     }
 
-    // If we don't have 9 riders, backfill with the highest point scorers that fit
-    const totalRiders = team.allRounders.length + team.climbers.length + 
-                        team.sprinters.length + team.unclassed.length + 
-                        (team.anyRole ? 1 : 0);
-
-    if (totalRiders < 9) {
-        for (let cyclist of cyclists) {
-            if (!team.allRounders.includes(cyclist) && 
-                !team.climbers.includes(cyclist) && 
-                !team.sprinters.includes(cyclist) && 
-                !team.unclassed.includes(cyclist) && 
-                cyclist !== team.anyRole && 
-                addToTeam(cyclist)) {
-                if (!team.anyRole) {
-                    team.anyRole = cyclist;
-                } else if (team.unclassed.length < 3) {
-                    team.unclassed.push(cyclist);
-                } else {
-                    // If we get here, we're adding beyond the initial requirements
-                    team.unclassed.push(cyclist);
-                }
-
-                if (team.allRounders.length + team.climbers.length + 
-                    team.sprinters.length + team.unclassed.length + 
-                    (team.anyRole ? 1 : 0) === 9) {
-                    break;
-                }
-            }
-        }
+    // If we couldn't fill all roles, return null
+    if (team.allRounders.length !== 2 || team.climbers.length !== 2 || 
+        team.sprinters.length !== 1 || team.unclassed.length !== 3 || !team.anyRole) {
+        return null;
     }
 
     return team;
 }
-
       
              function displayIdealTeam(team) {
             let html = '<h3>Total Cost: ' + team.totalCost.toFixed(2) + ' | Total Points: ' + team.totalPoints + '</h3>';

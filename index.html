@@ -284,7 +284,14 @@ const middleData = {
 };
 
 // Function to find the closest matching key
-function findClosestMatch(obj, searchKey) {
+// Function to find the exact matching key or the closest match
+function findExactOrClosestMatch(obj, searchKey) {
+    // First, try to find an exact match
+    if (obj.hasOwnProperty(searchKey)) {
+        return searchKey;
+    }
+    
+    // If no exact match, find the closest match
     return Object.keys(obj).find(key => 
         key.toLowerCase().includes(searchKey.toLowerCase()) || 
         searchKey.toLowerCase().includes(key.toLowerCase())
@@ -293,7 +300,7 @@ function findClosestMatch(obj, searchKey) {
 
 const leagueTrace1 = {
     x: leagueScores.map(team => team.name),
-    y: leagueScores.map(team => baseData[findClosestMatch(baseData, team.name)] || 0),
+    y: leagueScores.map(team => baseData[findExactOrClosestMatch(baseData, team.name)] || 0),
     name: 'Giro',
     type: 'bar',
     marker: { color: 'pink' }
@@ -301,7 +308,7 @@ const leagueTrace1 = {
 
 const leagueTrace2 = {
     x: leagueScores.map(team => team.name),
-    y: leagueScores.map(team => middleData[findClosestMatch(middleData, team.name)] || 0),
+    y: leagueScores.map(team => middleData[findExactOrClosestMatch(middleData, team.name)] || 0),
     name: 'TdF',
     type: 'bar',
     marker: { color: 'yellow' }

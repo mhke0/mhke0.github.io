@@ -259,111 +259,120 @@
 
             Plotly.newPlot('top50Chart', [trace], layout);
 
-            // Create league scores stacked bar chart
-            const baseData = {
-                "Team Name": 0,
-                "Iberische Halbpinsel": 7405,
-                "Ganz anderer Teamname": 9297,
-                "Team Fiestina": 8128
-            };
-            const middleData = {
-                "Team Name": 9062,
-                "Iberische Halbpinsel": 9530,
-                "Ganz anderer Teamname": 7506,
-                "Team Fiestina": 8964
-            };
+// Assume we have these arrays from external data
+const giroData = [
+    { name: "Team A", score: 7405 },
+    { name: "Team B", score: 9297 },
+    { name: "Team C", score: 8128 }
+];
 
-            // Function to find the exact matching key or the closest match
-            function findExactOrClosestMatch(obj, searchKey) {
-                // First, try to find an exact match
-                if (obj.hasOwnProperty(searchKey)) {
-                    return searchKey;
-                }
-                
-                // If no exact match, find the closest match
-                return Object.keys(obj).find(key => 
-                    key.toLowerCase().includes(searchKey.toLowerCase()) || 
-                    searchKey.toLowerCase().includes(key.toLowerCase())
-                ) || searchKey;
-            }
+const tdfData = [
+    { name: "Team A", score: 9530 },
+    { name: "Team B", score: 7506 },
+    { name: "Team C", score: 8964 }
+];
 
-            const leagueTrace1 = {
-                x: leagueScores.map(team => team.name),
-                y: leagueScores.map(team => baseData[findExactOrClosestMatch(baseData, team.name)] || 0),
-                name: 'Giro',
-                type: 'bar',
-                marker: { color: 'pink' }
-            };
+// Assume vueltaData is already in leagueScores
 
-            const leagueTrace2 = {
-                x: leagueScores.map(team => team.name),
-                y: leagueScores.map(team => middleData[findExactOrClosestMatch(middleData, team.name)] || 0),
-                name: 'TdF',
-                type: 'bar',
-                marker: { color: 'yellow' }
-            };
+// Function to get unique team names across all competitions
+function getUniqueTeamNames(giro, tdf, vuelta) {
+    const allNames = [
+        ...giro.map(team => team.name),
+        ...tdf.map(team => team.name),
+        ...vuelta.map(team => team.name)
+    ];
+    return [...new Set(allNames)];
+}
 
-            const leagueTrace3 = {
-                x: leagueScores.map(team => team.name),
-                y: leagueScores.map(team => team.points),
-                name: 'Vuelta',
-                type: 'bar',
-                marker: { color: 'red' }
-            };
+// Get unique team names
+const uniqueTeamNames = getUniqueTeamNames(giroData, tdfData, leagueScores);
+
+// Function to find score for a team in a dataset
+function findScore(data, teamName) {
+    const team = data.find(t => t.name === teamName);
+    return team ? team.score : 0;
+}
+
+const leagueTrace1 = {
+    x: uniqueTeamNames,
+    y: uniqueTeamNames.map(name => findScore(giroData, name)),
+    name: 'Giro',
+    type: 'bar',
+    marker: { color: 'pink' }
+};
+
+const leagueTrace2 = {
+    x: uniqueTeamNames,
+    y: uniqueTeamNames.map(name => findScore(tdfData, name)),
+    name: 'TdF',
+    type: 'bar',
+    marker: { color: 'yellow' }
+};
+
+const leagueTrace3 = {
+    x: uniqueTeamNames,
+    y: uniqueTeamNames.map(name => {
+        const team = leagueScores.find(t => t.name === name);
+        return team ? team.points : 0;
+    }),
+    name: 'Vuelta',
+    type: 'bar',
+    marker: { color: 'red' }
+};
 
 const leagueLayout = {
-                title: {
-                    text: 'League Scores (Stacked)',
-                    font: {
-                        family: 'VT323, monospace',
-                        size: 24,
-                        color: '#ff1493'
-                    }
-                },
-                barmode: 'stack',
-                xaxis: {
-                    title: '',
-                    tickangle: -45,
-                    tickfont: {
-                        family: 'VT323, monospace',
-                        size: 14,
-                        color: '#000000'
-                    }
-                },
-                yaxis: {
-                    title: '',
-                    titlefont: {
-                        family: 'VT323, monospace',
-                        size: 16,
-                        color: '#ff1493'
-                    },
-                    tickfont: {
-                        family: 'VT323, monospace',
-                        size: 14,
-                        color: '#000000'
-                    }
-                },
-                legend: {
-                    font: {
-                        family: 'VT323, monospace',
-                        size: 14,
-                        color: '#000000'
-                    }
-                },
-                paper_bgcolor: '#fff0f5',
-                plot_bgcolor: '#fff0f5',
-                height: 500,
-                margin: {
-                    l: 50,
-                    r: 50,
-                    b: 100,
-                    t: 50,
-                    pad: 4
-                }
-            };
+    title: {
+        text: 'League Scores (Stacked)',
+        font: {
+            family: 'VT323, monospace',
+            size: 24,
+            color: '#ff1493'
+        }
+    },
+    barmode: 'stack',
+    xaxis: {
+        title: '',
+        tickangle: -45,
+        tickfont: {
+            family: 'VT323, monospace',
+            size: 14,
+            color: '#000000'
+        }
+    },
+    yaxis: {
+        title: '',
+        titlefont: {
+            family: 'VT323, monospace',
+            size: 16,
+            color: '#ff1493'
+        },
+        tickfont: {
+            family: 'VT323, monospace',
+            size: 14,
+            color: '#000000'
+        }
+    },
+    legend: {
+        font: {
+            family: 'VT323, monospace',
+            size: 14,
+            color: '#000000'
+        }
+    },
+    paper_bgcolor: '#fff0f5',
+    plot_bgcolor: '#fff0f5',
+    height: 500,
+    margin: {
+        l: 50,
+        r: 50,
+        b: 100,
+        t: 50,
+        pad: 4
+    }
+};
 
-            Plotly.newPlot('leagueScoresChart', [leagueTrace1, leagueTrace2, leagueTrace3], leagueLayout);
-
+Plotly.newPlot('leagueScoresChart', [leagueTrace1, leagueTrace2, leagueTrace3], leagueLayout);
+            
             // Create cost vs points scatter plot for top 50
             const costVsPointsTrace = {
                 x: top50Cyclists.map(c => c.points),

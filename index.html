@@ -213,7 +213,7 @@
 
             Plotly.newPlot('top50Chart', [trace], layout);
 
-                     const leagueScores = data.league_scores;
+            // Create league scores stacked bar chart
             const baseData = {
                 "Team Name": 0,
                 "Iberische Halbpinsel": 7405,
@@ -227,10 +227,14 @@
                 "Team Fiestina": 8964
             };
 
+            // Function to find the exact matching key or the closest match
             function findExactOrClosestMatch(obj, searchKey) {
+                // First, try to find an exact match
                 if (obj.hasOwnProperty(searchKey)) {
                     return searchKey;
                 }
+                
+                // If no exact match, find the closest match
                 return Object.keys(obj).find(key => 
                     key.toLowerCase().includes(searchKey.toLowerCase()) || 
                     searchKey.toLowerCase().includes(key.toLowerCase())
@@ -242,13 +246,7 @@
                 y: leagueScores.map(team => baseData[findExactOrClosestMatch(baseData, team.name)] || 0),
                 name: 'Giro',
                 type: 'bar',
-                marker: { 
-                    color: '#ff1493',
-                    line: {
-                        color: '#00ffff',
-                        width: 1.5
-                    }
-                }
+                marker: { color: 'pink' }
             };
 
             const leagueTrace2 = {
@@ -256,13 +254,7 @@
                 y: leagueScores.map(team => middleData[findExactOrClosestMatch(middleData, team.name)] || 0),
                 name: 'TdF',
                 type: 'bar',
-                marker: { 
-                    color: '#00ffff',
-                    line: {
-                        color: '#ff1493',
-                        width: 1.5
-                    }
-                }
+                marker: { color: 'yellow' }
             };
 
             const leagueTrace3 = {
@@ -270,16 +262,10 @@
                 y: leagueScores.map(team => team.points),
                 name: 'Vuelta',
                 type: 'bar',
-                marker: { 
-                    color: '#ff69b4',
-                    line: {
-                        color: '#00ffff',
-                        width: 1.5
-                    }
-                }
+                marker: { color: 'red' }
             };
 
-            const leagueLayout = {
+const leagueLayout = {
                 title: {
                     text: 'League Scores (Stacked)',
                     font: {

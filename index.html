@@ -340,25 +340,57 @@ const leagueLayout = {
             };
 
             const costVsPointsLayout = {
-                title: 'Cost vs Points for Top 50 Cyclists',
+                title: {
+                    text: 'Cost vs Points (Top 50)',
+                    font: {
+                        family: 'VT323, monospace',
+                        size: 24,
+                        color: '#ff1493'
+                    }
+                },
+                barmode: 'stack',
                 xaxis: {
-                    title: 'Points'
+                    title: 'Points',
+                    tickangle: -45,
+                    tickfont: {
+                        family: 'VT323, monospace',
+                        size: 14,
+                        color: '#000000'
+                    }
                 },
                 yaxis: {
-                    title: 'Cost'
+                    title: 'Cost',
+                    titlefont: {
+                        family: 'VT323, monospace',
+                        size: 16,
+                        color: '#ff1493'
+                    },
+                    tickfont: {
+                        family: 'VT323, monospace',
+                        size: 14,
+                        color: '#000000'
+                    }
                 },
-                font: {
-                    size: 10
+                legend: {
+                    font: {
+                        family: 'VT323, monospace',
+                        size: 14,
+                        color: '#000000'
+                    }
                 },
+                paper_bgcolor: '#ffffff',
+                plot_bgcolor: '#fff0f5',
                 height: 500,
                 margin: {
                     l: 50,
                     r: 50,
-                    b: 50,
+                    b: 100,
                     t: 50,
                     pad: 4
                 }
             };
+
+       
 
             Plotly.newPlot('costVsPointsChart', [costVsPointsTrace], costVsPointsLayout);
 

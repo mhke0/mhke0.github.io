@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Chicago&display=swap');
+
+:root {
+    --mac-bg: #ffffff;
+    --mac-text: #000000;
+    --mac-border: #000000;
+    --mac-highlight: #808080;
+}
+
+body {
+    font-family: 'Chicago', sans-serif;
+    line-height: 1.6;
+    color: var(--mac-text);
+    background-color: var(--mac-bg);
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 20px;
+    font-size: 12px;
+}
+
+h1, h2 {
+    color: var(--mac-text);
+    text-shadow: none;
+}
+
+#loading, #error {
+    text-align: center;
+    padding: 10px;
+    border: 2px solid var(--mac-border);
+    background-color: var(--mac-bg);
+    box-shadow: 2px 2px 0 var(--mac-border);
+}
+
+#error {
+    border-color: #000000;
+}
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 1px;
+    margin-bottom: 20px;
+    border: 2px solid var(--mac-border);
+}
+
+th, td {
+    border: 1px solid var(--mac-border);
+    padding: 4px 8px;
+    text-align: left;
+}
+
+th {
+    background-color: var(--mac-bg);
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #f0f0f0;
+}
+
+.stats-container {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.stat-box {
+    background-color: var(--mac-bg);
+    border: 2px solid var(--mac-border);
+    padding: 10px;
+    text-align: center;
+    box-shadow: 2px 2px 0 var(--mac-border);
+}
+
+.chart-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto 20px;
+    height: 400px;
+    background-color: var(--mac-bg);
+    border: 2px solid var(--mac-border);
+    padding: 10px;
+    box-shadow: 2px 2px 0 var(--mac-border);
+}
+
+.tab {
+    overflow: hidden;
+    border: 2px solid var(--mac-border);
+    background-color: var(--mac-bg);
+    display: inline-block;
+}
+
+.tab button {
+    background-color: var(--mac-bg);
+    float: left;
+    border: 1px solid var(--mac-border);
+    outline: none;
+    cursor: pointer;
+    padding: 8px 16px;
+    transition: 0.3s;
+    font-family: 'Chicago', sans-serif;
+    font-size: 12px;
+    margin-right: -1px;
+}
+
+.tab button:hover {
+    background-color: var(--mac-highlight);
+}
+
+.tab button.active {
+    background-color: var(--mac-highlight);
+    position: relative;
+    z-index: 1;
+}
+
+.tabcontent {
+    display: none;
+    padding: 12px;
+    border: 2px solid var(--mac-border);
+    border-top: none;
+    background-color: var(--mac-bg);
+    margin-top: -2px;
+}

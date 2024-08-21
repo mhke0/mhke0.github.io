@@ -173,20 +173,6 @@ def main():
         print("Fetching league scores", file=sys.stderr)
         league_scores = fetch_league_scores()
 
-        print("Preparing output", file=sys.stderr)
-        output = {
-            'cyclists': cyclists,
-            'top_50_efficiency': top_50_data,
-            'league_scores': league_scores
-        }
-        
-        print("Writing JSON output", file=sys.stderr)
-        json.dump(output, sys.stdout, default=numpy_to_python, ensure_ascii=False, indent=2)
-        
-        print("Script completed successfully", file=sys.stderr)
-        sys.exit(0)
-
-        # Add this to the main function:
         print("Selecting dream team (optimized)", file=sys.stderr)
         dream_team, total_points, total_cost = select_dream_team_optimized(cyclists)
         dream_team_data = [
@@ -198,17 +184,26 @@ def main():
             } for rider in dream_team
         ]
 
-        # Update the output dictionary:
-        output['dream_team'] = {
-            'riders': dream_team_data,
-            'total_points': total_points,
-            'total_cost': total_cost
+        print("Preparing output", file=sys.stderr)
+        output = {
+            'cyclists': cyclists,
+            'top_50_efficiency': top_50_data,
+            'league_scores': league_scores,
+            'dream_team': {
+                'riders': dream_team_data,
+                'total_points': total_points,
+                'total_cost': total_cost
+            }
         }
+        
+        print("Writing JSON output", file=sys.stderr)
+        json.dump(output, sys.stdout, default=numpy_to_python, ensure_ascii=False, indent=2)
+        
+        print("Script completed successfully", file=sys.stderr)
+        sys.exit(0)
+        
     except Exception as e:
         print(f"An error occurred: {str(e)}", file=sys.stderr)
         print("Traceback:", file=sys.stderr)
         traceback.print_exc(file=sys.stderr)
         sys.exit(1)
-
-if __name__ == '__main__':
-    main()

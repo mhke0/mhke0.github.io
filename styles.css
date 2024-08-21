@@ -14,6 +14,7 @@ body {
 h1, h2 {
     color: #ff1493;
     text-shadow: 2px 2px #00ffff;
+    text-align: center;
 }
 
 #loading, #error {
@@ -53,6 +54,7 @@ tr:nth-child(even) {
 
 .stats-container {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
     margin-bottom: 20px;
 }
@@ -63,6 +65,8 @@ tr:nth-child(even) {
     border-radius: 5px;
     padding: 10px;
     text-align: center;
+    margin: 10px;
+    flex: 1 1 200px;
 }
 
 .chart-container {
@@ -70,7 +74,7 @@ tr:nth-child(even) {
     max-width: 1000px;
     margin: 0 auto 20px;
     height: 500px;
-    background-color: #ffffff;
+    background-color: #fff0f5;
     border: 2px solid #ff69b4;
     padding: 10px;
 }
@@ -79,11 +83,12 @@ tr:nth-child(even) {
     overflow: hidden;
     border: 2px solid #ff69b4;
     background-color: #fff0f5;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .tab button {
     background-color: inherit;
-    float: left;
     border: none;
     outline: none;
     cursor: pointer;
@@ -92,6 +97,7 @@ tr:nth-child(even) {
     font-family: 'VT323', monospace;
     color: #000000;
     font-size: 18px;
+    flex-grow: 1;
 }
 
 .tab button:hover {
@@ -109,4 +115,46 @@ tr:nth-child(even) {
     border: 2px solid #ff69b4;
     border-top: none;
     background-color: #ffffff;
+}
+
+@media screen and (max-width: 768px) {
+    body {
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    .tab button {
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    table {
+        font-size: 14px;
+    }
+
+    th, td {
+        padding: 5px;
+    }
+
+    .chart-container {
+        height: 300px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .tab button {
+        width: 100%;
+    }
+
+    .stat-box {
+        flex-basis: 100%;
+    }
+
+    .chart-container {
+        height: 250px;
+    }
 }

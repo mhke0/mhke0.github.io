@@ -70,13 +70,13 @@ tr:nth-child(even) {
 }
 
 .chart-container {
-    width: 100%;
+    width: 60%;
     max-width: 1000px;
     margin: 0 auto 20px;
-    height: 500px;
+    height: 600px;
     background-color: #fff0f5;
     border: 2px solid #ff69b4;
-    padding: 10px;
+    padding: 20px;
 }
 
 .tab {

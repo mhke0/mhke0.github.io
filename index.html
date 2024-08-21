@@ -500,9 +500,18 @@
         .catch(error => console.error('Error updating visit count:', error));
     }
      
- function displayDreamTeam(dreamTeam) {
+function displayDreamTeam(dreamTeam) {
     let statsHtml = `<h3>Total Cost: ${dreamTeam.total_cost.toFixed(2)} | Total Points: ${dreamTeam.total_points}</h3>`;
     $('#dreamTeamStats').html(statsHtml);
+
+    // Define color scheme for each role
+    const roleColors = {
+        'All Rounder': '#ff6384',
+        'Climber': '#36a2eb',
+        'Sprinter': '#cc65fe',
+        'Unclassed': '#ffce56',
+        'Other': '#4bc0c0'  // For the additional rider
+    };
 
     // Sort riders by points (highest to lowest) within each role
     let allRounders = dreamTeam.riders.filter(r => r.role === 'All Rounder').sort((a, b) => b.points - a.points);
@@ -510,26 +519,27 @@
     let sprinters = dreamTeam.riders.filter(r => r.role === 'Sprinter').sort((a, b) => b.points - a.points);
     let unclassed = dreamTeam.riders.filter(r => r.role === 'Unclassed').sort((a, b) => b.points - a.points);
     
-    // Find the additional rider (the one that doesn't fit into the main categories)
-    let additionalRider = dreamTeam.riders.find(r => 
-        !allRounders.includes(r) && 
-        !climbers.includes(r) && 
-        !sprinters.includes(r) && 
-        !unclassed.includes(r)
-    );
-
     // Combine riders in the specified order
     let orderedRiders = [
         ...allRounders.slice(0, 2),
         ...climbers.slice(0, 2),
         ...sprinters.slice(0, 1),
-        ...unclassed.slice(0, 3),
-        additionalRider
-    ].filter(Boolean); // Remove undefined in case there's no additional rider
+        ...unclassed.slice(0, 3)
+    ];
 
-    let ridersHtml = '<h4>Riders:</h4><ol>';
+    // Find the additional rider (the one that doesn't fit into the main categories)
+    let additionalRider = dreamTeam.riders.find(r => !orderedRiders.includes(r));
+    if (additionalRider) {
+        orderedRiders.push(additionalRider);
+    }
+
+    let ridersHtml = '<h4>Riders:</h4><ol style="list-style-type: none; padding: 0;">';
     orderedRiders.forEach((rider, index) => {
-        ridersHtml += `<li>${rider.name} (${rider.role}) - Cost: ${rider.cost}, Points: ${rider.points}</li>`;
+        let backgroundColor = roleColors[rider.role] || roleColors['Other'];
+        ridersHtml += `
+            <li style="background-color: ${backgroundColor}; color: white; margin-bottom: 5px; padding: 10px; border-radius: 5px;">
+                ${index + 1}. ${rider.name} (${rider.role}) - Cost: ${rider.cost}, Points: ${rider.points}
+            </li>`;
     });
     ridersHtml += '</ol>';
     $('#dreamTeamRiders').html(ridersHtml);
@@ -547,7 +557,7 @@
             labels: Object.keys(roleData),
             datasets: [{
                 data: Object.values(roleData),
-                backgroundColor: ['#ff6384', '#36a2eb', '#cc65fe', '#ffce56', '#4bc0c0', '#ff9f40']
+                backgroundColor: Object.keys(roleData).map(role => roleColors[role] || roleColors['Other'])
             }]
         },
         options: {

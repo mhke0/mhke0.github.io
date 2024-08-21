@@ -49,7 +49,8 @@ def analyze_cyclists(html_content):
                     'cost': cost,
                     'ownership': ownership,
                     'points': points,
-                    'cost_per_point': cost_per_point
+                    'cost_per_point': cost_per_point,
+                    'in_rosters': []  # This will be filled later
                 })
             except Exception as e:
                 print(f"Error processing row: {e}", file=sys.stderr)
@@ -58,6 +59,24 @@ def analyze_cyclists(html_content):
         print("No cyclists data extracted. Check if the page structure has changed.", file=sys.stderr)
     
     return cyclists
+
+def update_html_with_roster_info(html_content, cyclists):
+    soup = BeautifulSoup(html_content, 'html.parser')
+    
+    # Add new header for Rosters
+    header_row = soup.find('tr', class_='head')
+    new_th = soup.new_tag('th')
+    new_th.string = 'Rosters'
+    header_row.append(new_th)
+
+    # Add roster info for each cyclist
+    for row, cyclist in zip(soup.find_all('tr')[1:], cyclists):  # Skip header row
+        new_td = soup.new_tag('td')
+        roster_numbers = [r.split('_')[1] for r in cyclist['in_rosters']]
+        new_td.string = ', '.join(roster_numbers) if roster_numbers else ''
+        row.append(new_td)
+
+    return str(soup)
 
 def create_top_50_efficiency_data(cyclists):
     top_50_efficiency = sorted(
@@ -117,6 +136,12 @@ def main():
 
         print(f"Extracted data for {len(cyclists)} cyclists", file=sys.stderr)
 
+        print("Comparing cyclists with roster data", file=sys.stderr)
+        cyclists = compare_riders_with_rosters(cyclists)
+
+        print("Updating HTML with roster information", file=sys.stderr)
+        updated_html = update_html_with_roster_info(html_content, cyclists)
+
         top_50_data = create_top_50_efficiency_data(cyclists)
 
         print("Fetching league scores", file=sys.stderr)
@@ -126,7 +151,8 @@ def main():
         output = {
             'cyclists': cyclists,
             'top_50_efficiency': top_50_data,
-            'league_scores': league_scores
+            'league_scores': league_scores,
+            'html_table': updated_html
         }
         
         print("Writing JSON output", file=sys.stderr)

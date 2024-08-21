@@ -213,7 +213,7 @@
 
             Plotly.newPlot('top50Chart', [trace], layout);
 
-            // Create league scores stacked bar chart
+                     const leagueScores = data.league_scores;
             const baseData = {
                 "Team Name": 0,
                 "Iberische Halbpinsel": 7405,
@@ -227,14 +227,10 @@
                 "Team Fiestina": 8964
             };
 
-            // Function to find the exact matching key or the closest match
             function findExactOrClosestMatch(obj, searchKey) {
-                // First, try to find an exact match
                 if (obj.hasOwnProperty(searchKey)) {
                     return searchKey;
                 }
-                
-                // If no exact match, find the closest match
                 return Object.keys(obj).find(key => 
                     key.toLowerCase().includes(searchKey.toLowerCase()) || 
                     searchKey.toLowerCase().includes(key.toLowerCase())
@@ -246,7 +242,13 @@
                 y: leagueScores.map(team => baseData[findExactOrClosestMatch(baseData, team.name)] || 0),
                 name: 'Giro',
                 type: 'bar',
-                marker: { color: 'pink' }
+                marker: { 
+                    color: '#ff1493',
+                    line: {
+                        color: '#00ffff',
+                        width: 1.5
+                    }
+                }
             };
 
             const leagueTrace2 = {
@@ -254,7 +256,13 @@
                 y: leagueScores.map(team => middleData[findExactOrClosestMatch(middleData, team.name)] || 0),
                 name: 'TdF',
                 type: 'bar',
-                marker: { color: 'yellow' }
+                marker: { 
+                    color: '#00ffff',
+                    line: {
+                        color: '#ff1493',
+                        width: 1.5
+                    }
+                }
             };
 
             const leagueTrace3 = {
@@ -262,22 +270,56 @@
                 y: leagueScores.map(team => team.points),
                 name: 'Vuelta',
                 type: 'bar',
-                marker: { color: 'red' }
+                marker: { 
+                    color: '#ff69b4',
+                    line: {
+                        color: '#00ffff',
+                        width: 1.5
+                    }
+                }
             };
 
             const leagueLayout = {
-                title: 'League Scores (Stacked)',
+                title: {
+                    text: 'League Scores (Stacked)',
+                    font: {
+                        family: 'VT323, monospace',
+                        size: 24,
+                        color: '#ff1493'
+                    }
+                },
                 barmode: 'stack',
                 xaxis: {
                     title: '',
-                    tickangle: -45
+                    tickangle: -45,
+                    tickfont: {
+                        family: 'VT323, monospace',
+                        size: 14,
+                        color: '#000000'
+                    }
                 },
                 yaxis: {
-                    title: 'Points'
+                    title: 'Points',
+                    titlefont: {
+                        family: 'VT323, monospace',
+                        size: 16,
+                        color: '#ff1493'
+                    },
+                    tickfont: {
+                        family: 'VT323, monospace',
+                        size: 14,
+                        color: '#000000'
+                    }
                 },
-                font: {
-                    size: 10
+                legend: {
+                    font: {
+                        family: 'VT323, monospace',
+                        size: 14,
+                        color: '#000000'
+                    }
                 },
+                paper_bgcolor: '#ffffff',
+                plot_bgcolor: '#fff0f5',
                 height: 500,
                 margin: {
                     l: 50,

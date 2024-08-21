@@ -8,41 +8,50 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'VT323', monospace;
             line-height: 1.6;
-            color: #333;
+            color: #00ff00;
+            background-color: #000000;
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
+            font-size: 18px;
         }
         h1, h2 {
-            color: #2c3e50;
+            color: #00ffff;
+            text-shadow: 2px 2px #ff00ff;
         }
         #loading, #error {
             text-align: center;
             padding: 20px;
+            border: 2px solid #00ff00;
+            background-color: #001100;
         }
         #error {
-            color: red;
+            color: #ff0000;
+            border-color: #ff0000;
         }
         table {
             width: 100%;
             border-collapse: collapse;
             margin-bottom: 20px;
+            border: 2px solid #00ff00;
         }
         th, td {
-            border: 1px solid #ddd;
+            border: 1px solid #00ff00;
             padding: 8px;
             text-align: left;
         }
         th {
-            background-color: #f2f2f2;
+            background-color: #003300;
             font-weight: bold;
             cursor: pointer;
         }
         tr:nth-child(even) {
-            background-color: #f9f9f9;
+            background-color: #001100;
         }
         .stats-container {
             display: flex;
@@ -50,7 +59,8 @@
             margin-bottom: 20px;
         }
         .stat-box {
-            background-color: #f2f2f2;
+            background-color: #001100;
+            border: 2px solid #00ff00;
             border-radius: 5px;
             padding: 10px;
             text-align: center;
@@ -60,11 +70,14 @@
             max-width: 1000px;
             margin: 0 auto 20px;
             height: 500px;
+            background-color: #001100;
+            border: 2px solid #00ff00;
+            padding: 10px;
         }
         .tab {
             overflow: hidden;
-            border: 1px solid #ccc;
-            background-color: #f1f1f1;
+            border: 2px solid #00ff00;
+            background-color: #001100;
         }
         .tab button {
             background-color: inherit;
@@ -74,26 +87,30 @@
             cursor: pointer;
             padding: 14px 16px;
             transition: 0.3s;
+            font-family: 'VT323', monospace;
+            color: #00ff00;
+            font-size: 18px;
         }
         .tab button:hover {
-            background-color: #ddd;
+            background-color: #003300;
         }
         .tab button.active {
-            background-color: #ccc;
+            background-color: #006600;
         }
         .tabcontent {
             display: none;
             padding: 6px 12px;
-            border: 1px solid #ccc;
+            border: 2px solid #00ff00;
             border-top: none;
+            background-color: #001100;
         }
     </style>
 </head>
 <body>
-    <h1>Velo Data Dash</h1>
-    <div id="loading">Loading data, please wait...</div>
+    <h1>VELO DATA DASH</h1>
+    <div id="loading">LOADING DATA, PLEASE WAIT...</div>
     <div id="error" style="display:none;"></div>
-   <div id="dashboard" style="display:none;">
+    <div id="dashboard" style="display:none;">
         <div class="tab">
             <button class="tablinks" onclick="openTab(event, 'OverviewTab')" id="defaultOpen">Stats</button>
             <button class="tablinks" onclick="openTab(event, 'LeagueScoresTab')">League Scores</button>
@@ -155,7 +172,7 @@
             </div>
        
     </div>
-    <p>Besuch Nummer: <span id="visit-count">0</span></p>
+    <p>VISIT COUNT: <span id="visit-count">1</span></p>
 
 
 

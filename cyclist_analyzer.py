@@ -104,50 +104,62 @@ def numpy_to_python(obj):
     return obj
     
 def select_dream_team_optimized(cyclists):
-    # Create the linear programming problem
-    prob = pulp.LpProblem("Dream Team Selection", pulp.LpMaximize)
+    # Redirect stdout to capture solver output
+    old_stdout = sys.stdout
+    sys.stdout = open('/dev/null', 'w')
 
-    # Create binary variables for each cyclist
-    cyclist_vars = pulp.LpVariable.dicts("Cyclist", 
-                                         ((c['name'], c['role']) for c in cyclists), 
-                                         cat='Binary')
+    try:
+        # Create the linear programming problem
+        prob = pulp.LpProblem("Dream Team Selection", pulp.LpMaximize)
 
-    # Objective function: maximize total points
-    prob += pulp.lpSum(cyclist['points'] * cyclist_vars[cyclist['name'], cyclist['role']] 
-                       for cyclist in cyclists)
+        # Create binary variables for each cyclist
+        cyclist_vars = pulp.LpVariable.dicts("Cyclist", 
+                                             ((c['name'], c['role']) for c in cyclists), 
+                                             cat='Binary')
 
-    # Constraints
-    # Total cost must be 100 or less
-    prob += pulp.lpSum(cyclist['cost'] * cyclist_vars[cyclist['name'], cyclist['role']] 
-                       for cyclist in cyclists) <= 100
+        # Objective function: maximize total points
+        prob += pulp.lpSum(cyclist['points'] * cyclist_vars[cyclist['name'], cyclist['role']] 
+                           for cyclist in cyclists)
 
-    # Total number of cyclists must be 9
-    prob += pulp.lpSum(cyclist_vars) == 9
+        # Constraints
+        # Total cost must be 100 or less
+        prob += pulp.lpSum(cyclist['cost'] * cyclist_vars[cyclist['name'], cyclist['role']] 
+                           for cyclists) <= 100
 
-    # Role constraints
-    prob += pulp.lpSum(cyclist_vars[c['name'], c['role']] for c in cyclists if c['role'] == 'Climber') == 2
-    prob += pulp.lpSum(cyclist_vars[c['name'], c['role']] for c in cyclists if c['role'] == 'All-rounder') == 2
-    prob += pulp.lpSum(cyclist_vars[c['name'], c['role']] for c in cyclists if c['role'] == 'Sprinter') == 1
-    prob += pulp.lpSum(cyclist_vars[c['name'], c['role']] for c in cyclists if c['role'] == 'Unclassed') == 3
+        # Total number of cyclists must be 9
+        prob += pulp.lpSum(cyclist_vars) == 9
 
-    # One cyclist from any role
-    prob += pulp.lpSum(cyclist_vars[c['name'], c['role']] for c in cyclists) == 9
+        # Role constraints
+        prob += pulp.lpSum(cyclist_vars[c['name'], c['role']] for c in cyclists if c['role'] == 'Climber') == 2
+        prob += pulp.lpSum(cyclist_vars[c['name'], c['role']] for c in cyclists if c['role'] == 'All-rounder') == 2
+        prob += pulp.lpSum(cyclist_vars[c['name'], c['role']] for c in cyclists if c['role'] == 'Sprinter') == 1
+        prob += pulp.lpSum(cyclist_vars[c['name'], c['role']] for c in cyclists if c['role'] == 'Unclassed') == 3
 
-    # Solve the problem
-    prob.solve()
+        # Solve the problem
+        prob.solve()
 
-    # Extract the solution
-    dream_team = []
-    total_points = 0
-    total_cost = 0
+        # Check if a solution was found
+        if pulp.LpStatus[prob.status] == "Optimal":
+            # Extract the solution
+            dream_team = []
+            total_points = 0
+            total_cost = 0
 
-    for cyclist in cyclists:
-        if cyclist_vars[cyclist['name'], cyclist['role']].value() == 1:
-            dream_team.append(cyclist)
-            total_points += cyclist['points']
-            total_cost += cyclist['cost']
+            for cyclist in cyclists:
+                if cyclist_vars[cyclist['name'], cyclist['role']].value() == 1:
+                    dream_team.append(cyclist)
+                    total_points += cyclist['points']
+                    total_cost += cyclist['cost']
 
-    return dream_team, total_points, total_cost
+            return dream_team, total_points, total_cost
+        else:
+            print("No feasible dream team found. The problem might be over-constrained.", file=sys.stderr)
+            return None, 0, 0
+
+    finally:
+        # Restore stdout
+        sys.stdout.close()
+        sys.stdout = old_stdout
 
 def main():
     cyclist_url = "https://www.velogames.com/spain/2024/riders.php"
@@ -171,14 +183,17 @@ def main():
 
         print("Selecting dream team (optimized)", file=sys.stderr)
         dream_team, total_points, total_cost = select_dream_team_optimized(cyclists)
-        dream_team_data = [
-            {
-                'name': rider['name'],
-                'role': rider['role'],
-                'cost': rider['cost'],
-                'points': rider['points']
-            } for rider in dream_team
-        ]
+        
+        dream_team_data = None
+        if dream_team:
+            dream_team_data = [
+                {
+                    'name': rider['name'],
+                    'role': rider['role'],
+                    'cost': rider['cost'],
+                    'points': rider['points']
+                } for rider in dream_team
+            ]
 
         print("Preparing output", file=sys.stderr)
         output = {
@@ -189,7 +204,7 @@ def main():
                 'riders': dream_team_data,
                 'total_points': total_points,
                 'total_cost': total_cost
-            }
+            } if dream_team_data else None
         }
         
         print("Writing JSON output", file=sys.stderr)
@@ -205,3 +220,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+

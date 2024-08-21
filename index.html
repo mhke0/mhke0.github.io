@@ -495,71 +495,89 @@
     }
 
 function calculateIdealTeam(cyclists) {
-    // Helper function to calculate team stats
-    function calculateTeamStats(team) {
-        return {
-            totalCost: team.reduce((sum, cyclist) => sum + cyclist.cost, 0),
-            totalPoints: team.reduce((sum, cyclist) => sum + cyclist.points, 0)
-        };
-    }
+    // Sort cyclists by points per cost (efficiency) in descending order
+    cyclists.sort((a, b) => (b.points / b.cost) - (a.points / a.cost));
 
-    // Helper function to check if a team is valid
-    function isValidTeam(team) {
-        const roles = team.map(c => c.role);
-        return roles.filter(r => r === 'All Rounder').length === 2 &&
-               roles.filter(r => r === 'Climber').length === 2 &&
-               roles.filter(r => r === 'Sprinter').length === 1 &&
-               roles.filter(r => r === 'Unclassed').length === 3;
-    }
+    const team = {
+        allRounders: [],
+        climbers: [],
+        sprinters: [],
+        unclassed: [],
+        anyRole: null,
+        totalCost: 0,
+        totalPoints: 0
+    };
 
-    // Sort cyclists by points in descending order
-    cyclists.sort((a, b) => b.points - a.points);
-
-    let bestTeam = null;
-    let bestPoints = 0;
-
-    // Function to recursively build teams
-    function buildTeam(currentTeam, remainingCyclists, index) {
-        // Check if we have a complete team
-        if (currentTeam.length === 9) {
-            const stats = calculateTeamStats(currentTeam);
-            if (isValidTeam(currentTeam) && stats.totalCost <= 100 && stats.totalPoints > bestPoints) {
-                bestTeam = [...currentTeam];
-                bestPoints = stats.totalPoints;
+    function addToTeam(cyclist, role) {
+        if (team.totalCost + cyclist.cost <= 100) {
+            if (role === 'anyRole') {
+                team.anyRole = cyclist;
+            } else {
+                team[role].push(cyclist);
             }
-            return;
+            team.totalCost += cyclist.cost;
+            team.totalPoints += cyclist.points;
+            return true;
         }
-
-        // If we've considered all cyclists or the team is too expensive, stop
-        if (index >= remainingCyclists.length || calculateTeamStats(currentTeam).totalCost > 100) {
-            return;
-        }
-
-        // Try including the current cyclist
-        buildTeam([...currentTeam, remainingCyclists[index]], remainingCyclists, index + 1);
-
-        // Try without the current cyclist
-        buildTeam(currentTeam, remainingCyclists, index + 1);
+        return false;
     }
 
-    // Start the recursive process
-    buildTeam([], cyclists, 0);
-
-    // If we found a valid team, format it for display
-    if (bestTeam) {
-        const formattedTeam = {
-            allRounders: bestTeam.filter(c => c.role === 'All Rounder'),
-            climbers: bestTeam.filter(c => c.role === 'Climber'),
-            sprinters: bestTeam.filter(c => c.role === 'Sprinter'),
-            unclassed: bestTeam.filter(c => c.role === 'Unclassed'),
-            anyRole: bestTeam[8], // The 9th cyclist is the "any role" cyclist
-            totalCost: calculateTeamStats(bestTeam).totalCost,
-            totalPoints: bestTeam.reduce((sum, cyclist) => sum + cyclist.points, 0)
-        };
-        return formattedTeam;
+    // First pass: fill required roles
+    for (let cyclist of cyclists) {
+        if (team.allRounders.length < 2 && cyclist.role === 'All Rounder' && addToTeam(cyclist, 'allRounders')) continue;
+        if (team.climbers.length < 2 && cyclist.role === 'Climber' && addToTeam(cyclist, 'climbers')) continue;
+        if (team.sprinters.length < 1 && cyclist.role === 'Sprinter' && addToTeam(cyclist, 'sprinters')) continue;
+        if (team.unclassed.length < 3 && cyclist.role === 'Unclassed' && addToTeam(cyclist, 'unclassed')) continue;
     }
 
-    return null; // This should never happen if there are enough cyclists
+    // Second pass: fill any remaining slots with the most efficient cyclists
+    while (team.allRounders.length + team.climbers.length + team.sprinters.length + team.unclassed.length + (team.anyRole ? 1 : 0) < 9) {
+        for (let cyclist of cyclists) {
+            if (!team.allRounders.includes(cyclist) && 
+                !team.climbers.includes(cyclist) && 
+                !team.sprinters.includes(cyclist) && 
+                !team.unclassed.includes(cyclist) && 
+                cyclist !== team.anyRole) {
+                if (team.anyRole === null) {
+                    if (addToTeam(cyclist, 'anyRole')) break;
+                } else {
+                    if (addToTeam(cyclist, 'unclassed')) break;
+                }
+            }
+        }
+    }
+
+    // Optimization step: Try to swap cyclists to improve total points
+    let improved = true;
+    while (improved) {
+        improved = false;
+        for (let role in team) {
+            if (Array.isArray(team[role])) {
+                for (let i = 0; i < team[role].length; i++) {
+                    for (let cyclist of cyclists) {
+                        if (!team.allRounders.includes(cyclist) && 
+                            !team.climbers.includes(cyclist) && 
+                            !team.sprinters.includes(cyclist) && 
+                            !team.unclassed.includes(cyclist) && 
+                            cyclist !== team.anyRole) {
+                            if (cyclist.role === role || role === 'unclassed') {
+                                const currentCost = team[role][i].cost;
+                                const currentPoints = team[role][i].points;
+                                if (cyclist.points > currentPoints && team.totalCost - currentCost + cyclist.cost <= 100) {
+                                    team.totalCost = team.totalCost - currentCost + cyclist.cost;
+                                    team.totalPoints = team.totalPoints - currentPoints + cyclist.points;
+                                    team[role][i] = cyclist;
+                                    improved = true;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    return team;
 }
       
              function displayIdealTeam(team) {

@@ -57,6 +57,7 @@ tr:nth-child(even) {
     flex-wrap: wrap;
     justify-content: space-around;
     margin-bottom: 20px;
+    align-items: center;
 }
 
 .stat-box {
@@ -67,6 +68,7 @@ tr:nth-child(even) {
     text-align: center;
     margin: 10px;
     flex: 1 1 200px;
+    align-items: center;
 }
 
 .chart-container {
@@ -77,6 +79,7 @@ tr:nth-child(even) {
     background-color: #fff0f5;
     border: 2px solid #ff69b4;
     padding: 10px;
+    align-items: center;
 }
 
 .tab {

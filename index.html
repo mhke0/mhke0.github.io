@@ -155,8 +155,10 @@
                     datasets: [{
                         data: Object.values(roles),
                         backgroundColor: [
-                            '#ff6384', '#36a2eb', '#cc65fe', '#ffce56', '#4bc0c0', '#ff9f40'
-                        ]
+                            '#ff1493', '#00ffff', '#ff69b4', '#1e90ff', '#ff6384', '#20b2aa'
+                        ],
+                        borderColor: '#ffffff',
+                        borderWidth: 2
                     }]
                 },
                 options: {
@@ -164,7 +166,21 @@
                     plugins: {
                         title: {
                             display: true,
-                            text: 'Cyclist Roles Distribution'
+                            text: 'Cyclist Roles Distribution',
+                            font: {
+                                family: 'VT323, monospace',
+                                size: 24,
+                                color: '#ff1493'
+                            }
+                        },
+                        legend: {
+                            labels: {
+                                font: {
+                                    family: 'VT323, monospace',
+                                    size: 14,
+                                    color: '#000000'
+                                }
+                            }
                         }
                     }
                 }

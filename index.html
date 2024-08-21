@@ -218,9 +218,14 @@
                 xaxis: {
                     title: '',
                     tickangle: -45,
+                    titlefont: {
+                        family: 'VT323, monospace',
+                        size: 16,
+                        color: '#ff1493'
+                    },
                     tickfont: {
                     family: 'VT323, monospace',
-                    size: 16,
+                    size: 14,
                     color: '#ff1493'
                     }
                 },
@@ -234,7 +239,7 @@
                     tickfont: {
                         family: 'VT323, monospace',
                         size: 14,
-                        color: '#000000'
+                        color: '#ff1493'
                     }
                 },
                 legend: {
@@ -336,22 +341,27 @@ const leagueLayout = {
         }
     },
     barmode: 'stack',
-    xaxis: {
-        title: '',
-        tickangle: -45,
-        tickfont: {
-            family: 'VT323, monospace',
-            size: 14,
-            color: '#000000'
-        }
-    },
-    yaxis: {
-        title: '',
-        titlefont: {
-            family: 'VT323, monospace',
-            size: 16,
-            color: '#ff1493'
-        },
+                xaxis: {
+                    title: '',
+                    tickangle: -45,
+                    titlefont: {
+                        family: 'VT323, monospace',
+                        size: 16,
+                        color: '#ff1493'
+                    },
+                    tickfont: {
+                    family: 'VT323, monospace',
+                    size: 14,
+                    color: '#ff1493'
+                    }
+                },
+                yaxis: {
+                    title: 'Cost per Point',
+                    titlefont: {
+                        family: 'VT323, monospace',
+                        size: 16,
+                        color: '#ff1493'
+                    },
         tickfont: {
             family: 'VT323, monospace',
             size: 14,
@@ -409,17 +419,22 @@ Plotly.newPlot('leagueScoresChart', [leagueTrace1, leagueTrace2, leagueTrace3], 
                         color: '#ff1493'
                     }
                 },
-                xaxis: {
-                    title: 'Points',
+                 xaxis: {
+                    title: '',
                     tickangle: -45,
-                    tickfont: {
+                    titlefont: {
                         family: 'VT323, monospace',
                         size: 16,
                         color: '#ff1493'
+                    },
+                    tickfont: {
+                    family: 'VT323, monospace',
+                    size: 14,
+                    color: '#ff1493'
                     }
                 },
                 yaxis: {
-                    title: 'Cost',
+                    title: 'Cost per Point',
                     titlefont: {
                         family: 'VT323, monospace',
                         size: 16,

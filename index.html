@@ -153,6 +153,9 @@
                 let cyclists = data.cyclists;
                 let leagueScores = data.league_scores;
 
+                    // Call the function when the page loads
+                updateVisitCount();
+                
                 // Sort cyclists by cost_per_point (convert "Infinity" to a large number for sorting)
                 cyclists.sort((a, b) => {
                     const costPerPointA = a.cost_per_point === "Infinity" ? Infinity : parseFloat(a.cost_per_point);
@@ -350,8 +353,6 @@ Plotly.newPlot('leagueScoresChart', [leagueTrace1, leagueTrace2, leagueTrace3], 
                 // Open the default tab
                 document.getElementById("defaultOpen").click();
                 
-// Call the function when the page loads
-updateVisitCount();
                 
             }).fail(function(jqxhr, textStatus, error) {
                 $('#loading').hide();
@@ -432,5 +433,6 @@ function updateVisitCount() {
 
 
     </script>
+    
 </body>
 </html>

@@ -506,17 +506,26 @@ function calculateIdealTeam(cyclists) {
     };
 
     function addToTeam(cyclist, role) {
-        if (team.totalCost + cyclist.cost <= 100) {
-            if (role === 'anyRole') {
-                team.anyRole = cyclist;
-            } else {
-                team[role].push(cyclist);
-            }
-            team.totalCost += cyclist.cost;
-            team.totalPoints += cyclist.points;
-            return true;
+        if (role === 'anyRole') {
+            team.anyRole = cyclist;
+        } else {
+            team[role].push(cyclist);
         }
-        return false;
+        team.totalCost += cyclist.cost;
+        team.totalPoints += cyclist.points;
+    }
+
+    function removeFromTeam(cyclist, role) {
+        if (role === 'anyRole') {
+            team.anyRole = null;
+        } else {
+            const index = team[role].indexOf(cyclist);
+            if (index > -1) {
+                team[role].splice(index, 1);
+            }
+        }
+        team.totalCost -= cyclist.cost;
+        team.totalPoints -= cyclist.points;
     }
 
     // Group cyclists by role and sort each group by points in descending order
@@ -527,48 +536,50 @@ function calculateIdealTeam(cyclists) {
         'Unclassed': cyclists.filter(c => c.role === 'Unclassed').sort((a, b) => b.points - a.points)
     };
 
-    // Fill required roles
-    for (let i = 0; i < 2 && groupedCyclists['All Rounder'][i]; i++) {
-        addToTeam(groupedCyclists['All Rounder'][i], 'allRounders');
-    }
-    for (let i = 0; i < 2 && groupedCyclists['Climber'][i]; i++) {
-        addToTeam(groupedCyclists['Climber'][i], 'climbers');
-    }
-    if (groupedCyclists['Sprinter'][0]) {
-        addToTeam(groupedCyclists['Sprinter'][0], 'sprinters');
-    }
-    for (let i = 0; i < 3 && groupedCyclists['Unclassed'][i]; i++) {
-        addToTeam(groupedCyclists['Unclassed'][i], 'unclassed');
+    // Function to get the next best cyclist for a role
+    function getNextBest(role, exclude = []) {
+        return groupedCyclists[role].find(c => !exclude.includes(c));
     }
 
-    // Fill the "any role" slot with the highest points cyclist that fits
-    const remainingCyclists = cyclists.filter(c => 
+    // Initial team selection
+    addToTeam(getNextBest('All Rounder'), 'allRounders');
+    addToTeam(getNextBest('All Rounder'), 'allRounders');
+    addToTeam(getNextBest('Climber'), 'climbers');
+    addToTeam(getNextBest('Climber'), 'climbers');
+    addToTeam(getNextBest('Sprinter'), 'sprinters');
+    addToTeam(getNextBest('Unclassed'), 'unclassed');
+    addToTeam(getNextBest('Unclassed'), 'unclassed');
+    addToTeam(getNextBest('Unclassed'), 'unclassed');
+
+    // Find the best cyclist for the "any role" slot
+    const allCyclists = [...cyclists].sort((a, b) => b.points - a.points);
+    const anyRoleCyclist = allCyclists.find(c => 
         !team.allRounders.includes(c) && 
         !team.climbers.includes(c) && 
         !team.sprinters.includes(c) && 
         !team.unclassed.includes(c)
-    ).sort((a, b) => b.points - a.points);
+    );
+    addToTeam(anyRoleCyclist, 'anyRole');
 
-    for (let cyclist of remainingCyclists) {
-        if (addToTeam(cyclist, 'anyRole')) break;
-    }
-
-    // If we couldn't fill all slots, try to fill with any remaining cyclists
-    while (team.allRounders.length + team.climbers.length + team.sprinters.length + team.unclassed.length + (team.anyRole ? 1 : 0) < 9) {
-        let added = false;
-        for (let cyclist of remainingCyclists) {
-            if (!team.allRounders.includes(cyclist) && 
-                !team.climbers.includes(cyclist) && 
-                !team.sprinters.includes(cyclist) && 
-                !team.unclassed.includes(cyclist) && 
-                cyclist !== team.anyRole) {
-                if (addToTeam(cyclist, 'unclassed')) {
-                    added = true;
-                    break;
+    // Optimization step
+    let improved = true;
+    while (improved) {
+        improved = false;
+        const roles = ['allRounders', 'climbers', 'sprinters', 'unclassed', 'anyRole'];
+        for (let role of roles) {
+            const currentCyclists = role === 'anyRole' ? [team[role]] : team[role];
+            for (let i = 0; i < currentCyclists.length; i++) {
+                const currentCyclist = currentCyclists[i];
+                const replacementRole = role === 'anyRole' ? 'Any' : currentCyclist.role;
+                const potentialReplacement = getNextBest(replacementRole, currentCyclists);
+                if (potentialReplacement && potentialReplacement.points > currentCyclist.points &&
+                    team.totalCost - currentCyclist.cost + potentialReplacement.cost <= 100) {
+                    removeFromTeam(currentCyclist, role);
+                    addToTeam(potentialReplacement, role);
+                    improved = true;
                 }
             }
         }
-        if (!added) break; // If we can't add any more cyclists, exit the loop
     }
 
     return team;

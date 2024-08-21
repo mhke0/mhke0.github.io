@@ -9,6 +9,7 @@ import numpy as np
 import pulp
 import io
 import contextlib
+import os
 
 def fetch_html_content(url):
     try:
@@ -106,40 +107,56 @@ def numpy_to_python(obj):
     return obj
     
 def select_dream_team_optimized(cyclists):
-    # Capture stdout
-    f = io.StringIO()
-    with contextlib.redirect_stdout(f):
-        # Create the linear programming problem
-        prob = pulp.LpProblem("Dream Team Selection", pulp.LpMaximize)
+    # Print input data summary
+    total_cyclists = len(cyclists)
+    sprinters = sum(1 for c in cyclists if c['role'] == 'Sprinter')
+    all_rounders = sum(1 for c in cyclists if c['role'] == 'All Rounder')
+    climbers = sum(1 for c in cyclists if c['role'] == 'Climber')
+    unclassed = sum(1 for c in cyclists if c['role'] == 'Unclassed')
+    print(f"Total cyclists: {total_cyclists}", file=sys.stderr)
+    print(f"Total Sprinters: {sprinters}", file=sys.stderr)
+    print(f"Total All-Rounders: {all_rounders}", file=sys.stderr)
+    print(f"Total Climbers: {climbers}", file=sys.stderr)
+    print(f"Total Unclassed: {unclassed}", file=sys.stderr)
 
-        # Create binary variables for each cyclist
-        cyclist_vars = pulp.LpVariable.dicts("Cyclist", 
-                                             ((c['name'], c['role']) for c in cyclists), 
-                                             cat='Binary')
+    # Create the linear programming problem
+    prob = pulp.LpProblem("Dream Team Selection", pulp.LpMaximize)
 
-        # Objective function: maximize total points
-        prob += pulp.lpSum(cyclist['points'] * cyclist_vars[cyclist['name'], cyclist['role']] 
-                           for cyclist in cyclists)
+    # Create binary variables for each cyclist
+    cyclist_vars = pulp.LpVariable.dicts("Cyclist", 
+                                         ((c['name'], c['role']) for c in cyclists), 
+                                         cat='Binary')
 
-        # Constraints
-        # Total cost must be 100 or less
-        prob += pulp.lpSum(cyclist['cost'] * cyclist_vars[cyclist['name'], cyclist['role']] 
-                           for cyclist in cyclists) <= 100
+    # Objective function: maximize total points
+    prob += pulp.lpSum(cyclist['points'] * cyclist_vars[cyclist['name'], cyclist['role']] 
+                       for cyclist in cyclists)
 
-        # Total number of cyclists must be 9
-        prob += pulp.lpSum(cyclist_vars) == 9
+    # Constraints
+    constraints = [
+        ("Total cyclists", pulp.lpSum(cyclist_vars) == 9),
+        ("Maximum cost", pulp.lpSum(cyclist['cost'] * cyclist_vars[cyclist['name'], cyclist['role']] 
+                                    for cyclist in cyclists) <= 100),
+        ("Sprinters", pulp.lpSum(cyclist_vars[cyclist['name'], cyclist['role']] 
+                                 for cyclist in cyclists if cyclist['role'] == 'Sprinter') >= 1),
+        ("All-Rounders", pulp.lpSum(cyclist_vars[cyclist['name'], cyclist['role']] 
+                                    for cyclist in cyclists if cyclist['role'] == 'All Rounder') >= 2),
+        ("Climbers", pulp.lpSum(cyclist_vars[cyclist['name'], cyclist['role']] 
+                                for cyclist in cyclists if cyclist['role'] == 'Climber') >= 2),
+        ("Unclassed", pulp.lpSum(cyclist_vars[cyclist['name'], cyclist['role']] 
+                                 for cyclist in cyclists if cyclist['role'] == 'Unclassed') >= 3)
+    ]
 
-        # Role constraints
-        prob += pulp.lpSum(cyclist_vars[c['name'], c['role']] for c in cyclists if c['role'] == 'Climber') == 2
-        prob += pulp.lpSum(cyclist_vars[c['name'], c['role']] for c in cyclists if c['role'] == 'All-rounder') == 2
-        prob += pulp.lpSum(cyclist_vars[c['name'], c['role']] for c in cyclists if c['role'] == 'Sprinter') == 1
-        prob += pulp.lpSum(cyclist_vars[c['name'], c['role']] for c in cyclists if c['role'] == 'Unclassed') == 3
+    # Add constraints to the problem
+    for name, constraint in constraints:
+        prob += constraint, name
 
-        # Solve the problem
-        prob.solve()
+    # Print problem formulation
+    print("Problem formulation:", file=sys.stderr)
+    print(prob, file=sys.stderr)
 
-    # Log solver output to stderr
-    print(f.getvalue(), file=sys.stderr)
+    # Solve the problem
+    solver = pulp.PULP_CBC_CMD(msg=True)  # Enable solver output
+    prob.solve(solver)
 
     # Check if a solution was found
     if pulp.LpStatus[prob.status] == "Optimal":
@@ -147,17 +164,36 @@ def select_dream_team_optimized(cyclists):
         dream_team = []
         total_points = 0
         total_cost = 0
+        role_count = {'All Rounder': 0, 'Climber': 0, 'Sprinter': 0, 'Unclassed': 0, 'Other': 0}
 
         for cyclist in cyclists:
             if cyclist_vars[cyclist['name'], cyclist['role']].value() == 1:
                 dream_team.append(cyclist)
                 total_points += cyclist['points']
                 total_cost += cyclist['cost']
+                if cyclist['role'] in role_count:
+                    role_count[cyclist['role']] += 1
+                else:
+                    role_count['Other'] += 1
+
+        print("Dream Team:", file=sys.stderr)
+        for rider in dream_team:
+            print(f"{rider['name']} - Points: {rider['points']} - Cost: {rider['cost']} - Role: {rider['role']}", file=sys.stderr)
+        print(f"Total Points: {total_points}", file=sys.stderr)
+        print(f"Total Cost: {total_cost}", file=sys.stderr)
+        print(f"Role Distribution: {role_count}", file=sys.stderr)
 
         return dream_team, total_points, total_cost
     else:
-        print("No feasible dream team found. The problem might be over-constrained.", file=sys.stderr)
+        print(f"No feasible dream team found. Status: {pulp.LpStatus[prob.status]}", file=sys.stderr)
+        
+        # Check which constraints are violated
+        print("Checking constraints:", file=sys.stderr)
+        for name, constraint in constraints:
+            print(f"{name}: {'Satisfied' if constraint.value() else 'Violated'}", file=sys.stderr)
+        
         return None, 0, 0
+
 def main():
     cyclist_url = "https://www.velogames.com/spain/2024/riders.php"
     
@@ -204,11 +240,18 @@ def main():
             } if dream_team_data else None
         }
         
-        print("Writing JSON output", file=sys.stderr)
-        json_output = json.dumps(output, default=numpy_to_python, ensure_ascii=False, indent=2)
-        print(json_output)  # This will write to stdout
-        
-        print("Script completed successfully", file=sys.stderr)
+        print(f"Current working directory: {os.getcwd()}", file=sys.stderr)
+        try:
+            print("Writing JSON output to file", file=sys.stderr)
+            output_file = "cyclist_data.json"
+            with open(output_file, 'w', encoding='utf-8') as f:
+                json.dump(output, f, default=numpy_to_python, ensure_ascii=False, indent=2)
+            
+            print(f"Script completed successfully. Output saved to {output_file}", file=sys.stderr)
+        except IOError as e:
+            print(f"Error writing to file: {e}", file=sys.stderr)
+        except Exception as e:
+            print(f"Unexpected error while writing file: {e}", file=sys.stderr)
     except Exception as e:
         print(f"An error occurred: {str(e)}", file=sys.stderr)
         print("Traceback:", file=sys.stderr)
@@ -217,4 +260,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-

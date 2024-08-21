@@ -161,6 +161,7 @@
                         borderWidth: 2
                     }]
                 },
+
                 options: {
                     responsive: true,
                     plugins: {
@@ -382,6 +383,7 @@ const leagueLayout = {
                 },
                 hoverinfo: 'text+x+y'
             };
+            
             const costVsPointsLayout = {
                 title: {
                     text: 'Cost vs Points (Top 50)',
@@ -575,25 +577,42 @@ function displayDreamTeam(dreamTeam) {
     });
 
     new Chart(ctx, {
-        type: 'pie',
-        data: {
-            labels: Object.keys(roleData),
-            datasets: [{
-                data: Object.values(roleData),
-                backgroundColor: Object.keys(roleData).map(role => roleColors[role] || roleColors['Other'])
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Dream Team Points Distribution by Role'
+                type: 'pie',
+                data: {
+                    labels: Object.keys(roleData),
+                    datasets: [{
+                        data: Object.values(roleData),
+                        backgroundColor: Object.keys(roleData).map(role => roleColors[role] || roleColors['Other']),
+                        borderColor: '#ffffff',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Dream Team Points Distribution by Role',
+                            font: {
+                                family: 'VT323, monospace',
+                                size: 24,
+                                color: '#ff1493'
+                            }
+                        },
+                        legend: {
+                            labels: {
+                                font: {
+                                    family: 'VT323, monospace',
+                                    size: 14,
+                                    color: '#000000'
+                                }
+                            }
+                        }
+                    }
                 }
-            }
+            });
         }
-    });
-}
+
     
 
     </script>

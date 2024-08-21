@@ -38,7 +38,7 @@ jobs:
       run: |
         git config --global user.name 'mhke0'
         git config --global user.email 'moritzhacke@gmail.com'
-        git add cyclist_data.json requirements.txt
+        git add cyclist-data.json requirements.txt
         git diff --quiet && git diff --staged --quiet || (git commit -m "Update cyclist data and league scores [skip ci]" && git push)
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

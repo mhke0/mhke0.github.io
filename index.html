@@ -494,7 +494,7 @@
         .catch(error => console.error('Error updating visit count:', error));
     }
 
-    function calculateIdealTeam(cyclists) {
+function calculateIdealTeam(cyclists) {
     // Sort cyclists by points (highest to lowest)
     cyclists.sort((a, b) => b.points - a.points);
 
@@ -537,9 +537,45 @@
 
     // Second pass: fill the "any role" slot with the highest point scorer that fits
     for (let cyclist of cyclists) {
-        if (!team.anyRole && addToTeam(cyclist)) {
+        if (!team.allRounders.includes(cyclist) && 
+            !team.climbers.includes(cyclist) && 
+            !team.sprinters.includes(cyclist) && 
+            !team.unclassed.includes(cyclist) && 
+            !team.anyRole && 
+            addToTeam(cyclist)) {
             team.anyRole = cyclist;
             break;
+        }
+    }
+
+    // If we don't have 9 riders, backfill with the highest point scorers that fit
+    const totalRiders = team.allRounders.length + team.climbers.length + 
+                        team.sprinters.length + team.unclassed.length + 
+                        (team.anyRole ? 1 : 0);
+
+    if (totalRiders < 9) {
+        for (let cyclist of cyclists) {
+            if (!team.allRounders.includes(cyclist) && 
+                !team.climbers.includes(cyclist) && 
+                !team.sprinters.includes(cyclist) && 
+                !team.unclassed.includes(cyclist) && 
+                cyclist !== team.anyRole && 
+                addToTeam(cyclist)) {
+                if (!team.anyRole) {
+                    team.anyRole = cyclist;
+                } else if (team.unclassed.length < 3) {
+                    team.unclassed.push(cyclist);
+                } else {
+                    // If we get here, we're adding beyond the initial requirements
+                    team.unclassed.push(cyclist);
+                }
+
+                if (team.allRounders.length + team.climbers.length + 
+                    team.sprinters.length + team.unclassed.length + 
+                    (team.anyRole ? 1 : 0) === 9) {
+                    break;
+                }
+            }
         }
     }
 

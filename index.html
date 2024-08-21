@@ -529,13 +529,13 @@ function displayDreamTeam(dreamTeam) {
     $('#dreamTeamStats').html(statsHtml);
 
     // Define color scheme for each role
-    const roleColors = {
-        'All Rounder': '#ff6384',
-        'Climber': '#36a2eb',
-        'Sprinter': '#cc65fe',
-        'Unclassed': '#ffce56',
-        'Other': '#4bc0c0'  // For the additional rider
-    };
+            const roleColors = {
+                'All Rounder': '#ff1493',
+                'Climber': '#00ffff',
+                'Sprinter': '#ff69b4',
+                'Unclassed': '#1e90ff',
+                'Other': '#20b2aa'
+            };
 
     // Sort riders by points (highest to lowest) within each role
     let allRounders = dreamTeam.riders.filter(r => r.role === 'All Rounder').sort((a, b) => b.points - a.points);
@@ -575,26 +575,46 @@ function displayDreamTeam(dreamTeam) {
         roleData[rider.role] = (roleData[rider.role] || 0) + rider.points;
     });
 
-    new Chart(ctx, {
-        type: 'pie',
-        data: {
-            labels: Object.keys(roleData),
-            datasets: [{
-                data: Object.values(roleData),
-                backgroundColor: Object.keys(roleData).map(role => roleColors[role] || roleColors['Other'])
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Dream Team Points Distribution by Role'
+  // Updated Dream Team chart
+            const ctx = document.getElementById('dreamTeamChart').getContext('2d');
+
+
+            new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: Object.keys(roleData),
+                    datasets: [{
+                        data: Object.values(roleData),
+                        backgroundColor: Object.keys(roleData).map(role => roleColors[role] || roleColors['Other']),
+                        borderColor: '#ffffff',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Dream Team Points Distribution by Role',
+                            font: {
+                                family: 'VT323, monospace',
+                                size: 24,
+                                color: '#ff1493'
+                            }
+                        },
+                        legend: {
+                            labels: {
+                                font: {
+                                    family: 'VT323, monospace',
+                                    size: 14,
+                                    color: '#000000'
+                                }
+                            }
+                        }
+                    }
                 }
-            }
+            });
         }
-    });
-}
     
 
     </script>

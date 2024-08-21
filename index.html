@@ -349,7 +349,10 @@ const leagueLayout = {
 Plotly.newPlot('leagueScoresChart', [leagueTrace1, leagueTrace2, leagueTrace3], leagueLayout);
                 // Open the default tab
                 document.getElementById("defaultOpen").click();
-
+                
+// Call the function when the page loads
+updateVisitCount();
+                
             }).fail(function(jqxhr, textStatus, error) {
                 $('#loading').hide();
                 $('#error').text("Error fetching data: " + error).show();
@@ -427,8 +430,7 @@ function updateVisitCount() {
     .catch(error => console.error('Error updating visit count:', error));
 }
 
-// Call the function when the page loads
-updateVisitCount();
+
     </script>
 </body>
 </html>

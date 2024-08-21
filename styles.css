@@ -5,7 +5,7 @@ body {
     line-height: 1.6;
     color: #000000;
     background-color: #ffffff;
-    max-width: 1200px;
+    max-width: 1000px;
     margin: 0 auto;
     padding: 20px;
     font-size: 18px;
@@ -70,13 +70,13 @@ tr:nth-child(even) {
 }
 
 .chart-container {
-    width: 60%;
+    width: 100%;
     max-width: 1000px;
     margin: 0 auto 20px;
     height: 600px;
     background-color: #fff0f5;
     border: 2px solid #ff69b4;
-    padding: 20px;
+    padding: 10px;
 }
 
 .tab {
@@ -145,11 +145,6 @@ tr:nth-child(even) {
     }
 }
 
-.legend-item {
-    font-family: 'VT323', monospace;
-    font-size: 14px;
-    color: #ff69b4;
-}
 
 @media screen and (max-width: 480px) {
     .tab button {

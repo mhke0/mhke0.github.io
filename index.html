@@ -10,6 +10,13 @@
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
+    <div id="mac-menubar" style="display: none;">
+        <span>&#63743;</span>
+        <span>File</span>
+        <span>Edit</span>
+        <span>View</span>
+        <span>Special</span>
+    </div>
     <h1>VELO DATA DASH</h1>
     <div>
         <label for="styleSwitch">Choose style:</label>
@@ -89,9 +96,11 @@
 
 
  <script>
-   function switchStyle() {
+        function switchStyle() {
             var selectedStyle = document.getElementById("styleSwitch").value;
             document.getElementById("pagestyle").setAttribute("href", selectedStyle);
+            document.getElementById("mac-menubar").style.display = 
+                (selectedStyle === "mac-classic.css") ? "block" : "none";
         }
      
     $(document).ready(function() {

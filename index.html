@@ -147,72 +147,96 @@
                 </div>
             `);
 
-            const ctx = document.getElementById('roleChart').getContext('2d');
-            new Chart(ctx, {
-                type: 'pie',
-                data: {
-                    labels: Object.keys(roles),
-                    datasets: [{
-                        data: Object.values(roles),
-                        backgroundColor: [
-                            '#ff6384', '#36a2eb', '#cc65fe', '#ffce56', '#4bc0c0', '#ff9f40'
-                        ]
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        title: {
-                            display: true,
-                            text: 'Cyclist Roles Distribution'
-                        }
+// Role Chart (Pie Chart)
+        const ctx = document.getElementById('roleChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: Object.keys(roles),
+                datasets: [{
+                    data: Object.values(roles),
+                    backgroundColor: [
+                        '#ff1493', '#ff69b4', '#ffb6c1', '#ffc0cb', '#ff00ff', '#da70d6'
+                    ]
+                }]
+            },
+            options: {
+                ...commonChartOptions,
+                plugins: {
+                    ...commonChartOptions.plugins,
+                    title: {
+                        ...commonChartOptions.plugins.title,
+                        text: 'Cyclist Roles Distribution'
                     }
                 }
-            });
+            }
+        });
 
-            // Create top 50 efficiency chart
-            const trace = {
-                x: top50Cyclists.map(c => c.name),
-                y: top50Cyclists.map(c => c.cost_per_point === "Infinity" ? 0 : c.cost_per_point),
-                type: 'bar',
-                marker: {
-                    color: top50Cyclists.map(c => {
-                        switch(c.role) {
-                            case 'All Rounder': return 'red';
-                            case 'Climber': return 'blue';
-                            case 'Sprinter': return 'green';
-                            default: return 'gray';
-                        }
-                    })
-                },
-                text: top50Cyclists.map(c => `Points: ${c.points}<br>Cost: ${c.cost}`),
-                hoverinfo: 'text+y'
-            };
+        // Top 50 Chart (Bar Chart using Plotly)
+        const trace = {
+            x: top50Cyclists.map(c => c.name),
+            y: top50Cyclists.map(c => c.cost_per_point === "Infinity" ? 0 : c.cost_per_point),
+            type: 'bar',
+            marker: {
+                color: top50Cyclists.map(c => {
+                    switch(c.role) {
+                        case 'All Rounder': return '#ff1493';
+                        case 'Climber': return '#ff69b4';
+                        case 'Sprinter': return '#ffb6c1';
+                        default: return '#ffc0cb';
+                    }
+                })
+            },
+            text: top50Cyclists.map(c => `Points: ${c.points}<br>Cost: ${c.cost}`),
+            hoverinfo: 'text+y'
+        };
 
-            const layout = {
-                title: 'Top 50 Cyclists by Cost Efficiency (Lower is Better)',
-                xaxis: {
-                    title: 'Cyclist Name',
-                    tickangle: -45
-                },
-                yaxis: {
-                    title: 'Cost per Point'
-                },
+        const layout = {
+            title: {
+                text: 'Top 50 Cyclists by Cost Efficiency (Lower is Better)',
                 font: {
-                    size: 10
-                },
-                height: 500,
-                margin: {
-                    l: 50,
-                    r: 50,
-                    b: 100,
-                    t: 50,
-                    pad: 4
+                    family: "'VT323', monospace",
+                    size: 24,
+                    color: '#ff1493'
                 }
-            };
+            },
+            xaxis: {
+                title: 'Cyclist Name',
+                tickangle: -45,
+                tickfont: {
+                    family: "'VT323', monospace",
+                    size: 10,
+                    color: '#000000'
+                },
+                gridcolor: '#ff69b4'
+            },
+            yaxis: {
+                title: 'Cost per Point',
+                tickfont: {
+                    family: "'VT323', monospace",
+                    size: 10,
+                    color: '#000000'
+                },
+                gridcolor: '#ff69b4'
+            },
+            paper_bgcolor: '#ffffff',
+            plot_bgcolor: '#fff0f5',
+            font: {
+                family: "'VT323', monospace",
+                size: 12,
+                color: '#000000'
+            },
+            margin: {
+                l: 50,
+                r: 50,
+                b: 100,
+                t: 50,
+                pad: 4
+            }
+        };
 
-            Plotly.newPlot('top50Chart', [trace], layout);
-
+        Plotly.newPlot('top50Chart', [trace], layout);
+            
             // Create league scores stacked bar chart
             const baseData = {
                 "Team Name": 0,
@@ -240,7 +264,57 @@
                     searchKey.toLowerCase().includes(key.toLowerCase())
                 ) || searchKey;
             }
-
+    // Common chart options
+    const commonChartOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                labels: {
+                    font: {
+                        family: "'VT323', monospace",
+                        size: 14
+                    },
+                    color: '#000000'
+                }
+            },
+            title: {
+                display: true,
+                font: {
+                    family: "'VT323', monospace",
+                    size: 20,
+                    weight: 'bold'
+                },
+                color: '#ff1493'
+            }
+        },
+        scales: {
+            x: {
+                ticks: {
+                    font: {
+                        family: "'VT323', monospace",
+                        size: 12
+                    },
+                    color: '#000000'
+                },
+                grid: {
+                    color: '#ff69b4'
+                }
+            },
+            y: {
+                ticks: {
+                    font: {
+                        family: "'VT323', monospace",
+                        size: 12
+                    },
+                    color: '#000000'
+                },
+                grid: {
+                    color: '#ff69b4'
+                }
+            }
+        }
+    };
             const leagueTrace1 = {
                 x: leagueScores.map(team => team.name),
                 y: leagueScores.map(team => baseData[findExactOrClosestMatch(baseData, team.name)] || 0),
@@ -265,30 +339,52 @@
                 marker: { color: 'red' }
             };
 
-            const leagueLayout = {
-                title: 'League Scores (Stacked)',
-                barmode: 'stack',
-                xaxis: {
-                    title: '',
-                    tickangle: -45
-                },
-                yaxis: {
-                    title: 'Points'
-                },
+        const leagueLayout = {
+            title: {
+                text: 'League Scores (Stacked)',
                 font: {
-                    size: 10
-                },
-                height: 500,
-                margin: {
-                    l: 50,
-                    r: 50,
-                    b: 100,
-                    t: 50,
-                    pad: 4
+                    family: "'VT323', monospace",
+                    size: 24,
+                    color: '#ff1493'
                 }
-            };
+            },
+            barmode: 'stack',
+            xaxis: {
+                title: '',
+                tickangle: -45,
+                tickfont: {
+                    family: "'VT323', monospace",
+                    size: 10,
+                    color: '#000000'
+                },
+                gridcolor: '#ff69b4'
+            },
+            yaxis: {
+                title: 'Points',
+                tickfont: {
+                    family: "'VT323', monospace",
+                    size: 10,
+                    color: '#000000'
+                },
+                gridcolor: '#ff69b4'
+            },
+            paper_bgcolor: '#ffffff',
+            plot_bgcolor: '#fff0f5',
+            font: {
+                family: "'VT323', monospace",
+                size: 12,
+                color: '#000000'
+            },
+            margin: {
+                l: 50,
+                r: 50,
+                b: 100,
+                t: 50,
+                pad: 4
+            }
+        };
 
-            Plotly.newPlot('leagueScoresChart', [leagueTrace1, leagueTrace2, leagueTrace3], leagueLayout);
+        Plotly.newPlot('leagueScoresChart', leagueTraces, leagueLayout);
 
             // Create cost vs points scatter plot for top 50
             const costVsPointsTrace = {
@@ -311,28 +407,50 @@
                 hoverinfo: 'text+x+y'
             };
 
-            const costVsPointsLayout = {
-                title: 'Cost vs Points for Top 50 Cyclists',
-                xaxis: {
-                    title: 'Points'
-                },
-                yaxis: {
-                    title: 'Cost'
-                },
+          const costVsPointsLayout = {
+            title: {
+                text: 'Cost vs Points for Top 50 Cyclists',
                 font: {
-                    size: 10
-                },
-                height: 500,
-                margin: {
-                    l: 50,
-                    r: 50,
-                    b: 50,
-                    t: 50,
-                    pad: 4
+                    family: "'VT323', monospace",
+                    size: 24,
+                    color: '#ff1493'
                 }
-            };
+            },
+            xaxis: {
+                title: 'Points',
+                tickfont: {
+                    family: "'VT323', monospace",
+                    size: 10,
+                    color: '#000000'
+                },
+                gridcolor: '#ff69b4'
+            },
+            yaxis: {
+                title: 'Cost',
+                tickfont: {
+                    family: "'VT323', monospace",
+                    size: 10,
+                    color: '#000000'
+                },
+                gridcolor: '#ff69b4'
+            },
+            paper_bgcolor: '#ffffff',
+            plot_bgcolor: '#fff0f5',
+            font: {
+                family: "'VT323', monospace",
+                size: 12,
+                color: '#000000'
+            },
+            margin: {
+                l: 50,
+                r: 50,
+                b: 50,
+                t: 50,
+                pad: 4
+            }
+        };
 
-            Plotly.newPlot('costVsPointsChart', [costVsPointsTrace], costVsPointsLayout);
+        Plotly.newPlot('costVsPointsChart', [costVsPointsTrace], costVsPointsLayout);
 
             // Display dream team data
             if (data.dream_team) {
@@ -425,13 +543,19 @@ function displayDreamTeam(dreamTeam) {
     $('#dreamTeamStats').html(statsHtml);
 
     // Define color scheme for each role
+function displayDreamTeam(dreamTeam) {
+    let statsHtml = `<h3>Total Cost: ${dreamTeam.total_cost.toFixed(2)} | Total Points: ${dreamTeam.total_points}</h3>`;
+    $('#dreamTeamStats').html(statsHtml);
+
+    // Define color scheme for each role
     const roleColors = {
-        'All Rounder': '#ff6384',
-        'Climber': '#36a2eb',
-        'Sprinter': '#cc65fe',
-        'Unclassed': '#ffce56',
-        'Other': '#4bc0c0'  // For the additional rider
+        'All Rounder': '#ff1493',
+        'Climber': '#ff69b4',
+        'Sprinter': '#ffb6c1',
+        'Unclassed': '#ffc0cb',
+        'Other': '#ff00ff'  // For the additional rider
     };
+
 
     // Sort riders by points (highest to lowest) within each role
     let allRounders = dreamTeam.riders.filter(r => r.role === 'All Rounder').sort((a, b) => b.points - a.points);
@@ -482,10 +606,26 @@ function displayDreamTeam(dreamTeam) {
         },
         options: {
             responsive: true,
+            maintainAspectRatio: false,
             plugins: {
+                legend: {
+                    labels: {
+                        font: {
+                            family: "'VT323', monospace",
+                            size: 14
+                        },
+                        color: '#000000'
+                    }
+                },
                 title: {
                     display: true,
-                    text: 'Dream Team Points Distribution by Role'
+                    text: 'Dream Team Points Distribution by Role',
+                    font: {
+                        family: "'VT323', monospace",
+                        size: 20,
+                        weight: 'bold'
+                    },
+                    color: '#ff1493'
                 }
             }
         }

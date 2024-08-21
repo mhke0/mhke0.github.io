@@ -60,24 +60,6 @@ def analyze_cyclists(html_content):
     
     return cyclists
 
-def update_html_with_roster_info(html_content, cyclists):
-    soup = BeautifulSoup(html_content, 'html.parser')
-    
-    # Add new header for Rosters
-    header_row = soup.find('tr', class_='head')
-    new_th = soup.new_tag('th')
-    new_th.string = 'Rosters'
-    header_row.append(new_th)
-
-    # Add roster info for each cyclist
-    for row, cyclist in zip(soup.find_all('tr')[1:], cyclists):  # Skip header row
-        new_td = soup.new_tag('td')
-        roster_numbers = [r.split('_')[1] for r in cyclist['in_rosters']]
-        new_td.string = ', '.join(roster_numbers) if roster_numbers else ''
-        row.append(new_td)
-
-    return str(soup)
-
 def create_top_50_efficiency_data(cyclists):
     top_50_efficiency = sorted(
         [c for c in cyclists if c['cost_per_point'] != "Infinity"],
@@ -107,6 +89,61 @@ def fetch_league_scores():
     teams.sort(key=lambda x: x['points'], reverse=True)
 
     return teams
+
+def get_riders_from_url(url):
+    try:
+        response = requests.get(url)
+        response.raise_for_status()
+        soup = BeautifulSoup(response.text, 'html.parser')
+        table = soup.find('table', class_='team-info-panel')
+        riders = []
+        if table:
+            for td in table.find_all('td'):
+                name = td.text.split('\n')[1].strip()
+                riders.append(name)
+        return riders
+    except requests.RequestException as e:
+        print(f"Error fetching URL {url}: {e}", file=sys.stderr)
+        return []
+
+def compare_riders_with_rosters(cyclists):
+    roster_urls = [
+        "https://www.velogames.com/spain/2024/teamroster.php?tid=4ee9492fbda158133b956e8bc3240842f8m",
+        "https://www.velogames.com/spain/2024/teamroster.php?tid=16ncdb776ef9dab23ddcba290b2d622032aM",
+        "https://www.velogames.com/spain/2024/teamroster.php?tid=10t0535176dfe2f4aeceaa337b7824e2999W",
+        "https://www.velogames.com/spain/2024/teamroster.php?tid=114880cac3036c23a4789adf7d907f9ca72D"
+    ]
+    
+    all_roster_riders = {}
+    for i, url in enumerate(roster_urls, 1):
+        print(f"Fetching riders from roster {i}", file=sys.stderr)
+        all_roster_riders[f'roster_{i}'] = get_riders_from_url(url)
+
+    for cyclist in cyclists:
+        cyclist['in_rosters'] = []
+        for roster_num, riders in all_roster_riders.items():
+            if cyclist['name'] in riders:
+                cyclist['in_rosters'].append(roster_num)
+
+    return cyclists
+
+def update_html_with_roster_info(html_content, cyclists):
+    soup = BeautifulSoup(html_content, 'html.parser')
+    
+    # Add new header for Rosters
+    header_row = soup.find('tr', class_='head')
+    new_th = soup.new_tag('th')
+    new_th.string = 'Rosters'
+    header_row.append(new_th)
+
+    # Add roster info for each cyclist
+    for row, cyclist in zip(soup.find_all('tr')[1:], cyclists):  # Skip header row
+        new_td = soup.new_tag('td')
+        roster_numbers = [r.split('_')[1] for r in cyclist['in_rosters']]
+        new_td.string = ', '.join(roster_numbers) if roster_numbers else ''
+        row.append(new_td)
+
+    return str(soup)
 
 def numpy_to_python(obj):
     if isinstance(obj, np.integer):

@@ -7,6 +7,8 @@ import pandas as pd
 import plotly.express as px
 import numpy as np
 import pulp
+import io
+import contextlib
 
 def fetch_html_content(url):
     try:
@@ -104,11 +106,9 @@ def numpy_to_python(obj):
     return obj
     
 def select_dream_team_optimized(cyclists):
-    # Redirect stdout to capture solver output
-    old_stdout = sys.stdout
-    sys.stdout = open('/dev/null', 'w')
-
-    try:
+    # Capture stdout
+    f = io.StringIO()
+    with contextlib.redirect_stdout(f):
         # Create the linear programming problem
         prob = pulp.LpProblem("Dream Team Selection", pulp.LpMaximize)
 
@@ -138,29 +138,26 @@ def select_dream_team_optimized(cyclists):
         # Solve the problem
         prob.solve()
 
-        # Check if a solution was found
-        if pulp.LpStatus[prob.status] == "Optimal":
-            # Extract the solution
-            dream_team = []
-            total_points = 0
-            total_cost = 0
+    # Log solver output to stderr
+    print(f.getvalue(), file=sys.stderr)
 
-            for cyclist in cyclists:
-                if cyclist_vars[cyclist['name'], cyclist['role']].value() == 1:
-                    dream_team.append(cyclist)
-                    total_points += cyclist['points']
-                    total_cost += cyclist['cost']
+    # Check if a solution was found
+    if pulp.LpStatus[prob.status] == "Optimal":
+        # Extract the solution
+        dream_team = []
+        total_points = 0
+        total_cost = 0
 
-            return dream_team, total_points, total_cost
-        else:
-            print("No feasible dream team found. The problem might be over-constrained.", file=sys.stderr)
-            return None, 0, 0
+        for cyclist in cyclists:
+            if cyclist_vars[cyclist['name'], cyclist['role']].value() == 1:
+                dream_team.append(cyclist)
+                total_points += cyclist['points']
+                total_cost += cyclist['cost']
 
-    finally:
-        # Restore stdout
-        sys.stdout.close()
-        sys.stdout = old_stdout
-
+        return dream_team, total_points, total_cost
+    else:
+        print("No feasible dream team found. The problem might be over-constrained.", file=sys.stderr)
+        return None, 0, 0
 def main():
     cyclist_url = "https://www.velogames.com/spain/2024/riders.php"
     

@@ -188,88 +188,75 @@
             });
 
             // Create top 50 efficiency chart
-                  const trace = {
-            x: top50Cyclists.map(c => c.name),
-            y: top50Cyclists.map(c => c.cost_per_point === "Infinity" ? 0 : c.cost_per_point),
-            type: 'bar',
-            marker: {
-                color: top50Cyclists.map(c => {
-                    switch(c.role) {
-                        case 'All Rounder': return '#ff1493'; // Hot pink
-                        case 'Climber': return '#00ffff';     // Cyan
-                        case 'Sprinter': return '#ff69b4';    // Light pink
-                        default: return '#1e90ff';            // Dodger blue
+            const trace = {
+                x: top50Cyclists.map(c => c.name),
+                y: top50Cyclists.map(c => c.cost_per_point === "Infinity" ? 0 : c.cost_per_point),
+                type: 'bar',
+                marker: {
+                    color: top50Cyclists.map(c => {
+                        switch(c.role) {
+                            case 'All Rounder': return '#ff6384';
+                            case 'Climber': return '#36a2eb';
+                            case 'Sprinter': return '#cc65fe';
+                            default: return '#4bc0c0';
+                        }
+                    })
+                },
+                text: top50Cyclists.map(c => `Points: ${c.points}<br>Cost: ${c.cost}`),
+                hoverinfo: 'text+y'
+            };
+
+            const layout = {
+                title: {
+                    text: 'Top 50 Cyclists by Cost Efficiency(Lower is better)',
+                    font: {
+                        family: 'VT323, monospace',
+                        size: 24,
+                        color: '#ff1493'
                     }
-                }),
-                line: {
-                    color: '#ffffff',
-                    width: 1.5
-                }
-            },
-            text: top50Cyclists.map(c => `${c.name}<br>Role: ${c.role}<br>Points: ${c.points}<br>Cost: ${c.cost}`),
-            hoverinfo: 'text',
-            hovertemplate: '%{text}<br>Cost per Point: %{y:.2f}<extra></extra>'
-        };
-
-        const layout = {
-            title: {
-                text: 'Top 50 Cyclists by Cost Efficiency (Lower is Better)',
-                font: {
-                    family: 'VT323, monospace',
-                    size: 24,
-                    color: '#ff1493'
-                }
-            },
-            xaxis: {
-                title: 'Cyclist Name',
-                titlefont: {
-                    family: 'VT323, monospace',
-                    size: 16,
-                    color: '#ff1493'
                 },
-                tickangle: -45,
-                tickfont: {
-                    family: 'VT323, monospace',
-                    size: 12,
-                    color: '#000000'
-                },
-                showticklabels: false
-            },
-            yaxis: {
-                title: 'Cost per Point',
-                titlefont: {
-                    family: 'VT323, monospace',
-                    size: 16,
-                    color: '#ff1493'
-                },
-                tickfont: {
+                xaxis: {
+                    tickangle: -45,
+                    tickfont: {
                     family: 'VT323, monospace',
                     size: 14,
                     color: '#000000'
+                    }
+                },
+                yaxis: {
+                    title: 'Cost per Point',
+                    titlefont: {
+                        family: 'VT323, monospace',
+                        size: 16,
+                        color: '#ff1493'
+                    },
+                    tickfont: {
+                        family: 'VT323, monospace',
+                        size: 14,
+                        color: '#000000'
+                    }
+                },
+                legend: {
+                    font: {
+                        family: 'VT323, monospace',
+                        size: 14,
+                        color: '#000000'
+                    }
+                },
+                paper_bgcolor: '#fff0f5',
+                plot_bgcolor: '#fff0f5',
+                height: 500,
+                margin: {
+                    l: 50,
+                    r: 50,
+                    b: 100,
+                    t: 50,
+                    pad: 4
                 }
-            },
-            legend: {
-                font: {
-                    family: 'VT323, monospace',
-                    size: 14,
-                    color: '#000000'
-                }
-            },
-            paper_bgcolor: '#ffffff',
-            plot_bgcolor: '#fff0f5',
-            height: 500,
-            margin: {
-                l: 50,
-                r: 50,
-                b: 50,
-                t: 50,
-                pad: 4
-            },
-            showlegend: false,
-            hovermode: 'closest'
-        };
+            };
 
-        Plotly.newPlot('top50Chart', [trace], layout);
+
+            Plotly.newPlot('top50Chart', [trace], layout);
 
             // Create league scores stacked bar chart
             const baseData = {

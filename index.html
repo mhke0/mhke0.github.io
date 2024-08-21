@@ -162,7 +162,7 @@
                     datasets: [{
                         data: Object.values(roles),
                         backgroundColor: [
-                            colors.allround, colors.climber, colors.sprinter, colors.unclassed, '#4bc0c0', '#ff9f40'
+                            'colors.allround', 'colors.climber', 'colors.sprinter', 'colors.unclassed', '#4bc0c0', '#ff9f40'
                         ],
                         borderColor: '#ffffff',
                         borderWidth: 2
@@ -202,10 +202,10 @@
                 marker: {
                     color: top50Cyclists.map(c => {
                         switch(c.role) {
-                            case 'All Rounder': return colors.allround;
-                            case 'Climber': return colors.climber;
-                            case 'Sprinter': return colors.sprinter;
-                            default: return colors.unclassed;
+                            case 'All Rounder': return 'colors.allround';
+                            case 'Climber': return 'colors.climber';
+                            case 'Sprinter': return 'colors.sprinter';
+                            default: return 'colors.unclassed';
                         }
                     })
                 },
@@ -348,32 +348,28 @@ const leagueLayout = {
         }
     },
     barmode: 'stack',
-         xaxis: {
-                    title: '',
-                     titlefont: {
-                        family: 'VT323, monospace',
-                        size: 16,
-                        color: '#ff1493'
-                    },
-                    tickangle: -45,
-                    tickfont: {
-                    family: 'VT323, monospace',
-                    size: 14,
-                    color: '#ff1493'
-                    }
-                },
-                yaxis: {
-                    title: 'Cost per Point',
-                    titlefont: {
-                        family: 'VT323, monospace',
-                        size: 16,
-                        color: '#ff1493'
-                    },
-                    tickfont: {
-                        family: 'VT323, monospace',
-                        size: 14,
-                        color: '#ff1493'
-                    }
+    xaxis: {
+        title: '',
+        tickangle: -45,
+        tickfont: {
+            family: 'VT323, monospace',
+            size: 16,
+            color: '#ff1493'
+        }
+    },
+    yaxis: {
+        title: '',
+        titlefont: {
+            family: 'VT323, monospace',
+            size: 16,
+            color: '#ff1493'
+        },
+        tickfont: {
+            family: 'VT323, monospace',
+            size: 14,
+            color: '#000000'
+        }
+    },
     legend: {
         font: {
             family: 'VT323, monospace',
@@ -406,10 +402,10 @@ Plotly.newPlot('leagueScoresChart', [leagueTrace1, leagueTrace2, leagueTrace3], 
                     size: 10,
                     color: top50Cyclists.map(c => {
                         switch(c.role) {
-                            case 'All Rounder': return colors.allround;
-                            case 'Climber': return colors.climb;
-                            case 'Sprinter': return colors.sprinter;
-                            default: return colors.unclassed;
+                            case 'All Rounder': return '#ff6384';
+                            case 'Climber': return '#36a2eb';
+                            case 'Sprinter': return '#cc65fe';
+                            default: return '#4bc0c0';
                         }
                     })
                 },
@@ -425,22 +421,17 @@ Plotly.newPlot('leagueScoresChart', [leagueTrace1, leagueTrace2, leagueTrace3], 
                         color: '#ff1493'
                     }
                 },
-         xaxis: {
-                    title: '',
-                     titlefont: {
+                xaxis: {
+                    title: 'Points',
+                    tickangle: -45,
+                    tickfont: {
                         family: 'VT323, monospace',
                         size: 16,
                         color: '#ff1493'
-                    },
-                    tickangle: -45,
-                    tickfont: {
-                    family: 'VT323, monospace',
-                    size: 14,
-                    color: '#ff1493'
                     }
                 },
                 yaxis: {
-                    title: 'Cost per Point',
+                    title: 'Cost',
                     titlefont: {
                         family: 'VT323, monospace',
                         size: 16,
@@ -449,7 +440,7 @@ Plotly.newPlot('leagueScoresChart', [leagueTrace1, leagueTrace2, leagueTrace3], 
                     tickfont: {
                         family: 'VT323, monospace',
                         size: 14,
-                        color: '#ff1493'
+                        color: '#000000'
                     }
                 },
                 legend: {
@@ -566,10 +557,10 @@ function displayDreamTeam(dreamTeam) {
 
     // Define color scheme for each role
     const roleColors = {
-        'All Rounder': colors.allround,
-        'Climber': colors.climber,
-        'Sprinter': colors.sprinter,
-        'Unclassed': colors.unclassed,
+        'All Rounder': '#ff6384',
+        'Climber': '#36a2eb',
+        'Sprinter': '#cc65fe',
+        'Unclassed': '#ffce56',
         'Other': '#4bc0c0'  // For the additional rider
     };
 

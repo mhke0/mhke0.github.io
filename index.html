@@ -82,12 +82,7 @@
 
 
  <script>
-     const colors = {
-  allround: '#ff6384',
-  climber: '#36a2eb',
-  sprinter: '#cc65fe',
-  unclassed: '#ffce56'
-};
+
 
     $(document).ready(function() {
         $.getJSON('cyclist-data.json', function(data) {
@@ -162,7 +157,7 @@
                     datasets: [{
                         data: Object.values(roles),
                         backgroundColor: [
-                            colors.allround, colors.climber, colors.sprinter, colors.unclassed, '#4bc0c0', '#ff9f40'
+                            '#ff6384', '#36a2eb', '#cc65fe', '#ffce56', '#4bc0c0', '#ff9f40'
                         ],
                         borderColor: '#ffffff',
                         borderWidth: 2
@@ -202,17 +197,16 @@
                 marker: {
                     color: top50Cyclists.map(c => {
                         switch(c.role) {
-                            case 'All Rounder': return colors.allround;
-                            case 'Climber': return colors.climber;
-                            case 'Sprinter': return colors.sprinter;
-                            default: return colors.unclassed;
+                            case 'All Rounder': return '#ff6384';
+                            case 'Climber': return '#36a2eb';
+                            case 'Sprinter': return '#cc65fe';
+                            default: return '#ffce56';
                         }
                     })
                 },
                 text: top50Cyclists.map(c => `Points: ${c.points}<br>Cost: ${c.cost}`),
                 hoverinfo: 'text+y'
             };
-
             const layout = {
                 title: {
                     text: 'Top 50 Cyclists by Cost Efficiency(Lower is better)',

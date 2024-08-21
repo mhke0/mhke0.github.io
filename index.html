@@ -258,44 +258,50 @@
 
 
             Plotly.newPlot('top50Chart', [trace], layout);
-
-// Assume we have these arrays from external data
-const giroData = [
-    { name: "Team A", score: 7405 },
-    { name: "Team B", score: 9297 },
-    { name: "Team C", score: 8128 }
-];
-
-const tdfData = [
-    { name: "Team A", score: 9530 },
-    { name: "Team B", score: 7506 },
-    { name: "Team C", score: 8964 }
-];
-
-// Assume vueltaData is already in leagueScores
+// Create league scores stacked bar chart
+const baseData = {
+    "Team Name": 0,
+    "Iberische Halbpinsel": 7405,
+    "Ganz anderer Teamname": 9297,
+    "Team Fiestina": 8128
+};
+const middleData = {
+    "Team Name": 9062,
+    "Iberische Halbpinsel": 9530,
+    "Ganz anderer Teamname": 7506,
+    "Team Fiestina": 8964
+};
 
 // Function to get unique team names across all competitions
-function getUniqueTeamNames(giro, tdf, vuelta) {
+function getUniqueTeamNames(baseData, middleData, leagueScores) {
     const allNames = [
-        ...giro.map(team => team.name),
-        ...tdf.map(team => team.name),
-        ...vuelta.map(team => team.name)
+        ...Object.keys(baseData),
+        ...Object.keys(middleData),
+        ...leagueScores.map(team => team.name)
     ];
     return [...new Set(allNames)];
 }
 
 // Get unique team names
-const uniqueTeamNames = getUniqueTeamNames(giroData, tdfData, leagueScores);
+const uniqueTeamNames = getUniqueTeamNames(baseData, middleData, leagueScores);
 
-// Function to find score for a team in a dataset
-function findScore(data, teamName) {
-    const team = data.find(t => t.name === teamName);
-    return team ? team.score : 0;
+// Function to find the exact matching key or the closest match
+function findExactOrClosestMatch(obj, searchKey) {
+    // First, try to find an exact match
+    if (obj.hasOwnProperty(searchKey)) {
+        return searchKey;
+    }
+    
+    // If no exact match, find the closest match
+    return Object.keys(obj).find(key => 
+        key.toLowerCase().includes(searchKey.toLowerCase()) || 
+        searchKey.toLowerCase().includes(key.toLowerCase())
+    ) || searchKey;
 }
 
 const leagueTrace1 = {
     x: uniqueTeamNames,
-    y: uniqueTeamNames.map(name => findScore(giroData, name)),
+    y: uniqueTeamNames.map(name => baseData[findExactOrClosestMatch(baseData, name)] || 0),
     name: 'Giro',
     type: 'bar',
     marker: { color: 'pink' }
@@ -303,7 +309,7 @@ const leagueTrace1 = {
 
 const leagueTrace2 = {
     x: uniqueTeamNames,
-    y: uniqueTeamNames.map(name => findScore(tdfData, name)),
+    y: uniqueTeamNames.map(name => middleData[findExactOrClosestMatch(middleData, name)] || 0),
     name: 'TdF',
     type: 'bar',
     marker: { color: 'yellow' }

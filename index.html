@@ -4,27 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Velo Data Dash</title>
-    <link id="pagestyle" rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
-    <div id="mac-menubar" style="display: none;">
-        <span>&#63743;</span>
-        <span>File</span>
-        <span>Edit</span>
-        <span>View</span>
-        <span>Special</span>
-    </div>
     <h1>VELO DATA DASH</h1>
-    <div>
-        <label for="styleSwitch">Choose style:</label>
-        <select id="styleSwitch" onchange="switchStyle()">
-            <option value="styles.css">80s Computer</option>
-            <option value="mac-classic.css">Mac Classic</option>
-        </select>
-    </div>
     <div id="loading">LOADING DATA, PLEASE WAIT...</div>
     <div id="error" style="display:none;"></div>
     <div id="dashboard" style="display:none;">
@@ -96,13 +82,6 @@
 
 
  <script>
-        function switchStyle() {
-            var selectedStyle = document.getElementById("styleSwitch").value;
-            document.getElementById("pagestyle").setAttribute("href", selectedStyle);
-            document.getElementById("mac-menubar").style.display = 
-                (selectedStyle === "mac-classic.css") ? "block" : "none";
-        }
-     
     $(document).ready(function() {
         $.getJSON('cyclist-data.json', function(data) {
             $('#loading').hide();

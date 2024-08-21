@@ -297,13 +297,13 @@
             const baseData = {
                 "Team Name": 0,
                 "Iberische Halbpinsel": 7405,
-                "Fiestina": 9297,
+                "Ganz anderer Teamname": 9297,
                 "Team Fiestina": 8128
             };
             const middleData = {
                 "Team Name": 9062,
                 "Iberische Halbpinsel": 9530,
-                "Fiestina": 7506,
+                "Ganz anderer Teamname": 7506,
                 "Team Fiestina": 8964
             };
 
@@ -500,44 +500,68 @@
         .catch(error => console.error('Error updating visit count:', error));
     }
      
-  function displayDreamTeam(dreamTeam) {
-        let statsHtml = `<h3>Total Cost: ${dreamTeam.total_cost.toFixed(2)} | Total Points: ${dreamTeam.total_points}</h3>`;
-        $('#dreamTeamStats').html(statsHtml);
+ function displayDreamTeam(dreamTeam) {
+    let statsHtml = `<h3>Total Cost: ${dreamTeam.total_cost.toFixed(2)} | Total Points: ${dreamTeam.total_points}</h3>`;
+    $('#dreamTeamStats').html(statsHtml);
 
-        let ridersHtml = '<h4>Riders:</h4><ul>';
-        dreamTeam.riders.forEach(rider => {
-            ridersHtml += `<li>${rider.name} (${rider.role}) - Cost: ${rider.cost}, Points: ${rider.points}</li>`;
-        });
-        ridersHtml += '</ul>';
-        $('#dreamTeamRiders').html(ridersHtml);
+    // Sort riders by points (highest to lowest) within each role
+    let allRounders = dreamTeam.riders.filter(r => r.role === 'All Rounder').sort((a, b) => b.points - a.points);
+    let climbers = dreamTeam.riders.filter(r => r.role === 'Climber').sort((a, b) => b.points - a.points);
+    let sprinters = dreamTeam.riders.filter(r => r.role === 'Sprinter').sort((a, b) => b.points - a.points);
+    let unclassed = dreamTeam.riders.filter(r => r.role === 'Unclassed').sort((a, b) => b.points - a.points);
+    
+    // Find the additional rider (the one that doesn't fit into the main categories)
+    let additionalRider = dreamTeam.riders.find(r => 
+        !allRounders.includes(r) && 
+        !climbers.includes(r) && 
+        !sprinters.includes(r) && 
+        !unclassed.includes(r)
+    );
 
-        // Create a pie chart for the dream team
-        const ctx = document.getElementById('dreamTeamChart').getContext('2d');
-        const roleData = {};
-        dreamTeam.riders.forEach(rider => {
-            roleData[rider.role] = (roleData[rider.role] || 0) + rider.points;
-        });
+    // Combine riders in the specified order
+    let orderedRiders = [
+        ...allRounders.slice(0, 2),
+        ...climbers.slice(0, 2),
+        ...sprinters.slice(0, 1),
+        ...unclassed.slice(0, 3),
+        additionalRider
+    ].filter(Boolean); // Remove undefined in case there's no additional rider
 
-        new Chart(ctx, {
-            type: 'pie',
-            data: {
-                labels: Object.keys(roleData),
-                datasets: [{
-                    data: Object.values(roleData),
-                    backgroundColor: ['#ff6384', '#36a2eb', '#cc65fe', '#ffce56', '#4bc0c0', '#ff9f40']
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Dream Team Points Distribution by Role'
-                    }
+    let ridersHtml = '<h4>Riders:</h4><ol>';
+    orderedRiders.forEach((rider, index) => {
+        ridersHtml += `<li>${rider.name} (${rider.role}) - Cost: ${rider.cost}, Points: ${rider.points}</li>`;
+    });
+    ridersHtml += '</ol>';
+    $('#dreamTeamRiders').html(ridersHtml);
+
+    // Create a pie chart for the dream team
+    const ctx = document.getElementById('dreamTeamChart').getContext('2d');
+    const roleData = {};
+    orderedRiders.forEach(rider => {
+        roleData[rider.role] = (roleData[rider.role] || 0) + rider.points;
+    });
+
+    new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: Object.keys(roleData),
+            datasets: [{
+                data: Object.values(roleData),
+                backgroundColor: ['#ff6384', '#36a2eb', '#cc65fe', '#ffce56', '#4bc0c0', '#ff9f40']
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Dream Team Points Distribution by Role'
                 }
             }
-        });
-    }
+        }
+    });
+}
+    
 
     </script>
     

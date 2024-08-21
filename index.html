@@ -495,9 +495,6 @@
     }
 
 function calculateIdealTeam(cyclists) {
-    // Sort cyclists by points per cost (efficiency) in descending order
-    cyclists.sort((a, b) => (b.points / b.cost) - (a.points / a.cost));
-
     const team = {
         allRounders: [],
         climbers: [],
@@ -522,59 +519,56 @@ function calculateIdealTeam(cyclists) {
         return false;
     }
 
-    // First pass: fill required roles
-    for (let cyclist of cyclists) {
-        if (team.allRounders.length < 2 && cyclist.role === 'All Rounder' && addToTeam(cyclist, 'allRounders')) continue;
-        if (team.climbers.length < 2 && cyclist.role === 'Climber' && addToTeam(cyclist, 'climbers')) continue;
-        if (team.sprinters.length < 1 && cyclist.role === 'Sprinter' && addToTeam(cyclist, 'sprinters')) continue;
-        if (team.unclassed.length < 3 && cyclist.role === 'Unclassed' && addToTeam(cyclist, 'unclassed')) continue;
+    // Group cyclists by role and sort each group by points in descending order
+    const groupedCyclists = {
+        'All Rounder': cyclists.filter(c => c.role === 'All Rounder').sort((a, b) => b.points - a.points),
+        'Climber': cyclists.filter(c => c.role === 'Climber').sort((a, b) => b.points - a.points),
+        'Sprinter': cyclists.filter(c => c.role === 'Sprinter').sort((a, b) => b.points - a.points),
+        'Unclassed': cyclists.filter(c => c.role === 'Unclassed').sort((a, b) => b.points - a.points)
+    };
+
+    // Fill required roles
+    for (let i = 0; i < 2 && groupedCyclists['All Rounder'][i]; i++) {
+        addToTeam(groupedCyclists['All Rounder'][i], 'allRounders');
+    }
+    for (let i = 0; i < 2 && groupedCyclists['Climber'][i]; i++) {
+        addToTeam(groupedCyclists['Climber'][i], 'climbers');
+    }
+    if (groupedCyclists['Sprinter'][0]) {
+        addToTeam(groupedCyclists['Sprinter'][0], 'sprinters');
+    }
+    for (let i = 0; i < 3 && groupedCyclists['Unclassed'][i]; i++) {
+        addToTeam(groupedCyclists['Unclassed'][i], 'unclassed');
     }
 
-    // Second pass: fill any remaining slots with the most efficient cyclists
+    // Fill the "any role" slot with the highest points cyclist that fits
+    const remainingCyclists = cyclists.filter(c => 
+        !team.allRounders.includes(c) && 
+        !team.climbers.includes(c) && 
+        !team.sprinters.includes(c) && 
+        !team.unclassed.includes(c)
+    ).sort((a, b) => b.points - a.points);
+
+    for (let cyclist of remainingCyclists) {
+        if (addToTeam(cyclist, 'anyRole')) break;
+    }
+
+    // If we couldn't fill all slots, try to fill with any remaining cyclists
     while (team.allRounders.length + team.climbers.length + team.sprinters.length + team.unclassed.length + (team.anyRole ? 1 : 0) < 9) {
-        for (let cyclist of cyclists) {
+        let added = false;
+        for (let cyclist of remainingCyclists) {
             if (!team.allRounders.includes(cyclist) && 
                 !team.climbers.includes(cyclist) && 
                 !team.sprinters.includes(cyclist) && 
                 !team.unclassed.includes(cyclist) && 
                 cyclist !== team.anyRole) {
-                if (team.anyRole === null) {
-                    if (addToTeam(cyclist, 'anyRole')) break;
-                } else {
-                    if (addToTeam(cyclist, 'unclassed')) break;
+                if (addToTeam(cyclist, 'unclassed')) {
+                    added = true;
+                    break;
                 }
             }
         }
-    }
-
-    // Optimization step: Try to swap cyclists to improve total points
-    let improved = true;
-    while (improved) {
-        improved = false;
-        for (let role in team) {
-            if (Array.isArray(team[role])) {
-                for (let i = 0; i < team[role].length; i++) {
-                    for (let cyclist of cyclists) {
-                        if (!team.allRounders.includes(cyclist) && 
-                            !team.climbers.includes(cyclist) && 
-                            !team.sprinters.includes(cyclist) && 
-                            !team.unclassed.includes(cyclist) && 
-                            cyclist !== team.anyRole) {
-                            if (cyclist.role === role || role === 'unclassed') {
-                                const currentCost = team[role][i].cost;
-                                const currentPoints = team[role][i].points;
-                                if (cyclist.points > currentPoints && team.totalCost - currentCost + cyclist.cost <= 100) {
-                                    team.totalCost = team.totalCost - currentCost + cyclist.cost;
-                                    team.totalPoints = team.totalPoints - currentPoints + cyclist.points;
-                                    team[role][i] = cyclist;
-                                    improved = true;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
+        if (!added) break; // If we can't add any more cyclists, exit the loop
     }
 
     return team;

@@ -78,6 +78,9 @@ tr:nth-child(even) {
     background-color: #fff0f5;
     border: 2px solid #ff69b4;
     padding: 10px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .tab {

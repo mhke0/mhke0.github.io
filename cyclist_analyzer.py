@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import plotly.express as px
 import numpy as np
-import itertools
+import pulp
 
 
 def fetch_html_content(url):
@@ -105,44 +105,53 @@ def numpy_to_python(obj):
     return obj
 import itertools
 
-def select_dream_team(cyclists):
-    def is_valid_team(team):
-        roles = [rider['role'] for rider in team]
-        return (
-            len(team) == 9 and
-            sum(rider['cost'] for rider in team) <= 100 and
-            roles.count('Climber') == 2 and
-            roles.count('All-rounder') == 2 and
-            roles.count('Sprinter') == 1 and
-            roles.count('Unclassed') == 3 and
-            len(set(rider['name'] for rider in team)) == 9
-        )
 
-    climbers = [c for c in cyclists if c['role'] == 'Climber']
-    all_rounders = [c for c in cyclists if c['role'] == 'All-rounder']
-    sprinters = [c for c in cyclists if c['role'] == 'Sprinter']
-    unclassed = [c for c in cyclists if c['role'] == 'Unclassed']
+def select_dream_team_optimized(cyclists):
+    # Create the linear programming problem
+    prob = pulp.LpProblem("Dream Team Selection", pulp.LpMaximize)
 
-    best_team = None
-    max_points = 0
+    # Create binary variables for each cyclist
+    cyclist_vars = pulp.LpVariable.dicts("Cyclist", 
+                                         ((c['name'], c['role']) for c in cyclists), 
+                                         cat='Binary')
 
-    for climber_combo in itertools.combinations(climbers, 2):
-        for all_rounder_combo in itertools.combinations(all_rounders, 2):
-            for sprinter in sprinters:
-                for unclassed_combo in itertools.combinations(unclassed, 3):
-                    remaining_budget = 100 - sum(rider['cost'] for rider in climber_combo + all_rounder_combo + (sprinter,) + unclassed_combo)
-                    if remaining_budget < 0:
-                        continue
+    # Objective function: maximize total points
+    prob += pulp.lpSum(cyclist['points'] * cyclist_vars[cyclist['name'], cyclist['role']] 
+                       for cyclist in cyclists)
 
-                    for last_rider in cyclists:
-                        team = climber_combo + all_rounder_combo + (sprinter,) + unclassed_combo + (last_rider,)
-                        if is_valid_team(team):
-                            total_points = sum(rider['points'] for rider in team)
-                            if total_points > max_points:
-                                max_points = total_points
-                                best_team = team
+    # Constraints
+    # Total cost must be 100 or less
+    prob += pulp.lpSum(cyclist['cost'] * cyclist_vars[cyclist['name'], cyclist['role']] 
+                       for cyclist in cyclists) <= 100
 
-    return best_team, max_points
+    # Total number of cyclists must be 9
+    prob += pulp.lpSum(cyclist_vars) == 9
+
+    # Role constraints
+    prob += pulp.lpSum(cyclist_vars[c['name'], c['role']] for c in cyclists if c['role'] == 'Climber') == 2
+    prob += pulp.lpSum(cyclist_vars[c['name'], c['role']] for c in cyclists if c['role'] == 'All-rounder') == 2
+    prob += pulp.lpSum(cyclist_vars[c['name'], c['role']] for c in cyclists if c['role'] == 'Sprinter') == 1
+    prob += pulp.lpSum(cyclist_vars[c['name'], c['role']] for c in cyclists if c['role'] == 'Unclassed') == 3
+
+    # One cyclist from any role
+    prob += pulp.lpSum(cyclist_vars[c['name'], c['role']] for c in cyclists) == 9
+
+    # Solve the problem
+    prob.solve()
+
+    # Extract the solution
+    dream_team = []
+    total_points = 0
+    total_cost = 0
+
+    for cyclist in cyclists:
+        if cyclist_vars[cyclist['name'], cyclist['role']].value() == 1:
+            dream_team.append(cyclist)
+            total_points += cyclist['points']
+            total_cost += cyclist['cost']
+
+    return dream_team, total_points, total_cost
+
 
 def main():
     cyclist_url = "https://www.velogames.com/spain/2024/riders.php"
@@ -176,9 +185,10 @@ def main():
         
         print("Script completed successfully", file=sys.stderr)
         sys.exit(0)
+
         # Add this to the main function:
-        print("Selecting dream team", file=sys.stderr)
-        dream_team, total_points = select_dream_team(cyclists)
+        print("Selecting dream team (optimized)", file=sys.stderr)
+        dream_team, total_points, total_cost = select_dream_team_optimized(cyclists)
         dream_team_data = [
             {
                 'name': rider['name'],
@@ -192,9 +202,8 @@ def main():
         output['dream_team'] = {
             'riders': dream_team_data,
             'total_points': total_points,
-            'total_cost': sum(rider['cost'] for rider in dream_team)
+            'total_cost': total_cost
         }
-        
     except Exception as e:
         print(f"An error occurred: {str(e)}", file=sys.stderr)
         print("Traceback:", file=sys.stderr)

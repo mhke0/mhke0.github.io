@@ -197,13 +197,13 @@ def main():
         }
         
         print("Writing JSON output", file=sys.stderr)
-        json.dump(output, sys.stdout, default=numpy_to_python, ensure_ascii=False, indent=2)
+        json_output = json.dumps(output, default=numpy_to_python, ensure_ascii=False, indent=2)
+        print(json_output)  # This will write to stdout
         
         print("Script completed successfully", file=sys.stderr)
-        sys.exit(0)
-        
     except Exception as e:
         print(f"An error occurred: {str(e)}", file=sys.stderr)
         print("Traceback:", file=sys.stderr)
         traceback.print_exc(file=sys.stderr)
         sys.exit(1)
+

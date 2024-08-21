@@ -145,6 +145,12 @@ tr:nth-child(even) {
     }
 }
 
+.legend-item {
+    font-family: 'VT323', monospace;
+    font-size: 14px;
+    color: #ff69b4;
+}
+
 @media screen and (max-width: 480px) {
     .tab button {
         width: 100%;

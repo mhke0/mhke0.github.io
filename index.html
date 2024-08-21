@@ -178,10 +178,10 @@
                 marker: {
                     color: top50Cyclists.map(c => {
                         switch(c.role) {
-                            case 'All Rounder': return 'red';
-                            case 'Climber': return 'blue';
-                            case 'Sprinter': return 'green';
-                            default: return 'gray';
+                            case 'All Rounder': return '#ff6384';
+                            case 'Climber': return '#36a2eb';
+                            case 'Sprinter': return '#cc65fe';
+                            default: return '#4bc0c0';
                         }
                     })
                 },
@@ -357,16 +357,15 @@ const leagueLayout = {
                     size: 10,
                     color: top50Cyclists.map(c => {
                         switch(c.role) {
-                            case 'All Rounder': return 'red';
-                            case 'Climber': return 'blue';
-                            case 'Sprinter': return 'green';
-                            default: return 'gray';
+                            case 'All Rounder': return '#ff6384';
+                            case 'Climber': return '#36a2eb';
+                            case 'Sprinter': return '#cc65fe';
+                            default: return '#4bc0c0';
                         }
                     })
                 },
                 hoverinfo: 'text+x+y'
             };
-
             const costVsPointsLayout = {
                 title: {
                     text: 'Cost vs Points (Top 50)',

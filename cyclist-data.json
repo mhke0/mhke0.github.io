@@ -2,14 +2,14 @@ Welcome to the CBC MILP Solver
 Version: 2.10.3 
 Build Date: Dec 15 2019 
 
-command line - /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/pulp/solverdir/cbc/linux/64/cbc /tmp/e80ba4214ae844e78c09b69ba72de9be-pulp.mps -max -timeMode elapsed -branch -printingOptions all -solution /tmp/e80ba4214ae844e78c09b69ba72de9be-pulp.sol (default strategy 1)
+command line - /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/pulp/solverdir/cbc/linux/64/cbc /tmp/c266a57e00ec43dfb8637f6d2688eee7-pulp.mps -max -timeMode elapsed -branch -printingOptions all -solution /tmp/c266a57e00ec43dfb8637f6d2688eee7-pulp.sol (default strategy 1)
 At line 2 NAME          MODEL
 At line 3 ROWS
-At line 12 COLUMNS
-At line 1158 RHS
-At line 1166 BOUNDS
-At line 1343 ENDATA
-Problem MODEL has 7 rows, 176 columns and 685 elements
+At line 11 COLUMNS
+At line 981 RHS
+At line 988 BOUNDS
+At line 1165 ENDATA
+Problem MODEL has 6 rows, 176 columns and 509 elements
 Coin0008I MODEL read with 0 errors
 Option for timeMode changed from cpu to elapsed
 Problem is infeasible - 0.00 seconds
@@ -1973,40 +1973,5 @@ Total time (CPU seconds):       0.00   (Wallclock seconds):       0.00
       "points": 672
     }
   ],
-  "dream_team": {
-    "riders": [
-      {
-        "name": "Primož Roglič",
-        "role": "All Rounder",
-        "cost": 24.0,
-        "points": 395.0
-      },
-      {
-        "name": "Wout Van Aert",
-        "role": "Sprinter",
-        "cost": 18.0,
-        "points": 704.0
-      },
-      {
-        "name": "Lennert Van Eetvelt",
-        "role": "Climber",
-        "cost": 10.0,
-        "points": 327.0
-      },
-      {
-        "name": "Brandon McNulty",
-        "role": "All Rounder",
-        "cost": 10.0,
-        "points": 362.0
-      },
-      {
-        "name": "Stefan Küng",
-        "role": "Unclassed",
-        "cost": 6.0,
-        "points": 260.0
-      }
-    ],
-    "total_points": 2048.0,
-    "total_cost": 68.0
-  }
+  "dream_team": null
 }

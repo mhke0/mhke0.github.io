@@ -243,7 +243,7 @@ def main():
         print(f"Current working directory: {os.getcwd()}", file=sys.stderr)
         try:
             print("Writing JSON output to file", file=sys.stderr)
-            output_file = "cyclist_data.json"
+            output_file = "cyclist-data.json"
             with open(output_file, 'w', encoding='utf-8') as f:
                 json.dump(output, f, default=numpy_to_python, ensure_ascii=False, indent=2)
             

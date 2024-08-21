@@ -127,7 +127,7 @@
             </div>
         </div>
 
-        <div id="CyclistDataTab" class="tabcontent">
+                <div id="CyclistDataTab" class="tabcontent">
             <h2>Cyclist Data</h2>
             <table id="cyclistTable">
                 <thead>
@@ -136,13 +136,18 @@
                         <th onclick="sortTable(1)">Team</th>
                         <th onclick="sortTable(2)">Role</th>
                         <th onclick="sortTable(3)">Cost</th>
+                        <th onclick="sortTable(4)">Ownership</th>
                         <th onclick="sortTable(5)">Points</th>
                         <th onclick="sortTable(6)">Cost per Point</th>
+                        <th onclick="sortTable(7)">Rosters</th>
                     </tr>
                 </thead>
                 <tbody></tbody>
             </table>
         </div>
+    </div>
+    <p>Visit Number: <span id="visit-count">0</span></p>
+
     </div>
     <p>Besuch Nummer: <span id="visit-count">0</span></p>
 
@@ -159,40 +164,30 @@
                 let cyclists = data.cyclists;
                 let leagueScores = data.league_scores;
 
-                    // Call the function when the page loads
+                // Call the function when the page loads
                 updateVisitCount();
                 
-                // Sort cyclists by cost_per_point (convert "Infinity" to a large number for sorting)
-                cyclists.sort((a, b) => {
-                    const costPerPointA = a.cost_per_point === "Infinity" ? Infinity : parseFloat(a.cost_per_point);
-                    const costPerPointB = b.cost_per_point === "Infinity" ? Infinity : parseFloat(b.cost_per_point);
-                    return costPerPointA - costPerPointB;
-                });
-
-                // Get the top 50 cyclists
-                let top50Cyclists = cyclists.slice(0, 50);
-
-                let totalCost = 0;
-                let totalPoints = 0;
-                const roles = {};
-
-                cyclists.forEach(cyclist => {
-                    totalCost += cyclist.cost;
-                    totalPoints += cyclist.points;
-                    roles[cyclist.role] = (roles[cyclist.role] || 0) + 1;
-
+                                cyclists.forEach(cyclist => {
                     const costPerPoint = cyclist.points === 0 ? "∞" : (cyclist.cost / cyclist.points).toFixed(2);
+                    const rosterNumbers = cyclist.in_rosters.map(r => r.split('_')[1]).join(', ');
                     $('#cyclistTable tbody').append(`
                         <tr>
                             <td>${cyclist.name}</td>
                             <td>${cyclist.team}</td>
                             <td>${cyclist.role}</td>
                             <td>${cyclist.cost}</td>
+                            <td>${cyclist.ownership}</td>
                             <td>${cyclist.points}</td>
                             <td>${costPerPoint}</td>
+                            <td>${rosterNumbers}</td>
                         </tr>
                     `);
                 });
+
+                let totalCost = 0;
+                let totalPoints = 0;
+                const roles = {};
+
 
                 const avgCost = (totalCost / cyclists.length).toFixed(2);
                 const avgPoints = (totalPoints / cyclists.length).toFixed(2);

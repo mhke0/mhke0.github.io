@@ -93,13 +93,14 @@
     <h1>Velo Data Dash</h1>
     <div id="loading">Loading data, please wait...</div>
     <div id="error" style="display:none;"></div>
-    <div id="dashboard" style="display:none;">
+   <div id="dashboard" style="display:none;">
         <div class="tab">
             <button class="tablinks" onclick="openTab(event, 'OverviewTab')" id="defaultOpen">Stats</button>
             <button class="tablinks" onclick="openTab(event, 'LeagueScoresTab')">League Scores</button>
             <button class="tablinks" onclick="openTab(event, 'Top50Tab')">Top 50 Cyclists</button>
             <button class="tablinks" onclick="openTab(event, 'CostVsPointsTab')">Cost vs Points</button>
             <button class="tablinks" onclick="openTab(event, 'CyclistDataTab')">Cyclist Data Table</button>
+            <button class="tablinks" onclick="openTab(event, 'IdealTeamTab')">Ideal Team</button>
         </div>
 
         <div id="OverviewTab" class="tabcontent">
@@ -143,343 +144,446 @@
                 <tbody></tbody>
             </table>
         </div>
+
+               <div id="IdealTeamTab" class="tabcontent">
+            <h2>Ideal Team (Max Cost: 100)</h2>
+            <div id="idealTeam"></div>
+            <div class="chart-container">
+                <canvas id="idealTeamChart"></canvas>
+            </div>
+        </div>
+       
     </div>
     <p>Besuch Nummer: <span id="visit-count">0</span></p>
 
-    <script>
-        $(document).ready(function() {
-            $.getJSON('cyclist-data.json', function(data) {
-                $('#loading').hide();
-                $('#dashboard').show();
+ <script>
+    $(document).ready(function() {
+        $.getJSON('cyclist-data.json', function(data) {
+            $('#loading').hide();
+            $('#dashboard').show();
 
-                if (!data.cyclists || !data.league_scores) {
-                    throw new Error("Missing required data in JSON file");
-                }
-
-                let cyclists = data.cyclists;
-                let leagueScores = data.league_scores;
-
-                    // Call the function when the page loads
-                updateVisitCount();
-                
-                // Sort cyclists by cost_per_point (convert "Infinity" to a large number for sorting)
-                cyclists.sort((a, b) => {
-                    const costPerPointA = a.cost_per_point === "Infinity" ? Infinity : parseFloat(a.cost_per_point);
-                    const costPerPointB = b.cost_per_point === "Infinity" ? Infinity : parseFloat(b.cost_per_point);
-                    return costPerPointA - costPerPointB;
-                });
-
-                // Get the top 50 cyclists
-                let top50Cyclists = cyclists.slice(0, 50);
-
-                let totalCost = 0;
-                let totalPoints = 0;
-                const roles = {};
-
-                cyclists.forEach(cyclist => {
-                    totalCost += cyclist.cost;
-                    totalPoints += cyclist.points;
-                    roles[cyclist.role] = (roles[cyclist.role] || 0) + 1;
-
-                    const costPerPoint = cyclist.points === 0 ? "∞" : (cyclist.cost / cyclist.points).toFixed(2);
-                    $('#cyclistTable tbody').append(`
-                        <tr>
-                            <td>${cyclist.name}</td>
-                            <td>${cyclist.team}</td>
-                            <td>${cyclist.role}</td>
-                            <td>${cyclist.cost}</td>
-                            <td>${cyclist.points}</td>
-                            <td>${costPerPoint}</td>
-                        </tr>
-                    `);
-                });
-
-                const avgCost = (totalCost / cyclists.length).toFixed(2);
-                const avgPoints = (totalPoints / cyclists.length).toFixed(2);
-
-                $('#stats').html(`
-                    <div class="stat-box">
-                        <h3>Total Cyclists</h3>
-                        <p>${cyclists.length}</p>
-                    </div>
-                    <div class="stat-box">
-                        <h3>Average Cost</h3>
-                        <p>${avgCost}</p>
-                    </div>
-                    <div class="stat-box">
-                        <h3>Average Points</h3>
-                        <p>${avgPoints}</p>
-                    </div>
-                `);
-
-                const ctx = document.getElementById('roleChart').getContext('2d');
-                new Chart(ctx, {
-                    type: 'pie',
-                    data: {
-                        labels: Object.keys(roles),
-                        datasets: [{
-                            data: Object.values(roles),
-                            backgroundColor: [
-                                '#ff6384', '#36a2eb', '#cc65fe', '#ffce56', '#4bc0c0', '#ff9f40'
-                            ]
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        plugins: {
-                            title: {
-                                display: true,
-                                text: 'Cyclist Roles Distribution'
-                            }
-                        }
-                    }
-                });
-
-                // Create top 50 efficiency chart
-                const trace = {
-                    x: top50Cyclists.map(c => c.name),
-                    y: top50Cyclists.map(c => c.cost_per_point === "Infinity" ? 0 : c.cost_per_point),
-                    type: 'bar',
-                    marker: {
-                        color: top50Cyclists.map(c => {
-                            switch(c.role) {
-                                case 'All Rounder': return 'red';
-                                case 'Climber': return 'blue';
-                                case 'Sprinter': return 'green';
-                                default: return 'gray';
-                            }
-                        })
-                    },
-                    text: top50Cyclists.map(c => `Points: ${c.points}<br>Cost: ${c.cost}`),
-                    hoverinfo: 'text+y'
-                };
-
-                const layout = {
-                    title: 'Top 50 Cyclists by Cost Efficiency (Lower is Better)',
-                    xaxis: {
-                        title: 'Cyclist Name',
-                        tickangle: -45
-                    },
-                    yaxis: {
-                        title: 'Cost per Point'
-                    },
-                    font: {
-                        size: 10
-                    },
-                    height: 500,
-                    margin: {
-                        l: 50,
-                        r: 50,
-                        b: 100,
-                        t: 50,
-                        pad: 4
-                    }
-                };
-
-                Plotly.newPlot('top50Chart', [trace], layout);
-
-// Create league scores stacked bar chart
-const baseData = {
-    "Team Name": 0,
-    "Iberische Halbpinsel": 7405,
-    "Fiestina": 9297,
-    "Team Fiestina": 8128
-};
-const middleData = {
-    "Team Name": 9062,
-    "Iberische Halbpinsel": 9530,
-    "Fiestina": 7506,
-    "Team Fiestina": 8964
-};
-
-// Function to find the closest matching key
-// Function to find the exact matching key or the closest match
-function findExactOrClosestMatch(obj, searchKey) {
-    // First, try to find an exact match
-    if (obj.hasOwnProperty(searchKey)) {
-        return searchKey;
-    }
-    
-    // If no exact match, find the closest match
-    return Object.keys(obj).find(key => 
-        key.toLowerCase().includes(searchKey.toLowerCase()) || 
-        searchKey.toLowerCase().includes(key.toLowerCase())
-    ) || searchKey;
-}
-
-const leagueTrace1 = {
-    x: leagueScores.map(team => team.name),
-    y: leagueScores.map(team => baseData[findExactOrClosestMatch(baseData, team.name)] || 0),
-    name: 'Giro',
-    type: 'bar',
-    marker: { color: 'pink' }
-};
-
-const leagueTrace2 = {
-    x: leagueScores.map(team => team.name),
-    y: leagueScores.map(team => middleData[findExactOrClosestMatch(middleData, team.name)] || 0),
-    name: 'TdF',
-    type: 'bar',
-    marker: { color: 'yellow' }
-};
-
-const leagueTrace3 = {
-    x: leagueScores.map(team => team.name),
-    y: leagueScores.map(team => team.points),
-    name: 'Vuelta',
-    type: 'bar',
-    marker: { color: 'red' }
-};
-
-const leagueLayout = {
-    title: 'League Scores (Stacked)',
-    barmode: 'stack',
-    xaxis: {
-        title: 'Team Name',
-        tickangle: -45
-    },
-    yaxis: {
-        title: 'Points'
-    },
-    font: {
-        size: 10
-    },
-    height: 500,
-    margin: {
-        l: 50,
-        r: 50,
-        b: 100,
-        t: 50,
-        pad: 4
-    }
-};
-
-Plotly.newPlot('leagueScoresChart', [leagueTrace1, leagueTrace2, leagueTrace3], leagueLayout);
-
-// Create cost vs points scatter plot for top 50
-const costVsPointsTrace = {
-    x: top50Cyclists.map(c => c.points),
-    y: top50Cyclists.map(c => c.cost),
-    mode: 'markers',
-    type: 'scatter',
-    text: top50Cyclists.map(c => c.name),
-    marker: {
-        size: 10,
-        color: top50Cyclists.map(c => {
-            switch(c.role) {
-                case 'All Rounder': return 'red';
-                case 'Climber': return 'blue';
-                case 'Sprinter': return 'green';
-                default: return 'gray';
+            if (!data.cyclists || !data.league_scores) {
+                throw new Error("Missing required data in JSON file");
             }
-        })
-    },
-    hoverinfo: 'text+x+y'
-};
 
-const costVsPointsLayout = {
-    title: 'Cost vs Points for Top 50 Cyclists',
-    xaxis: {
-        title: 'Points'
-    },
-    yaxis: {
-        title: 'Cost'
-    },
-    font: {
-        size: 10
-    },
-    height: 500,
-    margin: {
-        l: 50,
-        r: 50,
-        b: 50,
-        t: 50,
-        pad: 4
-    }
-};
+            let cyclists = data.cyclists;
+            let leagueScores = data.league_scores;
 
-Plotly.newPlot('costVsPointsChart', [costVsPointsTrace], costVsPointsLayout);
-
-                // Open the default tab
-                document.getElementById("defaultOpen").click();
-                
-                
-            }).fail(function(jqxhr, textStatus, error) {
-                $('#loading').hide();
-                $('#error').text("Error fetching data: " + error).show();
+            // Call the function when the page loads
+            updateVisitCount();
+            
+            // Sort cyclists by cost_per_point (convert "Infinity" to a large number for sorting)
+            cyclists.sort((a, b) => {
+                const costPerPointA = a.cost_per_point === "Infinity" ? Infinity : parseFloat(a.cost_per_point);
+                const costPerPointB = b.cost_per_point === "Infinity" ? Infinity : parseFloat(b.cost_per_point);
+                return costPerPointA - costPerPointB;
             });
+
+            // Get the top 50 cyclists
+            let top50Cyclists = cyclists.slice(0, 50);
+
+            let totalCost = 0;
+            let totalPoints = 0;
+            const roles = {};
+
+            cyclists.forEach(cyclist => {
+                totalCost += cyclist.cost;
+                totalPoints += cyclist.points;
+                roles[cyclist.role] = (roles[cyclist.role] || 0) + 1;
+
+                const costPerPoint = cyclist.points === 0 ? "∞" : (cyclist.cost / cyclist.points).toFixed(2);
+                $('#cyclistTable tbody').append(`
+                    <tr>
+                        <td>${cyclist.name}</td>
+                        <td>${cyclist.team}</td>
+                        <td>${cyclist.role}</td>
+                        <td>${cyclist.cost}</td>
+                        <td>${cyclist.points}</td>
+                        <td>${costPerPoint}</td>
+                    </tr>
+                `);
+            });
+
+            const avgCost = (totalCost / cyclists.length).toFixed(2);
+            const avgPoints = (totalPoints / cyclists.length).toFixed(2);
+
+            $('#stats').html(`
+                <div class="stat-box">
+                    <h3>Total Cyclists</h3>
+                    <p>${cyclists.length}</p>
+                </div>
+                <div class="stat-box">
+                    <h3>Average Cost</h3>
+                    <p>${avgCost}</p>
+                </div>
+                <div class="stat-box">
+                    <h3>Average Points</h3>
+                    <p>${avgPoints}</p>
+                </div>
+            `);
+
+            const ctx = document.getElementById('roleChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: Object.keys(roles),
+                    datasets: [{
+                        data: Object.values(roles),
+                        backgroundColor: [
+                            '#ff6384', '#36a2eb', '#cc65fe', '#ffce56', '#4bc0c0', '#ff9f40'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Cyclist Roles Distribution'
+                        }
+                    }
+                }
+            });
+
+            // Create top 50 efficiency chart
+            const trace = {
+                x: top50Cyclists.map(c => c.name),
+                y: top50Cyclists.map(c => c.cost_per_point === "Infinity" ? 0 : c.cost_per_point),
+                type: 'bar',
+                marker: {
+                    color: top50Cyclists.map(c => {
+                        switch(c.role) {
+                            case 'All Rounder': return 'red';
+                            case 'Climber': return 'blue';
+                            case 'Sprinter': return 'green';
+                            default: return 'gray';
+                        }
+                    })
+                },
+                text: top50Cyclists.map(c => `Points: ${c.points}<br>Cost: ${c.cost}`),
+                hoverinfo: 'text+y'
+            };
+
+            const layout = {
+                title: 'Top 50 Cyclists by Cost Efficiency (Lower is Better)',
+                xaxis: {
+                    title: 'Cyclist Name',
+                    tickangle: -45
+                },
+                yaxis: {
+                    title: 'Cost per Point'
+                },
+                font: {
+                    size: 10
+                },
+                height: 500,
+                margin: {
+                    l: 50,
+                    r: 50,
+                    b: 100,
+                    t: 50,
+                    pad: 4
+                }
+            };
+
+            Plotly.newPlot('top50Chart', [trace], layout);
+
+            // Create league scores stacked bar chart
+            const baseData = {
+                "Team Name": 0,
+                "Iberische Halbpinsel": 7405,
+                "Fiestina": 9297,
+                "Team Fiestina": 8128
+            };
+            const middleData = {
+                "Team Name": 9062,
+                "Iberische Halbpinsel": 9530,
+                "Fiestina": 7506,
+                "Team Fiestina": 8964
+            };
+
+            // Function to find the exact matching key or the closest match
+            function findExactOrClosestMatch(obj, searchKey) {
+                // First, try to find an exact match
+                if (obj.hasOwnProperty(searchKey)) {
+                    return searchKey;
+                }
+                
+                // If no exact match, find the closest match
+                return Object.keys(obj).find(key => 
+                    key.toLowerCase().includes(searchKey.toLowerCase()) || 
+                    searchKey.toLowerCase().includes(key.toLowerCase())
+                ) || searchKey;
+            }
+
+            const leagueTrace1 = {
+                x: leagueScores.map(team => team.name),
+                y: leagueScores.map(team => baseData[findExactOrClosestMatch(baseData, team.name)] || 0),
+                name: 'Giro',
+                type: 'bar',
+                marker: { color: 'pink' }
+            };
+
+            const leagueTrace2 = {
+                x: leagueScores.map(team => team.name),
+                y: leagueScores.map(team => middleData[findExactOrClosestMatch(middleData, team.name)] || 0),
+                name: 'TdF',
+                type: 'bar',
+                marker: { color: 'yellow' }
+            };
+
+            const leagueTrace3 = {
+                x: leagueScores.map(team => team.name),
+                y: leagueScores.map(team => team.points),
+                name: 'Vuelta',
+                type: 'bar',
+                marker: { color: 'red' }
+            };
+
+            const leagueLayout = {
+                title: 'League Scores (Stacked)',
+                barmode: 'stack',
+                xaxis: {
+                    title: 'Team Name',
+                    tickangle: -45
+                },
+                yaxis: {
+                    title: 'Points'
+                },
+                font: {
+                    size: 10
+                },
+                height: 500,
+                margin: {
+                    l: 50,
+                    r: 50,
+                    b: 100,
+                    t: 50,
+                    pad: 4
+                }
+            };
+
+            Plotly.newPlot('leagueScoresChart', [leagueTrace1, leagueTrace2, leagueTrace3], leagueLayout);
+
+            // Create cost vs points scatter plot for top 50
+            const costVsPointsTrace = {
+                x: top50Cyclists.map(c => c.points),
+                y: top50Cyclists.map(c => c.cost),
+                mode: 'markers',
+                type: 'scatter',
+                text: top50Cyclists.map(c => c.name),
+                marker: {
+                    size: 10,
+                    color: top50Cyclists.map(c => {
+                        switch(c.role) {
+                            case 'All Rounder': return 'red';
+                            case 'Climber': return 'blue';
+                            case 'Sprinter': return 'green';
+                            default: return 'gray';
+                        }
+                    })
+                },
+                hoverinfo: 'text+x+y'
+            };
+
+            const costVsPointsLayout = {
+                title: 'Cost vs Points for Top 50 Cyclists',
+                xaxis: {
+                    title: 'Points'
+                },
+                yaxis: {
+                    title: 'Cost'
+                },
+                font: {
+                    size: 10
+                },
+                height: 500,
+                margin: {
+                    l: 50,
+                    r: 50,
+                    b: 50,
+                    t: 50,
+                    pad: 4
+                }
+            };
+
+            Plotly.newPlot('costVsPointsChart', [costVsPointsTrace], costVsPointsLayout);
+
+            // Calculate and display the ideal team
+            const idealTeam = calculateIdealTeam(cyclists);
+            displayIdealTeam(idealTeam);
+
+            // Open the default tab
+            document.getElementById("defaultOpen").click();
+            
+        }).fail(function(jqxhr, textStatus, error) {
+            $('#loading').hide();
+            $('#error').text("Error fetching data: " + error).show();
         });
+    });
 
-        function openTab(evt, tabName) {
-            var i, tabcontent, tablinks;
-            tabcontent = document.getElementsByClassName("tabcontent");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].style.display = "none";
-            }
-            tablinks = document.getElementsByClassName("tablinks");
-            for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].className = tablinks[i].className.replace(" active", "");
-            }
-            document.getElementById(tabName).style.display = "block";
-            evt.currentTarget.className += " active";
+    function openTab(evt, tabName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
         }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(tabName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
 
-        // Function to sort the table based on the clicked column
-        function sortTable(columnIndex) {
-            const table = document.getElementById("cyclistTable");
-            let rows, switching, i, x, y, shouldSwitch, direction, switchcount = 0;
-            switching = true;
-            direction = "asc"; 
-            while (switching) {
-                switching = false;
-                rows = table.rows;
-                for (i = 1; i < (rows.length - 1); i++) {
-                    shouldSwitch = false;
-                    x = rows[i].getElementsByTagName("TD")[columnIndex];
-                    y = rows[i + 1].getElementsByTagName("TD")[columnIndex];
-                    if (direction == "asc") {
-                        if (columnIndex === 3 || columnIndex === 4 || columnIndex === 5 || columnIndex === 6) {
-                            if (parseFloat(x.innerHTML) > parseFloat(y.innerHTML)) {
-                                shouldSwitch = true;
-                                break;
-                            }
-                        } else if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+    // Function to sort the table based on the clicked column
+    function sortTable(columnIndex) {
+        const table = document.getElementById("cyclistTable");
+        let rows, switching, i, x, y, shouldSwitch, direction, switchcount = 0;
+        switching = true;
+        direction = "asc"; 
+        while (switching) {
+            switching = false;
+            rows = table.rows;
+            for (i = 1; i < (rows.length - 1); i++) {
+                shouldSwitch = false;
+                x = rows[i].getElementsByTagName("TD")[columnIndex];
+                y = rows[i + 1].getElementsByTagName("TD")[columnIndex];
+                if (direction == "asc") {
+                    if (columnIndex === 3 || columnIndex === 4 || columnIndex === 5 || columnIndex === 6) {
+                        if (parseFloat(x.innerHTML) > parseFloat(y.innerHTML)) {
                             shouldSwitch = true;
                             break;
                         }
-                    } else if (direction == "desc") {
-                        if (columnIndex === 3 || columnIndex === 4 || columnIndex === 5 || columnIndex === 6) {
-                            if (parseFloat(x.innerHTML) < parseFloat(y.innerHTML)) {
-                                shouldSwitch = true;
-                                break;
-                            }
-                        } else if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                    } else if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                } else if (direction == "desc") {
+                    if (columnIndex === 3 || columnIndex === 4 || columnIndex === 5 || columnIndex === 6) {
+                        if (parseFloat(x.innerHTML) < parseFloat(y.innerHTML)) {
                             shouldSwitch = true;
                             break;
                         }
+                    } else if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                        shouldSwitch = true;
+                        break;
                     }
                 }
-                if (shouldSwitch) {
-                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            }
+            if (shouldSwitch) {
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+                switchcount++;
+            } else {
+                if (switchcount == 0 && direction == "asc") {
+                    direction = "desc";
                     switching = true;
-                    switchcount++;
-                } else {
-                    if (switchcount == 0 && direction == "asc") {
-                        direction = "desc";
-                        switching = true;
-                    }
                 }
             }
         }
-        // Page view counter
- function updateVisitCount() {
-            fetch('https://api.countapi.xyz/update/mhke0.github.io/visits/?amount=1')
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('visit-count').innerText = data.value;
-            })
-            .catch(error => console.error('Error updating visit count:', error));
-}
+    }
+
+    // Page view counter
+    function updateVisitCount() {
+        fetch('https://api.countapi.xyz/update/mhke0.github.io/visits/?amount=1')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('visit-count').innerText = data.value;
+        })
+        .catch(error => console.error('Error updating visit count:', error));
+    }
+
+    function calculateIdealTeam(cyclists) {
+        // Sort cyclists by points per cost (efficiency)
+        cyclists.sort((a, b) => (b.points / b.cost) - (a.points / a.cost));
+
+        const team = {
+            allRounders: [],
+            climbers: [],
+            sprinters: [],
+            unclassed: [],
+            anyRole: null,
+            totalCost: 0,
+            totalPoints: 0
+        };
+
+        function addToTeam(cyclist) {
+            if (team.totalCost + cyclist.cost <= 100) {
+                team.totalCost += cyclist.cost;
+                team.totalPoints += cyclist.points;
+                return true;
+            }
+            return false;
+        }
+
+        for (let cyclist of cyclists) {
+            if (team.allRounders.length < 2 && cyclist.role === 'All Rounder' && addToTeam(cyclist)) {
+                team.allRounders.push(cyclist);
+            } else if (team.climbers.length < 2 && cyclist.role === 'Climber' && addToTeam(cyclist)) {
+                team.climbers.push(cyclist);
+            } else if (team.sprinters.length < 1 && cyclist.role === 'Sprinter' && addToTeam(cyclist)) {
+                team.sprinters.push(cyclist);
+            } else if (team.unclassed.length < 3 && cyclist.role === 'Unclassed' && addToTeam(cyclist)) {
+                team.unclassed.push(cyclist);
+            } else if (!team.anyRole && addToTeam(cyclist)) {
+                team.anyRole = cyclist;
+            }
+
+            if (team.allRounders.length === 2 && team.climbers.length === 2 && 
+                team.sprinters.length === 1 && team.unclassed.length === 3 && team.anyRole) {
+                break;
+            }
+        }
+
+        return team;
+    }
+             function displayIdealTeam(team) {
+            let html = '<h3>Total Cost: ' + team.totalCost.toFixed(2) + ' | Total Points: ' + team.totalPoints + '</h3>';
+            html += '<h4>All-Rounders:</h4><ul>';
+            team.allRounders.forEach(c => html += '<li>' + c.name + ' (Cost: ' + c.cost + ', Points: ' + c.points + ')</li>');
+            html += '</ul><h4>Climbers:</h4><ul>';
+            team.climbers.forEach(c => html += '<li>' + c.name + ' (Cost: ' + c.cost + ', Points: ' + c.points + ')</li>');
+            html += '</ul><h4>Sprinter:</h4><ul>';
+            team.sprinters.forEach(c => html += '<li>' + c.name + ' (Cost: ' + c.cost + ', Points: ' + c.points + ')</li>');
+            html += '</ul><h4>Unclassed:</h4><ul>';
+            team.unclassed.forEach(c => html += '<li>' + c.name + ' (Cost: ' + c.cost + ', Points: ' + c.points + ')</li>');
+            html += '</ul><h4>Any Role:</h4><ul>';
+            if (team.anyRole) {
+                html += '<li>' + team.anyRole.name + ' (Cost: ' + team.anyRole.cost + ', Points: ' + team.anyRole.points + ')</li>';
+            }
+            html += '</ul>';
+
+            $('#idealTeam').html(html);
+
+            // Create a pie chart for the ideal team
+            const ctx = document.getElementById('idealTeamChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ['All-Rounders', 'Climbers', 'Sprinter', 'Unclassed', 'Any Role'],
+                    datasets: [{
+                        data: [
+                            team.allRounders.reduce((sum, c) => sum + c.points, 0),
+                            team.climbers.reduce((sum, c) => sum + c.points, 0),
+                            team.sprinters.reduce((sum, c) => sum + c.points, 0),
+                            team.unclassed.reduce((sum, c) => sum + c.points, 0),
+                            team.anyRole ? team.anyRole.points : 0
+                        ],
+                        backgroundColor: ['#ff6384', '#36a2eb', '#cc65fe', '#ffce56', '#4bc0c0']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Ideal Team Points Distribution'
+                        }
+                    }
+                }
+            });
+        }
 
 
     </script>

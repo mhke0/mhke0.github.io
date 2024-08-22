@@ -31,10 +31,11 @@ h1, h2 {
 
 table {
     width: 80%;
+    max-width: 1000px;
     border-collapse: collapse;
-    margin-bottom: 10px;
     margin: 0 auto 20px;
     border: 2px solid #ff69b4;
+    background-color: #fff0f5;
 }
 
 th, td {
@@ -44,23 +45,26 @@ th, td {
 }
 
 th {
-    background-color: #fff0f5;
+    background-color: #ff69b4;
+    color: #ffffff;
     font-weight: bold;
     cursor: pointer;
 }
 
 tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+tr:nth-child(odd) {
     background-color: #fff0f5;
 }
 
 .stats-container {
-    width:80%;
+    width: 80%;
     display: flex;
-    margin: 0 auto 0px;
+    margin: 0 auto 20px;
     flex-wrap: wrap;
     justify-content: space-around;
-    margin-bottom: 10px;
-
 }
 
 .stat-box {
@@ -73,13 +77,43 @@ tr:nth-child(even) {
     flex: 1 1 200px;
 }
 
-
-
-.styled-select {
-    width: 100%; /* Change this */
-    max-width: none; /* Remove this */
+.chart-container {
+    width: 80%;
+    max-width: 1000px;
+    margin: 0 auto 20px;
+    height: 600px;
+    background-color: #fff0f5;
+    border: 2px solid #ff69b4;
+    padding: 10px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
+.dropdown-container {
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 10px;
+}
+
+.styled-select {
+    background-color: #fff0f5;
+    border: 2px solid #ff1493;
+    border-radius: 5px;
+    font-family: 'VT323', monospace;
+    font-size: 16px;
+    color: #ff1493;
+    padding: 5px;
+    margin-bottom: 10px;
+    width: 100%;
+    max-width: 300px;
+}
+
+.styled-select:focus {
+    outline: none;
+    box-shadow: 0 0 5px #ff1493;
+}
 
 .tab {
     overflow: hidden;
@@ -119,69 +153,88 @@ tr:nth-child(even) {
     background-color: #ffffff;
 }
 
-.styled-select {
-    background-color: #fff0f5;
-    border: 2px solid #ff1493;
-    border-radius: 5px;
-    font-family: 'VT323', monospace;
-    font-size: 16px;
-    color: #ff1493;
-    padding: 5px;
-    margin-bottom: 10px;
-    width: 100%;
-    max-width: 300px;
-}
-
-
-.chart-container {
-    width: 80%;
-    max-width: 1000px;
-    margin: 0 auto 20px;
-    height: 600px; /* Increased to accommodate legend */
-    background-color: #fff0f5;
-    border: 2px solid #ff69b4;
-    padding: 10px;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.dropdown-container {
-    width: 100%;
-    max-width: 300px;
-    margin-bottom: 10px;
-}
-
 #trajectoryChart {
     width: 100%;
-    height: calc(100% - 40px); /* Subtract dropdown height */
+    height: calc(100% - 40px);
+    position: relative;
 }
-
 
 .mvp-mip-container {
     width: 80%;
     max-width: 1000px;
     margin: 20px auto 0;
     display: flex;
-    justify-content: space-between; /* Changed from space-around */
+    justify-content: space-between;
     padding: 10px;
     background-color: #fff0f5;
     border: 2px solid #ff69b4;
 }
 
 .info-box {
-    background-color: #ffffff; /* Changed to white for contrast */
+    background-color: #ffffff;
     border: 2px solid #ff69b4;
     border-radius: 5px;
     padding: 10px;
-    width: 48%; /* Adjusted for better fit */
+    width: 48%;
     font-family: 'VT323', monospace;
     color: #000000;
 }
 
 .info-box strong {
     color: #ff1493;
+}
+
+/* Styling for Plotly chart container */
+.js-plotly-plot {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+/* Webkit browsers custom scrollbar */
+.js-plotly-plot::-webkit-scrollbar {
+    width: 12px;
+}
+
+.js-plotly-plot::-webkit-scrollbar-track {
+    background: #fff0f5;
+    border: 1px solid #ff69b4;
+}
+
+.js-plotly-plot::-webkit-scrollbar-thumb {
+    background-color: #ff69b4;
+    border-radius: 6px;
+    border: 3px solid #fff0f5;
+}
+
+/* Firefox custom scrollbar */
+.js-plotly-plot {
+    scrollbar-width: thin;
+    scrollbar-color: #ff69b4 #fff0f5;
+}
+
+/* Ensure Plotly's modebar doesn't overflow */
+.js-plotly-plot .plotly .modebar-container {
+    top: 0 !important;
+}
+
+/* Custom scrollbar for the legend */
+#trajectoryChart > div:last-child {
+    scrollbar-width: thin;
+    scrollbar-color: #ff69b4 #fff0f5;
+}
+
+#trajectoryChart > div:last-child::-webkit-scrollbar {
+    width: 8px;
+}
+
+#trajectoryChart > div:last-child::-webkit-scrollbar-track {
+    background: #fff0f5;
+}
+
+#trajectoryChart > div:last-child::-webkit-scrollbar-thumb {
+    background-color: #ff69b4;
+    border-radius: 4px;
+    border: 2px solid #fff0f5;
 }
 
 @media screen and (max-width: 768px) {
@@ -212,7 +265,6 @@ tr:nth-child(even) {
     }
 }
 
-
 @media screen and (max-width: 480px) {
     .tab button {
         width: 100%;
@@ -225,35 +277,4 @@ tr:nth-child(even) {
     .chart-container {
         height: 250px;
     }
-}
-/* Styling for Plotly chart container */
-.js-plotly-plot {
-    max-height: 500px;
-    overflow-y: auto;
-}
-
-/* Webkit browsers custom scrollbar */
-.js-plotly-plot::-webkit-scrollbar {
-    width: 12px;
-}
-
-.js-plotly-plot::-webkit-scrollbar-track {
-    background: #fff0f5;
-    border: 1px solid #ff69b4;
-}
-
-.js-plotly-plot::-webkit-scrollbar-thumb {
-    background-color: #ff69b4;
-    border-radius: 6px;
-    border: 3px solid #fff0f5;
-}
-
-/* Firefox custom scrollbar */
-.js-plotly-plot {
-    scrollbar-width: thin;
-    scrollbar-color: #ff69b4 #fff0f5;
-}
-/* Ensure Plotly's modebar doesn't overflow */
-.js-plotly-plot .plotly .modebar-container {
-    top: 0 !important;
 }

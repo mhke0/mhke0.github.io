@@ -152,10 +152,11 @@ tr:nth-child(even) {
 
 
 .mvp-mip-container {
-    width: 30%;
+    width: 80%;
     display: flex;
     justify-content: space-around;
-    margin-top: 20px;
+    margin: 20px auto 0; /* Changed this line */
+    max-width: 1000px; /* Added this line */
 }
 
 .info-box {
@@ -163,7 +164,7 @@ tr:nth-child(even) {
     border: 2px solid #ff69b4;
     border-radius: 5px;
     padding: 10px;
-    width: 45%;
+    width: 45%; /* Keep this as is */
     font-family: 'VT323', monospace;
     color: #000000;
 }
@@ -171,6 +172,7 @@ tr:nth-child(even) {
 .info-box strong {
     color: #ff1493;
 }
+
 @media screen and (max-width: 768px) {
     body {
         padding: 10px;

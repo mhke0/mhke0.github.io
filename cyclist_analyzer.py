@@ -258,8 +258,14 @@ def update_historical_data(existing_data, new_cyclists, new_league_scores):
     if 'league_scores' not in existing_data:
         existing_data['league_scores'] = {'current': [], 'history': []}
     
-    # Add current scores to history
-    if existing_data['league_scores']['current']:
+    # Check if we already have an entry for today in the history
+    today_league_entry = next((entry for entry in existing_data['league_scores']['history'] if entry['date'] == today), None)
+    
+    if today_league_entry:
+        # Update today's entry instead of adding a new one
+        today_league_entry['scores'] = existing_data['league_scores']['current']
+    elif existing_data['league_scores']['current']:
+        # Add current scores to history only if it's a new day
         history_entry = {
             'date': existing_data['last_update'] or (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d'),
             'scores': existing_data['league_scores']['current']
@@ -276,7 +282,6 @@ def update_historical_data(existing_data, new_cyclists, new_league_scores):
     existing_data['last_update'] = today
     
     return existing_data
-
 
 def main():
     cyclist_url = "https://www.velogames.com/spain/2024/riders.php"

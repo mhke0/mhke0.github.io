@@ -931,6 +931,121 @@ function createRelativePerformanceChart(leagueScores) {
      
 }
   
+function createTrendPredictionChart(leagueScores) {
+  /*
+    // Ensure we have historical data
+    if (!leagueScores.history || leagueScores.history.length === 0) {
+        console.error('No historical data available for trend and prediction chart');
+        return;
+    }
+
+    // Process historical data
+    const teamData = {};
+    leagueScores.history.forEach(entry => {
+        entry.scores.forEach(score => {
+            if (!teamData[score.name]) {
+                teamData[score.name] = [];
+            }
+            teamData[score.name].push({ date: new Date(entry.date), points: score.points });
+        });
+    });
+
+    // Sort data points by date for each team
+    Object.values(teamData).forEach(data => data.sort((a, b) => a.date - b.date));
+
+    // Create traces for each team
+    const traces = Object.entries(teamData).map(([teamName, data]) => {
+        // Calculate linear regression
+        const xValues = data.map(d => d.date.getTime());
+        const yValues = data.map(d => d.points);
+        const n = xValues.length;
+        const sumX = xValues.reduce((a, b) => a + b, 0);
+        const sumY = yValues.reduce((a, b) => a + b, 0);
+        const sumXY = xValues.reduce((total, x, i) => total + x * yValues[i], 0);
+        const sumXX = xValues.reduce((total, x) => total + x * x, 0);
+        const slope = (n * sumXY - sumX * sumY) / (n * sumXX - sumX * sumX);
+        const intercept = (sumY - slope * sumX) / n;
+
+        // Predict next 7 days
+        const lastDate = new Date(Math.max(...xValues));
+        const predictedData = [...Array(7)].map((_, i) => {
+            const date = new Date(lastDate.getTime() + (i + 1) * 24 * 60 * 60 * 1000);
+            const points = slope * date.getTime() + intercept;
+            return { date, points };
+        });
+
+        return {
+            name: teamName,
+            x: [...data.map(d => d.date), ...predictedData.map(d => d.date)],
+            y: [...data.map(d => d.points), ...predictedData.map(d => d.points)],
+            type: 'scatter',
+            mode: 'lines+markers',
+            line: {
+                dash: i => i >= data.length ? 'dot' : 'solid',
+            },
+            marker: {
+                size: 6,
+            },
+        };
+    });
+
+    const layout = {
+        title: {
+            text: 'Team Performance Trend and Prediction',
+            font: {
+                family: 'VT323, monospace',
+                size: 24,
+                color: '#ff1493'
+            }
+        },
+        xaxis: {
+            title: 'Date',
+            titlefont: {
+                family: 'VT323, monospace',
+                size: 16,
+                color: '#ff1493'
+            },
+            tickfont: {
+                family: 'VT323, monospace',
+                size: 14,
+                color: '#ff1493'
+            },
+            tickangle: -45,
+        },
+        yaxis: {
+            title: 'Points',
+            titlefont: {
+                family: 'VT323, monospace',
+                size: 16,
+                color: '#ff1493'
+            },
+            tickfont: {
+                family: 'VT323, monospace',
+                size: 14,
+                color: '#ff1493'
+            },
+        },
+        legend: {
+            font: {
+                family: 'VT323, monospace',
+                size: 12,
+            },
+        },
+        paper_bgcolor: '#fff0f5',
+        plot_bgcolor: '#fff0f5',
+        height: 600,
+        margin: {
+            l: 50,
+            r: 50,
+            b: 100,
+            t: 50,
+            pad: 4
+        }
+    };
+
+    Plotly.newPlot('trendPredictionChart', traces, layout);
+    */
+}
 
 function updateVisitCount() {
     fetch('https://api.countapi.xyz/update/mhke0.github.io/visits/?amount=1')

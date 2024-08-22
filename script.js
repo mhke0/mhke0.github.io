@@ -672,8 +672,7 @@ function createCustomLegend(cyclists) {
 
 function calculateMVPandMIP(cyclists) {
     let mvp = { name: '', pointsAdded: 0, date: '' };
-    let mip = { name: '', percentageIncrease: 0, date: '' };
-    const ZERO_SUBSTITUTE = 0.1; // Small number to substitute for 0
+    let mip = { name: '', percentageIncrease: 0, date: '', fromZero: false };
 
     const latestDate = cyclists.reduce((latest, cyclist) => {
         const cyclistLatest = cyclist.pointHistory[cyclist.pointHistory.length - 1].date;
@@ -690,14 +689,17 @@ function calculateMVPandMIP(cyclists) {
                 mvp = { name: cyclist.name, pointsAdded, date: history[i].date };
             }
 
-            // Calculate percentage increase, using ZERO_SUBSTITUTE for 0 points
-            const previousPoints = Math.max(history[i-1].points, ZERO_SUBSTITUTE);
-            const currentPoints = Math.max(history[i].points, ZERO_SUBSTITUTE);
-            const percentageIncrease = ((currentPoints - previousPoints) / previousPoints) * 100;
-            
-            // Update MIP if the percentage increase is higher
-            if (percentageIncrease > mip.percentageIncrease) {
-                mip = { name: cyclist.name, percentageIncrease, date: history[i].date };
+            // Calculate percentage increase
+            if (history[i-1].points === 0 && history[i].points > 0) {
+                // Special case: from 0 to positive
+                if (mip.fromZero === false || pointsAdded > mip.percentageIncrease) {
+                    mip = { name: cyclist.name, percentageIncrease: pointsAdded, date: history[i].date, fromZero: true };
+                }
+            } else if (history[i-1].points > 0) {
+                const percentageIncrease = (pointsAdded / history[i-1].points) * 100;
+                if (percentageIncrease > mip.percentageIncrease && !mip.fromZero) {
+                    mip = { name: cyclist.name, percentageIncrease, date: history[i].date, fromZero: false };
+                }
             }
         }
     });
@@ -730,9 +732,11 @@ function updateTrajectoryChart() {
         Date: ${new Date(mvp.date).toLocaleDateString()}
     `);
 
+    // Update MIP information
     $('#mipInfo').html(`
         <strong>MIP:</strong> ${mip.name}<br>
-        Percentage Increase: ${mip.percentageIncrease.toFixed(2)}%<br>
+        Percentage Increase: ${mip.fromZero ? '∞' : mip.percentageIncrease.toFixed(2) + '%'}<br>
+        ${mip.fromZero ? `Points Gained: ${mip.percentageIncrease.toFixed(2)}` : ''}<br>
         Date: ${new Date(mip.date).toLocaleDateString()}
     `);
 }

@@ -71,14 +71,13 @@
             </table>
         </div>
         <div id="RiderTrajectoryTab" class="tabcontent">
-                <h2>Rider Point Trajectories</h2>
-                <div class="chart-controls">
-                <select id="riderSelect" multiple>
-                </select>
-                    <button onclick="updateTrajectoryChart()">Update Chart</button>
-         </div>
-        <div id="trajectoryChart" class="chart-container"></div>
-        </div>
+    <h2>Rider Point Trajectories</h2>
+    <div class="chart-controls">
+        <select id="riderSelect" onchange="updateTrajectoryChart()">
+        </select>
+    </div>
+    <div id="trajectoryChart" class="chart-container"></div>
+    </div>
             <div id="IdealTeamTab" class="tabcontent">
                 <h2>Dream Team (Max Cost: 100)</h2>
                 <div id="dreamTeamStats"></div>

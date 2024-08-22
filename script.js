@@ -582,25 +582,25 @@ function displayDreamTeam(dreamTeam) {
     });
 }
 
-  function createTrajectoryChart(cyclists) {
-        const traces = cyclists.map(cyclist => ({
-            x: cyclist.pointHistory.map(h => h.date.split('T')[0]),
-            y: cyclist.pointHistory.map(h => h.points),
-            type: 'scatter',
-            mode: 'lines+markers',
-            name: cyclist.name
-        }));
+function createTrajectoryChart(cyclists) {
+    const traces = cyclists.map(cyclist => ({
+        x: cyclist.pointHistory.map(h => h.date.split('T')[0]),
+        y: cyclist.pointHistory.map(h => h.points),
+        type: 'scatter',
+        mode: 'lines+markers',
+        name: cyclist.name
+    }));
 
-        const layout = {
-            title: {
-                text: 'Rider Point Trajectories',
-                font: {
-                    family: 'VT323, monospace',
-                    size: 24,
-                    color: '#ff1493'
-                }
-            },
-            xaxis: {
+    const layout = {
+        title: {
+            text: 'Rider Point Trajectories',
+            font: {
+                family: 'VT323, monospace',
+                size: 24,
+                color: '#ff1493'
+            }
+        },
+        xaxis: {
             title: 'Date',
             tickangle: -45,
             titlefont: {
@@ -612,11 +612,12 @@ function displayDreamTeam(dreamTeam) {
                 family: 'VT323, monospace',
                 size: 14,
                 color: '#ff1493'
-            }
+            },
+            tickformat: '%Y-%m-%d',
+            nticks: 10
         },
-                  xaxis: {
+        yaxis: {
             title: 'Points',
-            tickangle: -45,
             titlefont: {
                 family: 'VT323, monospace',
                 size: 16,
@@ -628,25 +629,34 @@ function displayDreamTeam(dreamTeam) {
                 color: '#ff1493'
             }
         },
-            legend: {
-                font: {
-                    family: 'VT323, monospace',
-                    size: 14,
-                    color: '#000000'
-                }
+        legend: {
+            font: {
+                family: 'VT323, monospace',
+                size: 14,
+                color: '#000000'
             },
-            paper_bgcolor: '#fff0f5',
-            plot_bgcolor: '#fff0f5',
-            margin: {
-                t: 50,
-                r: 50,
-                b: 50,
-                l: 50
-            }
-        };
+            bgcolor: '#fff0f5',
+            bordercolor: '#ff69b4',
+            borderwidth: 2
+        },
+        paper_bgcolor: '#fff0f5',
+        plot_bgcolor: '#fff0f5',
+        margin: {
+            t: 50,
+            r: 50,
+            b: 100,
+            l: 50
+        },
+        height: 500,
+        autosize: true
+    };
 
-        Plotly.newPlot('trajectoryChart', traces, layout);
-    }
+    Plotly.newPlot('trajectoryChart', traces, layout, {
+        scrollZoom: true,
+        responsive: true
+    });
+}
+
   function updateTrajectoryChart() {
         const selectedOption = $('#riderSelect').val();
         let filteredCyclists;

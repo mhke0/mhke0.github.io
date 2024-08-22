@@ -71,7 +71,7 @@ tr:nth-child(even) {
 }
 
 .chart-container {
-    width: 80%;
+    width: 100%;
     max-width: 1000px;
     margin: 0 auto 20px;
     height: 540px;

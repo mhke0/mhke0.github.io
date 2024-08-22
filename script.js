@@ -601,8 +601,19 @@ function createTrajectoryChart(cyclists) {
             size: 6,
             color: customColorScheme[index % customColorScheme.length]
         },
-        showlegend: false  // This line disables the legend for each trace
+        showlegend: false
     }));
+
+    // Get the min and max dates from all cyclists
+    const allDates = cyclists.flatMap(cyclist => cyclist.pointHistory.map(h => new Date(h.date.split('T')[0])));
+    const minDate = new Date(Math.min(...allDates));
+    const maxDate = new Date(Math.max(...allDates));
+
+    // Generate an array of all dates between min and max
+    const dateRange = [];
+    for (let d = new Date(minDate); d <= maxDate; d.setDate(d.getDate() + 1)) {
+        dateRange.push(new Date(d));
+    }
 
     const layout = {
         title: {
@@ -626,7 +637,11 @@ function createTrajectoryChart(cyclists) {
                 size: 12,
                 color: '#ff1493'
             },
-            tickformat: '%Y-%m-%d'
+            tickformat: '%Y-%m-%d',
+            tickmode: 'array',
+            tickvals: dateRange,
+            ticktext: dateRange.map(d => d.toISOString().split('T')[0]),
+            nticks: dateRange.length
         },
         yaxis: {
             title: 'Points',
@@ -641,7 +656,7 @@ function createTrajectoryChart(cyclists) {
                 color: '#ff1493'
             }
         },
-        showlegend: false,  // This line disables the entire legend
+        showlegend: false,
         autosize: true,
         paper_bgcolor: '#fff0f5',
         plot_bgcolor: '#fff0f5'
@@ -654,6 +669,24 @@ function createTrajectoryChart(cyclists) {
     };
 
     Plotly.newPlot('trajectoryChart', traces, layout, config);
+}
+
+function createCustomLegend(cyclists) {
+    const legendContainer = document.getElementById('customLegend');
+    legendContainer.innerHTML = ''; // Clear existing legend items
+
+    cyclists.forEach((cyclist, index) => {
+        const legendItem = document.createElement('div');
+        legendItem.className = 'legend-item';
+        const colorBox = document.createElement('div');
+        colorBox.className = 'legend-color';
+        colorBox.style.backgroundColor = customColorScheme[index % customColorScheme.length];
+        const nameSpan = document.createElement('span');
+        nameSpan.textContent = cyclist.name;
+        legendItem.appendChild(colorBox);
+        legendItem.appendChild(nameSpan);
+        legendContainer.appendChild(legendItem);
+    });
 }
 
 function createCustomLegend(cyclists) {

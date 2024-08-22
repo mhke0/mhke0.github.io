@@ -581,7 +581,6 @@ function displayDreamTeam(dreamTeam) {
         }
     });
 }
-
 function createTrajectoryChart(cyclists) {
     const traces = cyclists.map(cyclist => ({
         x: cyclist.pointHistory.map(h => h.date.split('T')[0]),
@@ -631,13 +630,6 @@ function createTrajectoryChart(cyclists) {
             }
         },
         showlegend: false,
-        margin: {
-            l: 50,
-            r: 20,
-            b: 60,
-            t: 50,
-            pad: 4
-        },
         autosize: true,
         paper_bgcolor: '#fff0f5',
         plot_bgcolor: '#fff0f5'

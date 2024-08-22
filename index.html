@@ -70,18 +70,14 @@
                 <tbody></tbody>
             </table>
         </div>
-`<div id="RiderTrajectoryTab" class="tabcontent">
+        <div id="RiderTrajectoryTab" class="tabcontent">
     <h2>Rider Point Trajectories</h2>
     <div class="chart-controls">
-        <select id="riderSelect" multiple>
-            <option value="top10" selected>Top 10 Riders</option>
-            <option value="all">All Riders</option>
-            <!-- Individual rider options will be populated dynamically -->
+        <select id="riderSelect" onchange="updateTrajectoryChart()">
         </select>
-        <button onclick="updateTrajectoryChart()">Update Chart</button>
     </div>
     <div id="trajectoryChart" class="chart-container"></div>
-</div>`
+    </div>
             <div id="IdealTeamTab" class="tabcontent">
                 <h2>Dream Team (Max Cost: 100)</h2>
                 <div id="dreamTeamStats"></div>
@@ -111,11 +107,8 @@ $(document).ready(function() {
             throw new Error("Missing required data in JSON file");
         }
 
-        // Populate rider select options
-        populateRiderSelect(data.cyclists);
-
-        // Initialize the trajectory chart with top 10 riders
-        updateTrajectoryChart();
+        // Store the cyclist data globally
+        cyclistData = data;
 
         let cyclists = data.cyclists;
         let leagueScores = data.league_scores;
@@ -733,35 +726,10 @@ function createTrajectoryChart(cyclists) {
     Plotly.newPlot('trajectoryChart', traces, layout);
 }
 
-function populateRiderSelect(cyclists) {
-    const riderSelect = $('#riderSelect');
-    riderSelect.empty(); // Clear existing options
-    
-    // Add the "Top 10 Riders" and "All Riders" options
-    riderSelect.append('<option value="top10" selected>Top 10 Riders</option>');
-    riderSelect.append('<option value="all">All Riders</option>');
-    
-    // Add individual rider options
-    cyclists.forEach(cyclist => {
-        riderSelect.append(`<option value="${cyclist.name}">${cyclist.name}</option>`);
-    });
-}
-
 function updateTrajectoryChart() {
-    const selectedOptions = $('#riderSelect').val();
-    let ridersToShow = [];
-
-    if (selectedOptions.includes('all')) {
-        ridersToShow = cyclistData.cyclists;
-    } else if (selectedOptions.includes('top10')) {
-        ridersToShow = cyclistData.cyclists
-            .sort((a, b) => b.points - a.points)
-            .slice(0, 10);
-    } else {
-        ridersToShow = cyclistData.cyclists.filter(c => selectedOptions.includes(c.name));
-    }
-
-    createTrajectoryChart(ridersToShow);
+    const selectedRiders = $('#riderSelect').val();
+    const filteredCyclists = cyclistData.cyclists.filter(c => selectedRiders.includes(c.name));
+    createTrajectoryChart(filteredCyclists);
 }
 
 function openTab(evt, tabName) {

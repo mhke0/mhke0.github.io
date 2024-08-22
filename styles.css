@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 
+
+
+
 body {
     font-family: 'VT323', monospace;
     line-height: 1.6;
@@ -95,7 +98,6 @@ tr:nth-child(odd) {
     height: 500px;
 }
 
-
 .legend-container {
     width: 200px;
     height: 500px;
@@ -120,7 +122,7 @@ tr:nth-child(odd) {
     margin-right: 5px;
 }
 
-/* Scrollbar styles */
+/* Scrollbar styles for legend */
 .legend-container::-webkit-scrollbar {
     width: 6px;
 }
@@ -368,6 +370,44 @@ tr:nth-child(odd) {
     .chart-container {
         width: 95%;
         height: 400px;
+    }
+}
+
+
+
+
+
+.trajectory-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.trajectory-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+@media screen and (max-width: 768px) {
+    .trajectory-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .dropdown-container {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .chart-legend-container {
+        flex-direction: column;
+    }
+
+    .legend-container {
+        width: 100%;
+        height: 200px;
     }
 }
 }

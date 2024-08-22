@@ -63,23 +63,41 @@ h1, h2 {
 }
 
 .stats-container {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: nowrap;
-    gap: 20px;
+    position: relative;
+    width: 100%;
+    height: 0; /* This effectively removes the container from the layout flow */
+    padding: 0;
+    background: none;
+    border: none;
+    overflow: visible;
 }
 
 .stat-box {
-    flex: 1;
-    min-width: 0; /* This allows the boxes to shrink below their content size if needed */
+    position: absolute;
+    width: calc(33.33% - 20px); /* Adjust based on how many stat boxes you have */
     background-color: #fff0f5;
     border: 2px solid #ff69b4;
     border-radius: 5px;
     padding: 10px;
     text-align: center;
-    margin: 0; /* Remove the margin */
+    box-sizing: border-box;
 }
 
+/* Position each stat box */
+.stat-box:nth-child(1) {
+    left: 0;
+    top: 0;
+}
+
+.stat-box:nth-child(2) {
+    left: 33.33%;
+    top: 0;
+}
+
+.stat-box:nth-child(3) {
+    left: 66.66%;
+    top: 0;
+}
 table {
     width: 100%;
     border-collapse: collapse;

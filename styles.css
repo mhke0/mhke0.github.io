@@ -62,14 +62,22 @@ h1, h2 {
     height: 100%;
 }
 
+.stats-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    gap: 20px;
+}
+
 .stat-box {
-    width: 30%;
+    flex: 1;
+    min-width: 0; /* This allows the boxes to shrink below their content size if needed */
     background-color: #fff0f5;
     border: 2px solid #ff69b4;
     border-radius: 5px;
     padding: 10px;
     text-align: center;
-    margin: 10px;
+    margin: 0; /* Remove the margin */
 }
 
 table {

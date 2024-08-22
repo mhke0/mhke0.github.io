@@ -110,7 +110,7 @@ tr:nth-child(odd) {
 }
 
 .dropdown-container {
-    width: 200px;
+    width: 100px;
     align-items: right;
 }
 
@@ -196,7 +196,7 @@ tr:nth-child(odd) {
 }
 
 .mvp-mip-container {
-    width: 45%;
+    width: 40%;
     display: flex;
     justify-content: space-between;
 }

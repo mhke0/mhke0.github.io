@@ -54,7 +54,9 @@ tr:nth-child(even) {
 }
 
 .stats-container {
+    width:80%;
     display: flex;
+    margin: 0 auto 0px;
     flex-wrap: wrap;
     justify-content: space-around;
     margin-bottom: 10px;

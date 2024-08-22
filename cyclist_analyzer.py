@@ -213,18 +213,7 @@ def load_existing_data(filename):
 
 def update_historical_data(existing_data, new_cyclists):
     today = datetime.now().strftime('%Y-%m-%d')
-    yesterday = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
     
-    # If we haven't updated today, move yesterday's data to historical
-    if existing_data.get('last_update') != today:
-        for cyclist in existing_data['cyclists']:
-            if 'pointHistory' not in cyclist:
-                cyclist['pointHistory'] = []
-            cyclist['pointHistory'].append({'date': yesterday, 'points': cyclist['points']})
-            # Keep only the last 30 days of historical data
-            cyclist['pointHistory'] = cyclist['pointHistory'][-30:]
-    
-    # Update with new data
     for new_cyclist in new_cyclists:
         existing_cyclist = next((c for c in existing_data['cyclists'] if c['name'] == new_cyclist['name']), None)
         
@@ -240,10 +229,18 @@ def update_historical_data(existing_data, new_cyclists):
             })
             if 'pointHistory' not in existing_cyclist:
                 existing_cyclist['pointHistory'] = []
-            # Add today's points to pointHistory
-            existing_cyclist['pointHistory'].append({'date': today, 'points': new_cyclist['points']})
+            
+            # Check if an entry for today already exists
+            today_entry = next((entry for entry in existing_cyclist['pointHistory'] if entry['date'] == today), None)
+            if today_entry:
+                # Update existing entry for today
+                today_entry['points'] = new_cyclist['points']
+            else:
+                # Add new entry for today
+                existing_cyclist['pointHistory'].append({'date': today, 'points': new_cyclist['points']})
+            
             # Keep only the last 30 days of historical data
-            existing_cyclist['pointHistory'] = existing_cyclist['pointHistory'][-30:]
+            existing_cyclist['pointHistory'] = sorted(existing_cyclist['pointHistory'], key=lambda x: x['date'])[-30:]
         else:
             # Add new cyclist
             new_cyclist['pointHistory'] = [{'date': today, 'points': new_cyclist['points']}]

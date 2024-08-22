@@ -858,9 +858,9 @@ function sortTable(columnIndex) {
         }
     }
 }
-/*
+
 function createRelativePerformanceChart(leagueScores) {
-    const averageScore = leagueScores.reduce((sum, team) => sum + team.points, 0) / leagueScores.length;
+   /* const averageScore = leagueScores.reduce((sum, team) => sum + team.points, 0) / leagueScores.length;
     
     const data = leagueScores.map(team => ({
         name: team.name,
@@ -928,8 +928,9 @@ function createRelativePerformanceChart(leagueScores) {
     };
 
     Plotly.newPlot('relativePerformanceChart', [trace], layout);
+    */ 
 }
-  */  
+  
 
 function updateVisitCount() {
     fetch('https://api.countapi.xyz/update/mhke0.github.io/visits/?amount=1')

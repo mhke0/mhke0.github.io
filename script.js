@@ -3,57 +3,6 @@
 let cyclistData;
 
 
-    const layout = {
-        title: {
-            text: 'Team Performance Relative to Average',
-            font: {
-                family: 'VT323, monospace',
-                size: 24,
-                color: '#ff1493'
-            }
-        },
-        xaxis: {
-            title: '',
-            tickangle: -45,
-            titlefont: {
-                family: 'VT323, monospace',
-                size: 16,
-                color: '#ff1493'
-            },
-            tickfont: {
-                family: 'VT323, monospace',
-                size: 14,
-                color: '#ff1493'
-            }
-        },
-        yaxis: {
-            title: 'Performance Relative to Average (%)',
-            titlefont: {
-                family: 'VT323, monospace',
-                size: 16,
-                color: '#ff1493'
-            },
-            tickfont: {
-                family: 'VT323, monospace',
-                size: 14,
-                color: '#ff1493'
-            }
-        },
-        paper_bgcolor: '#fff0f5',
-        plot_bgcolor: '#fff0f5',
-        height: 500,
-        margin: {
-            l: 50,
-            r: 50,
-            b: 100,
-            t: 50,
-            pad: 4
-        }
-    };
-
-    Plotly.newPlot('relativePerformanceChart', [trace], layout);
-}
-
 $(document).ready(function() {
     $.getJSON('cyclist-data.json', function(data) {
         $('#loading').hide();
@@ -928,6 +877,57 @@ function createRelativePerformanceChart(leagueScores) {
         textposition: 'auto',
         hoverinfo: 'x+text'
     };
+    
+    const layout = {
+        title: {
+            text: 'Team Performance Relative to Average',
+            font: {
+                family: 'VT323, monospace',
+                size: 24,
+                color: '#ff1493'
+            }
+        },
+        xaxis: {
+            title: '',
+            tickangle: -45,
+            titlefont: {
+                family: 'VT323, monospace',
+                size: 16,
+                color: '#ff1493'
+            },
+            tickfont: {
+                family: 'VT323, monospace',
+                size: 14,
+                color: '#ff1493'
+            }
+        },
+        yaxis: {
+            title: 'Performance Relative to Average (%)',
+            titlefont: {
+                family: 'VT323, monospace',
+                size: 16,
+                color: '#ff1493'
+            },
+            tickfont: {
+                family: 'VT323, monospace',
+                size: 14,
+                color: '#ff1493'
+            }
+        },
+        paper_bgcolor: '#fff0f5',
+        plot_bgcolor: '#fff0f5',
+        height: 500,
+        margin: {
+            l: 50,
+            r: 50,
+            b: 100,
+            t: 50,
+            pad: 4
+        }
+    };
+
+    Plotly.newPlot('relativePerformanceChart', [trace], layout);
+}
     
 function updateVisitCount() {
     fetch('https://api.countapi.xyz/update/mhke0.github.io/visits/?amount=1')

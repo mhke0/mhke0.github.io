@@ -24,12 +24,17 @@
             <button class="tablinks" onclick="openTab(event, 'RiderTrajectoryTab')">Riders</button>
             <button class="tablinks" onclick="openTab(event, 'IdealTeamTab')">Dream Team</button>
         </div>
-        </div>
 
         <div id="OverviewTab" class="tabcontent">
             <div class="stats-container" id="stats"></div>
             <div class="chart-container">
                 <canvas id="roleChart"></canvas>
+            </div>
+        </div>
+
+        <div id="LeagueScoresTab" class="tabcontent">
+            <div class="chart-container">
+                <div id="leagueScoresChart"></div>
             </div>
         </div>
 
@@ -45,12 +50,6 @@
         <div id="CostVsPointsTab" class="tabcontent">
             <div class="chart-container">
                 <div id="costVsPointsChart"></div>
-            </div>
-        </div>
-        
-        <div id="LeagueScoresTab" class="tabcontent">
-            <div class="chart-container">
-                <div id="leagueScoresChart"></div>
             </div>
         </div>
 
@@ -71,38 +70,37 @@
             </table>
         </div>
     
-    
-<div id="RiderTrajectoryTab" class="tabcontent">
-    <div class="chart-container">
-        <div id="trajectoryChart"></div>
-        <div class="legend-container" id="customLegend"></div>
-    </div>
-    <div class="dropdown-container">
-        <select id="riderSelect" class="styled-select" onchange="updateTrajectoryChart()">
-            <option value="top10">Top 10 Riders</option>
-            <option value="all">All Riders</option>
-            <option disabled>------------------------</option>
-            <!-- Individual rider options will be populated here -->
-        </select>
-    </div>
-    <div class="mvp-mip-container">
-        <div id="mvpInfo" class="info-box"></div>
-        <div id="mipInfo" class="info-box"></div>
-    </div>
-</div>
-            <div id="IdealTeamTab" class="tabcontent">
-                <h2>Dream Team (Max Cost: 100)</h2>
-                <div id="dreamTeamStats"></div>
-                <div id="dreamTeamRiders"></div>
-                <div class="chart-container">
-                    <canvas id="dreamTeamChart"></canvas>
-                </div>
+        <div id="RiderTrajectoryTab" class="tabcontent">
+            <div class="chart-container">
+                <div id="trajectoryChart"></div>
+                <div class="legend-container" id="customLegend"></div>
             </div>
-       
+            <div class="dropdown-container">
+                <select id="riderSelect" class="styled-select" onchange="updateTrajectoryChart()">
+                    <option value="top10">Top 10 Riders</option>
+                    <option value="all">All Riders</option>
+                    <option disabled>------------------------</option>
+                    <!-- Individual rider options will be populated here -->
+                </select>
+            </div>
+            <div class="mvp-mip-container">
+                <div id="mvpInfo" class="info-box"></div>
+                <div id="mipInfo" class="info-box"></div>
+            </div>
+        </div>
+
+        <div id="IdealTeamTab" class="tabcontent">
+            <h2>Dream Team (Max Cost: 100)</h2>
+            <div id="dreamTeamStats"></div>
+            <div id="dreamTeamRiders"></div>
+            <div class="chart-container">
+                <canvas id="dreamTeamChart"></canvas>
+            </div>
+        </div>
     </div>
+
     <p>VISIT COUNT: <span id="visit-count">1</span></p>
 
     <script src="script.js"></script>
-
 </body>
 </html>

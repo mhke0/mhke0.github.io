@@ -30,9 +30,10 @@ h1, h2 {
 }
 
 table {
-    width: 100%;
+    width: 80%;
     border-collapse: collapse;
     margin-bottom: 10px;
+    margin: 0 0 0;
     border: 2px solid #ff69b4;
 }
 
@@ -70,16 +71,6 @@ tr:nth-child(even) {
     flex: 1 1 200px;
 }
 
-.chart-container {
-    width: 80%;
-    max-width: 1000px;
-    margin: 0 auto 20px;
-    height: 540px;
-    background-color: #fff0f5;
-    border: 2px solid #ff69b4;
-    padding: 10px;
-    position: relative; /* Add this */
-}
 
 .dropdown-container {
     position: absolute;
@@ -151,20 +142,34 @@ tr:nth-child(even) {
 }
 
 
+.chart-container {
+    width: 80%;
+    max-width: 1000px;
+    margin: 0 auto 20px;
+    height: 540px;
+    background-color: #fff0f5;
+    border: 2px solid #ff69b4;
+    padding: 10px;
+    position: relative;
+}
+
 .mvp-mip-container {
     width: 80%;
+    max-width: 1000px;
+    margin: 20px auto 0;
     display: flex;
-    justify-content: space-around;
-    margin: 0 auto 0; /* Changed this line */
-    max-width: 1000px; /* Added this line */
+    justify-content: space-between; /* Changed from space-around */
+    padding: 10px;
+    background-color: #fff0f5;
+    border: 2px solid #ff69b4;
 }
 
 .info-box {
-    background-color: #fff0f5;
+    background-color: #ffffff; /* Changed to white for contrast */
     border: 2px solid #ff69b4;
     border-radius: 5px;
-    padding: 0px;
-    width: 45%; /* Keep this as is */
+    padding: 10px;
+    width: 48%; /* Adjusted for better fit */
     font-family: 'VT323', monospace;
     color: #000000;
 }

@@ -613,8 +613,7 @@ function createTrajectoryChart(cyclists) {
                 size: 14,
                 color: '#ff1493'
             },
-            tickformat: '%Y-%m-%d',
-            nticks: 10
+            tickformat: '%Y-%m-%d'
         },
         yaxis: {
             title: 'Points',
@@ -632,29 +631,30 @@ function createTrajectoryChart(cyclists) {
         legend: {
             font: {
                 family: 'VT323, monospace',
-                size: 14,
+                size: 12,
                 color: '#000000'
             },
-            bgcolor: '#fff0f5',
-            bordercolor: '#ff69b4',
-            borderwidth: 2
+            orientation: 'h',
+            yanchor: 'bottom',
+            y: -0.2,
+            xanchor: 'center',
+            x: 0.5
         },
-        paper_bgcolor: '#fff0f5',
-        plot_bgcolor: '#fff0f5',
         margin: {
-            t: 50,
+            l: 50,
             r: 50,
             b: 100,
-            l: 50
+            t: 50,
+            pad: 4
         },
         height: 500,
-        autosize: true
+        width: 900,
+        autosize: false,
+        paper_bgcolor: '#fff0f5',
+        plot_bgcolor: '#fff0f5'
     };
 
-    Plotly.newPlot('trajectoryChart', traces, layout, {
-        scrollZoom: true,
-        responsive: true
-    });
+    Plotly.newPlot('trajectoryChart', traces, layout, {responsive: true});
 }
 
 function calculateMVPandMIP(cyclists) {

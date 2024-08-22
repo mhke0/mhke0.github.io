@@ -264,6 +264,96 @@
 
 
             Plotly.newPlot('top50Chart', [trace], layout);
+
+
+            // Add this code inside the $(document).ready(function() { ... }) block, 
+// after the existing top50 chart code
+
+// Calculate points per name length and sort
+let cyclistsWithPointsPerNameLength = cyclists.map(c => ({
+    ...c,
+    pointsPerNameLength: c.points / c.name.replace(/\s/g, '').length
+})).sort((a, b) => b.pointsPerNameLength - a.pointsPerNameLength);
+
+// Get top 50
+let top50PointsPerNameLength = cyclistsWithPointsPerNameLength.slice(0, 50);
+
+// Create the new chart
+const tracePointsPerNameLength = {
+    x: top50PointsPerNameLength.map(c => c.name),
+    y: top50PointsPerNameLength.map(c => c.pointsPerNameLength),
+    type: 'bar',
+    marker: {
+        color: top50PointsPerNameLength.map(c => {
+            switch(c.role) {
+                case 'All Rounder': return '#ff6384';
+                case 'Climber': return '#36a2eb';
+                case 'Sprinter': return '#cc65fe';
+                default: return '#4bc0c0';
+            }
+        })
+    },
+    text: top50PointsPerNameLength.map(c => `Points: ${c.points}<br>Name Length: ${c.name.replace(/\s/g, '').length}`),
+    hoverinfo: 'text+y'
+};
+
+const layoutPointsPerNameLength = {
+    title: {
+        text: 'Top 50 Cyclists by Points per Name Length',
+        font: {
+            family: 'VT323, monospace',
+            size: 24,
+            color: '#ff1493'
+        }
+    },
+    xaxis: {
+        title: '',
+        tickangle: -45,
+        titlefont: {
+            family: 'VT323, monospace',
+            size: 16,
+            color: '#ff1493'
+        },
+        tickfont: {
+            family: 'VT323, monospace',
+            size: 14,
+            color: '#ff1493'
+        }
+    },
+    yaxis: {
+        title: 'Points per Name Length',
+        titlefont: {
+            family: 'VT323, monospace',
+            size: 16,
+            color: '#ff1493'
+        },
+        tickfont: {
+            family: 'VT323, monospace',
+            size: 14,
+            color: '#ff1493'
+        }
+    },
+    legend: {
+        font: {
+            family: 'VT323, monospace',
+            size: 14,
+            color: '#000000'
+        }
+    },
+    paper_bgcolor: '#fff0f5',
+    plot_bgcolor: '#fff0f5',
+    height: 500,
+    margin: {
+        l: 50,
+        r: 50,
+        b: 100,
+        t: 50,
+        pad: 4
+    }
+};
+
+Plotly.newPlot('pointsPerNameLengthChart', [tracePointsPerNameLength], layoutPointsPerNameLength);
+            
 // Create league scores stacked bar chart
 const baseData = {
     "Team Name": 0,

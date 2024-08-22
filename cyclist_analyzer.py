@@ -210,52 +210,47 @@ def load_existing_data(filename):
     except FileNotFoundError:
         return {'cyclists': [], 'top_50_efficiency': [], 'league_scores': [], 'dream_team': None, 'last_update': None}
 
+
 def update_historical_data(existing_data, new_cyclists):
     today = datetime.now().strftime('%Y-%m-%d')
     yesterday = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
     
-    # Create a dictionary of new cyclists for easy lookup
-    new_cyclists_dict = {c['name']: c for c in new_cyclists}
-    
-    # Update existing cyclists and add new ones
-    for cyclist in existing_data['cyclists']:
-        if cyclist['name'] in new_cyclists_dict:
-            new_data = new_cyclists_dict[cyclist['name']]
-            
-            # Ensure pointHistory exists
+    # If we haven't updated today, move yesterday's data to historical
+    if existing_data.get('last_update') != today:
+        for cyclist in existing_data['cyclists']:
             if 'pointHistory' not in cyclist:
                 cyclist['pointHistory'] = []
-            
-            # Add yesterday's points to history if we haven't updated today
-            if existing_data.get('last_update') != today and cyclist['pointHistory'] and cyclist['pointHistory'][-1]['date'] != yesterday:
-                cyclist['pointHistory'].append({'date': yesterday, 'points': cyclist['points']})
-            
-            # Update cyclist's current data
-            cyclist.update({
-                'team': new_data['team'],
-                'role': new_data['role'],
-                'cost': new_data['cost'],
-                'points': new_data['points'],
-                'ownership': new_data['ownership'],
-                'cost_per_point': new_data['cost_per_point']
-            })
-            
-            # Add today's points to history
-            cyclist['pointHistory'].append({'date': today, 'points': new_data['points']})
-            
+            cyclist['pointHistory'].append({'date': yesterday, 'points': cyclist['points']})
             # Keep only the last 30 days of historical data
             cyclist['pointHistory'] = cyclist['pointHistory'][-30:]
-            
-            # Remove this cyclist from new_cyclists_dict
-            del new_cyclists_dict[cyclist['name']]
     
-    # Add any remaining new cyclists
-    for new_cyclist in new_cyclists_dict.values():
-        new_cyclist['pointHistory'] = [{'date': today, 'points': new_cyclist['points']}]
-        existing_data['cyclists'].append(new_cyclist)
+    # Update with new data
+    for new_cyclist in new_cyclists:
+        existing_cyclist = next((c for c in existing_data['cyclists'] if c['name'] == new_cyclist['name']), None)
+        
+        if existing_cyclist:
+            # Update existing cyclist's current data
+            existing_cyclist.update({
+                'team': new_cyclist['team'],
+                'role': new_cyclist['role'],
+                'cost': new_cyclist['cost'],
+                'points': new_cyclist['points'],
+                'ownership': new_cyclist['ownership'],
+                'cost_per_point': new_cyclist['cost_per_point']
+            })
+            if 'pointHistory' not in existing_cyclist:
+                existing_cyclist['pointHistory'] = []
+            # Add today's points to pointHistory
+            existing_cyclist['pointHistory'].append({'date': today, 'points': new_cyclist['points']})
+            # Keep only the last 30 days of historical data
+            existing_cyclist['pointHistory'] = existing_cyclist['pointHistory'][-30:]
+        else:
+            # Add new cyclist
+            new_cyclist['pointHistory'] = [{'date': today, 'points': new_cyclist['points']}]
+            existing_data['cyclists'].append(new_cyclist)
     
     # Remove cyclists that are no longer present in the new data
-    existing_data['cyclists'] = [c for c in existing_data['cyclists'] if c['name'] in new_cyclists_dict]
+    existing_data['cyclists'] = [c for c in existing_data['cyclists'] if any(nc['name'] == c['name'] for nc in new_cyclists)]
     
     # Update the last update timestamp
     existing_data['last_update'] = today
@@ -329,4 +324,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-

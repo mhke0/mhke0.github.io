@@ -118,8 +118,7 @@ tr:nth-child(odd) {
 }
 
 .dropdown-container {
-    width: 180px;
-    align-items: right;
+    width: 160px;
 }
 
 .chart-legend-container {
@@ -207,6 +206,10 @@ tr:nth-child(odd) {
     width: 200px;
     display: flex;
     justify-content: space-between;
+    flex-wrap: nowrap;
+    gap: 20px;
+
+
 }
 
 .info-box {

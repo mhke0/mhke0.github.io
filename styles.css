@@ -112,7 +112,8 @@ tr:nth-child(odd) {
 
 .dropdown-container {
     width: 100%;
-    max-width: 300px;
+    max-width: 200px;
+    align-items: right;
 }
 
 .chart-legend-container {

@@ -10,6 +10,8 @@ import pulp
 import io
 import contextlib
 import os
+from datetime import datetime
+
 
 def fetch_html_content(url):
     try:
@@ -194,58 +196,99 @@ def select_dream_team_optimized(cyclists):
         
         return None, 0, 0
 
+
+def load_existing_data(filename):
+    try:
+        with open(filename, 'r') as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return {'cyclists': [], 'top_50_efficiency': [], 'league_scores': [], 'dream_team': None}
+
+def update_historical_data(existing_data, new_cyclists):
+    today = datetime.now().strftime('%Y-%m-%d')
+    
+    for new_cyclist in new_cyclists:
+        existing_cyclist = next((c for c in existing_data['cyclists'] if c['name'] == new_cyclist['name']), None)
+        
+        if existing_cyclist:
+            # Update existing cyclist's current data
+            existing_cyclist.update({
+                'team': new_cyclist['team'],
+                'role': new_cyclist['role'],
+                'cost': new_cyclist['cost'],
+                'points': new_cyclist['points'],
+                'ownership': new_cyclist['ownership'],
+                'cost_per_point': new_cyclist['cost_per_point']
+            })
+            
+            # Add today's points to historical data
+            existing_cyclist['pointHistory'].append({'date': today, 'points': new_cyclist['points']})
+            
+            # Keep only the last 30 days of historical data
+            existing_cyclist['pointHistory'] = existing_cyclist['pointHistory'][-30:]
+        else:
+            # Add new cyclist with initial historical data
+            new_cyclist['pointHistory'] = [{'date': today, 'points': new_cyclist['points']}]
+            existing_data['cyclists'].append(new_cyclist)
+    
+    # Remove cyclists that are no longer present in the new data
+    existing_data['cyclists'] = [c for c in existing_data['cyclists'] if any(nc['name'] == c['name'] for nc in new_cyclists)]
+    
+    return existing_data
+
 def main():
     cyclist_url = "https://www.velogames.com/spain/2024/riders.php"
+    output_file = "cyclist-data.json"
     
     try:
-        print(f"Fetching cyclist data from {cyclist_url}", file=sys.stderr)
+        print("Loading existing data", file=sys.stderr)
+        existing_data = load_existing_data(output_file)
+
+        print(f"Fetching new cyclist data from {cyclist_url}", file=sys.stderr)
         html_content = fetch_html_content(cyclist_url)
         
-        print("Analyzing cyclist data", file=sys.stderr)
-        cyclists = analyze_cyclists(html_content)
+        print("Analyzing new cyclist data", file=sys.stderr)
+        new_cyclists = analyze_cyclists(html_content)
         
-        if not cyclists:
-            raise ValueError("No cyclist data was extracted")
+        if not new_cyclists:
+            raise ValueError("No new cyclist data was extracted")
 
-        print(f"Extracted data for {len(cyclists)} cyclists", file=sys.stderr)
+        print(f"Extracted data for {len(new_cyclists)} cyclists", file=sys.stderr)
 
-        top_50_data = create_top_50_efficiency_data(cyclists)
+        print("Updating historical data", file=sys.stderr)
+        updated_data = update_historical_data(existing_data, new_cyclists)
+
+        print("Creating top 50 efficiency data", file=sys.stderr)
+        updated_data['top_50_efficiency'] = create_top_50_efficiency_data(updated_data['cyclists'])
 
         print("Fetching league scores", file=sys.stderr)
-        league_scores = fetch_league_scores()
+        updated_data['league_scores'] = fetch_league_scores()
 
         print("Selecting dream team (optimized)", file=sys.stderr)
-        dream_team, total_points, total_cost = select_dream_team_optimized(cyclists)
+        dream_team, total_points, total_cost = select_dream_team_optimized(updated_data['cyclists'])
         
-        dream_team_data = None
         if dream_team:
-            dream_team_data = [
-                {
-                    'name': rider['name'],
-                    'role': rider['role'],
-                    'cost': rider['cost'],
-                    'points': rider['points']
-                } for rider in dream_team
-            ]
-
-        print("Preparing output", file=sys.stderr)
-        output = {
-            'cyclists': cyclists,
-            'top_50_efficiency': top_50_data,
-            'league_scores': league_scores,
-            'dream_team': {
-                'riders': dream_team_data,
+            updated_data['dream_team'] = {
+                'riders': [
+                    {
+                        'name': rider['name'],
+                        'role': rider['role'],
+                        'cost': rider['cost'],
+                        'points': rider['points'],
+                        'pointHistory': rider['pointHistory']
+                    } for rider in dream_team
+                ],
                 'total_points': total_points,
                 'total_cost': total_cost
-            } if dream_team_data else None
-        }
-        
+            }
+        else:
+            updated_data['dream_team'] = None
+
         print(f"Current working directory: {os.getcwd()}", file=sys.stderr)
         try:
-            print("Writing JSON output to file", file=sys.stderr)
-            output_file = "cyclist-data.json"
+            print("Writing updated JSON output to file", file=sys.stderr)
             with open(output_file, 'w', encoding='utf-8') as f:
-                json.dump(output, f, default=numpy_to_python, ensure_ascii=False, indent=2)
+                json.dump(updated_data, f, default=numpy_to_python, ensure_ascii=False, indent=2)
             
             print(f"Script completed successfully. Output saved to {output_file}", file=sys.stderr)
         except IOError as e:

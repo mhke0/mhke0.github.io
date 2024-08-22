@@ -582,6 +582,23 @@ function displayDreamTeam(dreamTeam) {
     });
 }
 
+function createCustomLegend(cyclists) {
+    const legendContainer = document.getElementById('customLegend');
+    legendContainer.innerHTML = '';
+    cyclists.forEach((cyclist, index) => {
+        const legendItem = document.createElement('div');
+        legendItem.className = 'legend-item';
+        const colorBox = document.createElement('div');
+        colorBox.className = 'legend-color';
+        colorBox.style.backgroundColor = Plotly.d3.schemeCategory10[index % 10]; // Use Plotly's color scheme
+        const nameSpan = document.createElement('span');
+        nameSpan.textContent = cyclist.name;
+        legendItem.appendChild(colorBox);
+        legendItem.appendChild(nameSpan);
+        legendContainer.appendChild(legendItem);
+    });
+}
+
 function createTrajectoryChart(cyclists) {
     const traces = cyclists.map(cyclist => ({
         x: cyclist.pointHistory.map(h => h.date.split('T')[0]),
@@ -709,6 +726,8 @@ function updateTrajectoryChart() {
     const { mvp, mip } = calculateMVPandMIP(filteredCyclists);
 
     createTrajectoryChart(filteredCyclists);
+    createCustomLegend(filteredCyclists);
+
 
     // Update MVP and MIP information
     $('#mvpInfo').html(`

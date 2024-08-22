@@ -4,13 +4,10 @@ import traceback
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
-import plotly.express as px
 import numpy as np
 import pulp
-import io
-import contextlib
 import os
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
 def fetch_html_content(url):
@@ -206,6 +203,7 @@ def load_existing_data(filename):
 
 def update_historical_data(existing_data, new_cyclists):
     today = datetime.now().strftime('%Y-%m-%d')
+    yesterday = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
     
     for new_cyclist in new_cyclists:
         existing_cyclist = next((c for c in existing_data['cyclists'] if c['name'] == new_cyclist['name']), None)
@@ -225,6 +223,10 @@ def update_historical_data(existing_data, new_cyclists):
             if 'pointHistory' not in existing_cyclist:
                 existing_cyclist['pointHistory'] = []
             
+            # If there's existing history, update the last entry's date to yesterday
+            if existing_cyclist['pointHistory']:
+                existing_cyclist['pointHistory'][-1]['date'] = yesterday
+            
             # Add today's points to historical data
             existing_cyclist['pointHistory'].append({'date': today, 'points': new_cyclist['points']})
             
@@ -232,7 +234,10 @@ def update_historical_data(existing_data, new_cyclists):
             existing_cyclist['pointHistory'] = existing_cyclist['pointHistory'][-30:]
         else:
             # Add new cyclist with initial historical data
-            new_cyclist['pointHistory'] = [{'date': today, 'points': new_cyclist['points']}]
+            new_cyclist['pointHistory'] = [
+                {'date': yesterday, 'points': new_cyclist['points']},
+                {'date': today, 'points': new_cyclist['points']}
+            ]
             existing_data['cyclists'].append(new_cyclist)
     
     # Remove cyclists that are no longer present in the new data

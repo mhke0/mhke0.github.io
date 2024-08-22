@@ -5,9 +5,9 @@ body {
     line-height: 1.6;
     color: #000000;
     background-color: #ffffff;
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 10px;
+    padding: 20px;
     font-size: 18px;
 }
 
@@ -22,6 +22,7 @@ h1, h2 {
     padding: 20px;
     border: 2px solid #ff69b4;
     background-color: #fff0f5;
+    margin-bottom: 20px;
 }
 
 #error {
@@ -29,18 +30,48 @@ h1, h2 {
     border-color: #ff0000;
 }
 
-table {
-    width: 80%;
-    max-width: 1000px;
-    border-collapse: collapse;
-    margin: 0 auto 20px;
-    border: 2px solid #ff69b4;
+/* Uniform box styling */
+.stats-container, .chart-container, .trajectory-container, 
+.mvp-mip-container, .legend-container, #cyclistTable {
+    width: 100%;
+    margin: 0 0 20px 0;
+    padding: 20px;
     background-color: #fff0f5;
+    border: 2px solid #ff69b4;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.chart-container {
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chart-container > div, #trajectoryChart {
+    width: 100%;
+    height: 100%;
+}
+
+.stat-box {
+    background-color: #fff0f5;
+    border: 2px solid #ff69b4;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    margin: 10px;
+    flex: 1 1 200px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
 }
 
 th, td {
     border: 1px solid #ff69b4;
-    padding: 8px;
+    padding: 10px;
     text-align: left;
 }
 
@@ -59,45 +90,8 @@ tr:nth-child(odd) {
     background-color: #fff0f5;
 }
 
-.stats-container {
-    width: 90%;
-    display: flex;
-    margin: 0 auto 20px;
-    flex-wrap: wrap;
-    justify-content: space-around;
-}
-
-.stat-box {
-    background-color: #fff0f5;
-    border: 2px solid #ff69b4;
-    border-radius: 5px;
-    padding: 10px;
-    text-align: center;
-    margin: 10px;
-    flex: 1 1 200px;
-}
-
-.chart-container {
-    width: 90%;
-    max-width: 1000px;
-    margin: 0 auto 20px;
-    height: 500px;
-    background-color: #fff0f5;
-    border: 2px solid #ff69b4;
-    padding: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.chart-container > div {
-    width: 100%;
-    height: 100%;
-}
-
 .trajectory-container {
-    width: 90%;
-    max-width: 1200px;
+    width: 100%;
     margin: 0 auto;
 }
 
@@ -109,7 +103,8 @@ tr:nth-child(odd) {
 }
 
 .dropdown-container {
-    width: 300px;
+    width: 100%;
+    max-width: 300px;
 }
 
 .chart-legend-container {
@@ -118,21 +113,11 @@ tr:nth-child(odd) {
     margin-bottom: 20px;
 }
 
-#trajectoryChart {
-    width: 100%;
-    height: 100%;
-}
-
 .legend-container {
     width: 200px;
     height: 500px;
     overflow-y: auto;
-    background-color: #fff0f5;
-    border: 2px solid #ff69b4;
-    padding: 10px;
-    font-family: 'VT323', monospace;
     font-size: 12px;
-    color: #000000;
 }
 
 .legend-item {
@@ -197,31 +182,23 @@ tr:nth-child(odd) {
 
 .tabcontent {
     display: none;
-    padding: 6px 12px;
+    padding: 20px;
     border: 2px solid #ff69b4;
     border-top: none;
     background-color: #ffffff;
 }
 
 .mvp-mip-container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 20px auto 0;
     display: flex;
     justify-content: space-between;
-    padding: 10px;
-    background-color: #fff0f5;
-    border: 2px solid #ff69b4;
 }
 
 .info-box {
     background-color: #ffffff;
     border: 2px solid #ff69b4;
     border-radius: 5px;
-    padding: 10px;
+    padding: 20px;
     width: 48%;
-    font-family: 'VT323', monospace;
-    color: #000000;
 }
 
 .info-box strong {
@@ -281,6 +258,7 @@ tr:nth-child(odd) {
     scrollbar-color: #ff69b4 #fff0f5;
 }
 
+/* Responsive adjustments */
 @media screen and (max-width: 768px) {
     body {
         padding: 10px;
@@ -296,25 +274,17 @@ tr:nth-child(odd) {
         font-size: 16px;
     }
 
-    table {
-        font-size: 14px;
-    }
-
-    th, td {
-        padding: 5px;
-    }
-
     .chart-container {
-        height: 300px;
+        height: 400px;
     }
 
-    .trajectory-header, .chart-legend-container, .mvp-mip-container {
+    .chart-legend-container, .mvp-mip-container {
         flex-direction: column;
     }
 
-    .dropdown-container, .legend-container, .info-box {
+    .legend-container, .info-box {
         width: 100%;
-        margin-top: 10px;
+        margin-top: 20px;
     }
 
     .legend-container {
@@ -325,6 +295,10 @@ tr:nth-child(odd) {
 @media screen and (max-width: 480px) {
     .tab button {
         width: 100%;
+    }
+
+    .chart-container {
+        height: 300px;
     }
 
     .stat-box {

@@ -78,9 +78,25 @@ tr:nth-child(even) {
     background-color: #fff0f5;
     border: 2px solid #ff69b4;
     padding: 10px;
-    display:flex;
-    justify-content: center;
-    align-items: center;
+    position: relative; /* Add this */
+}
+
+.dropdown-container {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1;
+    width: 300px; /* Add this */
+}
+
+.styled-select {
+    width: 100%; /* Change this */
+    max-width: none; /* Remove this */
+}
+
+#trajectoryChart {
+    width: 100%;
+    height: 100%;
 }
 
 .tab {
@@ -134,17 +150,7 @@ tr:nth-child(even) {
     max-width: 300px;
 }
 
-.styled-select:focus {
-    outline: none;
-    box-shadow: 0 0 5px #ff1493;
-}
 
-       .dropdown-container {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            z-index: 1;
-        }
 .mvp-mip-container {
     display: flex;
     justify-content: space-around;

@@ -638,7 +638,10 @@ function createTrajectoryChart(cyclists) {
             yanchor: 'bottom',
             y: -0.2,
             xanchor: 'center',
-            x: 0.5
+            x: 0.5,
+            bgcolor: '#fff0f5',
+            bordercolor: '#ff69b4',
+            borderwidth: 2
         },
         margin: {
             l: 50,
@@ -654,7 +657,55 @@ function createTrajectoryChart(cyclists) {
         plot_bgcolor: '#fff0f5'
     };
 
-    Plotly.newPlot('trajectoryChart', traces, layout, {responsive: true});
+    const config = {
+        responsive: true,
+        scrollZoom: true,
+        displayModeBar: false
+    };
+
+    Plotly.newPlot('trajectoryChart', traces, layout, config);
+
+    // Add custom scrollable legend
+    const legendContainer = document.createElement('div');
+    legendContainer.style.cssText = `
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80%;
+        max-height: 100px;
+        overflow-y: auto;
+        background-color: #fff0f5;
+        border: 2px solid #ff69b4;
+        padding: 5px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    `;
+
+    cyclists.forEach(cyclist => {
+        const legendItem = document.createElement('div');
+        legendItem.style.cssText = `
+            display: flex;
+            align-items: center;
+            margin: 5px;
+            font-family: 'VT323', monospace;
+            font-size: 12px;
+        `;
+        const colorBox = document.createElement('div');
+        colorBox.style.cssText = `
+            width: 12px;
+            height: 12px;
+            margin-right: 5px;
+            background-color: ${cyclist.color || '#000000'};
+        `;
+        legendItem.appendChild(colorBox);
+        legendItem.appendChild(document.createTextNode(cyclist.name));
+        legendContainer.appendChild(legendItem);
+    });
+
+    document.getElementById('trajectoryChart').appendChild(legendContainer);
 }
 
 function calculateMVPandMIP(cyclists) {

@@ -70,11 +70,10 @@
             </table>
         </div>
     
-        <div id="RiderTrajectoryTab" class="tabcontent">
-            <div class="chart-container">
-                <div id="trajectoryChart"></div>
-                <div class="legend-container" id="customLegend"></div>
-            </div>
+<div id="RiderTrajectoryTab" class="tabcontent">
+    <div class="trajectory-container">
+        <div class="trajectory-header">
+            <h2>Rider Point Trajectories</h2>
             <div class="dropdown-container">
                 <select id="riderSelect" class="styled-select" onchange="updateTrajectoryChart()">
                     <option value="top10">Top 10 Riders</option>
@@ -83,11 +82,19 @@
                     <!-- Individual rider options will be populated here -->
                 </select>
             </div>
-            <div class="mvp-mip-container">
-                <div id="mvpInfo" class="info-box"></div>
-                <div id="mipInfo" class="info-box"></div>
-            </div>
         </div>
+        <div class="chart-legend-container">
+            <div class="chart-container">
+                <div id="trajectoryChart"></div>
+            </div>
+            <div class="legend-container" id="customLegend"></div>
+        </div>
+    </div>
+    <div class="mvp-mip-container">
+        <div id="mvpInfo" class="info-box"></div>
+        <div id="mipInfo" class="info-box"></div>
+    </div>
+</div>
 
         <div id="IdealTeamTab" class="tabcontent">
             <h2>Dream Team (Max Cost: 100)</h2>

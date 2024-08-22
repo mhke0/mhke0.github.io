@@ -601,31 +601,33 @@ function displayDreamTeam(dreamTeam) {
                 }
             },
             xaxis: {
-                title: 'Date',
-                titlefont: {
-                    family: 'VT323, monospace',
-                    size: 16,
-                    color: '#ff1493'
-                },
-                tickfont: {
+            title: 'Date',
+            tickangle: -45,
+            titlefont: {
+                family: 'VT323, monospace',
+                size: 16,
+                color: '#ff1493'
+            },
+            tickfont: {
                 family: 'VT323, monospace',
                 size: 14,
                 color: '#ff1493'
             }
+        },
+                  xaxis: {
+            title: 'Points',
+            tickangle: -45,
+            titlefont: {
+                family: 'VT323, monospace',
+                size: 16,
+                color: '#ff1493'
             },
-            yaxis: {
-                title: 'Points',
-                titlefont: {
-                    family: 'VT323, monospace',
-                    size: 16,
-                    color: '#ff1493'
-                },
-                tickfont: {
+            tickfont: {
                 family: 'VT323, monospace',
                 size: 14,
                 color: '#ff1493'
             }
-            },
+        },
             legend: {
                 font: {
                     family: 'VT323, monospace',

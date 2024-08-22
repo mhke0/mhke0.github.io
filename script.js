@@ -320,14 +320,27 @@ function createLeagueScoresChart(leagueScores) {
         "Team Fiestina": 8964
     };
 
-    function getUniqueTeamNames(baseData, middleData, leagueScores) {
-        const allNames = [
-            ...Object.keys(baseData),
-            ...Object.keys(middleData),
-            ...leagueScores.map(team => team.name)
-        ];
-        return [...new Set(allNames)];
+function getUniqueTeamNames(baseData, middleData, leagueScores) {
+    const allNames = [
+        ...Object.keys(baseData),
+        ...Object.keys(middleData)
+    ];
+
+    // Handle different possible structures of leagueScores
+    if (Array.isArray(leagueScores)) {
+        allNames.push(...leagueScores.map(team => team.name));
+    } else if (typeof leagueScores === 'object' && leagueScores !== null) {
+        if (Array.isArray(leagueScores.current)) {
+            allNames.push(...leagueScores.current.map(team => team.name));
+        } else {
+            allNames.push(...Object.keys(leagueScores));
+        }
     }
+
+    return [...new Set(allNames)];
+}
+
+    const uniqueTeamNames = getUniqueTeamNames(baseData, middleData, leagueScores);
 
     const uniqueTeamNames = getUniqueTeamNames(baseData, middleData, leagueScores);
 

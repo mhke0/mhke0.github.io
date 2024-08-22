@@ -2,10 +2,16 @@
 // Global variable to store the cyclist data
 let cyclistData;
 
+// Global variable to store the cyclist data
+let cyclistData;
+
 $(document).ready(function() {
     $.getJSON('cyclist-data.json', function(data) {
         $('#loading').hide();
         $('#dashboard').show();
+
+        console.log('Entire data object:', data); // For debugging
+        console.log('League Scores Data:', data.league_scores); // For debugging
 
         if (!data.cyclists || !data.league_scores) {
             throw new Error("Missing required data in JSON file");
@@ -86,13 +92,9 @@ $(document).ready(function() {
 
         // Create league-related charts
         if (data.league_scores) {
-            if (data.league_scores.current && Array.isArray(data.league_scores.current)) {
-                createLeagueScoresChart(data.league_scores);
-                createRelativePerformanceChart(data.league_scores.current);
-                createTrendPredictionChart(data.league_scores);
-            } else {
-                console.error('League scores data is in an unexpected format:', data.league_scores);
-            }
+            createLeagueScoresChart(data.league_scores);
+            createRelativePerformanceChart(data.league_scores);
+            createTrendPredictionChart(data.league_scores);
         } else {
             console.error('League scores data is missing');
         }
@@ -938,83 +940,42 @@ function createRelativePerformanceChart(leagueScores) {
     Plotly.newPlot('relativePerformanceChart', [trace], layout);
 }
 
-function createTrendPredictionChart(leagueScores) {
-    console.log('League Scores for Trend Chart:', leagueScores); // For debugging
+function createRelativePerformanceChart(leagueScores) {
+    console.log('League Scores:', leagueScores); // For debugging
 
-    // Ensure we have historical data
-    if (!leagueScores.history || leagueScores.history.length === 0) {
-        console.warn('No historical data available for trend and prediction chart');
-        // If no historical data, use current data as a single point
-        if (leagueScores.current && Array.isArray(leagueScores.current)) {
-            leagueScores.history = [{
-                date: new Date().toISOString().split('T')[0], // Current date
-                scores: leagueScores.current
-            }];
-        } else {
-            console.error('Invalid league scores data structure');
-            return;
-        }
+    // Check if leagueScores is an object with a 'current' property
+    if (leagueScores && typeof leagueScores === 'object' && Array.isArray(leagueScores.current)) {
+        leagueScores = leagueScores.current;
     }
 
-    // Process historical data
-    const teamData = {};
-    leagueScores.history.forEach(entry => {
-        entry.scores.forEach(score => {
-            if (!teamData[score.name]) {
-                teamData[score.name] = [];
-            }
-            teamData[score.name].push({ date: new Date(entry.date), points: score.points });
-        });
-    });
+    // Ensure leagueScores is an array
+    if (!Array.isArray(leagueScores)) {
+        console.error('League scores is not an array:', leagueScores);
+        return; // Exit the function if leagueScores is not an array
+    }
 
-    // Create traces for each team
-    const traces = Object.entries(teamData).map(([teamName, data]) => {
-        // Sort data points by date
-        data.sort((a, b) => a.date - b.date);
+    const averageScore = leagueScores.reduce((sum, team) => sum + team.points, 0) / leagueScores.length;
+    
+    const data = leagueScores.map(team => ({
+        name: team.name,
+        relativePerformance: ((team.points - averageScore) / averageScore) * 100
+    }));
 
-        let trace = {
-            name: teamName,
-            x: data.map(d => d.date),
-            y: data.map(d => d.points),
-            type: 'scatter',
-            mode: 'lines+markers',
-            line: { width: 2 },
-            marker: { size: 6 },
-        };
-
-        // If we have more than one data point, add prediction
-        if (data.length > 1) {
-            // Calculate linear regression
-            const xValues = data.map(d => d.date.getTime());
-            const yValues = data.map(d => d.points);
-            const n = xValues.length;
-            const sumX = xValues.reduce((a, b) => a + b, 0);
-            const sumY = yValues.reduce((a, b) => a + b, 0);
-            const sumXY = xValues.reduce((total, x, i) => total + x * yValues[i], 0);
-            const sumXX = xValues.reduce((total, x) => total + x * x, 0);
-            const slope = (n * sumXY - sumX * sumY) / (n * sumXX - sumX * sumX);
-            const intercept = (sumY - slope * sumX) / n;
-
-            // Predict next 7 days
-            const lastDate = new Date(Math.max(...xValues));
-            const predictedData = [...Array(7)].map((_, i) => {
-                const date = new Date(lastDate.getTime() + (i + 1) * 24 * 60 * 60 * 1000);
-                const points = slope * date.getTime() + intercept;
-                return { date, points };
-            });
-
-            // Add predicted data to the trace
-            trace.x = [...trace.x, ...predictedData.map(d => d.date)];
-            trace.y = [...trace.y, ...predictedData.map(d => d.points)];
-            trace.line.dash = i => i >= data.length ? 'dot' : 'solid';
-        }
-
-        return trace;
-    });
+    const trace = {
+        x: data.map(d => d.name),
+        y: data.map(d => d.relativePerformance),
+        type: 'bar',
+        marker: {
+            color: data.map(d => d.relativePerformance >= 0 ? 'green' : 'red')
+        },
+        text: data.map(d => d.relativePerformance.toFixed(2) + '%'),
+        textposition: 'auto',
+        hoverinfo: 'x+text'
+    };
 
     const layout = {
         title: {
-            text: data.length > 1 ? 'Team Performance Trend and Prediction' : 'Current Team Performance',
+            text: 'Team Performance Relative to Average',
             font: {
                 family: 'VT323, monospace',
                 size: 24,
@@ -1022,7 +983,8 @@ function createTrendPredictionChart(leagueScores) {
             }
         },
         xaxis: {
-            title: 'Date',
+            title: '',
+            tickangle: -45,
             titlefont: {
                 family: 'VT323, monospace',
                 size: 16,
@@ -1032,11 +994,10 @@ function createTrendPredictionChart(leagueScores) {
                 family: 'VT323, monospace',
                 size: 14,
                 color: '#ff1493'
-            },
-            tickangle: -45,
+            }
         },
         yaxis: {
-            title: 'Points',
+            title: 'Performance Relative to Average (%)',
             titlefont: {
                 family: 'VT323, monospace',
                 size: 16,
@@ -1046,17 +1007,11 @@ function createTrendPredictionChart(leagueScores) {
                 family: 'VT323, monospace',
                 size: 14,
                 color: '#ff1493'
-            },
-        },
-        legend: {
-            font: {
-                family: 'VT323, monospace',
-                size: 12,
-            },
+            }
         },
         paper_bgcolor: '#fff0f5',
         plot_bgcolor: '#fff0f5',
-        height: 600,
+        height: 500,
         margin: {
             l: 50,
             r: 50,
@@ -1066,7 +1021,7 @@ function createTrendPredictionChart(leagueScores) {
         }
     };
 
-    Plotly.newPlot('trendPredictionChart', traces, layout);
+    Plotly.newPlot('relativePerformanceChart', [trace], layout);
 }
 
 function updateVisitCount() {

@@ -169,6 +169,7 @@ function createTop50Chart(top50Cyclists) {
         xaxis: {
             title: '',
             tickangle: -45,
+            automargin: true,
             titlefont: {
                 family: 'VT323, monospace',
                 size: 16,
@@ -193,26 +194,23 @@ function createTop50Chart(top50Cyclists) {
                 color: '#ff1493'
             }
         },
-        legend: {
-            font: {
-                family: 'VT323, monospace',
-                size: 14,
-                color: '#000000'
-            }
-        },
-        paper_bgcolor: '#fff0f5',
-        plot_bgcolor: '#fff0f5',
-        height: 500,
+        autosize: true,
         margin: {
-            l: 50,
+            l: 80,
             r: 50,
             b: 100,
-            t: 50,
+            t: 100,
             pad: 4
-        }
+        },
+        paper_bgcolor: '#fff0f5',
+        plot_bgcolor: '#fff0f5'
     };
 
-    Plotly.newPlot('top50Chart', [trace], layout);
+    const config = {
+        responsive: true
+    };
+
+    Plotly.newPlot('top50Chart', [trace], layout, config);
 }
 
 function createPointsPerNameLengthChart(cyclists) {

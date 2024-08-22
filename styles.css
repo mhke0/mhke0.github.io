@@ -79,9 +79,9 @@ tr:nth-child(odd) {
 
 .chart-container {
     width: 90%;
-    max-width: 1100px;
+    max-width: 1000px;
     margin: 0 auto 20px;
-    height: 600px;
+    height: 550px;
     background-color: #fff0f5;
     border: 2px solid #ff69b4;
     padding: 10px;
@@ -90,6 +90,12 @@ tr:nth-child(odd) {
     flex-direction: column;
     align-items: center;
 }
+
+#trajectoryChart {
+    width: 100%;
+    height: 100%;
+}
+
 
 
 .dropdown-container {
@@ -156,10 +162,7 @@ tr:nth-child(odd) {
 
 
 
-#trajectoryChart {
-    width: 100%;
-    height: 100%;
-}
+
 
 
 .mvp-mip-container {
@@ -241,14 +244,14 @@ tr:nth-child(odd) {
 }
 
 .js-plotly-plot .plotly .legend {
-    max-height: 450px;
+    max-height: 400px;
     overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: #ff69b4 #fff0f5;
 }
 
 .js-plotly-plot .plotly .legend::-webkit-scrollbar {
-    width: 8px;
+    width: 6px;
 }
 
 .js-plotly-plot .plotly .legend::-webkit-scrollbar-track {
@@ -257,8 +260,11 @@ tr:nth-child(odd) {
 
 .js-plotly-plot .plotly .legend::-webkit-scrollbar-thumb {
     background-color: #ff69b4;
-    border-radius: 4px;
+    border-radius: 3px;
     border: 2px solid #fff0f5;
+}
+
+
 }
 @media screen and (max-width: 768px) {
     body {
@@ -302,4 +308,5 @@ tr:nth-child(odd) {
         width: 95%;
         height: 400px;
     }
+}
 }

@@ -85,12 +85,16 @@ $(document).ready(function() {
         });
 
         // Create league-related charts
-        if (leagueScores && leagueScores.current) {
-            createLeagueScoresChart(leagueScores);
-            createRelativePerformanceChart(leagueScores.current);
-            createTrendPredictionChart(leagueScores);
+        if (data.league_scores) {
+            if (data.league_scores.current && Array.isArray(data.league_scores.current)) {
+                createLeagueScoresChart(data.league_scores);
+                createRelativePerformanceChart(data.league_scores.current);
+                createTrendPredictionChart(data.league_scores);
+            } else {
+                console.error('League scores data is in an unexpected format:', data.league_scores);
+            }
         } else {
-            console.error('League scores data is missing or in an unexpected format');
+            console.error('League scores data is missing');
         }
 
         // Initialize the trajectory chart with top 10 riders
@@ -935,10 +939,21 @@ function createRelativePerformanceChart(leagueScores) {
 }
 
 function createTrendPredictionChart(leagueScores) {
+    console.log('League Scores for Trend Chart:', leagueScores); // For debugging
+
     // Ensure we have historical data
     if (!leagueScores.history || leagueScores.history.length === 0) {
-        console.error('No historical data available for trend and prediction chart');
-        return;
+        console.warn('No historical data available for trend and prediction chart');
+        // If no historical data, use current data as a single point
+        if (leagueScores.current && Array.isArray(leagueScores.current)) {
+            leagueScores.history = [{
+                date: new Date().toISOString().split('T')[0], // Current date
+                scores: leagueScores.current
+            }];
+        } else {
+            console.error('Invalid league scores data structure');
+            return;
+        }
     }
 
     // Process historical data
@@ -952,48 +967,54 @@ function createTrendPredictionChart(leagueScores) {
         });
     });
 
-    // Sort data points by date for each team
-    Object.values(teamData).forEach(data => data.sort((a, b) => a.date - b.date));
-
     // Create traces for each team
     const traces = Object.entries(teamData).map(([teamName, data]) => {
-        // Calculate linear regression
-        const xValues = data.map(d => d.date.getTime());
-        const yValues = data.map(d => d.points);
-        const n = xValues.length;
-        const sumX = xValues.reduce((a, b) => a + b, 0);
-        const sumY = yValues.reduce((a, b) => a + b, 0);
-        const sumXY = xValues.reduce((total, x, i) => total + x * yValues[i], 0);
-        const sumXX = xValues.reduce((total, x) => total + x * x, 0);
-        const slope = (n * sumXY - sumX * sumY) / (n * sumXX - sumX * sumX);
-        const intercept = (sumY - slope * sumX) / n;
+        // Sort data points by date
+        data.sort((a, b) => a.date - b.date);
 
-        // Predict next 7 days
-        const lastDate = new Date(Math.max(...xValues));
-        const predictedData = [...Array(7)].map((_, i) => {
-            const date = new Date(lastDate.getTime() + (i + 1) * 24 * 60 * 60 * 1000);
-            const points = slope * date.getTime() + intercept;
-            return { date, points };
-        });
-
-        return {
+        let trace = {
             name: teamName,
-            x: [...data.map(d => d.date), ...predictedData.map(d => d.date)],
-            y: [...data.map(d => d.points), ...predictedData.map(d => d.points)],
+            x: data.map(d => d.date),
+            y: data.map(d => d.points),
             type: 'scatter',
             mode: 'lines+markers',
-            line: {
-                dash: i => i >= data.length ? 'dot' : 'solid',
-            },
-            marker: {
-                size: 6,
-            },
+            line: { width: 2 },
+            marker: { size: 6 },
         };
+
+        // If we have more than one data point, add prediction
+        if (data.length > 1) {
+            // Calculate linear regression
+            const xValues = data.map(d => d.date.getTime());
+            const yValues = data.map(d => d.points);
+            const n = xValues.length;
+            const sumX = xValues.reduce((a, b) => a + b, 0);
+            const sumY = yValues.reduce((a, b) => a + b, 0);
+            const sumXY = xValues.reduce((total, x, i) => total + x * yValues[i], 0);
+            const sumXX = xValues.reduce((total, x) => total + x * x, 0);
+            const slope = (n * sumXY - sumX * sumY) / (n * sumXX - sumX * sumX);
+            const intercept = (sumY - slope * sumX) / n;
+
+            // Predict next 7 days
+            const lastDate = new Date(Math.max(...xValues));
+            const predictedData = [...Array(7)].map((_, i) => {
+                const date = new Date(lastDate.getTime() + (i + 1) * 24 * 60 * 60 * 1000);
+                const points = slope * date.getTime() + intercept;
+                return { date, points };
+            });
+
+            // Add predicted data to the trace
+            trace.x = [...trace.x, ...predictedData.map(d => d.date)];
+            trace.y = [...trace.y, ...predictedData.map(d => d.points)];
+            trace.line.dash = i => i >= data.length ? 'dot' : 'solid';
+        }
+
+        return trace;
     });
 
     const layout = {
         title: {
-            text: 'Team Performance Trend and Prediction',
+            text: data.length > 1 ? 'Team Performance Trend and Prediction' : 'Current Team Performance',
             font: {
                 family: 'VT323, monospace',
                 size: 24,

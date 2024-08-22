@@ -76,6 +76,8 @@
             <select id="riderSelect" class="styled-select" onchange="updateTrajectoryChart()">
                 <option value="top10">Top 10 Riders</option>
                 <option value="all">All Riders</option>
+                <option disabled>------------------------</option>
+                <!-- Individual rider options will be populated here -->
             </select>
         </div>
         <div id="trajectoryChart" class="chart-container"></div>
@@ -178,14 +180,14 @@ $(document).ready(function() {
             displayDreamTeam(data.dream_team);
         }
 
-        // Populate rider select options for trajectory chart
-        const riderSelect = $('#riderSelect');
-        cyclists.forEach(cyclist => {
-            riderSelect.append(`<option value="${cyclist.name}">${cyclist.name}</option>`);
-        });
+            const riderSelect = $('#riderSelect');
+            const sortedCyclists = data.cyclists.sort((a, b) => a.name.localeCompare(b.name));
+            sortedCyclists.forEach(cyclist => {
+                riderSelect.append(`<option value="${cyclist.name}">${cyclist.name}</option>`);
+            });
 
-        // Initialize the trajectory chart with top 10 riders
-        createTrajectoryChart(cyclists.slice(0, 10));
+            // Initialize the trajectory chart with top 10 riders
+            updateTrajectoryChart();
 
         // Open the default tab
         document.getElementById("defaultOpen").click();
@@ -728,7 +730,7 @@ function createTrajectoryChart(cyclists) {
         Plotly.newPlot('trajectoryChart', traces, layout);
     }
 
-    function updateTrajectoryChart() {
+  function updateTrajectoryChart() {
         const selectedOption = $('#riderSelect').val();
         let filteredCyclists;
 

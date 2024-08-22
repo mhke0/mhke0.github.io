@@ -2,9 +2,6 @@
 // Global variable to store the cyclist data
 let cyclistData;
 
-// Global variable to store the cyclist data
-let cyclistData;
-
 $(document).ready(function() {
     $.getJSON('cyclist-data.json', function(data) {
         $('#loading').hide();

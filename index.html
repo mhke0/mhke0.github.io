@@ -74,15 +74,16 @@
     
 <div id="RiderTrajectoryTab" class="tabcontent">
     <div class="chart-container">
-        <div class="dropdown-container">
-            <select id="riderSelect" class="styled-select" onchange="updateTrajectoryChart()">
-                <option value="top10">Top 10 Riders</option>
-                <option value="all">All Riders</option>
-                <option disabled>------------------------</option>
-                <!-- Individual rider options will be populated here -->
-            </select>
-        </div>
         <div id="trajectoryChart"></div>
+        <div class="legend-container" id="customLegend"></div>
+    </div>
+    <div class="dropdown-container">
+        <select id="riderSelect" class="styled-select" onchange="updateTrajectoryChart()">
+            <option value="top10">Top 10 Riders</option>
+            <option value="all">All Riders</option>
+            <option disabled>------------------------</option>
+            <!-- Individual rider options will be populated here -->
+        </select>
     </div>
     <div class="mvp-mip-container">
         <div id="mvpInfo" class="info-box"></div>

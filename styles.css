@@ -31,10 +31,11 @@ h1, h2 {
 
 table {
     width: 80%;
+    max-width: 1000px;
+    margin: 0 auto 20px;
     border-collapse: collapse;
-    margin-bottom: 10px;
-    margin: 0 0 0;
     border: 2px solid #ff69b4;
+    background-color: #fff0f5;
 }
 
 th, td {
@@ -44,14 +45,20 @@ th, td {
 }
 
 th {
-    background-color: #fff0f5;
+    background-color: #ff69b4;
+    color: #ffffff;
     font-weight: bold;
     cursor: pointer;
 }
 
 tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+tr:nth-child(odd) {
     background-color: #fff0f5;
 }
+
 
 .stats-container {
     display: flex;

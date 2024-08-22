@@ -95,6 +95,7 @@ def fetch_league_scores():
 
     return teams
 
+
 def numpy_to_python(obj):
     if isinstance(obj, np.integer):
         return int(obj)
@@ -206,14 +207,18 @@ def load_existing_data(filename):
         for cyclist in data['cyclists']:
             if 'pointHistory' not in cyclist:
                 cyclist['pointHistory'] = []
+        # Ensure league_scores have a history
+        if 'league_scores' in data and isinstance(data['league_scores'], list):
+            data['league_scores'] = {'current': data['league_scores'], 'history': []}
         return data
     except FileNotFoundError:
-        return {'cyclists': [], 'top_50_efficiency': [], 'league_scores': [], 'dream_team': None, 'last_update': None}
+        return {'cyclists': [], 'top_50_efficiency': [], 'league_scores': {'current': [], 'history': []}, 'dream_team': None, 'last_update': None}
 
 
-def update_historical_data(existing_data, new_cyclists):
+def update_historical_data(existing_data, new_cyclists, new_league_scores):
     today = datetime.now().strftime('%Y-%m-%d')
     
+    # Update cyclist data
     for new_cyclist in new_cyclists:
         existing_cyclist = next((c for c in existing_data['cyclists'] if c['name'] == new_cyclist['name']), None)
         
@@ -249,10 +254,29 @@ def update_historical_data(existing_data, new_cyclists):
     # Remove cyclists that are no longer present in the new data
     existing_data['cyclists'] = [c for c in existing_data['cyclists'] if any(nc['name'] == c['name'] for nc in new_cyclists)]
     
+    # Update league scores
+    if 'league_scores' not in existing_data:
+        existing_data['league_scores'] = {'current': [], 'history': []}
+    
+    # Add current scores to history
+    if existing_data['league_scores']['current']:
+        history_entry = {
+            'date': existing_data['last_update'] or (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d'),
+            'scores': existing_data['league_scores']['current']
+        }
+        existing_data['league_scores']['history'].append(history_entry)
+    
+    # Update current scores
+    existing_data['league_scores']['current'] = new_league_scores
+    
+    # Keep only the last 30 days of league score history
+    existing_data['league_scores']['history'] = sorted(existing_data['league_scores']['history'], key=lambda x: x['date'])[-30:]
+    
     # Update the last update timestamp
     existing_data['last_update'] = today
     
     return existing_data
+
 
 def main():
     cyclist_url = "https://www.velogames.com/spain/2024/riders.php"
@@ -273,14 +297,14 @@ def main():
 
         print(f"Extracted data for {len(new_cyclists)} cyclists", file=sys.stderr)
 
+        print("Fetching league scores", file=sys.stderr)
+        new_league_scores = fetch_league_scores()
+
         print("Updating historical data", file=sys.stderr)
-        updated_data = update_historical_data(existing_data, new_cyclists)
+        updated_data = update_historical_data(existing_data, new_cyclists, new_league_scores)
 
         print("Creating top 50 efficiency data", file=sys.stderr)
         updated_data['top_50_efficiency'] = create_top_50_efficiency_data(updated_data['cyclists'])
-
-        print("Fetching league scores", file=sys.stderr)
-        updated_data['league_scores'] = fetch_league_scores()
 
         print("Selecting dream team (optimized)", file=sys.stderr)
         dream_team, total_points, total_cost = select_dream_team_optimized(updated_data['cyclists'])

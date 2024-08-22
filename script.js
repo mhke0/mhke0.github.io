@@ -600,7 +600,8 @@ function createTrajectoryChart(cyclists) {
         marker: { 
             size: 6,
             color: customColorScheme[index % customColorScheme.length]
-        }
+        },
+        showlegend: false  // This line disables the legend for each trace
     }));
 
     const layout = {
@@ -640,16 +641,7 @@ function createTrajectoryChart(cyclists) {
                 color: '#ff1493'
             }
         },
-        legend: {
-            font: {
-                family: 'VT323, monospace',
-                size: 12,
-                color: '#000000'
-            },
-            bgcolor: '#fff0f5',
-            bordercolor: '#ff69b4',
-            borderwidth: 2
-        },
+        showlegend: false,  // This line disables the entire legend
         autosize: true,
         paper_bgcolor: '#fff0f5',
         plot_bgcolor: '#fff0f5'

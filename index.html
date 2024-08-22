@@ -70,13 +70,15 @@
                 <tbody></tbody>
             </table>
         </div>
-        <div id="RiderTrajectoryTab" class="tabcontent">
-    <h2>Rider Point Trajectories</h2>
-    <div class="chart-controls">
-        <select id="riderSelect" onchange="updateTrajectoryChart()">
-        </select>
-    </div>
-    <div id="trajectoryChart" class="chart-container"></div>
+    <div id="RiderTrajectoryTab" class="tabcontent">
+        <h2>Rider Point Trajectories</h2>
+        <div class="chart-controls">
+            <select id="riderSelect" class="styled-select" onchange="updateTrajectoryChart()">
+                <option value="top10">Top 10 Riders</option>
+                <option value="all">All Riders</option>
+            </select>
+        </div>
+        <div id="trajectoryChart" class="chart-container"></div>
     </div>
             <div id="IdealTeamTab" class="tabcontent">
                 <h2>Dream Team (Max Cost: 100)</h2>
@@ -679,58 +681,70 @@ function displayDreamTeam(dreamTeam) {
 }
 
 function createTrajectoryChart(cyclists) {
-    const traces = cyclists.map(cyclist => ({
-        x: cyclist.pointHistory.map(h => h.date),
-        y: cyclist.pointHistory.map(h => h.points),
-        type: 'scatter',
-        mode: 'lines+markers',
-        name: cyclist.name
-    }));
+        const traces = cyclists.map(cyclist => ({
+            x: cyclist.pointHistory.map(h => h.date.split('T')[0]), // Only use the date part
+            y: cyclist.pointHistory.map(h => h.points),
+            type: 'scatter',
+            mode: 'lines+markers',
+            name: cyclist.name
+        }));
 
-    const layout = {
-        title: {
-            text: 'Rider Point Trajectories',
-            font: {
-                family: 'VT323, monospace',
-                size: 24,
-                color: '#ff1493'
-            }
-        },
-        xaxis: {
-            title: 'Date',
-            titlefont: {
-                family: 'VT323, monospace',
-                size: 16,
-                color: '#ff1493'
-            }
-        },
-        yaxis: {
-            title: 'Points',
-            titlefont: {
-                family: 'VT323, monospace',
-                size: 16,
-                color: '#ff1493'
-            }
-        },
-        legend: {
-            font: {
-                family: 'VT323, monospace',
-                size: 14,
-                color: '#000000'
-            }
-        },
-        paper_bgcolor: '#fff0f5',
-        plot_bgcolor: '#fff0f5'
-    };
+        const layout = {
+            title: {
+                text: 'Rider Point Trajectories',
+                font: {
+                    family: 'VT323, monospace',
+                    size: 24,
+                    color: '#ff1493'
+                }
+            },
+            xaxis: {
+                title: 'Date',
+                titlefont: {
+                    family: 'VT323, monospace',
+                    size: 16,
+                    color: '#ff1493'
+                }
+            },
+            yaxis: {
+                title: 'Points',
+                titlefont: {
+                    family: 'VT323, monospace',
+                    size: 16,
+                    color: '#ff1493'
+                }
+            },
+            legend: {
+                font: {
+                    family: 'VT323, monospace',
+                    size: 14,
+                    color: '#000000'
+                }
+            },
+            paper_bgcolor: '#fff0f5',
+            plot_bgcolor: '#fff0f5'
+        };
 
-    Plotly.newPlot('trajectoryChart', traces, layout);
-}
+        Plotly.newPlot('trajectoryChart', traces, layout);
+    }
 
-function updateTrajectoryChart() {
-    const selectedRiders = $('#riderSelect').val();
-    const filteredCyclists = cyclistData.cyclists.filter(c => selectedRiders.includes(c.name));
-    createTrajectoryChart(filteredCyclists);
-}
+    function updateTrajectoryChart() {
+        const selectedOption = $('#riderSelect').val();
+        let filteredCyclists;
+
+        if (selectedOption === 'top10') {
+            filteredCyclists = cyclistData.cyclists
+                .sort((a, b) => b.points - a.points)
+                .slice(0, 10);
+        } else if (selectedOption === 'all') {
+            filteredCyclists = cyclistData.cyclists;
+        } else {
+            filteredCyclists = cyclistData.cyclists.filter(c => c.name === selectedOption);
+        }
+
+        createTrajectoryChart(filteredCyclists);
+    }
+
 
 function openTab(evt, tabName) {
     var i, tabcontent, tablinks;
@@ -746,9 +760,9 @@ function openTab(evt, tabName) {
     evt.currentTarget.className += " active";
 
     // Render the trajectory chart when its tab is opened
-    if (tabName === 'RiderTrajectoryTab') {
-        createTrajectoryChart(cyclistData.cyclists.slice(0, 10));
-    }
+        if (tabName === 'RiderTrajectoryTab') {
+            updateTrajectoryChart(); // Use updateTrajectoryChart instead of createTrajectoryChart
+        }
 }
 
 function sortTable(columnIndex) {

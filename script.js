@@ -653,8 +653,8 @@ function createTrajectoryChart(cyclists) {
             t: 50,
             pad: 4
         },
+        width: 700,
         height: 500,
-        width: 800,
         autosize: false,
         paper_bgcolor: '#fff0f5',
         plot_bgcolor: '#fff0f5'

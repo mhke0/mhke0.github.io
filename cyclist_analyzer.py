@@ -221,6 +221,10 @@ def update_historical_data(existing_data, new_cyclists):
                 'cost_per_point': new_cyclist['cost_per_point']
             })
             
+            # Ensure pointHistory exists
+            if 'pointHistory' not in existing_cyclist:
+                existing_cyclist['pointHistory'] = []
+            
             # Add today's points to historical data
             existing_cyclist['pointHistory'].append({'date': today, 'points': new_cyclist['points']})
             
@@ -235,7 +239,7 @@ def update_historical_data(existing_data, new_cyclists):
     existing_data['cyclists'] = [c for c in existing_data['cyclists'] if any(nc['name'] == c['name'] for nc in new_cyclists)]
     
     return existing_data
-
+    
 def main():
     cyclist_url = "https://www.velogames.com/spain/2024/riders.php"
     output_file = "cyclist-data.json"

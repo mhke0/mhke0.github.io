@@ -219,21 +219,27 @@ def update_historical_data(existing_data, new_cyclists):
                 'cost_per_point': new_cyclist['cost_per_point']
             })
             
-            # Ensure pointHistory exists
-            if 'pointHistory' not in existing_cyclist:
-                existing_cyclist['pointHistory'] = []
+            # Ensure pointHistory exists and has at least one entry
+            if not existing_cyclist.get('pointHistory'):
+                existing_cyclist['pointHistory'] = [{'date': yesterday, 'points': new_cyclist['points']}]
             
-            # If there's existing history, update the last entry's date to yesterday
-            if existing_cyclist['pointHistory']:
-                existing_cyclist['pointHistory'][-1]['date'] = yesterday
+            # Get the last entry
+            last_entry = existing_cyclist['pointHistory'][-1]
             
-            # Add today's points to historical data
-            existing_cyclist['pointHistory'].append({'date': today, 'points': new_cyclist['points']})
+            # If the last entry has lower points, use it for yesterday
+            if last_entry['points'] <= new_cyclist['points']:
+                yesterday_points = last_entry['points']
+            else:
+                # If last entry has higher points, use current points for both days
+                yesterday_points = new_cyclist['points']
             
-            # Keep only the last 30 days of historical data
-            existing_cyclist['pointHistory'] = existing_cyclist['pointHistory'][-30:]
+            # Update to have exactly two entries: yesterday and today
+            existing_cyclist['pointHistory'] = [
+                {'date': yesterday, 'points': yesterday_points},
+                {'date': today, 'points': new_cyclist['points']}
+            ]
         else:
-            # Add new cyclist with initial historical data
+            # Add new cyclist with initial two-day historical data
             new_cyclist['pointHistory'] = [
                 {'date': yesterday, 'points': new_cyclist['points']},
                 {'date': today, 'points': new_cyclist['points']}

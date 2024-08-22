@@ -6,8 +6,14 @@
       "role": "All Rounder",
       "cost": 24.0,
       "ownership": 38.1,
-      "points": 435.0,
-      "cost_per_point": 0.05517241379310345
+      "points": 471.0,
+      "cost_per_point": 0.050955414012738856,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 435.0
+        }
+      ]
     },
     {
       "name": "Sepp Kuss",
@@ -15,8 +21,14 @@
       "role": "Climber",
       "cost": 20.0,
       "ownership": 28.6,
-      "points": 102.0,
-      "cost_per_point": 0.19607843137254902
+      "points": 138.0,
+      "cost_per_point": 0.14492753623188406,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 102.0
+        }
+      ]
     },
     {
       "name": "João Almeida",
@@ -24,8 +36,14 @@
       "role": "All Rounder",
       "cost": 20.0,
       "ownership": 47.9,
-      "points": 352.0,
-      "cost_per_point": 0.056818181818181816
+      "points": 378.0,
+      "cost_per_point": 0.05291005291005291,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 352.0
+        }
+      ]
     },
     {
       "name": "Adam Yates",
@@ -33,8 +51,14 @@
       "role": "All Rounder",
       "cost": 20.0,
       "ownership": 29.7,
-      "points": 50.0,
-      "cost_per_point": 0.4
+      "points": 56.0,
+      "cost_per_point": 0.35714285714285715,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 50.0
+        }
+      ]
     },
     {
       "name": "Wout Van Aert",
@@ -42,8 +66,14 @@
       "role": "Sprinter",
       "cost": 18.0,
       "ownership": 53.5,
-      "points": 912.0,
-      "cost_per_point": 0.019736842105263157
+      "points": 924.0,
+      "cost_per_point": 0.01948051948051948,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 912.0
+        }
+      ]
     },
     {
       "name": "Enric Mas",
@@ -51,8 +81,14 @@
       "role": "Climber",
       "cost": 16.0,
       "ownership": 8.9,
-      "points": 188.0,
-      "cost_per_point": 0.0851063829787234
+      "points": 204.0,
+      "cost_per_point": 0.0784313725490196,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 188.0
+        }
+      ]
     },
     {
       "name": "Carlos Rodríguez",
@@ -60,8 +96,14 @@
       "role": "All Rounder",
       "cost": 14.0,
       "ownership": 23.4,
-      "points": 6.0,
-      "cost_per_point": 2.3333333333333335
+      "points": 7.0,
+      "cost_per_point": 2.0,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 6.0
+        }
+      ]
     },
     {
       "name": "Daniel Martínez",
@@ -69,8 +111,14 @@
       "role": "All Rounder",
       "cost": 14.0,
       "ownership": 12.0,
-      "points": 32.0,
-      "cost_per_point": 0.4375
+      "points": 40.0,
+      "cost_per_point": 0.35,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 32.0
+        }
+      ]
     },
     {
       "name": "Mikel Landa",
@@ -78,8 +126,14 @@
       "role": "Climber",
       "cost": 14.0,
       "ownership": 26.0,
-      "points": 119.0,
-      "cost_per_point": 0.11764705882352941
+      "points": 128.0,
+      "cost_per_point": 0.109375,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 119.0
+        }
+      ]
     },
     {
       "name": "Kaden Groves",
@@ -87,8 +141,14 @@
       "role": "Sprinter",
       "cost": 12.0,
       "ownership": 24.5,
-      "points": 640.0,
-      "cost_per_point": 0.01875
+      "points": 648.0,
+      "cost_per_point": 0.018518518518518517,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 640.0
+        }
+      ]
     },
     {
       "name": "Richard Carapaz",
@@ -96,8 +156,14 @@
       "role": "Climber",
       "cost": 12.0,
       "ownership": 44.2,
-      "points": 0.0,
-      "cost_per_point": "Infinity"
+      "points": 16.0,
+      "cost_per_point": 0.75,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        }
+      ]
     },
     {
       "name": "Mattias Skjelmose",
@@ -105,8 +171,14 @@
       "role": "All Rounder",
       "cost": 12.0,
       "ownership": 25.2,
-      "points": 118.0,
-      "cost_per_point": 0.1016949152542373
+      "points": 129.0,
+      "cost_per_point": 0.09302325581395349,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 118.0
+        }
+      ]
     },
     {
       "name": "Cian Uijtdebroeks",
@@ -115,7 +187,13 @@
       "cost": 12.0,
       "ownership": 8.2,
       "points": 36.0,
-      "cost_per_point": 0.3333333333333333
+      "cost_per_point": 0.3333333333333333,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 36.0
+        }
+      ]
     },
     {
       "name": "Isaac Del Toro",
@@ -123,8 +201,14 @@
       "role": "Climber",
       "cost": 12.0,
       "ownership": 14.9,
-      "points": 62.0,
-      "cost_per_point": 0.1935483870967742
+      "points": 140.0,
+      "cost_per_point": 0.08571428571428572,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 62.0
+        }
+      ]
     },
     {
       "name": "Antonio Tiberi",
@@ -132,8 +216,14 @@
       "role": "All Rounder",
       "cost": 10.0,
       "ownership": 10.9,
-      "points": 138.0,
-      "cost_per_point": 0.07246376811594203
+      "points": 160.0,
+      "cost_per_point": 0.0625,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 138.0
+        }
+      ]
     },
     {
       "name": "Bryan Coquard",
@@ -142,7 +232,13 @@
       "cost": 10.0,
       "ownership": 6.5,
       "points": 250.0,
-      "cost_per_point": 0.04
+      "cost_per_point": 0.04,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 250.0
+        }
+      ]
     },
     {
       "name": "Felix Gall",
@@ -150,8 +246,14 @@
       "role": "Climber",
       "cost": 10.0,
       "ownership": 5.4,
-      "points": 156.0,
-      "cost_per_point": 0.0641025641025641
+      "points": 192.0,
+      "cost_per_point": 0.052083333333333336,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 156.0
+        }
+      ]
     },
     {
       "name": "Ben O'Connor",
@@ -159,8 +261,14 @@
       "role": "Climber",
       "cost": 10.0,
       "ownership": 15.7,
-      "points": 4.0,
-      "cost_per_point": 2.5
+      "points": 299.0,
+      "cost_per_point": 0.033444816053511704,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 4.0
+        }
+      ]
     },
     {
       "name": "Thymen Arensman",
@@ -169,7 +277,13 @@
       "cost": 10.0,
       "ownership": 9.9,
       "points": 0.0,
-      "cost_per_point": "Infinity"
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        }
+      ]
     },
     {
       "name": "Jhonatan Narváez",
@@ -178,7 +292,13 @@
       "cost": 10.0,
       "ownership": 16.7,
       "points": 95.0,
-      "cost_per_point": 0.10526315789473684
+      "cost_per_point": 0.10526315789473684,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 95.0
+        }
+      ]
     },
     {
       "name": "Giulio Ciccone",
@@ -187,7 +307,13 @@
       "cost": 10.0,
       "ownership": 11.5,
       "points": 12.0,
-      "cost_per_point": 0.8333333333333334
+      "cost_per_point": 0.8333333333333334,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 12.0
+        }
+      ]
     },
     {
       "name": "Tao Geoghegan Hart",
@@ -196,7 +322,13 @@
       "cost": 10.0,
       "ownership": 7.6,
       "points": 12.0,
-      "cost_per_point": 0.8333333333333334
+      "cost_per_point": 0.8333333333333334,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 12.0
+        }
+      ]
     },
     {
       "name": "Lennert Van Eetvelt",
@@ -204,8 +336,14 @@
       "role": "Climber",
       "cost": 10.0,
       "ownership": 10.6,
-      "points": 344.0,
-      "cost_per_point": 0.029069767441860465
+      "points": 369.0,
+      "cost_per_point": 0.02710027100271003,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 344.0
+        }
+      ]
     },
     {
       "name": "Aleksandr Vlasov",
@@ -213,8 +351,14 @@
       "role": "All Rounder",
       "cost": 10.0,
       "ownership": 3.0,
-      "points": 182.0,
-      "cost_per_point": 0.054945054945054944
+      "points": 238.0,
+      "cost_per_point": 0.04201680672268908,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 182.0
+        }
+      ]
     },
     {
       "name": "Max Poole",
@@ -223,7 +367,13 @@
       "cost": 10.0,
       "ownership": 4.5,
       "points": 8.0,
-      "cost_per_point": 1.25
+      "cost_per_point": 1.25,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 8.0
+        }
+      ]
     },
     {
       "name": "Brandon McNulty",
@@ -231,8 +381,14 @@
       "role": "All Rounder",
       "cost": 10.0,
       "ownership": 4.3,
-      "points": 388.0,
-      "cost_per_point": 0.02577319587628866
+      "points": 394.0,
+      "cost_per_point": 0.025380710659898477,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 388.0
+        }
+      ]
     },
     {
       "name": "Jay Vine",
@@ -240,8 +396,14 @@
       "role": "All Rounder",
       "cost": 10.0,
       "ownership": 3.0,
-      "points": 102.0,
-      "cost_per_point": 0.09803921568627451
+      "points": 138.0,
+      "cost_per_point": 0.07246376811594203,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 102.0
+        }
+      ]
     },
     {
       "name": "Ide Schelling",
@@ -250,7 +412,13 @@
       "cost": 8.0,
       "ownership": 0.8,
       "points": 20.0,
-      "cost_per_point": 0.4
+      "cost_per_point": 0.4,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 20.0
+        }
+      ]
     },
     {
       "name": "Damiano Caruso",
@@ -259,7 +427,13 @@
       "cost": 8.0,
       "ownership": 1.9,
       "points": 0.0,
-      "cost_per_point": "Infinity"
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        }
+      ]
     },
     {
       "name": "Guillaume Martin",
@@ -268,7 +442,13 @@
       "cost": 8.0,
       "ownership": 1.6,
       "points": 0.0,
-      "cost_per_point": "Infinity"
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        }
+      ]
     },
     {
       "name": "Victor Lafay",
@@ -276,8 +456,14 @@
       "role": "Unclassed",
       "cost": 8.0,
       "ownership": 6.6,
-      "points": 4.0,
-      "cost_per_point": 2.0
+      "points": 28.0,
+      "cost_per_point": 0.2857142857142857,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 4.0
+        }
+      ]
     },
     {
       "name": "Valentin Paret-Peintre",
@@ -285,8 +471,14 @@
       "role": "Climber",
       "cost": 8.0,
       "ownership": 5.8,
-      "points": 4.0,
-      "cost_per_point": 2.0
+      "points": 28.0,
+      "cost_per_point": 0.2857142857142857,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 4.0
+        }
+      ]
     },
     {
       "name": "David Gaudu",
@@ -294,8 +486,14 @@
       "role": "Climber",
       "cost": 8.0,
       "ownership": 4.7,
-      "points": 37.0,
-      "cost_per_point": 0.21621621621621623
+      "points": 101.0,
+      "cost_per_point": 0.07920792079207921,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 37.0
+        }
+      ]
     },
     {
       "name": "Joshua Tarling",
@@ -304,7 +502,13 @@
       "cost": 8.0,
       "ownership": 29.5,
       "points": 141.0,
-      "cost_per_point": 0.05673758865248227
+      "cost_per_point": 0.05673758865248227,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 141.0
+        }
+      ]
     },
     {
       "name": "Matthew Riccitello",
@@ -312,8 +516,14 @@
       "role": "Climber",
       "cost": 8.0,
       "ownership": 6.6,
-      "points": 130.0,
-      "cost_per_point": 0.06153846153846154
+      "points": 134.0,
+      "cost_per_point": 0.05970149253731343,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 130.0
+        }
+      ]
     },
     {
       "name": "Corbin Strong",
@@ -321,8 +531,14 @@
       "role": "Sprinter",
       "cost": 8.0,
       "ownership": 5.2,
-      "points": 393.0,
-      "cost_per_point": 0.020356234096692113
+      "points": 399.0,
+      "cost_per_point": 0.020050125313283207,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 393.0
+        }
+      ]
     },
     {
       "name": "Michael Woods",
@@ -330,8 +546,14 @@
       "role": "Climber",
       "cost": 8.0,
       "ownership": 3.3,
-      "points": 2.0,
-      "cost_per_point": 4.0
+      "points": 6.0,
+      "cost_per_point": 1.3333333333333333,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 2.0
+        }
+      ]
     },
     {
       "name": "Patrick Konrad",
@@ -339,8 +561,14 @@
       "role": "Unclassed",
       "cost": 8.0,
       "ownership": 3.4,
-      "points": 12.0,
-      "cost_per_point": 0.6666666666666666
+      "points": 32.0,
+      "cost_per_point": 0.25,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 12.0
+        }
+      ]
     },
     {
       "name": "Oier Lazkano",
@@ -349,7 +577,13 @@
       "cost": 8.0,
       "ownership": 15.4,
       "points": 4.0,
-      "cost_per_point": 2.0
+      "cost_per_point": 2.0,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 4.0
+        }
+      ]
     },
     {
       "name": "Nairo Quintana",
@@ -358,7 +592,13 @@
       "cost": 8.0,
       "ownership": 3.5,
       "points": 4.0,
-      "cost_per_point": 2.0
+      "cost_per_point": 2.0,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 4.0
+        }
+      ]
     },
     {
       "name": "Einer Rubio",
@@ -367,7 +607,13 @@
       "cost": 8.0,
       "ownership": 2.9,
       "points": 16.0,
-      "cost_per_point": 0.5
+      "cost_per_point": 0.5,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 16.0
+        }
+      ]
     },
     {
       "name": "Pelayo Sánchez",
@@ -375,8 +621,14 @@
       "role": "Unclassed",
       "cost": 8.0,
       "ownership": 9.1,
-      "points": 4.0,
-      "cost_per_point": 2.0
+      "points": 51.0,
+      "cost_per_point": 0.1568627450980392,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 4.0
+        }
+      ]
     },
     {
       "name": "Florian Lipowitz",
@@ -384,8 +636,14 @@
       "role": "Climber",
       "cost": 8.0,
       "ownership": 4.3,
-      "points": 102.0,
-      "cost_per_point": 0.0784313725490196
+      "points": 306.0,
+      "cost_per_point": 0.026143790849673203,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 102.0
+        }
+      ]
     },
     {
       "name": "Mauri Vansevenant",
@@ -393,8 +651,14 @@
       "role": "Unclassed",
       "cost": 8.0,
       "ownership": 2.1,
-      "points": 0.0,
-      "cost_per_point": "Infinity"
+      "points": 119.0,
+      "cost_per_point": 0.06722689075630252,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        }
+      ]
     },
     {
       "name": "Pavel Bittner",
@@ -402,8 +666,14 @@
       "role": "Sprinter",
       "cost": 8.0,
       "ownership": 4.8,
-      "points": 456.0,
-      "cost_per_point": 0.017543859649122806
+      "points": 462.0,
+      "cost_per_point": 0.017316017316017316,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 456.0
+        }
+      ]
     },
     {
       "name": "Mauro Schmid",
@@ -412,7 +682,13 @@
       "cost": 8.0,
       "ownership": 3.8,
       "points": 138.0,
-      "cost_per_point": 0.057971014492753624
+      "cost_per_point": 0.057971014492753624,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 138.0
+        }
+      ]
     },
     {
       "name": "Pavel Sivakov",
@@ -420,8 +696,14 @@
       "role": "Climber",
       "cost": 8.0,
       "ownership": 1.4,
-      "points": 130.0,
-      "cost_per_point": 0.06153846153846154
+      "points": 147.0,
+      "cost_per_point": 0.05442176870748299,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 130.0
+        }
+      ]
     },
     {
       "name": "Marc Soler",
@@ -429,8 +711,14 @@
       "role": "All Rounder",
       "cost": 8.0,
       "ownership": 3.9,
-      "points": 50.0,
-      "cost_per_point": 0.16
+      "points": 56.0,
+      "cost_per_point": 0.14285714285714285,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 50.0
+        }
+      ]
     },
     {
       "name": "Maurice Ballerstedt",
@@ -439,7 +727,13 @@
       "cost": 6.0,
       "ownership": 0.5,
       "points": 18.0,
-      "cost_per_point": 0.3333333333333333
+      "cost_per_point": 0.3333333333333333,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 18.0
+        }
+      ]
     },
     {
       "name": "Quinten Hermans",
@@ -448,7 +742,13 @@
       "cost": 6.0,
       "ownership": 3.0,
       "points": 14.0,
-      "cost_per_point": 0.42857142857142855
+      "cost_per_point": 0.42857142857142855,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 14.0
+        }
+      ]
     },
     {
       "name": "Xandro Meurisse",
@@ -457,7 +757,13 @@
       "cost": 6.0,
       "ownership": 0.1,
       "points": 14.0,
-      "cost_per_point": 0.42857142857142855
+      "cost_per_point": 0.42857142857142855,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 14.0
+        }
+      ]
     },
     {
       "name": "Élie Gesbert",
@@ -466,7 +772,13 @@
       "cost": 6.0,
       "ownership": 0.2,
       "points": 0.0,
-      "cost_per_point": "Infinity"
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        }
+      ]
     },
     {
       "name": "Thibault Guernalec",
@@ -475,7 +787,13 @@
       "cost": 6.0,
       "ownership": 0.2,
       "points": 0.0,
-      "cost_per_point": "Infinity"
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        }
+      ]
     },
     {
       "name": "Cristián Rodríguez",
@@ -483,8 +801,14 @@
       "role": "Climber",
       "cost": 6.0,
       "ownership": 0.9,
-      "points": 8.0,
-      "cost_per_point": 0.75
+      "points": 185.0,
+      "cost_per_point": 0.032432432432432434,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 8.0
+        }
+      ]
     },
     {
       "name": "Gleb Brussenskiy",
@@ -493,7 +817,13 @@
       "cost": 6.0,
       "ownership": 0.3,
       "points": 0.0,
-      "cost_per_point": "Infinity"
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        }
+      ]
     },
     {
       "name": "Lorenzo Fortunato",
@@ -502,7 +832,13 @@
       "cost": 6.0,
       "ownership": 5.1,
       "points": 35.0,
-      "cost_per_point": 0.17142857142857143
+      "cost_per_point": 0.17142857142857143,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 35.0
+        }
+      ]
     },
     {
       "name": "Harold Martin López",
@@ -511,7 +847,13 @@
       "cost": 6.0,
       "ownership": 0.3,
       "points": 0.0,
-      "cost_per_point": "Infinity"
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        }
+      ]
     },
     {
       "name": "Harold Tejada",
@@ -519,8 +861,14 @@
       "role": "Unclassed",
       "cost": 6.0,
       "ownership": 4.2,
-      "points": 0.0,
-      "cost_per_point": "Infinity"
+      "points": 25.0,
+      "cost_per_point": 0.24,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        }
+      ]
     },
     {
       "name": "Jack Haig",
@@ -528,8 +876,14 @@
       "role": "Climber",
       "cost": 6.0,
       "ownership": 1.9,
-      "points": 30.0,
-      "cost_per_point": 0.2
+      "points": 35.0,
+      "cost_per_point": 0.17142857142857143,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 30.0
+        }
+      ]
     },
     {
       "name": "Torstein Træen",
@@ -538,7 +892,13 @@
       "cost": 6.0,
       "ownership": 1.2,
       "points": 0.0,
-      "cost_per_point": "Infinity"
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        }
+      ]
     },
     {
       "name": "Kenny Elissonde",
@@ -547,7 +907,13 @@
       "cost": 6.0,
       "ownership": 1.4,
       "points": 0.0,
-      "cost_per_point": "Infinity"
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        }
+      ]
     },
     {
       "name": "Jesús Herrada",
@@ -556,7 +922,13 @@
       "cost": 6.0,
       "ownership": 1.6,
       "points": 0.0,
-      "cost_per_point": "Infinity"
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        }
+      ]
     },
     {
       "name": "Ion Izagirre",
@@ -565,7 +937,13 @@
       "cost": 6.0,
       "ownership": 1.3,
       "points": 0.0,
-      "cost_per_point": "Infinity"
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        }
+      ]
     },
     {
       "name": "Bruno Armirail",
@@ -573,8 +951,14 @@
       "role": "Unclassed",
       "cost": 6.0,
       "ownership": 5.1,
-      "points": 157.0,
-      "cost_per_point": 0.03821656050955414
+      "points": 181.0,
+      "cost_per_point": 0.03314917127071823,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 157.0
+        }
+      ]
     },
     {
       "name": "Clément Berthet",
@@ -582,8 +966,14 @@
       "role": "Unclassed",
       "cost": 6.0,
       "ownership": 1.5,
-      "points": 4.0,
-      "cost_per_point": 1.5
+      "points": 210.0,
+      "cost_per_point": 0.02857142857142857,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 4.0
+        }
+      ]
     },
     {
       "name": "Geoffrey Bouchard",
@@ -591,8 +981,14 @@
       "role": "Climber",
       "cost": 6.0,
       "ownership": 0.5,
-      "points": 4.0,
-      "cost_per_point": 1.5
+      "points": 28.0,
+      "cost_per_point": 0.21428571428571427,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 4.0
+        }
+      ]
     },
     {
       "name": "Sander De Pestel",
@@ -600,8 +996,14 @@
       "role": "Sprinter",
       "cost": 6.0,
       "ownership": 0.2,
-      "points": 4.0,
-      "cost_per_point": 1.5
+      "points": 28.0,
+      "cost_per_point": 0.21428571428571427,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 4.0
+        }
+      ]
     },
     {
       "name": "Jefferson Alexander Cepeda",
@@ -610,7 +1012,13 @@
       "cost": 6.0,
       "ownership": 0.8,
       "points": 0.0,
-      "cost_per_point": "Infinity"
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        }
+      ]
     },
     {
       "name": "Rui Costa",
@@ -619,7 +1027,13 @@
       "cost": 6.0,
       "ownership": 2.5,
       "points": 0.0,
-      "cost_per_point": "Infinity"
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        }
+      ]
     },
     {
       "name": "Owain Doull",
@@ -628,7 +1042,13 @@
       "cost": 6.0,
       "ownership": 0.8,
       "points": 0.0,
-      "cost_per_point": "Infinity"
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        }
+      ]
     },
     {
       "name": "Darren Rafferty",
@@ -637,7 +1057,13 @@
       "cost": 6.0,
       "ownership": 1.2,
       "points": 0.0,
-      "cost_per_point": "Infinity"
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        }
+      ]
     },
     {
       "name": "James Shaw",
@@ -646,7 +1072,13 @@
       "cost": 6.0,
       "ownership": 1.3,
       "points": 0.0,
-      "cost_per_point": "Infinity"
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        }
+      ]
     },
     {
       "name": "Harry Sweeny",
@@ -655,7 +1087,13 @@
       "cost": 6.0,
       "ownership": 0.7,
       "points": 0.0,
-      "cost_per_point": "Infinity"
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        }
+      ]
     },
     {
       "name": "Rigoberto Urán",
@@ -664,7 +1102,13 @@
       "cost": 6.0,
       "ownership": 1.5,
       "points": 0.0,
-      "cost_per_point": "Infinity"
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        }
+      ]
     },
     {
       "name": "Pablo Castrillo",
@@ -672,8 +1116,14 @@
       "role": "Unclassed",
       "cost": 6.0,
       "ownership": 3.7,
-      "points": 43.0,
-      "cost_per_point": 0.13953488372093023
+      "points": 63.0,
+      "cost_per_point": 0.09523809523809523,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 43.0
+        }
+      ]
     },
     {
       "name": "Pau Miquel",
@@ -682,7 +1132,13 @@
       "cost": 6.0,
       "ownership": 0.2,
       "points": 215.0,
-      "cost_per_point": 0.027906976744186046
+      "cost_per_point": 0.027906976744186046,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 215.0
+        }
+      ]
     },
     {
       "name": "Antonio Jesús Soto",
@@ -691,7 +1147,13 @@
       "cost": 6.0,
       "ownership": 0.2,
       "points": 180.0,
-      "cost_per_point": 0.03333333333333333
+      "cost_per_point": 0.03333333333333333,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 180.0
+        }
+      ]
     },
     {
       "name": "Jon Aberasturi",
@@ -700,7 +1162,13 @@
       "cost": 6.0,
       "ownership": 1.7,
       "points": 291.0,
-      "cost_per_point": 0.020618556701030927
+      "cost_per_point": 0.020618556701030927,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 291.0
+        }
+      ]
     },
     {
       "name": "Mikel Bizkarra",
@@ -709,7 +1177,13 @@
       "cost": 6.0,
       "ownership": 2.3,
       "points": 26.0,
-      "cost_per_point": 0.23076923076923078
+      "cost_per_point": 0.23076923076923078,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 26.0
+        }
+      ]
     },
     {
       "name": "Joan Bou",
@@ -717,8 +1191,14 @@
       "role": "Unclassed",
       "cost": 6.0,
       "ownership": 1.0,
-      "points": 2.0,
-      "cost_per_point": 3.0
+      "points": 52.0,
+      "cost_per_point": 0.11538461538461539,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 2.0
+        }
+      ]
     },
     {
       "name": "Txomin Juaristi",
@@ -727,7 +1207,13 @@
       "cost": 6.0,
       "ownership": 0.5,
       "points": 22.0,
-      "cost_per_point": 0.2727272727272727
+      "cost_per_point": 0.2727272727272727,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 22.0
+        }
+      ]
     },
     {
       "name": "Gotzon Martín",
@@ -736,7 +1222,13 @@
       "cost": 6.0,
       "ownership": 0.2,
       "points": 53.0,
-      "cost_per_point": 0.11320754716981132
+      "cost_per_point": 0.11320754716981132,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 53.0
+        }
+      ]
     },
     {
       "name": "Luis Ángel Maté",
@@ -744,8 +1236,14 @@
       "role": "Unclassed",
       "cost": 6.0,
       "ownership": 1.0,
-      "points": 117.0,
-      "cost_per_point": 0.05128205128205128
+      "points": 120.0,
+      "cost_per_point": 0.05,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 117.0
+        }
+      ]
     },
     {
       "name": "Sven Erik Bystrøm",
@@ -754,7 +1252,13 @@
       "cost": 6.0,
       "ownership": 0.3,
       "points": 0.0,
-      "cost_per_point": "Infinity"
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        }
+      ]
     },
     {
       "name": "Kevin Geniets",
@@ -763,7 +1267,13 @@
       "cost": 6.0,
       "ownership": 0.3,
       "points": 0.0,
-      "cost_per_point": "Infinity"
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        }
+      ]
     },
     {
       "name": "Stefan Küng",
@@ -772,7 +1282,13 @@
       "cost": 6.0,
       "ownership": 8.6,
       "points": 380.0,
-      "cost_per_point": 0.015789473684210527
+      "cost_per_point": 0.015789473684210527,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 380.0
+        }
+      ]
     },
     {
       "name": "Quentin Pacher",
@@ -781,7 +1297,13 @@
       "cost": 6.0,
       "ownership": 3.9,
       "points": 0.0,
-      "cost_per_point": "Infinity"
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        }
+      ]
     },
     {
       "name": "Rémy Rochas",
@@ -789,8 +1311,14 @@
       "role": "Unclassed",
       "cost": 6.0,
       "ownership": 0.3,
-      "points": 0.0,
-      "cost_per_point": "Infinity"
+      "points": 35.0,
+      "cost_per_point": 0.17142857142857143,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        }
+      ]
     },
     {
       "name": "Laurens De Plus",
@@ -799,7 +1327,13 @@
       "cost": 6.0,
       "ownership": 1.8,
       "points": 0.0,
-      "cost_per_point": "Infinity"
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        }
+      ]
     },
     {
       "name": "Kim Heiduk",
@@ -808,7 +1342,13 @@
       "cost": 6.0,
       "ownership": 0.3,
       "points": 25.0,
-      "cost_per_point": 0.24
+      "cost_per_point": 0.24,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 25.0
+        }
+      ]
     },
     {
       "name": "Brandon Smith Rivera",
@@ -817,7 +1357,13 @@
       "cost": 6.0,
       "ownership": 0.9,
       "points": 70.0,
-      "cost_per_point": 0.08571428571428572
+      "cost_per_point": 0.08571428571428572,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 70.0
+        }
+      ]
     },
     {
       "name": "Óscar Rodríguez",
@@ -826,7 +1372,13 @@
       "cost": 6.0,
       "ownership": 1.0,
       "points": 0.0,
-      "cost_per_point": "Infinity"
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        }
+      ]
     },
     {
       "name": "Vito Braet",
@@ -835,7 +1387,13 @@
       "cost": 6.0,
       "ownership": 0.3,
       "points": 50.0,
-      "cost_per_point": 0.12
+      "cost_per_point": 0.12,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 50.0
+        }
+      ]
     },
     {
       "name": "Kobe Goossens",
@@ -844,7 +1402,13 @@
       "cost": 6.0,
       "ownership": 0.7,
       "points": 0.0,
-      "cost_per_point": "Infinity"
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        }
+      ]
     },
     {
       "name": "Arne Marit",
@@ -853,7 +1417,13 @@
       "cost": 6.0,
       "ownership": 0.6,
       "points": 240.0,
-      "cost_per_point": 0.025
+      "cost_per_point": 0.025,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 240.0
+        }
+      ]
     },
     {
       "name": "Louis Meintjes",
@@ -862,7 +1432,13 @@
       "cost": 6.0,
       "ownership": 2.0,
       "points": 0.0,
-      "cost_per_point": "Infinity"
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        }
+      ]
     },
     {
       "name": "Lorenzo Rota",
@@ -871,7 +1447,13 @@
       "cost": 6.0,
       "ownership": 0.8,
       "points": 60.0,
-      "cost_per_point": 0.1
+      "cost_per_point": 0.1,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 60.0
+        }
+      ]
     },
     {
       "name": "Rein Taaramäe",
@@ -880,7 +1462,13 @@
       "cost": 6.0,
       "ownership": 0.4,
       "points": 0.0,
-      "cost_per_point": "Infinity"
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        }
+      ]
     },
     {
       "name": "George Bennett",
@@ -888,8 +1476,14 @@
       "role": "Unclassed",
       "cost": 6.0,
       "ownership": 10.7,
-      "points": 82.0,
-      "cost_per_point": 0.07317073170731707
+      "points": 89.0,
+      "cost_per_point": 0.06741573033707865,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 82.0
+        }
+      ]
     },
     {
       "name": "Marco Frigo",
@@ -897,8 +1491,14 @@
       "role": "Unclassed",
       "cost": 6.0,
       "ownership": 0.9,
-      "points": 17.0,
-      "cost_per_point": 0.35294117647058826
+      "points": 219.0,
+      "cost_per_point": 0.0273972602739726,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 17.0
+        }
+      ]
     },
     {
       "name": "Riley Sheehan",
@@ -906,8 +1506,14 @@
       "role": "Sprinter",
       "cost": 6.0,
       "ownership": 0.5,
-      "points": 2.0,
-      "cost_per_point": 3.0
+      "points": 6.0,
+      "cost_per_point": 1.0,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 2.0
+        }
+      ]
     },
     {
       "name": "Dylan Teuns",
@@ -915,8 +1521,14 @@
       "role": "Climber",
       "cost": 6.0,
       "ownership": 1.5,
-      "points": 2.0,
-      "cost_per_point": 3.0
+      "points": 6.0,
+      "cost_per_point": 1.0,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 2.0
+        }
+      ]
     },
     {
       "name": "Sam Oomen",
@@ -925,7 +1537,13 @@
       "cost": 6.0,
       "ownership": 0.5,
       "points": 12.0,
-      "cost_per_point": 0.5
+      "cost_per_point": 0.5,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 12.0
+        }
+      ]
     },
     {
       "name": "Mathias Vacek",
@@ -934,7 +1552,13 @@
       "cost": 6.0,
       "ownership": 8.3,
       "points": 316.0,
-      "cost_per_point": 0.0189873417721519
+      "cost_per_point": 0.0189873417721519,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 316.0
+        }
+      ]
     },
     {
       "name": "Carlos Verona",
@@ -943,7 +1567,13 @@
       "cost": 6.0,
       "ownership": 1.7,
       "points": 12.0,
-      "cost_per_point": 0.5
+      "cost_per_point": 0.5,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 12.0
+        }
+      ]
     },
     {
       "name": "Victor Campenaerts",
@@ -952,7 +1582,13 @@
       "cost": 6.0,
       "ownership": 19.1,
       "points": 4.0,
-      "cost_per_point": 1.5
+      "cost_per_point": 1.5,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 4.0
+        }
+      ]
     },
     {
       "name": "Thomas De Gendt",
@@ -961,7 +1597,13 @@
       "cost": 6.0,
       "ownership": 6.6,
       "points": 4.0,
-      "cost_per_point": 1.5
+      "cost_per_point": 1.5,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 4.0
+        }
+      ]
     },
     {
       "name": "Jonas Gregaard",
@@ -970,7 +1612,13 @@
       "cost": 6.0,
       "ownership": 0.3,
       "points": 4.0,
-      "cost_per_point": 1.5
+      "cost_per_point": 1.5,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 4.0
+        }
+      ]
     },
     {
       "name": "Andreas Kron",
@@ -979,7 +1627,13 @@
       "cost": 6.0,
       "ownership": 9.0,
       "points": 38.0,
-      "cost_per_point": 0.15789473684210525
+      "cost_per_point": 0.15789473684210525,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 38.0
+        }
+      ]
     },
     {
       "name": "Sylvain Moniquet",
@@ -987,8 +1641,14 @@
       "role": "Unclassed",
       "cost": 6.0,
       "ownership": 0.2,
-      "points": 63.0,
-      "cost_per_point": 0.09523809523809523
+      "points": 75.0,
+      "cost_per_point": 0.08,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 63.0
+        }
+      ]
     },
     {
       "name": "Eduardo Sepúlveda",
@@ -997,7 +1657,13 @@
       "cost": 6.0,
       "ownership": 0.4,
       "points": 4.0,
-      "cost_per_point": 1.5
+      "cost_per_point": 1.5,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 4.0
+        }
+      ]
     },
     {
       "name": "Carlos Canal",
@@ -1006,7 +1672,13 @@
       "cost": 6.0,
       "ownership": 0.6,
       "points": 107.0,
-      "cost_per_point": 0.056074766355140186
+      "cost_per_point": 0.056074766355140186,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 107.0
+        }
+      ]
     },
     {
       "name": "Nelson Oliveira",
@@ -1015,7 +1687,13 @@
       "cost": 6.0,
       "ownership": 2.5,
       "points": 85.0,
-      "cost_per_point": 0.07058823529411765
+      "cost_per_point": 0.07058823529411765,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 85.0
+        }
+      ]
     },
     {
       "name": "Roger Adrià",
@@ -1023,8 +1701,14 @@
       "role": "Sprinter",
       "cost": 6.0,
       "ownership": 1.9,
-      "points": 52.0,
-      "cost_per_point": 0.11538461538461539
+      "points": 60.0,
+      "cost_per_point": 0.1,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 52.0
+        }
+      ]
     },
     {
       "name": "Giovanni Aleotti",
@@ -1032,8 +1716,14 @@
       "role": "Unclassed",
       "cost": 6.0,
       "ownership": 2.0,
-      "points": 32.0,
-      "cost_per_point": 0.1875
+      "points": 40.0,
+      "cost_per_point": 0.15,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 32.0
+        }
+      ]
     },
     {
       "name": "Nico Denz",
@@ -1041,8 +1731,14 @@
       "role": "Unclassed",
       "cost": 6.0,
       "ownership": 1.9,
-      "points": 40.0,
-      "cost_per_point": 0.15
+      "points": 48.0,
+      "cost_per_point": 0.125,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 40.0
+        }
+      ]
     },
     {
       "name": "Patrick Gamper",
@@ -1050,8 +1746,14 @@
       "role": "Unclassed",
       "cost": 6.0,
       "ownership": 0.4,
-      "points": 32.0,
-      "cost_per_point": 0.1875
+      "points": 40.0,
+      "cost_per_point": 0.15,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 32.0
+        }
+      ]
     },
     {
       "name": "Kasper Asgreen",
@@ -1060,7 +1762,13 @@
       "cost": 6.0,
       "ownership": 12.0,
       "points": 56.0,
-      "cost_per_point": 0.10714285714285714
+      "cost_per_point": 0.10714285714285714,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 56.0
+        }
+      ]
     },
     {
       "name": "Mattia Cattaneo",
@@ -1069,7 +1777,13 @@
       "cost": 6.0,
       "ownership": 1.3,
       "points": 33.0,
-      "cost_per_point": 0.18181818181818182
+      "cost_per_point": 0.18181818181818182,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 33.0
+        }
+      ]
     },
     {
       "name": "James Knox",
@@ -1078,7 +1792,13 @@
       "cost": 6.0,
       "ownership": 1.4,
       "points": 0.0,
-      "cost_per_point": "Infinity"
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        }
+      ]
     },
     {
       "name": "William Junior Lecerf",
@@ -1087,7 +1807,13 @@
       "cost": 6.0,
       "ownership": 1.1,
       "points": 0.0,
-      "cost_per_point": "Infinity"
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        }
+      ]
     },
     {
       "name": "Casper Pedersen",
@@ -1096,7 +1822,13 @@
       "cost": 6.0,
       "ownership": 2.5,
       "points": 0.0,
-      "cost_per_point": "Infinity"
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        }
+      ]
     },
     {
       "name": "Louis Vervaeke",
@@ -1105,7 +1837,13 @@
       "cost": 6.0,
       "ownership": 0.3,
       "points": 0.0,
-      "cost_per_point": "Infinity"
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        }
+      ]
     },
     {
       "name": "Chris Hamilton",
@@ -1114,7 +1852,13 @@
       "cost": 6.0,
       "ownership": 0.7,
       "points": 8.0,
-      "cost_per_point": 0.75
+      "cost_per_point": 0.75,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 8.0
+        }
+      ]
     },
     {
       "name": "Gijs Leemreize",
@@ -1122,8 +1866,14 @@
       "role": "Unclassed",
       "cost": 6.0,
       "ownership": 0.3,
-      "points": 8.0,
-      "cost_per_point": 0.75
+      "points": 138.0,
+      "cost_per_point": 0.043478260869565216,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 8.0
+        }
+      ]
     },
     {
       "name": "Alessandro De Marchi",
@@ -1132,7 +1882,13 @@
       "cost": 6.0,
       "ownership": 1.4,
       "points": 0.0,
-      "cost_per_point": "Infinity"
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        }
+      ]
     },
     {
       "name": "Eddie Dunbar",
@@ -1141,7 +1897,13 @@
       "cost": 6.0,
       "ownership": 2.1,
       "points": 0.0,
-      "cost_per_point": "Infinity"
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        }
+      ]
     },
     {
       "name": "Felix Engelhardt",
@@ -1150,7 +1912,13 @@
       "cost": 6.0,
       "ownership": 0.9,
       "points": 0.0,
-      "cost_per_point": "Infinity"
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        }
+      ]
     },
     {
       "name": "Chris Harper",
@@ -1158,8 +1926,14 @@
       "role": "Climber",
       "cost": 6.0,
       "ownership": 0.6,
-      "points": 0.0,
-      "cost_per_point": "Infinity"
+      "points": 24.0,
+      "cost_per_point": 0.25,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        }
+      ]
     },
     {
       "name": "Callum Scotson",
@@ -1168,7 +1942,13 @@
       "cost": 6.0,
       "ownership": 0.2,
       "points": 0.0,
-      "cost_per_point": "Infinity"
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        }
+      ]
     },
     {
       "name": "Filippo Zana",
@@ -1176,8 +1956,14 @@
       "role": "Climber",
       "cost": 6.0,
       "ownership": 4.9,
-      "points": 46.0,
-      "cost_per_point": 0.13043478260869565
+      "points": 54.0,
+      "cost_per_point": 0.1111111111111111,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 46.0
+        }
+      ]
     },
     {
       "name": "Edoardo Affini",
@@ -1186,7 +1972,13 @@
       "cost": 6.0,
       "ownership": 2.1,
       "points": 206.0,
-      "cost_per_point": 0.02912621359223301
+      "cost_per_point": 0.02912621359223301,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 206.0
+        }
+      ]
     },
     {
       "name": "Robert Gesink",
@@ -1195,7 +1987,13 @@
       "cost": 6.0,
       "ownership": 1.8,
       "points": 36.0,
-      "cost_per_point": 0.16666666666666666
+      "cost_per_point": 0.16666666666666666,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 36.0
+        }
+      ]
     },
     {
       "name": "Steven Kruijswijk",
@@ -1204,7 +2002,13 @@
       "cost": 6.0,
       "ownership": 3.3,
       "points": 36.0,
-      "cost_per_point": 0.16666666666666666
+      "cost_per_point": 0.16666666666666666,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 36.0
+        }
+      ]
     },
     {
       "name": "Attila Valter",
@@ -1213,7 +2017,13 @@
       "cost": 6.0,
       "ownership": 1.5,
       "points": 36.0,
-      "cost_per_point": 0.16666666666666666
+      "cost_per_point": 0.16666666666666666,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 36.0
+        }
+      ]
     },
     {
       "name": "Dylan Van Baarle",
@@ -1222,7 +2032,13 @@
       "cost": 6.0,
       "ownership": 3.2,
       "points": 14.0,
-      "cost_per_point": 0.42857142857142855
+      "cost_per_point": 0.42857142857142855,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 14.0
+        }
+      ]
     },
     {
       "name": "Filippo Baroncini",
@@ -1230,8 +2046,14 @@
       "role": "Unclassed",
       "cost": 6.0,
       "ownership": 2.1,
-      "points": 154.0,
-      "cost_per_point": 0.03896103896103896
+      "points": 160.0,
+      "cost_per_point": 0.0375,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 154.0
+        }
+      ]
     },
     {
       "name": "Juri Hollmann",
@@ -1240,7 +2062,13 @@
       "cost": 4.0,
       "ownership": 1.9,
       "points": 14.0,
-      "cost_per_point": 0.2857142857142857
+      "cost_per_point": 0.2857142857142857,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 14.0
+        }
+      ]
     },
     {
       "name": "Edward Planckaert",
@@ -1249,7 +2077,13 @@
       "cost": 4.0,
       "ownership": 2.3,
       "points": 18.0,
-      "cost_per_point": 0.2222222222222222
+      "cost_per_point": 0.2222222222222222,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 18.0
+        }
+      ]
     },
     {
       "name": "Oscar Riesebeek",
@@ -1258,7 +2092,13 @@
       "cost": 4.0,
       "ownership": 1.7,
       "points": 14.0,
-      "cost_per_point": 0.2857142857142857
+      "cost_per_point": 0.2857142857142857,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 14.0
+        }
+      ]
     },
     {
       "name": "Luca Vergallito",
@@ -1266,8 +2106,14 @@
       "role": "Unclassed",
       "cost": 4.0,
       "ownership": 3.6,
-      "points": 14.0,
-      "cost_per_point": 0.2857142857142857
+      "points": 34.0,
+      "cost_per_point": 0.11764705882352941,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 14.0
+        }
+      ]
     },
     {
       "name": "Simon Guglielmi",
@@ -1276,7 +2122,13 @@
       "cost": 4.0,
       "ownership": 1.1,
       "points": 56.0,
-      "cost_per_point": 0.07142857142857142
+      "cost_per_point": 0.07142857142857142,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 56.0
+        }
+      ]
     },
     {
       "name": "Laurens Huys",
@@ -1285,7 +2137,13 @@
       "cost": 4.0,
       "ownership": 1.0,
       "points": 0.0,
-      "cost_per_point": "Infinity"
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        }
+      ]
     },
     {
       "name": "Mathis Le Berre",
@@ -1294,7 +2152,13 @@
       "cost": 4.0,
       "ownership": 4.4,
       "points": 12.0,
-      "cost_per_point": 0.3333333333333333
+      "cost_per_point": 0.3333333333333333,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 12.0
+        }
+      ]
     },
     {
       "name": "Łukasz Owsian",
@@ -1303,7 +2167,13 @@
       "cost": 4.0,
       "ownership": 0.4,
       "points": 0.0,
-      "cost_per_point": "Infinity"
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        }
+      ]
     },
     {
       "name": "Michel Ries",
@@ -1312,7 +2182,13 @@
       "cost": 4.0,
       "ownership": 1.2,
       "points": 0.0,
-      "cost_per_point": "Infinity"
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        }
+      ]
     },
     {
       "name": "Gianmarco Garofoli",
@@ -1321,7 +2197,13 @@
       "cost": 4.0,
       "ownership": 1.1,
       "points": 78.0,
-      "cost_per_point": 0.05128205128205128
+      "cost_per_point": 0.05128205128205128,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 78.0
+        }
+      ]
     },
     {
       "name": "Santiago Umba",
@@ -1330,7 +2212,13 @@
       "cost": 4.0,
       "ownership": 2.1,
       "points": 0.0,
-      "cost_per_point": "Infinity"
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        }
+      ]
     },
     {
       "name": "Nicolas Vinokurov",
@@ -1339,7 +2227,13 @@
       "cost": 4.0,
       "ownership": 4.8,
       "points": 0.0,
-      "cost_per_point": "Infinity"
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        }
+      ]
     },
     {
       "name": "Kamil Gradek",
@@ -1348,7 +2242,13 @@
       "cost": 4.0,
       "ownership": 1.7,
       "points": 0.0,
-      "cost_per_point": "Infinity"
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        }
+      ]
     },
     {
       "name": "Rainer Kepplinger",
@@ -1357,7 +2257,13 @@
       "cost": 4.0,
       "ownership": 1.8,
       "points": 0.0,
-      "cost_per_point": "Infinity"
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        }
+      ]
     },
     {
       "name": "Fran Miholjević",
@@ -1366,7 +2272,13 @@
       "cost": 4.0,
       "ownership": 1.3,
       "points": 0.0,
-      "cost_per_point": "Infinity"
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        }
+      ]
     },
     {
       "name": "Jasha Sütterlin",
@@ -1375,7 +2287,13 @@
       "cost": 4.0,
       "ownership": 2.4,
       "points": 0.0,
-      "cost_per_point": "Infinity"
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        }
+      ]
     },
     {
       "name": "Thomas Champion",
@@ -1384,7 +2302,13 @@
       "cost": 4.0,
       "ownership": 5.1,
       "points": 0.0,
-      "cost_per_point": "Infinity"
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        }
+      ]
     },
     {
       "name": "Rubén Fernández",
@@ -1393,7 +2317,13 @@
       "cost": 4.0,
       "ownership": 5.6,
       "points": 0.0,
-      "cost_per_point": "Infinity"
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        }
+      ]
     },
     {
       "name": "Jonathan Lastra",
@@ -1402,7 +2332,13 @@
       "cost": 4.0,
       "ownership": 3.8,
       "points": 0.0,
-      "cost_per_point": "Infinity"
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        }
+      ]
     },
     {
       "name": "Urko Berrade",
@@ -1410,8 +2346,14 @@
       "role": "Unclassed",
       "cost": 4.0,
       "ownership": 8.0,
-      "points": 0.0,
-      "cost_per_point": "Infinity"
+      "points": 100.0,
+      "cost_per_point": 0.04,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        }
+      ]
     },
     {
       "name": "Jorge Gutiérrez",
@@ -1420,7 +2362,13 @@
       "cost": 4.0,
       "ownership": 2.4,
       "points": 0.0,
-      "cost_per_point": "Infinity"
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        }
+      ]
     },
     {
       "name": "Unai Iribar",
@@ -1429,7 +2377,13 @@
       "cost": 4.0,
       "ownership": 1.3,
       "points": 28.0,
-      "cost_per_point": 0.14285714285714285
+      "cost_per_point": 0.14285714285714285,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 28.0
+        }
+      ]
     },
     {
       "name": "José Félix Parra",
@@ -1438,7 +2392,13 @@
       "cost": 4.0,
       "ownership": 4.4,
       "points": 0.0,
-      "cost_per_point": "Infinity"
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        }
+      ]
     },
     {
       "name": "Ibon Ruiz",
@@ -1447,7 +2407,13 @@
       "cost": 4.0,
       "ownership": 1.7,
       "points": 104.0,
-      "cost_per_point": 0.038461538461538464
+      "cost_per_point": 0.038461538461538464,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 104.0
+        }
+      ]
     },
     {
       "name": "Xabier Berasategi",
@@ -1456,7 +2422,13 @@
       "cost": 4.0,
       "ownership": 5.6,
       "points": 22.0,
-      "cost_per_point": 0.18181818181818182
+      "cost_per_point": 0.18181818181818182,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 22.0
+        }
+      ]
     },
     {
       "name": "Xabier Isasa",
@@ -1465,7 +2437,13 @@
       "cost": 4.0,
       "ownership": 3.3,
       "points": 50.0,
-      "cost_per_point": 0.08
+      "cost_per_point": 0.08,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 50.0
+        }
+      ]
     },
     {
       "name": "Lorenzo Germani",
@@ -1474,7 +2452,13 @@
       "cost": 4.0,
       "ownership": 1.5,
       "points": 0.0,
-      "cost_per_point": "Infinity"
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        }
+      ]
     },
     {
       "name": "Reuben Thompson",
@@ -1483,7 +2467,13 @@
       "cost": 4.0,
       "ownership": 1.3,
       "points": 0.0,
-      "cost_per_point": "Infinity"
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        }
+      ]
     },
     {
       "name": "Tom Paquot",
@@ -1492,7 +2482,13 @@
       "cost": 4.0,
       "ownership": 1.1,
       "points": 0.0,
-      "cost_per_point": "Infinity"
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        }
+      ]
     },
     {
       "name": "Simone Petilli",
@@ -1501,7 +2497,13 @@
       "cost": 4.0,
       "ownership": 1.7,
       "points": 0.0,
-      "cost_per_point": "Infinity"
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        }
+      ]
     },
     {
       "name": "Nadav Raisberg",
@@ -1509,8 +2511,14 @@
       "role": "Unclassed",
       "cost": 4.0,
       "ownership": 0.5,
-      "points": 42.0,
-      "cost_per_point": 0.09523809523809523
+      "points": 46.0,
+      "cost_per_point": 0.08695652173913043,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 42.0
+        }
+      ]
     },
     {
       "name": "Otto Vergaerde",
@@ -1519,7 +2527,13 @@
       "cost": 4.0,
       "ownership": 3.1,
       "points": 12.0,
-      "cost_per_point": 0.3333333333333333
+      "cost_per_point": 0.3333333333333333,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 12.0
+        }
+      ]
     },
     {
       "name": "Arjen Livyns",
@@ -1528,7 +2542,13 @@
       "cost": 4.0,
       "ownership": 1.4,
       "points": 115.0,
-      "cost_per_point": 0.034782608695652174
+      "cost_per_point": 0.034782608695652174,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 115.0
+        }
+      ]
     },
     {
       "name": "Jorge Arcas",
@@ -1537,7 +2557,13 @@
       "cost": 4.0,
       "ownership": 7.1,
       "points": 8.0,
-      "cost_per_point": 0.5
+      "cost_per_point": 0.5,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 8.0
+        }
+      ]
     },
     {
       "name": "Enzo Leijnse",
@@ -1546,7 +2572,13 @@
       "cost": 4.0,
       "ownership": 0.7,
       "points": 8.0,
-      "cost_per_point": 0.5
+      "cost_per_point": 0.5,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 8.0
+        }
+      ]
     },
     {
       "name": "Tim Naberman",
@@ -1555,7 +2587,13 @@
       "cost": 4.0,
       "ownership": 0.5,
       "points": 8.0,
-      "cost_per_point": 0.5
+      "cost_per_point": 0.5,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 8.0
+        }
+      ]
     },
     {
       "name": "Martijn Tusveld",
@@ -1564,7 +2602,13 @@
       "cost": 4.0,
       "ownership": 1.1,
       "points": 8.0,
-      "cost_per_point": 0.5
+      "cost_per_point": 0.5,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 8.0
+        }
+      ]
     },
     {
       "name": "Julius Van Den Berg",
@@ -1573,7 +2617,13 @@
       "cost": 4.0,
       "ownership": 3.7,
       "points": 8.0,
-      "cost_per_point": 0.5
+      "cost_per_point": 0.5,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 8.0
+        }
+      ]
     },
     {
       "name": "Welay Berhe",
@@ -1582,7 +2632,13 @@
       "cost": 4.0,
       "ownership": 3.2,
       "points": 0.0,
-      "cost_per_point": "Infinity"
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        }
+      ]
     }
   ],
   "top_50_efficiency": [
@@ -1595,16 +2651,16 @@
     },
     {
       "name": "Pavel Bittner",
-      "cost_per_point": 0.017543859649122806,
+      "cost_per_point": 0.017316017316017316,
       "role": "Sprinter",
-      "points": 456.0,
+      "points": 462.0,
       "cost": 8.0
     },
     {
       "name": "Kaden Groves",
-      "cost_per_point": 0.01875,
+      "cost_per_point": 0.018518518518518517,
       "role": "Sprinter",
-      "points": 640.0,
+      "points": 648.0,
       "cost": 12.0
     },
     {
@@ -1616,16 +2672,16 @@
     },
     {
       "name": "Wout Van Aert",
-      "cost_per_point": 0.019736842105263157,
+      "cost_per_point": 0.01948051948051948,
       "role": "Sprinter",
-      "points": 912.0,
+      "points": 924.0,
       "cost": 18.0
     },
     {
       "name": "Corbin Strong",
-      "cost_per_point": 0.020356234096692113,
+      "cost_per_point": 0.020050125313283207,
       "role": "Sprinter",
-      "points": 393.0,
+      "points": 399.0,
       "cost": 8.0
     },
     {
@@ -1644,10 +2700,31 @@
     },
     {
       "name": "Brandon McNulty",
-      "cost_per_point": 0.02577319587628866,
+      "cost_per_point": 0.025380710659898477,
       "role": "All Rounder",
-      "points": 388.0,
+      "points": 394.0,
       "cost": 10.0
+    },
+    {
+      "name": "Florian Lipowitz",
+      "cost_per_point": 0.026143790849673203,
+      "role": "Climber",
+      "points": 306.0,
+      "cost": 8.0
+    },
+    {
+      "name": "Lennert Van Eetvelt",
+      "cost_per_point": 0.02710027100271003,
+      "role": "Climber",
+      "points": 369.0,
+      "cost": 10.0
+    },
+    {
+      "name": "Marco Frigo",
+      "cost_per_point": 0.0273972602739726,
+      "role": "Unclassed",
+      "points": 219.0,
+      "cost": 6.0
     },
     {
       "name": "Pau Miquel",
@@ -1657,17 +2734,31 @@
       "cost": 6.0
     },
     {
-      "name": "Lennert Van Eetvelt",
-      "cost_per_point": 0.029069767441860465,
-      "role": "Climber",
-      "points": 344.0,
-      "cost": 10.0
+      "name": "Clément Berthet",
+      "cost_per_point": 0.02857142857142857,
+      "role": "Unclassed",
+      "points": 210.0,
+      "cost": 6.0
     },
     {
       "name": "Edoardo Affini",
       "cost_per_point": 0.02912621359223301,
       "role": "Sprinter",
       "points": 206.0,
+      "cost": 6.0
+    },
+    {
+      "name": "Cristián Rodríguez",
+      "cost_per_point": 0.032432432432432434,
+      "role": "Climber",
+      "points": 185.0,
+      "cost": 6.0
+    },
+    {
+      "name": "Bruno Armirail",
+      "cost_per_point": 0.03314917127071823,
+      "role": "Unclassed",
+      "points": 181.0,
       "cost": 6.0
     },
     {
@@ -1678,6 +2769,13 @@
       "cost": 6.0
     },
     {
+      "name": "Ben O'Connor",
+      "cost_per_point": 0.033444816053511704,
+      "role": "Climber",
+      "points": 299.0,
+      "cost": 10.0
+    },
+    {
       "name": "Arjen Livyns",
       "cost_per_point": 0.034782608695652174,
       "role": "Unclassed",
@@ -1685,10 +2783,10 @@
       "cost": 4.0
     },
     {
-      "name": "Bruno Armirail",
-      "cost_per_point": 0.03821656050955414,
+      "name": "Filippo Baroncini",
+      "cost_per_point": 0.0375,
       "role": "Unclassed",
-      "points": 157.0,
+      "points": 160.0,
       "cost": 6.0
     },
     {
@@ -1699,13 +2797,6 @@
       "cost": 4.0
     },
     {
-      "name": "Filippo Baroncini",
-      "cost_per_point": 0.03896103896103896,
-      "role": "Unclassed",
-      "points": 154.0,
-      "cost": 6.0
-    },
-    {
       "name": "Bryan Coquard",
       "cost_per_point": 0.04,
       "role": "Sprinter",
@@ -1713,11 +2804,39 @@
       "cost": 10.0
     },
     {
-      "name": "Luis Ángel Maté",
-      "cost_per_point": 0.05128205128205128,
+      "name": "Urko Berrade",
+      "cost_per_point": 0.04,
       "role": "Unclassed",
-      "points": 117.0,
+      "points": 100.0,
+      "cost": 4.0
+    },
+    {
+      "name": "Aleksandr Vlasov",
+      "cost_per_point": 0.04201680672268908,
+      "role": "All Rounder",
+      "points": 238.0,
+      "cost": 10.0
+    },
+    {
+      "name": "Gijs Leemreize",
+      "cost_per_point": 0.043478260869565216,
+      "role": "Unclassed",
+      "points": 138.0,
       "cost": 6.0
+    },
+    {
+      "name": "Luis Ángel Maté",
+      "cost_per_point": 0.05,
+      "role": "Unclassed",
+      "points": 120.0,
+      "cost": 6.0
+    },
+    {
+      "name": "Primož Roglič",
+      "cost_per_point": 0.050955414012738856,
+      "role": "All Rounder",
+      "points": 471.0,
+      "cost": 24.0
     },
     {
       "name": "Gianmarco Garofoli",
@@ -1727,18 +2846,25 @@
       "cost": 4.0
     },
     {
-      "name": "Aleksandr Vlasov",
-      "cost_per_point": 0.054945054945054944,
-      "role": "All Rounder",
-      "points": 182.0,
+      "name": "Felix Gall",
+      "cost_per_point": 0.052083333333333336,
+      "role": "Climber",
+      "points": 192.0,
       "cost": 10.0
     },
     {
-      "name": "Primož Roglič",
-      "cost_per_point": 0.05517241379310345,
+      "name": "João Almeida",
+      "cost_per_point": 0.05291005291005291,
       "role": "All Rounder",
-      "points": 435.0,
-      "cost": 24.0
+      "points": 378.0,
+      "cost": 20.0
+    },
+    {
+      "name": "Pavel Sivakov",
+      "cost_per_point": 0.05442176870748299,
+      "role": "Climber",
+      "points": 147.0,
+      "cost": 8.0
     },
     {
       "name": "Carlos Canal",
@@ -1755,13 +2881,6 @@
       "cost": 8.0
     },
     {
-      "name": "João Almeida",
-      "cost_per_point": 0.056818181818181816,
-      "role": "All Rounder",
-      "points": 352.0,
-      "cost": 20.0
-    },
-    {
       "name": "Mauro Schmid",
       "cost_per_point": 0.057971014492753624,
       "role": "Unclassed",
@@ -1770,24 +2889,31 @@
     },
     {
       "name": "Matthew Riccitello",
-      "cost_per_point": 0.06153846153846154,
+      "cost_per_point": 0.05970149253731343,
       "role": "Climber",
-      "points": 130.0,
+      "points": 134.0,
       "cost": 8.0
     },
     {
-      "name": "Pavel Sivakov",
-      "cost_per_point": 0.06153846153846154,
-      "role": "Climber",
-      "points": 130.0,
-      "cost": 8.0
-    },
-    {
-      "name": "Felix Gall",
-      "cost_per_point": 0.0641025641025641,
-      "role": "Climber",
-      "points": 156.0,
+      "name": "Antonio Tiberi",
+      "cost_per_point": 0.0625,
+      "role": "All Rounder",
+      "points": 160.0,
       "cost": 10.0
+    },
+    {
+      "name": "Mauri Vansevenant",
+      "cost_per_point": 0.06722689075630252,
+      "role": "Unclassed",
+      "points": 119.0,
+      "cost": 8.0
+    },
+    {
+      "name": "George Bennett",
+      "cost_per_point": 0.06741573033707865,
+      "role": "Unclassed",
+      "points": 89.0,
+      "cost": 6.0
     },
     {
       "name": "Nelson Oliveira",
@@ -1804,25 +2930,32 @@
       "cost": 4.0
     },
     {
-      "name": "Antonio Tiberi",
+      "name": "Jay Vine",
       "cost_per_point": 0.07246376811594203,
       "role": "All Rounder",
       "points": 138.0,
       "cost": 10.0
     },
     {
-      "name": "George Bennett",
-      "cost_per_point": 0.07317073170731707,
-      "role": "Unclassed",
-      "points": 82.0,
-      "cost": 6.0
-    },
-    {
-      "name": "Florian Lipowitz",
+      "name": "Enric Mas",
       "cost_per_point": 0.0784313725490196,
       "role": "Climber",
-      "points": 102.0,
+      "points": 204.0,
+      "cost": 16.0
+    },
+    {
+      "name": "David Gaudu",
+      "cost_per_point": 0.07920792079207921,
+      "role": "Climber",
+      "points": 101.0,
       "cost": 8.0
+    },
+    {
+      "name": "Sylvain Moniquet",
+      "cost_per_point": 0.08,
+      "role": "Unclassed",
+      "points": 75.0,
+      "cost": 6.0
     },
     {
       "name": "Xabier Isasa",
@@ -1832,11 +2965,11 @@
       "cost": 4.0
     },
     {
-      "name": "Enric Mas",
-      "cost_per_point": 0.0851063829787234,
+      "name": "Isaac Del Toro",
+      "cost_per_point": 0.08571428571428572,
       "role": "Climber",
-      "points": 188.0,
-      "cost": 16.0
+      "points": 140.0,
+      "cost": 12.0
     },
     {
       "name": "Brandon Smith Rivera",
@@ -1846,113 +2979,36 @@
       "cost": 6.0
     },
     {
-      "name": "Sylvain Moniquet",
-      "cost_per_point": 0.09523809523809523,
-      "role": "Unclassed",
-      "points": 63.0,
-      "cost": 6.0
-    },
-    {
       "name": "Nadav Raisberg",
-      "cost_per_point": 0.09523809523809523,
+      "cost_per_point": 0.08695652173913043,
       "role": "Unclassed",
-      "points": 42.0,
+      "points": 46.0,
       "cost": 4.0
     },
     {
-      "name": "Jay Vine",
-      "cost_per_point": 0.09803921568627451,
-      "role": "All Rounder",
-      "points": 102.0,
-      "cost": 10.0
-    },
-    {
-      "name": "Lorenzo Rota",
-      "cost_per_point": 0.1,
-      "role": "Unclassed",
-      "points": 60.0,
-      "cost": 6.0
-    },
-    {
       "name": "Mattias Skjelmose",
-      "cost_per_point": 0.1016949152542373,
+      "cost_per_point": 0.09302325581395349,
       "role": "All Rounder",
-      "points": 118.0,
+      "points": 129.0,
       "cost": 12.0
-    },
-    {
-      "name": "Jhonatan Narváez",
-      "cost_per_point": 0.10526315789473684,
-      "role": "Unclassed",
-      "points": 95.0,
-      "cost": 10.0
-    },
-    {
-      "name": "Kasper Asgreen",
-      "cost_per_point": 0.10714285714285714,
-      "role": "Unclassed",
-      "points": 56.0,
-      "cost": 6.0
-    },
-    {
-      "name": "Gotzon Martín",
-      "cost_per_point": 0.11320754716981132,
-      "role": "Unclassed",
-      "points": 53.0,
-      "cost": 6.0
-    },
-    {
-      "name": "Roger Adrià",
-      "cost_per_point": 0.11538461538461539,
-      "role": "Sprinter",
-      "points": 52.0,
-      "cost": 6.0
-    },
-    {
-      "name": "Mikel Landa",
-      "cost_per_point": 0.11764705882352941,
-      "role": "Climber",
-      "points": 119.0,
-      "cost": 14.0
-    },
-    {
-      "name": "Vito Braet",
-      "cost_per_point": 0.12,
-      "role": "Sprinter",
-      "points": 50.0,
-      "cost": 6.0
-    },
-    {
-      "name": "Filippo Zana",
-      "cost_per_point": 0.13043478260869565,
-      "role": "Climber",
-      "points": 46.0,
-      "cost": 6.0
-    },
-    {
-      "name": "Pablo Castrillo",
-      "cost_per_point": 0.13953488372093023,
-      "role": "Unclassed",
-      "points": 43.0,
-      "cost": 6.0
     }
   ],
   "league_scores": [
     {
       "name": "Team Name",
-      "points": 1870
+      "points": 2054
     },
     {
       "name": "Ganz anderer Teamname",
-      "points": 1040
-    },
-    {
-      "name": "Iberische Halbpinsel",
-      "points": 965
+      "points": 1096
     },
     {
       "name": "Team Fiestina",
-      "points": 860
+      "points": 1027
+    },
+    {
+      "name": "Iberische Halbpinsel",
+      "points": 1022
     }
   ],
   "dream_team": {
@@ -1961,58 +3017,113 @@
         "name": "Primož Roglič",
         "role": "All Rounder",
         "cost": 24.0,
-        "points": 435.0
+        "points": 471.0,
+        "pointHistory": [
+          {
+            "date": "2024-08-21",
+            "points": 435.0
+          }
+        ]
       },
       {
         "name": "Wout Van Aert",
         "role": "Sprinter",
         "cost": 18.0,
-        "points": 912.0
+        "points": 924.0,
+        "pointHistory": [
+          {
+            "date": "2024-08-21",
+            "points": 912.0
+          }
+        ]
       },
       {
         "name": "Kaden Groves",
         "role": "Sprinter",
         "cost": 12.0,
-        "points": 640.0
+        "points": 648.0,
+        "pointHistory": [
+          {
+            "date": "2024-08-21",
+            "points": 640.0
+          }
+        ]
       },
       {
         "name": "Lennert Van Eetvelt",
         "role": "Climber",
         "cost": 10.0,
-        "points": 344.0
+        "points": 369.0,
+        "pointHistory": [
+          {
+            "date": "2024-08-21",
+            "points": 344.0
+          }
+        ]
       },
       {
         "name": "Brandon McNulty",
         "role": "All Rounder",
         "cost": 10.0,
-        "points": 388.0
+        "points": 394.0,
+        "pointHistory": [
+          {
+            "date": "2024-08-21",
+            "points": 388.0
+          }
+        ]
       },
       {
-        "name": "Pavel Sivakov",
+        "name": "Florian Lipowitz",
         "role": "Climber",
         "cost": 8.0,
-        "points": 130.0
+        "points": 306.0,
+        "pointHistory": [
+          {
+            "date": "2024-08-21",
+            "points": 102.0
+          }
+        ]
       },
       {
-        "name": "Bruno Armirail",
+        "name": "Clément Berthet",
         "role": "Unclassed",
         "cost": 6.0,
-        "points": 157.0
+        "points": 210.0,
+        "pointHistory": [
+          {
+            "date": "2024-08-21",
+            "points": 4.0
+          }
+        ]
       },
       {
         "name": "Stefan Küng",
         "role": "Unclassed",
         "cost": 6.0,
-        "points": 380.0
+        "points": 380.0,
+        "pointHistory": [
+          {
+            "date": "2024-08-21",
+            "points": 380.0
+          }
+        ]
       },
       {
-        "name": "Filippo Baroncini",
+        "name": "Marco Frigo",
         "role": "Unclassed",
         "cost": 6.0,
-        "points": 154.0
+        "points": 219.0,
+        "pointHistory": [
+          {
+            "date": "2024-08-21",
+            "points": 17.0
+          }
+        ]
       }
     ],
-    "total_points": 3540.0,
+    "total_points": 3921.0,
     "total_cost": 100.0
-  }
+  },
+  "last_update": "2024-08-22"
 }

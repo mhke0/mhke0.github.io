@@ -342,7 +342,6 @@ function getUniqueTeamNames(baseData, middleData, leagueScores) {
 
     const uniqueTeamNames = getUniqueTeamNames(baseData, middleData, leagueScores);
 
-    const uniqueTeamNames = getUniqueTeamNames(baseData, middleData, leagueScores);
 
     function findExactOrClosestMatch(obj, searchKey) {
         if (obj.hasOwnProperty(searchKey)) {

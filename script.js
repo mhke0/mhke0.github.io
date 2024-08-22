@@ -673,18 +673,31 @@ function createCustomLegend(cyclists) {
 function calculateMVPandMIP(cyclists) {
     let mvp = { name: '', pointsAdded: 0, date: '' };
     let mip = { name: '', percentageIncrease: 0, date: '' };
+    const ZERO_SUBSTITUTE = 0.1; // Small number to substitute for 0
+
+    const latestDate = cyclists.reduce((latest, cyclist) => {
+        const cyclistLatest = cyclist.pointHistory[cyclist.pointHistory.length - 1].date;
+        return cyclistLatest > latest ? cyclistLatest : latest;
+    }, '');
 
     cyclists.forEach(cyclist => {
-        for (let i = 1; i < cyclist.pointHistory.length; i++) {
-            const pointsAdded = cyclist.pointHistory[i].points - cyclist.pointHistory[i-1].points;
-            const percentageIncrease = cyclist.pointHistory[i-1].points === 0 ? Infinity : (pointsAdded / cyclist.pointHistory[i-1].points) * 100;
-
-            if (pointsAdded > mvp.pointsAdded) {
-                mvp = { name: cyclist.name, pointsAdded, date: cyclist.pointHistory[i].date };
+        const history = cyclist.pointHistory;
+        for (let i = 1; i < history.length; i++) {
+            const pointsAdded = history[i].points - history[i-1].points;
+            
+            // Check if this is the latest date for MVP
+            if (history[i].date === latestDate && pointsAdded > mvp.pointsAdded) {
+                mvp = { name: cyclist.name, pointsAdded, date: history[i].date };
             }
 
-            if (percentageIncrease > mip.percentageIncrease && cyclist.pointHistory[i-1].points !== 0) {
-                mip = { name: cyclist.name, percentageIncrease, date: cyclist.pointHistory[i].date };
+            // Calculate percentage increase, using ZERO_SUBSTITUTE for 0 points
+            const previousPoints = Math.max(history[i-1].points, ZERO_SUBSTITUTE);
+            const currentPoints = Math.max(history[i].points, ZERO_SUBSTITUTE);
+            const percentageIncrease = ((currentPoints - previousPoints) / previousPoints) * 100;
+            
+            // Update MIP if the percentage increase is higher
+            if (percentageIncrease > mip.percentageIncrease) {
+                mip = { name: cyclist.name, percentageIncrease, date: history[i].date };
             }
         }
     });
@@ -708,7 +721,7 @@ function updateTrajectoryChart() {
 
     createTrajectoryChart(filteredCyclists);
 
-    const { mvp, mip } = calculateMVPandMIP(filteredCyclists);
+       const { mvp, mip } = calculateMVPandMIP(cyclistData.cyclists);
 
     // Update MVP and MIP information
     $('#mvpInfo').html(`

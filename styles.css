@@ -203,7 +203,6 @@ tr:nth-child(odd) {
 }
 
 .mvp-mip-container {
-    width: 200px;
     display: flex;
     justify-content: space-between;
     flex-wrap: nowrap;

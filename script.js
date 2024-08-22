@@ -706,7 +706,6 @@ function calculateMVPandMIP(cyclists) {
 
     return { mvp, mip };
 }
-
 function updateTrajectoryChart() {
     const selectedOption = $('#riderSelect').val();
     let filteredCyclists;
@@ -722,8 +721,9 @@ function updateTrajectoryChart() {
     }
 
     createTrajectoryChart(filteredCyclists);
+    createCustomLegend(filteredCyclists);  // Add this line
 
-       const { mvp, mip } = calculateMVPandMIP(cyclistData.cyclists);
+    const { mvp, mip } = calculateMVPandMIP(cyclistData.cyclists);
 
     // Update MVP and MIP information
     $('#mvpInfo').html(`

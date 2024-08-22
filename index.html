@@ -72,6 +72,7 @@
         </div>
     <div id="RiderTrajectoryTab" class="tabcontent">
         <h2>Rider Point Trajectories</h2>
+        <div id="trajectoryChart" class="chart-container">
         <div class="chart-controls">
             <select id="riderSelect" class="styled-select" onchange="updateTrajectoryChart()">
                 <option value="top10">Top 10 Riders</option>
@@ -80,7 +81,8 @@
                 <!-- Individual rider options will be populated here -->
             </select>
         </div>
-        <div id="trajectoryChart" class="chart-container"></div>
+            
+        </div>
     </div>
             <div id="IdealTeamTab" class="tabcontent">
                 <h2>Dream Team (Max Cost: 100)</h2>

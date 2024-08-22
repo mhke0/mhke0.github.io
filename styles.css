@@ -121,6 +121,25 @@ tr:nth-child(even) {
     background-color: #ffffff;
 }
 
+.styled-select {
+    background-color: #fff0f5;
+    border: 2px solid #ff1493;
+    border-radius: 5px;
+    font-family: 'VT323', monospace;
+    font-size: 16px;
+    color: #ff1493;
+    padding: 5px;
+    margin-bottom: 10px;
+    width: 100%;
+    max-width: 300px;
+}
+
+.styled-select:focus {
+    outline: none;
+    box-shadow: 0 0 5px #ff1493;
+}
+
+
 @media screen and (max-width: 768px) {
     body {
         padding: 10px;

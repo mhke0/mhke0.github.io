@@ -70,15 +70,15 @@
                 <tbody></tbody>
             </table>
         </div>
-       <div id="RiderTrajectoryTab" class="tabcontent">
-    <h2>Rider Point Trajectories</h2>
-    <div class="chart-controls">
-        <select id="riderSelect" onchange="updateTrajectoryChart()">
-            <!-- Options will be populated dynamically -->
-        </select>
-    </div>
-    <div id="trajectoryChart" class="chart-container"></div>
-</div>
+        <div id="RiderTrajectoryTab" class="tabcontent">
+                <h2>Rider Point Trajectories</h2>
+                <div class="chart-controls">
+                <select id="riderSelect" multiple>
+                </select>
+                    <button onclick="updateTrajectoryChart()">Update Chart</button>
+         </div>
+        <div id="trajectoryChart" class="chart-container"></div>
+        </div>
             <div id="IdealTeamTab" class="tabcontent">
                 <h2>Dream Team (Max Cost: 100)</h2>
                 <div id="dreamTeamStats"></div>
@@ -98,7 +98,6 @@
  <script>
 // Global variable to store the cyclist data
 let cyclistData;
-let allRiders = [];
 
 $(document).ready(function() {
     $.getJSON('cyclist-data.json', function(data) {
@@ -111,21 +110,6 @@ $(document).ready(function() {
 
         // Store the cyclist data globally
         cyclistData = data;
-        allRiders = data.cyclists;
-
-              // Populate rider select options
-        const riderSelect = $('#riderSelect');
-        riderSelect.append('<option value="top10">Top 10 Riders</option>');
-        riderSelect.append('<option value="all">All Riders</option>');
-        allRiders.forEach(cyclist => {
-            riderSelect.append(`<option value="${cyclist.name}">${cyclist.name}</option>`);
-        });
-
-        // Style the dropdown
-        riderSelect.addClass('styled-select');
-
-        // Initialize the trajectory chart with top 10 riders
-        createTrajectoryChart(allRiders.slice(0, 10));
 
         let cyclists = data.cyclists;
         let leagueScores = data.league_scores;
@@ -743,22 +727,11 @@ function createTrajectoryChart(cyclists) {
     Plotly.newPlot('trajectoryChart', traces, layout);
 }
 
-// Update the updateTrajectoryChart function
 function updateTrajectoryChart() {
-    const selection = $('#riderSelect').val();
-    let selectedRiders;
-
-    if (selection === 'top10') {
-        selectedRiders = allRiders.slice(0, 10);
-    } else if (selection === 'all') {
-        selectedRiders = allRiders;
-    } else {
-        selectedRiders = allRiders.filter(c => c.name === selection);
-    }
-
-    createTrajectoryChart(selectedRiders);
+    const selectedRiders = $('#riderSelect').val();
+    const filteredCyclists = cyclistData.cyclists.filter(c => selectedRiders.includes(c.name));
+    createTrajectoryChart(filteredCyclists);
 }
-
 
 function openTab(evt, tabName) {
     var i, tabcontent, tablinks;
@@ -775,7 +748,7 @@ function openTab(evt, tabName) {
 
     // Render the trajectory chart when its tab is opened
     if (tabName === 'RiderTrajectoryTab') {
-        createTrajectoryChart(allRiders.slice(0, 10));
+        createTrajectoryChart(cyclistData.cyclists.slice(0, 10));
     }
 }
 

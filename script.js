@@ -359,7 +359,7 @@ function createLeagueScoresChart(leagueScores) {
         marker: { color: 'red' }
     };
 
-    const leagueLayout = {
+   const leagueLayout = {
         title: {
             text: 'League Scores (Stacked)',
             font: {
@@ -372,6 +372,7 @@ function createLeagueScoresChart(leagueScores) {
         xaxis: {
             title: '',
             tickangle: -45,
+            automargin: true,
             titlefont: {
                 family: 'VT323, monospace',
                 size: 16,
@@ -396,26 +397,23 @@ function createLeagueScoresChart(leagueScores) {
                 color: '#ff1493'
             }
         },
-        legend: {
-            font: {
-                family: 'VT323, monospace',
-                size: 14,
-                color: '#000000'
-            }
-        },
-        paper_bgcolor: '#fff0f5',
-        plot_bgcolor: '#fff0f5',
-        height: 500,
+        autosize: true,
         margin: {
-            l: 50,
+            l: 80,
             r: 50,
             b: 100,
-            t: 50,
+            t: 100,
             pad: 4
-        }
+        },
+        paper_bgcolor: '#fff0f5',
+        plot_bgcolor: '#fff0f5'
     };
 
-    Plotly.newPlot('leagueScoresChart', [leagueTrace1, leagueTrace2, leagueTrace3], leagueLayout);
+    const config = {
+        responsive: true
+    };
+
+    Plotly.newPlot('leagueScoresChart', [leagueTrace1, leagueTrace2, leagueTrace3], leagueLayout, config);
 }
 
 function createCostVsPointsChart(top50Cyclists) {

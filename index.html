@@ -498,52 +498,52 @@ Plotly.newPlot('leagueScoresChart', [leagueTrace1, leagueTrace2, leagueTrace3], 
     }
 
     // Function to sort the table based on the clicked column
-    function sortTable(columnIndex) {
-        const table = document.getElementById("cyclistTable");
-        let rows, switching, i, x, y, shouldSwitch, direction, switchcount = 0;
-        switching = true;
-        direction = "asc"; 
-        while (switching) {
-            switching = false;
-            rows = table.rows;
-            for (i = 1; i < (rows.length - 1); i++) {
-                shouldSwitch = false;
-                x = rows[i].getElementsByTagName("TD")[columnIndex];
-                y = rows[i + 1].getElementsByTagName("TD")[columnIndex];
-                if (direction == "asc") {
-                    if (columnIndex === 3 || columnIndex === 4 || columnIndex === 5 || columnIndex === 6) {
-                        if (parseFloat(x.innerHTML) > parseFloat(y.innerHTML)) {
-                            shouldSwitch = true;
-                            break;
-                        }
-                    } else if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-                        shouldSwitch = true;
-                        break;
-                    }
-                } else if (direction == "desc") {
-                    if (columnIndex === 3 || columnIndex === 4 || columnIndex === 5 || columnIndex === 6) {
-                        if (parseFloat(x.innerHTML) < parseFloat(y.innerHTML)) {
-                            shouldSwitch = true;
-                            break;
-                        }
-                    } else if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-                        shouldSwitch = true;
-                        break;
-                    }
-                }
-            }
-            if (shouldSwitch) {
-                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-                switching = true;
-                switchcount++;
+function sortTable(columnIndex) {
+    const table = document.getElementById("cyclistTable");
+    let rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+    switching = true;
+    dir = "asc";
+    while (switching) {
+        switching = false;
+        rows = table.rows;
+        for (i = 1; i < (rows.length - 1); i++) {
+            shouldSwitch = false;
+            x = rows[i].getElementsByTagName("TD")[columnIndex];
+            y = rows[i + 1].getElementsByTagName("TD")[columnIndex];
+            
+            let xValue, yValue;
+            if (columnIndex === 3 || columnIndex === 4 || columnIndex === 5) {
+                xValue = parseFloat(x.innerHTML);
+                yValue = parseFloat(y.innerHTML);
             } else {
-                if (switchcount == 0 && direction == "asc") {
-                    direction = "desc";
-                    switching = true;
+                xValue = x.innerHTML.toLowerCase();
+                yValue = y.innerHTML.toLowerCase();
+            }
+            
+            if (dir == "asc") {
+                if (xValue > yValue) {
+                    shouldSwitch = true;
+                    break;
+                }
+            } else if (dir == "desc") {
+                if (xValue < yValue) {
+                    shouldSwitch = true;
+                    break;
                 }
             }
         }
+        if (shouldSwitch) {
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+            switchcount++;
+        } else {
+            if (switchcount == 0 && dir == "asc") {
+                dir = "desc";
+                switching = true;
+            }
+        }
     }
+}
 
     // Page view counter
     function updateVisitCount() {

@@ -4,8 +4,11 @@ import traceback
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
+import plotly.express as px
 import numpy as np
 import pulp
+import io
+import contextlib
 import os
 from datetime import datetime, timedelta
 
@@ -194,17 +197,33 @@ def select_dream_team_optimized(cyclists):
         return None, 0, 0
 
 
+
 def load_existing_data(filename):
     try:
         with open(filename, 'r') as f:
-            return json.load(f)
+            data = json.load(f)
+        # Ensure all cyclists have a pointHistory
+        for cyclist in data['cyclists']:
+            if 'pointHistory' not in cyclist:
+                cyclist['pointHistory'] = []
+        return data
     except FileNotFoundError:
-        return {'cyclists': [], 'top_50_efficiency': [], 'league_scores': [], 'dream_team': None}
+        return {'cyclists': [], 'top_50_efficiency': [], 'league_scores': [], 'dream_team': None, 'last_update': None}
 
 def update_historical_data(existing_data, new_cyclists):
     today = datetime.now().strftime('%Y-%m-%d')
     yesterday = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
     
+    # If we haven't updated today, move yesterday's data to historical
+    if existing_data.get('last_update') != today:
+        for cyclist in existing_data['cyclists']:
+            if 'pointHistory' not in cyclist:
+                cyclist['pointHistory'] = []
+            cyclist['pointHistory'].append({'date': yesterday, 'points': cyclist['points']})
+            # Keep only the last 30 days of historical data
+            cyclist['pointHistory'] = cyclist['pointHistory'][-30:]
+    
+    # Update with new data
     for new_cyclist in new_cyclists:
         existing_cyclist = next((c for c in existing_data['cyclists'] if c['name'] == new_cyclist['name']), None)
         
@@ -218,39 +237,21 @@ def update_historical_data(existing_data, new_cyclists):
                 'ownership': new_cyclist['ownership'],
                 'cost_per_point': new_cyclist['cost_per_point']
             })
-            
-            # Ensure pointHistory exists and has at least one entry
-            if not existing_cyclist.get('pointHistory'):
-                existing_cyclist['pointHistory'] = [{'date': yesterday, 'points': new_cyclist['points']}]
-            
-            # Get the last entry
-            last_entry = existing_cyclist['pointHistory'][-1]
-            
-            # If the last entry has lower points, use it for yesterday
-            if last_entry['points'] <= new_cyclist['points']:
-                yesterday_points = last_entry['points']
-            else:
-                # If last entry has higher points, use current points for both days
-                yesterday_points = new_cyclist['points']
-            
-            # Update to have exactly two entries: yesterday and today
-            existing_cyclist['pointHistory'] = [
-                {'date': yesterday, 'points': yesterday_points},
-                {'date': today, 'points': new_cyclist['points']}
-            ]
+            if 'pointHistory' not in existing_cyclist:
+                existing_cyclist['pointHistory'] = []
         else:
-            # Add new cyclist with initial two-day historical data
-            new_cyclist['pointHistory'] = [
-                {'date': yesterday, 'points': new_cyclist['points']},
-                {'date': today, 'points': new_cyclist['points']}
-            ]
+            # Add new cyclist
+            new_cyclist['pointHistory'] = []
             existing_data['cyclists'].append(new_cyclist)
     
     # Remove cyclists that are no longer present in the new data
     existing_data['cyclists'] = [c for c in existing_data['cyclists'] if any(nc['name'] == c['name'] for nc in new_cyclists)]
     
-    return existing_data
+    # Update the last update timestamp
+    existing_data['last_update'] = today
     
+    return existing_data
+
 def main():
     cyclist_url = "https://www.velogames.com/spain/2024/riders.php"
     output_file = "cyclist-data.json"
@@ -318,3 +319,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+

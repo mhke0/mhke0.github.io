@@ -41,7 +41,9 @@ h1, h2 {
     border-radius: 5px;
     box-sizing: border-box;
 }
-
+.legend-container {
+    height: 600px;
+}
 
 .chart-container {
     width: 100%;
@@ -64,7 +66,7 @@ h1, h2 {
 }
 
 .stat-box {
-    width: 30%,
+    width: 30%;
     background-color: #fff0f5;
     border: 2px solid #ff69b4;
     border-radius: 5px;

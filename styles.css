@@ -115,27 +115,17 @@ tr:nth-child(odd) {
 .chart-legend-container {
     display: flex;
     gap: 20px;
-    height: 500px;
     margin-bottom: 20px;
 }
 
-.chart-container {
-    flex: 1;
-    min-width: 0;
-    height: 100%;
-    background-color: #fff0f5;
-    border: 2px solid #ff69b4;
-    padding: 10px;
-}
-
-#trajectoryChart, #top50Chart, #pointsPerNameLengthChart, #leagueScoresChart, #costVsPointsChart {
+#trajectoryChart {
     width: 100%;
     height: 100%;
 }
 
 .legend-container {
     width: 200px;
-    height: 100%;
+    height: 500px;
     overflow-y: auto;
     background-color: #fff0f5;
     border: 2px solid #ff69b4;
@@ -214,18 +204,24 @@ tr:nth-child(odd) {
 }
 
 .mvp-mip-container {
-    width: 100%;
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto 0;
     display: flex;
     justify-content: space-between;
-    margin-top: 20px;
+    padding: 10px;
+    background-color: #fff0f5;
+    border: 2px solid #ff69b4;
 }
 
 .info-box {
-    width: 48%;
-    background-color: #fff0f5;
+    background-color: #ffffff;
     border: 2px solid #ff69b4;
     border-radius: 5px;
     padding: 10px;
+    width: 48%;
+    font-family: 'VT323', monospace;
+    color: #000000;
 }
 
 .info-box strong {
@@ -239,22 +235,23 @@ tr:nth-child(odd) {
 }
 
 /* Webkit browsers custom scrollbar */
-.js-plotly-plot::-webkit-scrollbar, .legend-container::-webkit-scrollbar {
-    width: 6px;
+.js-plotly-plot::-webkit-scrollbar {
+    width: 12px;
 }
 
-.js-plotly-plot::-webkit-scrollbar-track, .legend-container::-webkit-scrollbar-track {
+.js-plotly-plot::-webkit-scrollbar-track {
     background: #fff0f5;
+    border: 1px solid #ff69b4;
 }
 
-.js-plotly-plot::-webkit-scrollbar-thumb, .legend-container::-webkit-scrollbar-thumb {
+.js-plotly-plot::-webkit-scrollbar-thumb {
     background-color: #ff69b4;
-    border-radius: 3px;
-    border: 2px solid #fff0f5;
+    border-radius: 6px;
+    border: 3px solid #fff0f5;
 }
 
 /* Firefox custom scrollbar */
-.js-plotly-plot, .legend-container {
+.js-plotly-plot {
     scrollbar-width: thin;
     scrollbar-color: #ff69b4 #fff0f5;
 }
@@ -262,6 +259,26 @@ tr:nth-child(odd) {
 /* Ensure Plotly's modebar doesn't overflow */
 .js-plotly-plot .plotly .modebar-container {
     top: 0 !important;
+}
+
+/* Custom scrollbar for the legend */
+.legend-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.legend-container::-webkit-scrollbar-track {
+    background: #fff0f5;
+}
+
+.legend-container::-webkit-scrollbar-thumb {
+    background-color: #ff69b4;
+    border-radius: 3px;
+    border: 2px solid #fff0f5;
+}
+
+.legend-container {
+    scrollbar-width: thin;
+    scrollbar-color: #ff69b4 #fff0f5;
 }
 
 @media screen and (max-width: 768px) {
@@ -295,17 +312,13 @@ tr:nth-child(odd) {
         flex-direction: column;
     }
 
-    .dropdown-container, .chart-container, .legend-container, .info-box {
+    .dropdown-container, .legend-container, .info-box {
         width: 100%;
+        margin-top: 10px;
     }
 
     .legend-container {
         height: 200px;
-        margin-top: 10px;
-    }
-
-    .info-box {
-        margin-bottom: 10px;
     }
 }
 

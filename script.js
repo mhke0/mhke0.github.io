@@ -603,7 +603,7 @@ function createTrajectoryChart(cyclists) {
         }
     }));
 
-    const layout = {
+
 
     const layout = {
         title: {

@@ -101,36 +101,7 @@
  <script>
 // Global variable to store the cyclist data
 let cyclistData;
-function populateRiderSelect(cyclists) {
-    const riderSelect = $('#riderSelect');
-    riderSelect.empty(); // Clear existing options
-    
-    // Add the "Top 10 Riders" and "All Riders" options
-    riderSelect.append('<option value="top10" selected>Top 10 Riders</option>');
-    riderSelect.append('<option value="all">All Riders</option>');
-    
-    // Add individual rider options
-    cyclists.forEach(cyclist => {
-        riderSelect.append(`<option value="${cyclist.name}">${cyclist.name}</option>`);
-    });
-}
 
-function updateTrajectoryChart() {
-    const selectedOptions = $('#riderSelect').val();
-    let ridersToShow = [];
-
-    if (selectedOptions.includes('all')) {
-        ridersToShow = cyclistData.cyclists;
-    } else if (selectedOptions.includes('top10')) {
-        ridersToShow = cyclistData.cyclists
-            .sort((a, b) => b.points - a.points)
-            .slice(0, 10);
-    } else {
-        ridersToShow = cyclistData.cyclists.filter(c => selectedOptions.includes(c.name));
-    }
-
-    createTrajectoryChart(ridersToShow);
-}
 $(document).ready(function() {
     $.getJSON('cyclist-data.json', function(data) {
         $('#loading').hide();
@@ -762,10 +733,35 @@ function createTrajectoryChart(cyclists) {
     Plotly.newPlot('trajectoryChart', traces, layout);
 }
 
+function populateRiderSelect(cyclists) {
+    const riderSelect = $('#riderSelect');
+    riderSelect.empty(); // Clear existing options
+    
+    // Add the "Top 10 Riders" and "All Riders" options
+    riderSelect.append('<option value="top10" selected>Top 10 Riders</option>');
+    riderSelect.append('<option value="all">All Riders</option>');
+    
+    // Add individual rider options
+    cyclists.forEach(cyclist => {
+        riderSelect.append(`<option value="${cyclist.name}">${cyclist.name}</option>`);
+    });
+}
+
 function updateTrajectoryChart() {
-    const selectedRiders = $('#riderSelect').val();
-    const filteredCyclists = cyclistData.cyclists.filter(c => selectedRiders.includes(c.name));
-    createTrajectoryChart(filteredCyclists);
+    const selectedOptions = $('#riderSelect').val();
+    let ridersToShow = [];
+
+    if (selectedOptions.includes('all')) {
+        ridersToShow = cyclistData.cyclists;
+    } else if (selectedOptions.includes('top10')) {
+        ridersToShow = cyclistData.cyclists
+            .sort((a, b) => b.points - a.points)
+            .slice(0, 10);
+    } else {
+        ridersToShow = cyclistData.cyclists.filter(c => selectedOptions.includes(c.name));
+    }
+
+    createTrajectoryChart(ridersToShow);
 }
 
 function openTab(evt, tabName) {

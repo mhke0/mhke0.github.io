@@ -581,16 +581,29 @@ function displayDreamTeam(dreamTeam) {
         }
     });
 }
+const customColorScheme = [
+    '#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd',
+    '#8c564b', '#e377c2', '#7f7f7f', '#bcbd22', '#17becf'
+];
+
 function createTrajectoryChart(cyclists) {
-    const traces = cyclists.map(cyclist => ({
+    const traces = cyclists.map((cyclist, index) => ({
         x: cyclist.pointHistory.map(h => h.date.split('T')[0]),
         y: cyclist.pointHistory.map(h => h.points),
         type: 'scatter',
         mode: 'lines+markers',
         name: cyclist.name,
-        line: { width: 2 },
-        marker: { size: 6 }
+        line: { 
+            width: 2,
+            color: customColorScheme[index % customColorScheme.length]
+        },
+        marker: { 
+            size: 6,
+            color: customColorScheme[index % customColorScheme.length]
+        }
     }));
+
+    const layout = {
 
     const layout = {
         title: {
@@ -644,6 +657,8 @@ function createTrajectoryChart(cyclists) {
         plot_bgcolor: '#fff0f5'
     };
 
+  };
+
     const config = {
         responsive: true,
         scrollZoom: true,
@@ -655,13 +670,14 @@ function createTrajectoryChart(cyclists) {
 
 function createCustomLegend(cyclists) {
     const legendContainer = document.getElementById('customLegend');
-    legendContainer.innerHTML = '';
+    legendContainer.innerHTML = ''; // Clear existing legend items
+
     cyclists.forEach((cyclist, index) => {
         const legendItem = document.createElement('div');
         legendItem.className = 'legend-item';
         const colorBox = document.createElement('div');
         colorBox.className = 'legend-color';
-        colorBox.style.backgroundColor = Plotly.d3.schemeCategory10[index % 10]; // Use Plotly's color scheme
+        colorBox.style.backgroundColor = customColorScheme[index % customColorScheme.length];
         const nameSpan = document.createElement('span');
         nameSpan.textContent = cyclist.name;
         legendItem.appendChild(colorBox);

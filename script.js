@@ -657,22 +657,60 @@ function createTrajectoryChart(cyclists) {
     });
 }
 
-  function updateTrajectoryChart() {
-        const selectedOption = $('#riderSelect').val();
-        let filteredCyclists;
+function calculateMVPandMIP(cyclists) {
+    let mvp = { name: '', pointsAdded: 0, date: '' };
+    let mip = { name: '', percentageIncrease: 0, date: '' };
 
-        if (selectedOption === 'top10') {
-            filteredCyclists = cyclistData.cyclists
-                .sort((a, b) => b.points - a.points)
-                .slice(0, 10);
-        } else if (selectedOption === 'all') {
-            filteredCyclists = cyclistData.cyclists;
-        } else {
-            filteredCyclists = cyclistData.cyclists.filter(c => c.name === selectedOption);
+    cyclists.forEach(cyclist => {
+        for (let i = 1; i < cyclist.pointHistory.length; i++) {
+            const pointsAdded = cyclist.pointHistory[i].points - cyclist.pointHistory[i-1].points;
+            const percentageIncrease = cyclist.pointHistory[i-1].points === 0 ? Infinity : (pointsAdded / cyclist.pointHistory[i-1].points) * 100;
+
+            if (pointsAdded > mvp.pointsAdded) {
+                mvp = { name: cyclist.name, pointsAdded, date: cyclist.pointHistory[i].date };
+            }
+
+            if (percentageIncrease > mip.percentageIncrease && cyclist.pointHistory[i-1].points !== 0) {
+                mip = { name: cyclist.name, percentageIncrease, date: cyclist.pointHistory[i].date };
+            }
         }
+    });
 
-        createTrajectoryChart(filteredCyclists);
+    return { mvp, mip };
+}
+
+// Modify the updateTrajectoryChart function
+function updateTrajectoryChart() {
+    const selectedOption = $('#riderSelect').val();
+    let filteredCyclists;
+
+    if (selectedOption === 'top10') {
+        filteredCyclists = cyclistData.cyclists
+            .sort((a, b) => b.points - a.points)
+            .slice(0, 10);
+    } else if (selectedOption === 'all') {
+        filteredCyclists = cyclistData.cyclists;
+    } else {
+        filteredCyclists = cyclistData.cyclists.filter(c => c.name === selectedOption);
     }
+
+    const { mvp, mip } = calculateMVPandMIP(filteredCyclists);
+
+    createTrajectoryChart(filteredCyclists);
+
+    // Update MVP and MIP information
+    $('#mvpInfo').html(`
+        <strong>MVP:</strong> ${mvp.name}<br>
+        Points Added: ${mvp.pointsAdded.toFixed(2)}<br>
+        Date: ${new Date(mvp.date).toLocaleDateString()}
+    `);
+
+    $('#mipInfo').html(`
+        <strong>MIP:</strong> ${mip.name}<br>
+        Percentage Increase: ${mip.percentageIncrease.toFixed(2)}%<br>
+        Date: ${new Date(mip.date).toLocaleDateString()}
+    `);
+}
 
 
 function openTab(evt, tabName) {

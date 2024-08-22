@@ -612,7 +612,7 @@ function createTrajectoryChart(cyclists) {
             },
             tickfont: {
                 family: 'VT323, monospace',
-                size: 14,
+                size: 12,
                 color: '#ff1493'
             },
             tickformat: '%Y-%m-%d'
@@ -626,7 +626,7 @@ function createTrajectoryChart(cyclists) {
             },
             tickfont: {
                 family: 'VT323, monospace',
-                size: 14,
+                size: 12,
                 color: '#ff1493'
             }
         },
@@ -648,14 +648,14 @@ function createTrajectoryChart(cyclists) {
         },
         margin: {
             l: 50,
-            r: 50,
-            b: 70,
+            r: 20,
+            b: 60,
             t: 50,
             pad: 4
         },
         height: 500,
-        width: 900,
-        autosize: true,
+        width: 800,
+        autosize: false,
         paper_bgcolor: '#fff0f5',
         plot_bgcolor: '#fff0f5'
     };

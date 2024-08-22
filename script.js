@@ -603,8 +603,6 @@ function createTrajectoryChart(cyclists) {
         }
     }));
 
-
-
     const layout = {
         title: {
             text: 'Rider Point Trajectories',
@@ -656,8 +654,6 @@ function createTrajectoryChart(cyclists) {
         paper_bgcolor: '#fff0f5',
         plot_bgcolor: '#fff0f5'
     };
-
-  };
 
     const config = {
         responsive: true,

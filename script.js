@@ -2,13 +2,11 @@
 // Global variable to store the cyclist data
 let cyclistData;
 
+
 $(document).ready(function() {
     $.getJSON('cyclist-data.json', function(data) {
         $('#loading').hide();
         $('#dashboard').show();
-
-        console.log('Entire data object:', data); // For debugging
-        console.log('League Scores Data:', data.league_scores); // For debugging
 
         if (!data.cyclists || !data.league_scores) {
             throw new Error("Missing required data in JSON file");
@@ -16,6 +14,7 @@ $(document).ready(function() {
 
         // Store the cyclist data globally
         cyclistData = data;
+
         let cyclists = data.cyclists;
         let leagueScores = data.league_scores;
 
@@ -75,29 +74,22 @@ $(document).ready(function() {
         createRoleChart(roles);
         createTop50Chart(top50Cyclists);
         createPointsPerNameLengthChart(cyclists);
+        createLeagueScoresChart(leagueScores.current);
+        createRelativePerformanceChart(leagueScores.current);
         createCostVsPointsChart(top50Cyclists);
 
         if (data.dream_team) {
             displayDreamTeam(data.dream_team);
         }
 
-        const riderSelect = $('#riderSelect');
-        const sortedCyclists = [...cyclists].sort((a, b) => a.name.localeCompare(b.name));
-        sortedCyclists.forEach(cyclist => {
-            riderSelect.append(`<option value="${cyclist.name}">${cyclist.name}</option>`);
-        });
+            const riderSelect = $('#riderSelect');
+            const sortedCyclists = data.cyclists.sort((a, b) => a.name.localeCompare(b.name));
+            sortedCyclists.forEach(cyclist => {
+                riderSelect.append(`<option value="${cyclist.name}">${cyclist.name}</option>`);
+            });
 
-        // Create league-related charts
-        if (data.league_scores) {
-            createLeagueScoresChart(data.league_scores);
-            createRelativePerformanceChart(data.league_scores);
-            createTrendPredictionChart(data.league_scores);
-        } else {
-            console.error('League scores data is missing');
-        }
-
-        // Initialize the trajectory chart with top 10 riders
-        updateTrajectoryChart();
+            // Initialize the trajectory chart with top 10 riders
+            updateTrajectoryChart();
 
         // Open the default tab
         document.getElementById("defaultOpen").click();
@@ -323,25 +315,14 @@ function createLeagueScoresChart(leagueScores) {
         "Team Fiestina": 8964
     };
 
-function getUniqueTeamNames(baseData, middleData, leagueScores) {
-    const allNames = [
-        ...Object.keys(baseData),
-        ...Object.keys(middleData)
-    ];
-
-    // Handle different possible structures of leagueScores
-    if (Array.isArray(leagueScores)) {
-        allNames.push(...leagueScores.map(team => team.name));
-    } else if (typeof leagueScores === 'object' && leagueScores !== null) {
-        if (Array.isArray(leagueScores.current)) {
-            allNames.push(...leagueScores.current.map(team => team.name));
-        } else {
-            allNames.push(...Object.keys(leagueScores));
-        }
+    function getUniqueTeamNames(baseData, middleData, leagueScores) {
+        const allNames = [
+            ...Object.keys(baseData),
+            ...Object.keys(middleData),
+            ...leagueScores.map(team => team.name)
+        ];
+        return [...new Set(allNames)];
     }
-
-    return [...new Set(allNames)];
-}
 
     const uniqueTeamNames = getUniqueTeamNames(baseData, middleData, leagueScores);
 
@@ -877,6 +858,7 @@ function sortTable(columnIndex) {
         }
     }
 }
+/*
 function createRelativePerformanceChart(leagueScores) {
     const averageScore = leagueScores.reduce((sum, team) => sum + team.points, 0) / leagueScores.length;
     
@@ -947,90 +929,7 @@ function createRelativePerformanceChart(leagueScores) {
 
     Plotly.newPlot('relativePerformanceChart', [trace], layout);
 }
-
-function createRelativePerformanceChart(leagueScores) {
-    console.log('League Scores:', leagueScores); // For debugging
-
-    // Check if leagueScores is an object with a 'current' property
-    if (leagueScores && typeof leagueScores === 'object' && Array.isArray(leagueScores.current)) {
-        leagueScores = leagueScores.current;
-    }
-
-    // Ensure leagueScores is an array
-    if (!Array.isArray(leagueScores)) {
-        console.error('League scores is not an array:', leagueScores);
-        return; // Exit the function if leagueScores is not an array
-    }
-
-    const averageScore = leagueScores.reduce((sum, team) => sum + team.points, 0) / leagueScores.length;
-    
-    const data = leagueScores.map(team => ({
-        name: team.name,
-        relativePerformance: ((team.points - averageScore) / averageScore) * 100
-    }));
-
-    const trace = {
-        x: data.map(d => d.name),
-        y: data.map(d => d.relativePerformance),
-        type: 'bar',
-        marker: {
-            color: data.map(d => d.relativePerformance >= 0 ? 'green' : 'red')
-        },
-        text: data.map(d => d.relativePerformance.toFixed(2) + '%'),
-        textposition: 'auto',
-        hoverinfo: 'x+text'
-    };
-
-    const layout = {
-        title: {
-            text: 'Team Performance Relative to Average',
-            font: {
-                family: 'VT323, monospace',
-                size: 24,
-                color: '#ff1493'
-            }
-        },
-        xaxis: {
-            title: '',
-            tickangle: -45,
-            titlefont: {
-                family: 'VT323, monospace',
-                size: 16,
-                color: '#ff1493'
-            },
-            tickfont: {
-                family: 'VT323, monospace',
-                size: 14,
-                color: '#ff1493'
-            }
-        },
-        yaxis: {
-            title: 'Performance Relative to Average (%)',
-            titlefont: {
-                family: 'VT323, monospace',
-                size: 16,
-                color: '#ff1493'
-            },
-            tickfont: {
-                family: 'VT323, monospace',
-                size: 14,
-                color: '#ff1493'
-            }
-        },
-        paper_bgcolor: '#fff0f5',
-        plot_bgcolor: '#fff0f5',
-        height: 500,
-        margin: {
-            l: 50,
-            r: 50,
-            b: 100,
-            t: 50,
-            pad: 4
-        }
-    };
-
-    Plotly.newPlot('relativePerformanceChart', [trace], layout);
-}
+  */  
 
 function updateVisitCount() {
     fetch('https://api.countapi.xyz/update/mhke0.github.io/visits/?amount=1')

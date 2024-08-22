@@ -1,830 +1,220 @@
+import sys
+import json
+import traceback
+import requests
+from bs4 import BeautifulSoup
+import pandas as pd
+import plotly.express as px
+import numpy as np
+import pulp
+import io
+import contextlib
 
-// Global variable to store the cyclist data
-let cyclistData;
+def fetch_html_content(url):
+    try:
+        response = requests.get(url)
+        response.raise_for_status()
+        return response.text
+    except requests.RequestException as e:
+        print(f"Error fetching URL {url}: {e}", file=sys.stderr)
+        raise
 
-$(document).ready(function() {
-    $.getJSON('cyclist-data.json', function(data) {
-        $('#loading').hide();
-        $('#dashboard').show();
+def extract_numeric(value):
+    import re
+    match = re.search(r'\d+(\.\d+)?', value)
+    if match:
+        return float(match.group())
+    else:
+        print(f"Error extracting numeric value from: {value}", file=sys.stderr)
+        return 0.0
 
-        if (!data.cyclists || !data.league_scores) {
-            throw new Error("Missing required data in JSON file");
-        }
+def analyze_cyclists(html_content):
+    soup = BeautifulSoup(html_content, 'html.parser')
+    cyclists = []
 
-        // Store the cyclist data globally
-        cyclistData = data;
+    for row in soup.find_all('tr'):
+        cols = row.find_all('td')
+        if len(cols) >= 7:
+            try:
+                name = cols[1].text.strip()
+                team = cols[2].text.strip()
+                role = cols[3].text.strip()
+                cost = extract_numeric(cols[4].text)
+                ownership = extract_numeric(cols[5].text)
+                points = extract_numeric(cols[6].text)
+                
+                cost_per_point = "Infinity" if points == 0 else cost / points
+                
+                cyclists.append({
+                    'name': name,
+                    'team': team,
+                    'role': role,
+                    'cost': cost,
+                    'ownership': ownership,
+                    'points': points,
+                    'cost_per_point': cost_per_point
+                })
+            except Exception as e:
+                print(f"Error processing row: {e}", file=sys.stderr)
 
-        let cyclists = data.cyclists;
-        let leagueScores = data.league_scores;
+    if not cyclists:
+        print("No cyclists data extracted. Check if the page structure has changed.", file=sys.stderr)
+    
+    return cyclists
 
-        // Call the function when the page loads
-        updateVisitCount();
+def create_top_50_efficiency_data(cyclists):
+    top_50_efficiency = sorted(
+        [c for c in cyclists if c['cost_per_point'] != "Infinity"],
+        key=lambda x: x['cost_per_point']
+    )[:50]
+    
+    return [{
+        'name': c['name'],
+        'cost_per_point': c['cost_per_point'],
+        'role': c['role'],
+        'points': c['points'],
+        'cost': c['cost']
+    } for c in top_50_efficiency]
+
+def fetch_league_scores():
+    url = "https://www.velogames.com/spain/2024/leaguescores.php?league=764413216"
+    response = requests.get(url)
+    soup = BeautifulSoup(response.content, 'html.parser')
+
+    teams = []
+    for li in soup.select('#users .list li'):
+        team_name = li.select_one('h3.name a').text.strip()
+        points = int(li.select_one('p.born b').text.strip())
+        teams.append({"name": team_name, "points": points})
+
+    # Sort teams by points in descending order
+    teams.sort(key=lambda x: x['points'], reverse=True)
+
+    return teams
+
+def numpy_to_python(obj):
+    if isinstance(obj, np.integer):
+        return int(obj)
+    elif isinstance(obj, np.floating):
+        return float(obj)
+    elif isinstance(obj, np.ndarray):
+        return obj.tolist()
+    elif isinstance(obj, pd.Series):
+        return obj.tolist()
+    elif isinstance(obj, pd.DataFrame):
+        return obj.to_dict(orient='records')
+    return obj
+    
+def select_dream_team_optimized(cyclists):
+    # Capture stdout
+    f = io.StringIO()
+    with contextlib.redirect_stdout(f):
+        # Create the linear programming problem
+        prob = pulp.LpProblem("Dream Team Selection", pulp.LpMaximize)
+
+        # Create binary variables for each cyclist
+        cyclist_vars = pulp.LpVariable.dicts("Cyclist", 
+                                             ((c['name'], c['role']) for c in cyclists), 
+                                             cat='Binary')
+
+        # Objective function: maximize total points
+        prob += pulp.lpSum(cyclist['points'] * cyclist_vars[cyclist['name'], cyclist['role']] 
+                           for cyclist in cyclists)
+
+        # Constraints
+        # Total cost must be 100 or less
+        prob += pulp.lpSum(cyclist['cost'] * cyclist_vars[cyclist['name'], cyclist['role']] 
+                           for cyclist in cyclists) <= 100
+
+        # Total number of cyclists must be 9
+        prob += pulp.lpSum(cyclist_vars) == 9
+
+        # Role constraints
+        prob += pulp.lpSum(cyclist_vars[c['name'], c['role']] for c in cyclists if c['role'] == 'Climber') == 2
+        prob += pulp.lpSum(cyclist_vars[c['name'], c['role']] for c in cyclists if c['role'] == 'All-rounder') == 2
+        prob += pulp.lpSum(cyclist_vars[c['name'], c['role']] for c in cyclists if c['role'] == 'Sprinter') == 1
+        prob += pulp.lpSum(cyclist_vars[c['name'], c['role']] for c in cyclists if c['role'] == 'Unclassed') == 3
+
+        # Solve the problem
+        prob.solve()
+
+    # Log solver output to stderr
+    print(f.getvalue(), file=sys.stderr)
+
+    # Check if a solution was found
+    if pulp.LpStatus[prob.status] == "Optimal":
+        # Extract the solution
+        dream_team = []
+        total_points = 0
+        total_cost = 0
+
+        for cyclist in cyclists:
+            if cyclist_vars[cyclist['name'], cyclist['role']].value() == 1:
+                dream_team.append(cyclist)
+                total_points += cyclist['points']
+                total_cost += cyclist['cost']
+
+        return dream_team, total_points, total_cost
+    else:
+        print("No feasible dream team found. The problem might be over-constrained.", file=sys.stderr)
+        return None, 0, 0
+
+def main():
+    cyclist_url = "https://www.velogames.com/spain/2024/riders.php"
+    
+    try:
+        print(f"Fetching cyclist data from {cyclist_url}", file=sys.stderr)
+        html_content = fetch_html_content(cyclist_url)
         
-        // Sort cyclists by cost_per_point (convert "Infinity" to a large number for sorting)
-        cyclists.sort((a, b) => {
-            const costPerPointA = a.cost_per_point === "Infinity" ? Infinity : parseFloat(a.cost_per_point);
-            const costPerPointB = b.cost_per_point === "Infinity" ? Infinity : parseFloat(b.cost_per_point);
-            return costPerPointA - costPerPointB;
-        });
+        print("Analyzing cyclist data", file=sys.stderr)
+        cyclists = analyze_cyclists(html_content)
+        
+        if not cyclists:
+            raise ValueError("No cyclist data was extracted")
 
-        // Get the top 50 cyclists
-        let top50Cyclists = cyclists.slice(0, 50);
+        print(f"Extracted data for {len(cyclists)} cyclists", file=sys.stderr)
 
-        let totalCost = 0;
-        let totalPoints = 0;
-        const roles = {};
+        top_50_data = create_top_50_efficiency_data(cyclists)
 
-        cyclists.forEach(cyclist => {
-            totalCost += cyclist.cost;
-            totalPoints += cyclist.points;
-            roles[cyclist.role] = (roles[cyclist.role] || 0) + 1;
+        print("Fetching league scores", file=sys.stderr)
+        league_scores = fetch_league_scores()
 
-            const costPerPoint = cyclist.points === 0 ? "∞" : (cyclist.cost / cyclist.points).toFixed(2);
-            $('#cyclistTable tbody').append(`
-                <tr>
-                    <td>${cyclist.name}</td>
-                    <td>${cyclist.team}</td>
-                    <td>${cyclist.role}</td>
-                    <td>${cyclist.cost}</td>
-                    <td>${cyclist.points}</td>
-                    <td>${costPerPoint}</td>
-                </tr>
-            `);
-        });
+        print("Selecting dream team (optimized)", file=sys.stderr)
+        dream_team, total_points, total_cost = select_dream_team_optimized(cyclists)
+        
+        dream_team_data = None
+        if dream_team:
+            dream_team_data = [
+                {
+                    'name': rider['name'],
+                    'role': rider['role'],
+                    'cost': rider['cost'],
+                    'points': rider['points']
+                } for rider in dream_team
+            ]
 
-        const avgCost = (totalCost / cyclists.length).toFixed(2);
-        const avgPoints = (totalPoints / cyclists.length).toFixed(2);
-
-        $('#stats').html(`
-            <div class="stat-box">
-                <h3>Total Cyclists</h3>
-                <p>${cyclists.length}</p>
-            </div>
-            <div class="stat-box">
-                <h3>Average Cost</h3>
-                <p>${avgCost}</p>
-            </div>
-            <div class="stat-box">
-                <h3>Average Points</h3>
-                <p>${avgPoints}</p>
-            </div>
-        `);
-
-        createRoleChart(roles);
-        createTop50Chart(top50Cyclists);
-        createPointsPerNameLengthChart(cyclists);
-        createLeagueScoresChart(leagueScores);
-        createCostVsPointsChart(top50Cyclists);
-
-        if (data.dream_team) {
-            displayDreamTeam(data.dream_team);
+        print("Preparing output", file=sys.stderr)
+        output = {
+            'cyclists': cyclists,
+            'top_50_efficiency': top_50_data,
+            'league_scores': league_scores,
+            'dream_team': {
+                'riders': dream_team_data,
+                'total_points': total_points,
+                'total_cost': total_cost
+            } if dream_team_data else None
         }
+        
+        print("Writing JSON output", file=sys.stderr)
+        json_output = json.dumps(output, default=numpy_to_python, ensure_ascii=False, indent=2)
+        print(json_output)  # This will write to stdout
+        
+        print("Script completed successfully", file=sys.stderr)
+    except Exception as e:
+        print(f"An error occurred: {str(e)}", file=sys.stderr)
+        print("Traceback:", file=sys.stderr)
+        traceback.print_exc(file=sys.stderr)
+        sys.exit(1)
 
-            const riderSelect = $('#riderSelect');
-            const sortedCyclists = data.cyclists.sort((a, b) => a.name.localeCompare(b.name));
-            sortedCyclists.forEach(cyclist => {
-                riderSelect.append(`<option value="${cyclist.name}">${cyclist.name}</option>`);
-            });
-
-            // Initialize the trajectory chart with top 10 riders
-            updateTrajectoryChart();
-
-        // Open the default tab
-        document.getElementById("defaultOpen").click();
-    }).fail(function(jqxhr, textStatus, error) {
-        $('#loading').hide();
-        $('#error').text("Error fetching data: " + error).show();
-    });
-});
-
-function createRoleChart(roles) {
-    const ctx = document.getElementById('roleChart').getContext('2d');
-    new Chart(ctx, {
-        type: 'pie',
-        data: {
-            labels: Object.keys(roles),
-            datasets: [{
-                data: Object.values(roles),
-                backgroundColor: [
-                    '#ff6384', '#36a2eb', '#cc65fe', '#ffce56', '#4bc0c0', '#ff9f40'
-                ],
-                borderColor: '#ffffff',
-                borderWidth: 2
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Cyclist Roles Distribution',
-                    font: {
-                        family: 'VT323, monospace',
-                        size: 24,
-                        color: '#ff1493'
-                    }
-                },
-                legend: {
-                    labels: {
-                        font: {
-                            family: 'VT323, monospace',
-                            size: 14,
-                            color: '#000000'
-                        }
-                    }
-                }
-            }
-        }
-    });
-}
-
-function createTop50Chart(top50Cyclists) {
-    const trace = {
-        x: top50Cyclists.map(c => c.name),
-        y: top50Cyclists.map(c => c.cost_per_point === "Infinity" ? 0 : c.cost_per_point),
-        type: 'bar',
-        marker: {
-            color: top50Cyclists.map(c => {
-                switch(c.role) {
-                    case 'All Rounder': return '#ff6384';
-                    case 'Climber': return '#36a2eb';
-                    case 'Sprinter': return '#cc65fe';
-                    default: return '#4bc0c0';
-                }
-            })
-        },
-        text: top50Cyclists.map(c => `Points: ${c.points}<br>Cost: ${c.cost}`),
-        hoverinfo: 'text+y'
-    };
-
-    const layout = {
-        title: {
-            text: 'Top 50 Cyclists by Cost Efficiency(Lower is better)',
-            font: {
-                family: 'VT323, monospace',
-                size: 24,
-                color: '#ff1493'
-            }
-        },
-        xaxis: {
-            title: '',
-            tickangle: -45,
-            titlefont: {
-                family: 'VT323, monospace',
-                size: 16,
-                color: '#ff1493'
-            },
-            tickfont: {
-                family: 'VT323, monospace',
-                size: 14,
-                color: '#ff1493'
-            }
-        },
-        yaxis: {
-            title: 'Cost per Point',
-            titlefont: {
-                family: 'VT323, monospace',
-                size: 16,
-                color: '#ff1493'
-            },
-            tickfont: {
-                family: 'VT323, monospace',
-                size: 14,
-                color: '#ff1493'
-            }
-        },
-        legend: {
-            font: {
-                family: 'VT323, monospace',
-                size: 14,
-                color: '#000000'
-            }
-        },
-        paper_bgcolor: '#fff0f5',
-        plot_bgcolor: '#fff0f5',
-        height: 500,
-        margin: {
-            l: 50,
-            r: 50,
-            b: 100,
-            t: 50,
-            pad: 4
-        }
-    };
-
-    Plotly.newPlot('top50Chart', [trace], layout);
-}
-
-function createPointsPerNameLengthChart(cyclists) {
-    let cyclistsWithPointsPerNameLength = cyclists.map(c => ({
-        ...c,
-        pointsPerNameLength: c.points / c.name.replace(/\s/g, '').length
-    })).sort((a, b) => b.pointsPerNameLength - a.pointsPerNameLength);
-
-    let top50PointsPerNameLength = cyclistsWithPointsPerNameLength.slice(0, 50);
-
-    const tracePointsPerNameLength = {
-        x: top50PointsPerNameLength.map(c => c.name),
-        y: top50PointsPerNameLength.map(c => c.pointsPerNameLength),
-        type: 'bar',
-        marker: {
-            color: top50PointsPerNameLength.map(c => {
-                switch(c.role) {
-                    case 'All Rounder': return '#ff6384';
-                    case 'Climber': return '#36a2eb';
-                    case 'Sprinter': return '#cc65fe';
-                    default: return '#4bc0c0';
-                }
-            })
-        },
-        text: top50PointsPerNameLength.map(c => `Points: ${c.points}<br>Name Length: ${c.name.replace(/\s/g, '').length}`),
-        hoverinfo: 'text+y'
-    };
-
-    const layoutPointsPerNameLength = {
-        title: {
-            text: 'Top 50 Cyclists by Points per Name Length',
-            font: {
-                family: 'VT323, monospace',
-                size: 24,
-                color: '#ff1493'
-            }
-        },
-        xaxis: {
-            title: '',
-            tickangle: -45,
-            titlefont: {
-                family: 'VT323, monospace',
-                size: 16,
-                color: '#ff1493'
-            },
-            tickfont: {
-                family: 'VT323, monospace',
-                size: 14,
-                color: '#ff1493'
-            }
-        },
-        yaxis: {
-            title: 'Points per Name Length',
-            titlefont: {
-                family: 'VT323, monospace',
-                size: 16,
-                color: '#ff1493'
-            },
-            tickfont: {
-                family: 'VT323, monospace',
-                size: 14,
-                color: '#ff1493'
-            }
-        },
-        legend: {
-            font: {
-                family: 'VT323, monospace',
-                size: 14,
-                color: '#000000'
-            }
-        },
-        paper_bgcolor: '#fff0f5',
-        plot_bgcolor: '#fff0f5',
-        height: 500,
-        margin: {
-            l: 50,
-            r: 50,
-            b: 100,
-            t: 50,
-            pad: 4
-        }
-    };
-
-    Plotly.newPlot('pointsPerNameLengthChart', [tracePointsPerNameLength], layoutPointsPerNameLength);
-}
-
-function createLeagueScoresChart(leagueScores) {
-    const baseData = {
-        "Team Name": 0,
-        "Iberische Halbpinsel": 7405,
-        "Ganz anderer Teamname": 9297,
-        "Team Fiestina": 8128
-    };
-    const middleData = {
-        "Team Name": 9062,
-        "Iberische Halbpinsel": 9530,
-        "Ganz anderer Teamname": 7506,
-        "Team Fiestina": 8964
-    };
-
-    function getUniqueTeamNames(baseData, middleData, leagueScores) {
-        const allNames = [
-            ...Object.keys(baseData),
-            ...Object.keys(middleData),
-            ...leagueScores.map(team => team.name)
-        ];
-        return [...new Set(allNames)];
-    }
-
-    const uniqueTeamNames = getUniqueTeamNames(baseData, middleData, leagueScores);
-
-    function findExactOrClosestMatch(obj, searchKey) {
-        if (obj.hasOwnProperty(searchKey)) {
-            return searchKey;
-        }
-        return Object.keys(obj).find(key => 
-            key.toLowerCase().includes(searchKey.toLowerCase()) || 
-            searchKey.toLowerCase().includes(key.toLowerCase())
-        ) || searchKey;
-    }
-
-    const leagueTrace1 = {
-        x: uniqueTeamNames,
-        y: uniqueTeamNames.map(name => baseData[findExactOrClosestMatch(baseData, name)] || 0),
-        name: 'Giro',
-        type: 'bar',
-        marker: { color: 'pink' }
-    };
-
-    const leagueTrace2 = {
-        x: uniqueTeamNames,
-        y: uniqueTeamNames.map(name => middleData[findExactOrClosestMatch(middleData, name)] || 0),
-        name: 'TdF',
-        type: 'bar',
-        marker: { color: 'yellow' }
-    };
-
-    const leagueTrace3 = {
-        x: uniqueTeamNames,
-        y: uniqueTeamNames.map(name => {
-            const team = leagueScores.find(t => t.name === name);
-            return team ? team.points : 0;
-        }),
-        name: 'Vuelta',
-        type: 'bar',
-        marker: { color: 'red' }
-    };
-
-    const leagueLayout = {
-        title: {
-            text: 'League Scores (Stacked)',
-            font: {
-                family: 'VT323, monospace',
-                size: 24,
-                color: '#ff1493'
-            }
-        },
-        barmode: 'stack',
-        xaxis: {
-            title: '',
-            tickangle: -45,
-            titlefont: {
-                family: 'VT323, monospace',
-                size: 16,
-                color: '#ff1493'
-            },
-            tickfont: {
-                family: 'VT323, monospace',
-                size: 14,
-                color: '#ff1493'
-            }
-        },
-        yaxis: {
-            title: '',
-            titlefont: {
-                family: 'VT323, monospace',
-                size: 16,
-                color: '#ff1493'
-            },
-            tickfont: {
-                family: 'VT323, monospace',
-                size: 14,
-                color: '#ff1493'
-            }
-        },
-        legend: {
-            font: {
-                family: 'VT323, monospace',
-                size: 14,
-                color: '#000000'
-            }
-        },
-        paper_bgcolor: '#fff0f5',
-        plot_bgcolor: '#fff0f5',
-        height: 500,
-        margin: {
-            l: 50,
-            r: 50,
-            b: 100,
-            t: 50,
-            pad: 4
-        }
-    };
-
-    Plotly.newPlot('leagueScoresChart', [leagueTrace1, leagueTrace2, leagueTrace3], leagueLayout);
-}
-
-function createCostVsPointsChart(top50Cyclists) {
-    const costVsPointsTrace = {
-        x: top50Cyclists.map(c => c.points),
-        y: top50Cyclists.map(c => c.cost),
-        mode: 'markers',
-        type: 'scatter',
-        text: top50Cyclists.map(c => c.name),
-        marker: {
-            size: 10,
-            color: top50Cyclists.map(c => {
-                switch(c.role) {
-                    case 'All Rounder': return '#ff6384';
-                    case 'Climber': return '#36a2eb';
-                    case 'Sprinter': return '#cc65fe';
-                    default: return '#4bc0c0';
-                }
-            })
-        },
-        hoverinfo: 'text+x+y'
-    };
-    
-    const costVsPointsLayout = {
-        title: {
-            text: 'Cost vs Points (Top 50)',
-            font: {
-                family: 'VT323, monospace',
-                size: 24,
-                color: '#ff1493'
-            }
-        },
-        xaxis: {
-            title: 'Points',
-            tickangle: -45,
-            titlefont: {
-                family: 'VT323, monospace',
-                size: 16,
-                color: '#ff1493'
-            },
-            tickfont: {
-                family: 'VT323, monospace',
-                size: 14,
-                color: '#ff1493'
-            }
-        },
-        yaxis: {
-            title: 'Cost',
-            titlefont: {
-                family: 'VT323, monospace',
-                size: 16,
-                color: '#ff1493'
-            },
-            tickfont: {
-                family: 'VT323, monospace',
-                size: 14,
-                color: '#ff1493'
-            }
-        },
-        legend: {
-            font: {
-                family: 'VT323, monospace',
-                size: 14,
-                color: '#000000'
-            }
-        },
-        paper_bgcolor: '#fff0f5',
-        plot_bgcolor: '#fff0f5',
-        height: 500,
-        margin: {
-            l: 50,
-            r: 50,
-            b: 100,
-            t: 50,
-            pad: 4
-        }
-    };
-
-    Plotly.newPlot('costVsPointsChart', [costVsPointsTrace], costVsPointsLayout);
-}
-
-function displayDreamTeam(dreamTeam) {
-    let statsHtml = `<h3>Total Cost: ${dreamTeam.total_cost.toFixed(2)} | Total Points: ${dreamTeam.total_points}</h3>`;
-    $('#dreamTeamStats').html(statsHtml);
-
-    const roleColors = {
-        'All Rounder': '#ff6384',
-        'Climber': '#36a2eb',
-        'Sprinter': '#cc65fe',
-        'Unclassed': '#ffce56',
-        'Other': '#4bc0c0'
-    };
-
-    let allRounders = dreamTeam.riders.filter(r => r.role === 'All Rounder').sort((a, b) => b.points - a.points);
-    let climbers = dreamTeam.riders.filter(r => r.role === 'Climber').sort((a, b) => b.points - a.points);
-    let sprinters = dreamTeam.riders.filter(r => r.role === 'Sprinter').sort((a, b) => b.points - a.points);
-    let unclassed = dreamTeam.riders.filter(r => r.role === 'Unclassed').sort((a, b) => b.points - a.points);
-    
-    let orderedRiders = [
-        ...allRounders.slice(0, 2),
-        ...climbers.slice(0, 2),
-        ...sprinters.slice(0, 1),
-        ...unclassed.slice(0, 3)
-    ];
-
-    let additionalRider = dreamTeam.riders.find(r => !orderedRiders.includes(r));
-    if (additionalRider) {
-        orderedRiders.push(additionalRider);
-    }
-
-    let ridersHtml = '<h4>Riders:</h4><ol style="list-style-type: none; padding: 0;">';
-    orderedRiders.forEach((rider, index) => {
-        let backgroundColor = roleColors[rider.role] || roleColors['Other'];
-        ridersHtml += `
-            <li style="background-color: ${backgroundColor}; color: white; margin-bottom: 5px; padding: 10px; border-radius: 5px;">
-                ${index + 1}. ${rider.name} (${rider.role}) - Cost: ${rider.cost}, Points: ${rider.points}
-            </li>`;
-    });
-    ridersHtml += '</ol>';
-    $('#dreamTeamRiders').html(ridersHtml);
-
-    const ctx = document.getElementById('dreamTeamChart').getContext('2d');
-    const roleData = {};
-    orderedRiders.forEach(rider => {
-        roleData[rider.role] = (roleData[rider.role] || 0) + rider.points;
-    });
-
-    new Chart(ctx, {
-        type: 'pie',
-        data: {
-            labels: Object.keys(roleData),
-            datasets: [{
-                data: Object.values(roleData),
-                backgroundColor: Object.keys(roleData).map(role => roleColors[role] || roleColors['Other']),
-                borderColor: '#ffffff',
-                borderWidth: 2
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Dream Team Points Distribution by Role',
-                    font: {
-                        family: 'VT323, monospace',
-                        size: 24,
-                        color: '#ff1493'
-                    }
-                },
-                legend: {
-                    labels: {
-                        font: {
-                            family: 'VT323, monospace',
-                            size: 14,
-                            color: '#000000'
-                        }
-                    }
-                }
-            }
-        }
-    });
-}
-function createTrajectoryChart(cyclists) {
-    const traces = cyclists.map(cyclist => ({
-        x: cyclist.pointHistory.map(h => h.date.split('T')[0]),
-        y: cyclist.pointHistory.map(h => h.points),
-        type: 'scatter',
-        mode: 'lines+markers',
-        name: cyclist.name,
-        line: { width: 2 },
-        marker: { size: 6 }
-    }));
-
-    const layout = {
-        title: {
-            text: 'Rider Point Trajectories',
-            font: {
-                family: 'VT323, monospace',
-                size: 24,
-                color: '#ff1493'
-            }
-        },
-        xaxis: {
-            title: 'Date',
-            tickangle: -45,
-            titlefont: {
-                family: 'VT323, monospace',
-                size: 16,
-                color: '#ff1493'
-            },
-            tickfont: {
-                family: 'VT323, monospace',
-                size: 12,
-                color: '#ff1493'
-            },
-            tickformat: '%Y-%m-%d'
-        },
-        yaxis: {
-            title: 'Points',
-            titlefont: {
-                family: 'VT323, monospace',
-                size: 16,
-                color: '#ff1493'
-            },
-            tickfont: {
-                family: 'VT323, monospace',
-                size: 12,
-                color: '#ff1493'
-            }
-        },
-        legend: {
-            font: {
-                family: 'VT323, monospace',
-                size: 12,
-                color: '#000000'
-            },
-            bgcolor: '#fff0f5',
-            bordercolor: '#ff69b4',
-            borderwidth: 2
-        },
-        autosize: true,
-        paper_bgcolor: '#fff0f5',
-        plot_bgcolor: '#fff0f5'
-    };
-
-    const config = {
-        responsive: true,
-        scrollZoom: true,
-        displayModeBar: false
-    };
-
-    Plotly.newPlot('trajectoryChart', traces, layout, config);
-}
-
-function createCustomLegend(cyclists) {
-    const legendContainer = document.getElementById('customLegend');
-    legendContainer.innerHTML = '';
-    cyclists.forEach((cyclist, index) => {
-        const legendItem = document.createElement('div');
-        legendItem.className = 'legend-item';
-        const colorBox = document.createElement('div');
-        colorBox.className = 'legend-color';
-        colorBox.style.backgroundColor = Plotly.d3.schemeCategory10[index % 10]; // Use Plotly's color scheme
-        const nameSpan = document.createElement('span');
-        nameSpan.textContent = cyclist.name;
-        legendItem.appendChild(colorBox);
-        legendItem.appendChild(nameSpan);
-        legendContainer.appendChild(legendItem);
-    });
-}
-
-function calculateMVPandMIP(cyclists) {
-    let mvp = { name: '', pointsAdded: 0, date: '' };
-    let mip = { name: '', percentageIncrease: 0, date: '', fromZero: false };
-
-    const latestDate = cyclists.reduce((latest, cyclist) => {
-        const cyclistLatest = cyclist.pointHistory[cyclist.pointHistory.length - 1].date;
-        return cyclistLatest > latest ? cyclistLatest : latest;
-    }, '');
-
-    cyclists.forEach(cyclist => {
-        const history = cyclist.pointHistory;
-        for (let i = 1; i < history.length; i++) {
-            const pointsAdded = history[i].points - history[i-1].points;
-            
-            // Check if this is the latest date for MVP
-            if (history[i].date === latestDate && pointsAdded > mvp.pointsAdded) {
-                mvp = { name: cyclist.name, pointsAdded, date: history[i].date };
-            }
-
-            // Calculate percentage increase
-            if (history[i-1].points === 0 && history[i].points > 0) {
-                // Special case: from 0 to positive
-                if (mip.fromZero === false || pointsAdded > mip.percentageIncrease) {
-                    mip = { name: cyclist.name, percentageIncrease: pointsAdded, date: history[i].date, fromZero: true };
-                }
-            } else if (history[i-1].points > 0) {
-                const percentageIncrease = (pointsAdded / history[i-1].points) * 100;
-                if (percentageIncrease > mip.percentageIncrease && !mip.fromZero) {
-                    mip = { name: cyclist.name, percentageIncrease, date: history[i].date, fromZero: false };
-                }
-            }
-        }
-    });
-
-    return { mvp, mip };
-}
-function updateTrajectoryChart() {
-    const selectedOption = $('#riderSelect').val();
-    let filteredCyclists;
-
-    if (selectedOption === 'top10') {
-        filteredCyclists = cyclistData.cyclists
-            .sort((a, b) => b.points - a.points)
-            .slice(0, 10);
-    } else if (selectedOption === 'all') {
-        filteredCyclists = cyclistData.cyclists;
-    } else {
-        filteredCyclists = cyclistData.cyclists.filter(c => c.name === selectedOption);
-    }
-
-    createTrajectoryChart(filteredCyclists);
-    createCustomLegend(filteredCyclists);  // Add this line
-
-    const { mvp, mip } = calculateMVPandMIP(cyclistData.cyclists);
-
-    // Update MVP and MIP information
-    $('#mvpInfo').html(`
-        <strong>MVP:</strong> ${mvp.name}<br>
-        Points Added: ${mvp.pointsAdded.toFixed(2)}<br>
-        Date: ${new Date(mvp.date).toLocaleDateString()}
-    `);
-
-    // Update MIP information
-    $('#mipInfo').html(`
-        <strong>MIP:</strong> ${mip.name}<br>
-        Percentage Increase: ${mip.fromZero ? '∞' : mip.percentageIncrease.toFixed(2) + '%'}<br>
-        ${mip.fromZero ? `Points Gained: ${mip.percentageIncrease.toFixed(2)}` : ''}<br>
-        Date: ${new Date(mip.date).toLocaleDateString()}
-    `);
-}
-
-function openTab(evt, tabName) {
-    // Hide all tab content
-    var tabcontent = document.getElementsByClassName("tabcontent");
-    for (var i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-
-    // Remove the "active" class from all tab buttons
-    var tablinks = document.getElementsByClassName("tablinks");
-    for (var i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    // Show the specific tab content
-    var selectedTab = document.getElementById(tabName);
-    if (selectedTab) {
-        selectedTab.style.display = "block";
-    }
-
-    // Add the "active" class to the button that opened the tab
-    if (evt.currentTarget) {
-        evt.currentTarget.className += " active";
-    }
-
-    // Render the trajectory chart when its tab is opened
-    if (tabName === 'RiderTrajectoryTab') {
-        updateTrajectoryChart();
-    }
-}
-
-// Add this line at the end of the $(document).ready function
-document.getElementById("defaultOpen").click();
-function sortTable(columnIndex) {
-    const table = document.getElementById("cyclistTable");
-    let rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-    switching = true;
-    dir = "asc";
-    while (switching) {
-        switching = false;
-        rows = table.rows;
-        for (i = 1; i < (rows.length - 1); i++) {
-            shouldSwitch = false;
-            x = rows[i].getElementsByTagName("TD")[columnIndex];
-            y = rows[i + 1].getElementsByTagName("TD")[columnIndex];
-            
-            let xValue, yValue;
-            if (columnIndex === 3 || columnIndex === 4 || columnIndex === 5) {
-                xValue = parseFloat(x.innerHTML);
-                yValue = parseFloat(y.innerHTML);
-            } else {
-                xValue = x.innerHTML.toLowerCase();
-                yValue = y.innerHTML.toLowerCase();
-            }
-            
-            if (dir == "asc") {
-                if (xValue > yValue) {
-                    shouldSwitch = true;
-                    break;
-                }
-            } else if (dir == "desc") {
-                if (xValue < yValue) {
-                    shouldSwitch = true;
-                    break;
-                }
-            }
-        }
-        if (shouldSwitch) {
-            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-            switching = true;
-            switchcount++;
-        } else {
-            if (switchcount == 0 && dir == "asc") {
-                dir = "desc";
-                switching = true;
-            }
-        }
-    }
-}
-
-function updateVisitCount() {
-    fetch('https://api.countapi.xyz/update/mhke0.github.io/visits/?amount=1')
-    .then(response => response.json())
-    .then(data => {
-        document.getElementById('visit-count').innerText = data.value;
-    })
-    .catch(error => console.error('Error updating visit count:', error));
-}
+if __name__ == '__main__':
+    main()

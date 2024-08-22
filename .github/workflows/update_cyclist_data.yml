@@ -2,7 +2,7 @@ name: Update Cyclist Data and League Scores
 
 on:
   schedule:
-    - cron: '0 20 * * *'  # Runs daily at 20:00 UTC
+    - cron: '0 19 * * *'  # Runs daily at 20:00 UTC
   workflow_dispatch:  # Allows manual triggering
 
 jobs:

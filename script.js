@@ -588,7 +588,9 @@ function createTrajectoryChart(cyclists) {
         y: cyclist.pointHistory.map(h => h.points),
         type: 'scatter',
         mode: 'lines+markers',
-        name: cyclist.name
+        name: cyclist.name,
+        line: { width: 2 },
+        marker: { size: 6 }
     }));
 
     const layout = {
@@ -634,14 +636,15 @@ function createTrajectoryChart(cyclists) {
                 size: 12,
                 color: '#000000'
             },
+            bgcolor: '#fff0f5',
+            bordercolor: '#ff69b4',
+            borderwidth: 2,
             orientation: 'h',
             yanchor: 'bottom',
             y: -0.2,
             xanchor: 'center',
             x: 0.5,
-            bgcolor: '#fff0f5',
-            bordercolor: '#ff69b4',
-            borderwidth: 2
+            itemsizing: 'constant'
         },
         margin: {
             l: 50,
@@ -652,7 +655,7 @@ function createTrajectoryChart(cyclists) {
         },
         height: 500,
         width: 900,
-        autosize: false,
+        autosize: true,
         paper_bgcolor: '#fff0f5',
         plot_bgcolor: '#fff0f5'
     };
@@ -664,48 +667,6 @@ function createTrajectoryChart(cyclists) {
     };
 
     Plotly.newPlot('trajectoryChart', traces, layout, config);
-
-    // Add custom scrollable legend
-    const legendContainer = document.createElement('div');
-    legendContainer.style.cssText = `
-        position: absolute;
-        bottom: 10px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 80%;
-        max-height: 100px;
-        overflow-y: auto;
-        background-color: #fff0f5;
-        border: 2px solid #ff69b4;
-        padding: 5px;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-    `;
-
-    cyclists.forEach(cyclist => {
-        const legendItem = document.createElement('div');
-        legendItem.style.cssText = `
-            display: flex;
-            align-items: center;
-            margin: 5px;
-            font-family: 'VT323', monospace;
-            font-size: 12px;
-        `;
-        const colorBox = document.createElement('div');
-        colorBox.style.cssText = `
-            width: 12px;
-            height: 12px;
-            margin-right: 5px;
-            background-color: ${cyclist.color || '#000000'};
-        `;
-        legendItem.appendChild(colorBox);
-        legendItem.appendChild(document.createTextNode(cyclist.name));
-        legendContainer.appendChild(legendItem);
-    });
-
-    document.getElementById('trajectoryChart').appendChild(legendContainer);
 }
 
 function calculateMVPandMIP(cyclists) {

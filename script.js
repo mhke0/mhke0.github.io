@@ -606,7 +606,12 @@ function displayDreamTeam(dreamTeam) {
                     family: 'VT323, monospace',
                     size: 16,
                     color: '#ff1493'
-                }
+                },
+                tickfont: {
+                family: 'VT323, monospace',
+                size: 14,
+                color: '#ff1493'
+            }
             },
             yaxis: {
                 title: 'Points',
@@ -614,7 +619,12 @@ function displayDreamTeam(dreamTeam) {
                     family: 'VT323, monospace',
                     size: 16,
                     color: '#ff1493'
-                }
+                },
+                tickfont: {
+                family: 'VT323, monospace',
+                size: 14,
+                color: '#ff1493'
+            }
             },
             legend: {
                 font: {

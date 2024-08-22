@@ -629,7 +629,16 @@ function createTrajectoryChart(cyclists) {
                 color: '#ff1493'
             }
         },
-        showlegend: false,
+        legend: {
+            font: {
+                family: 'VT323, monospace',
+                size: 12,
+                color: '#000000'
+            },
+            bgcolor: '#fff0f5',
+            bordercolor: '#ff69b4',
+            borderwidth: 2
+        },
         autosize: true,
         paper_bgcolor: '#fff0f5',
         plot_bgcolor: '#fff0f5'
@@ -697,10 +706,9 @@ function updateTrajectoryChart() {
         filteredCyclists = cyclistData.cyclists.filter(c => c.name === selectedOption);
     }
 
-    const { mvp, mip } = calculateMVPandMIP(filteredCyclists);
-
     createTrajectoryChart(filteredCyclists);
-    createCustomLegend(filteredCyclists);
+
+    const { mvp, mip } = calculateMVPandMIP(filteredCyclists);
 
     // Update MVP and MIP information
     $('#mvpInfo').html(`
@@ -715,7 +723,6 @@ function updateTrajectoryChart() {
         Date: ${new Date(mip.date).toLocaleDateString()}
     `);
 }
-
 
 function openTab(evt, tabName) {
     // Hide all tab content

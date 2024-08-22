@@ -86,7 +86,7 @@ tr:nth-child(even) {
     top: 10px;
     right: 10px;
     z-index: 1;
-    width: 300px; /* Add this */
+    width: 200px; /* Add this */
 }
 
 .styled-select {

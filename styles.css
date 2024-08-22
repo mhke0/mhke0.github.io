@@ -78,8 +78,8 @@ tr:nth-child(odd) {
 }
 
 .chart-container {
-    width: 80%;
-    max-width: 1000px;
+    width: 90%;
+    max-width: 1100px;
     margin: 0 auto 20px;
     height: 600px;
     background-color: #fff0f5;
@@ -153,6 +153,8 @@ tr:nth-child(odd) {
     border-top: none;
     background-color: #ffffff;
 }
+
+
 
 #trajectoryChart {
     width: 100%;
@@ -239,7 +241,7 @@ tr:nth-child(odd) {
 }
 
 .js-plotly-plot .plotly .legend {
-    max-height: 100px;
+    max-height: 450px;
     overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: #ff69b4 #fff0f5;
@@ -294,8 +296,10 @@ tr:nth-child(odd) {
     .stat-box {
         flex-basis: 100%;
     }
-
+}
+@media screen and (max-width: 768px) {
     .chart-container {
-        height: 250px;
+        width: 95%;
+        height: 400px;
     }
 }

@@ -639,17 +639,17 @@ function createTrajectoryChart(cyclists) {
             bgcolor: '#fff0f5',
             bordercolor: '#ff69b4',
             borderwidth: 2,
-            orientation: 'h',
-            yanchor: 'bottom',
-            y: -0.2,
-            xanchor: 'center',
-            x: 0.5,
+            orientation: 'v',
+            yanchor: 'top',
+            y: 1,
+            xanchor: 'left',
+            x: 1.02,
             itemsizing: 'constant'
         },
         margin: {
             l: 50,
             r: 50,
-            b: 100,
+            b: 70,
             t: 50,
             pad: 4
         },

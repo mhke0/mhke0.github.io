@@ -3697,24 +3697,49 @@
       "cost": 12.0
     }
   ],
-  "league_scores": [
-    {
-      "name": "Team Name",
-      "points": 2054
-    },
-    {
-      "name": "Ganz anderer Teamname",
-      "points": 1096
-    },
-    {
-      "name": "Team Fiestina",
-      "points": 1027
-    },
-    {
-      "name": "Iberische Halbpinsel",
-      "points": 1022
-    }
-  ],
+  "league_scores": {
+    "current": [
+      {
+        "name": "Team Name",
+        "points": 2054
+      },
+      {
+        "name": "Ganz anderer Teamname",
+        "points": 1096
+      },
+      {
+        "name": "Team Fiestina",
+        "points": 1027
+      },
+      {
+        "name": "Iberische Halbpinsel",
+        "points": 1022
+      }
+    ],
+    "history": [
+      {
+        "date": "2024-08-22",
+        "scores": [
+          {
+            "name": "Team Name",
+            "points": 2054
+          },
+          {
+            "name": "Ganz anderer Teamname",
+            "points": 1096
+          },
+          {
+            "name": "Team Fiestina",
+            "points": 1027
+          },
+          {
+            "name": "Iberische Halbpinsel",
+            "points": 1022
+          }
+        ]
+      }
+    ]
+  },
   "dream_team": {
     "riders": [
       {

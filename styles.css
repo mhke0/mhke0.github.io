@@ -1,8 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 
-
-
-
 body {
     font-family: 'VT323', monospace;
     line-height: 1.6;
@@ -84,18 +81,38 @@ tr:nth-child(odd) {
     width: 90%;
     max-width: 1000px;
     margin: 0 auto 20px;
-    height: 550px;
+    height: 500px;
     background-color: #fff0f5;
     border: 2px solid #ff69b4;
     padding: 10px;
-    position: relative;
+}
+
+.trajectory-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.trajectory-header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.dropdown-container {
+    width: 300px;
+}
+
+.chart-legend-container {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
 }
 
 #trajectoryChart {
-    width: 700px;
-    height: 500px;
+    width: 100%;
+    height: 100%;
 }
 
 .legend-container {
@@ -120,51 +137,6 @@ tr:nth-child(odd) {
     width: 12px;
     height: 12px;
     margin-right: 5px;
-}
-
-/* Scrollbar styles for legend */
-.legend-container::-webkit-scrollbar {
-    width: 6px;
-}
-
-.legend-container::-webkit-scrollbar-track {
-    background: #fff0f5;
-}
-
-.legend-container::-webkit-scrollbar-thumb {
-    background-color: #ff69b4;
-    border-radius: 3px;
-    border: 2px solid #fff0f5;
-}
-
-.legend-container {
-    scrollbar-width: thin;
-    scrollbar-color: #ff69b4 #fff0f5;
-}
-
-@media screen and (max-width: 768px) {
-    .chart-container {
-        flex-direction: column;
-        align-items: center;
-        height: auto;
-    }
-
-    #trajectoryChart {
-        width: 100%;
-        height: 400px;
-    }
-
-    .legend-container {
-        width: 100%;
-        height: 200px;
-        margin-top: 10px;
-    }
-}
-
-.dropdown-container {
-    width: 100%;
-    max-width: 300px;
-    margin-bottom: 10px;
 }
 
 .styled-select {
@@ -223,14 +195,9 @@ tr:nth-child(odd) {
     background-color: #ffffff;
 }
 
-
-
-
-
-
 .mvp-mip-container {
-    width: 80%;
-    max-width: 1000px;
+    width: 90%;
+    max-width: 1200px;
     margin: 20px auto 0;
     display: flex;
     justify-content: space-between;
@@ -287,48 +254,25 @@ tr:nth-child(odd) {
 }
 
 /* Custom scrollbar for the legend */
-#trajectoryChart > div:last-child {
-    scrollbar-width: thin;
-    scrollbar-color: #ff69b4 #fff0f5;
-}
-
-#trajectoryChart > div:last-child::-webkit-scrollbar {
-    width: 8px;
-}
-
-#trajectoryChart > div:last-child::-webkit-scrollbar-track {
-    background: #fff0f5;
-}
-
-#trajectoryChart > div:last-child::-webkit-scrollbar-thumb {
-    background-color: #ff69b4;
-    border-radius: 4px;
-    border: 2px solid #fff0f5;
-}
-
-.js-plotly-plot .plotly .legend {
-    max-height: 400px;
-    overflow-y: auto;
-    scrollbar-width: thin;
-    scrollbar-color: #ff69b4 #fff0f5;
-}
-
-.js-plotly-plot .plotly .legend::-webkit-scrollbar {
+.legend-container::-webkit-scrollbar {
     width: 6px;
 }
 
-.js-plotly-plot .plotly .legend::-webkit-scrollbar-track {
+.legend-container::-webkit-scrollbar-track {
     background: #fff0f5;
 }
 
-.js-plotly-plot .plotly .legend::-webkit-scrollbar-thumb {
+.legend-container::-webkit-scrollbar-thumb {
     background-color: #ff69b4;
     border-radius: 3px;
     border: 2px solid #fff0f5;
 }
 
-
+.legend-container {
+    scrollbar-width: thin;
+    scrollbar-color: #ff69b4 #fff0f5;
 }
+
 @media screen and (max-width: 768px) {
     body {
         padding: 10px;
@@ -355,6 +299,19 @@ tr:nth-child(odd) {
     .chart-container {
         height: 300px;
     }
+
+    .trajectory-header, .chart-legend-container, .mvp-mip-container {
+        flex-direction: column;
+    }
+
+    .dropdown-container, .legend-container, .info-box {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .legend-container {
+        height: 200px;
+    }
 }
 
 @media screen and (max-width: 480px) {
@@ -365,49 +322,4 @@ tr:nth-child(odd) {
     .stat-box {
         flex-basis: 100%;
     }
-}
-@media screen and (max-width: 768px) {
-    .chart-container {
-        width: 95%;
-        height: 400px;
-    }
-}
-
-
-
-
-
-.trajectory-container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.trajectory-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-@media screen and (max-width: 768px) {
-    .trajectory-header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .dropdown-container {
-        width: 100%;
-        margin-top: 10px;
-    }
-
-    .chart-legend-container {
-        flex-direction: column;
-    }
-
-    .legend-container {
-        width: 100%;
-        height: 200px;
-    }
-}
 }

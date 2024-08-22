@@ -745,24 +745,37 @@ function updateTrajectoryChart() {
 
 
 function openTab(evt, tabName) {
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
+    // Hide all tab content
+    var tabcontent = document.getElementsByClassName("tabcontent");
+    for (var i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = "none";
     }
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
+
+    // Remove the "active" class from all tab buttons
+    var tablinks = document.getElementsByClassName("tablinks");
+    for (var i = 0; i < tablinks.length; i++) {
         tablinks[i].className = tablinks[i].className.replace(" active", "");
     }
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
+
+    // Show the specific tab content
+    var selectedTab = document.getElementById(tabName);
+    if (selectedTab) {
+        selectedTab.style.display = "block";
+    }
+
+    // Add the "active" class to the button that opened the tab
+    if (evt.currentTarget) {
+        evt.currentTarget.className += " active";
+    }
 
     // Render the trajectory chart when its tab is opened
-        if (tabName === 'RiderTrajectoryTab') {
-            updateTrajectoryChart(); // Use updateTrajectoryChart instead of createTrajectoryChart
-        }
+    if (tabName === 'RiderTrajectoryTab') {
+        updateTrajectoryChart();
+    }
 }
 
+// Add this line at the end of the $(document).ready function
+document.getElementById("defaultOpen").click();
 function sortTable(columnIndex) {
     const table = document.getElementById("cyclistTable");
     let rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;

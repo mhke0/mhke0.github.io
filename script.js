@@ -629,16 +629,7 @@ function createTrajectoryChart(cyclists) {
                 color: '#ff1493'
             }
         },
-        legend: {
-            font: {
-                family: 'VT323, monospace',
-                size: 12,
-                color: '#000000'
-            },
-            bgcolor: '#fff0f5',
-            bordercolor: '#ff69b4',
-            borderwidth: 2
-        },
+        showlegend: false,
         autosize: true,
         paper_bgcolor: '#fff0f5',
         plot_bgcolor: '#fff0f5'
@@ -691,7 +682,6 @@ function calculateMVPandMIP(cyclists) {
 
     return { mvp, mip };
 }
-
 function updateTrajectoryChart() {
     const selectedOption = $('#riderSelect').val();
     let filteredCyclists;
@@ -707,6 +697,7 @@ function updateTrajectoryChart() {
     }
 
     createTrajectoryChart(filteredCyclists);
+    createCustomLegend(filteredCyclists);
 
     const { mvp, mip } = calculateMVPandMIP(filteredCyclists);
 

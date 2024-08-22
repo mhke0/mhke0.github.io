@@ -70,17 +70,19 @@
                 <tbody></tbody>
             </table>
         </div>
-    <div id="RiderTrajectoryTab" class="tabcontent">
+       <div id="RiderTrajectoryTab" class="tabcontent">
         <h2>Rider Point Trajectories</h2>
-        <div class="chart-controls">
-            <select id="riderSelect" class="styled-select" onchange="updateTrajectoryChart()">
-                <option value="top10">Top 10 Riders</option>
-                <option value="all">All Riders</option>
-                <option disabled>------------------------</option>
-                <!-- Individual rider options will be populated here -->
-            </select>
+        <div class="chart-container" style="position: relative;">
+            <div class="dropdown-container">
+                <select id="riderSelect" class="styled-select" onchange="updateTrajectoryChart()">
+                    <option value="top10">Top 10 Riders</option>
+                    <option value="all">All Riders</option>
+                    <option disabled>------------------------</option>
+                    <!-- Individual rider options will be populated here -->
+                </select>
+            </div>
+            <div id="trajectoryChart" style="width: 100%; height: 100%;"></div>
         </div>
-        <div id="trajectoryChart" class="chart-container"></div>
     </div>
             <div id="IdealTeamTab" class="tabcontent">
                 <h2>Dream Team (Max Cost: 100)</h2>
@@ -682,9 +684,9 @@ function displayDreamTeam(dreamTeam) {
     });
 }
 
-function createTrajectoryChart(cyclists) {
+  function createTrajectoryChart(cyclists) {
         const traces = cyclists.map(cyclist => ({
-            x: cyclist.pointHistory.map(h => h.date.split('T')[0]), // Only use the date part
+            x: cyclist.pointHistory.map(h => h.date.split('T')[0]),
             y: cyclist.pointHistory.map(h => h.points),
             type: 'scatter',
             mode: 'lines+markers',
@@ -724,12 +726,17 @@ function createTrajectoryChart(cyclists) {
                 }
             },
             paper_bgcolor: '#fff0f5',
-            plot_bgcolor: '#fff0f5'
+            plot_bgcolor: '#fff0f5',
+            margin: {
+                t: 50,
+                r: 50,
+                b: 50,
+                l: 50
+            }
         };
 
         Plotly.newPlot('trajectoryChart', traces, layout);
     }
-
   function updateTrajectoryChart() {
         const selectedOption = $('#riderSelect').val();
         let filteredCyclists;

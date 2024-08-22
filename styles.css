@@ -31,7 +31,7 @@ h1, h2 {
 }
 
 /* Uniform box styling */
-.stats-container, .chart-container, .trajectory-container, 
+.trajectory-container, 
 .mvp-mip-container, .legend-container, #cyclistTable {
     width: 100%;
     margin: 0 0 20px 0;
@@ -42,14 +42,32 @@ h1, h2 {
     box-sizing: border-box;
 }
 
+.stats-container {
+    width: 30%;
+    margin: 0 0 20px 0;
+    padding: 20px;
+    background-color: #fff0f5;
+    border: 2px solid #ff69b4;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
 .chart-container {
+    width: 100%;
     height: 500px;
+    margin: 0 0 20px 0;
+    padding: 20px;
+    background-color: #fff0f5;
+    border: 2px solid #ff69b4;
+    border-radius: 5px;
+    box-sizing: border-box;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden; /* Add this to prevent any overflow issues */
 }
 
-.chart-container > div, #trajectoryChart {
+.chart-container > div {
     width: 100%;
     height: 100%;
 }

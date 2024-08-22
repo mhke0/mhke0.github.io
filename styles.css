@@ -41,9 +41,6 @@ h1, h2 {
     border-radius: 5px;
     box-sizing: border-box;
 }
-.legend-container {
-    height: 600px;
-}
 
 .chart-container {
     width: 100%;
@@ -73,7 +70,6 @@ h1, h2 {
     padding: 10px;
     text-align: center;
     margin: 10px;
-    flex: 1 1 200px;
 }
 
 table {
@@ -127,7 +123,7 @@ tr:nth-child(odd) {
 
 .legend-container {
     width: 200px;
-    height: 500px;
+    height: 600px;
     overflow-y: auto;
     font-size: 12px;
 }

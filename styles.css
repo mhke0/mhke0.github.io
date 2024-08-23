@@ -66,6 +66,7 @@ h1, h2 {
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    margin: 0 auto;
 }
 
 .chart-container > div {

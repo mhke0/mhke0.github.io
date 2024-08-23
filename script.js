@@ -1232,6 +1232,7 @@ function createLeagueStandingsChart() {
 
     createResponsiveChart('leagueStandingsChart', traces, layout);
 }
+
 function displayTeamPointsDistribution(teamRiders) {
     // Sort riders by points in descending order
     const sortedRiders = teamRiders.sort((a, b) => b.points - a.points);
@@ -1274,6 +1275,7 @@ function displayTeamPointsDistribution(teamRiders) {
 
     createResponsiveChart('teamPointsDistributionChart', [trace], layout);
 }
+
 function displayAllTeamsComparison() {
     const teams = {};
     cyclistData.cyclists.forEach(cyclist => {

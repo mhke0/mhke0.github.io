@@ -478,6 +478,7 @@ tr:nth-child(odd) {
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .balanced-team-box {

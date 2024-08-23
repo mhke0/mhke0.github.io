@@ -1271,3 +1271,48 @@ function displayTeamPointsDistribution(teamRiders) {
 
     createResponsiveChart('teamPointsDistributionChart', [trace], layout);
 }
+function displayAllTeamsComparison() {
+    const teams = {};
+    cyclistData.cyclists.forEach(cyclist => {
+        if (!teams[cyclist.team]) {
+            teams[cyclist.team] = 0;
+        }
+        teams[cyclist.team] += cyclist.points;
+    });
+
+    const sortedTeams = Object.entries(teams).sort((a, b) => b[1] - a[1]);
+
+    const trace = {
+        x: sortedTeams.map(team => team[0]),
+        y: sortedTeams.map(team => team[1]),
+        type: 'bar',
+        marker: {
+            color: sortedTeams.map((team, index) => `hsl(${index * 360 / sortedTeams.length}, 70%, 50%)`),
+        },
+        text: sortedTeams.map(team => `${team[1]} points`),
+        textposition: 'auto',
+        hoverinfo: 'text',
+        hovertext: sortedTeams.map(team => `${team[0]}<br>${team[1]} points`)
+    };
+
+    const layout = {
+        title: {
+            text: 'Total Points Comparison Across All Teams',
+            font: {
+                family: 'VT323, monospace',
+                color: '#ff1493'
+            }
+        },
+        xaxis: {
+            title: 'Teams',
+            tickangle: -45,
+        },
+        yaxis: {
+            title: 'Total Points',
+        },
+        paper_bgcolor: '#fff0f5',
+        plot_bgcolor: '#fff0f5',
+    };
+
+    createResponsiveChart('allTeamsComparisonChart', [trace], layout);
+}

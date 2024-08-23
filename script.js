@@ -761,9 +761,7 @@ function updateTrajectoryChart() {
     createCustomLegend(filteredCyclists);
 
     const { mvp, mip } = updateMVPandMIP(cyclistData);
-
-    // MVP and MIP information is already updated in the updateMVPandMIP function
-    // So we don't need to update it again here
+    updateAllTimeMVPMIP(cyclistData);  // Add this line to update all-time records
 
     // You can add any additional updates or calculations here if needed
 }

@@ -431,6 +431,21 @@ function createLeagueScoresChart(leagueScores) {
     };
 
     Plotly.newPlot('leagueScoresChart', [leagueTrace1, leagueTrace2, leagueTrace3], leagueLayout);
+
+    let rosterHtml = '<div class="roster-grid">';
+    leagueScores.forEach(team => {
+        rosterHtml += `
+            <div class="roster-card">
+                <h4>${team.name}</h4>
+                <ul>
+                    ${team.roster.map(player => `<li>${player}</li>`).join('')}
+                </ul>
+            </div>
+        `;
+    });
+    rosterHtml += '</div>';
+    $('#teamRosters').html(rosterHtml);
+}
 }
 
 function createCostVsPointsChart(top50Cyclists) {

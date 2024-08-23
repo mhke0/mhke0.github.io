@@ -157,7 +157,7 @@ tr:nth-child(odd) {
     font-size: 16px;
     color: var(--primary-color);
     padding: 5px;
-    margin-bottom: 10px;
+    margin-bottom: 0px;
     width: 100%;
     max-width: 300px;
 }

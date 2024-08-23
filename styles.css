@@ -252,6 +252,14 @@ tr:nth-child(odd) {
     top: 0 !important;
 }
 
+.js-plotly-plot {
+    margin: 0 auto;
+}
+
+.js-plotly-plot .plot-container .svg-container {
+    margin: 0 auto;
+}
+
 #allTimeMVPMIPBox {
     background-color: #f0f8ff;
     border: 2px solid #4682b4;

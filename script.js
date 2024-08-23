@@ -577,6 +577,10 @@ function createLeagueScoresChart(leagueScores) {
 
     // Initialize the league team select dropdown
     initializeLeagueTeamSelect();
+    
+    // Calculate and display the most balanced team
+    const balancedTeam = calculateBalancedTeam(leagueScores);
+    displayBalancedTeam(balancedTeam);
 }
 
 
@@ -1344,8 +1348,62 @@ function updateTeamRosterChart() {
     };
 
     Plotly.newPlot('teamRosterChart', [trace], layout);
+        // After plotting the chart, calculate and display the most balanced team
+    const balancedTeam = calculateBalancedTeam(leagueData);
+    displayBalancedTeam(balancedTeam);
+}
+function calculateBalancedTeam(leagueScores) {
+    let mostBalancedTeam = null;
+    let lowestStandardDeviation = Infinity;
+
+    leagueScores.forEach(team => {
+        const rosterData = team.roster.map(riderName => {
+            const rider = cyclistData.cyclists.find(c => c.name === riderName);
+            return rider ? rider.points : 0;
+        });
+
+        const mean = rosterData.reduce((a, b) => a + b, 0) / rosterData.length;
+        const squareDiffs = rosterData.map(value => Math.pow(value - mean, 2));
+        const avgSquareDiff = squareDiffs.reduce((a, b) => a + b, 0) / squareDiffs.length;
+        const standardDeviation = Math.sqrt(avgSquareDiff);
+
+        if (standardDeviation < lowestStandardDeviation) {
+            lowestStandardDeviation = standardDeviation;
+            mostBalancedTeam = team;
+        }
+    });
+
+    return mostBalancedTeam;
 }
 
+function displayBalancedTeam(team) {
+    const balancedTeamContent = document.getElementById('balancedTeamContent');
+    if (!team) {
+        balancedTeamContent.innerHTML = 'No team data available.';
+        return;
+    }
+
+    const rosterData = team.roster.map(riderName => {
+        const rider = cyclistData.cyclists.find(c => c.name === riderName);
+        return {
+            name: riderName,
+            points: rider ? rider.points : 0
+        };
+    }).sort((a, b) => b.points - a.points);
+
+    let html = `
+        <h4>${team.name}</h4>
+        <p>Total Points: ${team.points}</p>
+        <ul>
+    `;
+
+    rosterData.forEach(rider => {
+        html += `<li>${rider.name}: ${rider.points} points</li>`;
+    });
+
+    html += '</ul>';
+    balancedTeamContent.innerHTML = html;
+}
 
 function updateVisitCount() {
     fetch('https://api.countapi.xyz/update/mhke0.github.io/visits/?amount=1')

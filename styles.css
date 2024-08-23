@@ -365,13 +365,6 @@ tr:nth-child(odd) {
     margin: 5px 0;
 }
 
-.team-roster-container {
-    margin-top: 20px;
-    padding: 20px;
-    background-color: #fff0f5;
-    border: 2px solid #ff69b4;
-    border-radius: 5px;
-}
 
 .roster-header {
     display: flex;

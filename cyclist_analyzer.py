@@ -110,21 +110,27 @@ def fetch_league_scores(existing_data):
         li = soup.select_one(f'#users .list li:contains("{team_name}")')
         points = int(li.select_one('p.born b').text.strip())
         
-        # Check if we already have team members for this team
-        existing_team = next((team for team in existing_data['league_scores']['current'] if team['name'] == team_name), None)
+        # Check if we already have this team in existing data
+        existing_team = next((team for team in existing_data.get('league_scores', {}).get('current', []) if team['name'] == team_name), None)
         
-        if existing_team and 'riders' in existing_team:
-            riders = existing_team['riders']
+        if existing_team:
+            # Update points for existing team
+            team_data = {
+                "name": team_name,
+                "points": points,
+                "riders": existing_team.get('riders', [])
+            }
         else:
-            # Fetch team members only if we don't have them
+            # Fetch team members for new team
             team_response = requests.get(team_link)
             riders = extract_team_riders(team_response.content)
+            team_data = {
+                "name": team_name,
+                "points": points,
+                "riders": riders
+            }
         
-        teams.append({
-            "name": team_name,
-            "points": points,
-            "riders": riders
-        })
+        teams.append(team_data)
 
     # Sort teams by points in descending order
     teams.sort(key=lambda x: x['points'], reverse=True)
@@ -304,18 +310,8 @@ def update_historical_data(existing_data, new_cyclists, new_league_scores):
         }
         existing_data['league_scores']['history'].append(history_entry)
     
-    # Update current scores while preserving existing rider information
-    for new_team in new_league_scores:
-        existing_team = next((team for team in existing_data['league_scores']['current'] if team['name'] == new_team['name']), None)
-        if existing_team:
-            existing_team['points'] = new_team['points']
-            if 'riders' not in existing_team:
-                existing_team['riders'] = new_team['riders']
-        else:
-            existing_data['league_scores']['current'].append(new_team)
-    
-    # Sort the current league scores
-    existing_data['league_scores']['current'].sort(key=lambda x: x['points'], reverse=True)
+    # Update current scores
+    existing_data['league_scores']['current'] = new_league_scores
     
     # Keep only the last 30 days of league score history
     existing_data['league_scores']['history'] = sorted(existing_data['league_scores']['history'], key=lambda x: x['date'])[-30:]

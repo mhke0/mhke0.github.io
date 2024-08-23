@@ -304,9 +304,9 @@ tr:nth-child(odd) {
 
 #cyclingTeamRosterDisplay {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);  /* Changed from repeat(3, 1fr) to repeat(4, 1fr) */
     gap: 15px;
-    max-width: 900px;
+    max-width: 1200px;  /* Increased from 900px to accommodate the wider layout */
     margin: 0 auto;
 }
 
@@ -506,6 +506,12 @@ tr:nth-child(odd) {
         font-size: 14px;
     }
 }
+@media screen and (max-width: 1024px) {  /* Added a new breakpoint for tablets and smaller desktops */
+    #cyclingTeamRosterDisplay {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
 @media screen and (max-width: 768px) {
     #cyclingTeamRosterDisplay {
         grid-template-columns: repeat(2, 1fr);

@@ -415,8 +415,8 @@ tr:nth-child(odd) {
 .mvp-mip-container {
     display: flex;
     justify-content: space-between;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .info-box-mvp {
@@ -460,7 +460,7 @@ tr:nth-child(odd) {
 
     .legend-container, .info-box, .balanced-team-box, .info-box-mvp {
         width: 100%;
-        margin-top: 20px;
+        margin-top: 10px;
     }
 
     .legend-container {

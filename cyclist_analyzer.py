@@ -352,8 +352,6 @@ def main():
         print("Loading existing data", file=sys.stderr)
         existing_data = load_existing_data(output_file)
 
-        today = datetime.now().strftime('%Y-%m-%d')
-
         print(f"Fetching new cyclist data from {cyclist_url}", file=sys.stderr)
         html_content = fetch_html_content(cyclist_url)
         
@@ -371,7 +369,51 @@ def main():
         print("Updating historical data", file=sys.stderr)
         updated_data = update_historical_data(existing_data, new_cyclists, new_league_scores)
 
-        # ... (keep the rest of the main function unchanged)
+        print("Creating top 50 efficiency data", file=sys.stderr)
+        updated_data['top_50_efficiency'] = create_top_50_efficiency_data(updated_data['cyclists'])
+
+        print("Selecting dream team (optimized)", file=sys.stderr)
+        dream_team, total_points, total_cost = select_dream_team_optimized(updated_data['cyclists'])
+        
+        if dream_team:
+            updated_data['dream_team'] = {
+                'riders': [
+                    {
+                        'name': rider['name'],
+                        'role': rider['role'],
+                        'cost': rider['cost'],
+                        'points': rider['points'],
+                        'pointHistory': rider['pointHistory']
+                    } for rider in dream_team
+                ],
+                'total_points': total_points,
+                'total_cost': total_cost
+            }
+        else:
+            updated_data['dream_team'] = None
+
+        print("Calculating MVP and MIP", file=sys.stderr)
+        updated_data, mvp, mip = calculate_mvp_mip(updated_data['cyclists'], updated_data)
+
+        print(f"MVP: {mvp['name']} (Points added: {mvp['points_added']})", file=sys.stderr)
+        print(f"MIP: {mip['name']} ({'Points gained' if mip['from_zero'] else 'Percentage increase'}: {mip['percentage_increase']}{'%' if not mip['from_zero'] else ''})", file=sys.stderr)
+
+        print(f"Current working directory: {os.getcwd()}", file=sys.stderr)
+        try:
+            print("Writing updated JSON output to file", file=sys.stderr)
+            with open(output_file, 'w', encoding='utf-8') as f:
+                json.dump(updated_data, f, default=numpy_to_python, ensure_ascii=False, indent=2)
+            
+            print(f"Script completed successfully. Output saved to {output_file}", file=sys.stderr)
+        except IOError as e:
+            print(f"Error writing to file: {e}", file=sys.stderr)
+        except Exception as e:
+            print(f"Unexpected error while writing file: {e}", file=sys.stderr)
+    except Exception as e:
+        print(f"An error occurred: {str(e)}", file=sys.stderr)
+        print("Traceback:", file=sys.stderr)
+        traceback.print_exc(file=sys.stderr)
+        sys.exit(1)
 
 if __name__ == '__main__':
     main()

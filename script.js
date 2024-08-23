@@ -207,6 +207,9 @@ function updateCyclingTeamRosterDisplay() {
     });
     
     document.getElementById('cyclingTeamRosterDisplay').innerHTML = rosterHtml;
+
+    // Call the new function to display the points distribution
+    displayTeamPointsDistribution(teamRiders);
 }
 
 $(document).ready(function() {
@@ -1214,4 +1217,55 @@ function createLeagueStandingsChart() {
     };
 
     createResponsiveChart('leagueStandingsChart', traces, layout);
+}
+function displayTeamPointsDistribution(teamRiders) {
+    // Sort riders by points in descending order
+    const sortedRiders = teamRiders.sort((a, b) => b.points - a.points);
+
+    const trace = {
+        x: sortedRiders.map(rider => rider.name),
+        y: sortedRiders.map(rider => rider.points),
+        type: 'bar',
+        marker: {
+            color: sortedRiders.map(rider => {
+                switch(rider.role) {
+                    case 'All Rounder': return '#ff6384';
+                    case 'Climber': return '#36a2eb';
+                    case 'Sprinter': return '#cc65fe';
+                    default: return '#4bc0c0';
+                }
+            })
+        },
+        text: sortedRiders.map(rider => `${rider.points} points`),
+        textposition: 'auto',
+        hoverinfo: 'text',
+        hovertext: sortedRiders.map(rider => 
+            `Name: ${rider.name}<br>` +
+            `Role: ${rider.role}<br>` +
+            `Points: ${rider.points}<br>` +
+            `Cost: ${rider.cost}`
+        )
+    };
+
+    const layout = {
+        title: {
+            text: 'Team Points Distribution',
+            font: {
+                family: 'VT323, monospace',
+                color: '#ff1493'
+            }
+        },
+        xaxis: {
+            title: 'Riders',
+            tickangle: -45,
+        },
+        yaxis: {
+            title: 'Points',
+        },
+        paper_bgcolor: '#fff0f5',
+        plot_bgcolor: '#fff0f5',
+        margin: { t: 50, b: 100 } // Increase bottom margin to accommodate rotated x-axis labels
+    };
+
+    createResponsiveChart('teamPointsDistributionChart', [trace], layout);
 }

@@ -1106,16 +1106,26 @@ function createTrendPredictionChart(leagueScores) {
     // Process historical data
     const teamData = {};
     leagueScores.history.forEach(entry => {
+        const date = new Date(entry.date);
         entry.scores.forEach(score => {
             if (!teamData[score.name]) {
                 teamData[score.name] = [];
             }
-            teamData[score.name].push({ date: new Date(entry.date), points: score.points });
+            teamData[score.name].push({ date: date, points: score.points });
         });
+    });
+
+    // Add current scores to historical data
+    leagueScores.current.forEach(team => {
+        if (!teamData[team.name]) {
+            teamData[team.name] = [];
+        }
+        teamData[team.name].push({ date: new Date(leagueScores.last_update), points: team.points });
     });
 
     // Sort data points by date for each team
     Object.values(teamData).forEach(data => data.sort((a, b) => a.date - b.date));
+
 
     // Create traces for each team
     const traces = Object.entries(teamData).map(([teamName, data]) => {

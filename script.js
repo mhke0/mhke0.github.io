@@ -564,7 +564,6 @@ function createLeagueScoresChart(leagueScores) {
 
     // Add this line at the end of the function
     createTrendPredictionChart(leagueScores);
-}
     
     const { mostBalancedTeam, leastBalancedTeam } = calculateBalancedTeams(leagueScores);
     displayBalancedTeam(mostBalancedTeam, 'mostBalancedTeamContent');

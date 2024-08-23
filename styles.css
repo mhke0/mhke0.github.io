@@ -66,7 +66,6 @@ h1, h2 {
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    margin: 0 auto;
 }
 
 .chart-container > div {
@@ -251,14 +250,6 @@ tr:nth-child(odd) {
 
 .js-plotly-plot .plotly .modebar-container {
     top: 0 !important;
-}
-
-.js-plotly-plot {
-    margin: 0 auto;
-}
-
-.js-plotly-plot .plot-container .svg-container {
-    margin: 0 auto;
 }
 
 #allTimeMVPMIPBox {

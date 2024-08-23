@@ -790,8 +790,10 @@ function createCustomLegend(cyclists) {
 function updateMVPandMIP(cyclistData) {
     const mvpHistory = cyclistData.mvp_history;
     const mipHistory = cyclistData.mip_history;
+
     let mvpInfo = '';
     let mipInfo = '';
+
     if (mvpHistory && mvpHistory.length > 0) {
         const mvp = mvpHistory[mvpHistory.length - 1];
         mvpInfo = `
@@ -800,16 +802,19 @@ function updateMVPandMIP(cyclistData) {
             Date: ${new Date(mvp.date).toLocaleDateString()}
         `;
     }
+
     if (mipHistory && mipHistory.length > 0) {
         const mip = mipHistory[mipHistory.length - 1];
         mipInfo = `
             <strong>MIP:</strong> ${mip.name}<br>
-            Percentage Increase: ${mip.percentage_increase.toFixed(2)}${mip.from_zero ? '' : '%'}<br>
+            ${mip.from_zero ? 'Points Gained' : 'Percentage Increase'}: ${mip.from_zero ? mip.percentage_increase.toFixed(2) : mip.percentage_increase.toFixed(2) + '%'}<br>
             Date: ${new Date(mip.date).toLocaleDateString()}
         `;
     }
+
     $('#mvpInfo').html(mvpInfo);
     $('#mipInfo').html(mipInfo);
+
     return {
         mvp: mvpHistory && mvpHistory.length > 0 ? mvpHistory[mvpHistory.length - 1] : null,
         mip: mipHistory && mipHistory.length > 0 ? mipHistory[mipHistory.length - 1] : null
@@ -1046,16 +1051,20 @@ function updateVisitCount() {
     })
     .catch(error => console.error('Error updating visit count:', error));
 }
+
 function calculateAllTimeMVPMIP(cyclistData) {
     const mvpHistory = cyclistData.mvp_history || [];
     const mipHistory = cyclistData.mip_history || [];
+
     let allTimeMVP = { name: '', points_added: 0, date: '' };
     let allTimeMIP = { name: '', percentage_increase: 0, date: '', from_zero: false };
+
     mvpHistory.forEach(mvp => {
         if (mvp.points_added > allTimeMVP.points_added) {
             allTimeMVP = mvp;
         }
     });
+
     mipHistory.forEach(mip => {
         if (mip.from_zero) {
             if (!allTimeMIP.from_zero || mip.percentage_increase > allTimeMIP.percentage_increase) {
@@ -1065,13 +1074,16 @@ function calculateAllTimeMVPMIP(cyclistData) {
             allTimeMIP = mip;
         }
     });
+
     return { allTimeMVP, allTimeMIP };
 }
 
 function updateAllTimeMVPMIP(cyclistData) {
     const { allTimeMVP, allTimeMIP } = calculateAllTimeMVPMIP(cyclistData);
+
     let allTimeMVPInfo = '';
     let allTimeMIPInfo = '';
+
     if (allTimeMVP.name) {
         allTimeMVPInfo = `
             <strong>All-Time MVP:</strong> ${allTimeMVP.name}<br>
@@ -1079,13 +1091,15 @@ function updateAllTimeMVPMIP(cyclistData) {
             Date: ${new Date(allTimeMVP.date).toLocaleDateString()}
         `;
     }
+
     if (allTimeMIP.name) {
         allTimeMIPInfo = `
             <strong>All-Time MIP:</strong> ${allTimeMIP.name}<br>
-            Percentage Increase: ${allTimeMIP.percentage_increase.toFixed(2)}${allTimeMIP.from_zero ? '' : '%'}<br>
+            ${allTimeMIP.from_zero ? 'Points Gained' : 'Percentage Increase'}: ${allTimeMIP.from_zero ? allTimeMIP.percentage_increase.toFixed(2) : allTimeMIP.percentage_increase.toFixed(2) + '%'}<br>
             Date: ${new Date(allTimeMIP.date).toLocaleDateString()}
         `;
     }
+
     $('#allTimeMVPInfo').html(allTimeMVPInfo);
     $('#allTimeMIPInfo').html(allTimeMIPInfo);
 }
@@ -1190,4 +1204,3 @@ function createLeagueStandingsChart() {
 
     createResponsiveChart('leagueStandingsChart', traces, layout);
 }
-

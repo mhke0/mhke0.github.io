@@ -42,9 +42,16 @@
     <div class="chart-container">
         <div id="trendPredictionChart"></div>
     </div>
-    <div class="roster-container">
-        <h3>Team Rosters</h3>
-        <div id="teamRosters"></div>
+    <div class="team-roster-container">
+        <div class="team-roster-header">
+            <div class="dropdown-container">
+                <select id="teamSelect" class="styled-select" onchange="updateTeamRosterDisplay()">
+                    <option value="">Select a team</option>
+                    <!-- Team options will be populated here -->
+                </select>
+            </div>
+        </div>
+        <div id="teamRosterDisplay"></div>
     </div>
 </div>
 

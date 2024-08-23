@@ -709,27 +709,38 @@ function createCustomLegend(cyclists) {
     });
 }
 
-function updateMVPandMIP() {
+function updateMVPandMIP(cyclistData) {
     const mvpHistory = cyclistData.mvp_history;
     const mipHistory = cyclistData.mip_history;
 
+    let mvpInfo = '';
+    let mipInfo = '';
+
     if (mvpHistory && mvpHistory.length > 0) {
         const latestMVP = mvpHistory[mvpHistory.length - 1];
-        $('#mvpInfo').html(`
+        mvpInfo = `
             <strong>MVP:</strong> ${latestMVP.name}<br>
             Points Added: ${latestMVP.points_added.toFixed(2)}<br>
             Date: ${new Date(latestMVP.date).toLocaleDateString()}
-        `);
+        `;
     }
 
     if (mipHistory && mipHistory.length > 0) {
         const latestMIP = mipHistory[mipHistory.length - 1];
-        $('#mipInfo').html(`
+        mipInfo = `
             <strong>MIP:</strong> ${latestMIP.name}<br>
             ${latestMIP.from_zero ? 'Points Gained' : 'Percentage Increase'}: ${latestMIP.from_zero ? latestMIP.percentage_increase.toFixed(2) : latestMIP.percentage_increase.toFixed(2) + '%'}<br>
             Date: ${new Date(latestMIP.date).toLocaleDateString()}
-        `);
+        `;
     }
+
+    $('#mvpInfo').html(mvpInfo);
+    $('#mipInfo').html(mipInfo);
+
+    return {
+        mvp: mvpHistory && mvpHistory.length > 0 ? mvpHistory[mvpHistory.length - 1] : null,
+        mip: mipHistory && mipHistory.length > 0 ? mipHistory[mipHistory.length - 1] : null
+    };
 }
 
 function updateTrajectoryChart() {
@@ -749,8 +760,10 @@ function updateTrajectoryChart() {
     createTrajectoryChart(filteredCyclists);
     createCustomLegend(filteredCyclists);  // Add this line
 
-    const { mvp, mip } = updateMVPandMIP(cyclistData.cyclists);
-
+    const mvpMipData = updateMVPandMIP(cyclistData);
+    const mvp = mvpMipData.mvp;
+    const mip = mvpMipData.mip;
+    
     // Update MVP and MIP information
     $('#mvpInfo').html(`
         <strong>MVP:</strong> ${mvp.name}<br>

@@ -604,6 +604,13 @@ function createTrajectoryChart(cyclists) {
             size: 6,
             color: customColorScheme[index % customColorScheme.length]
         },
+        hoverinfo: 'text',
+        text: cyclist.pointHistory.map(h => 
+            `${cyclist.name}<br>` +
+            `Role: ${cyclist.role}<br>` +
+            `Date: ${h.date.split('T')[0]}<br>` +
+            `Points: ${h.points}`
+        ),
         showlegend: false
     }));
 
@@ -662,7 +669,8 @@ function createTrajectoryChart(cyclists) {
         showlegend: false,
         autosize: true,
         paper_bgcolor: '#fff0f5',
-        plot_bgcolor: '#fff0f5'
+        plot_bgcolor: '#fff0f5',
+        hovermode: 'closest'
     };
 
     const config = {

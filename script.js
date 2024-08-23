@@ -23,6 +23,9 @@ function initializeCyclingTeamSelect() {
         option.textContent = team;
         cyclingTeamSelect.appendChild(option);
     });
+
+    // Load the default cycling team chart
+    loadDefaultCyclingTeamChart();
 }
 
 function updateLeagueTeamRosterChart() {
@@ -581,10 +584,15 @@ function createLeagueScoresChart(leagueScores) {
 
     // Initialize the league team select dropdown
     initializeLeagueTeamSelect();
+       // Load the default league team chart
+    loadDefaultLeagueTeamChart();
     
     const { mostBalancedTeam, leastBalancedTeam } = calculateBalancedTeams(leagueScores);
     displayBalancedTeam(mostBalancedTeam, 'mostBalancedTeamContent');
     displayBalancedTeam(leastBalancedTeam, 'leastBalancedTeamContent');
+
+ 
+}
 }
 
 
@@ -953,14 +961,14 @@ function openTab(evt, tabName) {
         updateTrajectoryChart();
     }
 
-       // If opening the League Scores tab, update the league team roster chart
+    // If opening the League Scores tab, load the default league team roster chart
     if (tabName === 'LeagueScoresTab') {
-        updateLeagueTeamRosterChart();
+        loadDefaultLeagueTeamChart();
     }
 
-    // If opening the Teams tab, update the cycling team roster display
+    // If opening the Teams tab, load the default cycling team roster display
     if (tabName === 'TeamsTab') {
-        updateCyclingTeamRosterDisplay();
+        loadDefaultCyclingTeamChart();
     }
 
     // You can add more tab-specific actions here if needed
@@ -1416,6 +1424,21 @@ function displayBalancedTeam(team, elementId) {
 }
 
 
+function loadDefaultLeagueTeamChart() {
+    if (leagueData && leagueData.length > 0) {
+        const defaultTeam = leagueData[0];
+        document.getElementById('leagueTeamSelect').value = defaultTeam.name;
+        updateLeagueTeamRosterChart();
+    }
+}
+
+function loadDefaultCyclingTeamChart() {
+    const cyclingTeamSelect = document.getElementById('cyclingTeamSelect');
+    if (cyclingTeamSelect.options.length > 1) {
+        cyclingTeamSelect.selectedIndex = 1; // Select the first team (index 0 is the default "Select a team" option)
+        updateCyclingTeamRosterDisplay();
+    }
+}
 
 
 function updateVisitCount() {

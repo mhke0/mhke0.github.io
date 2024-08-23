@@ -1,10 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 
+:root {
+    --primary-color: #ff1493;
+    --secondary-color: #00ffff;
+    --background-color: #ffffff;
+    --box-background-color: #fff0f5;
+    --border-color: #ff69b4;
+    --text-color: #000000;
+    --font-family: 'VT323', monospace;
+}
+
 body {
-    font-family: 'VT323', monospace;
+    font-family: var(--font-family);
     line-height: 1.6;
-    color: #000000;
-    background-color: #ffffff;
+    color: var(--text-color);
+    background-color: var(--background-color);
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
@@ -12,16 +22,16 @@ body {
 }
 
 h1, h2 {
-    color: #ff1493;
-    text-shadow: 2px 2px #00ffff;
+    color: var(--primary-color);
+    text-shadow: 2px 2px var(--secondary-color);
     text-align: center;
 }
 
 #loading, #error {
     text-align: center;
     padding: 20px;
-    border: 2px solid #ff69b4;
-    background-color: #fff0f5;
+    border: 2px solid var(--border-color);
+    background-color: var(--box-background-color);
     margin-bottom: 20px;
 }
 
@@ -30,27 +40,27 @@ h1, h2 {
     border-color: #ff0000;
 }
 
-/* Uniform box styling */
 .trajectory-container,
-.legend-container, #cyclistTable {
+.legend-container, 
+#cyclistTable,
+.chart-container,
+.stat-box,
+.info-box,
+.roster-container,
+.team-roster-container,
+.balanced-team-box,
+.info-box-mvp {
     width: 100%;
-    margin: 0 0 20px 0;
+    margin-bottom: 20px;
     padding: 20px;
-    background-color: #fff0f5;
-    border: 2px solid #ff69b4;
+    background-color: var(--box-background-color);
+    border: 2px solid var(--border-color);
     border-radius: 5px;
     box-sizing: border-box;
 }
 
 .chart-container {
-    width: 100%;
     height: 600px;
-    margin: 0 0 20px 0;
-    padding: 20px;
-    background-color: #fff0f5;
-    border: 2px solid #ff69b4;
-    border-radius: 5px;
-    box-sizing: border-box;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -65,22 +75,16 @@ h1, h2 {
 .stats-container {
     display: flex;
     justify-content: space-between;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     margin-top: 20px;
     margin-bottom: 20px;
 }
 
 .stat-box {
-    width: 25%;
-    padding: 20px;
-    margin: 0 0 20px 0;
-    background-color: #fff0f5;
-    border: 2px solid #ff69b4;
-    border-radius: 5px;
+    flex: 1 1 200px;
+    min-width: 0;
     text-align: center;
-    font-family: 'VT323', monospace;
 }
-
 
 table {
     width: 100%;
@@ -88,29 +92,24 @@ table {
 }
 
 th, td {
-    border: 1px solid #ff69b4;
+    border: 1px solid var(--border-color);
     padding: 10px;
     text-align: left;
 }
 
 th {
-    background-color: #ff69b4;
-    color: #ffffff;
+    background-color: var(--border-color);
+    color: var(--background-color);
     font-weight: bold;
     cursor: pointer;
 }
 
 tr:nth-child(even) {
-    background-color: #ffffff;
+    background-color: var(--background-color);
 }
 
 tr:nth-child(odd) {
-    background-color: #fff0f5;
-}
-
-.trajectory-container {
-    width: 100%;
-    margin: 0 auto;
+    background-color: var(--box-background-color);
 }
 
 .trajectory-header {
@@ -149,12 +148,12 @@ tr:nth-child(odd) {
 }
 
 .styled-select {
-    background-color: #fff0f5;
-    border: 2px solid #ff1493;
+    background-color: var(--box-background-color);
+    border: 2px solid var(--primary-color);
     border-radius: 5px;
-    font-family: 'VT323', monospace;
+    font-family: var(--font-family);
     font-size: 16px;
-    color: #ff1493;
+    color: var(--primary-color);
     padding: 5px;
     margin-bottom: 10px;
     width: 100%;
@@ -163,13 +162,13 @@ tr:nth-child(odd) {
 
 .styled-select:focus {
     outline: none;
-    box-shadow: 0 0 5px #ff1493;
+    box-shadow: 0 0 5px var(--primary-color);
 }
 
 .tab {
     overflow: hidden;
-    border: 2px solid #ff69b4;
-    background-color: #fff0f5;
+    border: 2px solid var(--border-color);
+    background-color: var(--box-background-color);
     display: flex;
     flex-wrap: wrap;
 }
@@ -181,8 +180,8 @@ tr:nth-child(odd) {
     cursor: pointer;
     padding: 14px 16px;
     transition: 0.3s;
-    font-family: 'VT323', monospace;
-    color: #000000;
+    font-family: var(--font-family);
+    color: var(--text-color);
     font-size: 18px;
     flex-grow: 1;
 }
@@ -192,30 +191,24 @@ tr:nth-child(odd) {
 }
 
 .tab button.active {
-    background-color: #ff69b4;
-    color: #ffffff;
+    background-color: var(--border-color);
+    color: var(--background-color);
 }
 
 .tabcontent {
     display: none;
     padding: 20px;
-    border: 2px solid #ff69b4;
+    border: 2px solid var(--border-color);
     border-top: none;
-    background-color: #ffffff;
+    background-color: var(--background-color);
 }
 
-
-
 .info-box {
-    background-color: #fff0f5;
-    border: 2px solid #ff69b4;
-    border-radius: 5px;
-    padding: 20px;
     width: 45%;
 }
 
 .info-box strong {
-    color: #ff1493;
+    color: var(--primary-color);
 }
 
 .js-plotly-plot {
@@ -228,47 +221,32 @@ tr:nth-child(odd) {
     height: 100% !important;
 }
 
-.js-plotly-plot::-webkit-scrollbar {
+.js-plotly-plot::-webkit-scrollbar,
+.legend-container::-webkit-scrollbar {
     width: 12px;
 }
 
-.js-plotly-plot::-webkit-scrollbar-track {
-    background: #fff0f5;
-    border: 1px solid #ff69b4;
+.js-plotly-plot::-webkit-scrollbar-track,
+.legend-container::-webkit-scrollbar-track {
+    background: var(--box-background-color);
+    border: 1px solid var(--border-color);
 }
 
-.js-plotly-plot::-webkit-scrollbar-thumb {
-    background-color: #ff69b4;
+.js-plotly-plot::-webkit-scrollbar-thumb,
+.legend-container::-webkit-scrollbar-thumb {
+    background-color: var(--border-color);
     border-radius: 6px;
-    border: 3px solid #fff0f5;
+    border: 3px solid var(--box-background-color);
 }
 
-.js-plotly-plot {
+.js-plotly-plot,
+.legend-container {
     scrollbar-width: thin;
-    scrollbar-color: #ff69b4 #fff0f5;
+    scrollbar-color: var(--border-color) var(--box-background-color);
 }
 
 .js-plotly-plot .plotly .modebar-container {
     top: 0 !important;
-}
-
-.legend-container::-webkit-scrollbar {
-    width: 6px;
-}
-
-.legend-container::-webkit-scrollbar-track {
-    background: #fff0f5;
-}
-
-.legend-container::-webkit-scrollbar-thumb {
-    background-color: #ff69b4;
-    border-radius: 3px;
-    border: 2px solid #fff0f5;
-}
-
-.legend-container {
-    scrollbar-width: thin;
-    scrollbar-color: #ff69b4 #fff0f5;
 }
 
 #allTimeMVPMIPBox {
@@ -277,20 +255,10 @@ tr:nth-child(odd) {
     border-radius: 10px;
     padding: 15px;
     margin-top: 20px;
-    font-family: 'VT323', monospace;
 }
 
 #allTimeMVPInfo, #allTimeMIPInfo {
     margin-top: 10px;
-}
-
-/* New styles for roster display */
-.roster-container {
-    margin-top: 20px;
-    padding: 20px;
-    background-color: #fff0f5;
-    border: 2px solid #ff69b4;
-    border-radius: 5px;
 }
 
 .roster-grid {
@@ -300,16 +268,15 @@ tr:nth-child(odd) {
 }
 
 .roster-card {
-    background-color: #ffffff;
-    border: 1px solid #ff1493;
+    background-color: var(--background-color);
+    border: 1px solid var(--primary-color);
     border-radius: 5px;
     padding: 10px;
 }
 
 .roster-card h4 {
-    color: #ff1493;
+    color: var(--primary-color);
     margin-top: 0;
-    font-family: 'VT323', monospace;
 }
 
 .roster-card ul {
@@ -318,17 +285,7 @@ tr:nth-child(odd) {
 }
 
 .roster-card li {
-    font-family: 'VT323', monospace;
     margin-bottom: 5px;
-}
-.team-roster-container {
-    width: 100%;
-    margin: 20px 0;
-    padding: 20px;
-    background-color: #fff0f5;
-    border: 2px solid #ff69b4;
-    border-radius: 5px;
-    box-sizing: border-box;
 }
 
 .team-roster-header {
@@ -344,22 +301,20 @@ tr:nth-child(odd) {
 }
 
 .rider-card {
-    background-color: #ffffff;
-    border: 1px solid #ff1493;
+    background-color: var(--background-color);
+    border: 1px solid var(--primary-color);
     border-radius: 5px;
     padding: 10px;
-    font-family: 'VT323', monospace;
 }
 
 .rider-card h4 {
-    color: #ff1493;
+    color: var(--primary-color);
     margin-top: 0;
 }
 
 .rider-card p {
     margin: 5px 0;
 }
-
 
 .roster-header {
     display: flex;
@@ -368,12 +323,12 @@ tr:nth-child(odd) {
 }
 
 #teamSelect {
-    background-color: #fff0f5;
-    border: 2px solid #ff1493;
+    background-color: var(--box-background-color);
+    border: 2px solid var(--primary-color);
     border-radius: 5px;
-    font-family: 'VT323', monospace;
+    font-family: var(--font-family);
     font-size: 16px;
-    color: #ff1493;
+    color: var(--primary-color);
     padding: 5px;
     width: 100%;
     max-width: 300px;
@@ -381,31 +336,83 @@ tr:nth-child(odd) {
 
 #teamSelect:focus {
     outline: none;
-    box-shadow: 0 0 5px #ff1493;
+    box-shadow: 0 0 5px var(--primary-color);
 }
 
-@media screen and (max-width: 768px) {
-    .team-roster-container {
-        padding: 10px;
-    }
-
-    #teamSelect {
-        font-size: 14px;
-    }
-}
-@media screen and (max-width: 768px) {
-    #teamRosterDisplay {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    }
+.balanced-teams-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
-@media screen and (max-width: 480px) {
-    #teamRosterDisplay {
-        grid-template-columns: 1fr;
-    }
+.balanced-team-box {
+    width: 45%;
+    background-color: #f0f8ff;
+    border: 2px solid #4682b4;
 }
 
-/* Responsive adjustments */
+.balanced-team-box h3 {
+    color: #4682b4;
+    margin-top: 0;
+    text-align: center;
+}
+
+.balanced-team-box h4 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.balanced-team-box p {
+    margin: 5px 0;
+    font-size: 16px;
+}
+
+.balanced-team-box p:nth-child(3) {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+#mostBalancedTeamBox {
+    border-color: #32CD32;
+}
+
+#leastBalancedTeamBox {
+    border-color: #FF4500;
+}
+
+#mostBalancedTeamBox h3 {
+    color: #32CD32;
+}
+
+#leastBalancedTeamBox h3 {
+    color: #FF4500;
+}
+
+.mvp-mip-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.info-box-mvp {
+    width: 45%;
+    background-color: #f0f8ff;
+    border: 2px solid #4682b4;
+}
+
+.stat-box_mvp_all {
+    min-width: 0;
+    background-color: var(--box-background-color);
+    border: 2px solid var(--border-color);
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    margin: 0;
+}
+
 @media screen and (max-width: 768px) {
     body {
         padding: 10px;
@@ -429,7 +436,7 @@ tr:nth-child(odd) {
         flex-direction: column;
     }
 
-    .legend-container, .info-box {
+    .legend-container, .info-box, .balanced-team-box, .info-box-mvp {
         width: 100%;
         margin-top: 20px;
     }
@@ -438,8 +445,17 @@ tr:nth-child(odd) {
         height: 200px;
     }
 
-    .roster-grid {
+    .roster-grid, #teamRosterDisplay {
         grid-template-columns: 1fr;
+    }
+
+    .balanced-teams-container, .mvp-mip-container {
+        flex-direction: column;
+    }
+
+    .stat-box, .balanced-team-box, .info-box-mvp {
+        width: 100%;
+        margin-bottom: 20px;
     }
 }
 
@@ -452,110 +468,19 @@ tr:nth-child(odd) {
         height: 300px;
     }
 
-    .stat-box {
-        flex-basis: 100%;
-    }
-
-    .roster-card {
+    .roster-card, .rider-card {
         padding: 5px;
     }
 
-    .roster-card h4 {
+    .roster-card h4, .rider-card h4 {
         font-size: 16px;
     }
 
-    .roster-card li {
+    .roster-card li, .rider-card p {
         font-size: 14px;
     }
-}
 
-.balanced-teams-container {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-.balanced-team-box {
-    width: 45%;
-    padding: 15px;
-    background-color: #f0f8ff;
-    border: 2px solid #4682b4;
-    border-radius: 5px;
-    font-family: 'VT323', monospace;
-}
-
-.balanced-team-box h3 {
-    color: #4682b4;
-    margin-top: 0;
-    text-align: center;
-}
-
-.balanced-team-box h4 {
-    color: #ff1493;
-    margin-bottom: 10px;
-    text-align: center;
-}
-
-.balanced-team-box p {
-    margin: 5px 0;
-    font-size: 16px;
-}
-
-.balanced-team-box p:nth-child(3) {
-    font-weight: bold;
-    color: #ff1493;
-}
-
-#mostBalancedTeamBox {
-    border-color: #32CD32;  /* Lime Green */
-}
-
-#leastBalancedTeamBox {
-    border-color: #FF4500;  /* Orange Red */
-}
-
-#mostBalancedTeamBox h3 {
-    color: #32CD32;
-}
-
-#leastBalancedTeamBox h3 {
-    color: #FF4500;
-}
-
-@media (max-width: 768px) {
-    .balanced-teams-container {
-        flex-direction: column;
+    #teamSelect {
+        font-size: 14px;
     }
-
-    .balanced-team-box {
-        width: 100%;
-        margin-bottom: 20px;
-    }
-}
-
-.mvp-mip-container {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-.info-box-mvp {
-    width: 45%;
-    padding: 15px;
-    background-color: #f0f8ff;
-    border: 2px solid #4682b4;
-    border-radius: 5px;
-    font-family: 'VT323', monospace;
-}
-
-.stat-box_mvp_all {
-    min-width: 0;
-    background-color: #fff0f5;
-    border: 2px solid #ff69b4;
-    border-radius: 5px;
-    padding: 10px;
-    text-align: center;
-    margin: 0;
 }

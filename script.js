@@ -1046,20 +1046,16 @@ function updateVisitCount() {
     })
     .catch(error => console.error('Error updating visit count:', error));
 }
-
 function calculateAllTimeMVPMIP(cyclistData) {
     const mvpHistory = cyclistData.mvp_history || [];
     const mipHistory = cyclistData.mip_history || [];
-
     let allTimeMVP = { name: '', points_added: 0, date: '' };
     let allTimeMIP = { name: '', percentage_increase: 0, date: '', from_zero: false };
-
     mvpHistory.forEach(mvp => {
         if (mvp.points_added > allTimeMVP.points_added) {
             allTimeMVP = mvp;
         }
     });
-
     mipHistory.forEach(mip => {
         if (mip.from_zero) {
             if (!allTimeMIP.from_zero || mip.percentage_increase > allTimeMIP.percentage_increase) {
@@ -1069,16 +1065,13 @@ function calculateAllTimeMVPMIP(cyclistData) {
             allTimeMIP = mip;
         }
     });
-
     return { allTimeMVP, allTimeMIP };
 }
 
 function updateAllTimeMVPMIP(cyclistData) {
     const { allTimeMVP, allTimeMIP } = calculateAllTimeMVPMIP(cyclistData);
-
     let allTimeMVPInfo = '';
     let allTimeMIPInfo = '';
-
     if (allTimeMVP.name) {
         allTimeMVPInfo = `
             <strong>All-Time MVP:</strong> ${allTimeMVP.name}<br>
@@ -1086,15 +1079,13 @@ function updateAllTimeMVPMIP(cyclistData) {
             Date: ${new Date(allTimeMVP.date).toLocaleDateString()}
         `;
     }
-
     if (allTimeMIP.name) {
         allTimeMIPInfo = `
             <strong>All-Time MIP:</strong> ${allTimeMIP.name}<br>
-            ${allTimeMIP.from_zero ? 'Points Gained' : 'Percentage Increase'}: ${allTimeMIP.from_zero ? allTimeMIP.percentage_increase.toFixed(2) : allTimeMIP.percentage_increase.toFixed(2) + '%'}<br>
+            Percentage Increase: ${allTimeMIP.percentage_increase.toFixed(2)}${allTimeMIP.from_zero ? '' : '%'}<br>
             Date: ${new Date(allTimeMIP.date).toLocaleDateString()}
         `;
     }
-
     $('#allTimeMVPInfo').html(allTimeMVPInfo);
     $('#allTimeMIPInfo').html(allTimeMIPInfo);
 }

@@ -71,7 +71,7 @@ h1, h2 {
 }
 
 .stat-box {
-    width: 30%;
+    width: 25%;
     padding: 20px;
     margin: 0 0 20px 0;
     background-color: #fff0f5;
@@ -551,7 +551,6 @@ tr:nth-child(odd) {
 }
 
 .stat-box_mvp_all {
-    flex: 1;
     min-width: 0;
     background-color: #fff0f5;
     border: 2px solid #ff69b4;

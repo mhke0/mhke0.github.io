@@ -98,7 +98,7 @@ def extract_team_riders(html_content):
         riders.append({'team': team, 'name': name, 'points': points})
     return riders
 
-def fetch_league_scores():
+def fetch_league_scores(existing_data):
     url = "https://www.velogames.com/spain/2024/leaguescores.php?league=764413216"
     response = requests.get(url)
     soup = BeautifulSoup(response.content, 'html.parser')
@@ -107,22 +107,30 @@ def fetch_league_scores():
     team_links = extract_team_roster_links(response.content)
 
     for team_name, team_link in team_links:
-        team_response = requests.get(team_link)
-        team_riders = extract_team_riders(team_response.content)
-        
         li = soup.select_one(f'#users .list li:contains("{team_name}")')
         points = int(li.select_one('p.born b').text.strip())
+        
+        # Check if we already have team members for this team
+        existing_team = next((team for team in existing_data['league_scores']['current'] if team['name'] == team_name), None)
+        
+        if existing_team and 'riders' in existing_team:
+            riders = existing_team['riders']
+        else:
+            # Fetch team members only if we don't have them
+            team_response = requests.get(team_link)
+            riders = extract_team_riders(team_response.content)
         
         teams.append({
             "name": team_name,
             "points": points,
-            "riders": team_riders
+            "riders": riders
         })
 
     # Sort teams by points in descending order
     teams.sort(key=lambda x: x['points'], reverse=True)
 
     return teams
+    
 def numpy_to_python(obj):
     if isinstance(obj, np.integer):
         return int(obj)
@@ -296,8 +304,18 @@ def update_historical_data(existing_data, new_cyclists, new_league_scores):
         }
         existing_data['league_scores']['history'].append(history_entry)
     
-    # Update current scores with new rider information
-    existing_data['league_scores']['current'] = new_league_scores
+    # Update current scores while preserving existing rider information
+    for new_team in new_league_scores:
+        existing_team = next((team for team in existing_data['league_scores']['current'] if team['name'] == new_team['name']), None)
+        if existing_team:
+            existing_team['points'] = new_team['points']
+            if 'riders' not in existing_team:
+                existing_team['riders'] = new_team['riders']
+        else:
+            existing_data['league_scores']['current'].append(new_team)
+    
+    # Sort the current league scores
+    existing_data['league_scores']['current'].sort(key=lambda x: x['points'], reverse=True)
     
     # Keep only the last 30 days of league score history
     existing_data['league_scores']['history'] = sorted(existing_data['league_scores']['history'], key=lambda x: x['date'])[-30:]
@@ -368,9 +386,14 @@ def main():
         
         print("Analyzing new cyclist data", file=sys.stderr)
         new_cyclists = analyze_cyclists(html_content)
+        
+        if not new_cyclists:
+            raise ValueError("No new cyclist data was extracted")
+
+        print(f"Extracted data for {len(new_cyclists)} cyclists", file=sys.stderr)
 
         print("Fetching league scores and team rosters", file=sys.stderr)
-        new_league_scores = fetch_league_scores()
+        new_league_scores = fetch_league_scores(existing_data)
 
         print("Updating historical data", file=sys.stderr)
         updated_data = update_historical_data(existing_data, new_cyclists, new_league_scores)

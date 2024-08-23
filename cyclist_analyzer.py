@@ -263,12 +263,7 @@ def load_existing_data(filename):
 def update_historical_data(existing_data, new_cyclists, new_league_scores):
     today = datetime.now().strftime('%Y-%m-%d')
     
-    # Check if we've already updated today
-    if existing_data['last_update'] == today:
-        print(f"Data already updated today ({today}). Skipping update.", file=sys.stderr)
-        return existing_data
-
-    # Update cyclist data (unchanged)
+    # Update cyclist data
     for new_cyclist in new_cyclists:
         existing_cyclist = next((c for c in existing_data['cyclists'] if c['name'] == new_cyclist['name']), None)
         
@@ -283,11 +278,14 @@ def update_historical_data(existing_data, new_cyclists, new_league_scores):
                 'cost_per_point': new_cyclist['cost_per_point']
             })
             
-            # Check if we already have an entry for today
-            if not existing_cyclist['pointHistory'] or existing_cyclist['pointHistory'][-1]['date'] != today:
+            # Update or add today's entry in pointHistory
+            today_entry = next((entry for entry in existing_cyclist['pointHistory'] if entry['date'] == today), None)
+            if today_entry:
+                today_entry['points'] = new_cyclist['points']
+            else:
                 existing_cyclist['pointHistory'].append({'date': today, 'points': new_cyclist['points']})
             
-            # Keep only the last 30 days of historical data
+            # Keep only the last 30 entries of historical data
             existing_cyclist['pointHistory'] = sorted(existing_cyclist['pointHistory'], key=lambda x: x['date'])[-30:]
         else:
             # Add new cyclist
@@ -301,23 +299,21 @@ def update_historical_data(existing_data, new_cyclists, new_league_scores):
     if 'league_scores' not in existing_data:
         existing_data['league_scores'] = {'current': [], 'history': []}
     
-    # Check if we already have an entry for today in the history
-    if not existing_data['league_scores']['history'] or existing_data['league_scores']['history'][-1]['date'] != today:
-        # Add current scores to history
-        history_entry = {
+    # Update or add today's entry in league score history
+    today_league_entry = next((entry for entry in existing_data['league_scores']['history'] if entry['date'] == today), None)
+    if today_league_entry:
+        today_league_entry['scores'] = existing_data['league_scores']['current']
+    else:
+        existing_data['league_scores']['history'].append({
             'date': today,
             'scores': existing_data['league_scores']['current']
-        }
-        existing_data['league_scores']['history'].append(history_entry)
+        })
     
     # Update current scores with new league scores (including team rosters)
     existing_data['league_scores']['current'] = new_league_scores
     
-    # Keep only the last 30 days of league score history
+    # Keep only the last 30 entries of league score history
     existing_data['league_scores']['history'] = sorted(existing_data['league_scores']['history'], key=lambda x: x['date'])[-30:]
-    
-    # Update the last update timestamp
-    existing_data['last_update'] = today
     
     return existing_data
     
@@ -372,11 +368,6 @@ def main():
         print("Loading existing data", file=sys.stderr)
         existing_data = load_existing_data(output_file)
 
-        today = datetime.now().strftime('%Y-%m-%d')
-        if existing_data['last_update'] == today:
-            print(f"Data already updated today ({today}). Exiting.", file=sys.stderr)
-            return
-
         print(f"Fetching new cyclist data from {cyclist_url}", file=sys.stderr)
         html_content = fetch_html_content(cyclist_url)
         
@@ -390,18 +381,6 @@ def main():
 
         print("Fetching league scores and team rosters", file=sys.stderr)
         new_league_scores = fetch_league_scores(existing_data)
-
-        print("Updating historical data", file=sys.stderr)
-        updated_data = update_historical_data(existing_data, new_cyclists, new_league_scores)
-
-        
-        if not new_cyclists:
-            raise ValueError("No new cyclist data was extracted")
-
-        print(f"Extracted data for {len(new_cyclists)} cyclists", file=sys.stderr)
-
-        print("Fetching league scores", file=sys.stderr)
-        new_league_scores = fetch_league_scores()
 
         print("Updating historical data", file=sys.stderr)
         updated_data = update_historical_data(existing_data, new_cyclists, new_league_scores)
@@ -435,22 +414,14 @@ def main():
         print(f"MVP: {mvp['name']} (Points added: {mvp['points_added']})", file=sys.stderr)
         print(f"MIP: {mip['name']} ({'Points gained' if mip['from_zero'] else 'Percentage increase'}: {mip['percentage_increase']}{'%' if not mip['from_zero'] else ''})", file=sys.stderr)
 
-        print(f"Current working directory: {os.getcwd()}", file=sys.stderr)
-        try:
-            print("Writing updated JSON output to file", file=sys.stderr)
-            with open(output_file, 'w', encoding='utf-8') as f:
-                json.dump(updated_data, f, default=numpy_to_python, ensure_ascii=False, indent=2)
-            
-            print(f"Script completed successfully. Output saved to {output_file}", file=sys.stderr)
-        except IOError as e:
-            print(f"Error writing to file: {e}", file=sys.stderr)
-        except Exception as e:
-            print(f"Unexpected error while writing file: {e}", file=sys.stderr)
+        print("Writing updated JSON output to file", file=sys.stderr)
+        with open(output_file, 'w', encoding='utf-8') as f:
+            json.dump(updated_data, f, default=numpy_to_python, ensure_ascii=False, indent=2)
+        
+        print(f"Script completed successfully. Output saved to {output_file}", file=sys.stderr)
+
     except Exception as e:
         print(f"An error occurred: {str(e)}", file=sys.stderr)
         print("Traceback:", file=sys.stderr)
         traceback.print_exc(file=sys.stderr)
         sys.exit(1)
-
-if __name__ == '__main__':
-    main()

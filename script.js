@@ -1096,7 +1096,10 @@ function updateAllTimeMVPMIP(cyclistData) {
     $('#allTimeMVPInfo').html(allTimeMVPInfo);
     $('#allTimeMIPInfo').html(allTimeMIPInfo);
 }
+
 function createTrendPredictionChart(leagueScores) {
+    console.log("leagueScores:", JSON.stringify(leagueScores, null, 2));
+    
     // Ensure we have historical data
     if (!leagueScores.history || leagueScores.history.length === 0) {
         console.error('No historical data available for trend and prediction chart');
@@ -1115,17 +1118,8 @@ function createTrendPredictionChart(leagueScores) {
         });
     });
 
-    // Add current scores to historical data
-    leagueScores.current.forEach(team => {
-        if (!teamData[team.name]) {
-            teamData[team.name] = [];
-        }
-        teamData[team.name].push({ date: new Date(leagueScores.last_update), points: team.points });
-    });
-
     // Sort data points by date for each team
     Object.values(teamData).forEach(data => data.sort((a, b) => a.date - b.date));
-
 
     // Create traces for each team
     const traces = Object.entries(teamData).map(([teamName, data]) => {

@@ -9,25 +9,37 @@ function createResponsiveChart(chartId, traces, layout) {
     };
 
     // Make the layout responsive
-    layout.autosize = false;  // We'll set the size manually
+    layout.autosize = true;
     
-    // Calculate 60% of the container width
+    // Calculate adaptive width based on container size
     const container = document.getElementById(chartId);
     const containerWidth = container.offsetWidth;
-    const chartWidth = Math.floor(containerWidth * 0.6);
     
-    layout.width = chartWidth;
-    layout.height = Math.floor(chartWidth * 0.75);  // Maintain a 4:3 aspect ratio
+    // Define breakpoints and corresponding widths
+    const breakpoints = [
+        { minWidth: 1200, chartWidth: '75%' },
+        { minWidth: 992, chartWidth: '85%' },
+        { minWidth: 768, chartWidth: '90%' },
+        { minWidth: 0, chartWidth: '100%' }
+    ];
+
+    // Find the appropriate width based on container size
+    const { chartWidth } = breakpoints.find(bp => containerWidth >= bp.minWidth);
+    
+    // Set the chart width
+    const actualChartWidth = Math.floor(containerWidth * parseFloat(chartWidth) / 100);
+    layout.width = actualChartWidth;
+    layout.height = Math.floor(actualChartWidth * 0.6);  // Maintain a 5:3 aspect ratio
 
     // Center the chart in its container
     layout.margin = layout.margin || {};
-    layout.margin.l = layout.margin.r = Math.floor((containerWidth - chartWidth) / 2);
+    layout.margin.l = layout.margin.r = Math.floor((containerWidth - actualChartWidth) / 2);
     layout.margin.t = layout.margin.t || 50;
     layout.margin.b = layout.margin.b || 50;
     layout.margin.autoexpand = true;
 
     // Base font size calculation
-    const baseFontSize = Math.max(10, Math.min(14, chartWidth / 50));
+    const baseFontSize = Math.max(10, Math.min(14, actualChartWidth / 50));
 
     // Helper function to safely set nested properties
     function setNestedProp(obj, path, value) {
@@ -77,14 +89,15 @@ function createResponsiveChart(chartId, traces, layout) {
     // Add a resize listener to update the chart when the window size changes
     window.addEventListener('resize', function() {
         const newContainerWidth = container.offsetWidth;
-        const newChartWidth = Math.floor(newContainerWidth * 0.6);
-        const newChartHeight = Math.floor(newChartWidth * 0.75);
+        const { chartWidth: newChartWidth } = breakpoints.find(bp => newContainerWidth >= bp.minWidth);
+        const newActualChartWidth = Math.floor(newContainerWidth * parseFloat(newChartWidth) / 100);
+        const newChartHeight = Math.floor(newActualChartWidth * 0.6);
         
         Plotly.relayout(chartId, {
-            width: newChartWidth,
+            width: newActualChartWidth,
             height: newChartHeight,
-            'margin.l': Math.floor((newContainerWidth - newChartWidth) / 2),
-            'margin.r': Math.floor((newContainerWidth - newChartWidth) / 2)
+            'margin.l': Math.floor((newContainerWidth - newActualChartWidth) / 2),
+            'margin.r': Math.floor((newContainerWidth - newActualChartWidth) / 2)
         });
     });
 }
@@ -376,6 +389,7 @@ function createTop50Chart(top50Cyclists) {
             title: '',
             tickangle: -45,
         },
+
         yaxis: {
             title: 'Cost per Point',
         },
@@ -447,7 +461,6 @@ function createLeagueScoresChart(leagueScores) {
         "Ganz anderer Teamname": 9297,
         "Team Fiestina": 8128
     };
-  
     const middleData = {
         "Team Name": 9062,
         "Iberische Halbpinsel": 9530,
@@ -766,6 +779,7 @@ function createCustomLegend(cyclists) {
     });
 }
 
+
 function updateMVPandMIP(cyclistData) {
     const mvpHistory = cyclistData.mvp_history;
     const mipHistory = cyclistData.mip_history;
@@ -820,7 +834,6 @@ function updateTrajectoryChart() {
     const { mvp, mip } = updateMVPandMIP(cyclistData);
     updateAllTimeMVPMIP(cyclistData);  // Add this line to update all-time records
 }
-
 
 function openTab(evt, tabName) {
     var tabcontent = document.getElementsByClassName("tabcontent");

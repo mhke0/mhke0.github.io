@@ -562,16 +562,12 @@ function createLeagueScoresChart(leagueScores) {
 
     createResponsiveChart('leagueScoresChart', [leagueTrace1, leagueTrace2, leagueTrace3], leagueLayout);
 
-    // Directly pass leagueScores to createTrendPredictionChart
-    createTrendPredictionChart(leagueScores);
 
     
     const { mostBalancedTeam, leastBalancedTeam } = calculateBalancedTeams(leagueScores);
     displayBalancedTeam(mostBalancedTeam, 'mostBalancedTeamContent');
     displayBalancedTeam(leastBalancedTeam, 'leastBalancedTeamContent');
 
-
-  
 
 }
 

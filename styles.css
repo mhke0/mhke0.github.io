@@ -40,42 +40,14 @@ h1, h2 {
     border-color: #ff0000;
 }
 
-.trajectory-container,
-.legend-container, 
-#cyclistTable,
-.stat-box,
-.info-box,
-.roster-container,
-.team-roster-container,
-.balanced-team-box,
-.info-box-mvp {
-    width: 100%;
-    margin-bottom: 20px;
-    padding: 20px;
-    background-color: var(--box-background-color);
-    border: 2px solid var(--border-color);
-    border-radius: 5px;
-    box-sizing: border-box;
-}
-
 .chart-container {
     width: 100%;
-    height: 600px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
     margin-bottom: 20px;
     padding: 20px;
     background-color: var(--box-background-color);
     border: 2px solid var(--border-color);
     border-radius: 5px;
     box-sizing: border-box;
-}
-
-.chart-container > div {
-    width: 100%;
-    height: 100%;
 }
 
 .stats-container {
@@ -89,6 +61,11 @@ h1, h2 {
 .stat-box {
     flex: 1 1 200px;
     min-width: 0;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: var(--box-background-color);
+    border: 2px solid var(--border-color);
+    border-radius: 5px;
     text-align: center;
 }
 
@@ -118,6 +95,11 @@ tr:nth-child(odd) {
     background-color: var(--box-background-color);
 }
 
+.trajectory-container {
+    width: 100%;
+    margin: 0 auto;
+}
+
 .trajectory-header {
     display: flex;
     justify-content: flex-end;
@@ -139,6 +121,10 @@ tr:nth-child(odd) {
     height: 600px;
     overflow-y: auto;
     font-size: 12px;
+    padding: 10px;
+    background-color: var(--box-background-color);
+    border: 2px solid var(--border-color);
+    border-radius: 5px;
 }
 
 .legend-item {
@@ -210,61 +196,23 @@ tr:nth-child(odd) {
 }
 
 .info-box {
-    width: 45%;
+    background-color: var(--box-background-color);
+    border: 2px solid var(--border-color);
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
 }
 
 .info-box strong {
     color: var(--primary-color);
 }
 
-.js-plotly-plot {
-    width: 100% !important;
-    height: 100% !important;
-}
-
-.js-plotly-plot .plot-container .svg-container {
-    width: 100% !important;
-    height: 100% !important;
-}
-
-.js-plotly-plot::-webkit-scrollbar,
-.legend-container::-webkit-scrollbar {
-    width: 12px;
-}
-
-.js-plotly-plot::-webkit-scrollbar-track,
-.legend-container::-webkit-scrollbar-track {
-    background: var(--box-background-color);
-    border: 1px solid var(--border-color);
-}
-
-.js-plotly-plot::-webkit-scrollbar-thumb,
-.legend-container::-webkit-scrollbar-thumb {
-    background-color: var(--border-color);
-    border-radius: 6px;
-    border: 3px solid var(--box-background-color);
-}
-
-.js-plotly-plot,
-.legend-container {
-    scrollbar-width: thin;
-    scrollbar-color: var(--border-color) var(--box-background-color);
-}
-
-.js-plotly-plot .plotly .modebar-container {
-    top: 0 !important;
-}
-
-#allTimeMVPMIPBox {
-    background-color: #f0f8ff;
-    border: 2px solid #4682b4;
-    border-radius: 10px;
-    padding: 15px;
+.roster-container {
     margin-top: 20px;
-}
-
-#allTimeMVPInfo, #allTimeMIPInfo {
-    margin-top: 10px;
+    padding: 20px;
+    background-color: var(--box-background-color);
+    border: 2px solid var(--border-color);
+    border-radius: 5px;
 }
 
 .roster-grid {
@@ -292,6 +240,16 @@ tr:nth-child(odd) {
 
 .roster-card li {
     margin-bottom: 5px;
+}
+
+.team-roster-container {
+    width: 100%;
+    margin: 20px 0;
+    padding: 20px;
+    background-color: var(--box-background-color);
+    border: 2px solid var(--border-color);
+    border-radius: 5px;
+    box-sizing: border-box;
 }
 
 .team-roster-header {
@@ -322,29 +280,6 @@ tr:nth-child(odd) {
     margin: 5px 0;
 }
 
-.roster-header {
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 20px;
-}
-
-#teamSelect {
-    background-color: var(--box-background-color);
-    border: 2px solid var(--primary-color);
-    border-radius: 5px;
-    font-family: var(--font-family);
-    font-size: 16px;
-    color: var(--primary-color);
-    padding: 5px;
-    width: 100%;
-    max-width: 300px;
-}
-
-#teamSelect:focus {
-    outline: none;
-    box-shadow: 0 0 5px var(--primary-color);
-}
-
 .balanced-teams-container {
     display: flex;
     justify-content: space-between;
@@ -354,8 +289,10 @@ tr:nth-child(odd) {
 
 .balanced-team-box {
     width: 45%;
+    padding: 15px;
     background-color: #f0f8ff;
     border: 2px solid #4682b4;
+    border-radius: 5px;
 }
 
 .balanced-team-box h3 {
@@ -373,11 +310,6 @@ tr:nth-child(odd) {
 .balanced-team-box p {
     margin: 5px 0;
     font-size: 16px;
-}
-
-.balanced-team-box p:nth-child(3) {
-    font-weight: bold;
-    color: var(--primary-color);
 }
 
 #mostBalancedTeamBox {
@@ -405,8 +337,10 @@ tr:nth-child(odd) {
 
 .info-box-mvp {
     width: 45%;
+    padding: 15px;
     background-color: #f0f8ff;
     border: 2px solid #4682b4;
+    border-radius: 5px;
 }
 
 .stat-box_mvp_all {
@@ -419,6 +353,7 @@ tr:nth-child(odd) {
     margin: 0;
 }
 
+/* Responsive adjustments */
 @media screen and (max-width: 768px) {
     body {
         padding: 10px;
@@ -435,19 +370,15 @@ tr:nth-child(odd) {
     }
 
     .chart-container {
-        height: 400px;
+        padding: 10px;
     }
 
     .chart-legend-container {
         flex-direction: column;
     }
 
-    .legend-container, .info-box, .balanced-team-box, .info-box-mvp {
-        width: 100%;
-        margin-top: 20px;
-    }
-
     .legend-container {
+        width: 100%;
         height: 200px;
     }
 
@@ -459,19 +390,19 @@ tr:nth-child(odd) {
         flex-direction: column;
     }
 
-    .stat-box, .balanced-team-box, .info-box-mvp {
+    .balanced-team-box, .info-box-mvp {
         width: 100%;
         margin-bottom: 20px;
+    }
+
+    .styled-select {
+        font-size: 14px;
     }
 }
 
 @media screen and (max-width: 480px) {
     .tab button {
         width: 100%;
-    }
-
-    .chart-container {
-        height: 300px;
     }
 
     .roster-card, .rider-card {
@@ -483,10 +414,6 @@ tr:nth-child(odd) {
     }
 
     .roster-card li, .rider-card p {
-        font-size: 14px;
-    }
-
-    #teamSelect {
         font-size: 14px;
     }
 }

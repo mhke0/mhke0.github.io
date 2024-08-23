@@ -190,10 +190,21 @@ function updateLeagueTeamRosterChart() {
 
 function updateCyclingTeamRosterDisplay() {
     const selectedTeam = document.getElementById('cyclingTeamSelect').value;
-    if (!selectedTeam) return;
+    if (!selectedTeam) {
+        document.getElementById('selectedTeamInfo').textContent = '';
+        document.getElementById('cyclingTeamRosterDisplay').innerHTML = '';
+        document.getElementById('teamPointsDistributionChart').innerHTML = '';
+        return;
+    }
 
     const teamRiders = cyclistData.cyclists.filter(cyclist => cyclist.team === selectedTeam);
     
+    // Calculate total team points
+    const totalTeamPoints = teamRiders.reduce((sum, rider) => sum + rider.points, 0);
+    
+    // Update the selected team info display
+    document.getElementById('selectedTeamInfo').textContent = `${selectedTeam} (${totalTeamPoints} points)`;
+
     let rosterHtml = '';
     teamRiders.forEach(rider => {
         rosterHtml += `
@@ -208,9 +219,10 @@ function updateCyclingTeamRosterDisplay() {
     
     document.getElementById('cyclingTeamRosterDisplay').innerHTML = rosterHtml;
 
-    // Call the new function to display the points distribution
+    // Call the function to display the points distribution
     displayTeamPointsDistribution(teamRiders);
 }
+
 
 $(document).ready(function() {
     $.getJSON('cyclist-data.json', function(data) {
@@ -1248,7 +1260,7 @@ function displayTeamPointsDistribution(teamRiders) {
 
     const layout = {
         title: {
-            text: '',
+            text: 'Team Points Distribution',
             font: {
                 family: 'VT323, monospace',
                 color: '#ff1493'

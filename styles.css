@@ -79,7 +79,7 @@ h1, h2 {
     justify-content: space-between;
     flex-wrap: wrap;
     margin-top: 0px;
-    margin-bottom: 20px;
+    margin-bottom: 0px;
 }
 
 .stat-box {

@@ -22,6 +22,8 @@ function createResponsiveChart(chartId, traces, layout) {
     // Center the chart in its container
     layout.margin = layout.margin || {};
     layout.margin.l = layout.margin.r = Math.floor((containerWidth - chartWidth) / 2);
+    layout.margin.t = layout.margin.t || 50;
+    layout.margin.b = layout.margin.b || 50;
     layout.margin.autoexpand = true;
 
     // Base font size calculation
@@ -32,12 +34,14 @@ function createResponsiveChart(chartId, traces, layout) {
         const parts = path.split('.');
         let current = obj;
         for (let i = 0; i < parts.length - 1; i++) {
-            if (!current[parts[i]]) {
+            if (current[parts[i]] === undefined) {
                 current[parts[i]] = {};
             }
             current = current[parts[i]];
         }
-        current[parts[parts.length - 1]] = value;
+        if (current) {
+            current[parts[parts.length - 1]] = value;
+        }
     }
 
     // Safely set font sizes
@@ -48,11 +52,10 @@ function createResponsiveChart(chartId, traces, layout) {
     setNestedProp(layout, 'yaxis.tickfont.size', baseFontSize * 0.9);
 
     // Set default font
-    layout.font = {
-        family: 'VT323, monospace',
-        size: baseFontSize,
-        color: '#ff1493'
-    };
+    layout.font = layout.font || {};
+    layout.font.family = layout.font.family || 'VT323, monospace';
+    layout.font.size = layout.font.size || baseFontSize;
+    layout.font.color = layout.font.color || '#ff1493';
 
     // Adjust x-axis for better label fitting
     layout.xaxis = layout.xaxis || {};
@@ -65,10 +68,9 @@ function createResponsiveChart(chartId, traces, layout) {
 
     // Ensure legend fits
     layout.legend = layout.legend || {};
-    layout.legend.font = {
-        family: 'VT323, monospace',
-        size: baseFontSize * 0.9,
-    };
+    layout.legend.font = layout.legend.font || {};
+    layout.legend.font.family = layout.legend.font.family || 'VT323, monospace';
+    layout.legend.font.size = layout.legend.font.size || (baseFontSize * 0.9);
 
     Plotly.newPlot(chartId, traces, layout, config);
 

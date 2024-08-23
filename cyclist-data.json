@@ -4405,19 +4405,63 @@
     "current": [
       {
         "name": "Team Name",
-        "points": 2054
+        "points": 2054,
+        "roster": [
+          "Almeida378 pts",
+          "Skjelmose129 pts",
+          "Van Eetvelt369 pts",
+          "Del Toro140 pts",
+          "Van Aert924 pts",
+          "Tejada25 pts",
+          "Pacher0 pts",
+          "Bennett89 pts",
+          "Arensman0 pts"
+        ]
       },
       {
         "name": "Ganz anderer Teamname",
-        "points": 1096
+        "points": 1096,
+        "roster": [
+          "Martínez40 pts",
+          "Geoghegan Hart12 pts",
+          "Woods6 pts",
+          "Kuss138 pts",
+          "Groves648 pts",
+          "Lazkano4 pts",
+          "Narváez95 pts",
+          "Tarling141 pts",
+          "Ciccone12 pts"
+        ]
       },
       {
         "name": "Team Fiestina",
-        "points": 1027
+        "points": 1027,
+        "roster": [
+          "Almeida378 pts",
+          "Skjelmose129 pts",
+          "Carapaz16 pts",
+          "Mas204 pts",
+          "Heiduk25 pts",
+          "Konrad32 pts",
+          "Narváez95 pts",
+          "Van Den Berg8 pts",
+          "Del Toro140 pts"
+        ]
       },
       {
         "name": "Iberische Halbpinsel",
-        "points": 1022
+        "points": 1022,
+        "roster": [
+          "Almeida378 pts",
+          "A Yates56 pts",
+          "Landa128 pts",
+          "Poole8 pts",
+          "Schelling20 pts",
+          "Kruijswijk36 pts",
+          "Sütterlin0 pts",
+          "Küng380 pts",
+          "Carapaz16 pts"
+        ]
       }
     ],
     "history": [
@@ -4447,19 +4491,63 @@
         "scores": [
           {
             "name": "Team Name",
-            "points": 2054
+            "points": 2054,
+            "roster": [
+              "Almeida378 pts",
+              "Skjelmose129 pts",
+              "Van Eetvelt369 pts",
+              "Del Toro140 pts",
+              "Van Aert924 pts",
+              "Tejada25 pts",
+              "Pacher0 pts",
+              "Bennett89 pts",
+              "Arensman0 pts"
+            ]
           },
           {
             "name": "Ganz anderer Teamname",
-            "points": 1096
+            "points": 1096,
+            "roster": [
+              "Martínez40 pts",
+              "Geoghegan Hart12 pts",
+              "Woods6 pts",
+              "Kuss138 pts",
+              "Groves648 pts",
+              "Lazkano4 pts",
+              "Narváez95 pts",
+              "Tarling141 pts",
+              "Ciccone12 pts"
+            ]
           },
           {
             "name": "Team Fiestina",
-            "points": 1027
+            "points": 1027,
+            "roster": [
+              "Almeida378 pts",
+              "Skjelmose129 pts",
+              "Carapaz16 pts",
+              "Mas204 pts",
+              "Heiduk25 pts",
+              "Konrad32 pts",
+              "Narváez95 pts",
+              "Van Den Berg8 pts",
+              "Del Toro140 pts"
+            ]
           },
           {
             "name": "Iberische Halbpinsel",
-            "points": 1022
+            "points": 1022,
+            "roster": [
+              "Almeida378 pts",
+              "A Yates56 pts",
+              "Landa128 pts",
+              "Poole8 pts",
+              "Schelling20 pts",
+              "Kruijswijk36 pts",
+              "Sütterlin0 pts",
+              "Küng380 pts",
+              "Carapaz16 pts"
+            ]
           }
         ]
       }

@@ -1124,7 +1124,7 @@ function createLeagueStandingsChart() {
     const leagueHistory = cyclistData.league_scores.history;
     const teams = {};
     const colors = ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40'];
-
+    
     // Process the historical data
     leagueHistory.forEach(entry => {
         const date = new Date(entry.date);
@@ -1137,34 +1137,38 @@ function createLeagueStandingsChart() {
                     color: colors[Object.keys(teams).length % colors.length]
                 };
             }
-            teams[score.name].x.push(date.getTime()); // Convert to timestamp for easier calculation
+            teams[score.name].x.push(date.getTime());
             teams[score.name].y.push(score.points);
         });
     });
 
     const traces = [];
-
     Object.values(teams).forEach(team => {
         // Perform linear regression
         const regression = linearRegression(team.x, team.y);
-
+        
         // Calculate prediction for 5 days in the future
         const lastDate = new Date(Math.max(...team.x));
         const predictionDate = new Date(lastDate.getTime() + 5 * 24 * 60 * 60 * 1000);
         const predictionX = predictionDate.getTime();
         const predictionY = regression.slope * predictionX + regression.intercept;
-
-        // Create main trace
+        
+        // Create main trace with custom hover template
         traces.push({
             x: team.x.map(timestamp => new Date(timestamp)),
             y: team.y,
             type: 'scatter',
             mode: 'lines+markers',
             name: team.name,
-            line: { color: team.color }
+            line: { color: team.color },
+            hovertemplate: 
+                '<b>%{fullData.name}</b><br>' +
+                'Date: %{x|%Y-%m-%d}<br>' +
+                'Points: %{y:.2f}<br>' +
+                '<extra></extra>'
         });
-
-        // Create prediction trace
+        
+        // Create prediction trace with custom hover template
         traces.push({
             x: [new Date(team.x[team.x.length - 1]), predictionDate],
             y: [team.y[team.y.length - 1], predictionY],
@@ -1175,7 +1179,12 @@ function createLeagueStandingsChart() {
                 color: team.color
             },
             name: `${team.name} (Predicted)`,
-            showlegend: false
+            showlegend: false,
+            hovertemplate: 
+                '<b>%{fullData.name}</b><br>' +
+                'Date: %{x|%Y-%m-%d}<br>' +
+                'Predicted Points: %{y:.2f}<br>' +
+                '<extra></extra>'
         });
     });
 
@@ -1189,7 +1198,8 @@ function createLeagueStandingsChart() {
         },
         xaxis: {
             title: 'Date',
-            tickangle: -45
+            tickangle: -45,
+            hoverformat: '%Y-%m-%d'
         },
         yaxis: {
             title: 'Points'
@@ -1199,7 +1209,8 @@ function createLeagueStandingsChart() {
         legend: {
             orientation: 'h',
             y: -0.2
-        }
+        },
+        hovermode: 'closest'
     };
 
     createResponsiveChart('leagueStandingsChart', traces, layout);

@@ -15,15 +15,17 @@
     <div id="loading">LOADING DATA, PLEASE WAIT...</div>
     <div id="error" style="display:none;"></div>
     <div id="dashboard" style="display:none;">
-        <div class="tab">
-            <button class="tablinks" onclick="openTab(event, 'OverviewTab')" id="defaultOpen">Stats</button>
-            <button class="tablinks" onclick="openTab(event, 'LeagueScoresTab')">League Scores</button>
-            <button class="tablinks" onclick="openTab(event, 'Top50Tab')">Top 50 Cyclists</button>
-            <button class="tablinks" onclick="openTab(event, 'CostVsPointsTab')">Cost vs Points</button>
-            <button class="tablinks" onclick="openTab(event, 'CyclistDataTab')">Cyclist Data Table</button>
-            <button class="tablinks" onclick="openTab(event, 'RiderTrajectoryTab')">Riders</button>
-            <button class="tablinks" onclick="openTab(event, 'IdealTeamTab')">Dream Team</button>
-        </div>
+<div class="tab">
+    <button class="tablinks" onclick="openTab(event, 'OverviewTab')" id="defaultOpen">Stats</button>
+    <button class="tablinks" onclick="openTab(event, 'LeagueScoresTab')">League Scores</button>
+    <button class="tablinks" onclick="openTab(event, 'Top50Tab')">Top 50 Cyclists</button>
+    <button class="tablinks" onclick="openTab(event, 'CostVsPointsTab')">Cost vs Points</button>
+    <button class="tablinks" onclick="openTab(event, 'CyclistDataTab')">Cyclist Data Table</button>
+    <button class="tablinks" onclick="openTab(event, 'RiderTrajectoryTab')">Riders</button>
+    <button class="tablinks" onclick="openTab(event, 'IdealTeamTab')">Dream Team</button>
+    <button class="tablinks" onclick="openTab(event, 'TeamsTab')">Teams</button>
+</div>
+
 
         <div id="OverviewTab" class="tabcontent">
             <div class="stats-container" id="stats"></div>
@@ -42,16 +44,9 @@
     <div class="chart-container">
         <div id="trendPredictionChart"></div>
     </div>
-    <div class="team-roster-container">
-        <div class="team-roster-header">
-            <div class="dropdown-container">
-                <select id="teamSelect" class="styled-select" onchange="updateTeamRosterDisplay()">
-                    <option value="">Select a team</option>
-                    <!-- Team options will be populated here -->
-                </select>
-            </div>
-        </div>
-        <div id="teamRosterDisplay"></div>
+    <div class="roster-container">
+        <h3>Team Rosters</h3>
+        <div id="teamRosters"></div>
     </div>
 </div>
 
@@ -86,7 +81,19 @@
                 <tbody></tbody>
             </table>
         </div>
-    
+    <div id="TeamsTab" class="tabcontent">
+    <div class="team-roster-container">
+        <div class="team-roster-header">
+            <div class="dropdown-container">
+                <select id="teamSelect" class="styled-select" onchange="updateTeamRosterDisplay()">
+                    <option value="">Select a team</option>
+                    <!-- Team options will be populated here -->
+                </select>
+            </div>
+        </div>
+        <div id="teamRosterDisplay"></div>
+    </div>
+</div>
 <div id="RiderTrajectoryTab" class="tabcontent">
     <div class="trajectory-container">
         <div class="trajectory-header">

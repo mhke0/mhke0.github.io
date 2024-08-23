@@ -1101,6 +1101,23 @@ function updateAllTimeMVPMIP(cyclistData) {
     $('#allTimeMVPInfo').html(allTimeMVPInfo);
     $('#allTimeMIPInfo').html(allTimeMIPInfo);
 }
+
+
+// Function to perform simple linear regression
+function linearRegression(x, y) {
+    const n = x.length;
+    let sumX = 0, sumY = 0, sumXY = 0, sumXX = 0;
+    for (let i = 0; i < n; i++) {
+        sumX += x[i];
+        sumY += y[i];
+        sumXY += x[i] * y[i];
+        sumXX += x[i] * x[i];
+    }
+    const slope = (n * sumXY - sumX * sumY) / (n * sumXX - sumX * sumX);
+    const intercept = (sumY - slope * sumX) / n;
+    return { slope, intercept };
+}
+
 function createLeagueStandingsChart() {
     const leagueHistory = cyclistData.league_scores.history;
     const teams = {};
@@ -1116,23 +1133,50 @@ function createLeagueStandingsChart() {
                     y: []
                 };
             }
-            teams[score.name].x.push(date);
+            teams[score.name].x.push(date.getTime()); // Convert to timestamp for easier calculation
             teams[score.name].y.push(score.points);
         });
     });
 
-    // Create traces for each team
-    const traces = Object.values(teams).map(team => ({
-        x: team.x,
-        y: team.y,
-        type: 'scatter',
-        mode: 'lines+markers',
-        name: team.name
-    }));
+    const traces = [];
+
+    Object.values(teams).forEach(team => {
+        // Perform linear regression
+        const regression = linearRegression(team.x, team.y);
+
+        // Calculate prediction for 5 days in the future
+        const lastDate = new Date(Math.max(...team.x));
+        const predictionDate = new Date(lastDate.getTime() + 5 * 24 * 60 * 60 * 1000);
+        const predictionX = predictionDate.getTime();
+        const predictionY = regression.slope * predictionX + regression.intercept;
+
+        // Create main trace
+        traces.push({
+            x: team.x.map(timestamp => new Date(timestamp)),
+            y: team.y,
+            type: 'scatter',
+            mode: 'lines+markers',
+            name: team.name
+        });
+
+        // Create prediction trace
+        traces.push({
+            x: [new Date(team.x[team.x.length - 1]), predictionDate],
+            y: [team.y[team.y.length - 1], predictionY],
+            type: 'scatter',
+            mode: 'lines',
+            line: {
+                dash: 'dash',
+                color: traces[traces.length - 1].line.color
+            },
+            name: `${team.name} (Predicted)`,
+            showlegend: false
+        });
+    });
 
     const layout = {
         title: {
-            text: 'League Standings Over Time',
+            text: 'League Standings Over Time (with 5-day Prediction)',
             font: {
                 family: 'VT323, monospace',
                 color: '#ff1493'
@@ -1146,8 +1190,13 @@ function createLeagueStandingsChart() {
             title: 'Points'
         },
         paper_bgcolor: '#fff0f5',
-        plot_bgcolor: '#fff0f5'
+        plot_bgcolor: '#fff0f5',
+        legend: {
+            orientation: 'h',
+            y: -0.2
+        }
     };
 
     createResponsiveChart('leagueStandingsChart', traces, layout);
 }
+

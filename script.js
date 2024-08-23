@@ -238,9 +238,11 @@ function createPointsPerNameLengthChart(cyclists) {
                 }
             })
         },
-        text: top50PointsPerNameLength.map(c => `Points: ${c.points}<br>Name Length: ${c.name.replace(/\s/g, '').length}`),
+        text: top50PointsPerNameLength.map((c => `Points: ${c.points}<br>Name Length: ${c.name.replace(/\s/g, '').length}`<br>Role: ${c.role}),
         hoverinfo: 'text+y'
     };
+text: top50Cyclists.map(c => `Role: ${c.role}<br>Points: ${c.points}<br>Cost: ${c.cost}`)
+
 
     const layoutPointsPerNameLength = {
         title: {
@@ -672,23 +674,7 @@ function createTrajectoryChart(cyclists) {
     Plotly.newPlot('trajectoryChart', traces, layout, config);
 }
 
-function createCustomLegend(cyclists) {
-    const legendContainer = document.getElementById('customLegend');
-    legendContainer.innerHTML = ''; // Clear existing legend items
 
-    cyclists.forEach((cyclist, index) => {
-        const legendItem = document.createElement('div');
-        legendItem.className = 'legend-item';
-        const colorBox = document.createElement('div');
-        colorBox.className = 'legend-color';
-        colorBox.style.backgroundColor = customColorScheme[index % customColorScheme.length];
-        const nameSpan = document.createElement('span');
-        nameSpan.textContent = cyclist.name;
-        legendItem.appendChild(colorBox);
-        legendItem.appendChild(nameSpan);
-        legendContainer.appendChild(legendItem);
-    });
-}
 
 function createCustomLegend(cyclists) {
     const legendContainer = document.getElementById('customLegend');

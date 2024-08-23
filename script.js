@@ -283,6 +283,7 @@ $(document).ready(function() {
         createLeagueScoresChart(leagueScores.current);
         createRelativePerformanceChart(leagueScores.current);
         createCostVsPointsChart(top50Cyclists);
+        createLeagueStandingsChart();
 
         // Store cyclist data globally
         cyclistData = data;
@@ -1100,4 +1101,53 @@ function updateAllTimeMVPMIP(cyclistData) {
     $('#allTimeMVPInfo').html(allTimeMVPInfo);
     $('#allTimeMIPInfo').html(allTimeMIPInfo);
 }
+function createLeagueStandingsChart() {
+    const leagueHistory = cyclistData.league_scores.history;
+    const teams = {};
 
+    // Process the historical data
+    leagueHistory.forEach(entry => {
+        const date = new Date(entry.date);
+        entry.scores.forEach(score => {
+            if (!teams[score.name]) {
+                teams[score.name] = {
+                    name: score.name,
+                    x: [],
+                    y: []
+                };
+            }
+            teams[score.name].x.push(date);
+            teams[score.name].y.push(score.points);
+        });
+    });
+
+    // Create traces for each team
+    const traces = Object.values(teams).map(team => ({
+        x: team.x,
+        y: team.y,
+        type: 'scatter',
+        mode: 'lines+markers',
+        name: team.name
+    }));
+
+    const layout = {
+        title: {
+            text: 'League Standings Over Time',
+            font: {
+                family: 'VT323, monospace',
+                color: '#ff1493'
+            }
+        },
+        xaxis: {
+            title: 'Date',
+            tickangle: -45
+        },
+        yaxis: {
+            title: 'Points'
+        },
+        paper_bgcolor: '#fff0f5',
+        plot_bgcolor: '#fff0f5'
+    };
+
+    createResponsiveChart('leagueStandingsChart', traces, layout);
+}

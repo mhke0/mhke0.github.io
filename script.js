@@ -1,17 +1,127 @@
-
-// Global variable to store the league data
+// Global variables to store the league data and cyclist data
 let leagueData;
+let cyclistData;
 
-function initializeTeamSelect() {
-    const teamSelect = document.getElementById('teamSelect');
+function initializeLeagueTeamSelect() {
+    const leagueTeamSelect = document.getElementById('leagueTeamSelect');
+    leagueTeamSelect.innerHTML = '<option value="">Select a League Team</option>';
     leagueData.forEach(team => {
         const option = document.createElement('option');
         option.value = team.name;
         option.textContent = team.name;
-        teamSelect.appendChild(option);
+        leagueTeamSelect.appendChild(option);
     });
 }
 
+function initializeCyclingTeamSelect() {
+    const cyclingTeamSelect = document.getElementById('cyclingTeamSelect');
+    cyclingTeamSelect.innerHTML = '<option value="">Select a Cycling Team</option>';
+    const teams = [...new Set(cyclistData.cyclists.map(cyclist => cyclist.team))].sort();
+    teams.forEach(team => {
+        const option = document.createElement('option');
+        option.value = team;
+        option.textContent = team;
+        cyclingTeamSelect.appendChild(option);
+    });
+}
+
+function updateLeagueTeamRosterChart() {
+    const selectedTeam = document.getElementById('leagueTeamSelect').value;
+    if (!selectedTeam) return;
+
+    const team = leagueData.find(t => t.name === selectedTeam);
+    if (!team) return;
+
+    const rosterData = team.roster.map(riderName => {
+        const rider = cyclistData.cyclists.find(c => c.name === riderName);
+        return {
+            name: riderName,
+            points: rider ? rider.points : 0,
+            role: rider ? rider.role : 'Unknown'
+        };
+    }).sort((a, b) => b.points - a.points);
+
+    const trace = {
+        x: rosterData.map(r => r.name),
+        y: rosterData.map(r => r.points),
+        type: 'bar',
+        marker: {
+            color: rosterData.map(r => {
+                switch(r.role) {
+                    case 'All Rounder': return '#ff6384';
+                    case 'Climber': return '#36a2eb';
+                    case 'Sprinter': return '#cc65fe';
+                    default: return '#4bc0c0';
+                }
+            })
+        },
+        text: rosterData.map(r => `${r.name}<br>Role: ${r.role}<br>Points: ${r.points}`),
+        hoverinfo: 'text'
+    };
+
+    const layout = {
+        title: {
+            text: `${selectedTeam} Roster`,
+            font: {
+                family: 'VT323, monospace',
+                size: 24,
+                color: '#ff1493'
+            }
+        },
+        xaxis: {
+            title: 'Riders',
+            tickangle: -45,
+            titlefont: {
+                family: 'VT323, monospace',
+                size: 16,
+                color: '#ff1493'
+            },
+            tickfont: {
+                family: 'VT323, monospace',
+                size: 12,
+                color: '#ff1493'
+            }
+        },
+        yaxis: {
+            title: 'Points',
+            titlefont: {
+                family: 'VT323, monospace',
+                size: 16,
+                color: '#ff1493'
+            },
+            tickfont: {
+                family: 'VT323, monospace',
+                size: 14,
+                color: '#ff1493'
+            }
+        },
+        paper_bgcolor: '#fff0f5',
+        plot_bgcolor: '#fff0f5'
+    };
+
+    Plotly.newPlot('leagueTeamRosterChart', [trace], layout);
+}
+
+function updateCyclingTeamRosterDisplay() {
+    const selectedTeam = document.getElementById('cyclingTeamSelect').value;
+    if (!selectedTeam) return;
+
+    const teamRiders = cyclistData.cyclists.filter(cyclist => cyclist.team === selectedTeam);
+    
+    let rosterHtml = '';
+    teamRiders.forEach(rider => {
+        rosterHtml += `
+            <div class="rider-card">
+                <h4>${rider.name}</h4>
+                <p>Role: ${rider.role}</p>
+                <p>Cost: ${rider.cost}</p>
+                <p>Points: ${rider.points}</p>
+            </div>
+        `;
+    });
+    
+    document.getElementById('cyclingTeamRosterDisplay').innerHTML = rosterHtml;
+}
 
 $(document).ready(function() {
     $.getJSON('cyclist-data.json', function(data) {
@@ -87,7 +197,12 @@ $(document).ready(function() {
         createLeagueScoresChart(leagueScores.current);
         createRelativePerformanceChart(leagueScores.current);
         createCostVsPointsChart(top50Cyclists);
-        populateTeamDropdown();
+
+        // Store cyclist data globally
+        cyclistData = data;
+
+        // Initialize the cycling team select dropdown
+        initializeCyclingTeamSelect();
 
         if (data.dream_team) {
             displayDreamTeam(data.dream_team);
@@ -460,8 +575,8 @@ function createLeagueScoresChart(leagueScores) {
     // Store the league data globally
     leagueData = leagueScores;
 
-    // Initialize the team select dropdown
-    initializeTeamSelect();
+    // Initialize the league team select dropdown
+    initializeLeagueTeamSelect();
 }
 
 
@@ -830,9 +945,14 @@ function openTab(evt, tabName) {
         updateTrajectoryChart();
     }
 
-    // If opening the Teams tab, update the team roster display
+       // If opening the League Scores tab, update the league team roster chart
+    if (tabName === 'LeagueScoresTab') {
+        updateLeagueTeamRosterChart();
+    }
+
+    // If opening the Teams tab, update the cycling team roster display
     if (tabName === 'TeamsTab') {
-        updateTeamRosterDisplay();
+        updateCyclingTeamRosterDisplay();
     }
 
     // You can add more tab-specific actions here if needed
@@ -1129,14 +1249,7 @@ function updateAllTimeMVPMIP(cyclistData) {
     $('#allTimeMVPInfo').html(allTimeMVPInfo);
     $('#allTimeMIPInfo').html(allTimeMIPInfo);
 }
-function populateTeamDropdown() {
-    const teamSelect = $('#teamSelect');
-    const teams = [...new Set(cyclistData.cyclists.map(cyclist => cyclist.team))].sort();
-    
-    teams.forEach(team => {
-        teamSelect.append(`<option value="${team}">${team}</option>`);
-    });
-}
+
 
 function updateTeamRosterDisplay() {
     const selectedTeam = $('#teamSelect').val();

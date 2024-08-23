@@ -5,17 +5,28 @@ let cyclistData;
 function createResponsiveChart(chartId, traces, layout) {
     const config = {
         responsive: true,
-        displayModeBar: false, // Remove the Plotly toolbar
+        displayModeBar: false,
     };
 
     // Make the layout responsive
-    layout.autosize = true;
-    layout.height = undefined; // Let the height be determined by the container
-    layout.width = undefined; // Let the width be determined by the container
-
-    // Adjust font sizes for better readability on smaller screens
-    const baseFontSize = 14;
+    layout.autosize = false;  // We'll set the size manually
     
+    // Calculate 60% of the container width
+    const container = document.getElementById(chartId);
+    const containerWidth = container.offsetWidth;
+    const chartWidth = Math.floor(containerWidth * 0.6);
+    
+    layout.width = chartWidth;
+    layout.height = Math.floor(chartWidth * 0.75);  // Maintain a 4:3 aspect ratio
+
+    // Center the chart in its container
+    layout.margin = layout.margin || {};
+    layout.margin.l = layout.margin.r = Math.floor((containerWidth - chartWidth) / 2);
+    layout.margin.autoexpand = true;
+
+    // Base font size calculation
+    const baseFontSize = Math.max(10, Math.min(14, chartWidth / 50));
+
     // Helper function to safely set nested properties
     function setNestedProp(obj, path, value) {
         const parts = path.split('.');
@@ -31,38 +42,48 @@ function createResponsiveChart(chartId, traces, layout) {
 
     // Safely set font sizes
     setNestedProp(layout, 'title.font.size', baseFontSize * 1.5);
-    setNestedProp(layout, 'xaxis.titlefont.size', baseFontSize);
+    setNestedProp(layout, 'xaxis.title.font.size', baseFontSize);
     setNestedProp(layout, 'xaxis.tickfont.size', baseFontSize * 0.9);
-    setNestedProp(layout, 'yaxis.titlefont.size', baseFontSize);
+    setNestedProp(layout, 'yaxis.title.font.size', baseFontSize);
     setNestedProp(layout, 'yaxis.tickfont.size', baseFontSize * 0.9);
 
-    // Add media queries for font sizes
+    // Set default font
     layout.font = {
         family: 'VT323, monospace',
         size: baseFontSize,
         color: '#ff1493'
     };
 
+    // Adjust x-axis for better label fitting
+    layout.xaxis = layout.xaxis || {};
+    layout.xaxis.automargin = true;
+    layout.xaxis.tickangle = layout.xaxis.tickangle || -45;
+
+    // Adjust y-axis for better label fitting
+    layout.yaxis = layout.yaxis || {};
+    layout.yaxis.automargin = true;
+
+    // Ensure legend fits
     layout.legend = layout.legend || {};
     layout.legend.font = {
         family: 'VT323, monospace',
         size: baseFontSize * 0.9,
     };
 
-    // Adjust margins for better use of space
-    layout.margin = layout.margin || {
-        l: 50,
-        r: 20,
-        b: 50,
-        t: 50,
-        pad: 4
-    };
-
     Plotly.newPlot(chartId, traces, layout, config);
 
     // Add a resize listener to update the chart when the window size changes
     window.addEventListener('resize', function() {
-        Plotly.Plots.resize(document.getElementById(chartId));
+        const newContainerWidth = container.offsetWidth;
+        const newChartWidth = Math.floor(newContainerWidth * 0.6);
+        const newChartHeight = Math.floor(newChartWidth * 0.75);
+        
+        Plotly.relayout(chartId, {
+            width: newChartWidth,
+            height: newChartHeight,
+            'margin.l': Math.floor((newContainerWidth - newChartWidth) / 2),
+            'margin.r': Math.floor((newContainerWidth - newChartWidth) / 2)
+        });
     });
 }
 

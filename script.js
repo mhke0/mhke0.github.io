@@ -221,6 +221,9 @@ function updateCyclingTeamRosterDisplay() {
 
     // Call the function to display the points distribution
     displayTeamPointsDistribution(teamRiders);
+
+    // Call the function to display the all teams comparison
+    displayAllTeamsComparison();
 }
 
 $(document).ready(function() {

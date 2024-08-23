@@ -83,16 +83,22 @@ def fetch_team_roster(url):
         response = requests.get(url)
         response.raise_for_status()
         soup = BeautifulSoup(response.text, 'html.parser')
-        team_info = soup.find('table', class_='team-info-panel')
-        if team_info:
-            riders = []
-            for td in team_info.find_all('td'):
-                name = td.text.strip().split('\n')[1].strip()  # Get the second line (after the <BR>)
-                riders.append(name)
-            return riders
-        else:
-            print(f"Team roster not found for URL: {url}", file=sys.stderr)
-            return []
+        
+        riders = []
+        table = soup.find('table', class_='responsive')
+        if table:
+            for row in table.find_all('tr'):
+                name_cell = row.find('td')
+                if name_cell:
+                    name_link = name_cell.find('a')
+                    if name_link:
+                        rider_name = name_link.text.strip()
+                        riders.append(rider_name)
+        
+        if not riders:
+            print(f"No riders found for URL: {url}", file=sys.stderr)
+        
+        return riders
     except requests.RequestException as e:
         print(f"Error fetching team roster from URL {url}: {e}", file=sys.stderr)
         return []

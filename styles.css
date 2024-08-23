@@ -199,7 +199,7 @@ tr:nth-child(odd) {
 
 .tabcontent {
     display: none;
-    padding: 20px;
+    padding: 20px 20px 0px 20px;
     border: 2px solid var(--border-color);
     border-top: none;
     background-color: var(--background-color);
@@ -256,11 +256,11 @@ tr:nth-child(odd) {
     border: 2px solid #4682b4;
     border-radius: 10px;
     padding: 15px;
-    margin-top: 20px;
+    margin-top: 0px;
 }
 
 #allTimeMVPInfo, #allTimeMIPInfo {
-    margin-top: 10px;
+    margin-top: 0px;
 }
 
 .roster-grid {

@@ -536,9 +536,7 @@ function createLeagueScoresChart(leagueScores) {
         plot_bgcolor: '#fff0f5',
     };
 
-    createResponsiveChart('leagueScoresChart', [leagueTrace1, leagueTrace2, leagueTrace3], leagueLayout);
 
-    createTrendPredictionChart(leagueScores);
 
     let rosterHtml = '<div class="roster-grid">';
     leagueScores.forEach(team => {
@@ -561,6 +559,12 @@ function createLeagueScoresChart(leagueScores) {
     initializeLeagueTeamSelect();
     // Load the default league team chart
     loadDefaultLeagueTeamChart();
+
+    createResponsiveChart('leagueScoresChart', [leagueTrace1, leagueTrace2, leagueTrace3], leagueLayout);
+
+    // Add this line at the end of the function
+    createTrendPredictionChart(leagueScores);
+}
     
     const { mostBalancedTeam, leastBalancedTeam } = calculateBalancedTeams(leagueScores);
     displayBalancedTeam(mostBalancedTeam, 'mostBalancedTeamContent');
@@ -1134,9 +1138,9 @@ function createTrendPredictionChart(leagueScores) {
         const slope = (n * sumXY - sumX * sumY) / (n * sumXX - sumX * sumX);
         const intercept = (sumY - slope * sumX) / n;
 
-        // Predict next 7 days
+        // Predict next 5 days
         const lastDate = new Date(Math.max(...xValues));
-        const predictedData = [...Array(7)].map((_, i) => {
+        const predictedData = [...Array(5)].map((_, i) => {
             const date = new Date(lastDate.getTime() + (i + 1) * 24 * 60 * 60 * 1000);
             const points = slope * date.getTime() + intercept;
             return { date, points };

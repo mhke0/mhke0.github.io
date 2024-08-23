@@ -4742,17 +4742,17 @@
   "last_update": "2024-08-23",
   "mvp_history": [
     {
-      "name": "Ben O'Connor",
-      "points_added": 8.0,
+      "name": "Wout Van Aert",
+      "points_added": 244.0,
       "date": "2024-08-23"
     }
   ],
   "mip_history": [
     {
-      "name": "Ben O'Connor",
-      "percentage_increase": 2.6755852842809364,
+      "name": "Quentin Pacher",
+      "percentage_increase": 110.0,
       "date": "2024-08-23",
-      "from_zero": false
+      "from_zero": true
     }
   ]
 }

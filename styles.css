@@ -422,8 +422,8 @@ tr:nth-child(odd) {
 .mvp-mip-container {
     display: flex;
     justify-content: space-between;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 
 .info-box-mvp {
@@ -440,6 +440,7 @@ tr:nth-child(odd) {
     padding: 10px;
     text-align: center;
     margin: 0;
+    margin-bottom: 20px;
 }
 
 @media screen and (max-width: 768px) {

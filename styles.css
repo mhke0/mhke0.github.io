@@ -41,6 +41,7 @@ h1, h2 {
 }
 
 .chart-container {
+    height: 600px;
     width: 100%;
     margin-bottom: 20px;
     padding: 20px;

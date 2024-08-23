@@ -549,3 +549,14 @@ tr:nth-child(odd) {
     border-radius: 5px;
     font-family: 'VT323', monospace;
 }
+
+.stat-box_mvp_all {
+    flex: 1;
+    min-width: 0;
+    background-color: #fff0f5;
+    border: 2px solid #ff69b4;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    margin: 0;
+}

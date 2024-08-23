@@ -560,14 +560,23 @@ function createLeagueScoresChart(leagueScores) {
     // Load the default league team chart
     loadDefaultLeagueTeamChart();
 
-    createResponsiveChart('leagueScoresChart', [leagueTrace1, leagueTrace2, leagueTrace3], leagueLayout);
+  createResponsiveChart('leagueScoresChart', [leagueTrace1, leagueTrace2, leagueTrace3], leagueLayout);
 
-    // Add this line at the end of the function
-    createTrendPredictionChart(leagueScores);
+    // Make sure we're passing the correct object
+    if (leagueScores.league_scores) {
+        createTrendPredictionChart(leagueScores.league_scores);
+    } else {
+        console.error('leagueScores.league_scores is undefined');
+    }
+
     
     const { mostBalancedTeam, leastBalancedTeam } = calculateBalancedTeams(leagueScores);
     displayBalancedTeam(mostBalancedTeam, 'mostBalancedTeamContent');
     displayBalancedTeam(leastBalancedTeam, 'leastBalancedTeamContent');
+
+
+  
+
 }
 
 function createCostVsPointsChart(top50Cyclists) {
@@ -1101,8 +1110,16 @@ function updateAllTimeMVPMIP(cyclistData) {
 }
 
 function createTrendPredictionChart(leagueScores) {
-    console.log("leagueScores:", JSON.stringify(leagueScores, null, 2));
+    console.log("Full leagueScores object:", JSON.stringify(leagueScores, null, 2));
     
+    if (!leagueScores.history) {
+        console.error('leagueScores.history is undefined or null');
+        return;
+    }
+    
+    console.log("leagueScores.history:", JSON.stringify(leagueScores.history, null, 2));
+    console.log("leagueScores.history.length:", leagueScores.history.length);
+
     // Ensure we have historical data
     if (!leagueScores.history || leagueScores.history.length === 0) {
         console.error('No historical data available for trend and prediction chart');

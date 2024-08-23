@@ -15,11 +15,26 @@ function createResponsiveChart(chartId, traces, layout) {
 
     // Adjust font sizes for better readability on smaller screens
     const baseFontSize = 14;
-    layout.title.font.size = baseFontSize * 1.5;
-    layout.xaxis.titlefont.size = baseFontSize;
-    layout.xaxis.tickfont.size = baseFontSize * 0.9;
-    layout.yaxis.titlefont.size = baseFontSize;
-    layout.yaxis.tickfont.size = baseFontSize * 0.9;
+    
+    // Helper function to safely set nested properties
+    function setNestedProp(obj, path, value) {
+        const parts = path.split('.');
+        let current = obj;
+        for (let i = 0; i < parts.length - 1; i++) {
+            if (!current[parts[i]]) {
+                current[parts[i]] = {};
+            }
+            current = current[parts[i]];
+        }
+        current[parts[parts.length - 1]] = value;
+    }
+
+    // Safely set font sizes
+    setNestedProp(layout, 'title.font.size', baseFontSize * 1.5);
+    setNestedProp(layout, 'xaxis.titlefont.size', baseFontSize);
+    setNestedProp(layout, 'xaxis.tickfont.size', baseFontSize * 0.9);
+    setNestedProp(layout, 'yaxis.titlefont.size', baseFontSize);
+    setNestedProp(layout, 'yaxis.tickfont.size', baseFontSize * 0.9);
 
     // Add media queries for font sizes
     layout.font = {
@@ -28,15 +43,14 @@ function createResponsiveChart(chartId, traces, layout) {
         color: '#ff1493'
     };
 
-    layout.legend = {
-        font: {
-            family: 'VT323, monospace',
-            size: baseFontSize * 0.9,
-        }
+    layout.legend = layout.legend || {};
+    layout.legend.font = {
+        family: 'VT323, monospace',
+        size: baseFontSize * 0.9,
     };
 
     // Adjust margins for better use of space
-    layout.margin = {
+    layout.margin = layout.margin || {
         l: 50,
         r: 20,
         b: 50,

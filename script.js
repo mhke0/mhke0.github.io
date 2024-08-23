@@ -31,11 +31,18 @@ function createResponsiveChart(chartId, traces, layout) {
     layout.width = actualChartWidth;
     layout.height = Math.floor(actualChartWidth * 0.6);  // Maintain a 5:3 aspect ratio
 
-    // Center the chart in its container
+    // Center the chart using Plotly's options
+    layout.xaxis = layout.xaxis || {};
+    layout.yaxis = layout.yaxis || {};
+    layout.xaxis.automargin = true;
+    layout.yaxis.automargin = true;
+
+    // Ensure proper margins
     layout.margin = layout.margin || {};
-    layout.margin.l = layout.margin.r = Math.floor((containerWidth - actualChartWidth) / 2);
     layout.margin.t = layout.margin.t || 50;
     layout.margin.b = layout.margin.b || 50;
+    layout.margin.l = layout.margin.l || 50;
+    layout.margin.r = layout.margin.r || 50;
     layout.margin.autoexpand = true;
 
     // Base font size calculation
@@ -70,12 +77,10 @@ function createResponsiveChart(chartId, traces, layout) {
     layout.font.color = layout.font.color || '#ff1493';
 
     // Adjust x-axis for better label fitting
-    layout.xaxis = layout.xaxis || {};
     layout.xaxis.automargin = true;
     layout.xaxis.tickangle = layout.xaxis.tickangle || -45;
 
     // Adjust y-axis for better label fitting
-    layout.yaxis = layout.yaxis || {};
     layout.yaxis.automargin = true;
 
     // Ensure legend fits
@@ -95,9 +100,7 @@ function createResponsiveChart(chartId, traces, layout) {
         
         Plotly.relayout(chartId, {
             width: newActualChartWidth,
-            height: newChartHeight,
-            'margin.l': Math.floor((newContainerWidth - newActualChartWidth) / 2),
-            'margin.r': Math.floor((newContainerWidth - newActualChartWidth) / 2)
+            height: newChartHeight
         });
     });
 }

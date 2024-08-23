@@ -78,23 +78,51 @@ def create_top_50_efficiency_data(cyclists):
         'cost': c['cost']
     } for c in top_50_efficiency]
 
+
+def extract_team_roster_links(html_content):
+    soup = BeautifulSoup(html_content, 'html.parser')
+    team_links = []
+    for li in soup.select('#users .list li'):
+        team_name = li.select_one('h3.name a').text.strip()
+        team_link = li.select_one('h3.name a')['href']
+        team_links.append((team_name, f"https://www.velogames.com/spain/2024/{team_link}"))
+    return team_links
+
+def extract_team_riders(html_content):
+    soup = BeautifulSoup(html_content, 'html.parser')
+    riders = []
+    for td in soup.select('.team-info-panel td'):
+        team = td.find('img')['src'].split('/')[-1].split('.')[0]
+        name = td.contents[2].strip()
+        points = int(td.contents[4].strip().split()[0])
+        riders.append({'team': team, 'name': name, 'points': points})
+    return riders
+
 def fetch_league_scores():
     url = "https://www.velogames.com/spain/2024/leaguescores.php?league=764413216"
     response = requests.get(url)
     soup = BeautifulSoup(response.content, 'html.parser')
 
     teams = []
-    for li in soup.select('#users .list li'):
-        team_name = li.select_one('h3.name a').text.strip()
+    team_links = extract_team_roster_links(response.content)
+
+    for team_name, team_link in team_links:
+        team_response = requests.get(team_link)
+        team_riders = extract_team_riders(team_response.content)
+        
+        li = soup.select_one(f'#users .list li:contains("{team_name}")')
         points = int(li.select_one('p.born b').text.strip())
-        teams.append({"name": team_name, "points": points})
+        
+        teams.append({
+            "name": team_name,
+            "points": points,
+            "riders": team_riders
+        })
 
     # Sort teams by points in descending order
     teams.sort(key=lambda x: x['points'], reverse=True)
 
     return teams
-
-
 def numpy_to_python(obj):
     if isinstance(obj, np.integer):
         return int(obj)
@@ -268,7 +296,7 @@ def update_historical_data(existing_data, new_cyclists, new_league_scores):
         }
         existing_data['league_scores']['history'].append(history_entry)
     
-    # Update current scores
+    # Update current scores with new rider information
     existing_data['league_scores']['current'] = new_league_scores
     
     # Keep only the last 30 days of league score history
@@ -278,6 +306,7 @@ def update_historical_data(existing_data, new_cyclists, new_league_scores):
     existing_data['last_update'] = today
     
     return existing_data
+
 
 def calculate_mvp_mip(cyclists, previous_data):
     today = datetime.now().strftime('%Y-%m-%d')
@@ -339,6 +368,13 @@ def main():
         
         print("Analyzing new cyclist data", file=sys.stderr)
         new_cyclists = analyze_cyclists(html_content)
+
+        print("Fetching league scores and team rosters", file=sys.stderr)
+        new_league_scores = fetch_league_scores()
+
+        print("Updating historical data", file=sys.stderr)
+        updated_data = update_historical_data(existing_data, new_cyclists, new_league_scores)
+
         
         if not new_cyclists:
             raise ValueError("No new cyclist data was extracted")

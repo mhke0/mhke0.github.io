@@ -155,7 +155,7 @@ function createTop50Chart(top50Cyclists) {
                 }
             })
         },
-        text: top50Cyclists.map(c => `Points: ${c.points}<br>Cost: ${c.cost}`),
+        text: top50Cyclists.map(c => `Role: ${c.role}<br>Points: ${c.points}<br>Cost: ${c.cost}`),
         hoverinfo: 'text+y'
     };
 
@@ -216,7 +216,6 @@ function createTop50Chart(top50Cyclists) {
 
     Plotly.newPlot('top50Chart', [trace], layout);
 }
-
 function createPointsPerNameLengthChart(cyclists) {
     let cyclistsWithPointsPerNameLength = cyclists.map(c => ({
         ...c,

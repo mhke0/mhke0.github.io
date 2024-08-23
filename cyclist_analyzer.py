@@ -12,7 +12,6 @@ import contextlib
 import os
 from datetime import datetime, timedelta
 
-
 def fetch_html_content(url):
     try:
         response = requests.get(url)
@@ -210,14 +209,23 @@ def load_existing_data(filename):
         # Ensure league_scores have a history
         if 'league_scores' in data and isinstance(data['league_scores'], list):
             data['league_scores'] = {'current': data['league_scores'], 'history': []}
+        # Ensure MVP and MIP history exists
+        if 'mvp_history' not in data:
+            data['mvp_history'] = []
+        if 'mip_history' not in data:
+            data['mip_history'] = []
         return data
     except FileNotFoundError:
-        return {'cyclists': [], 'top_50_efficiency': [], 'league_scores': {'current': [], 'history': []}, 'dream_team': None, 'last_update': None}
-
+        return {'cyclists': [], 'top_50_efficiency': [], 'league_scores': {'current': [], 'history': []}, 'dream_team': None, 'last_update': None, 'mvp_history': [], 'mip_history': []}
 
 def update_historical_data(existing_data, new_cyclists, new_league_scores):
     today = datetime.now().strftime('%Y-%m-%d')
     
+    # Check if we've already updated today
+    if existing_data['last_update'] == today:
+        print(f"Data already updated today ({today}). Skipping update.", file=sys.stderr)
+        return existing_data
+
     # Update cyclist data
     for new_cyclist in new_cyclists:
         existing_cyclist = next((c for c in existing_data['cyclists'] if c['name'] == new_cyclist['name']), None)
@@ -232,16 +240,9 @@ def update_historical_data(existing_data, new_cyclists, new_league_scores):
                 'ownership': new_cyclist['ownership'],
                 'cost_per_point': new_cyclist['cost_per_point']
             })
-            if 'pointHistory' not in existing_cyclist:
-                existing_cyclist['pointHistory'] = []
             
-            # Check if an entry for today already exists
-            today_entry = next((entry for entry in existing_cyclist['pointHistory'] if entry['date'] == today), None)
-            if today_entry:
-                # Update existing entry for today
-                today_entry['points'] = new_cyclist['points']
-            else:
-                # Add new entry for today
+            # Check if we already have an entry for today
+            if not existing_cyclist['pointHistory'] or existing_cyclist['pointHistory'][-1]['date'] != today:
                 existing_cyclist['pointHistory'].append({'date': today, 'points': new_cyclist['points']})
             
             # Keep only the last 30 days of historical data
@@ -259,15 +260,10 @@ def update_historical_data(existing_data, new_cyclists, new_league_scores):
         existing_data['league_scores'] = {'current': [], 'history': []}
     
     # Check if we already have an entry for today in the history
-    today_league_entry = next((entry for entry in existing_data['league_scores']['history'] if entry['date'] == today), None)
-    
-    if today_league_entry:
-        # Update today's entry instead of adding a new one
-        today_league_entry['scores'] = existing_data['league_scores']['current']
-    elif existing_data['league_scores']['current']:
-        # Add current scores to history only if it's a new day
+    if not existing_data['league_scores']['history'] or existing_data['league_scores']['history'][-1]['date'] != today:
+        # Add current scores to history
         history_entry = {
-            'date': existing_data['last_update'] or (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d'),
+            'date': today,
             'scores': existing_data['league_scores']['current']
         }
         existing_data['league_scores']['history'].append(history_entry)
@@ -283,6 +279,48 @@ def update_historical_data(existing_data, new_cyclists, new_league_scores):
     
     return existing_data
 
+def calculate_mvp_mip(cyclists, previous_data):
+    today = datetime.now().strftime('%Y-%m-%d')
+    
+    # Check if we've already calculated MVP/MIP today
+    if previous_data['mvp_history'] and previous_data['mvp_history'][-1]['date'] == today:
+        print(f"MVP/MIP already calculated today ({today}). Skipping calculation.", file=sys.stderr)
+        return previous_data, previous_data['mvp_history'][-1], previous_data['mip_history'][-1]
+
+    mvp = {'name': '', 'points_added': 0, 'date': today}
+    mip = {'name': '', 'percentage_increase': 0, 'date': today, 'from_zero': False}
+
+    for cyclist in cyclists:
+        if len(cyclist['pointHistory']) < 2:
+            continue
+
+        latest_points = cyclist['pointHistory'][-1]['points']
+        previous_points = cyclist['pointHistory'][-2]['points']
+        points_added = latest_points - previous_points
+
+        # MVP calculation
+        if points_added > mvp['points_added']:
+            mvp = {'name': cyclist['name'], 'points_added': points_added, 'date': today}
+
+        # MIP calculation
+        if previous_points == 0 and latest_points > 0:
+            if not mip['from_zero'] or points_added > mip['percentage_increase']:
+                mip = {'name': cyclist['name'], 'percentage_increase': points_added, 'date': today, 'from_zero': True}
+        elif previous_points > 0:
+            percentage_increase = (points_added / previous_points) * 100
+            if percentage_increase > mip['percentage_increase'] and not mip['from_zero']:
+                mip = {'name': cyclist['name'], 'percentage_increase': percentage_increase, 'date': today, 'from_zero': False}
+
+    # Update historical data
+    previous_data['mvp_history'].append(mvp)
+    previous_data['mip_history'].append(mip)
+
+    # Keep only the last 30 days of MVP and MIP history
+    previous_data['mvp_history'] = previous_data['mvp_history'][-30:]
+    previous_data['mip_history'] = previous_data['mip_history'][-30:]
+
+    return previous_data, mvp, mip
+
 def main():
     cyclist_url = "https://www.velogames.com/spain/2024/riders.php"
     output_file = "cyclist-data.json"
@@ -290,6 +328,11 @@ def main():
     try:
         print("Loading existing data", file=sys.stderr)
         existing_data = load_existing_data(output_file)
+
+        today = datetime.now().strftime('%Y-%m-%d')
+        if existing_data['last_update'] == today:
+            print(f"Data already updated today ({today}). Exiting.", file=sys.stderr)
+            return
 
         print(f"Fetching new cyclist data from {cyclist_url}", file=sys.stderr)
         html_content = fetch_html_content(cyclist_url)
@@ -330,6 +373,12 @@ def main():
             }
         else:
             updated_data['dream_team'] = None
+
+        print("Calculating MVP and MIP", file=sys.stderr)
+        updated_data, mvp, mip = calculate_mvp_mip(updated_data['cyclists'], updated_data)
+
+        print(f"MVP: {mvp['name']} (Points added: {mvp['points_added']})", file=sys.stderr)
+        print(f"MIP: {mip['name']} ({'Points gained' if mip['from_zero'] else 'Percentage increase'}: {mip['percentage_increase']}{'%' if not mip['from_zero'] else ''})", file=sys.stderr)
 
         print(f"Current working directory: {os.getcwd()}", file=sys.stderr)
         try:

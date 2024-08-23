@@ -113,15 +113,15 @@ def fetch_league_scores(existing_data):
         # Check if we already have this team in existing data
         existing_team = next((team for team in existing_data.get('league_scores', {}).get('current', []) if team['name'] == team_name), None)
         
-        if existing_team:
-            # Update points for existing team
+        if existing_team and 'riders' in existing_team:
+            # Reuse existing rider information
             team_data = {
                 "name": team_name,
                 "points": points,
-                "riders": existing_team.get('riders', [])
+                "riders": existing_team['riders']
             }
         else:
-            # Fetch team members for new team
+            # Fetch team members for new team or if rider information is missing
             team_response = requests.get(team_link)
             riders = extract_team_riders(team_response.content)
             team_data = {
@@ -238,8 +238,6 @@ def select_dream_team_optimized(cyclists):
         
         return None, 0, 0
 
-
-
 def load_existing_data(filename):
     try:
         with open(filename, 'r') as f:
@@ -248,8 +246,10 @@ def load_existing_data(filename):
         for cyclist in data['cyclists']:
             if 'pointHistory' not in cyclist:
                 cyclist['pointHistory'] = []
-        # Ensure league_scores have a history
-        if 'league_scores' in data and isinstance(data['league_scores'], list):
+        # Ensure league_scores have a correct structure
+        if 'league_scores' not in data:
+            data['league_scores'] = {'current': [], 'history': []}
+        elif isinstance(data['league_scores'], list):
             data['league_scores'] = {'current': data['league_scores'], 'history': []}
         # Ensure MVP and MIP history exists
         if 'mvp_history' not in data:
@@ -268,7 +268,7 @@ def update_historical_data(existing_data, new_cyclists, new_league_scores):
         print(f"Data already updated today ({today}). Skipping update.", file=sys.stderr)
         return existing_data
 
-    # Update cyclist data
+    # Update cyclist data (unchanged)
     for new_cyclist in new_cyclists:
         existing_cyclist = next((c for c in existing_data['cyclists'] if c['name'] == new_cyclist['name']), None)
         
@@ -310,7 +310,7 @@ def update_historical_data(existing_data, new_cyclists, new_league_scores):
         }
         existing_data['league_scores']['history'].append(history_entry)
     
-    # Update current scores
+    # Update current scores with new league scores (including team rosters)
     existing_data['league_scores']['current'] = new_league_scores
     
     # Keep only the last 30 days of league score history
@@ -320,7 +320,7 @@ def update_historical_data(existing_data, new_cyclists, new_league_scores):
     existing_data['last_update'] = today
     
     return existing_data
-
+    
 
 def calculate_mvp_mip(cyclists, previous_data):
     today = datetime.now().strftime('%Y-%m-%d')

@@ -261,8 +261,11 @@ def update_historical_data(existing_data, new_cyclists, new_league_scores):
                 'cost_per_point': new_cyclist['cost_per_point']
             })
             
-            # Add new point history entry if it doesn't exist for today
-            if not existing_cyclist['pointHistory'] or existing_cyclist['pointHistory'][-1]['date'] != today:
+            # Update or add today's entry in pointHistory
+            today_entry = next((entry for entry in existing_cyclist['pointHistory'] if entry['date'] == today), None)
+            if today_entry:
+                today_entry['points'] = new_cyclist['points']
+            else:
                 existing_cyclist['pointHistory'].append({'date': today, 'points': new_cyclist['points']})
             
             # Keep only the last 30 days of historical data
@@ -279,16 +282,15 @@ def update_historical_data(existing_data, new_cyclists, new_league_scores):
     if 'league_scores' not in existing_data:
         existing_data['league_scores'] = {'current': [], 'history': []}
     
-    # Add current scores to history if not already present for today
-    if not existing_data['league_scores']['history'] or existing_data['league_scores']['history'][-1]['date'] != today:
-        history_entry = {
-            'date': today,
-            'scores': existing_data['league_scores']['current']
-        }
-        existing_data['league_scores']['history'].append(history_entry)
-    
     # Update current scores and team rosters
     existing_data['league_scores']['current'] = new_league_scores
+    
+    # Update or add today's entry in league score history
+    today_history_entry = next((entry for entry in existing_data['league_scores']['history'] if entry['date'] == today), None)
+    if today_history_entry:
+        today_history_entry['scores'] = new_league_scores
+    else:
+        existing_data['league_scores']['history'].append({'date': today, 'scores': new_league_scores})
     
     # Keep only the last 30 days of league score history
     existing_data['league_scores']['history'] = sorted(existing_data['league_scores']['history'], key=lambda x: x['date'])[-30:]
@@ -297,6 +299,8 @@ def update_historical_data(existing_data, new_cyclists, new_league_scores):
     existing_data['last_update'] = today
     
     return existing_data
+
+
 
 def calculate_mvp_mip(cyclists, previous_data):
     today = datetime.now().strftime('%Y-%m-%d')
@@ -349,9 +353,6 @@ def main():
         existing_data = load_existing_data(output_file)
 
         today = datetime.now().strftime('%Y-%m-%d')
-        if existing_data['last_update'] == today:
-            print(f"Data already updated today ({today}). Exiting.", file=sys.stderr)
-            return
 
         print(f"Fetching new cyclist data from {cyclist_url}", file=sys.stderr)
         html_content = fetch_html_content(cyclist_url)

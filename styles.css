@@ -59,6 +59,10 @@ h1, h2 {
     box-sizing: border-box;
 }
 
+.trajectory-container {
+    margin-bottom: 0px;
+}
+
 .chart-container {
     height: 600px;
     display: flex;

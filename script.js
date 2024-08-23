@@ -77,6 +77,7 @@ $(document).ready(function() {
         createLeagueScoresChart(leagueScores.current);
         createRelativePerformanceChart(leagueScores.current);
         createCostVsPointsChart(top50Cyclists);
+        populateTeamDropdown();
 
         if (data.dream_team) {
             displayDreamTeam(data.dream_team);
@@ -1100,6 +1101,33 @@ function updateAllTimeMVPMIP(cyclistData) {
 
     $('#allTimeMVPInfo').html(allTimeMVPInfo);
     $('#allTimeMIPInfo').html(allTimeMIPInfo);
+}
+function populateTeamDropdown() {
+    const teamSelect = $('#teamSelect');
+    const teams = [...new Set(cyclistData.cyclists.map(cyclist => cyclist.team))].sort();
+    
+    teams.forEach(team => {
+        teamSelect.append(`<option value="${team}">${team}</option>`);
+    });
+}
+
+function updateTeamRosterDisplay() {
+    const selectedTeam = $('#teamSelect').val();
+    const teamRiders = cyclistData.cyclists.filter(cyclist => cyclist.team === selectedTeam);
+    
+    let rosterHtml = '';
+    teamRiders.forEach(rider => {
+        rosterHtml += `
+            <div class="rider-card">
+                <h4>${rider.name}</h4>
+                <p>Role: ${rider.role}</p>
+                <p>Cost: ${rider.cost}</p>
+                <p>Points: ${rider.points}</p>
+            </div>
+        `;
+    });
+    
+    $('#teamRosterDisplay').html(rosterHtml);
 }
 
 function updateVisitCount() {

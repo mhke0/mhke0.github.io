@@ -1107,51 +1107,56 @@ function updateAllTimeMVPMIP(cyclistData) {
 
 function createTrendPredictionChart(leagueScores) {
     console.log("Full leagueScores object:", JSON.stringify(leagueScores, null, 2));
-    
-    if (!leagueScores || typeof leagueScores !== 'object') {
-        console.error('leagueScores is not a valid object');
-        return;
-    }
-    
-    // Check if leagueScores is an array (current structure) or an object with a 'current' property
-    const currentScores = Array.isArray(leagueScores) ? leagueScores : leagueScores.current;
-    
-    if (!currentScores || !Array.isArray(currentScores)) {
-        console.error('Unable to find current scores data');
-        return;
-    }
-    
-    console.log("Current scores:", JSON.stringify(currentScores, null, 2));
 
-    // Use current scores as the latest data point
-    const latestDate = new Date(); // Use current date as the latest date
+    if (!leagueScores || !leagueScores.history || !Array.isArray(leagueScores.history)) {
+        console.error('Invalid leagueScores structure or missing history');
+        return;
+    }
+
+    // Process historical data
     const teamData = {};
-
-    currentScores.forEach(team => {
-        teamData[team.name] = [{
-            date: latestDate,
-            points: team.points
-        }];
+    leagueScores.history.forEach(entry => {
+        const date = new Date(entry.date);
+        entry.scores.forEach(score => {
+            if (!teamData[score.name]) {
+                teamData[score.name] = [];
+            }
+            teamData[score.name].push({ date: date, points: score.points });
+        });
     });
+
+    // Sort data points by date for each team
+    Object.values(teamData).forEach(data => data.sort((a, b) => a.date - b.date));
 
     // Create traces for each team
     const traces = Object.entries(teamData).map(([teamName, data]) => {
-        // Since we only have one data point, we can't calculate a trend
-        // Instead, we'll create a flat projection for the next 5 days
+        // Calculate linear regression
+        const xValues = data.map(d => d.date.getTime());
+        const yValues = data.map(d => d.points);
+        const n = xValues.length;
+        const sumX = xValues.reduce((a, b) => a + b, 0);
+        const sumY = yValues.reduce((a, b) => a + b, 0);
+        const sumXY = xValues.reduce((total, x, i) => total + x * yValues[i], 0);
+        const sumXX = xValues.reduce((total, x) => total + x * x, 0);
+        const slope = (n * sumXY - sumX * sumY) / (n * sumXX - sumX * sumX);
+        const intercept = (sumY - slope * sumX) / n;
 
+        // Predict next 5 days
+        const lastDate = new Date(Math.max(...xValues));
         const predictedData = [...Array(5)].map((_, i) => {
-            const date = new Date(latestDate.getTime() + (i + 1) * 24 * 60 * 60 * 1000);
-            return { date, points: data[0].points }; // Use the same points for prediction
+            const date = new Date(lastDate.getTime() + (i + 1) * 24 * 60 * 60 * 1000);
+            const points = slope * date.getTime() + intercept;
+            return { date, points };
         });
 
         return {
             name: teamName,
-            x: [data[0].date, ...predictedData.map(d => d.date)],
-            y: [data[0].points, ...predictedData.map(d => d.points)],
+            x: [...data.map(d => d.date), ...predictedData.map(d => d.date)],
+            y: [...data.map(d => d.points), ...predictedData.map(d => d.points)],
             type: 'scatter',
             mode: 'lines+markers',
             line: {
-                dash: i => i > 0 ? 'dot' : 'solid',
+                dash: (d, i) => i >= data.length ? 'dot' : 'solid',
             },
             marker: {
                 size: 6,
@@ -1161,7 +1166,7 @@ function createTrendPredictionChart(leagueScores) {
 
     const layout = {
         title: {
-            text: 'Team Performance and 5-Day Projection',
+            text: 'Team Performance Trend and 5-Day Prediction',
             font: {
                 family: 'VT323, monospace',
                 color: '#ff1493'

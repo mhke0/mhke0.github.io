@@ -88,7 +88,9 @@ h1, h2, h3, h4 {
     border-radius: 5px;
     color: #ff1493;
 }
-
+#cyclingTeamSelect {
+    width: 30%;
+}
 #leagueTeamRosterChart, #cyclingTeamRosterDisplay {
     margin-top: 20px;
 }
@@ -137,4 +139,31 @@ h1, h2, h3, h4 {
     h1 {
         font-size: 24px;
     }
+}
+
+.balanced-team-box {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f0f8ff;
+    border: 2px solid #4682b4;
+    border-radius: 5px;
+}
+
+.balanced-team-box h3 {
+    color: #4682b4;
+    margin-top: 0;
+}
+
+.balanced-team-box h4 {
+    color: #ff1493;
+    margin-bottom: 5px;
+}
+
+.balanced-team-box ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.balanced-team-box li {
+    margin-bottom: 5px;
 }

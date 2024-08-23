@@ -291,9 +291,18 @@ tr:nth-child(odd) {
 
 .team-roster-header {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 20px;
 }
+
+.selected-team-info {
+    font-family: var(--font-family);
+    font-size: 20px;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
 
 /* Existing styles... */
 

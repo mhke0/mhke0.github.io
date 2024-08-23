@@ -244,11 +244,15 @@ function createPointsPerNameLengthChart(cyclists) {
                 }
             })
         },
-        text: top50PointsPerNameLength.map((c => `Points: ${c.points}<br>Name Length: ${c.name.replace(/\s/g, '').length}`<br>Role: ${c.role}),
-        hoverinfo: 'text+y'
+        text: top50PointsPerNameLength.map(c => (
+            `Name: ${c.name}<br>` +
+            `Role: ${c.role}<br>` +
+            `Points: ${c.points}<br>` +
+            `Name Length: ${c.name.replace(/\s/g, '').length}<br>` +
+            `Points per Name Length: ${c.pointsPerNameLength.toFixed(2)}`
+        )),
+        hoverinfo: 'text'
     };
-text: top50Cyclists.map(c => `Role: ${c.role}<br>Points: ${c.points}<br>Cost: ${c.cost}`)
-
 
     const layoutPointsPerNameLength = {
         title: {

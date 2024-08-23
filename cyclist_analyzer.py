@@ -85,7 +85,10 @@ def fetch_team_roster(url):
         soup = BeautifulSoup(response.text, 'html.parser')
         team_info = soup.find('table', class_='team-info-panel')
         if team_info:
-            riders = [td.text.strip().split('\n')[0] for td in team_info.find_all('td')]
+            riders = []
+            for td in team_info.find_all('td'):
+                name = td.text.strip().split('\n')[1].strip()  # Get the second line (after the <BR>)
+                riders.append(name)
             return riders
         else:
             print(f"Team roster not found for URL: {url}", file=sys.stderr)

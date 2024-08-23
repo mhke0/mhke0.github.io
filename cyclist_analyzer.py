@@ -314,11 +314,6 @@ def update_historical_data(existing_data, new_cyclists, new_league_scores):
 def calculate_mvp_mip(cyclists, previous_data):
     today = datetime.now().strftime('%Y-%m-%d')
     
-    # Check if we've already calculated MVP/MIP today
-    if previous_data['mvp_history'] and previous_data['mvp_history'][-1]['date'] == today:
-        print(f"MVP/MIP already calculated today ({today}). Skipping calculation.", file=sys.stderr)
-        return previous_data, previous_data['mvp_history'][-1], previous_data['mip_history'][-1]
-
     mvp = {'name': '', 'points_added': 0, 'date': today}
     mip = {'name': '', 'percentage_increase': 0, 'date': today, 'from_zero': False}
 
@@ -343,13 +338,16 @@ def calculate_mvp_mip(cyclists, previous_data):
             if percentage_increase > mip['percentage_increase'] and not mip['from_zero']:
                 mip = {'name': cyclist['name'], 'percentage_increase': percentage_increase, 'date': today, 'from_zero': False}
 
-    # Update historical data
+    # Remove any existing entry for today before appending
+    previous_data['mvp_history'] = [entry for entry in previous_data['mvp_history'] if entry['date'] != today]
+    previous_data['mip_history'] = [entry for entry in previous_data['mip_history'] if entry['date'] != today]
+    
     previous_data['mvp_history'].append(mvp)
     previous_data['mip_history'].append(mip)
 
     # Keep only the last 30 days of MVP and MIP history
-    previous_data['mvp_history'] = previous_data['mvp_history'][-30:]
-    previous_data['mip_history'] = previous_data['mip_history'][-30:]
+    previous_data['mvp_history'] = sorted(previous_data['mvp_history'], key=lambda x: x['date'])[-30:]
+    previous_data['mip_history'] = sorted(previous_data['mip_history'], key=lambda x: x['date'])[-30:]
 
     return previous_data, mvp, mip
 

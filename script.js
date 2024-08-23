@@ -143,7 +143,7 @@ function createRoleChart(roles) {
 function createTop50Chart(top50Cyclists) {
     const trace = {
         x: top50Cyclists.map(c => c.name),
-        y: top50Cyclists.map(c => c.cost_per_point === "Infinity" ? 0 : parseFloat(c.cost_per_point)),
+        y: top50Cyclists.map(c => c.cost_per_point === "Infinity" ? 0 : c.cost_per_point),
         type: 'bar',
         marker: {
             color: top50Cyclists.map(c => {
@@ -155,13 +155,18 @@ function createTop50Chart(top50Cyclists) {
                 }
             })
         },
-        text: top50Cyclists.map(c => `Role: ${c.role}<br>Points: ${c.points}<br>Cost: ${c.cost}`),
+        text: cyclist.pointHistory.map(h => (
+    `${cyclist.name}<br>` +
+    `Role: ${cyclist.role}<br>` +
+    `Date: ${h.date.split('T')[0]}<br>` +
+    `Points: ${h.points}`
+)),
         hoverinfo: 'text+y'
     };
 
     const layout = {
         title: {
-            text: 'Top 50 Cyclists by Cost Efficiency (Lower is better)',
+            text: 'Top 50 Cyclists by Cost Efficiency(Lower is better)',
             font: {
                 family: 'VT323, monospace',
                 size: 24,
@@ -216,7 +221,6 @@ function createTop50Chart(top50Cyclists) {
 
     Plotly.newPlot('top50Chart', [trace], layout);
 }
-    
 function createPointsPerNameLengthChart(cyclists) {
     let cyclistsWithPointsPerNameLength = cyclists.map(c => ({
         ...c,

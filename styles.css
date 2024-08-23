@@ -326,6 +326,56 @@ tr:nth-child(odd) {
     font-family: 'VT323', monospace;
     margin-bottom: 5px;
 }
+.team-roster-container {
+    width: 100%;
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #fff0f5;
+    border: 2px solid #ff69b4;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.team-roster-header {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+#teamRosterDisplay {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.rider-card {
+    background-color: #ffffff;
+    border: 1px solid #ff1493;
+    border-radius: 5px;
+    padding: 10px;
+    font-family: 'VT323', monospace;
+}
+
+.rider-card h4 {
+    color: #ff1493;
+    margin-top: 0;
+}
+
+.rider-card p {
+    margin: 5px 0;
+}
+
+@media screen and (max-width: 768px) {
+    #teamRosterDisplay {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #teamRosterDisplay {
+        grid-template-columns: 1fr;
+    }
+}
 
 /* Responsive adjustments */
 @media screen and (max-width: 768px) {

@@ -32,7 +32,7 @@ h1, h2 {
 
 /* Uniform box styling */
 .trajectory-container, .stats-container,
-.mvp-mip-container, .legend-container, #cyclistTable {
+.legend-container, #cyclistTable {
     width: 100%;
     margin: 0 0 20px 0;
     padding: 20px;
@@ -203,12 +203,7 @@ tr:nth-child(odd) {
     background-color: #ffffff;
 }
 
-.mvp-mip-container {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
+
 
 .info-box {
     background-color: #fff0f5;
@@ -429,7 +424,7 @@ tr:nth-child(odd) {
         height: 400px;
     }
 
-    .chart-legend-container, .mvp-mip-container {
+    .chart-legend-container {
         flex-direction: column;
     }
 

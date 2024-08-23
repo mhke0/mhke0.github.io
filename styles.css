@@ -206,9 +206,8 @@ tr:nth-child(odd) {
 .mvp-mip-container {
     display: flex;
     justify-content: space-between;
-    flex-wrap: nowrap;
-    gap: 20px;
-    background-color: #ffffff;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .info-box {

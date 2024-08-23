@@ -709,42 +709,29 @@ function createCustomLegend(cyclists) {
     });
 }
 
-function calculateMVPandMIP(cyclists) {
-    let mvp = { name: '', pointsAdded: 0, date: '' };
-    let mip = { name: '', percentageIncrease: 0, date: '', fromZero: false };
+function updateMVPandMIP() {
+    const mvpHistory = cyclistData.mvp_history;
+    const mipHistory = cyclistData.mip_history;
 
-    const latestDate = cyclists.reduce((latest, cyclist) => {
-        const cyclistLatest = cyclist.pointHistory[cyclist.pointHistory.length - 1].date;
-        return cyclistLatest > latest ? cyclistLatest : latest;
-    }, '');
+    if (mvpHistory && mvpHistory.length > 0) {
+        const latestMVP = mvpHistory[mvpHistory.length - 1];
+        $('#mvpInfo').html(`
+            <strong>MVP:</strong> ${latestMVP.name}<br>
+            Points Added: ${latestMVP.points_added.toFixed(2)}<br>
+            Date: ${new Date(latestMVP.date).toLocaleDateString()}
+        `);
+    }
 
-    cyclists.forEach(cyclist => {
-        const history = cyclist.pointHistory;
-        for (let i = 1; i < history.length; i++) {
-            const pointsAdded = history[i].points - history[i-1].points;
-            
-            // Check if this is the latest date for MVP
-            if (history[i].date === latestDate && pointsAdded > mvp.pointsAdded) {
-                mvp = { name: cyclist.name, pointsAdded, date: history[i].date };
-            }
-
-            // Calculate percentage increase
-            if (history[i-1].points === 0 && history[i].points > 0) {
-                // Special case: from 0 to positive
-                if (mip.fromZero === false || pointsAdded > mip.percentageIncrease) {
-                    mip = { name: cyclist.name, percentageIncrease: pointsAdded, date: history[i].date, fromZero: true };
-                }
-            } else if (history[i-1].points > 0) {
-                const percentageIncrease = (pointsAdded / history[i-1].points) * 100;
-                if (percentageIncrease > mip.percentageIncrease && !mip.fromZero) {
-                    mip = { name: cyclist.name, percentageIncrease, date: history[i].date, fromZero: false };
-                }
-            }
-        }
-    });
-
-    return { mvp, mip };
+    if (mipHistory && mipHistory.length > 0) {
+        const latestMIP = mipHistory[mipHistory.length - 1];
+        $('#mipInfo').html(`
+            <strong>MIP:</strong> ${latestMIP.name}<br>
+            ${latestMIP.from_zero ? 'Points Gained' : 'Percentage Increase'}: ${latestMIP.from_zero ? latestMIP.percentage_increase.toFixed(2) : latestMIP.percentage_increase.toFixed(2) + '%'}<br>
+            Date: ${new Date(latestMIP.date).toLocaleDateString()}
+        `);
+    }
 }
+
 function updateTrajectoryChart() {
     const selectedOption = $('#riderSelect').val();
     let filteredCyclists;
@@ -762,7 +749,7 @@ function updateTrajectoryChart() {
     createTrajectoryChart(filteredCyclists);
     createCustomLegend(filteredCyclists);  // Add this line
 
-    const { mvp, mip } = calculateMVPandMIP(cyclistData.cyclists);
+    const { mvp, mip } = updateMVPandMIP(cyclistData.cyclists);
 
     // Update MVP and MIP information
     $('#mvpInfo').html(`

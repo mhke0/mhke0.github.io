@@ -593,7 +593,6 @@ function createLeagueScoresChart(leagueScores) {
 
  
 }
-}
 
 
 function createCostVsPointsChart(top50Cyclists) {

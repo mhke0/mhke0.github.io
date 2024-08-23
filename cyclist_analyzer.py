@@ -246,11 +246,6 @@ def load_existing_data(filename):
 def update_historical_data(existing_data, new_cyclists, new_league_scores):
     today = datetime.now().strftime('%Y-%m-%d')
     
-    # Check if we've already updated today
-    if existing_data['last_update'] == today:
-        print(f"Data already updated today ({today}). Skipping update.", file=sys.stderr)
-        return existing_data
-
     # Update cyclist data
     for new_cyclist in new_cyclists:
         existing_cyclist = next((c for c in existing_data['cyclists'] if c['name'] == new_cyclist['name']), None)
@@ -266,7 +261,7 @@ def update_historical_data(existing_data, new_cyclists, new_league_scores):
                 'cost_per_point': new_cyclist['cost_per_point']
             })
             
-            # Check if we already have an entry for today
+            # Add new point history entry if it doesn't exist for today
             if not existing_cyclist['pointHistory'] or existing_cyclist['pointHistory'][-1]['date'] != today:
                 existing_cyclist['pointHistory'].append({'date': today, 'points': new_cyclist['points']})
             
@@ -284,9 +279,8 @@ def update_historical_data(existing_data, new_cyclists, new_league_scores):
     if 'league_scores' not in existing_data:
         existing_data['league_scores'] = {'current': [], 'history': []}
     
-    # Check if we already have an entry for today in the history
+    # Add current scores to history if not already present for today
     if not existing_data['league_scores']['history'] or existing_data['league_scores']['history'][-1]['date'] != today:
-        # Add current scores to history
         history_entry = {
             'date': today,
             'scores': existing_data['league_scores']['current']

@@ -537,3 +537,19 @@ tr:nth-child(odd) {
         margin-bottom: 20px;
     }
 }
+
+.mvp-mip-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.info-box-mvp {
+    width: 45%;
+    padding: 15px;
+    background-color: #f0f8ff;
+    border: 2px solid #4682b4;
+    border-radius: 5px;
+    font-family: 'VT323', monospace;
+}

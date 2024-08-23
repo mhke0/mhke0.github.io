@@ -1354,22 +1354,29 @@ function updateTeamRosterChart() {
 }
 function calculateBalancedTeam(leagueScores) {
     let mostBalancedTeam = null;
-    let lowestStandardDeviation = Infinity;
+    let lowestDelta = Infinity;
 
     leagueScores.forEach(team => {
         const rosterData = team.roster.map(riderName => {
             const rider = cyclistData.cyclists.find(c => c.name === riderName);
             return rider ? rider.points : 0;
-        });
+        }).sort((a, b) => b - a);  // Sort points in descending order
 
-        const mean = rosterData.reduce((a, b) => a + b, 0) / rosterData.length;
-        const squareDiffs = rosterData.map(value => Math.pow(value - mean, 2));
-        const avgSquareDiff = squareDiffs.reduce((a, b) => a + b, 0) / squareDiffs.length;
-        const standardDeviation = Math.sqrt(avgSquareDiff);
+        let totalDelta = 0;
+        for (let i = 1; i < rosterData.length; i++) {
+            totalDelta += rosterData[i-1] - rosterData[i];
+        }
 
-        if (standardDeviation < lowestStandardDeviation) {
-            lowestStandardDeviation = standardDeviation;
-            mostBalancedTeam = team;
+        const averageDelta = totalDelta / (rosterData.length - 1);
+
+        if (averageDelta < lowestDelta) {
+            lowestDelta = averageDelta;
+            mostBalancedTeam = {
+                ...team,
+                averageDelta: averageDelta,
+                highestPoints: rosterData[0],
+                lowestPoints: rosterData[rosterData.length - 1]
+            };
         }
     });
 
@@ -1383,27 +1390,20 @@ function displayBalancedTeam(team) {
         return;
     }
 
-    const rosterData = team.roster.map(riderName => {
-        const rider = cyclistData.cyclists.find(c => c.name === riderName);
-        return {
-            name: riderName,
-            points: rider ? rider.points : 0
-        };
-    }).sort((a, b) => b.points - a.points);
-
-    let html = `
+    const html = `
         <h4>${team.name}</h4>
         <p>Total Points: ${team.points}</p>
-        <ul>
+        <p>Average Delta: ${team.averageDelta.toFixed(2)} points</p>
+        <p>Highest Points: ${team.highestPoints}</p>
+        <p>Lowest Points: ${team.lowestPoints}</p>
+        <p>Point Range: ${team.highestPoints - team.lowestPoints}</p>
     `;
 
-    rosterData.forEach(rider => {
-        html += `<li>${rider.name}: ${rider.points} points</li>`;
-    });
-
-    html += '</ul>';
     balancedTeamContent.innerHTML = html;
 }
+
+
+
 
 function updateVisitCount() {
     fetch('https://api.countapi.xyz/update/mhke0.github.io/visits/?amount=1')

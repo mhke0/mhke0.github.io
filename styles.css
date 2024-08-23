@@ -468,7 +468,7 @@ tr:nth-child(odd) {
 
     .legend-container, .info-box, .balanced-team-box, .info-box-mvp {
         width: 100%;
-        margin-top: 10px;
+        margin-top: 0px;
     }
 
     .legend-container {

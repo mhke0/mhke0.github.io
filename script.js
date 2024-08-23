@@ -868,12 +868,14 @@ function openTab(evt, tabName) {
 
     if (tabName === 'LeagueScoresTab') {
         loadDefaultLeagueTeamChart();
+        createLeagueStandingsChart();
     }
 
     if (tabName === 'TeamsTab') {
         loadDefaultCyclingTeamChart();
     }
 }
+
 
 document.getElementById("defaultOpen").click();
 
@@ -1103,7 +1105,6 @@ function updateAllTimeMVPMIP(cyclistData) {
 }
 
 
-// Function to perform simple linear regression
 function linearRegression(x, y) {
     const n = x.length;
     let sumX = 0, sumY = 0, sumXY = 0, sumXX = 0;
@@ -1118,9 +1119,11 @@ function linearRegression(x, y) {
     return { slope, intercept };
 }
 
+// Function to create the league standings chart with prediction
 function createLeagueStandingsChart() {
     const leagueHistory = cyclistData.league_scores.history;
     const teams = {};
+    const colors = ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40'];
 
     // Process the historical data
     leagueHistory.forEach(entry => {
@@ -1130,7 +1133,8 @@ function createLeagueStandingsChart() {
                 teams[score.name] = {
                     name: score.name,
                     x: [],
-                    y: []
+                    y: [],
+                    color: colors[Object.keys(teams).length % colors.length]
                 };
             }
             teams[score.name].x.push(date.getTime()); // Convert to timestamp for easier calculation
@@ -1156,7 +1160,8 @@ function createLeagueStandingsChart() {
             y: team.y,
             type: 'scatter',
             mode: 'lines+markers',
-            name: team.name
+            name: team.name,
+            line: { color: team.color }
         });
 
         // Create prediction trace
@@ -1167,7 +1172,7 @@ function createLeagueStandingsChart() {
             mode: 'lines',
             line: {
                 dash: 'dash',
-                color: traces[traces.length - 1].line.color
+                color: team.color
             },
             name: `${team.name} (Predicted)`,
             showlegend: false

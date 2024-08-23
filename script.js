@@ -100,6 +100,10 @@ function updateLeagueTeamRosterChart() {
     };
 
     Plotly.newPlot('leagueTeamRosterChart', [trace], layout);
+    
+    const { mostBalancedTeam, leastBalancedTeam } = calculateBalancedTeams(leagueData);
+    displayBalancedTeam(mostBalancedTeam, 'mostBalancedTeamContent');
+    displayBalancedTeam(leastBalancedTeam, 'leastBalancedTeamContent');
 }
 
 function updateCyclingTeamRosterDisplay() {
@@ -578,9 +582,9 @@ function createLeagueScoresChart(leagueScores) {
     // Initialize the league team select dropdown
     initializeLeagueTeamSelect();
     
-    // Calculate and display the most balanced team
-    const balancedTeam = calculateBalancedTeam(leagueScores);
-    displayBalancedTeam(balancedTeam);
+    const { mostBalancedTeam, leastBalancedTeam } = calculateBalancedTeams(leagueScores);
+    displayBalancedTeam(mostBalancedTeam, 'mostBalancedTeamContent');
+    displayBalancedTeam(leastBalancedTeam, 'leastBalancedTeamContent');
 }
 
 
@@ -1352,9 +1356,11 @@ function updateTeamRosterChart() {
     const balancedTeam = calculateBalancedTeam(leagueData);
     displayBalancedTeam(balancedTeam);
 }
-function calculateBalancedTeam(leagueScores) {
+function calculateBalancedTeams(leagueScores) {
     let mostBalancedTeam = null;
+    let leastBalancedTeam = null;
     let lowestDelta = Infinity;
+    let highestDelta = -Infinity;
 
     leagueScores.forEach(team => {
         const rosterData = team.roster.map(riderName => {
@@ -1369,22 +1375,29 @@ function calculateBalancedTeam(leagueScores) {
 
         const averageDelta = totalDelta / (rosterData.length - 1);
 
+        const teamData = {
+            ...team,
+            averageDelta: averageDelta,
+            highestPoints: rosterData[0],
+            lowestPoints: rosterData[rosterData.length - 1]
+        };
+
         if (averageDelta < lowestDelta) {
             lowestDelta = averageDelta;
-            mostBalancedTeam = {
-                ...team,
-                averageDelta: averageDelta,
-                highestPoints: rosterData[0],
-                lowestPoints: rosterData[rosterData.length - 1]
-            };
+            mostBalancedTeam = teamData;
+        }
+
+        if (averageDelta > highestDelta) {
+            highestDelta = averageDelta;
+            leastBalancedTeam = teamData;
         }
     });
 
-    return mostBalancedTeam;
+    return { mostBalancedTeam, leastBalancedTeam };
 }
 
-function displayBalancedTeam(team) {
-    const balancedTeamContent = document.getElementById('balancedTeamContent');
+function displayBalancedTeam(team, elementId) {
+    const balancedTeamContent = document.getElementById(elementId);
     if (!team) {
         balancedTeamContent.innerHTML = 'No team data available.';
         return;

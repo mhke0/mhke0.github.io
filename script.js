@@ -1223,11 +1223,19 @@ function displayTeamPointsDistribution(teamRiders) {
     const sortedRiders = teamRiders.sort((a, b) => b.points - a.points);
 
     const trace = {
-        x: sortedRiders.map(rider => rider.name),
-        y: sortedRiders.map(rider => rider.points),
-        type: 'bar',
+        labels: sortedRiders.map(rider => rider.name),
+        values: sortedRiders.map(rider => rider.points),
+        type: 'pie',
+        textinfo: 'label+percent',
+        hoverinfo: 'text',
+        hovertext: sortedRiders.map(rider => 
+            `Name: ${rider.name}<br>` +
+            `Role: ${rider.role}<br>` +
+            `Points: ${rider.points}<br>` +
+            `Cost: ${rider.cost}`
+        ),
         marker: {
-            color: sortedRiders.map(rider => {
+            colors: sortedRiders.map(rider => {
                 switch(rider.role) {
                     case 'All Rounder': return '#ff6384';
                     case 'Climber': return '#36a2eb';
@@ -1235,16 +1243,7 @@ function displayTeamPointsDistribution(teamRiders) {
                     default: return '#4bc0c0';
                 }
             })
-        },
-        text: sortedRiders.map(rider => `${rider.points} points`),
-        textposition: 'auto',
-        hoverinfo: 'text',
-        hovertext: sortedRiders.map(rider => 
-            `Name: ${rider.name}<br>` +
-            `Role: ${rider.role}<br>` +
-            `Points: ${rider.points}<br>` +
-            `Cost: ${rider.cost}`
-        )
+        }
     };
 
     const layout = {
@@ -1255,16 +1254,8 @@ function displayTeamPointsDistribution(teamRiders) {
                 color: '#ff1493'
             }
         },
-        xaxis: {
-            title: 'Riders',
-            tickangle: -45,
-        },
-        yaxis: {
-            title: 'Points',
-        },
         paper_bgcolor: '#fff0f5',
         plot_bgcolor: '#fff0f5',
-        margin: { t: 50, b: 100 } // Increase bottom margin to accommodate rotated x-axis labels
     };
 
     createResponsiveChart('teamPointsDistributionChart', [trace], layout);

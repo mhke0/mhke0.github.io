@@ -54,7 +54,7 @@ h1, h2 {
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden; /* Add this to prevent any overflow issues */
+    overflow: hidden;
 }
 
 .chart-container > div {
@@ -72,13 +72,13 @@ h1, h2 {
 
 .stat-box {
     flex: 1;
-    min-width: 0; /* This allows the boxes to shrink below their content size if needed */
+    min-width: 0;
     background-color: #fff0f5;
     border: 2px solid #ff69b4;
     border-radius: 5px;
     padding: 10px;
     text-align: center;
-    margin: 0; /* Remove the margin */
+    margin: 0;
 }
 
 table {
@@ -228,13 +228,11 @@ tr:nth-child(odd) {
     height: 100% !important;
 }
 
-/* Ensure the SVG inside Plotly charts takes full width and height */
 .js-plotly-plot .plot-container .svg-container {
     width: 100% !important;
     height: 100% !important;
 }
 
-/* Webkit browsers custom scrollbar */
 .js-plotly-plot::-webkit-scrollbar {
     width: 12px;
 }
@@ -250,18 +248,15 @@ tr:nth-child(odd) {
     border: 3px solid #fff0f5;
 }
 
-/* Firefox custom scrollbar */
 .js-plotly-plot {
     scrollbar-width: thin;
     scrollbar-color: #ff69b4 #fff0f5;
 }
 
-/* Ensure Plotly's modebar doesn't overflow */
 .js-plotly-plot .plotly .modebar-container {
     top: 0 !important;
 }
 
-/* Custom scrollbar for the legend */
 .legend-container::-webkit-scrollbar {
     width: 6px;
 }
@@ -293,6 +288,45 @@ tr:nth-child(odd) {
 #allTimeMVPInfo, #allTimeMIPInfo {
     margin-top: 10px;
 }
+
+/* New styles for roster display */
+.roster-container {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #fff0f5;
+    border: 2px solid #ff69b4;
+    border-radius: 5px;
+}
+
+.roster-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.roster-card {
+    background-color: #ffffff;
+    border: 1px solid #ff1493;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.roster-card h4 {
+    color: #ff1493;
+    margin-top: 0;
+    font-family: 'VT323', monospace;
+}
+
+.roster-card ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.roster-card li {
+    font-family: 'VT323', monospace;
+    margin-bottom: 5px;
+}
+
 /* Responsive adjustments */
 @media screen and (max-width: 768px) {
     body {
@@ -325,6 +359,10 @@ tr:nth-child(odd) {
     .legend-container {
         height: 200px;
     }
+
+    .roster-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media screen and (max-width: 480px) {
@@ -338,5 +376,17 @@ tr:nth-child(odd) {
 
     .stat-box {
         flex-basis: 100%;
+    }
+
+    .roster-card {
+        padding: 5px;
+    }
+
+    .roster-card h4 {
+        font-size: 16px;
+    }
+
+    .roster-card li {
+        font-size: 14px;
     }
 }

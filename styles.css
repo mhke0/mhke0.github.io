@@ -294,10 +294,19 @@ tr:nth-child(odd) {
     margin-bottom: 20px;
 }
 
-#teamRosterDisplay {
+/* Existing styles... */
+
+.team-roster-container {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+#cyclingTeamRosterDisplay {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 15px;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 .rider-card {
@@ -305,16 +314,28 @@ tr:nth-child(odd) {
     border: 1px solid var(--primary-color);
     border-radius: 5px;
     padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .rider-card h4 {
     color: var(--primary-color);
     margin-top: 0;
+    margin-bottom: 5px;
+    font-size: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .rider-card p {
-    margin: 5px 0;
+    margin: 2px 0;
+    font-size: 14px;
 }
+
+
+
 
 .roster-header {
     display: flex;
@@ -482,5 +503,16 @@ tr:nth-child(odd) {
 
     #teamSelect {
         font-size: 14px;
+    }
+}
+@media screen and (max-width: 768px) {
+    #cyclingTeamRosterDisplay {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #cyclingTeamRosterDisplay {
+        grid-template-columns: 1fr;
     }
 }

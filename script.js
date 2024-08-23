@@ -813,6 +813,17 @@ function openTab(evt, tabName) {
     if (tabName === 'RiderTrajectoryTab') {
         updateTrajectoryChart();
     }
+
+    // If opening the Teams tab, update the team roster display
+    if (tabName === 'TeamsTab') {
+        updateTeamRosterDisplay();
+    }
+
+    // You can add more tab-specific actions here if needed
+    // For example:
+    // if (tabName === 'LeagueScoresTab') {
+    //     updateLeagueScores();
+    // }
 }
 
 // Add this line at the end of the $(document).ready function
@@ -1129,6 +1140,7 @@ function updateTeamRosterDisplay() {
     
     $('#teamRosterDisplay').html(rosterHtml);
 }
+
 
 function updateVisitCount() {
     fetch('https://api.countapi.xyz/update/mhke0.github.io/visits/?amount=1')

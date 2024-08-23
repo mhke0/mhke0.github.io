@@ -446,7 +446,7 @@ function createLeagueScoresChart(leagueScores) {
     rosterHtml += '</div>';
     $('#teamRosters').html(rosterHtml);
 }
-}
+
 
 function createCostVsPointsChart(top50Cyclists) {
     const costVsPointsTrace = {

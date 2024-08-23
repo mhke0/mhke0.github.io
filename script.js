@@ -717,20 +717,20 @@ function updateMVPandMIP(cyclistData) {
     let mipInfo = '';
 
     if (mvpHistory && mvpHistory.length > 0) {
-        const latestMVP = mvpHistory[mvpHistory.length - 1];
+        const mvp = mvpHistory[mvpHistory.length - 1];
         mvpInfo = `
-            <strong>MVP:</strong> ${latestMVP.name}<br>
-            Points Added: ${latestMVP.points_added.toFixed(2)}<br>
-            Date: ${new Date(latestMVP.date).toLocaleDateString()}
+            <strong>MVP:</strong> ${mvp.name}<br>
+            Points Added: ${mvp.points_added.toFixed(2)}<br>
+            Date: ${new Date(mvp.date).toLocaleDateString()}
         `;
     }
 
     if (mipHistory && mipHistory.length > 0) {
-        const latestMIP = mipHistory[mipHistory.length - 1];
+        const mip = mipHistory[mipHistory.length - 1];
         mipInfo = `
-            <strong>MIP:</strong> ${latestMIP.name}<br>
-            ${latestMIP.from_zero ? 'Points Gained' : 'Percentage Increase'}: ${latestMIP.from_zero ? latestMIP.percentage_increase.toFixed(2) : latestMIP.percentage_increase.toFixed(2) + '%'}<br>
-            Date: ${new Date(latestMIP.date).toLocaleDateString()}
+            <strong>MIP:</strong> ${mip.name}<br>
+            ${mip.from_zero ? 'Points Gained' : 'Percentage Increase'}: ${mip.from_zero ? mip.percentage_increase.toFixed(2) : mip.percentage_increase.toFixed(2) + '%'}<br>
+            Date: ${new Date(mip.date).toLocaleDateString()}
         `;
     }
 
@@ -758,26 +758,14 @@ function updateTrajectoryChart() {
     }
 
     createTrajectoryChart(filteredCyclists);
-    createCustomLegend(filteredCyclists);  // Add this line
+    createCustomLegend(filteredCyclists);
 
-    const mvpMipData = updateMVPandMIP(cyclistData);
-    const mvp = mvpMipData.mvp;
-    const mip = mvpMipData.mip;
-    
-    // Update MVP and MIP information
-    $('#mvpInfo').html(`
-        <strong>MVP:</strong> ${mvp.name}<br>
-        Points Added: ${mvp.pointsAdded.toFixed(2)}<br>
-        Date: ${new Date(mvp.date).toLocaleDateString()}
-    `);
+    const { mvp, mip } = updateMVPandMIP(cyclistData);
 
-    // Update MIP information
-    $('#mipInfo').html(`
-        <strong>MIP:</strong> ${mip.name}<br>
-        Percentage Increase: ${mip.fromZero ? '∞' : mip.percentageIncrease.toFixed(2) + '%'}<br>
-        ${mip.fromZero ? `Points Gained: ${mip.percentageIncrease.toFixed(2)}` : ''}<br>
-        Date: ${new Date(mip.date).toLocaleDateString()}
-    `);
+    // MVP and MIP information is already updated in the updateMVPandMIP function
+    // So we don't need to update it again here
+
+    // You can add any additional updates or calculations here if needed
 }
 
 function openTab(evt, tabName) {

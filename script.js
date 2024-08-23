@@ -790,10 +790,8 @@ function createCustomLegend(cyclists) {
 function updateMVPandMIP(cyclistData) {
     const mvpHistory = cyclistData.mvp_history;
     const mipHistory = cyclistData.mip_history;
-
     let mvpInfo = '';
     let mipInfo = '';
-
     if (mvpHistory && mvpHistory.length > 0) {
         const mvp = mvpHistory[mvpHistory.length - 1];
         mvpInfo = `
@@ -802,19 +800,16 @@ function updateMVPandMIP(cyclistData) {
             Date: ${new Date(mvp.date).toLocaleDateString()}
         `;
     }
-
     if (mipHistory && mipHistory.length > 0) {
         const mip = mipHistory[mipHistory.length - 1];
         mipInfo = `
             <strong>MIP:</strong> ${mip.name}<br>
-            ${mip.from_zero ? 'Points Gained' : 'Percentage Increase'}: ${mip.from_zero ? mip.percentage_increase.toFixed(2) : mip.percentage_increase.toFixed(2) + '%'}<br>
+            Percentage Increase: ${mip.percentage_increase.toFixed(2)}${mip.from_zero ? '' : '%'}<br>
             Date: ${new Date(mip.date).toLocaleDateString()}
         `;
     }
-
     $('#mvpInfo').html(mvpInfo);
     $('#mipInfo').html(mipInfo);
-
     return {
         mvp: mvpHistory && mvpHistory.length > 0 ? mvpHistory[mvpHistory.length - 1] : null,
         mip: mipHistory && mipHistory.length > 0 ? mipHistory[mipHistory.length - 1] : null

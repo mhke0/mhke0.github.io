@@ -155,12 +155,13 @@ function createTop50Chart(top50Cyclists) {
                 }
             })
         },
-        text: cyclist.pointHistory.map(h => (
-    `${cyclist.name}<br>` +
-    `Role: ${cyclist.role}<br>` +
-    `Date: ${h.date.split('T')[0]}<br>` +
-    `Points: ${h.points}`
-)),
+        text: top50Cyclists.map(c => (
+            `Name: ${c.name}<br>` +
+            `Role: ${c.role}<br>` +
+            `Cost: ${c.cost}<br>` +
+            `Points: ${c.points}<br>` +
+            `Cost per Point: ${c.cost_per_point}`
+        )),
         hoverinfo: 'text+y'
     };
 

@@ -98,6 +98,7 @@ tr:nth-child(odd) {
 }
 
 .trajectory-container {
+    height: 600px;
     width: 100%;
     margin: 0 auto;
 }
@@ -113,6 +114,7 @@ tr:nth-child(odd) {
 }
 
 .chart-legend-container {
+    height:600px;
     display: flex;
     gap: 20px;
     margin-bottom: 20px;

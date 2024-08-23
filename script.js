@@ -223,7 +223,6 @@ function updateCyclingTeamRosterDisplay() {
     displayTeamPointsDistribution(teamRiders);
 }
 
-
 $(document).ready(function() {
     $.getJSON('cyclist-data.json', function(data) {
         $('#loading').hide();
@@ -1260,7 +1259,7 @@ function displayTeamPointsDistribution(teamRiders) {
 
     const layout = {
         title: {
-            text: '',
+            text: 'Team Points Distribution',
             font: {
                 family: 'VT323, monospace',
                 color: '#ff1493'

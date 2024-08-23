@@ -307,7 +307,7 @@ tr:nth-child(odd) {
     grid-template-columns: repeat(4, 1fr);  /* Changed from repeat(3, 1fr) to repeat(4, 1fr) */
     gap: 15px;
     max-width: 1200px;  /* Increased from 900px to accommodate the wider layout */
-    margin: 0 auto 40px; /* Added bottom margin */
+    margin: 0 auto 20px; /* Added bottom margin */
 }
 
 .rider-card {

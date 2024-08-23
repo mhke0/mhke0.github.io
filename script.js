@@ -2,6 +2,56 @@
 let leagueData;
 let cyclistData;
 
+function createResponsiveChart(chartId, traces, layout) {
+    const config = {
+        responsive: true,
+        displayModeBar: false, // Remove the Plotly toolbar
+    };
+
+    // Make the layout responsive
+    layout.autosize = true;
+    layout.height = undefined; // Let the height be determined by the container
+    layout.width = undefined; // Let the width be determined by the container
+
+    // Adjust font sizes for better readability on smaller screens
+    const baseFontSize = 14;
+    layout.title.font.size = baseFontSize * 1.5;
+    layout.xaxis.titlefont.size = baseFontSize;
+    layout.xaxis.tickfont.size = baseFontSize * 0.9;
+    layout.yaxis.titlefont.size = baseFontSize;
+    layout.yaxis.tickfont.size = baseFontSize * 0.9;
+
+    // Add media queries for font sizes
+    layout.font = {
+        family: 'VT323, monospace',
+        size: baseFontSize,
+        color: '#ff1493'
+    };
+
+    layout.legend = {
+        font: {
+            family: 'VT323, monospace',
+            size: baseFontSize * 0.9,
+        }
+    };
+
+    // Adjust margins for better use of space
+    layout.margin = {
+        l: 50,
+        r: 20,
+        b: 50,
+        t: 50,
+        pad: 4
+    };
+
+    Plotly.newPlot(chartId, traces, layout, config);
+
+    // Add a resize listener to update the chart when the window size changes
+    window.addEventListener('resize', function() {
+        Plotly.Plots.resize(document.getElementById(chartId));
+    });
+}
+
 function initializeLeagueTeamSelect() {
     const leagueTeamSelect = document.getElementById('leagueTeamSelect');
     leagueTeamSelect.innerHTML = '<option value="">Select a League Team</option>';
@@ -67,42 +117,21 @@ function updateLeagueTeamRosterChart() {
             text: `${selectedTeam} Roster`,
             font: {
                 family: 'VT323, monospace',
-                size: 24,
                 color: '#ff1493'
             }
         },
         xaxis: {
             title: 'Riders',
             tickangle: -45,
-            titlefont: {
-                family: 'VT323, monospace',
-                size: 16,
-                color: '#ff1493'
-            },
-            tickfont: {
-                family: 'VT323, monospace',
-                size: 12,
-                color: '#ff1493'
-            }
         },
         yaxis: {
             title: 'Points',
-            titlefont: {
-                family: 'VT323, monospace',
-                size: 16,
-                color: '#ff1493'
-            },
-            tickfont: {
-                family: 'VT323, monospace',
-                size: 14,
-                color: '#ff1493'
-            }
         },
         paper_bgcolor: '#fff0f5',
         plot_bgcolor: '#fff0f5'
     };
 
-    Plotly.newPlot('leagueTeamRosterChart', [trace], layout);
+    createResponsiveChart('leagueTeamRosterChart', [trace], layout);
     
     const { mostBalancedTeam, leastBalancedTeam } = calculateBalancedTeams(leagueData);
     displayBalancedTeam(mostBalancedTeam, 'mostBalancedTeamContent');
@@ -215,14 +244,14 @@ $(document).ready(function() {
             displayDreamTeam(data.dream_team);
         }
 
-            const riderSelect = $('#riderSelect');
-            const sortedCyclists = data.cyclists.sort((a, b) => a.name.localeCompare(b.name));
-            sortedCyclists.forEach(cyclist => {
-                riderSelect.append(`<option value="${cyclist.name}">${cyclist.name}</option>`);
-            });
+        const riderSelect = $('#riderSelect');
+        const sortedCyclists = data.cyclists.sort((a, b) => a.name.localeCompare(b.name));
+        sortedCyclists.forEach(cyclist => {
+            riderSelect.append(`<option value="${cyclist.name}">${cyclist.name}</option>`);
+        });
 
-            // Initialize the trajectory chart with top 10 riders
-            updateTrajectoryChart();
+        // Initialize the trajectory chart with top 10 riders
+        updateTrajectoryChart();
 
         // Open the default tab
         document.getElementById("defaultOpen").click();
@@ -303,58 +332,23 @@ function createTop50Chart(top50Cyclists) {
             text: 'Top 50 Cyclists by Cost Efficiency(Lower is better)',
             font: {
                 family: 'VT323, monospace',
-                size: 24,
                 color: '#ff1493'
             }
         },
         xaxis: {
             title: '',
             tickangle: -45,
-            titlefont: {
-                family: 'VT323, monospace',
-                size: 16,
-                color: '#ff1493'
-            },
-            tickfont: {
-                family: 'VT323, monospace',
-                size: 14,
-                color: '#ff1493'
-            }
         },
         yaxis: {
             title: 'Cost per Point',
-            titlefont: {
-                family: 'VT323, monospace',
-                size: 16,
-                color: '#ff1493'
-            },
-            tickfont: {
-                family: 'VT323, monospace',
-                size: 14,
-                color: '#ff1493'
-            }
-        },
-        legend: {
-            font: {
-                family: 'VT323, monospace',
-                size: 14,
-                color: '#000000'
-            }
         },
         paper_bgcolor: '#fff0f5',
         plot_bgcolor: '#fff0f5',
-        height: 500,
-        margin: {
-            l: 50,
-            r: 50,
-            b: 100,
-            t: 50,
-            pad: 4
-        }
     };
 
-    Plotly.newPlot('top50Chart', [trace], layout);
+    createResponsiveChart('top50Chart', [trace], layout);
 }
+
 function createPointsPerNameLengthChart(cyclists) {
     let cyclistsWithPointsPerNameLength = cyclists.map(c => ({
         ...c,
@@ -392,57 +386,21 @@ function createPointsPerNameLengthChart(cyclists) {
             text: 'Top 50 Cyclists by Points per Name Length',
             font: {
                 family: 'VT323, monospace',
-                size: 24,
                 color: '#ff1493'
             }
         },
         xaxis: {
             title: '',
             tickangle: -45,
-            titlefont: {
-                family: 'VT323, monospace',
-                size: 16,
-                color: '#ff1493'
-            },
-            tickfont: {
-                family: 'VT323, monospace',
-                size: 14,
-                color: '#ff1493'
-            }
         },
         yaxis: {
             title: 'Points per Name Length',
-            titlefont: {
-                family: 'VT323, monospace',
-                size: 16,
-                color: '#ff1493'
-            },
-            tickfont: {
-                family: 'VT323, monospace',
-                size: 14,
-                color: '#ff1493'
-            }
-        },
-        legend: {
-            font: {
-                family: 'VT323, monospace',
-                size: 14,
-                color: '#000000'
-            }
         },
         paper_bgcolor: '#fff0f5',
         plot_bgcolor: '#fff0f5',
-        height: 500,
-        margin: {
-            l: 50,
-            r: 50,
-            b: 100,
-            t: 50,
-            pad: 4
-        }
     };
 
-    Plotly.newPlot('pointsPerNameLengthChart', [tracePointsPerNameLength], layoutPointsPerNameLength);
+    createResponsiveChart('pointsPerNameLengthChart', [tracePointsPerNameLength], layoutPointsPerNameLength);
 }
 
 function createLeagueScoresChart(leagueScores) {
@@ -452,6 +410,7 @@ function createLeagueScoresChart(leagueScores) {
         "Ganz anderer Teamname": 9297,
         "Team Fiestina": 8128
     };
+  
     const middleData = {
         "Team Name": 9062,
         "Iberische Halbpinsel": 9530,
@@ -512,7 +471,6 @@ function createLeagueScoresChart(leagueScores) {
             text: 'League Scores (Stacked)',
             font: {
                 family: 'VT323, monospace',
-                size: 24,
                 color: '#ff1493'
             }
         },
@@ -520,50 +478,15 @@ function createLeagueScoresChart(leagueScores) {
         xaxis: {
             title: '',
             tickangle: -45,
-            titlefont: {
-                family: 'VT323, monospace',
-                size: 16,
-                color: '#ff1493'
-            },
-            tickfont: {
-                family: 'VT323, monospace',
-                size: 14,
-                color: '#ff1493'
-            }
         },
         yaxis: {
             title: '',
-            titlefont: {
-                family: 'VT323, monospace',
-                size: 16,
-                color: '#ff1493'
-            },
-            tickfont: {
-                family: 'VT323, monospace',
-                size: 14,
-                color: '#ff1493'
-            }
-        },
-        legend: {
-            font: {
-                family: 'VT323, monospace',
-                size: 14,
-                color: '#000000'
-            }
         },
         paper_bgcolor: '#fff0f5',
         plot_bgcolor: '#fff0f5',
-        height: 500,
-        margin: {
-            l: 50,
-            r: 50,
-            b: 100,
-            t: 50,
-            pad: 4
-        }
     };
 
-    Plotly.newPlot('leagueScoresChart', [leagueTrace1, leagueTrace2, leagueTrace3], leagueLayout);
+    createResponsiveChart('leagueScoresChart', [leagueTrace1, leagueTrace2, leagueTrace3], leagueLayout);
 
     let rosterHtml = '<div class="roster-grid">';
     leagueScores.forEach(team => {
@@ -584,16 +507,13 @@ function createLeagueScoresChart(leagueScores) {
 
     // Initialize the league team select dropdown
     initializeLeagueTeamSelect();
-       // Load the default league team chart
+    // Load the default league team chart
     loadDefaultLeagueTeamChart();
     
     const { mostBalancedTeam, leastBalancedTeam } = calculateBalancedTeams(leagueScores);
     displayBalancedTeam(mostBalancedTeam, 'mostBalancedTeamContent');
     displayBalancedTeam(leastBalancedTeam, 'leastBalancedTeamContent');
-
- 
 }
-
 
 function createCostVsPointsChart(top50Cyclists) {
     const costVsPointsTrace = {
@@ -621,57 +541,21 @@ function createCostVsPointsChart(top50Cyclists) {
             text: 'Cost vs Points (Top 50)',
             font: {
                 family: 'VT323, monospace',
-                size: 24,
                 color: '#ff1493'
             }
         },
         xaxis: {
             title: 'Points',
             tickangle: -45,
-            titlefont: {
-                family: 'VT323, monospace',
-                size: 16,
-                color: '#ff1493'
-            },
-            tickfont: {
-                family: 'VT323, monospace',
-                size: 14,
-                color: '#ff1493'
-            }
         },
         yaxis: {
             title: 'Cost',
-            titlefont: {
-                family: 'VT323, monospace',
-                size: 16,
-                color: '#ff1493'
-            },
-            tickfont: {
-                family: 'VT323, monospace',
-                size: 14,
-                color: '#ff1493'
-            }
-        },
-        legend: {
-            font: {
-                family: 'VT323, monospace',
-                size: 14,
-                color: '#000000'
-            }
         },
         paper_bgcolor: '#fff0f5',
         plot_bgcolor: '#fff0f5',
-        height: 500,
-        margin: {
-            l: 50,
-            r: 50,
-            b: 100,
-            t: 50,
-            pad: 4
-        }
     };
 
-    Plotly.newPlot('costVsPointsChart', [costVsPointsTrace], costVsPointsLayout);
+    createResponsiveChart('costVsPointsChart', [costVsPointsTrace], costVsPointsLayout);
 }
 
 function displayDreamTeam(dreamTeam) {
@@ -756,6 +640,7 @@ function displayDreamTeam(dreamTeam) {
         }
     });
 }
+
 const customColorScheme = [
     '#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd',
     '#8c564b', '#e377c2', '#7f7f7f', '#bcbd22', '#17becf'
@@ -802,23 +687,12 @@ function createTrajectoryChart(cyclists) {
             text: 'Rider Point Trajectories',
             font: {
                 family: 'VT323, monospace',
-                size: 24,
                 color: '#ff1493'
             }
         },
         xaxis: {
             title: 'Date',
             tickangle: -45,
-            titlefont: {
-                family: 'VT323, monospace',
-                size: 16,
-                color: '#ff1493'
-            },
-            tickfont: {
-                family: 'VT323, monospace',
-                size: 12,
-                color: '#ff1493'
-            },
             tickformat: '%Y-%m-%d',
             tickmode: 'array',
             tickvals: dateRange,
@@ -827,34 +701,15 @@ function createTrajectoryChart(cyclists) {
         },
         yaxis: {
             title: 'Points',
-            titlefont: {
-                family: 'VT323, monospace',
-                size: 16,
-                color: '#ff1493'
-            },
-            tickfont: {
-                family: 'VT323, monospace',
-                size: 12,
-                color: '#ff1493'
-            }
         },
         showlegend: false,
-        autosize: true,
         paper_bgcolor: '#fff0f5',
         plot_bgcolor: '#fff0f5',
         hovermode: 'closest'
     };
 
-    const config = {
-        responsive: true,
-        scrollZoom: true,
-        displayModeBar: false
-    };
-
-    Plotly.newPlot('trajectoryChart', traces, layout, config);
+    createResponsiveChart('trajectoryChart', traces, layout);
 }
-
-
 
 function createCustomLegend(cyclists) {
     const legendContainer = document.getElementById('customLegend');
@@ -927,58 +782,44 @@ function updateTrajectoryChart() {
 
     const { mvp, mip } = updateMVPandMIP(cyclistData);
     updateAllTimeMVPMIP(cyclistData);  // Add this line to update all-time records
-
-    // You can add any additional updates or calculations here if needed
 }
 
+
 function openTab(evt, tabName) {
-    // Hide all tab content
     var tabcontent = document.getElementsByClassName("tabcontent");
     for (var i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = "none";
     }
 
-    // Remove the "active" class from all tab buttons
     var tablinks = document.getElementsByClassName("tablinks");
     for (var i = 0; i < tablinks.length; i++) {
         tablinks[i].className = tablinks[i].className.replace(" active", "");
     }
 
-    // Show the specific tab content
     var selectedTab = document.getElementById(tabName);
     if (selectedTab) {
         selectedTab.style.display = "block";
     }
 
-    // Add the "active" class to the button that opened the tab
     if (evt.currentTarget) {
         evt.currentTarget.className += " active";
     }
 
-    // Render the trajectory chart when its tab is opened
     if (tabName === 'RiderTrajectoryTab') {
         updateTrajectoryChart();
     }
 
-    // If opening the League Scores tab, load the default league team roster chart
     if (tabName === 'LeagueScoresTab') {
         loadDefaultLeagueTeamChart();
     }
 
-    // If opening the Teams tab, load the default cycling team roster display
     if (tabName === 'TeamsTab') {
         loadDefaultCyclingTeamChart();
     }
-
-    // You can add more tab-specific actions here if needed
-    // For example:
-    // if (tabName === 'LeagueScoresTab') {
-    //     updateLeagueScores();
-    // }
 }
 
-// Add this line at the end of the $(document).ready function
 document.getElementById("defaultOpen").click();
+
 function sortTable(columnIndex) {
     const table = document.getElementById("cyclistTable");
     let rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
@@ -1051,318 +892,23 @@ function createRelativePerformanceChart(leagueScores) {
             text: 'Team Performance Relative to Average',
             font: {
                 family: 'VT323, monospace',
-                size: 24,
                 color: '#ff1493'
             }
         },
         xaxis: {
             title: '',
             tickangle: -45,
-            titlefont: {
-                family: 'VT323, monospace',
-                size: 16,
-                color: '#ff1493'
-            },
-            tickfont: {
-                family: 'VT323, monospace',
-                size: 14,
-                color: '#ff1493'
-            }
         },
         yaxis: {
             title: 'Performance Relative to Average (%)',
-            titlefont: {
-                family: 'VT323, monospace',
-                size: 16,
-                color: '#ff1493'
-            },
-            tickfont: {
-                family: 'VT323, monospace',
-                size: 14,
-                color: '#ff1493'
-            }
         },
         paper_bgcolor: '#fff0f5',
         plot_bgcolor: '#fff0f5',
-        height: 500,
-        margin: {
-            l: 50,
-            r: 50,
-            b: 100,
-            t: 50,
-            pad: 4
-        }
     };
 
-    Plotly.newPlot('relativePerformanceChart', [trace], layout);
-     
-}
-  
-function createTrendPredictionChart(leagueScores) {
-  /*
-    // Ensure we have historical data
-    if (!leagueScores.history || leagueScores.history.length === 0) {
-        console.error('No historical data available for trend and prediction chart');
-        return;
-    }
-
-    // Process historical data
-    const teamData = {};
-    leagueScores.history.forEach(entry => {
-        entry.scores.forEach(score => {
-            if (!teamData[score.name]) {
-                teamData[score.name] = [];
-            }
-            teamData[score.name].push({ date: new Date(entry.date), points: score.points });
-        });
-    });
-
-    // Sort data points by date for each team
-    Object.values(teamData).forEach(data => data.sort((a, b) => a.date - b.date));
-
-    // Create traces for each team
-    const traces = Object.entries(teamData).map(([teamName, data]) => {
-        // Calculate linear regression
-        const xValues = data.map(d => d.date.getTime());
-        const yValues = data.map(d => d.points);
-        const n = xValues.length;
-        const sumX = xValues.reduce((a, b) => a + b, 0);
-        const sumY = yValues.reduce((a, b) => a + b, 0);
-        const sumXY = xValues.reduce((total, x, i) => total + x * yValues[i], 0);
-        const sumXX = xValues.reduce((total, x) => total + x * x, 0);
-        const slope = (n * sumXY - sumX * sumY) / (n * sumXX - sumX * sumX);
-        const intercept = (sumY - slope * sumX) / n;
-
-        // Predict next 7 days
-        const lastDate = new Date(Math.max(...xValues));
-        const predictedData = [...Array(7)].map((_, i) => {
-            const date = new Date(lastDate.getTime() + (i + 1) * 24 * 60 * 60 * 1000);
-            const points = slope * date.getTime() + intercept;
-            return { date, points };
-        });
-
-        return {
-            name: teamName,
-            x: [...data.map(d => d.date), ...predictedData.map(d => d.date)],
-            y: [...data.map(d => d.points), ...predictedData.map(d => d.points)],
-            type: 'scatter',
-            mode: 'lines+markers',
-            line: {
-                dash: i => i >= data.length ? 'dot' : 'solid',
-            },
-            marker: {
-                size: 6,
-            },
-        };
-    });
-
-    const layout = {
-        title: {
-            text: 'Team Performance Trend and Prediction',
-            font: {
-                family: 'VT323, monospace',
-                size: 24,
-                color: '#ff1493'
-            }
-        },
-        xaxis: {
-            title: 'Date',
-            titlefont: {
-                family: 'VT323, monospace',
-                size: 16,
-                color: '#ff1493'
-            },
-            tickfont: {
-                family: 'VT323, monospace',
-                size: 14,
-                color: '#ff1493'
-            },
-            tickangle: -45,
-        },
-        yaxis: {
-            title: 'Points',
-            titlefont: {
-                family: 'VT323, monospace',
-                size: 16,
-                color: '#ff1493'
-            },
-            tickfont: {
-                family: 'VT323, monospace',
-                size: 14,
-                color: '#ff1493'
-            },
-        },
-        legend: {
-            font: {
-                family: 'VT323, monospace',
-                size: 12,
-            },
-        },
-        paper_bgcolor: '#fff0f5',
-        plot_bgcolor: '#fff0f5',
-        height: 600,
-        margin: {
-            l: 50,
-            r: 50,
-            b: 100,
-            t: 50,
-            pad: 4
-        }
-    };
-
-    Plotly.newPlot('trendPredictionChart', traces, layout);
-    */
-}
-function calculateAllTimeMVPMIP(cyclistData) {
-    const mvpHistory = cyclistData.mvp_history || [];
-    const mipHistory = cyclistData.mip_history || [];
-
-    let allTimeMVP = { name: '', points_added: 0, date: '' };
-    let allTimeMIP = { name: '', percentage_increase: 0, date: '', from_zero: false };
-
-    mvpHistory.forEach(mvp => {
-        if (mvp.points_added > allTimeMVP.points_added) {
-            allTimeMVP = mvp;
-        }
-    });
-
-    mipHistory.forEach(mip => {
-        if (mip.from_zero) {
-            if (!allTimeMIP.from_zero || mip.percentage_increase > allTimeMIP.percentage_increase) {
-                allTimeMIP = mip;
-            }
-        } else if (!allTimeMIP.from_zero && mip.percentage_increase > allTimeMIP.percentage_increase) {
-            allTimeMIP = mip;
-        }
-    });
-
-    return { allTimeMVP, allTimeMIP };
+    createResponsiveChart('relativePerformanceChart', [trace], layout);
 }
 
-function updateAllTimeMVPMIP(cyclistData) {
-    const { allTimeMVP, allTimeMIP } = calculateAllTimeMVPMIP(cyclistData);
-
-    let allTimeMVPInfo = '';
-    let allTimeMIPInfo = '';
-
-    if (allTimeMVP.name) {
-        allTimeMVPInfo = `
-            <strong>All-Time MVP:</strong> ${allTimeMVP.name}<br>
-            Points Added: ${allTimeMVP.points_added.toFixed(2)}<br>
-            Date: ${new Date(allTimeMVP.date).toLocaleDateString()}
-        `;
-    }
-
-    if (allTimeMIP.name) {
-        allTimeMIPInfo = `
-            <strong>All-Time MIP:</strong> ${allTimeMIP.name}<br>
-            ${allTimeMIP.from_zero ? 'Points Gained' : 'Percentage Increase'}: ${allTimeMIP.from_zero ? allTimeMIP.percentage_increase.toFixed(2) : allTimeMIP.percentage_increase.toFixed(2) + '%'}<br>
-            Date: ${new Date(allTimeMIP.date).toLocaleDateString()}
-        `;
-    }
-
-    $('#allTimeMVPInfo').html(allTimeMVPInfo);
-    $('#allTimeMIPInfo').html(allTimeMIPInfo);
-}
-
-
-function updateTeamRosterDisplay() {
-    const selectedTeam = $('#teamSelect').val();
-    const teamRiders = cyclistData.cyclists.filter(cyclist => cyclist.team === selectedTeam);
-    
-    let rosterHtml = '';
-    teamRiders.forEach(rider => {
-        rosterHtml += `
-            <div class="rider-card">
-                <h4>${rider.name}</h4>
-                <p>Role: ${rider.role}</p>
-                <p>Cost: ${rider.cost}</p>
-                <p>Points: ${rider.points}</p>
-            </div>
-        `;
-    });
-    
-    $('#teamRosterDisplay').html(rosterHtml);
-}
-function updateTeamRosterChart() {
-    const selectedTeam = document.getElementById('teamSelect').value;
-    if (!selectedTeam) return;
-
-    const team = leagueData.find(t => t.name === selectedTeam);
-    if (!team) return;
-
-    const rosterData = team.roster.map(riderName => {
-        const rider = cyclistData.cyclists.find(c => c.name === riderName);
-        return {
-            name: riderName,
-            points: rider ? rider.points : 0,
-            role: rider ? rider.role : 'Unknown'
-        };
-    }).sort((a, b) => b.points - a.points);
-
-    const trace = {
-        x: rosterData.map(r => r.name),
-        y: rosterData.map(r => r.points),
-        type: 'bar',
-        marker: {
-            color: rosterData.map(r => {
-                switch(r.role) {
-                    case 'All Rounder': return '#ff6384';
-                    case 'Climber': return '#36a2eb';
-                    case 'Sprinter': return '#cc65fe';
-                    default: return '#4bc0c0';
-                }
-            })
-        },
-        text: rosterData.map(r => `${r.name}<br>Role: ${r.role}<br>Points: ${r.points}`),
-        hoverinfo: 'text'
-    };
-
-    const layout = {
-        title: {
-            text: `${selectedTeam} Roster`,
-            font: {
-                family: 'VT323, monospace',
-                size: 24,
-                color: '#ff1493'
-            }
-        },
-        xaxis: {
-            title: 'Riders',
-            tickangle: -45,
-            titlefont: {
-                family: 'VT323, monospace',
-                size: 16,
-                color: '#ff1493'
-            },
-            tickfont: {
-                family: 'VT323, monospace',
-                size: 12,
-                color: '#ff1493'
-            }
-        },
-        yaxis: {
-            title: 'Points',
-            titlefont: {
-                family: 'VT323, monospace',
-                size: 16,
-                color: '#ff1493'
-            },
-            tickfont: {
-                family: 'VT323, monospace',
-                size: 14,
-                color: '#ff1493'
-            }
-        },
-        paper_bgcolor: '#fff0f5',
-        plot_bgcolor: '#fff0f5'
-    };
-
-    Plotly.newPlot('teamRosterChart', [trace], layout);
-        // After plotting the chart, calculate and display the most balanced team
-    const balancedTeam = calculateBalancedTeam(leagueData);
-    displayBalancedTeam(balancedTeam);
-}
 function calculateBalancedTeams(leagueScores) {
     let mostBalancedTeam = null;
     let leastBalancedTeam = null;
@@ -1422,7 +968,6 @@ function displayBalancedTeam(team, elementId) {
     balancedTeamContent.innerHTML = html;
 }
 
-
 function loadDefaultLeagueTeamChart() {
     if (leagueData && leagueData.length > 0) {
         const defaultTeam = leagueData[0];
@@ -1439,7 +984,6 @@ function loadDefaultCyclingTeamChart() {
     }
 }
 
-
 function updateVisitCount() {
     fetch('https://api.countapi.xyz/update/mhke0.github.io/visits/?amount=1')
     .then(response => response.json())
@@ -1447,4 +991,56 @@ function updateVisitCount() {
         document.getElementById('visit-count').innerText = data.value;
     })
     .catch(error => console.error('Error updating visit count:', error));
+}
+
+function calculateAllTimeMVPMIP(cyclistData) {
+    const mvpHistory = cyclistData.mvp_history || [];
+    const mipHistory = cyclistData.mip_history || [];
+
+    let allTimeMVP = { name: '', points_added: 0, date: '' };
+    let allTimeMIP = { name: '', percentage_increase: 0, date: '', from_zero: false };
+
+    mvpHistory.forEach(mvp => {
+        if (mvp.points_added > allTimeMVP.points_added) {
+            allTimeMVP = mvp;
+        }
+    });
+
+    mipHistory.forEach(mip => {
+        if (mip.from_zero) {
+            if (!allTimeMIP.from_zero || mip.percentage_increase > allTimeMIP.percentage_increase) {
+                allTimeMIP = mip;
+            }
+        } else if (!allTimeMIP.from_zero && mip.percentage_increase > allTimeMIP.percentage_increase) {
+            allTimeMIP = mip;
+        }
+    });
+
+    return { allTimeMVP, allTimeMIP };
+}
+
+function updateAllTimeMVPMIP(cyclistData) {
+    const { allTimeMVP, allTimeMIP } = calculateAllTimeMVPMIP(cyclistData);
+
+    let allTimeMVPInfo = '';
+    let allTimeMIPInfo = '';
+
+    if (allTimeMVP.name) {
+        allTimeMVPInfo = `
+            <strong>All-Time MVP:</strong> ${allTimeMVP.name}<br>
+            Points Added: ${allTimeMVP.points_added.toFixed(2)}<br>
+            Date: ${new Date(allTimeMVP.date).toLocaleDateString()}
+        `;
+    }
+
+    if (allTimeMIP.name) {
+        allTimeMIPInfo = `
+            <strong>All-Time MIP:</strong> ${allTimeMIP.name}<br>
+            ${allTimeMIP.from_zero ? 'Points Gained' : 'Percentage Increase'}: ${allTimeMIP.from_zero ? allTimeMIP.percentage_increase.toFixed(2) : allTimeMIP.percentage_increase.toFixed(2) + '%'}<br>
+            Date: ${new Date(allTimeMIP.date).toLocaleDateString()}
+        `;
+    }
+
+    $('#allTimeMVPInfo').html(allTimeMVPInfo);
+    $('#allTimeMIPInfo').html(allTimeMIPInfo);
 }

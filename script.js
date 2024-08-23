@@ -1,4 +1,3 @@
-// Global variables to store the league data and cyclist data
 let leagueData;
 let cyclistData;
 
@@ -165,7 +164,7 @@ function updateLeagueTeamRosterChart() {
             }
         },
         xaxis: {
-            title: 'Riders',
+            title: '',
             tickangle: -45,
         },
         yaxis: {

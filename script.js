@@ -1270,7 +1270,8 @@ function displayTeamPointsDistribution(teamRiders) {
             line: {
                 color: '#ffffff',
                 width: 2
-        }
+            }
+            }
     };
 
     const layout = {

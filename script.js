@@ -3,20 +3,15 @@ let cyclistData;
 // Define a common color scheme function
 
 function getColorForRole(role) {
-    switch(role) {
-        case 'All Rounder': return '#ff6384';
-        case 'Climber': return '#36a2eb';
-        case 'Sprinter': return '#cc65fe';
-        case 'Unclassed': return '#ffce56';
-        default: return '#4bc0c0';
+    switch(role.toLowerCase()) {
+        case 'all rounder': return '#ff6384';  // Pink
+        case 'climber': return '#36a2eb';      // Blue
+        case 'sprinter': return '#cc65fe';     // Purple
+        case 'unclassed': return '#ffce56';    // Yellow
+        default: return '#4bc0c0';             // Teal (for any other roles)
     }
 }
-// Define the color scheme for teams
-const teamColors = [
-    '#ff6384', '#36a2eb', '#ffce56', '#4bc0c0', '#9966ff', '#ff9f40',
-    '#ea80fc', '#3f51b5', '#00e676', '#ff5722', '#607d8b', '#f50057'
-];
-// Update the createRoleChart function
+
 function createRoleChart(roles) {
     const ctx = document.getElementById('roleChart').getContext('2d');
     new Chart(ctx, {
@@ -55,6 +50,7 @@ function createRoleChart(roles) {
         }
     });
 }
+
 
 // ... (keep the previous color scheme functions)
 
@@ -388,46 +384,7 @@ $(document).ready(function() {
     });
 });
 
-function createRoleChart(roles) {
-    const ctx = document.getElementById('roleChart').getContext('2d');
-    new Chart(ctx, {
-        type: 'pie',
-        data: {
-            labels: Object.keys(roles),
-            datasets: [{
-                data: Object.values(roles),
-                backgroundColor: [
-                    '#ff6384', '#36a2eb', '#cc65fe', '#ffce56', '#4bc0c0', '#ff9f40'
-                ],
-                borderColor: '#ffffff',
-                borderWidth: 2
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Cyclist Roles Distribution',
-                    font: {
-                        family: 'VT323, monospace',
-                        size: 24,
-                        color: '#ff1493'
-                    }
-                },
-                legend: {
-                    labels: {
-                        font: {
-                            family: 'VT323, monospace',
-                            size: 14,
-                            color: '#000000'
-                        }
-                    }
-                }
-            }
-        }
-    });
-}
+
 
 function createTop50Chart(top50Cyclists) {
     const trace = {
@@ -731,7 +688,7 @@ function displayDreamTeam(dreamTeam) {
     ridersHtml += '</ol>';
     $('#dreamTeamRiders').html(ridersHtml);
 
-    const ctx = document.getElementById('dreamTeamChart').getContext('2d');
+   const ctx = document.getElementById('dreamTeamChart').getContext('2d');
     const roleData = {};
     orderedRiders.forEach(rider => {
         roleData[rider.role] = (roleData[rider.role] || 0) + rider.points;
@@ -774,10 +731,6 @@ function displayDreamTeam(dreamTeam) {
     });
 }
 
-const customColorScheme = [
-    '#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd',
-    '#8c564b', '#e377c2', '#7f7f7f', '#bcbd22', '#17becf'
-];
 
 function createTrajectoryChart(cyclists) {
     const traces = cyclists.map((cyclist, index) => ({
@@ -1297,7 +1250,7 @@ function displayTeamPointsDistribution(teamRiders) {
     const sortedRiders = teamRiders.sort((a, b) => b.points - a.points);
 
     const trace = {
-        labels: sortedRiders.map(rider => rider.name),
+        labels: sortedRiders.map(rider => `${rider.name} (${rider.role})`),
         values: sortedRiders.map(rider => rider.points),
         type: 'pie',
         textinfo: 'label+percent',
@@ -1309,13 +1262,13 @@ function displayTeamPointsDistribution(teamRiders) {
             `Cost: ${rider.cost}`
         ),
         marker: {
-            colors: teamColors.slice(0, sortedRiders.length)
+            colors: sortedRiders.map(rider => getColorForRole(rider.role))
         }
     };
 
     const layout = {
         title: {
-            text: 'Team Points Distribution',
+            text: 'Team Points Distribution by Role',
             font: {
                 family: 'VT323, monospace',
                 color: '#ff1493'

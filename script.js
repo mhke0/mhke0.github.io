@@ -63,7 +63,6 @@ function createResponsiveChart(chartId, traces, layout) {
         responsive: true,
         displayModeBar: false,
     };
-    // Make the layout responsive
     layout.autosize = true;
     
     const container = document.getElementById(chartId);
@@ -71,16 +70,14 @@ function createResponsiveChart(chartId, traces, layout) {
         console.error(`Container with id ${chartId} not found`);
         return;
     }
-    // Ensure the container is visible and has dimensions
     container.style.display = 'block';
-    container.style.height = '400px'; // Set a default height
-    container.style.maxWidth = '600px'; // Set a maximum width
-    container.style.margin = 'auto'; // Center the container
-
-    // Remove specific width and height from layout
+    container.style.height = '400px';
+    container.style.maxWidth = '600px';
+    container.style.margin = 'auto';
+    
     delete layout.width;
     delete layout.height;
-    // Center the chart content
+    
     layout.margin = {
         l: 50,
         r: 50,
@@ -89,63 +86,80 @@ function createResponsiveChart(chartId, traces, layout) {
         pad: 4,
         autoexpand: true
     };
-    // Ensure axes are set
+    
     layout.xaxis = layout.xaxis || {};
     layout.yaxis = layout.yaxis || {};
-    // Enable automargin for axes
     layout.xaxis.automargin = true;
     layout.yaxis.automargin = true;
-    // Base font size calculation
-    const baseFontSize = 14;
-    // Set font sizes
-    layout.font = {
-        family: 'VT323, monospace',
-        size: baseFontSize,
-        color: '#ff1493'
-    };
-    layout.title = layout.title || {};
-    layout.title.font = {
-        family: 'VT323, monospace',
-        size: baseFontSize * 1.5,
-        color: '#ff1493'
-    };
-    layout.xaxis.title = layout.xaxis.title || {};
-    layout.xaxis.title.font = {
-        family: 'VT323, monospace',
-        size: baseFontSize,
-        color: '#ff1493'
-    };
-    layout.yaxis.title = layout.yaxis.title || {};
-    layout.yaxis.title.font = {
-        family: 'VT323, monospace',
-        size: baseFontSize,
-        color: '#ff1493'
-    };
-    // Adjust x-axis for better label fitting
+    
+    function updateFontSizes() {
+        const containerWidth = container.clientWidth;
+        const containerHeight = container.clientHeight;
+        const baseFontSize = Math.min(containerWidth, containerHeight) / 30;
+        
+        layout.font = {
+            family: 'VT323, monospace',
+            size: baseFontSize,
+            color: '#ff1493'
+        };
+        layout.title = layout.title || {};
+        layout.title.font = {
+            family: 'VT323, monospace',
+            size: baseFontSize * 1.5,
+            color: '#ff1493'
+        };
+        layout.xaxis.title = layout.xaxis.title || {};
+        layout.xaxis.title.font = {
+            family: 'VT323, monospace',
+            size: baseFontSize,
+            color: '#ff1493'
+        };
+        layout.yaxis.title = layout.yaxis.title || {};
+        layout.yaxis.title.font = {
+            family: 'VT323, monospace',
+            size: baseFontSize,
+            color: '#ff1493'
+        };
+        layout.legend = layout.legend || {};
+        layout.legend.font = {
+            family: 'VT323, monospace',
+            size: baseFontSize * 0.9,
+            color: '#ff1493'
+        };
+    }
+    
     layout.xaxis.tickangle = layout.xaxis.tickangle || -45;
-    // Ensure legend fits
-    layout.legend = layout.legend || {};
-    layout.legend.font = {
-        family: 'VT323, monospace',
-        size: baseFontSize * 0.9,
-        color: '#ff1493'
-    };
+    
+    updateFontSizes();
+    
     try {
         Plotly.newPlot(chartId, traces, layout, config);
     } catch (error) {
         console.error(`Error creating chart ${chartId}:`, error);
         container.innerHTML = `<p>Error creating chart. Please try refreshing the page.</p>`;
     }
-    // Add a resize listener to update the chart when the window size changes
-    window.addEventListener('resize', function() {
-        try {
-            Plotly.relayout(chartId, {
-                autosize: true
-            });
-        } catch (error) {
-            console.error(`Error resizing chart ${chartId}:`, error);
+    
+    const resizeObserver = new ResizeObserver(entries => {
+        for (let entry of entries) {
+            if (entry.target.id === chartId) {
+                updateFontSizes();
+                try {
+                    Plotly.relayout(chartId, {
+                        autosize: true,
+                        font: layout.font,
+                        'title.font': layout.title.font,
+                        'xaxis.title.font': layout.xaxis.title.font,
+                        'yaxis.title.font': layout.yaxis.title.font,
+                        'legend.font': layout.legend.font
+                    });
+                } catch (error) {
+                    console.error(`Error resizing chart ${chartId}:`, error);
+                }
+            }
         }
     });
+    
+    resizeObserver.observe(container);
 }
 
 

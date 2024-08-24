@@ -1267,8 +1267,9 @@ function displayTeamPointsDistribution(teamRiders) {
         ),
         marker: {
             colors: sortedRiders.map(rider => getColorForRole(rider.role)),
-            borderColor: '#ffffff',
-            borderWidth: 2
+            line: {
+                color: '#ffffff',
+                width: 2
         }
     };
 

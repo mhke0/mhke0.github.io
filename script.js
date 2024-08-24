@@ -1272,7 +1272,7 @@ function displayTeamPointsDistribution(teamRiders) {
 
     const layout = {
         title: {
-            text: 'Team Points Distribution by Role',
+            text: '',
             font: {
                 family: 'VT323, monospace',
                 color: '#ff1493'

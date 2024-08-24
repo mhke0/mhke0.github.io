@@ -96,6 +96,7 @@ table {
     border: 2px solid var(--border-color);
     border-radius: 5px;
     overflow: hidden;
+    border-margin: 20px;
 }
 
 th, td {

@@ -50,6 +50,9 @@ function createRoleChart(roles) {
         }
     });
 }
+
+// ... (keep the previous color scheme functions)
+
 function createResponsiveChart(chartId, traces, layout) {
     const config = {
         responsive: true,
@@ -57,17 +60,21 @@ function createResponsiveChart(chartId, traces, layout) {
     };
 
     // Make the layout responsive
-    layout.autosize = false;
+    layout.autosize = true;
     
     const container = document.getElementById(chartId);
-    const containerWidth = container.offsetWidth;
-    
-    // Set chart width to 90% of container width
-    const chartWidth = Math.floor(containerWidth * 0.9);
-    const chartHeight = Math.floor(chartWidth * 0.6);  // Maintain a 5:3 aspect ratio
+    if (!container) {
+        console.error(`Container with id ${chartId} not found`);
+        return;
+    }
 
-    layout.width = chartWidth;
-    layout.height = chartHeight;
+    // Ensure the container is visible and has dimensions
+    container.style.display = 'block';
+    container.style.height = '400px'; // Set a default height
+
+    // Remove specific width and height from layout
+    delete layout.width;
+    delete layout.height;
 
     // Center the chart content
     layout.margin = {
@@ -88,7 +95,7 @@ function createResponsiveChart(chartId, traces, layout) {
     layout.yaxis.automargin = true;
 
     // Base font size calculation
-    const baseFontSize = Math.max(10, Math.min(14, chartWidth / 50));
+    const baseFontSize = 14;
 
     // Set font sizes
     layout.font = {
@@ -129,20 +136,25 @@ function createResponsiveChart(chartId, traces, layout) {
         color: '#ff1493'
     };
 
-    Plotly.newPlot(chartId, traces, layout, config);
+    try {
+        Plotly.newPlot(chartId, traces, layout, config);
+    } catch (error) {
+        console.error(`Error creating chart ${chartId}:`, error);
+        container.innerHTML = `<p>Error creating chart. Please try refreshing the page.</p>`;
+    }
 
     // Add a resize listener to update the chart when the window size changes
     window.addEventListener('resize', function() {
-        const newContainerWidth = container.offsetWidth;
-        const newChartWidth = Math.floor(newContainerWidth * 0.9);
-        const newChartHeight = Math.floor(newChartWidth * 0.6);
-        
-        Plotly.relayout(chartId, {
-            width: newChartWidth,
-            height: newChartHeight
-        });
+        try {
+            Plotly.relayout(chartId, {
+                autosize: true
+            });
+        } catch (error) {
+            console.error(`Error resizing chart ${chartId}:`, error);
+        }
     });
 }
+
 
 function initializeLeagueTeamSelect() {
     const leagueTeamSelect = document.getElementById('leagueTeamSelect');

@@ -58,7 +58,9 @@ h1, h2 {
     border-radius: 5px;
     box-sizing: border-box;
 }
-
+#cyclistTable {
+padding: 20px;    
+}
 
 .chart-container {
     height: 600px;

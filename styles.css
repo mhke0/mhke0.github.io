@@ -91,7 +91,11 @@ h1, h2 {
 
 table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 2px solid var(--border-color);
+    border-radius: 5px;
+    overflow: hidden;
 }
 
 th, td {
@@ -105,6 +109,22 @@ th {
     color: var(--background-color);
     font-weight: bold;
     cursor: pointer;
+}
+
+tr:first-child th:first-child {
+    border-top-left-radius: 5px;
+}
+
+tr:first-child th:last-child {
+    border-top-right-radius: 5px;
+}
+
+tr:last-child td:first-child {
+    border-bottom-left-radius: 5px;
+}
+
+tr:last-child td:last-child {
+    border-bottom-right-radius: 5px;
 }
 
 tr:nth-child(even) {

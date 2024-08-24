@@ -1,6 +1,7 @@
 let leagueData;
 let cyclistData;
 // Define a common color scheme function
+
 function getColorForRole(role) {
     switch(role) {
         case 'All Rounder': return '#ff6384';
@@ -10,7 +11,11 @@ function getColorForRole(role) {
         default: return '#4bc0c0';
     }
 }
-
+// Define the color scheme for teams
+const teamColors = [
+    '#ff6384', '#36a2eb', '#ffce56', '#4bc0c0', '#9966ff', '#ff9f40',
+    '#ea80fc', '#3f51b5', '#00e676', '#ff5722', '#607d8b', '#f50057'
+];
 // Update the createRoleChart function
 function createRoleChart(roles) {
     const ctx = document.getElementById('roleChart').getContext('2d');
@@ -1304,7 +1309,7 @@ function displayTeamPointsDistribution(teamRiders) {
             `Cost: ${rider.cost}`
         ),
         marker: {
-            colors: sortedRiders.map(rider => getColorForRole(rider.role))
+            colors: teamColors.slice(0, sortedRiders.length)
         }
     };
 

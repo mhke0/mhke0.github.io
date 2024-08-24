@@ -1241,45 +1241,42 @@ function createLeagueStandingsChart() {
 }
 
 function displayTeamPointsDistribution(teamRiders) {
-    // Sort riders by points in descending order
-    const sortedRiders = teamRiders.sort((a, b) => b.points - a.points);
+  // Sort riders by points in descending order
+  const sortedRiders = teamRiders.sort((a, b) => b.points - a.points);
 
-    const trace = {
-        labels: sortedRiders.map(rider => `${rider.name} (${rider.role})`),
-        values: sortedRiders.map(rider => rider.points),
-        type: 'pie',
-        textinfo: 'label+percent',
-        hoverinfo: 'text',
-        hovertext: sortedRiders.map(rider => 
-            `Name: ${rider.name}<br>` +
-            `Role: ${rider.role}<br>` +
-            `Points: ${rider.points}<br>` +
-            `Cost: ${rider.cost}`
-        ),
-        marker: {
-            colors: sortedRiders.map(rider => getColorForRole(rider.role)),
-            line: {
-                color: '#ffffff',
-                width: 2
-            }
-            }
-    };
+  const trace = {
+    labels: sortedRiders.map(rider => `${rider.name}<br>(${rider.role})`), // Add line break
+    values: sortedRiders.map(rider => rider.points),
+    type: 'pie',
+    textinfo: 'label+percent',
+    hoverinfo: 'text',
+    hovertext: sortedRiders.map(rider => `Name: ${rider.name}<br>` +
+                                          `Role: ${rider.role}<br>` +
+                                          `Points: ${rider.points}<br>` +
+                                          `Cost: ${rider.cost}`
+    ),
+    marker: {
+      colors: sortedRiders.map(rider => getColorForRole(rider.role)),
+      line: { color: '#ffffff', width: 2 }
+    },
+    textposition: 'outside', // Force all labels outside
+    automargin: true // Automatically adjust margins
+  };
 
-    const layout = {
-        title: {
-            text: '',
-            font: {
-                family: 'VT323, monospace',
-                color: '#ff1493'
-            }
-        },
-        paper_bgcolor: '#fff0f5',
-        plot_bgcolor: '#fff0f5',
-        showlegend: false  // Add this line to hide the legend
+  const layout = {
+    title: {
+      text: '',
+      font: { family: 'VT323, monospace', color: '#ff1493' }
+    },
+    paper_bgcolor: '#fff0f5',
+    plot_bgcolor: '#fff0f5',
+    showlegend: false,
+    margin: {l: 50, r: 50, t: 50, b: 50}, // Increase margins
+    height: 600, // Increase height
+    width: 800   // Increase width
+  };
 
-    };
-
-    createResponsiveChart('teamPointsDistributionChart', [trace], layout);
+  createResponsiveChart('teamPointsDistributionChart', [trace], layout);
 }
 
 function displayAllTeamsComparison() {

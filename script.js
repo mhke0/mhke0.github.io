@@ -1,6 +1,55 @@
 let leagueData;
 let cyclistData;
+// Define a common color scheme function
+function getColorForRole(role) {
+    switch(role) {
+        case 'All Rounder': return '#ff6384';
+        case 'Climber': return '#36a2eb';
+        case 'Sprinter': return '#cc65fe';
+        case 'Unclassed': return '#ffce56';
+        default: return '#4bc0c0';
+    }
+}
 
+// Update the createRoleChart function
+function createRoleChart(roles) {
+    const ctx = document.getElementById('roleChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: Object.keys(roles),
+            datasets: [{
+                data: Object.values(roles),
+                backgroundColor: Object.keys(roles).map(getColorForRole),
+                borderColor: '#ffffff',
+                borderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Cyclist Roles Distribution',
+                    font: {
+                        family: 'VT323, monospace',
+                        size: 24,
+                        color: '#ff1493'
+                    }
+                },
+                legend: {
+                    labels: {
+                        font: {
+                            family: 'VT323, monospace',
+                            size: 14,
+                            color: '#000000'
+                        }
+                    }
+                }
+            }
+        }
+    });
+}
 function createResponsiveChart(chartId, traces, layout) {
     const config = {
         responsive: true,
@@ -677,7 +726,7 @@ function displayDreamTeam(dreamTeam) {
             labels: Object.keys(roleData),
             datasets: [{
                 data: Object.values(roleData),
-                backgroundColor: Object.keys(roleData).map(role => roleColors[role] || roleColors['Other']),
+                backgroundColor: Object.keys(roleData).map(getColorForRole),
                 borderColor: '#ffffff',
                 borderWidth: 2
             }]
@@ -1243,20 +1292,13 @@ function displayTeamPointsDistribution(teamRiders) {
             `Cost: ${rider.cost}`
         ),
         marker: {
-            colors: sortedRiders.map(rider => {
-                switch(rider.role) {
-                    case 'All Rounder': return '#ff6384';
-                    case 'Climber': return '#36a2eb';
-                    case 'Sprinter': return '#cc65fe';
-                    default: return '#4bc0c0';
-                }
-            })
+            colors: sortedRiders.map(rider => getColorForRole(rider.role))
         }
     };
 
     const layout = {
         title: {
-            text: '',
+            text: 'Team Points Distribution',
             font: {
                 family: 'VT323, monospace',
                 color: '#ff1493'

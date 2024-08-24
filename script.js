@@ -336,7 +336,8 @@ $(document).ready(function() {
                 </tr>
             `);
         });
-
+            // Call this function after the table is populated
+            makeTableResponsive();
         const avgCost = (totalCost / cyclists.length).toFixed(2);
         const avgPoints = (totalPoints / cyclists.length).toFixed(2);
 
@@ -1337,4 +1338,53 @@ function displayAllTeamsComparison() {
     };
 
     createResponsiveChart('allTeamsComparisonChart', [trace], layout);
+}
+function makeTableResponsive() {
+    const table = document.getElementById('cyclistTable');
+    const headerRow = table.querySelector('thead tr');
+    const dataRows = table.querySelectorAll('tbody tr');
+    
+    function updateTableDisplay() {
+        const windowWidth = window.innerWidth;
+        const breakpoint = 768; // Adjust this value as needed
+        
+        if (windowWidth < breakpoint) {
+            // Convert table to a list view for small screens
+            headerRow.style.display = 'none';
+            dataRows.forEach(row => {
+                const cells = row.querySelectorAll('td');
+                cells.forEach((cell, index) => {
+                    const header = headerRow.cells[index].textContent;
+                    cell.setAttribute('data-label', header);
+                    cell.style.display = 'block';
+                    cell.style.textAlign = 'right';
+                    cell.style.paddingLeft = '50%';
+                    cell.style.position = 'relative';
+                    cell.insertAdjacentHTML('afterbegin', `<span style="position: absolute; left: 6px; width: 45%; padding-right: 10px; text-align: left; font-weight: bold;">${header}:</span>`);
+                });
+            });
+        } else {
+            // Revert to normal table view for larger screens
+            headerRow.style.display = '';
+            dataRows.forEach(row => {
+                const cells = row.querySelectorAll('td');
+                cells.forEach(cell => {
+                    cell.style.display = '';
+                    cell.style.textAlign = '';
+                    cell.style.paddingLeft = '';
+                    cell.style.position = '';
+                    const labelSpan = cell.querySelector('span');
+                    if (labelSpan) {
+                        labelSpan.remove();
+                    }
+                });
+            });
+        }
+    }
+
+    // Initial call to set up the table
+    updateTableDisplay();
+
+    // Update on window resize
+    window.addEventListener('resize', updateTableDisplay);
 }

@@ -4,11 +4,10 @@ let cyclistData;
 
 function getColorForRole(role) {
     switch(role.toLowerCase()) {
-        case 'all rounder': return '#ff6384';  // Pink
-        case 'climber': return '#36a2eb';      // Blue
-        case 'sprinter': return '#cc65fe';     // Purple
-        case 'unclassed': return '#ffce56';    // Yellow
-        default: return '#4bc0c0';             // Teal (for any other roles)
+            case 'All Rounder': return '#ff6384';
+            case 'Climber': return '#36a2eb';
+            case 'Sprinter': return '#cc65fe';
+            default: return '#4bc0c0';
     }
 }
 

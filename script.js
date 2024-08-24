@@ -613,6 +613,7 @@ function createCostVsPointsChart(top50Cyclists) {
                     case 'All Rounder': return '#ff6384';
                     case 'Climber': return '#36a2eb';
                     case 'Sprinter': return '#cc65fe';
+                    case 'Unclassed': return '#ffce56';
                     default: return '#4bc0c0';
                 }
             })

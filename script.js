@@ -1266,7 +1266,9 @@ function displayTeamPointsDistribution(teamRiders) {
             `Cost: ${rider.cost}`
         ),
         marker: {
-            colors: sortedRiders.map(rider => getColorForRole(rider.role))
+            colors: sortedRiders.map(rider => getColorForRole(rider.role)),
+            borderColor: '#ffffff',
+            borderWidth: 2
         }
     };
 
@@ -1302,8 +1304,6 @@ function displayAllTeamsComparison() {
         type: 'bar',
         marker: {
             color: sortedTeams.map((team, index) => `hsl(${index * 360 / sortedTeams.length}, 70%, 50%)`),
-            borderColor: '#ffffff',
-            borderWidth: 2
         },
         text: sortedTeams.map(team => `${team[1]} points`),
         textposition: 'auto',

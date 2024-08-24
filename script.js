@@ -1248,8 +1248,8 @@ function displayTeamPointsDistribution(teamRiders) {
         labels: sortedRiders.map(rider => `${rider.name} (${rider.role})`),
         values: sortedRiders.map(rider => rider.points),
         type: 'pie',
-        textinfo: 'label+percent',
-        hoverinfo: 'text',
+        textinfo: 'none',  // Remove text from slices
+        hoverinfo: 'label+percent+value',
         hovertext: sortedRiders.map(rider => 
             `Name: ${rider.name}<br>` +
             `Role: ${rider.role}<br>` +
@@ -1262,12 +1262,12 @@ function displayTeamPointsDistribution(teamRiders) {
                 color: '#ffffff',
                 width: 2
             }
-            }
+        }
     };
 
     const layout = {
         title: {
-            text: '',
+            text: 'Team Points Distribution',
             font: {
                 family: 'VT323, monospace',
                 color: '#ff1493'
@@ -1275,7 +1275,36 @@ function displayTeamPointsDistribution(teamRiders) {
         },
         paper_bgcolor: '#fff0f5',
         plot_bgcolor: '#fff0f5',
+        legend: {
+            orientation: 'v',
+            xanchor: 'left',
+            yanchor: 'top',
+            x: 0.5,
+            y: 1
+        },
+        margin: {
+            l: 20,
+            r: 20,
+            t: 50,
+            b: 20
+        },
+        height: 500,  // Set a fixed height
+        width: 800,   // Set a fixed width
     };
+
+    // Make the pie chart smaller and position it on the left
+    layout.annotations = [{
+        font: {
+            size: 14
+        },
+        showarrow: false,
+        text: 'Riders',
+        x: 0.17,
+        y: 1
+    }];
+    
+    // Adjust the size and position of the pie
+    trace.domain = {x: [0, 0.45], y: [0, 1]};
 
     createResponsiveChart('teamPointsDistributionChart', [trace], layout);
 }

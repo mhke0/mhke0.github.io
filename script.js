@@ -389,6 +389,7 @@ function createTop50Chart(top50Cyclists) {
                     case 'All Rounder': return '#ff6384';
                     case 'Climber': return '#36a2eb';
                     case 'Sprinter': return '#cc65fe';
+                    case 'Unclassed': return '#ffce56';
                     default: return '#4bc0c0';
                 }
             })
@@ -444,6 +445,7 @@ function createPointsPerNameLengthChart(cyclists) {
                     case 'All Rounder': return '#ff6384';
                     case 'Climber': return '#36a2eb';
                     case 'Sprinter': return '#cc65fe';
+                    case 'Unclassed': return '#ffce56';
                     default: return '#4bc0c0';
                 }
             })

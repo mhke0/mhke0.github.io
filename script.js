@@ -1446,45 +1446,53 @@ function createLatestPointsUpdateChart() {
 
     createResponsiveChart('latestPointsUpdateChart', [trace], layout);
 }
+
+
 function generateNewsContent() {
     let newsHtml = '<h2>Velo News</h2>';
 
     // Latest Standings
+    newsHtml += '<div class="news-section news-standings">';
     newsHtml += '<h3>Latest Standings</h3>';
     if (cyclistData && cyclistData.league_scores && cyclistData.league_scores.current) {
         const standings = cyclistData.league_scores.current.sort((a, b) => b.points - a.points).slice(0, 5);
         newsHtml += '<ol>';
         standings.forEach(team => {
-            newsHtml += `<li>${team.name}: ${team.points} points</li>`;
+            newsHtml += `<li><span class="team-name">${team.name}</span><span class="team-points">${team.points} points</span></li>`;
         });
         newsHtml += '</ol>';
     } else {
         newsHtml += '<p>Standings data not available.</p>';
     }
+    newsHtml += '</div>';
 
     // Most Recent MVP and MIP
+    newsHtml += '<div class="news-section news-achievements">';
     newsHtml += '<h3>Recent Achievements</h3>';
     if (cyclistData && cyclistData.mvp_history && cyclistData.mvp_history.length > 0) {
         const mvp = cyclistData.mvp_history[cyclistData.mvp_history.length - 1];
-        newsHtml += `<p><strong>MVP:</strong> ${mvp.name} (${mvp.points_added.toFixed(2)} points added)</p>`;
+        newsHtml += `<p><span class="achievement-name">MVP: ${mvp.name}</span><span class="achievement-value">${mvp.points_added.toFixed(2)} points added</span></p>`;
     }
     if (cyclistData && cyclistData.mip_history && cyclistData.mip_history.length > 0) {
         const mip = cyclistData.mip_history[cyclistData.mip_history.length - 1];
-        newsHtml += `<p><strong>MIP:</strong> ${mip.name} (${mip.percentage_increase.toFixed(2)}% increase)</p>`;
+        newsHtml += `<p><span class="achievement-name">MIP: ${mip.name}</span><span class="achievement-value">${mip.percentage_increase.toFixed(2)}% increase</span></p>`;
     }
+    newsHtml += '</div>';
 
     // Top 10 Riders
+    newsHtml += '<div class="news-section news-top-riders">';
     newsHtml += '<h3>Top 10 Riders</h3>';
     if (cyclistData && cyclistData.cyclists) {
         const top10 = cyclistData.cyclists.sort((a, b) => b.points - a.points).slice(0, 10);
         newsHtml += '<ol>';
         top10.forEach(rider => {
-            newsHtml += `<li>${rider.name}: ${rider.points} points (${rider.team})</li>`;
+            newsHtml += `<li><span class="rider-name">${rider.name}</span><span class="rider-details">${rider.points} points (${rider.team})</span></li>`;
         });
         newsHtml += '</ol>';
     } else {
         newsHtml += '<p>Rider data not available.</p>';
     }
+    newsHtml += '</div>';
 
     document.getElementById('News').innerHTML = newsHtml;
 }

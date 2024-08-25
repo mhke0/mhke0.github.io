@@ -1534,7 +1534,7 @@ function generateNewsContent() {
         top10.forEach((rider, index) => {
             newsHtml += `<div class="top-rider-item">
                 <span class="rider-rank">${index + 1}</span>
-                <span class="rider-name">${rider.name}(${rider.team})</span>
+                <span class="rider-name">${rider.name}<span class="rider-details">(${rider.team})</span></span>
                 <span class="rider-details">${rider.points} points </span>
             </div>`;
         });

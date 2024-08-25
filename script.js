@@ -1600,14 +1600,14 @@ function displayTeamCostsChart() {
             tickangle: -45,
             tickfont: {
                 family: 'VT323, monospace',
-                color: '#000000' // Black for axis labels
+                color: '#FF1493' // Black for axis labels
             }
         },
         yaxis: {
             title: 'Total Cost (Credits)',
             tickfont: {
                 family: 'VT323, monospace',
-                color: '#000000' // Black for axis labels
+                color: '#FF1493' // Black for axis labels
             }
         },
         paper_bgcolor: '#FFF0F5', // Lavender Blush for background
@@ -1678,7 +1678,7 @@ function displayTeamPointsVsCostChart() {
             tickfont: {
                 family: 'VT323, monospace',
                 size: 14,
-                color: '#000000'
+                color: '#FF1493'
             }
         },
         yaxis: {
@@ -1686,7 +1686,7 @@ function displayTeamPointsVsCostChart() {
             tickfont: {
                 family: 'VT323, monospace',
                 size: 14,
-                color: '#000000'
+                color: '#FF1493'
             }
         },
         paper_bgcolor: '#FFF0F5',

@@ -1398,10 +1398,11 @@ function createLatestPointsUpdateChart() {
 
     // Calculate the point changes
     const pointChanges = latestData.scores.map(team => {
-        const previousScore = previousData.scores.find(t => t.name === team.name)?.points || 0;
+        const previousTeam = previousData.scores.find(t => t.name === team.name);
+        const previousPoints = previousTeam ? previousTeam.points : 0;
         return {
             name: team.name,
-            change: Math.max(0, team.points - previousScore)  // Ensure change is non-negative
+            change: Math.max(0, team.points - previousPoints)  // Ensure change is non-negative
         };
     });
 

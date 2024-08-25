@@ -1336,7 +1336,7 @@ function displayAllTeamsComparison() {
             }
         },
         xaxis: {
-            title: 'Teams',
+            title: '',
             tickangle: -45,
         },
         yaxis: {

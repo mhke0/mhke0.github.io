@@ -62,11 +62,12 @@ function createRoleChart(roles) {
 
 // ... (keep the previous color scheme functions)
 
-function createResponsiveChart(chartId, traces, layout) {
-    const config = {
+function createResponsiveChart(chartId, traces, layout, config = {}) {
+    const defaultConfig = {
         responsive: true,
         displayModeBar: false,
     };
+    const mergedConfig = { ...defaultConfig, ...config };
     layout.autosize = true;
     
     const container = document.getElementById(chartId);
@@ -97,39 +98,7 @@ function createResponsiveChart(chartId, traces, layout) {
     layout.yaxis.automargin = true;
     
     function updateFontSizes() {
-        const containerWidth = container.clientWidth;
-        const containerHeight = container.clientHeight;
-        const baseFontSize = Math.min(containerWidth, containerHeight) / 30;
-        
-        layout.font = {
-            family: 'VT323, monospace',
-            size: baseFontSize,
-            color: '#ff1493'
-        };
-        layout.title = layout.title || {};
-        layout.title.font = {
-            family: 'VT323, monospace',
-            size: baseFontSize * 1.5,
-            color: '#ff1493'
-        };
-        layout.xaxis.title = layout.xaxis.title || {};
-        layout.xaxis.title.font = {
-            family: 'VT323, monospace',
-            size: baseFontSize,
-            color: '#ff1493'
-        };
-        layout.yaxis.title = layout.yaxis.title || {};
-        layout.yaxis.title.font = {
-            family: 'VT323, monospace',
-            size: baseFontSize,
-            color: '#ff1493'
-        };
-        layout.legend = layout.legend || {};
-        layout.legend.font = {
-            family: 'VT323, monospace',
-            size: baseFontSize * 0.9,
-            color: '#ff1493'
-        };
+        // ... (keep existing updateFontSizes function)
     }
     
     layout.xaxis.tickangle = layout.xaxis.tickangle || -45;
@@ -137,7 +106,7 @@ function createResponsiveChart(chartId, traces, layout) {
     updateFontSizes();
     
     try {
-        Plotly.newPlot(chartId, traces, layout, config);
+        Plotly.newPlot(chartId, traces, layout, mergedConfig);
     } catch (error) {
         console.error(`Error creating chart ${chartId}:`, error);
         container.innerHTML = `<p>Error creating chart. Please try refreshing the page.</p>`;
@@ -1931,6 +1900,8 @@ function displayRiskAssessmentTable(riskData) {
     tableContainer.innerHTML = tableHTML;
 }
 
+// ... (keep existing code)
+
 function displayTeamRiskAssessment() {
     const teamSelect = document.getElementById('cyclingTeamSelect');
     const selectedTeam = teamSelect.value;
@@ -2018,6 +1989,7 @@ function displayTeamRiskAssessment() {
     displayRiskAssessmentTable(riskData);
 }
 
+
 function displayRiskAssessmentTable(riskData) {
     const tableContainer = document.getElementById('riskAssessmentTable');
     if (!tableContainer) {
@@ -2065,4 +2037,63 @@ function displayRiskAssessmentTable(riskData) {
     `;
 
     tableContainer.innerHTML = tableHTML;
+}
+function calculateRiderRisk(riderName) {
+    const rider = cyclistData.cyclists.find(c => c.name === riderName);
+    if (!rider) {
+        console.error(`Rider ${riderName} not found`);
+        return null;
+    }
+
+    // Factor 1: Cost Efficiency Risk
+    const avgCostPerPoint = cyclistData.cyclists.reduce((sum, c) => sum + (c.cost / c.points), 0) / cyclistData.cyclists.length;
+    const costEfficiencyRisk = (rider.cost / rider.points) / avgCostPerPoint;
+
+    // Factor 2: Ownership Risk (higher ownership = lower risk)
+    const maxOwnership = Math.max(...cyclistData.cyclists.map(c => c.ownership));
+    const ownershipRisk = 1 - (rider.ownership / maxOwnership);
+
+    // Factor 3: Consistency Risk
+    const pointHistory = rider.pointHistory.map(h => h.points);
+    const avgPoints = pointHistory.reduce((sum, points) => sum + points, 0) / pointHistory.length;
+    const variance = pointHistory.reduce((sum, points) => sum + Math.pow(points - avgPoints, 2), 0) / pointHistory.length;
+    const standardDeviation = Math.sqrt(variance);
+    const consistencyRisk = standardDeviation / avgPoints;
+
+    // Factor 4: Recent Performance Trend
+    const recentPerformance = pointHistory.slice(-3); // Last 3 performances
+    const trend = recentPerformance.reduce((sum, points, index) => sum + points * (index + 1), 0) / 6; // Weighted sum
+    const trendRisk = avgPoints / trend; // Lower if recent performance is better than average
+
+    // Factor 5: Role-based Risk
+    const roleFactor = {
+        'All Rounder': 0.8,
+        'Climber': 1.0,
+        'Sprinter': 1.2,
+        'Unclassed': 1.5
+    };
+    const roleRisk = roleFactor[rider.role] || 1.0;
+
+    // Combine factors (adjust weights as needed)
+    const overallRisk = (
+        costEfficiencyRisk * 0.3 +
+        ownershipRisk * 0.1 +
+        consistencyRisk * 0.2 +
+        trendRisk * 0.2 +
+        roleRisk * 0.2
+    );
+
+    return {
+        rider: rider.name,
+        overallRisk: overallRisk,
+        costEfficiencyRisk: costEfficiencyRisk,
+        ownershipRisk: ownershipRisk,
+        consistencyRisk: consistencyRisk,
+        trendRisk: trendRisk,
+        roleRisk: roleRisk,
+        cost: rider.cost,
+        points: rider.points,
+        ownership: rider.ownership,
+        role: rider.role
+    };
 }

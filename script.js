@@ -1319,7 +1319,8 @@ function displayAllTeamsComparison() {
             line: {
                 color: '#FF69B4', // Hot Pink for bar outlines
                 width: 1.5
-            },
+            }
+        },
         text: sortedTeams.map(team => `${team[1]} points`),
         textposition: 'auto',
         hoverinfo: 'text',

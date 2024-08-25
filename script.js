@@ -1665,7 +1665,7 @@ function displayTeamPointsVsCostChart() {
         mode: 'markers+text',
         type: 'scatter',
         marker: {
-            size: 12, // Slightly smaller markers
+            size: 12,
             color: teamData.map(team => team.efficiency),
             colorscale: 'Viridis',
             colorbar: {
@@ -1686,7 +1686,7 @@ function displayTeamPointsVsCostChart() {
         textposition: 'top center',
         textfont: {
             family: 'VT323, monospace',
-            size: 9, // Smaller font size
+            size: 9,
             color: '#000000'
         },
         hoverinfo: 'text',
@@ -1715,7 +1715,6 @@ function displayTeamPointsVsCostChart() {
                 color: '#000000'
             },
             range: [minCost - padding * costRange, maxCost + padding * costRange],
-            fixedrange: true // Fixed x-axis scale
         },
         yaxis: {
             title: 'Team Points',
@@ -1725,7 +1724,6 @@ function displayTeamPointsVsCostChart() {
                 color: '#000000'
             },
             range: [minPoints - padding * pointsRange, maxPoints + padding * pointsRange],
-            fixedrange: true // Fixed y-axis scale
         },
         paper_bgcolor: '#FFF0F5',
         plot_bgcolor: '#FFF0F5',
@@ -1735,16 +1733,13 @@ function displayTeamPointsVsCostChart() {
         },
         hovermode: 'closest',
         showlegend: false,
-        margin: {t: 50, r: 50, b: 50, l: 50}, // Adjusted margins
+        margin: {t: 50, r: 50, b: 50, l: 50},
         autosize: true,
-        width: 600,  // Fixed width
-        height: 400  // Fixed height
     };
 
     const config = {
         responsive: true,
         displayModeBar: false,
-        scrollZoom: false // Disable scroll zoom
     };
 
     createResponsiveChart('teamPointsVsCostChart', [trace], layout, config);
@@ -1785,5 +1780,8 @@ function displayTeamPointsVsCostChart() {
     setTimeout(adjustLabelPositions, 1000); // Adjust delay as needed
 
     // Adjust labels on window resize
-    window.addEventListener('resize', adjustLabelPositions);
+    window.addEventListener('resize', () => {
+        Plotly.Plots.resize('teamPointsVsCostChart');
+        adjustLabelPositions();
+    });
 }

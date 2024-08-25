@@ -1402,7 +1402,7 @@ function createLatestPointsUpdateChart() {
         const previousPoints = previousTeam ? previousTeam.points : 0;
         return {
             name: team.name,
-            change: team.points - previousPoints
+            change: Math.max(0, team.points - previousPoints)  // Ensure change is non-negative
         };
     });
 
@@ -1414,16 +1414,16 @@ function createLatestPointsUpdateChart() {
         y: pointChanges.map(team => team.change),
         type: 'bar',
         marker: {
-            color: pointChanges.map(team => team.change >= 0 ? 'green' : 'red')
+            color: 'green'  // All changes are now positive, so we use green for all bars
         },
-        text: pointChanges.map(team => (team.change >= 0 ? '+' : '') + team.change.toFixed(2)),
+        text: pointChanges.map(team => `+${team.change.toFixed(2)}`),
         textposition: 'auto',
         hoverinfo: 'x+text'
     };
 
     const layout = {
         title: {
-            text: 'Latest Points Update per Team',
+            text: 'Latest Points Added per Team',
             font: {
                 family: 'VT323, monospace',
                 color: '#ff1493'
@@ -1434,7 +1434,7 @@ function createLatestPointsUpdateChart() {
             tickangle: -45,
         },
         yaxis: {
-            title: 'Points Change',
+            title: 'Points Added',
         },
         paper_bgcolor: '#fff0f5',
         plot_bgcolor: '#fff0f5',

@@ -12,16 +12,10 @@ function getColorForRole(role) {
     }
 }
 const customColorScheme = [
-        '#FFB6C1', // Light Pink
-        '#FFD1DC', // Pale Pink
-        '#FFA07A', // Light Salmon
-        '#FFDAB9', // Peach Puff
-        '#F0E68C', // Khaki
-        '#E6E6FA', // Lavender
-        '#B0E0E6', // Powder Blue
-        '#98FB98', // Pale Green
-        '#DDA0DD', // Plum
-        '#FFDAB9'  // Peach Puff (repeated for more colors if needed)
+        '#FFB3BA', '#FFDFBA', '#FFFFBA', '#BAFFC9', '#BAE1FF',
+        '#FFB3BA', '#FFC9DE', '#E0BBE4', '#957DAD', '#D291BC',
+        '#FFDFD3', '#C1E7E3', '#B6CFB6', '#C2BBF0', '#F0E6EF',
+        '#E8D3A9', '#F7D6BF', '#C9E4DE', '#FFEEDD', '#F1E0E0'
     ];
 
 function createRoleChart(roles) {
@@ -1576,17 +1570,11 @@ function displayTeamCostsChart() {
     const sortedTeams = Object.entries(teams).sort((a, b) => b[1] - a[1]);
 
     // Define a pastel color palette
-    const pastelColors = [
-        '#FFB6C1', // Light Pink
-        '#FFD1DC', // Pale Pink
-        '#FFA07A', // Light Salmon
-        '#FFDAB9', // Peach Puff
-        '#F0E68C', // Khaki
-        '#E6E6FA', // Lavender
-        '#B0E0E6', // Powder Blue
-        '#98FB98', // Pale Green
-        '#DDA0DD', // Plum
-        '#FFDAB9'  // Peach Puff (repeated for more colors if needed)
+    const pastelPalette = [
+        '#FFB3BA', '#FFDFBA', '#FFFFBA', '#BAFFC9', '#BAE1FF',
+        '#FFB3BA', '#FFC9DE', '#E0BBE4', '#957DAD', '#D291BC',
+        '#FFDFD3', '#C1E7E3', '#B6CFB6', '#C2BBF0', '#F0E6EF',
+        '#E8D3A9', '#F7D6BF', '#C9E4DE', '#FFEEDD', '#F1E0E0'
     ];
 
     const trace = {

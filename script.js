@@ -1640,13 +1640,9 @@ function displayTeamPointsVsCostChart() {
 
     teamData.sort((a, b) => b.efficiency - a.efficiency);
 
-    // Define an extended pastel color palette with 24 colors
-    const pastelPalette = [
-        '#FFB3BA', '#FFDFBA', '#FFFFBA', '#BAFFC9', '#BAE1FF', '#FFB3BA', 
-        '#FFC9DE', '#E0BBE4', '#957DAD', '#D291BC', '#FFDFD3', '#C1E7E3', 
-        '#B6CFB6', '#C2BBF0', '#F0E6EF', '#E8D3A9', '#F7D6BF', '#C9E4DE', 
-        '#FFEEDD', '#F1E0E0', '#D4F0F0', '#CCCCFF', '#FFE5B4', '#FFF0F5'
-    ];
+    const efficiencies = teamData.map(team => team.efficiency);
+    const minEfficiency = Math.min(...efficiencies);
+    const maxEfficiency = Math.max(...efficiencies);
 
     const trace = {
         x: teamData.map(team => team.cost),
@@ -1655,7 +1651,17 @@ function displayTeamPointsVsCostChart() {
         type: 'scatter',
         marker: {
             size: 14,
-            color: teamData.map((_, index) => pastelPalette[index % pastelPalette.length]),
+            color: teamData.map(team => team.efficiency),
+            colorscale: 'Viridis',
+            colorbar: {
+                title: 'Efficiency<br>(Points/Cost)',
+                tickfont: {
+                    family: 'VT323, monospace',
+                    size: 12
+                }
+            },
+            cmin: minEfficiency,
+            cmax: maxEfficiency,
             line: {
                 color: '#FF69B4',
                 width: 1
@@ -1679,7 +1685,7 @@ function displayTeamPointsVsCostChart() {
 
     const layout = {
         title: {
-            text: 'Team Points vs Team Cost',
+            text: 'Team Points vs Team Cost (Colored by Efficiency)',
             font: {
                 family: 'VT323, monospace',
                 size: 24,

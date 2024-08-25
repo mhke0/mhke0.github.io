@@ -570,7 +570,7 @@ tr:nth-child(odd) {
 
 #News h3 {
     color: var(--secondary-color);
-    margin-top: 30px;
+    margin-top: 10px;
     margin-bottom: 15px;
 }
 

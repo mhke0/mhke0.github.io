@@ -1449,7 +1449,7 @@ function createLatestPointsUpdateChart() {
 
 
 function generateNewsContent() {
-    let newsHtml = '<h2>Velo News</h2>';
+    let newsHtml = '';
 
     // First row with two columns
     newsHtml += '<div class="news-row">';
@@ -1464,11 +1464,15 @@ function generateNewsContent() {
     newsHtml += '<div class="news-section news-standings">';
     newsHtml += '<h3>Overall Standings</h3>';
     if (standings.length > 0) {
-        newsHtml += '<ol>';
-        standings.slice(0, 5).forEach(team => {
-            newsHtml += `<li><span class="team-name">${team.name}</span><span class="team-points">${team.points} points</span></li>`;
+        newsHtml += '<div class="standings-list">';
+        standings.slice(0, 5).forEach((team, index) => {
+            newsHtml += `<div class="standing-item">
+                <span class="standing-rank">${index + 1}</span>
+                <span class="team-name">${team.name}</span>
+                <span class="team-points">${team.points} points</span>
+            </div>`;
         });
-        newsHtml += '</ol>';
+        newsHtml += '</div>';
     } else {
         newsHtml += '<p>Standings data not available.</p>';
     }
@@ -1478,7 +1482,7 @@ function generateNewsContent() {
     // Recent Score Changes (right column)
     newsHtml += '<div class="news-column">';
     newsHtml += '<div class="news-section news-score-changes">';
-    newsHtml += '<h3>Recent Score Changes</h3>';
+    newsHtml += '<h3>Recent Points Added</h3>';
     if (cyclistData && cyclistData.league_scores && cyclistData.league_scores.history && cyclistData.league_scores.history.length >= 2) {
         const latestScores = cyclistData.league_scores.history[0].scores;
         const previousScores = cyclistData.league_scores.history[1].scores;
@@ -1496,13 +1500,15 @@ function generateNewsContent() {
             scoreChanges.find(change => change.name === team.name)
         ).filter(change => change !== undefined);
 
-        newsHtml += '<ol>';
-        sortedScoreChanges.slice(0, 5).forEach(team => {
-            const changeClass = team.change >= 0 ? 'positive-change' : 'negative-change';
-            const changeSymbol = team.change >= 0 ? '+' : '';
-            newsHtml += `<li><span class="team-name">${team.name}</span><span class="team-change ${changeClass}">${changeSymbol}${team.change} points</span></li>`;
+        newsHtml += '<div class="score-changes-list">';
+        sortedScoreChanges.slice(0, 5).forEach((team, index) => {
+            newsHtml += `<div class="score-change-item">
+                <span class="standing-rank">${index + 1}</span>
+                <span class="team-name">${team.name}</span>
+                <span class="team-change positive-change">+${team.change} points</span>
+            </div>`;
         });
-        newsHtml += '</ol>';
+        newsHtml += '</div>';
     } else {
         newsHtml += '<p>Recent score change data not available.</p>';
     }
@@ -1529,11 +1535,15 @@ function generateNewsContent() {
     newsHtml += '<h3>Top 10 Riders</h3>';
     if (cyclistData && cyclistData.cyclists) {
         const top10 = cyclistData.cyclists.sort((a, b) => b.points - a.points).slice(0, 10);
-        newsHtml += '<ol>';
-        top10.forEach(rider => {
-            newsHtml += `<li><span class="rider-name">${rider.name}</span><span class="rider-details">${rider.points} points (${rider.team})</span></li>`;
+        newsHtml += '<div class="top-riders-list">';
+        top10.forEach((rider, index) => {
+            newsHtml += `<div class="top-rider-item">
+                <span class="rider-rank">${index + 1}</span>
+                <span class="rider-name">${rider.name}</span>
+                <span class="rider-details">${rider.points} points (${rider.team})</span>
+            </div>`;
         });
-        newsHtml += '</ol>';
+        newsHtml += '</div>';
     } else {
         newsHtml += '<p>Rider data not available.</p>';
     }

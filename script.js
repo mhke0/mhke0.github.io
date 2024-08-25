@@ -1386,63 +1386,5580 @@ function makeTableResponsive() {
     // Update on window resize
     window.addEventListener('resize', updateTableDisplay);
 }
-function createLatestPointsUpdateChart() {
-    // Ensure we have the necessary data
-    if (!cyclistData || !cyclistData.league_scores || !cyclistData.league_scores.history || cyclistData.league_scores.history.length < 2) {
-        console.error('Insufficient data for latest points update chart');
-        return;
+{
+  "cyclists": [
+    {
+      "name": "Primož Roglič",
+      "team": "Red Bull - BORA - hansgrohe",
+      "role": "All Rounder",
+      "cost": 24.0,
+      "ownership": 38.1,
+      "points": 785.0,
+      "cost_per_point": 0.030573248407643312,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 435.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 471.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 519.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 785.0
+        }
+      ]
+    },
+    {
+      "name": "Sepp Kuss",
+      "team": "Team Visma | Lease a Bike",
+      "role": "Climber",
+      "cost": 20.0,
+      "ownership": 28.6,
+      "points": 159.0,
+      "cost_per_point": 0.12578616352201258,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 102.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 138.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 152.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 159.0
+        }
+      ]
+    },
+    {
+      "name": "João Almeida",
+      "team": "UAE Team Emirates",
+      "role": "All Rounder",
+      "cost": 20.0,
+      "ownership": 47.9,
+      "points": 406.0,
+      "cost_per_point": 0.04926108374384237,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 352.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 378.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 404.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 406.0
+        }
+      ]
+    },
+    {
+      "name": "Adam Yates",
+      "team": "UAE Team Emirates",
+      "role": "All Rounder",
+      "cost": 20.0,
+      "ownership": 29.7,
+      "points": 68.0,
+      "cost_per_point": 0.29411764705882354,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 50.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 56.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 62.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 68.0
+        }
+      ]
+    },
+    {
+      "name": "Wout Van Aert",
+      "team": "Team Visma | Lease a Bike",
+      "role": "Sprinter",
+      "cost": 18.0,
+      "ownership": 53.5,
+      "points": 1180.0,
+      "cost_per_point": 0.015254237288135594,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 912.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 924.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 1168.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 1180.0
+        }
+      ]
+    },
+    {
+      "name": "Enric Mas",
+      "team": "Movistar Team",
+      "role": "Climber",
+      "cost": 16.0,
+      "ownership": 8.9,
+      "points": 432.0,
+      "cost_per_point": 0.037037037037037035,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 188.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 204.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 230.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 432.0
+        }
+      ]
+    },
+    {
+      "name": "Carlos Rodríguez",
+      "team": "INEOS Grenadiers",
+      "role": "All Rounder",
+      "cost": 14.0,
+      "ownership": 23.4,
+      "points": 127.0,
+      "cost_per_point": 0.11023622047244094,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 6.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 7.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 8.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 127.0
+        }
+      ]
+    },
+    {
+      "name": "Daniel Martínez",
+      "team": "Red Bull - BORA - hansgrohe",
+      "role": "All Rounder",
+      "cost": 14.0,
+      "ownership": 12.0,
+      "points": 62.0,
+      "cost_per_point": 0.22580645161290322,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 32.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 40.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 46.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 62.0
+        }
+      ]
+    },
+    {
+      "name": "Mikel Landa",
+      "team": "Soudal - Quick Step",
+      "role": "Climber",
+      "cost": 14.0,
+      "ownership": 26.0,
+      "points": 313.0,
+      "cost_per_point": 0.04472843450479233,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 119.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 128.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 137.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 313.0
+        }
+      ]
+    },
+    {
+      "name": "Kaden Groves",
+      "team": "Alpecin-Deceuninck",
+      "role": "Sprinter",
+      "cost": 12.0,
+      "ownership": 24.5,
+      "points": 680.0,
+      "cost_per_point": 0.01764705882352941,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 640.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 648.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 672.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 680.0
+        }
+      ]
+    },
+    {
+      "name": "Richard Carapaz",
+      "team": "EF Education-EasyPost",
+      "role": "Climber",
+      "cost": 12.0,
+      "ownership": 44.2,
+      "points": 84.0,
+      "cost_per_point": 0.14285714285714285,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 16.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 51.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 84.0
+        }
+      ]
+    },
+    {
+      "name": "Mattias Skjelmose",
+      "team": "Lidl - Trek",
+      "role": "All Rounder",
+      "cost": 12.0,
+      "ownership": 25.2,
+      "points": 281.0,
+      "cost_per_point": 0.042704626334519574,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 118.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 129.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 148.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 281.0
+        }
+      ]
+    },
+    {
+      "name": "Cian Uijtdebroeks",
+      "team": "Team Visma | Lease a Bike",
+      "role": "Climber",
+      "cost": 12.0,
+      "ownership": 8.2,
+      "points": 44.0,
+      "cost_per_point": 0.2727272727272727,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 36.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 36.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 44.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 44.0
+        }
+      ]
+    },
+    {
+      "name": "Isaac Del Toro",
+      "team": "UAE Team Emirates",
+      "role": "Climber",
+      "cost": 12.0,
+      "ownership": 14.9,
+      "points": 162.0,
+      "cost_per_point": 0.07407407407407407,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 62.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 140.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 148.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 162.0
+        }
+      ]
+    },
+    {
+      "name": "Antonio Tiberi",
+      "team": "Bahrain - Victorious",
+      "role": "All Rounder",
+      "cost": 10.0,
+      "ownership": 10.9,
+      "points": 373.0,
+      "cost_per_point": 0.02680965147453083,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 138.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 160.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 215.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 373.0
+        }
+      ]
+    },
+    {
+      "name": "Bryan Coquard",
+      "team": "Cofidis",
+      "role": "Sprinter",
+      "cost": 10.0,
+      "ownership": 6.5,
+      "points": 250.0,
+      "cost_per_point": 0.04,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 250.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 250.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 250.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 250.0
+        }
+      ]
+    },
+    {
+      "name": "Felix Gall",
+      "team": "Decathlon AG2R La Mondiale Team",
+      "role": "Climber",
+      "cost": 10.0,
+      "ownership": 5.4,
+      "points": 297.0,
+      "cost_per_point": 0.03367003367003367,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 156.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 192.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 220.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 297.0
+        }
+      ]
+    },
+    {
+      "name": "Ben O'Connor",
+      "team": "Decathlon AG2R La Mondiale Team",
+      "role": "Climber",
+      "cost": 10.0,
+      "ownership": 15.7,
+      "points": 418.0,
+      "cost_per_point": 0.023923444976076555,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 4.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 299.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 363.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 418.0
+        }
+      ]
+    },
+    {
+      "name": "Thymen Arensman",
+      "team": "INEOS Grenadiers",
+      "role": "All Rounder",
+      "cost": 10.0,
+      "ownership": 9.9,
+      "points": 0.0,
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 0.0
+        }
+      ]
+    },
+    {
+      "name": "Jhonatan Narváez",
+      "team": "INEOS Grenadiers",
+      "role": "Unclassed",
+      "cost": 10.0,
+      "ownership": 16.7,
+      "points": 95.0,
+      "cost_per_point": 0.10526315789473684,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 95.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 95.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 95.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 95.0
+        }
+      ]
+    },
+    {
+      "name": "Giulio Ciccone",
+      "team": "Lidl - Trek",
+      "role": "Climber",
+      "cost": 10.0,
+      "ownership": 11.5,
+      "points": 16.0,
+      "cost_per_point": 0.625,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 12.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 12.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 16.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 16.0
+        }
+      ]
+    },
+    {
+      "name": "Tao Geoghegan Hart",
+      "team": "Lidl - Trek",
+      "role": "All Rounder",
+      "cost": 10.0,
+      "ownership": 7.6,
+      "points": 16.0,
+      "cost_per_point": 0.625,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 12.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 12.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 16.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 16.0
+        }
+      ]
+    },
+    {
+      "name": "Lennert Van Eetvelt",
+      "team": "Lotto Dstny",
+      "role": "Climber",
+      "cost": 10.0,
+      "ownership": 10.6,
+      "points": 518.0,
+      "cost_per_point": 0.019305019305019305,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 344.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 369.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 433.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 518.0
+        }
+      ]
+    },
+    {
+      "name": "Aleksandr Vlasov",
+      "team": "Red Bull - BORA - hansgrohe",
+      "role": "All Rounder",
+      "cost": 10.0,
+      "ownership": 3.0,
+      "points": 270.0,
+      "cost_per_point": 0.037037037037037035,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 182.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 238.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 252.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 270.0
+        }
+      ]
+    },
+    {
+      "name": "Max Poole",
+      "team": "Team dsm-firmenich PostNL",
+      "role": "Climber",
+      "cost": 10.0,
+      "ownership": 4.5,
+      "points": 78.0,
+      "cost_per_point": 0.1282051282051282,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 8.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 8.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 78.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 78.0
+        }
+      ]
+    },
+    {
+      "name": "Brandon McNulty",
+      "team": "UAE Team Emirates",
+      "role": "All Rounder",
+      "cost": 10.0,
+      "ownership": 4.3,
+      "points": 402.0,
+      "cost_per_point": 0.024875621890547265,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 388.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 394.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 400.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 402.0
+        }
+      ]
+    },
+    {
+      "name": "Jay Vine",
+      "team": "UAE Team Emirates",
+      "role": "All Rounder",
+      "cost": 10.0,
+      "ownership": 3.0,
+      "points": 146.0,
+      "cost_per_point": 0.0684931506849315,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 102.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 138.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 144.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 146.0
+        }
+      ]
+    },
+    {
+      "name": "Ide Schelling",
+      "team": "Astana Qazaqstan Team",
+      "role": "Sprinter",
+      "cost": 8.0,
+      "ownership": 0.8,
+      "points": 20.0,
+      "cost_per_point": 0.4,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 20.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 20.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 20.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 20.0
+        }
+      ]
+    },
+    {
+      "name": "Damiano Caruso",
+      "team": "Bahrain - Victorious",
+      "role": "All Rounder",
+      "cost": 8.0,
+      "ownership": 1.9,
+      "points": 0.0,
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 0.0
+        }
+      ]
+    },
+    {
+      "name": "Guillaume Martin",
+      "team": "Cofidis",
+      "role": "Climber",
+      "cost": 8.0,
+      "ownership": 1.6,
+      "points": 0.0,
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 0.0
+        }
+      ]
+    },
+    {
+      "name": "Victor Lafay",
+      "team": "Decathlon AG2R La Mondiale Team",
+      "role": "Unclassed",
+      "cost": 8.0,
+      "ownership": 6.6,
+      "points": 60.0,
+      "cost_per_point": 0.13333333333333333,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 4.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 28.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 44.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 60.0
+        }
+      ]
+    },
+    {
+      "name": "Valentin Paret-Peintre",
+      "team": "Decathlon AG2R La Mondiale Team",
+      "role": "Climber",
+      "cost": 8.0,
+      "ownership": 5.8,
+      "points": 60.0,
+      "cost_per_point": 0.13333333333333333,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 4.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 28.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 44.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 60.0
+        }
+      ]
+    },
+    {
+      "name": "David Gaudu",
+      "team": "Groupama - FDJ",
+      "role": "Climber",
+      "cost": 8.0,
+      "ownership": 4.7,
+      "points": 122.0,
+      "cost_per_point": 0.06557377049180328,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 37.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 101.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 105.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 122.0
+        }
+      ]
+    },
+    {
+      "name": "Joshua Tarling",
+      "team": "INEOS Grenadiers",
+      "role": "Unclassed",
+      "cost": 8.0,
+      "ownership": 29.5,
+      "points": 141.0,
+      "cost_per_point": 0.05673758865248227,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 141.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 141.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 141.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 141.0
+        }
+      ]
+    },
+    {
+      "name": "Matthew Riccitello",
+      "team": "Israel - Premier Tech",
+      "role": "Climber",
+      "cost": 8.0,
+      "ownership": 6.6,
+      "points": 134.0,
+      "cost_per_point": 0.05970149253731343,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 130.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 134.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 134.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 134.0
+        }
+      ]
+    },
+    {
+      "name": "Corbin Strong",
+      "team": "Israel - Premier Tech",
+      "role": "Sprinter",
+      "cost": 8.0,
+      "ownership": 5.2,
+      "points": 399.0,
+      "cost_per_point": 0.020050125313283207,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 393.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 399.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 399.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 399.0
+        }
+      ]
+    },
+    {
+      "name": "Michael Woods",
+      "team": "Israel - Premier Tech",
+      "role": "Climber",
+      "cost": 8.0,
+      "ownership": 3.3,
+      "points": 31.0,
+      "cost_per_point": 0.25806451612903225,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 2.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 6.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 31.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 31.0
+        }
+      ]
+    },
+    {
+      "name": "Patrick Konrad",
+      "team": "Lidl - Trek",
+      "role": "Unclassed",
+      "cost": 8.0,
+      "ownership": 3.4,
+      "points": 36.0,
+      "cost_per_point": 0.2222222222222222,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 12.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 32.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 36.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 36.0
+        }
+      ]
+    },
+    {
+      "name": "Oier Lazkano",
+      "team": "Movistar Team",
+      "role": "Unclassed",
+      "cost": 8.0,
+      "ownership": 15.4,
+      "points": 30.0,
+      "cost_per_point": 0.26666666666666666,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 4.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 4.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 4.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 30.0
+        }
+      ]
+    },
+    {
+      "name": "Nairo Quintana",
+      "team": "Movistar Team",
+      "role": "Climber",
+      "cost": 8.0,
+      "ownership": 3.5,
+      "points": 10.0,
+      "cost_per_point": 0.8,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 4.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 4.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 4.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 10.0
+        }
+      ]
+    },
+    {
+      "name": "Einer Rubio",
+      "team": "Movistar Team",
+      "role": "Climber",
+      "cost": 8.0,
+      "ownership": 2.9,
+      "points": 22.0,
+      "cost_per_point": 0.36363636363636365,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 16.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 16.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 16.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 22.0
+        }
+      ]
+    },
+    {
+      "name": "Pelayo Sánchez",
+      "team": "Movistar Team",
+      "role": "Unclassed",
+      "cost": 8.0,
+      "ownership": 9.1,
+      "points": 65.0,
+      "cost_per_point": 0.12307692307692308,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 4.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 51.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 55.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 65.0
+        }
+      ]
+    },
+    {
+      "name": "Florian Lipowitz",
+      "team": "Red Bull - BORA - hansgrohe",
+      "role": "Climber",
+      "cost": 8.0,
+      "ownership": 4.3,
+      "points": 388.0,
+      "cost_per_point": 0.020618556701030927,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 102.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 306.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 325.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 388.0
+        }
+      ]
+    },
+    {
+      "name": "Mauri Vansevenant",
+      "team": "Soudal - Quick Step",
+      "role": "Unclassed",
+      "cost": 8.0,
+      "ownership": 2.1,
+      "points": 121.0,
+      "cost_per_point": 0.06611570247933884,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 119.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 119.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 121.0
+        }
+      ]
+    },
+    {
+      "name": "Pavel Bittner",
+      "team": "Team dsm-firmenich PostNL",
+      "role": "Sprinter",
+      "cost": 8.0,
+      "ownership": 4.8,
+      "points": 474.0,
+      "cost_per_point": 0.016877637130801686,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 456.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 462.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 468.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 474.0
+        }
+      ]
+    },
+    {
+      "name": "Mauro Schmid",
+      "team": "Team Jayco AlUla",
+      "role": "Unclassed",
+      "cost": 8.0,
+      "ownership": 3.8,
+      "points": 166.0,
+      "cost_per_point": 0.04819277108433735,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 138.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 138.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 138.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 166.0
+        }
+      ]
+    },
+    {
+      "name": "Pavel Sivakov",
+      "team": "UAE Team Emirates",
+      "role": "Climber",
+      "cost": 8.0,
+      "ownership": 1.4,
+      "points": 163.0,
+      "cost_per_point": 0.049079754601226995,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 130.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 147.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 160.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 163.0
+        }
+      ]
+    },
+    {
+      "name": "Marc Soler",
+      "team": "UAE Team Emirates",
+      "role": "All Rounder",
+      "cost": 8.0,
+      "ownership": 3.9,
+      "points": 64.0,
+      "cost_per_point": 0.125,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 50.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 56.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 62.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 64.0
+        }
+      ]
+    },
+    {
+      "name": "Maurice Ballerstedt",
+      "team": "Alpecin-Deceuninck",
+      "role": "Sprinter",
+      "cost": 6.0,
+      "ownership": 0.5,
+      "points": 18.0,
+      "cost_per_point": 0.3333333333333333,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 18.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 18.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 18.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 18.0
+        }
+      ]
+    },
+    {
+      "name": "Quinten Hermans",
+      "team": "Alpecin-Deceuninck",
+      "role": "Unclassed",
+      "cost": 6.0,
+      "ownership": 3.0,
+      "points": 134.0,
+      "cost_per_point": 0.04477611940298507,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 14.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 14.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 134.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 134.0
+        }
+      ]
+    },
+    {
+      "name": "Xandro Meurisse",
+      "team": "Alpecin-Deceuninck",
+      "role": "Unclassed",
+      "cost": 6.0,
+      "ownership": 0.1,
+      "points": 14.0,
+      "cost_per_point": 0.42857142857142855,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 14.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 14.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 14.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 14.0
+        }
+      ]
+    },
+    {
+      "name": "Élie Gesbert",
+      "team": "Arkéa - B&B Hotels",
+      "role": "Unclassed",
+      "cost": 6.0,
+      "ownership": 0.2,
+      "points": 0.0,
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 0.0
+        }
+      ]
+    },
+    {
+      "name": "Thibault Guernalec",
+      "team": "Arkéa - B&B Hotels",
+      "role": "Unclassed",
+      "cost": 6.0,
+      "ownership": 0.2,
+      "points": 0.0,
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 0.0
+        }
+      ]
+    },
+    {
+      "name": "Cristián Rodríguez",
+      "team": "Arkéa - B&B Hotels",
+      "role": "Climber",
+      "cost": 6.0,
+      "ownership": 0.9,
+      "points": 240.0,
+      "cost_per_point": 0.025,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 8.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 185.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 201.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 240.0
+        }
+      ]
+    },
+    {
+      "name": "Gleb Brussenskiy",
+      "team": "Astana Qazaqstan Team",
+      "role": "Unclassed",
+      "cost": 6.0,
+      "ownership": 0.3,
+      "points": 0.0,
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 0.0
+        }
+      ]
+    },
+    {
+      "name": "Lorenzo Fortunato",
+      "team": "Astana Qazaqstan Team",
+      "role": "Climber",
+      "cost": 6.0,
+      "ownership": 5.1,
+      "points": 35.0,
+      "cost_per_point": 0.17142857142857143,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 35.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 35.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 35.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 35.0
+        }
+      ]
+    },
+    {
+      "name": "Harold Martin López",
+      "team": "Astana Qazaqstan Team",
+      "role": "Unclassed",
+      "cost": 6.0,
+      "ownership": 0.3,
+      "points": 0.0,
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 0.0
+        }
+      ]
+    },
+    {
+      "name": "Harold Tejada",
+      "team": "Astana Qazaqstan Team",
+      "role": "Unclassed",
+      "cost": 6.0,
+      "ownership": 4.2,
+      "points": 246.0,
+      "cost_per_point": 0.024390243902439025,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 25.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 105.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 246.0
+        }
+      ]
+    },
+    {
+      "name": "Jack Haig",
+      "team": "Bahrain - Victorious",
+      "role": "Climber",
+      "cost": 6.0,
+      "ownership": 1.9,
+      "points": 130.0,
+      "cost_per_point": 0.046153846153846156,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 30.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 35.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 60.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 130.0
+        }
+      ]
+    },
+    {
+      "name": "Torstein Træen",
+      "team": "Bahrain - Victorious",
+      "role": "Unclassed",
+      "cost": 6.0,
+      "ownership": 1.2,
+      "points": 0.0,
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 0.0
+        }
+      ]
+    },
+    {
+      "name": "Kenny Elissonde",
+      "team": "Cofidis",
+      "role": "Unclassed",
+      "cost": 6.0,
+      "ownership": 1.4,
+      "points": 0.0,
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 0.0
+        }
+      ]
+    },
+    {
+      "name": "Jesús Herrada",
+      "team": "Cofidis",
+      "role": "Climber",
+      "cost": 6.0,
+      "ownership": 1.6,
+      "points": 0.0,
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 0.0
+        }
+      ]
+    },
+    {
+      "name": "Ion Izagirre",
+      "team": "Cofidis",
+      "role": "All Rounder",
+      "cost": 6.0,
+      "ownership": 1.3,
+      "points": 36.0,
+      "cost_per_point": 0.16666666666666666,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 36.0
+        }
+      ]
+    },
+    {
+      "name": "Bruno Armirail",
+      "team": "Decathlon AG2R La Mondiale Team",
+      "role": "Unclassed",
+      "cost": 6.0,
+      "ownership": 5.1,
+      "points": 217.0,
+      "cost_per_point": 0.027649769585253458,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 157.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 181.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 201.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 217.0
+        }
+      ]
+    },
+    {
+      "name": "Clément Berthet",
+      "team": "Decathlon AG2R La Mondiale Team",
+      "role": "Unclassed",
+      "cost": 6.0,
+      "ownership": 1.5,
+      "points": 252.0,
+      "cost_per_point": 0.023809523809523808,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 4.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 210.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 236.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 252.0
+        }
+      ]
+    },
+    {
+      "name": "Geoffrey Bouchard",
+      "team": "Decathlon AG2R La Mondiale Team",
+      "role": "Climber",
+      "cost": 6.0,
+      "ownership": 0.5,
+      "points": 60.0,
+      "cost_per_point": 0.1,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 4.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 28.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 44.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 60.0
+        }
+      ]
+    },
+    {
+      "name": "Sander De Pestel",
+      "team": "Decathlon AG2R La Mondiale Team",
+      "role": "Sprinter",
+      "cost": 6.0,
+      "ownership": 0.2,
+      "points": 60.0,
+      "cost_per_point": 0.1,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 4.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 28.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 44.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 60.0
+        }
+      ]
+    },
+    {
+      "name": "Jefferson Alexander Cepeda",
+      "team": "EF Education-EasyPost",
+      "role": "Climber",
+      "cost": 6.0,
+      "ownership": 0.8,
+      "points": 0.0,
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 0.0
+        }
+      ]
+    },
+    {
+      "name": "Rui Costa",
+      "team": "EF Education-EasyPost",
+      "role": "All Rounder",
+      "cost": 6.0,
+      "ownership": 2.5,
+      "points": 0.0,
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 0.0
+        }
+      ]
+    },
+    {
+      "name": "Owain Doull",
+      "team": "EF Education-EasyPost",
+      "role": "Sprinter",
+      "cost": 6.0,
+      "ownership": 0.8,
+      "points": 0.0,
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 0.0
+        }
+      ]
+    },
+    {
+      "name": "Darren Rafferty",
+      "team": "EF Education-EasyPost",
+      "role": "Unclassed",
+      "cost": 6.0,
+      "ownership": 1.2,
+      "points": 0.0,
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 0.0
+        }
+      ]
+    },
+    {
+      "name": "James Shaw",
+      "team": "EF Education-EasyPost",
+      "role": "Unclassed",
+      "cost": 6.0,
+      "ownership": 1.3,
+      "points": 0.0,
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 0.0
+        }
+      ]
+    },
+    {
+      "name": "Harry Sweeny",
+      "team": "EF Education-EasyPost",
+      "role": "Unclassed",
+      "cost": 6.0,
+      "ownership": 0.7,
+      "points": 0.0,
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 0.0
+        }
+      ]
+    },
+    {
+      "name": "Rigoberto Urán",
+      "team": "EF Education-EasyPost",
+      "role": "All Rounder",
+      "cost": 6.0,
+      "ownership": 1.5,
+      "points": 0.0,
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 0.0
+        }
+      ]
+    },
+    {
+      "name": "Pablo Castrillo",
+      "team": "Equipo Kern Pharma",
+      "role": "Unclassed",
+      "cost": 6.0,
+      "ownership": 3.7,
+      "points": 65.0,
+      "cost_per_point": 0.09230769230769231,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 43.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 63.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 65.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 65.0
+        }
+      ]
+    },
+    {
+      "name": "Pau Miquel",
+      "team": "Equipo Kern Pharma",
+      "role": "Sprinter",
+      "cost": 6.0,
+      "ownership": 0.2,
+      "points": 375.0,
+      "cost_per_point": 0.016,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 215.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 215.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 375.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 375.0
+        }
+      ]
+    },
+    {
+      "name": "Antonio Jesús Soto",
+      "team": "Equipo Kern Pharma",
+      "role": "Sprinter",
+      "cost": 6.0,
+      "ownership": 0.2,
+      "points": 182.0,
+      "cost_per_point": 0.03296703296703297,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 180.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 180.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 182.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 182.0
+        }
+      ]
+    },
+    {
+      "name": "Jon Aberasturi",
+      "team": "Euskaltel - Euskadi",
+      "role": "Sprinter",
+      "cost": 6.0,
+      "ownership": 1.7,
+      "points": 291.0,
+      "cost_per_point": 0.020618556701030927,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 291.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 291.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 291.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 291.0
+        }
+      ]
+    },
+    {
+      "name": "Mikel Bizkarra",
+      "team": "Euskaltel - Euskadi",
+      "role": "Unclassed",
+      "cost": 6.0,
+      "ownership": 2.3,
+      "points": 26.0,
+      "cost_per_point": 0.23076923076923078,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 26.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 26.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 26.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 26.0
+        }
+      ]
+    },
+    {
+      "name": "Joan Bou",
+      "team": "Euskaltel - Euskadi",
+      "role": "Unclassed",
+      "cost": 6.0,
+      "ownership": 1.0,
+      "points": 52.0,
+      "cost_per_point": 0.11538461538461539,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 2.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 52.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 52.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 52.0
+        }
+      ]
+    },
+    {
+      "name": "Txomin Juaristi",
+      "team": "Euskaltel - Euskadi",
+      "role": "Unclassed",
+      "cost": 6.0,
+      "ownership": 0.5,
+      "points": 22.0,
+      "cost_per_point": 0.2727272727272727,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 22.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 22.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 22.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 22.0
+        }
+      ]
+    },
+    {
+      "name": "Gotzon Martín",
+      "team": "Euskaltel - Euskadi",
+      "role": "Unclassed",
+      "cost": 6.0,
+      "ownership": 0.2,
+      "points": 53.0,
+      "cost_per_point": 0.11320754716981132,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 53.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 53.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 53.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 53.0
+        }
+      ]
+    },
+    {
+      "name": "Luis Ángel Maté",
+      "team": "Euskaltel - Euskadi",
+      "role": "Unclassed",
+      "cost": 6.0,
+      "ownership": 1.0,
+      "points": 124.0,
+      "cost_per_point": 0.04838709677419355,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 117.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 120.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 122.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 124.0
+        }
+      ]
+    },
+    {
+      "name": "Sven Erik Bystrøm",
+      "team": "Groupama - FDJ",
+      "role": "Unclassed",
+      "cost": 6.0,
+      "ownership": 0.3,
+      "points": 0.0,
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 0.0
+        }
+      ]
+    },
+    {
+      "name": "Kevin Geniets",
+      "team": "Groupama - FDJ",
+      "role": "Unclassed",
+      "cost": 6.0,
+      "ownership": 0.3,
+      "points": 0.0,
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 0.0
+        }
+      ]
+    },
+    {
+      "name": "Stefan Küng",
+      "team": "Groupama - FDJ",
+      "role": "Unclassed",
+      "cost": 6.0,
+      "ownership": 8.6,
+      "points": 523.0,
+      "cost_per_point": 0.011472275334608031,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 380.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 380.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 522.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 523.0
+        }
+      ]
+    },
+    {
+      "name": "Quentin Pacher",
+      "team": "Groupama - FDJ",
+      "role": "Unclassed",
+      "cost": 6.0,
+      "ownership": 3.9,
+      "points": 110.0,
+      "cost_per_point": 0.05454545454545454,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 110.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 110.0
+        }
+      ]
+    },
+    {
+      "name": "Rémy Rochas",
+      "team": "Groupama - FDJ",
+      "role": "Unclassed",
+      "cost": 6.0,
+      "ownership": 0.3,
+      "points": 35.0,
+      "cost_per_point": 0.17142857142857143,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 35.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 35.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 35.0
+        }
+      ]
+    },
+    {
+      "name": "Laurens De Plus",
+      "team": "INEOS Grenadiers",
+      "role": "All Rounder",
+      "cost": 6.0,
+      "ownership": 1.8,
+      "points": 0.0,
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 0.0
+        }
+      ]
+    },
+    {
+      "name": "Kim Heiduk",
+      "team": "INEOS Grenadiers",
+      "role": "Sprinter",
+      "cost": 6.0,
+      "ownership": 0.3,
+      "points": 25.0,
+      "cost_per_point": 0.24,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 25.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 25.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 25.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 25.0
+        }
+      ]
+    },
+    {
+      "name": "Brandon Smith Rivera",
+      "team": "INEOS Grenadiers",
+      "role": "Unclassed",
+      "cost": 6.0,
+      "ownership": 0.9,
+      "points": 70.0,
+      "cost_per_point": 0.08571428571428572,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 70.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 70.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 70.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 70.0
+        }
+      ]
+    },
+    {
+      "name": "Óscar Rodríguez",
+      "team": "INEOS Grenadiers",
+      "role": "Climber",
+      "cost": 6.0,
+      "ownership": 1.0,
+      "points": 0.0,
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 0.0
+        }
+      ]
+    },
+    {
+      "name": "Vito Braet",
+      "team": "Intermarché - Wanty",
+      "role": "Sprinter",
+      "cost": 6.0,
+      "ownership": 0.3,
+      "points": 50.0,
+      "cost_per_point": 0.12,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 50.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 50.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 50.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 50.0
+        }
+      ]
+    },
+    {
+      "name": "Kobe Goossens",
+      "team": "Intermarché - Wanty",
+      "role": "Unclassed",
+      "cost": 6.0,
+      "ownership": 0.7,
+      "points": 0.0,
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 0.0
+        }
+      ]
+    },
+    {
+      "name": "Arne Marit",
+      "team": "Intermarché - Wanty",
+      "role": "Sprinter",
+      "cost": 6.0,
+      "ownership": 0.6,
+      "points": 240.0,
+      "cost_per_point": 0.025,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 240.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 240.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 240.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 240.0
+        }
+      ]
+    },
+    {
+      "name": "Louis Meintjes",
+      "team": "Intermarché - Wanty",
+      "role": "Climber",
+      "cost": 6.0,
+      "ownership": 2.0,
+      "points": 0.0,
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 0.0
+        }
+      ]
+    },
+    {
+      "name": "Lorenzo Rota",
+      "team": "Intermarché - Wanty",
+      "role": "Unclassed",
+      "cost": 6.0,
+      "ownership": 0.8,
+      "points": 155.0,
+      "cost_per_point": 0.03870967741935484,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 60.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 60.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 155.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 155.0
+        }
+      ]
+    },
+    {
+      "name": "Rein Taaramäe",
+      "team": "Intermarché - Wanty",
+      "role": "Climber",
+      "cost": 6.0,
+      "ownership": 0.4,
+      "points": 0.0,
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 0.0
+        }
+      ]
+    },
+    {
+      "name": "George Bennett",
+      "team": "Israel - Premier Tech",
+      "role": "Unclassed",
+      "cost": 6.0,
+      "ownership": 10.7,
+      "points": 180.0,
+      "cost_per_point": 0.03333333333333333,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 82.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 89.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 152.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 180.0
+        }
+      ]
+    },
+    {
+      "name": "Marco Frigo",
+      "team": "Israel - Premier Tech",
+      "role": "Unclassed",
+      "cost": 6.0,
+      "ownership": 0.9,
+      "points": 219.0,
+      "cost_per_point": 0.0273972602739726,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 17.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 219.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 219.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 219.0
+        }
+      ]
+    },
+    {
+      "name": "Riley Sheehan",
+      "team": "Israel - Premier Tech",
+      "role": "Sprinter",
+      "cost": 6.0,
+      "ownership": 0.5,
+      "points": 6.0,
+      "cost_per_point": 1.0,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 2.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 6.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 6.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 6.0
+        }
+      ]
+    },
+    {
+      "name": "Dylan Teuns",
+      "team": "Israel - Premier Tech",
+      "role": "Climber",
+      "cost": 6.0,
+      "ownership": 1.5,
+      "points": 6.0,
+      "cost_per_point": 1.0,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 2.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 6.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 6.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 6.0
+        }
+      ]
+    },
+    {
+      "name": "Sam Oomen",
+      "team": "Lidl - Trek",
+      "role": "Unclassed",
+      "cost": 6.0,
+      "ownership": 0.5,
+      "points": 36.0,
+      "cost_per_point": 0.16666666666666666,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 12.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 12.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 16.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 36.0
+        }
+      ]
+    },
+    {
+      "name": "Mathias Vacek",
+      "team": "Lidl - Trek",
+      "role": "Sprinter",
+      "cost": 6.0,
+      "ownership": 8.3,
+      "points": 502.0,
+      "cost_per_point": 0.01195219123505976,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 316.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 316.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 500.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 502.0
+        }
+      ]
+    },
+    {
+      "name": "Carlos Verona",
+      "team": "Lidl - Trek",
+      "role": "Unclassed",
+      "cost": 6.0,
+      "ownership": 1.7,
+      "points": 16.0,
+      "cost_per_point": 0.375,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 12.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 12.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 16.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 16.0
+        }
+      ]
+    },
+    {
+      "name": "Victor Campenaerts",
+      "team": "Lotto Dstny",
+      "role": "Unclassed",
+      "cost": 6.0,
+      "ownership": 19.1,
+      "points": 4.0,
+      "cost_per_point": 1.5,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 4.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 4.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 4.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 4.0
+        }
+      ]
+    },
+    {
+      "name": "Thomas De Gendt",
+      "team": "Lotto Dstny",
+      "role": "Unclassed",
+      "cost": 6.0,
+      "ownership": 6.6,
+      "points": 4.0,
+      "cost_per_point": 1.5,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 4.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 4.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 4.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 4.0
+        }
+      ]
+    },
+    {
+      "name": "Jonas Gregaard",
+      "team": "Lotto Dstny",
+      "role": "Unclassed",
+      "cost": 6.0,
+      "ownership": 0.3,
+      "points": 4.0,
+      "cost_per_point": 1.5,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 4.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 4.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 4.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 4.0
+        }
+      ]
+    },
+    {
+      "name": "Andreas Kron",
+      "team": "Lotto Dstny",
+      "role": "Unclassed",
+      "cost": 6.0,
+      "ownership": 9.0,
+      "points": 38.0,
+      "cost_per_point": 0.15789473684210525,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 38.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 38.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 38.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 38.0
+        }
+      ]
+    },
+    {
+      "name": "Sylvain Moniquet",
+      "team": "Lotto Dstny",
+      "role": "Unclassed",
+      "cost": 6.0,
+      "ownership": 0.2,
+      "points": 95.0,
+      "cost_per_point": 0.06315789473684211,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 63.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 75.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 87.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 95.0
+        }
+      ]
+    },
+    {
+      "name": "Eduardo Sepúlveda",
+      "team": "Lotto Dstny",
+      "role": "Unclassed",
+      "cost": 6.0,
+      "ownership": 0.4,
+      "points": 4.0,
+      "cost_per_point": 1.5,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 4.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 4.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 4.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 4.0
+        }
+      ]
+    },
+    {
+      "name": "Carlos Canal",
+      "team": "Movistar Team",
+      "role": "Sprinter",
+      "cost": 6.0,
+      "ownership": 0.6,
+      "points": 113.0,
+      "cost_per_point": 0.05309734513274336,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 107.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 107.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 107.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 113.0
+        }
+      ]
+    },
+    {
+      "name": "Nelson Oliveira",
+      "team": "Movistar Team",
+      "role": "Unclassed",
+      "cost": 6.0,
+      "ownership": 2.5,
+      "points": 91.0,
+      "cost_per_point": 0.06593406593406594,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 85.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 85.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 85.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 91.0
+        }
+      ]
+    },
+    {
+      "name": "Roger Adrià",
+      "team": "Red Bull - BORA - hansgrohe",
+      "role": "Sprinter",
+      "cost": 6.0,
+      "ownership": 1.9,
+      "points": 82.0,
+      "cost_per_point": 0.07317073170731707,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 52.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 60.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 66.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 82.0
+        }
+      ]
+    },
+    {
+      "name": "Giovanni Aleotti",
+      "team": "Red Bull - BORA - hansgrohe",
+      "role": "Unclassed",
+      "cost": 6.0,
+      "ownership": 2.0,
+      "points": 62.0,
+      "cost_per_point": 0.0967741935483871,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 32.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 40.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 46.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 62.0
+        }
+      ]
+    },
+    {
+      "name": "Nico Denz",
+      "team": "Red Bull - BORA - hansgrohe",
+      "role": "Unclassed",
+      "cost": 6.0,
+      "ownership": 1.9,
+      "points": 78.0,
+      "cost_per_point": 0.07692307692307693,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 40.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 48.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 62.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 78.0
+        }
+      ]
+    },
+    {
+      "name": "Patrick Gamper",
+      "team": "Red Bull - BORA - hansgrohe",
+      "role": "Unclassed",
+      "cost": 6.0,
+      "ownership": 0.4,
+      "points": 62.0,
+      "cost_per_point": 0.0967741935483871,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 32.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 40.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 46.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 62.0
+        }
+      ]
+    },
+    {
+      "name": "Kasper Asgreen",
+      "team": "Soudal - Quick Step",
+      "role": "Unclassed",
+      "cost": 6.0,
+      "ownership": 12.0,
+      "points": 58.0,
+      "cost_per_point": 0.10344827586206896,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 56.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 56.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 56.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 58.0
+        }
+      ]
+    },
+    {
+      "name": "Mattia Cattaneo",
+      "team": "Soudal - Quick Step",
+      "role": "Unclassed",
+      "cost": 6.0,
+      "ownership": 1.3,
+      "points": 35.0,
+      "cost_per_point": 0.17142857142857143,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 33.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 33.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 33.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 35.0
+        }
+      ]
+    },
+    {
+      "name": "James Knox",
+      "team": "Soudal - Quick Step",
+      "role": "Unclassed",
+      "cost": 6.0,
+      "ownership": 1.4,
+      "points": 2.0,
+      "cost_per_point": 3.0,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 2.0
+        }
+      ]
+    },
+    {
+      "name": "William Junior Lecerf",
+      "team": "Soudal - Quick Step",
+      "role": "Unclassed",
+      "cost": 6.0,
+      "ownership": 1.1,
+      "points": 2.0,
+      "cost_per_point": 3.0,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 2.0
+        }
+      ]
+    },
+    {
+      "name": "Casper Pedersen",
+      "team": "Soudal - Quick Step",
+      "role": "Sprinter",
+      "cost": 6.0,
+      "ownership": 2.5,
+      "points": 2.0,
+      "cost_per_point": 3.0,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 2.0
+        }
+      ]
+    },
+    {
+      "name": "Louis Vervaeke",
+      "team": "Soudal - Quick Step",
+      "role": "Unclassed",
+      "cost": 6.0,
+      "ownership": 0.3,
+      "points": 2.0,
+      "cost_per_point": 3.0,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 2.0
+        }
+      ]
+    },
+    {
+      "name": "Chris Hamilton",
+      "team": "Team dsm-firmenich PostNL",
+      "role": "Unclassed",
+      "cost": 6.0,
+      "ownership": 0.7,
+      "points": 8.0,
+      "cost_per_point": 0.75,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 8.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 8.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 8.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 8.0
+        }
+      ]
+    },
+    {
+      "name": "Gijs Leemreize",
+      "team": "Team dsm-firmenich PostNL",
+      "role": "Unclassed",
+      "cost": 6.0,
+      "ownership": 0.3,
+      "points": 158.0,
+      "cost_per_point": 0.0379746835443038,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 8.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 138.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 138.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 158.0
+        }
+      ]
+    },
+    {
+      "name": "Alessandro De Marchi",
+      "team": "Team Jayco AlUla",
+      "role": "Unclassed",
+      "cost": 6.0,
+      "ownership": 1.4,
+      "points": 0.0,
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 0.0
+        }
+      ]
+    },
+    {
+      "name": "Eddie Dunbar",
+      "team": "Team Jayco AlUla",
+      "role": "All Rounder",
+      "cost": 6.0,
+      "ownership": 2.1,
+      "points": 110.0,
+      "cost_per_point": 0.05454545454545454,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 30.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 110.0
+        }
+      ]
+    },
+    {
+      "name": "Felix Engelhardt",
+      "team": "Team Jayco AlUla",
+      "role": "Unclassed",
+      "cost": 6.0,
+      "ownership": 0.9,
+      "points": 0.0,
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 0.0
+        }
+      ]
+    },
+    {
+      "name": "Chris Harper",
+      "team": "Team Jayco AlUla",
+      "role": "Climber",
+      "cost": 6.0,
+      "ownership": 0.6,
+      "points": 24.0,
+      "cost_per_point": 0.25,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 24.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 24.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 24.0
+        }
+      ]
+    },
+    {
+      "name": "Callum Scotson",
+      "team": "Team Jayco AlUla",
+      "role": "Unclassed",
+      "cost": 6.0,
+      "ownership": 0.2,
+      "points": 0.0,
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 0.0
+        }
+      ]
+    },
+    {
+      "name": "Filippo Zana",
+      "team": "Team Jayco AlUla",
+      "role": "Climber",
+      "cost": 6.0,
+      "ownership": 4.9,
+      "points": 66.0,
+      "cost_per_point": 0.09090909090909091,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 46.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 54.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 60.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 66.0
+        }
+      ]
+    },
+    {
+      "name": "Edoardo Affini",
+      "team": "Team Visma | Lease a Bike",
+      "role": "Sprinter",
+      "cost": 6.0,
+      "ownership": 2.1,
+      "points": 214.0,
+      "cost_per_point": 0.028037383177570093,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 206.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 206.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 214.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 214.0
+        }
+      ]
+    },
+    {
+      "name": "Robert Gesink",
+      "team": "Team Visma | Lease a Bike",
+      "role": "Unclassed",
+      "cost": 6.0,
+      "ownership": 1.8,
+      "points": 44.0,
+      "cost_per_point": 0.13636363636363635,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 36.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 36.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 44.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 44.0
+        }
+      ]
+    },
+    {
+      "name": "Steven Kruijswijk",
+      "team": "Team Visma | Lease a Bike",
+      "role": "Unclassed",
+      "cost": 6.0,
+      "ownership": 3.3,
+      "points": 44.0,
+      "cost_per_point": 0.13636363636363635,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 36.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 36.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 44.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 44.0
+        }
+      ]
+    },
+    {
+      "name": "Attila Valter",
+      "team": "Team Visma | Lease a Bike",
+      "role": "Climber",
+      "cost": 6.0,
+      "ownership": 1.5,
+      "points": 44.0,
+      "cost_per_point": 0.13636363636363635,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 36.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 36.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 44.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 44.0
+        }
+      ]
+    },
+    {
+      "name": "Dylan Van Baarle",
+      "team": "Team Visma | Lease a Bike",
+      "role": "Unclassed",
+      "cost": 6.0,
+      "ownership": 3.2,
+      "points": 14.0,
+      "cost_per_point": 0.42857142857142855,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 14.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 14.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 14.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 14.0
+        }
+      ]
+    },
+    {
+      "name": "Filippo Baroncini",
+      "team": "UAE Team Emirates",
+      "role": "Unclassed",
+      "cost": 6.0,
+      "ownership": 2.1,
+      "points": 168.0,
+      "cost_per_point": 0.03571428571428571,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 154.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 160.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 166.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 168.0
+        }
+      ]
+    },
+    {
+      "name": "Juri Hollmann",
+      "team": "Alpecin-Deceuninck",
+      "role": "Unclassed",
+      "cost": 4.0,
+      "ownership": 1.9,
+      "points": 14.0,
+      "cost_per_point": 0.2857142857142857,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 14.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 14.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 14.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 14.0
+        }
+      ]
+    },
+    {
+      "name": "Edward Planckaert",
+      "team": "Alpecin-Deceuninck",
+      "role": "Unclassed",
+      "cost": 4.0,
+      "ownership": 2.3,
+      "points": 18.0,
+      "cost_per_point": 0.2222222222222222,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 18.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 18.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 18.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 18.0
+        }
+      ]
+    },
+    {
+      "name": "Oscar Riesebeek",
+      "team": "Alpecin-Deceuninck",
+      "role": "Unclassed",
+      "cost": 4.0,
+      "ownership": 1.7,
+      "points": 14.0,
+      "cost_per_point": 0.2857142857142857,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 14.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 14.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 14.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 14.0
+        }
+      ]
+    },
+    {
+      "name": "Luca Vergallito",
+      "team": "Alpecin-Deceuninck",
+      "role": "Unclassed",
+      "cost": 4.0,
+      "ownership": 3.6,
+      "points": 98.0,
+      "cost_per_point": 0.04081632653061224,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 14.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 34.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 34.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 98.0
+        }
+      ]
+    },
+    {
+      "name": "Simon Guglielmi",
+      "team": "Arkéa - B&B Hotels",
+      "role": "Unclassed",
+      "cost": 4.0,
+      "ownership": 1.1,
+      "points": 56.0,
+      "cost_per_point": 0.07142857142857142,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 56.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 56.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 56.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 56.0
+        }
+      ]
+    },
+    {
+      "name": "Laurens Huys",
+      "team": "Arkéa - B&B Hotels",
+      "role": "Unclassed",
+      "cost": 4.0,
+      "ownership": 1.0,
+      "points": 0.0,
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 0.0
+        }
+      ]
+    },
+    {
+      "name": "Mathis Le Berre",
+      "team": "Arkéa - B&B Hotels",
+      "role": "Unclassed",
+      "cost": 4.0,
+      "ownership": 4.4,
+      "points": 44.0,
+      "cost_per_point": 0.09090909090909091,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 12.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 12.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 12.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 44.0
+        }
+      ]
+    },
+    {
+      "name": "Łukasz Owsian",
+      "team": "Arkéa - B&B Hotels",
+      "role": "Unclassed",
+      "cost": 4.0,
+      "ownership": 0.4,
+      "points": 0.0,
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 0.0
+        }
+      ]
+    },
+    {
+      "name": "Michel Ries",
+      "team": "Arkéa - B&B Hotels",
+      "role": "Unclassed",
+      "cost": 4.0,
+      "ownership": 1.2,
+      "points": 0.0,
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 0.0
+        }
+      ]
+    },
+    {
+      "name": "Gianmarco Garofoli",
+      "team": "Astana Qazaqstan Team",
+      "role": "Unclassed",
+      "cost": 4.0,
+      "ownership": 1.1,
+      "points": 78.0,
+      "cost_per_point": 0.05128205128205128,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 78.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 78.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 78.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 78.0
+        }
+      ]
+    },
+    {
+      "name": "Santiago Umba",
+      "team": "Astana Qazaqstan Team",
+      "role": "Unclassed",
+      "cost": 4.0,
+      "ownership": 2.1,
+      "points": 0.0,
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 0.0
+        }
+      ]
+    },
+    {
+      "name": "Nicolas Vinokurov",
+      "team": "Astana Qazaqstan Team",
+      "role": "Unclassed",
+      "cost": 4.0,
+      "ownership": 4.8,
+      "points": 0.0,
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 0.0
+        }
+      ]
+    },
+    {
+      "name": "Kamil Gradek",
+      "team": "Bahrain - Victorious",
+      "role": "Unclassed",
+      "cost": 4.0,
+      "ownership": 1.7,
+      "points": 0.0,
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 0.0
+        }
+      ]
+    },
+    {
+      "name": "Rainer Kepplinger",
+      "team": "Bahrain - Victorious",
+      "role": "Unclassed",
+      "cost": 4.0,
+      "ownership": 1.8,
+      "points": 0.0,
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 0.0
+        }
+      ]
+    },
+    {
+      "name": "Fran Miholjević",
+      "team": "Bahrain - Victorious",
+      "role": "Unclassed",
+      "cost": 4.0,
+      "ownership": 1.3,
+      "points": 0.0,
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 0.0
+        }
+      ]
+    },
+    {
+      "name": "Jasha Sütterlin",
+      "team": "Bahrain - Victorious",
+      "role": "Unclassed",
+      "cost": 4.0,
+      "ownership": 2.4,
+      "points": 0.0,
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 0.0
+        }
+      ]
+    },
+    {
+      "name": "Thomas Champion",
+      "team": "Cofidis",
+      "role": "Unclassed",
+      "cost": 4.0,
+      "ownership": 5.1,
+      "points": 0.0,
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 0.0
+        }
+      ]
+    },
+    {
+      "name": "Rubén Fernández",
+      "team": "Cofidis",
+      "role": "Unclassed",
+      "cost": 4.0,
+      "ownership": 5.6,
+      "points": 0.0,
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 0.0
+        }
+      ]
+    },
+    {
+      "name": "Jonathan Lastra",
+      "team": "Cofidis",
+      "role": "Unclassed",
+      "cost": 4.0,
+      "ownership": 3.8,
+      "points": 0.0,
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 0.0
+        }
+      ]
+    },
+    {
+      "name": "Urko Berrade",
+      "team": "Equipo Kern Pharma",
+      "role": "Unclassed",
+      "cost": 4.0,
+      "ownership": 8.0,
+      "points": 102.0,
+      "cost_per_point": 0.0392156862745098,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 100.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 102.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 102.0
+        }
+      ]
+    },
+    {
+      "name": "Jorge Gutiérrez",
+      "team": "Equipo Kern Pharma",
+      "role": "Unclassed",
+      "cost": 4.0,
+      "ownership": 2.4,
+      "points": 2.0,
+      "cost_per_point": 2.0,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 2.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 2.0
+        }
+      ]
+    },
+    {
+      "name": "Unai Iribar",
+      "team": "Equipo Kern Pharma",
+      "role": "Unclassed",
+      "cost": 4.0,
+      "ownership": 1.3,
+      "points": 30.0,
+      "cost_per_point": 0.13333333333333333,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 28.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 28.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 30.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 30.0
+        }
+      ]
+    },
+    {
+      "name": "José Félix Parra",
+      "team": "Equipo Kern Pharma",
+      "role": "Unclassed",
+      "cost": 4.0,
+      "ownership": 4.4,
+      "points": 2.0,
+      "cost_per_point": 2.0,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 2.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 2.0
+        }
+      ]
+    },
+    {
+      "name": "Ibon Ruiz",
+      "team": "Equipo Kern Pharma",
+      "role": "Unclassed",
+      "cost": 4.0,
+      "ownership": 1.7,
+      "points": 106.0,
+      "cost_per_point": 0.03773584905660377,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 104.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 104.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 106.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 106.0
+        }
+      ]
+    },
+    {
+      "name": "Xabier Berasategi",
+      "team": "Euskaltel - Euskadi",
+      "role": "Unclassed",
+      "cost": 4.0,
+      "ownership": 5.6,
+      "points": 22.0,
+      "cost_per_point": 0.18181818181818182,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 22.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 22.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 22.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 22.0
+        }
+      ]
+    },
+    {
+      "name": "Xabier Isasa",
+      "team": "Euskaltel - Euskadi",
+      "role": "Unclassed",
+      "cost": 4.0,
+      "ownership": 3.3,
+      "points": 90.0,
+      "cost_per_point": 0.044444444444444446,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 50.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 50.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 90.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 90.0
+        }
+      ]
+    },
+    {
+      "name": "Lorenzo Germani",
+      "team": "Groupama - FDJ",
+      "role": "Unclassed",
+      "cost": 4.0,
+      "ownership": 1.5,
+      "points": 0.0,
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 0.0
+        }
+      ]
+    },
+    {
+      "name": "Reuben Thompson",
+      "team": "Groupama - FDJ",
+      "role": "Unclassed",
+      "cost": 4.0,
+      "ownership": 1.3,
+      "points": 0.0,
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 0.0
+        }
+      ]
+    },
+    {
+      "name": "Tom Paquot",
+      "team": "Intermarché - Wanty",
+      "role": "Unclassed",
+      "cost": 4.0,
+      "ownership": 1.1,
+      "points": 0.0,
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 0.0
+        }
+      ]
+    },
+    {
+      "name": "Simone Petilli",
+      "team": "Intermarché - Wanty",
+      "role": "Unclassed",
+      "cost": 4.0,
+      "ownership": 1.7,
+      "points": 0.0,
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 0.0
+        }
+      ]
+    },
+    {
+      "name": "Nadav Raisberg",
+      "team": "Israel - Premier Tech",
+      "role": "Unclassed",
+      "cost": 4.0,
+      "ownership": 0.5,
+      "points": 46.0,
+      "cost_per_point": 0.08695652173913043,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 42.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 46.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 46.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 46.0
+        }
+      ]
+    },
+    {
+      "name": "Otto Vergaerde",
+      "team": "Lidl - Trek",
+      "role": "Unclassed",
+      "cost": 4.0,
+      "ownership": 3.1,
+      "points": 16.0,
+      "cost_per_point": 0.25,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 12.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 12.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 16.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 16.0
+        }
+      ]
+    },
+    {
+      "name": "Arjen Livyns",
+      "team": "Lotto Dstny",
+      "role": "Unclassed",
+      "cost": 4.0,
+      "ownership": 1.4,
+      "points": 115.0,
+      "cost_per_point": 0.034782608695652174,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 115.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 115.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 115.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 115.0
+        }
+      ]
+    },
+    {
+      "name": "Jorge Arcas",
+      "team": "Movistar Team",
+      "role": "Unclassed",
+      "cost": 4.0,
+      "ownership": 7.1,
+      "points": 14.0,
+      "cost_per_point": 0.2857142857142857,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 8.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 8.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 8.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 14.0
+        }
+      ]
+    },
+    {
+      "name": "Enzo Leijnse",
+      "team": "Team dsm-firmenich PostNL",
+      "role": "Unclassed",
+      "cost": 4.0,
+      "ownership": 0.7,
+      "points": 8.0,
+      "cost_per_point": 0.5,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 8.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 8.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 8.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 8.0
+        }
+      ]
+    },
+    {
+      "name": "Tim Naberman",
+      "team": "Team dsm-firmenich PostNL",
+      "role": "Unclassed",
+      "cost": 4.0,
+      "ownership": 0.5,
+      "points": 8.0,
+      "cost_per_point": 0.5,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 8.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 8.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 8.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 8.0
+        }
+      ]
+    },
+    {
+      "name": "Martijn Tusveld",
+      "team": "Team dsm-firmenich PostNL",
+      "role": "Unclassed",
+      "cost": 4.0,
+      "ownership": 1.1,
+      "points": 8.0,
+      "cost_per_point": 0.5,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 8.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 8.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 8.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 8.0
+        }
+      ]
+    },
+    {
+      "name": "Julius Van Den Berg",
+      "team": "Team dsm-firmenich PostNL",
+      "role": "Unclassed",
+      "cost": 4.0,
+      "ownership": 3.7,
+      "points": 8.0,
+      "cost_per_point": 0.5,
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 8.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 8.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 8.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 8.0
+        }
+      ]
+    },
+    {
+      "name": "Welay Berhe",
+      "team": "Team Jayco AlUla",
+      "role": "Unclassed",
+      "cost": 4.0,
+      "ownership": 3.2,
+      "points": 0.0,
+      "cost_per_point": "Infinity",
+      "pointHistory": [
+        {
+          "date": "2024-08-21",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-22",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-23",
+          "points": 0.0
+        },
+        {
+          "date": "2024-08-24",
+          "points": 0.0
+        }
+      ]
     }
-
-    const latestData = cyclistData.league_scores.history[0];
-    const previousData = cyclistData.league_scores.history[1];
-
-    // Calculate the point changes
-    const pointChanges = latestData.scores.map(team => {
-        const previousTeam = previousData.scores.find(t => t.name === team.name);
-        const previousPoints = previousTeam ? previousTeam.points : 0;
-        return {
-            name: team.name,
-            change: Math.max(0, team.points - previousPoints)  // Ensure change is non-negative
-        };
-    });
-
-    // Sort teams by point change (descending order)
-    pointChanges.sort((a, b) => b.change - a.change);
-
-    const trace = {
-        x: pointChanges.map(team => team.name),
-        y: pointChanges.map(team => team.change),
-        type: 'bar',
-        marker: {
-            color: 'green'  // All changes are now positive, so we use green for all bars
-        },
-        text: pointChanges.map(team => `+${team.change.toFixed(2)}`),
-        textposition: 'auto',
-        hoverinfo: 'x+text'
-    };
-
-    const layout = {
-        title: {
-            text: 'Latest Points Added per Team',
-            font: {
-                family: 'VT323, monospace',
-                color: '#ff1493'
-            }
-        },
-        xaxis: {
-            title: '',
-            tickangle: -45,
-        },
-        yaxis: {
-            title: 'Points Added',
-        },
-        paper_bgcolor: '#fff0f5',
-        plot_bgcolor: '#fff0f5',
-    };
-
-    createResponsiveChart('latestPointsUpdateChart', [trace], layout);
+  ],
+  "top_50_efficiency": [
+    {
+      "name": "Stefan Küng",
+      "cost_per_point": 0.011472275334608031,
+      "role": "Unclassed",
+      "points": 523.0,
+      "cost": 6.0
+    },
+    {
+      "name": "Mathias Vacek",
+      "cost_per_point": 0.01195219123505976,
+      "role": "Sprinter",
+      "points": 502.0,
+      "cost": 6.0
+    },
+    {
+      "name": "Wout Van Aert",
+      "cost_per_point": 0.015254237288135594,
+      "role": "Sprinter",
+      "points": 1180.0,
+      "cost": 18.0
+    },
+    {
+      "name": "Pau Miquel",
+      "cost_per_point": 0.016,
+      "role": "Sprinter",
+      "points": 375.0,
+      "cost": 6.0
+    },
+    {
+      "name": "Pavel Bittner",
+      "cost_per_point": 0.016877637130801686,
+      "role": "Sprinter",
+      "points": 474.0,
+      "cost": 8.0
+    },
+    {
+      "name": "Kaden Groves",
+      "cost_per_point": 0.01764705882352941,
+      "role": "Sprinter",
+      "points": 680.0,
+      "cost": 12.0
+    },
+    {
+      "name": "Lennert Van Eetvelt",
+      "cost_per_point": 0.019305019305019305,
+      "role": "Climber",
+      "points": 518.0,
+      "cost": 10.0
+    },
+    {
+      "name": "Corbin Strong",
+      "cost_per_point": 0.020050125313283207,
+      "role": "Sprinter",
+      "points": 399.0,
+      "cost": 8.0
+    },
+    {
+      "name": "Florian Lipowitz",
+      "cost_per_point": 0.020618556701030927,
+      "role": "Climber",
+      "points": 388.0,
+      "cost": 8.0
+    },
+    {
+      "name": "Jon Aberasturi",
+      "cost_per_point": 0.020618556701030927,
+      "role": "Sprinter",
+      "points": 291.0,
+      "cost": 6.0
+    },
+    {
+      "name": "Clément Berthet",
+      "cost_per_point": 0.023809523809523808,
+      "role": "Unclassed",
+      "points": 252.0,
+      "cost": 6.0
+    },
+    {
+      "name": "Ben O'Connor",
+      "cost_per_point": 0.023923444976076555,
+      "role": "Climber",
+      "points": 418.0,
+      "cost": 10.0
+    },
+    {
+      "name": "Harold Tejada",
+      "cost_per_point": 0.024390243902439025,
+      "role": "Unclassed",
+      "points": 246.0,
+      "cost": 6.0
+    },
+    {
+      "name": "Brandon McNulty",
+      "cost_per_point": 0.024875621890547265,
+      "role": "All Rounder",
+      "points": 402.0,
+      "cost": 10.0
+    },
+    {
+      "name": "Cristián Rodríguez",
+      "cost_per_point": 0.025,
+      "role": "Climber",
+      "points": 240.0,
+      "cost": 6.0
+    },
+    {
+      "name": "Arne Marit",
+      "cost_per_point": 0.025,
+      "role": "Sprinter",
+      "points": 240.0,
+      "cost": 6.0
+    },
+    {
+      "name": "Antonio Tiberi",
+      "cost_per_point": 0.02680965147453083,
+      "role": "All Rounder",
+      "points": 373.0,
+      "cost": 10.0
+    },
+    {
+      "name": "Marco Frigo",
+      "cost_per_point": 0.0273972602739726,
+      "role": "Unclassed",
+      "points": 219.0,
+      "cost": 6.0
+    },
+    {
+      "name": "Bruno Armirail",
+      "cost_per_point": 0.027649769585253458,
+      "role": "Unclassed",
+      "points": 217.0,
+      "cost": 6.0
+    },
+    {
+      "name": "Edoardo Affini",
+      "cost_per_point": 0.028037383177570093,
+      "role": "Sprinter",
+      "points": 214.0,
+      "cost": 6.0
+    },
+    {
+      "name": "Primož Roglič",
+      "cost_per_point": 0.030573248407643312,
+      "role": "All Rounder",
+      "points": 785.0,
+      "cost": 24.0
+    },
+    {
+      "name": "Antonio Jesús Soto",
+      "cost_per_point": 0.03296703296703297,
+      "role": "Sprinter",
+      "points": 182.0,
+      "cost": 6.0
+    },
+    {
+      "name": "George Bennett",
+      "cost_per_point": 0.03333333333333333,
+      "role": "Unclassed",
+      "points": 180.0,
+      "cost": 6.0
+    },
+    {
+      "name": "Felix Gall",
+      "cost_per_point": 0.03367003367003367,
+      "role": "Climber",
+      "points": 297.0,
+      "cost": 10.0
+    },
+    {
+      "name": "Arjen Livyns",
+      "cost_per_point": 0.034782608695652174,
+      "role": "Unclassed",
+      "points": 115.0,
+      "cost": 4.0
+    },
+    {
+      "name": "Filippo Baroncini",
+      "cost_per_point": 0.03571428571428571,
+      "role": "Unclassed",
+      "points": 168.0,
+      "cost": 6.0
+    },
+    {
+      "name": "Enric Mas",
+      "cost_per_point": 0.037037037037037035,
+      "role": "Climber",
+      "points": 432.0,
+      "cost": 16.0
+    },
+    {
+      "name": "Aleksandr Vlasov",
+      "cost_per_point": 0.037037037037037035,
+      "role": "All Rounder",
+      "points": 270.0,
+      "cost": 10.0
+    },
+    {
+      "name": "Ibon Ruiz",
+      "cost_per_point": 0.03773584905660377,
+      "role": "Unclassed",
+      "points": 106.0,
+      "cost": 4.0
+    },
+    {
+      "name": "Gijs Leemreize",
+      "cost_per_point": 0.0379746835443038,
+      "role": "Unclassed",
+      "points": 158.0,
+      "cost": 6.0
+    },
+    {
+      "name": "Lorenzo Rota",
+      "cost_per_point": 0.03870967741935484,
+      "role": "Unclassed",
+      "points": 155.0,
+      "cost": 6.0
+    },
+    {
+      "name": "Urko Berrade",
+      "cost_per_point": 0.0392156862745098,
+      "role": "Unclassed",
+      "points": 102.0,
+      "cost": 4.0
+    },
+    {
+      "name": "Bryan Coquard",
+      "cost_per_point": 0.04,
+      "role": "Sprinter",
+      "points": 250.0,
+      "cost": 10.0
+    },
+    {
+      "name": "Luca Vergallito",
+      "cost_per_point": 0.04081632653061224,
+      "role": "Unclassed",
+      "points": 98.0,
+      "cost": 4.0
+    },
+    {
+      "name": "Mattias Skjelmose",
+      "cost_per_point": 0.042704626334519574,
+      "role": "All Rounder",
+      "points": 281.0,
+      "cost": 12.0
+    },
+    {
+      "name": "Xabier Isasa",
+      "cost_per_point": 0.044444444444444446,
+      "role": "Unclassed",
+      "points": 90.0,
+      "cost": 4.0
+    },
+    {
+      "name": "Mikel Landa",
+      "cost_per_point": 0.04472843450479233,
+      "role": "Climber",
+      "points": 313.0,
+      "cost": 14.0
+    },
+    {
+      "name": "Quinten Hermans",
+      "cost_per_point": 0.04477611940298507,
+      "role": "Unclassed",
+      "points": 134.0,
+      "cost": 6.0
+    },
+    {
+      "name": "Jack Haig",
+      "cost_per_point": 0.046153846153846156,
+      "role": "Climber",
+      "points": 130.0,
+      "cost": 6.0
+    },
+    {
+      "name": "Mauro Schmid",
+      "cost_per_point": 0.04819277108433735,
+      "role": "Unclassed",
+      "points": 166.0,
+      "cost": 8.0
+    },
+    {
+      "name": "Luis Ángel Maté",
+      "cost_per_point": 0.04838709677419355,
+      "role": "Unclassed",
+      "points": 124.0,
+      "cost": 6.0
+    },
+    {
+      "name": "Pavel Sivakov",
+      "cost_per_point": 0.049079754601226995,
+      "role": "Climber",
+      "points": 163.0,
+      "cost": 8.0
+    },
+    {
+      "name": "João Almeida",
+      "cost_per_point": 0.04926108374384237,
+      "role": "All Rounder",
+      "points": 406.0,
+      "cost": 20.0
+    },
+    {
+      "name": "Gianmarco Garofoli",
+      "cost_per_point": 0.05128205128205128,
+      "role": "Unclassed",
+      "points": 78.0,
+      "cost": 4.0
+    },
+    {
+      "name": "Carlos Canal",
+      "cost_per_point": 0.05309734513274336,
+      "role": "Sprinter",
+      "points": 113.0,
+      "cost": 6.0
+    },
+    {
+      "name": "Quentin Pacher",
+      "cost_per_point": 0.05454545454545454,
+      "role": "Unclassed",
+      "points": 110.0,
+      "cost": 6.0
+    },
+    {
+      "name": "Eddie Dunbar",
+      "cost_per_point": 0.05454545454545454,
+      "role": "All Rounder",
+      "points": 110.0,
+      "cost": 6.0
+    },
+    {
+      "name": "Joshua Tarling",
+      "cost_per_point": 0.05673758865248227,
+      "role": "Unclassed",
+      "points": 141.0,
+      "cost": 8.0
+    },
+    {
+      "name": "Matthew Riccitello",
+      "cost_per_point": 0.05970149253731343,
+      "role": "Climber",
+      "points": 134.0,
+      "cost": 8.0
+    },
+    {
+      "name": "Sylvain Moniquet",
+      "cost_per_point": 0.06315789473684211,
+      "role": "Unclassed",
+      "points": 95.0,
+      "cost": 6.0
+    }
+  ],
+  "league_scores": {
+    "current": [
+      {
+        "name": "Team Name",
+        "points": 3083,
+        "roster": [
+          "João Almeida",
+          "Mattias Skjelmose",
+          "Lennert Van Eetvelt",
+          "Isaac Del Toro",
+          "Wout Van Aert",
+          "Harold Tejada",
+          "Quentin Pacher",
+          "George Bennett",
+          "Thymen Arensman"
+        ]
+      },
+      {
+        "name": "Iberische Halbpinsel",
+        "points": 1536,
+        "roster": [
+          "João Almeida",
+          "Adam Yates",
+          "Mikel Landa",
+          "Max Poole",
+          "Ide Schelling",
+          "Steven Kruijswijk",
+          "Jasha Sütterlin",
+          "Stefan Küng",
+          "Richard Carapaz"
+        ]
+      },
+      {
+        "name": "Team Fiestina",
+        "points": 1529,
+        "roster": [
+          "João Almeida",
+          "Mattias Skjelmose",
+          "Richard Carapaz",
+          "Enric Mas",
+          "Kim Heiduk",
+          "Patrick Konrad",
+          "Jhonatan Narváez",
+          "Julius Van Den Berg",
+          "Isaac Del Toro"
+        ]
+      },
+      {
+        "name": "Ganz anderer Teamname",
+        "points": 1230,
+        "roster": [
+          "Daniel Martínez",
+          "Tao Geoghegan Hart",
+          "Michael Woods",
+          "Sepp Kuss",
+          "Kaden Groves",
+          "Oier Lazkano",
+          "Jhonatan Narváez",
+          "Joshua Tarling",
+          "Giulio Ciccone"
+        ]
+      }
+    ],
+    "history": [
+      {
+        "date": "2024-08-22",
+        "scores": [
+          {
+            "name": "Team Name",
+            "points": 2054
+          },
+          {
+            "name": "Ganz anderer Teamname",
+            "points": 1096
+          },
+          {
+            "name": "Team Fiestina",
+            "points": 1027
+          },
+          {
+            "name": "Iberische Halbpinsel",
+            "points": 1022
+          }
+        ]
+      },
+      {
+        "date": "2024-08-23",
+        "scores": [
+          {
+            "name": "Team Name",
+            "points": 2668,
+            "roster": [
+              "João Almeida",
+              "Mattias Skjelmose",
+              "Lennert Van Eetvelt",
+              "Isaac Del Toro",
+              "Wout Van Aert",
+              "Harold Tejada",
+              "Quentin Pacher",
+              "George Bennett",
+              "Thymen Arensman"
+            ]
+          },
+          {
+            "name": "Iberische Halbpinsel",
+            "points": 1318,
+            "roster": [
+              "João Almeida",
+              "Adam Yates",
+              "Mikel Landa",
+              "Max Poole",
+              "Ide Schelling",
+              "Steven Kruijswijk",
+              "Jasha Sütterlin",
+              "Stefan Küng",
+              "Richard Carapaz"
+            ]
+          },
+          {
+            "name": "Ganz anderer Teamname",
+            "points": 1173,
+            "roster": [
+              "Daniel Martínez",
+              "Tao Geoghegan Hart",
+              "Michael Woods",
+              "Sepp Kuss",
+              "Kaden Groves",
+              "Oier Lazkano",
+              "Jhonatan Narváez",
+              "Joshua Tarling",
+              "Giulio Ciccone"
+            ]
+          },
+          {
+            "name": "Team Fiestina",
+            "points": 1145,
+            "roster": [
+              "João Almeida",
+              "Mattias Skjelmose",
+              "Richard Carapaz",
+              "Enric Mas",
+              "Kim Heiduk",
+              "Patrick Konrad",
+              "Jhonatan Narváez",
+              "Julius Van Den Berg",
+              "Isaac Del Toro"
+            ]
+          }
+        ]
+      },
+      {
+        "date": "2024-08-24",
+        "scores": [
+          {
+            "name": "Team Name",
+            "points": 3083,
+            "roster": [
+              "João Almeida",
+              "Mattias Skjelmose",
+              "Lennert Van Eetvelt",
+              "Isaac Del Toro",
+              "Wout Van Aert",
+              "Harold Tejada",
+              "Quentin Pacher",
+              "George Bennett",
+              "Thymen Arensman"
+            ]
+          },
+          {
+            "name": "Iberische Halbpinsel",
+            "points": 1536,
+            "roster": [
+              "João Almeida",
+              "Adam Yates",
+              "Mikel Landa",
+              "Max Poole",
+              "Ide Schelling",
+              "Steven Kruijswijk",
+              "Jasha Sütterlin",
+              "Stefan Küng",
+              "Richard Carapaz"
+            ]
+          },
+          {
+            "name": "Team Fiestina",
+            "points": 1529,
+            "roster": [
+              "João Almeida",
+              "Mattias Skjelmose",
+              "Richard Carapaz",
+              "Enric Mas",
+              "Kim Heiduk",
+              "Patrick Konrad",
+              "Jhonatan Narváez",
+              "Julius Van Den Berg",
+              "Isaac Del Toro"
+            ]
+          },
+          {
+            "name": "Ganz anderer Teamname",
+            "points": 1230,
+            "roster": [
+              "Daniel Martínez",
+              "Tao Geoghegan Hart",
+              "Michael Woods",
+              "Sepp Kuss",
+              "Kaden Groves",
+              "Oier Lazkano",
+              "Jhonatan Narváez",
+              "Joshua Tarling",
+              "Giulio Ciccone"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "dream_team": {
+    "riders": [
+      {
+        "name": "Primož Roglič",
+        "role": "All Rounder",
+        "cost": 24.0,
+        "points": 785.0,
+        "pointHistory": [
+          {
+            "date": "2024-08-21",
+            "points": 435.0
+          },
+          {
+            "date": "2024-08-22",
+            "points": 471.0
+          },
+          {
+            "date": "2024-08-23",
+            "points": 519.0
+          },
+          {
+            "date": "2024-08-24",
+            "points": 785.0
+          }
+        ]
+      },
+      {
+        "name": "Wout Van Aert",
+        "role": "Sprinter",
+        "cost": 18.0,
+        "points": 1180.0,
+        "pointHistory": [
+          {
+            "date": "2024-08-21",
+            "points": 912.0
+          },
+          {
+            "date": "2024-08-22",
+            "points": 924.0
+          },
+          {
+            "date": "2024-08-23",
+            "points": 1168.0
+          },
+          {
+            "date": "2024-08-24",
+            "points": 1180.0
+          }
+        ]
+      },
+      {
+        "name": "Kaden Groves",
+        "role": "Sprinter",
+        "cost": 12.0,
+        "points": 680.0,
+        "pointHistory": [
+          {
+            "date": "2024-08-21",
+            "points": 640.0
+          },
+          {
+            "date": "2024-08-22",
+            "points": 648.0
+          },
+          {
+            "date": "2024-08-23",
+            "points": 672.0
+          },
+          {
+            "date": "2024-08-24",
+            "points": 680.0
+          }
+        ]
+      },
+      {
+        "name": "Lennert Van Eetvelt",
+        "role": "Climber",
+        "cost": 10.0,
+        "points": 518.0,
+        "pointHistory": [
+          {
+            "date": "2024-08-21",
+            "points": 344.0
+          },
+          {
+            "date": "2024-08-22",
+            "points": 369.0
+          },
+          {
+            "date": "2024-08-23",
+            "points": 433.0
+          },
+          {
+            "date": "2024-08-24",
+            "points": 518.0
+          }
+        ]
+      },
+      {
+        "name": "Brandon McNulty",
+        "role": "All Rounder",
+        "cost": 10.0,
+        "points": 402.0,
+        "pointHistory": [
+          {
+            "date": "2024-08-21",
+            "points": 388.0
+          },
+          {
+            "date": "2024-08-22",
+            "points": 394.0
+          },
+          {
+            "date": "2024-08-23",
+            "points": 400.0
+          },
+          {
+            "date": "2024-08-24",
+            "points": 402.0
+          }
+        ]
+      },
+      {
+        "name": "Florian Lipowitz",
+        "role": "Climber",
+        "cost": 8.0,
+        "points": 388.0,
+        "pointHistory": [
+          {
+            "date": "2024-08-21",
+            "points": 102.0
+          },
+          {
+            "date": "2024-08-22",
+            "points": 306.0
+          },
+          {
+            "date": "2024-08-23",
+            "points": 325.0
+          },
+          {
+            "date": "2024-08-24",
+            "points": 388.0
+          }
+        ]
+      },
+      {
+        "name": "Harold Tejada",
+        "role": "Unclassed",
+        "cost": 6.0,
+        "points": 246.0,
+        "pointHistory": [
+          {
+            "date": "2024-08-21",
+            "points": 0.0
+          },
+          {
+            "date": "2024-08-22",
+            "points": 25.0
+          },
+          {
+            "date": "2024-08-23",
+            "points": 105.0
+          },
+          {
+            "date": "2024-08-24",
+            "points": 246.0
+          }
+        ]
+      },
+      {
+        "name": "Clément Berthet",
+        "role": "Unclassed",
+        "cost": 6.0,
+        "points": 252.0,
+        "pointHistory": [
+          {
+            "date": "2024-08-21",
+            "points": 4.0
+          },
+          {
+            "date": "2024-08-22",
+            "points": 210.0
+          },
+          {
+            "date": "2024-08-23",
+            "points": 236.0
+          },
+          {
+            "date": "2024-08-24",
+            "points": 252.0
+          }
+        ]
+      },
+      {
+        "name": "Stefan Küng",
+        "role": "Unclassed",
+        "cost": 6.0,
+        "points": 523.0,
+        "pointHistory": [
+          {
+            "date": "2024-08-21",
+            "points": 380.0
+          },
+          {
+            "date": "2024-08-22",
+            "points": 380.0
+          },
+          {
+            "date": "2024-08-23",
+            "points": 522.0
+          },
+          {
+            "date": "2024-08-24",
+            "points": 523.0
+          }
+        ]
+      }
+    ],
+    "total_points": 4974.0,
+    "total_cost": 100.0
+  },
+  "last_update": "2024-08-24",
+  "mvp_history": [
+    {
+      "name": "Wout Van Aert",
+      "points_added": 244.0,
+      "date": "2024-08-23"
+    },
+    {
+      "name": "Primož Roglič",
+      "points_added": 266.0,
+      "date": "2024-08-24"
+    }
+  ],
+  "mip_history": [
+    {
+      "name": "Quentin Pacher",
+      "percentage_increase": 110.0,
+      "date": "2024-08-23",
+      "from_zero": true
+    },
+    {
+      "name": "Ion Izagirre",
+      "percentage_increase": 36.0,
+      "date": "2024-08-24",
+      "from_zero": true
+    }
+  ]
 }
-
 function generateNewsContent() {
     let newsHtml = '';
 

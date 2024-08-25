@@ -1647,13 +1647,24 @@ function displayTeamPointsVsCostChart() {
     const minEfficiency = Math.min(...efficiencies);
     const maxEfficiency = Math.max(...efficiencies);
 
+    // Calculate axis ranges with padding
+    const costs = teamData.map(team => team.cost);
+    const points = teamData.map(team => team.points);
+    const minCost = Math.min(...costs);
+    const maxCost = Math.max(...costs);
+    const minPoints = Math.min(...points);
+    const maxPoints = Math.max(...points);
+    const costRange = maxCost - minCost;
+    const pointsRange = maxPoints - minPoints;
+    const padding = 0.1; // 10% padding
+
     const trace = {
         x: teamData.map(team => team.cost),
         y: teamData.map(team => team.points),
         mode: 'markers+text',
         type: 'scatter',
         marker: {
-            size: 14,
+            size: 12, // Slightly smaller markers
             color: teamData.map(team => team.efficiency),
             colorscale: 'Viridis',
             colorbar: {
@@ -1674,7 +1685,7 @@ function displayTeamPointsVsCostChart() {
         textposition: 'top center',
         textfont: {
             family: 'VT323, monospace',
-            size: 10,
+            size: 9, // Smaller font size
             color: '#000000'
         },
         hoverinfo: 'text',
@@ -1701,7 +1712,9 @@ function displayTeamPointsVsCostChart() {
                 family: 'VT323, monospace',
                 size: 14,
                 color: '#000000'
-            }
+            },
+            range: [minCost - padding * costRange, maxCost + padding * costRange],
+            fixedrange: true // Fixed x-axis scale
         },
         yaxis: {
             title: 'Team Points',
@@ -1709,7 +1722,9 @@ function displayTeamPointsVsCostChart() {
                 family: 'VT323, monospace',
                 size: 14,
                 color: '#000000'
-            }
+            },
+            range: [minPoints - padding * pointsRange, maxPoints + padding * pointsRange],
+            fixedrange: true // Fixed y-axis scale
         },
         paper_bgcolor: '#FFF0F5',
         plot_bgcolor: '#FFF0F5',
@@ -1718,12 +1733,17 @@ function displayTeamPointsVsCostChart() {
             color: '#000000'
         },
         hovermode: 'closest',
-        showlegend: false
+        showlegend: false,
+        margin: {t: 50, r: 50, b: 50, l: 50}, // Adjusted margins
+        autosize: false,
+        width: 600,  // Fixed width
+        height: 400  // Fixed height
     };
 
     const config = {
         responsive: true,
         displayModeBar: false,
+        scrollZoom: false // Disable scroll zoom
     };
 
     createResponsiveChart('teamPointsVsCostChart', [trace], layout, config);

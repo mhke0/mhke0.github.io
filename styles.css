@@ -2,7 +2,7 @@
 
 :root {
     --primary-color: #ff1493;
-    --secondary-color: #000000;
+    --secondary-color: #00ffff;
     --background-color: #ffffff;
     --box-background-color: #fff0f5;
     --border-color: #ff69b4;
@@ -58,8 +58,9 @@ h1, h2 {
     border-radius: 5px;
     box-sizing: border-box;
 }
+
 #cyclistTable {
-padding: 20px;    
+    padding: 20px;    
 }
 
 .chart-container {
@@ -328,19 +329,16 @@ tr:nth-child(odd) {
     font-weight: bold;
 }
 
-
-/* Existing styles... */
-
 .team-roster-container {
     width: 100%;
 }
 
 #cyclingTeamRosterDisplay {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);  /* Changed from repeat(3, 1fr) to repeat(4, 1fr) */
+    grid-template-columns: repeat(4, 1fr);
     gap: 15px;
-    max-width: 1200px;  /* Increased from 900px to accommodate the wider layout */
-    margin: 0 auto 20px; /* Added bottom margin */
+    max-width: 1200px;
+    margin: 0 auto 20px;
 }
 
 .rider-card {
@@ -367,7 +365,6 @@ tr:nth-child(odd) {
     margin: 2px 0;
     font-size: 14px;
 }
-
 
 .roster-header {
     display: flex;
@@ -468,95 +465,6 @@ tr:nth-child(odd) {
     margin-bottom: 20px;
 }
 
-@media screen and (max-width: 768px) {
-    body {
-        padding: 10px;
-        font-size: 16px;
-    }
-
-    h1 {
-        font-size: 24px;
-    }
-
-    .tab button {
-        padding: 10px;
-        font-size: 16px;
-    }
-
-    .chart-container {
-        height: 400px;
-    }
-
-    .chart-legend-container {
-        flex-direction: column;
-    }
-
-    .legend-container, .info-box, .balanced-team-box, .info-box-mvp {
-        width: 100%;
-        margin-top: 0px;
-    }
-
-    .legend-container {
-        height: 200px;
-    }
-
-    .roster-grid, #teamRosterDisplay {
-        grid-template-columns: 1fr;
-    }
-
-    .balanced-teams-container, .mvp-mip-container {
-        flex-direction: column;
-    }
-
-    .stat-box, .balanced-team-box, .info-box-mvp {
-        width: 100%;
-        margin-bottom: 20px;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .tab button {
-        width: 100%;
-    }
-
-    .chart-container {
-        height: 300px;
-    }
-
-    .roster-card, .rider-card {
-        padding: 5px;
-    }
-
-    .roster-card h4, .rider-card h4 {
-        font-size: 16px;
-    }
-
-    .roster-card li, .rider-card p {
-        font-size: 14px;
-    }
-
-    #teamSelect {
-        font-size: 14px;
-    }
-}
-@media screen and (max-width: 1024px) {  /* Added a new breakpoint for tablets and smaller desktops */
-    #cyclingTeamRosterDisplay {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-@media screen and (max-width: 768px) {
-    #cyclingTeamRosterDisplay {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media screen and (max-width: 480px) {
-    #cyclingTeamRosterDisplay {
-        grid-template-columns: 1fr;
-    }
-}
-
 /* News Tab Styles */
 #News {
     padding: 20px;
@@ -640,25 +548,29 @@ tr:nth-child(odd) {
     color: var(--secondary-color);
 }
 
-@media screen and (max-width: 768px) {
-    #News {
-        padding: 10px;
-    }
+/* News Tab Updated Styles */
+.news-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
 
-    .news-section {
-        padding: 10px;
-    }
+.news-column {
+    width: 48%;
+}
 
-    .news-standings li,
-    .news-achievements p,
-    .news-top-riders li {
-        flex-direction: column;
-        align-items: flex-start;
-    }
+.news-score-changes ol {
+    padding-left: 20px;
+}
 
-    .news-standings .team-points,
-    .news-achievements .achievement-value,
-    .news-top-riders .rider-details {
-        margin-top: 5px;
-    }
+.news-score-changes li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.news-score-changes .team-name {
+    font-weight: bold;
+    color: var(--primary-color);
 }

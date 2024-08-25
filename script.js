@@ -1,5 +1,7 @@
 let leagueData;
 let cyclistData;
+let globalTeamColors = {};
+
 // Define a common color scheme function
 
 function getColorForRole(role) {
@@ -1868,9 +1870,10 @@ function displayAllTeamsComparison() {
     createResponsiveChart('allTeamsComparisonChart', [trace], layout);
 }
 function getTeamColors(teamNames) {
-    const teamColors = {};
-    teamNames.forEach((team, index) => {
-        teamColors[team] = customColorScheme[index % customColorScheme.length];
+    teamNames.forEach(team => {
+        if (!globalTeamColors[team]) {
+            globalTeamColors[team] = customColorScheme[Object.keys(globalTeamColors).length % customColorScheme.length];
+        }
     });
-    return teamColors;
+    return globalTeamColors;
 }

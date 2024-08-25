@@ -1447,3 +1447,45 @@ function createLatestPointsUpdateChart() {
 
     createResponsiveChart('latestPointsUpdateChart', [trace], layout);
 }
+function generateNewsContent() {
+    let newsHtml = '<h2>Velo News</h2>';
+
+    // Latest Standings
+    newsHtml += '<h3>Latest Standings</h3>';
+    if (cyclistData && cyclistData.league_scores && cyclistData.league_scores.current) {
+        const standings = cyclistData.league_scores.current.sort((a, b) => b.points - a.points).slice(0, 5);
+        newsHtml += '<ol>';
+        standings.forEach(team => {
+            newsHtml += `<li>${team.name}: ${team.points} points</li>`;
+        });
+        newsHtml += '</ol>';
+    } else {
+        newsHtml += '<p>Standings data not available.</p>';
+    }
+
+    // Most Recent MVP and MIP
+    newsHtml += '<h3>Recent Achievements</h3>';
+    if (cyclistData && cyclistData.mvp_history && cyclistData.mvp_history.length > 0) {
+        const mvp = cyclistData.mvp_history[cyclistData.mvp_history.length - 1];
+        newsHtml += `<p><strong>MVP:</strong> ${mvp.name} (${mvp.points_added.toFixed(2)} points added)</p>`;
+    }
+    if (cyclistData && cyclistData.mip_history && cyclistData.mip_history.length > 0) {
+        const mip = cyclistData.mip_history[cyclistData.mip_history.length - 1];
+        newsHtml += `<p><strong>MIP:</strong> ${mip.name} (${mip.percentage_increase.toFixed(2)}% increase)</p>`;
+    }
+
+    // Top 10 Riders
+    newsHtml += '<h3>Top 10 Riders</h3>';
+    if (cyclistData && cyclistData.cyclists) {
+        const top10 = cyclistData.cyclists.sort((a, b) => b.points - a.points).slice(0, 10);
+        newsHtml += '<ol>';
+        top10.forEach(rider => {
+            newsHtml += `<li>${rider.name}: ${rider.points} points (${rider.team})</li>`;
+        });
+        newsHtml += '</ol>';
+    } else {
+        newsHtml += '<p>Rider data not available.</p>';
+    }
+
+    document.getElementById('News').innerHTML = newsHtml;
+}

@@ -1449,19 +1449,21 @@ function createLatestPointsUpdateChart() {
 
 
 function generateNewsContent() {
-    let newsHtml = '<h2>Velo News</h2>';
 
     // First row with two columns
     newsHtml += '<div class="news-row">';
+
+    let standings = [];
+    if (cyclistData && cyclistData.league_scores && cyclistData.league_scores.current) {
+        standings = cyclistData.league_scores.current.sort((a, b) => b.points - a.points);
+    }
 
     // Latest Standings (left column)
     newsHtml += '<div class="news-column">';
     newsHtml += '<div class="news-section news-standings">';
     newsHtml += '<h3>Overall Standings</h3>';
-    if (cyclistData && cyclistData.league_scores && cyclistData.league_scores.current) {
-        const standings = cyclistData.league_scores.current.sort((a, b) => b.points - a.points).slice(0, 5);
-        newsHtml += '<ol>';
-        standings.forEach(team => {
+    if (standings.length > 0) {
+        standings.slice(0, 5).forEach(team => {
             newsHtml += `<li><span class="team-name">${team.name}</span><span class="team-points">${team.points} points</span></li>`;
         });
         newsHtml += '</ol>';
@@ -1485,10 +1487,15 @@ function generateNewsContent() {
                 name: latest.name,
                 change: latest.points - (previous ? previous.points : 0)
             };
-        }).sort((a, b) => b.change - a.change);
+        });
+
+        // Sort score changes to match the order of overall standings
+        const sortedScoreChanges = standings.map(team => 
+            scoreChanges.find(change => change.name === team.name)
+        ).filter(change => change !== undefined);
 
         newsHtml += '<ol>';
-        scoreChanges.slice(0, 5).forEach(team => {
+        sortedScoreChanges.slice(0, 5).forEach(team => {
             const changeClass = team.change >= 0 ? 'positive-change' : 'negative-change';
             const changeSymbol = team.change >= 0 ? '+' : '';
             newsHtml += `<li><span class="team-name">${team.name}</span><span class="team-change ${changeClass}">${changeSymbol}${team.change} points</span></li>`;

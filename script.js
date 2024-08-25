@@ -2125,3 +2125,82 @@ function toggleRiskExplanation() {
         button.textContent = 'Risk Calculation Info';
     }
 }
+function displayTeamOverallRisk() {
+    const teams = {};
+    cyclistData.cyclists.forEach(cyclist => {
+        if (!teams[cyclist.team]) {
+            teams[cyclist.team] = [];
+        }
+        teams[cyclist.team].push(cyclist);
+    });
+
+    const teamRisks = Object.entries(teams).map(([teamName, riders]) => {
+        const teamRisks = riders.map(rider => calculateRiderRisk(rider.name).overallRisk);
+        const avgRisk = teamRisks.reduce((sum, risk) => sum + risk, 0) / teamRisks.length;
+        return { team: teamName, risk: avgRisk };
+    });
+
+    teamRisks.sort((a, b) => b.risk - a.risk);
+
+    const trace = {
+        x: teamRisks.map(t => t.team),
+        y: teamRisks.map(t => t.risk),
+        type: 'bar',
+        marker: {
+            color: teamRisks.map(t => {
+                if (t.risk < 0.8) return 'green';
+                if (t.risk < 1.2) return 'yellow';
+                return 'red';
+            }),
+            line: {
+                color: '#FF69B4',
+                width: 1.5
+            }
+        },
+        text: teamRisks.map(t => t.risk.toFixed(2)),
+        textposition: 'auto',
+        hoverinfo: 'text',
+        hovertext: teamRisks.map(t => 
+            `${t.team}<br>` +
+            `Overall Risk: ${t.risk.toFixed(2)}`
+        )
+    };
+
+    const layout = {
+        title: {
+            text: 'Team Overall Risk (Average Risk of Riders)',
+            font: {
+                family: 'VT323, monospace',
+                size: 24,
+                color: '#FF1493'
+            }
+        },
+        xaxis: {
+            title: 'Teams',
+            tickangle: -45,
+            tickfont: {
+                family: 'VT323, monospace',
+                size: 12,
+                color: '#000000'
+            }
+        },
+        yaxis: {
+            title: 'Risk Score',
+            tickfont: {
+                family: 'VT323, monospace',
+                size: 14,
+                color: '#000000'
+            }
+        },
+        paper_bgcolor: '#FFF0F5',
+        plot_bgcolor: '#FFF0F5',
+        font: {
+            family: 'VT323, monospace',
+            color: '#000000'
+        },
+        autosize: true,
+        margin: {t: 50, r: 50, b: 100, l: 50},
+    };
+
+    createResponsiveChart('teamOverallRiskChart', [trace], layout);
+}

@@ -1300,55 +1300,7 @@ function displayTeamPointsDistribution(teamRiders) {
   createResponsiveChart('teamPointsDistributionChart', [trace], layout);
 }
 
-function displayAllTeamsComparison() {
-    const teams = {};
-    cyclistData.cyclists.forEach(cyclist => {
-        if (!teams[cyclist.team]) {
-            teams[cyclist.team] = 0;
-        }
-        teams[cyclist.team] += cyclist.points;
-    });
 
-    const sortedTeams = Object.entries(teams).sort((a, b) => b[1] - a[1]);
-
-    const trace = {
-        x: sortedTeams.map(team => team[0]),
-        y: sortedTeams.map(team => team[1]),
-        type: 'bar',
-        marker: {
-            color: customColorScheme,
-            line: {
-                color: '#FF69B4', // Hot Pink for bar outlines
-                width: 1.5
-            }
-        },
-        text: sortedTeams.map(team => `${team[1]} points`),
-        textposition: 'auto',
-        hoverinfo: 'text',
-        hovertext: sortedTeams.map(team => `${team[0]}<br>${team[1]} points`)
-    };
-
-    const layout = {
-        title: {
-            text: 'Total Points Comparison Across All Teams',
-            font: {
-                family: 'VT323, monospace',
-                color: '#ff1493'
-            }
-        },
-        xaxis: {
-            title: '',
-            tickangle: -45,
-        },
-        yaxis: {
-            title: 'Total Points',
-        },
-        paper_bgcolor: '#fff0f5',
-        plot_bgcolor: '#fff0f5',
-    };
-
-    createResponsiveChart('allTeamsComparisonChart', [trace], layout);
-}
 function makeTableResponsive() {
     const table = document.getElementById('cyclistTable');
     const headerRow = table.querySelector('thead tr');
@@ -1573,16 +1525,17 @@ function displayTeamCostsChart() {
     });
 
     const sortedTeams = Object.entries(teams).sort((a, b) => b[1] - a[1]);
-
+    const teamNames = sortedTeams.map(team => team[0]);
+    const teamColors = getTeamColors(teamNames);
 
     const trace = {
-        x: sortedTeams.map(team => team[0]),
+        x: teamNames,
         y: sortedTeams.map(team => team[1]),
         type: 'bar',
         marker: {
-            color: customColorScheme,
+            color: teamNames.map(team => teamColors[team]),
             line: {
-                color: '#FF69B4', // Hot Pink for bar outlines
+                color: '#FF69B4',
                 width: 1.5
             }
         },
@@ -1597,7 +1550,7 @@ function displayTeamCostsChart() {
             text: 'Total Team Costs',
             font: {
                 family: 'VT323, monospace',
-                color: '#FF1493' // Deep Pink for title
+                color: '#FF1493'
             }
         },
         xaxis: {
@@ -1605,21 +1558,21 @@ function displayTeamCostsChart() {
             tickangle: -45,
             tickfont: {
                 family: 'VT323, monospace',
-                color: '#FF1493' // Black for axis labels
+                color: '#FF1493'
             }
         },
         yaxis: {
             title: 'Total Cost (Credits)',
             tickfont: {
                 family: 'VT323, monospace',
-                color: '#FF1493' // Black for axis labels
+                color: '#FF1493'
             }
         },
-        paper_bgcolor: '#FFF0F5', // Lavender Blush for background
-        plot_bgcolor: '#FFF0F5', // Lavender Blush for plot area
+        paper_bgcolor: '#FFF0F5',
+        plot_bgcolor: '#FFF0F5',
         font: {
             family: 'VT323, monospace',
-            color: '#000000' // Black for general text
+            color: '#000000'
         }
     };
 
@@ -1802,15 +1755,17 @@ function displayTeamEfficiencyChart() {
     }));
 
     teamData.sort((a, b) => b.efficiency - a.efficiency);
+    const teamNames = teamData.map(team => team.name);
+    const teamColors = getTeamColors(teamNames);
 
     const trace = {
-        x: teamData.map(team => team.name),
+        x: teamNames,
         y: teamData.map(team => team.efficiency),
         type: 'bar',
         marker: {
-            color: customColorScheme,
+            color: teamNames.map(team => teamColors[team]),
             line: {
-                color: '#FF69B4', // Hot Pink for bar outlines
+                color: '#FF69B4',
                 width: 1.5
             }
         },
@@ -1856,13 +1811,66 @@ function displayTeamEfficiencyChart() {
             color: '#000000'
         },
         autosize: true,
-        margin: {t: 50, r: 50, b: 100, l: 50}, // Increased bottom margin for rotated x-axis labels
+        margin: {t: 50, r: 50, b: 100, l: 50},
     };
 
-    const config = {
-        responsive: true,
-        displayModeBar: false,
+    createResponsiveChart('teamEfficiencyChart', [trace], layout);
+}
+function displayAllTeamsComparison() {
+    const teams = {};
+    cyclistData.cyclists.forEach(cyclist => {
+        if (!teams[cyclist.team]) {
+            teams[cyclist.team] = 0;
+        }
+        teams[cyclist.team] += cyclist.points;
+    });
+
+    const sortedTeams = Object.entries(teams).sort((a, b) => b[1] - a[1]);
+    const teamNames = sortedTeams.map(team => team[0]);
+    const teamColors = getTeamColors(teamNames);
+
+    const trace = {
+        x: teamNames,
+        y: sortedTeams.map(team => team[1]),
+        type: 'bar',
+        marker: {
+            color: teamNames.map(team => teamColors[team]),
+            line: {
+                color: '#FF69B4',
+                width: 1.5
+            }
+        },
+        text: sortedTeams.map(team => `${team[1]} points`),
+        textposition: 'auto',
+        hoverinfo: 'text',
+        hovertext: sortedTeams.map(team => `${team[0]}<br>${team[1]} points`)
     };
 
-    createResponsiveChart('teamEfficiencyChart', [trace], layout, config);
+    const layout = {
+        title: {
+            text: 'Total Points Comparison Across All Teams',
+            font: {
+                family: 'VT323, monospace',
+                color: '#ff1493'
+            }
+        },
+        xaxis: {
+            title: 'Teams',
+            tickangle: -45,
+        },
+        yaxis: {
+            title: 'Total Points',
+        },
+        paper_bgcolor: '#fff0f5',
+        plot_bgcolor: '#fff0f5',
+    };
+
+    createResponsiveChart('allTeamsComparisonChart', [trace], layout);
+}
+function getTeamColors(teamNames) {
+    const teamColors = {};
+    teamNames.forEach((team, index) => {
+        teamColors[team] = customColorScheme[index % customColorScheme.length];
+    });
+    return teamColors;
 }

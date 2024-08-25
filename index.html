@@ -188,16 +188,19 @@
         <p><strong>Interpretation:</strong> Values > 1 indicate recent underperformance, increasing risk.</p>
     </div>
 
-    <div class="risk-factor">
+   <div class="risk-factor">
         <h3>5. Role-based Risk</h3>
-        <p><strong>Purpose:</strong> Assigns a base risk level to different rider roles.</p>
-        <p><strong>Calculation:</strong> Use a predefined risk factor for each role.</p>
+        <p><strong>Purpose:</strong> Assesses the risk based on the average performance of riders in each role.</p>
+        <p><strong>Calculation:</strong></p>
+        <ol>
+            <li>Calculate the mean points per rider across all cyclists.</li>
+            <li>Calculate the mean points per rider for each specific role.</li>
+            <li>Divide the overall mean points by the role-specific mean points.</li>
+        </ol>
         <p><strong>Interpretation:</strong></p>
         <ul>
-            <li>All Rounders: Lowest risk (0.8)</li>
-            <li>Climbers: Medium risk (1.0)</li>
-            <li>Sprinters: Higher risk (1.2)</li>
-            <li>Unclassed: Highest risk (1.5)</li>
+            <li>Values < 1 indicate that the role typically scores more points than average (lower risk).</li>
+            <li>Values > 1 indicate that the role typically scores fewer points than average (higher risk).</li>
         </ul>
     </div>
 

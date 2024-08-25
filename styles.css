@@ -773,4 +773,31 @@ tr:nth-child(odd) {
         height: 250px;
     }
 }
+.info-button-container {
+    text-align: right;
+    margin-bottom: 10px;
+}
 
+.info-button {
+    background-color: #FF69B4;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'VT323', monospace;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.info-button:hover {
+    background-color: #FF1493;
+}
+
+#riskExplanationContainer {
+    margin-top: 20px;
+    border: 2px solid #FF69B4;
+    border-radius: 5px;
+    padding: 20px;
+    background-color: #FFF0F5;
+}

@@ -2010,6 +2010,7 @@ function displayRiskAssessmentTable(riskData) {
                     <th>Role</th>
                     <th>Cost</th>
                     <th>Points</th>
+                    <th>Ownership %</th>
                 </tr>
             </thead>
             <tbody>
@@ -2024,9 +2025,10 @@ function displayRiskAssessmentTable(riskData) {
                 <td>${r.ownershipRisk.toFixed(2)}</td>
                 <td>${r.consistencyRisk.toFixed(2)}</td>
                 <td>${r.trendRisk.toFixed(2)}</td>
-                <td>${r.roleRisk.toFixed(2)}</td>
+                <td>${r.role}</td>
                 <td>${r.cost}</td>
                 <td>${r.points}</td>
+                <td>${r.ownership}%</td>
             </tr>
         `;
     });
@@ -2046,8 +2048,9 @@ function calculateRiderRisk(riderName) {
     }
 
     // Factor 1: Cost Efficiency Risk
-    const avgCostPerPoint = cyclistData.cyclists.reduce((sum, c) => sum + (c.cost / c.points), 0) / cyclistData.cyclists.length;
-    const costEfficiencyRisk = (rider.cost / rider.points) / avgCostPerPoint;
+    const avgCostPerPoint = cyclistData.cyclists.reduce((sum, c) => sum + (c.cost / Math.max(c.points, 1)), 0) / cyclistData.cyclists.length;
+    const riderCostPerPoint = rider.cost / Math.max(rider.points, 1);
+    const costEfficiencyRisk = riderCostPerPoint / avgCostPerPoint;
 
     // Factor 2: Ownership Risk (higher ownership = lower risk)
     const maxOwnership = Math.max(...cyclistData.cyclists.map(c => c.ownership));
@@ -2058,12 +2061,12 @@ function calculateRiderRisk(riderName) {
     const avgPoints = pointHistory.reduce((sum, points) => sum + points, 0) / pointHistory.length;
     const variance = pointHistory.reduce((sum, points) => sum + Math.pow(points - avgPoints, 2), 0) / pointHistory.length;
     const standardDeviation = Math.sqrt(variance);
-    const consistencyRisk = standardDeviation / avgPoints;
+    const consistencyRisk = standardDeviation / Math.max(avgPoints, 1);
 
     // Factor 4: Recent Performance Trend
     const recentPerformance = pointHistory.slice(-3); // Last 3 performances
     const trend = recentPerformance.reduce((sum, points, index) => sum + points * (index + 1), 0) / 6; // Weighted sum
-    const trendRisk = avgPoints / trend; // Lower if recent performance is better than average
+    const trendRisk = avgPoints / Math.max(trend, 1); // Lower if recent performance is better than average
 
     // Factor 5: Role-based Risk
     const roleFactor = {

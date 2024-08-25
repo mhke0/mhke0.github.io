@@ -662,7 +662,7 @@ tr:nth-child(odd) {
     flex-grow: 1;
     margin-right: 10px;
 }
-.team-name,
+
 .news-date{
     color: #000000;
 }
@@ -671,7 +671,9 @@ tr:nth-child(odd) {
 .rider-details {
     text-align: right;
 }
-
+.rider-details {
+    color: #000000
+}
 .positive-change {
     color: #32CD32;
 }

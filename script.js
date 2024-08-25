@@ -12,9 +12,17 @@ function getColorForRole(role) {
     }
 }
 const customColorScheme = [
-    '#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd',
-    '#8c564b', '#e377c2', '#7f7f7f', '#bcbd22', '#17becf'
-];
+        '#FFB6C1', // Light Pink
+        '#FFD1DC', // Pale Pink
+        '#FFA07A', // Light Salmon
+        '#FFDAB9', // Peach Puff
+        '#F0E68C', // Khaki
+        '#E6E6FA', // Lavender
+        '#B0E0E6', // Powder Blue
+        '#98FB98', // Pale Green
+        '#DDA0DD', // Plum
+        '#FFDAB9'  // Peach Puff (repeated for more colors if needed)
+    ];
 
 function createRoleChart(roles) {
     const ctx = document.getElementById('roleChart').getContext('2d');
@@ -1565,12 +1573,30 @@ function displayTeamCostsChart() {
 
     const sortedTeams = Object.entries(teams).sort((a, b) => b[1] - a[1]);
 
+    // Define a pastel color palette
+    const pastelColors = [
+        '#FFB6C1', // Light Pink
+        '#FFD1DC', // Pale Pink
+        '#FFA07A', // Light Salmon
+        '#FFDAB9', // Peach Puff
+        '#F0E68C', // Khaki
+        '#E6E6FA', // Lavender
+        '#B0E0E6', // Powder Blue
+        '#98FB98', // Pale Green
+        '#DDA0DD', // Plum
+        '#FFDAB9'  // Peach Puff (repeated for more colors if needed)
+    ];
+
     const trace = {
         x: sortedTeams.map(team => team[0]),
         y: sortedTeams.map(team => team[1]),
         type: 'bar',
         marker: {
-            color: sortedTeams.map((team, index) => `hsl(${index * 360 / sortedTeams.length}, 70%, 50%)`),
+            color: pastelColors,
+            line: {
+                color: '#FF69B4', // Hot Pink for bar outlines
+                width: 1.5
+            }
         },
         text: sortedTeams.map(team => `${team[1].toFixed(2)} credits`),
         textposition: 'auto',
@@ -1583,18 +1609,30 @@ function displayTeamCostsChart() {
             text: 'Total Team Costs',
             font: {
                 family: 'VT323, monospace',
-                color: '#ff1493'
+                color: '#FF1493' // Deep Pink for title
             }
         },
         xaxis: {
             title: 'Teams',
             tickangle: -45,
+            tickfont: {
+                family: 'VT323, monospace',
+                color: '#000000' // Black for axis labels
+            }
         },
         yaxis: {
             title: 'Total Cost (Credits)',
+            tickfont: {
+                family: 'VT323, monospace',
+                color: '#000000' // Black for axis labels
+            }
         },
-        paper_bgcolor: '#fff0f5',
-        plot_bgcolor: '#fff0f5',
+        paper_bgcolor: '#FFF0F5', // Lavender Blush for background
+        plot_bgcolor: '#FFF0F5', // Lavender Blush for plot area
+        font: {
+            family: 'VT323, monospace',
+            color: '#000000' // Black for general text
+        }
     };
 
     createResponsiveChart('teamCostsChart', [trace], layout);

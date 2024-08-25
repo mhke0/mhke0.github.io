@@ -910,6 +910,9 @@ function openTab(evt, tabName) {
         createLatestPointsUpdateChart();
     } else if (tabName === 'TeamsTab') {
         loadDefaultCyclingTeamChart();
+        displayAllTeamsComparison();
+        displayTeamCostsChart(); // Add this line
+
     }
 }
 

@@ -904,17 +904,15 @@ function openTab(evt, tabName) {
         evt.currentTarget.className += " active";
     }
 
-    if (tabName === 'RiderTrajectoryTab') {
+    if (tabName === 'News') {
+        generateNewsContent();
+    } else if (tabName === 'RiderTrajectoryTab') {
         updateTrajectoryChart();
-    }
-
-    if (tabName === 'LeagueScoresTab') {
+    } else if (tabName === 'LeagueScoresTab') {
         loadDefaultLeagueTeamChart();
         createLeagueStandingsChart();
-        createLatestPointsUpdateChart(); // Add this line
-    }
-
-    if (tabName === 'TeamsTab') {
+        createLatestPointsUpdateChart();
+    } else if (tabName === 'TeamsTab') {
         loadDefaultCyclingTeamChart();
     }
 }

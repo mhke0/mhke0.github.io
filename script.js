@@ -336,8 +336,10 @@ $(document).ready(function() {
                 </tr>
             `);
         });
-            // Call this function after the table is populated
-            makeTableResponsive();
+
+        // Call this function after the table is populated
+        makeTableResponsive();
+        
         const avgCost = (totalCost / cyclists.length).toFixed(2);
         const avgPoints = (totalPoints / cyclists.length).toFixed(2);
 
@@ -364,9 +366,6 @@ $(document).ready(function() {
         createCostVsPointsChart(top50Cyclists);
         createLeagueStandingsChart();
 
-        // Store cyclist data globally
-        cyclistData = data;
-
         // Initialize the cycling team select dropdown
         initializeCyclingTeamSelect();
 
@@ -382,16 +381,18 @@ $(document).ready(function() {
 
         // Initialize the trajectory chart with top 10 riders
         updateTrajectoryChart();
+
+        // Generate the news content
         generateNewsContent();
 
-        // Open the default tab
+        // Open the News tab by default
         document.getElementById("defaultOpen").click();
+
     }).fail(function(jqxhr, textStatus, error) {
         $('#loading').hide();
         $('#error').text("Error fetching data: " + error).show();
     });
 });
-
 
 
 function createTop50Chart(top50Cyclists) {
@@ -886,25 +887,19 @@ function updateTrajectoryChart() {
 }
 
 function openTab(evt, tabName) {
-    var tabcontent = document.getElementsByClassName("tabcontent");
-    for (var i = 0; i < tabcontent.length; i++) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = "none";
     }
-
-    var tablinks = document.getElementsByClassName("tablinks");
-    for (var i = 0; i < tablinks.length; i++) {
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
         tablinks[i].className = tablinks[i].className.replace(" active", "");
     }
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " active";
 
-    var selectedTab = document.getElementById(tabName);
-    if (selectedTab) {
-        selectedTab.style.display = "block";
-    }
-
-    if (evt.currentTarget) {
-        evt.currentTarget.className += " active";
-    }
-
+    // Call specific functions based on the tab opened
     if (tabName === 'News') {
         generateNewsContent();
     } else if (tabName === 'RiderTrajectoryTab') {

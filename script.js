@@ -1877,3 +1877,138 @@ function getTeamColors(teamNames) {
     });
     return globalTeamColors;
 }
+function displayRiskAssessmentTable(riskData) {
+    const tableContainer = document.getElementById('riskAssessmentTable');
+    if (!tableContainer) {
+        console.error('Risk assessment table container not found');
+        return;
+    }
+
+    let tableHTML = `
+        <table class="risk-table">
+            <thead>
+                <tr>
+                    <th>Rider</th>
+                    <th>Overall Risk</th>
+                    <th>Cost Efficiency</th>
+                    <th>Ownership</th>
+                    <th>Consistency</th>
+                    <th>Trend</th>
+                    <th>Role</th>
+                    <th>Cost</th>
+                    <th>Points</th>
+                </tr>
+            </thead>
+            <tbody>
+    `;
+
+    riskData.forEach(r => {
+        tableHTML += `
+            <tr>
+                <td>${r.rider}</td>
+                <td>${r.overallRisk.toFixed(2)}</td>
+                <td>${r.costEfficiencyRisk.toFixed(2)}</td>
+                <td>${r.ownershipRisk.toFixed(2)}</td>
+                <td>${r.consistencyRisk.toFixed(2)}</td>
+                <td>${r.trendRisk.toFixed(2)}</td>
+                <td>${r.roleRisk.toFixed(2)}</td>
+                <td>${r.cost}</td>
+                <td>${r.points}</td>
+            </tr>
+        `;
+    });
+
+    tableHTML += `
+            </tbody>
+        </table>
+    `;
+
+    tableContainer.innerHTML = tableHTML;
+}
+
+function displayTeamRiskAssessment() {
+    const teamSelect = document.getElementById('cyclingTeamSelect');
+    const selectedTeam = teamSelect.value;
+    if (!selectedTeam) {
+        console.error('No team selected');
+        return;
+    }
+
+    const teamRiders = cyclistData.cyclists.filter(cyclist => cyclist.team === selectedTeam);
+    const riskData = teamRiders.map(rider => calculateRiderRisk(rider.name)).filter(risk => risk !== null);
+
+    riskData.sort((a, b) => b.overallRisk - a.overallRisk);
+
+    // Display the chart
+    const trace = {
+        x: riskData.map(r => r.rider),
+        y: riskData.map(r => r.overallRisk),
+        type: 'bar',
+        marker: {
+            color: riskData.map(r => {
+                if (r.overallRisk < 0.8) return 'green';
+                if (r.overallRisk < 1.2) return 'yellow';
+                return 'red';
+            }),
+            line: {
+                color: '#FF69B4',
+                width: 1.5
+            }
+        },
+        text: riskData.map(r => r.overallRisk.toFixed(2)),
+        textposition: 'auto',
+        hoverinfo: 'text',
+        hovertext: riskData.map(r => 
+            `${r.rider}<br>` +
+            `Overall Risk: ${r.overallRisk.toFixed(2)}<br>` +
+            `Cost Efficiency Risk: ${r.costEfficiencyRisk.toFixed(2)}<br>` +
+            `Ownership Risk: ${r.ownershipRisk.toFixed(2)}<br>` +
+            `Consistency Risk: ${r.consistencyRisk.toFixed(2)}<br>` +
+            `Trend Risk: ${r.trendRisk.toFixed(2)}<br>` +
+            `Role Risk: ${r.roleRisk.toFixed(2)}<br>` +
+            `Cost: ${r.cost} | Points: ${r.points}<br>` +
+            `Ownership: ${r.ownership}% | Role: ${r.role}`
+        )
+    };
+
+    const layout = {
+        title: {
+            text: `Risk Assessment for ${selectedTeam}`,
+            font: {
+                family: 'VT323, monospace',
+                size: 24,
+                color: '#FF1493'
+            }
+        },
+        xaxis: {
+            title: 'Riders',
+            tickangle: -45,
+            tickfont: {
+                family: 'VT323, monospace',
+                size: 12,
+                color: '#000000'
+            }
+        },
+        yaxis: {
+            title: 'Risk Score',
+            tickfont: {
+                family: 'VT323, monospace',
+                size: 14,
+                color: '#000000'
+            }
+        },
+        paper_bgcolor: '#FFF0F5',
+        plot_bgcolor: '#FFF0F5',
+        font: {
+            family: 'VT323, monospace',
+            color: '#000000'
+        },
+        autosize: true,
+        margin: {t: 50, r: 50, b: 100, l: 50},
+    };
+
+    createResponsiveChart('teamRiskAssessmentChart', [trace], layout);
+
+    // Display the table
+    displayRiskAssessmentTable(riskData);
+}

@@ -24,6 +24,8 @@
             <button class="tablinks" onclick="openTab(event, 'RiderTrajectoryTab')">Riders</button>
             <button class="tablinks" onclick="openTab(event, 'TeamsTab')">Teams</button>
             <button class="tablinks" onclick="openTab(event, 'IdealTeamTab')">Dream Team</button>
+            <button class="tablinks" onclick="openTab(event, 'Risk')">Risk</button>
+
         </div>
 
         <div id="News" class="tabcontent">
@@ -127,7 +129,49 @@
                 <div class="chart-container">
                     <div id="teamPointsVsCostChart"></div>
                 </div>
-                <div class="chart-container">
+            </div>
+        </div>
+        
+        <div id="RiderTrajectoryTab" class="tabcontent">
+            <div class="trajectory-container">
+                <div class="trajectory-header">
+                    <div class="dropdown-container">
+                        <select id="riderSelect" class="styled-select" onchange="updateTrajectoryChart()">
+                            <option value="top10">Top 10 Riders</option>
+                            <option value="all">All Riders</option>
+                            <option disabled>------------------------</option>
+                            <!-- Individual rider options will be populated here -->
+                        </select>
+                    </div>
+                </div>
+                <div class="chart-legend-container">
+                    <div class="chart-container">
+                        <div id="trajectoryChart"></div>
+                    </div>
+                    <div class="legend-container" id="customLegend"></div>
+                </div>
+                <div class="mvp-mip-container">
+                    <div id="mvpInfo" class="info-box-mvp"></div>
+                    <div id="mipInfo" class="info-box-mvp"></div>
+                </div>
+                <div class="stat-box_mvp_all" id="allTimeMVPMIPBox">
+                    <h3>All-Time Records</h3>
+                    <div id="allTimeMVPInfo"></div>
+                    <div id="allTimeMIPInfo"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="IdealTeamTab" class="tabcontent">
+            <h2>Dream Team (Max Cost: 100)</h2>
+            <div id="dreamTeamStats"></div>
+            <div id="dreamTeamRiders"></div>
+            <div class="chart-container">
+                <canvas id="dreamTeamChart"></canvas>
+            </div>
+        </div>
+        <div id="Risk" class="tabcontent">
+             <div class="chart-container">
                     <div id="teamOverallRiskChart"></div>
                 </div>
                 <div class="chart-container">
@@ -217,46 +261,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        
-        <div id="RiderTrajectoryTab" class="tabcontent">
-            <div class="trajectory-container">
-                <div class="trajectory-header">
-                    <div class="dropdown-container">
-                        <select id="riderSelect" class="styled-select" onchange="updateTrajectoryChart()">
-                            <option value="top10">Top 10 Riders</option>
-                            <option value="all">All Riders</option>
-                            <option disabled>------------------------</option>
-                            <!-- Individual rider options will be populated here -->
-                        </select>
-                    </div>
-                </div>
-                <div class="chart-legend-container">
-                    <div class="chart-container">
-                        <div id="trajectoryChart"></div>
-                    </div>
-                    <div class="legend-container" id="customLegend"></div>
-                </div>
-                <div class="mvp-mip-container">
-                    <div id="mvpInfo" class="info-box-mvp"></div>
-                    <div id="mipInfo" class="info-box-mvp"></div>
-                </div>
-                <div class="stat-box_mvp_all" id="allTimeMVPMIPBox">
-                    <h3>All-Time Records</h3>
-                    <div id="allTimeMVPInfo"></div>
-                    <div id="allTimeMIPInfo"></div>
-                </div>
-            </div>
-        </div>
-
-        <div id="IdealTeamTab" class="tabcontent">
-            <h2>Dream Team (Max Cost: 100)</h2>
-            <div id="dreamTeamStats"></div>
-            <div id="dreamTeamRiders"></div>
-            <div class="chart-container">
-                <canvas id="dreamTeamChart"></canvas>
-            </div>
         </div>
     </div>
 

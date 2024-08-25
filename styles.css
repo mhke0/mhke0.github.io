@@ -662,7 +662,9 @@ tr:nth-child(odd) {
     flex-grow: 1;
     margin-right: 10px;
 }
-
+.team-name{
+    color: #000000;
+}
 .team-points,
 .team-change,
 .rider-details {

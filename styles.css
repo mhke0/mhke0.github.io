@@ -707,3 +707,70 @@ tr:nth-child(odd) {
     font-weight: bold;
     color: var(--primary-color);
 }
+
+.risk-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 2px solid var(--border-color);
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    font-family: var(--font-family);
+}
+
+.risk-table th, .risk-table td {
+    border: 1px solid var(--border-color);
+    padding: 10px;
+    text-align: left;
+}
+
+.risk-table th {
+    background-color: var(--border-color);
+    color: var(--background-color);
+    font-weight: bold;
+}
+
+.risk-table tr:nth-child(even) {
+    background-color: var(--background-color);
+}
+
+.risk-table tr:nth-child(odd) {
+    background-color: var(--box-background-color);
+}
+
+.risk-table tr:hover {
+    background-color: #ffb6c1;
+}
+
+/* Adjust chart container for risk assessment */
+#teamRiskAssessmentChart {
+    height: 400px;
+    margin-bottom: 20px;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .risk-table {
+        font-size: 14px;
+    }
+
+    .risk-table th, .risk-table td {
+        padding: 5px;
+    }
+
+    #teamRiskAssessmentChart {
+        height: 300px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .risk-table {
+        font-size: 12px;
+    }
+
+    #teamRiskAssessmentChart {
+        height: 250px;
+    }
+}
+

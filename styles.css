@@ -462,7 +462,7 @@ tr:nth-child(odd) {
     padding: 10px;
     text-align: center;
     margin: 0;
-    margin-bottom: 20px;
+    margin-bottom: px;
 }
 
 /* News Tab Styles */
@@ -500,7 +500,7 @@ tr:nth-child(odd) {
     border: 2px solid var(--border-color);
     border-radius: 5px;
     padding: 15px;
-    margin-bottom: 20px;
+    margin-bottom: 0px;
 }
 
 .news-standings li {

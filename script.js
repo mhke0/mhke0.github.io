@@ -1315,7 +1315,7 @@ function displayAllTeamsComparison() {
         y: sortedTeams.map(team => team[1]),
         type: 'bar',
         marker: {
-            color: sortedTeams.map((team, index) => `hsl(${index * 360 / sortedTeams.length}, 70%, 50%)`),
+            color: customColorScheme,
         },
         text: sortedTeams.map(team => `${team[1]} points`),
         textposition: 'auto',
@@ -1723,33 +1723,43 @@ function displayTeamPointsVsCostChart() {
         }))
     };
 
-    // Add a custom hover event to show/hide labels
     const config = {
         responsive: true,
         displayModeBar: false,
-        toImageButtonOptions: {
-            format: 'png',
-            filename: 'team_points_vs_cost',
-            height: 500,
-            width: 700,
-            scale: 2
-        }
     };
 
     createResponsiveChart('teamPointsVsCostChart', [trace], layout, config);
 
     // Add custom hover events
     const chartElement = document.getElementById('teamPointsVsCostChart');
+    
+    let currentHoveredIndex = null;
+
     chartElement.on('plotly_hover', function(eventData) {
         const pointIndex = eventData.points[0].pointIndex;
+        
+        // Hide the previously hovered label if it exists
+        if (currentHoveredIndex !== null && currentHoveredIndex !== pointIndex) {
+            Plotly.relayout('teamPointsVsCostChart', {
+                [`annotations[${currentHoveredIndex}].visible`]: false
+            });
+        }
+        
+        // Show the current hovered label
         Plotly.relayout('teamPointsVsCostChart', {
             [`annotations[${pointIndex}].visible`]: true
         });
+        
+        currentHoveredIndex = pointIndex;
     });
 
     chartElement.on('plotly_unhover', function() {
-        Plotly.relayout('teamPointsVsCostChart', {
-            'annotations[].visible': false
-        });
+        // Hide the label when the mouse leaves the point
+        if (currentHoveredIndex !== null) {
+            Plotly.relayout('teamPointsVsCostChart', {
+                [`annotations[${currentHoveredIndex}].visible`]: false
+            });
+            currentHoveredIndex = null;
+        }
     });
 }

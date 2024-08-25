@@ -1640,26 +1640,28 @@ function displayTeamPointsVsCostChart() {
 
     teamData.sort((a, b) => b.efficiency - a.efficiency);
 
+    // Define a pastel color palette with 20 colors
+    const pastelPalette = [
+        '#FFB3BA', '#FFDFBA', '#FFFFBA', '#BAFFC9', '#BAE1FF',
+        '#FFB3BA', '#FFC9DE', '#E0BBE4', '#957DAD', '#D291BC',
+        '#FFDFD3', '#C1E7E3', '#B6CFB6', '#C2BBF0', '#F0E6EF',
+        '#E8D3A9', '#F7D6BF', '#C9E4DE', '#FFEEDD', '#F1E0E0'
+    ];
+
     const trace = {
         x: teamData.map(team => team.cost),
         y: teamData.map(team => team.points),
-        mode: 'markers+text',
+        mode: 'markers',
         type: 'scatter',
         marker: {
-            size: 12,
-            color: teamData.map(team => team.efficiency),
-            colorscale: 'Viridis',
-            showscale: true,
-            colorbar: {
-                title: 'Points per Credit',
-                tickfont: {
-                    family: 'VT323, monospace',
-                    color: '#000000'
-                }
+            size: 14,
+            color: teamData.map((_, index) => pastelPalette[index % pastelPalette.length]),
+            line: {
+                color: '#FF69B4',
+                width: 1
             }
         },
         text: teamData.map(team => team.name),
-        textposition: 'top center',
         hoverinfo: 'text',
         hovertext: teamData.map(team => 
             `${team.name}<br>` +
@@ -1674,6 +1676,7 @@ function displayTeamPointsVsCostChart() {
             text: 'Team Points vs Team Cost',
             font: {
                 family: 'VT323, monospace',
+                size: 24,
                 color: '#FF1493'
             }
         },
@@ -1681,6 +1684,7 @@ function displayTeamPointsVsCostChart() {
             title: 'Team Cost (Credits)',
             tickfont: {
                 family: 'VT323, monospace',
+                size: 14,
                 color: '#000000'
             }
         },
@@ -1688,6 +1692,7 @@ function displayTeamPointsVsCostChart() {
             title: 'Team Points',
             tickfont: {
                 family: 'VT323, monospace',
+                size: 14,
                 color: '#000000'
             }
         },
@@ -1697,8 +1702,53 @@ function displayTeamPointsVsCostChart() {
             family: 'VT323, monospace',
             color: '#000000'
         },
-        hovermode: 'closest'
+        hovermode: 'closest',
+        showlegend: false,
+        annotations: teamData.map((team, index) => ({
+            x: team.cost,
+            y: team.points,
+            text: team.name,
+            font: {
+                family: 'VT323, monospace',
+                size: 12,
+                color: '#000000'
+            },
+            showarrow: false,
+            bgcolor: pastelPalette[index % pastelPalette.length],
+            bordercolor: '#FF69B4',
+            borderwidth: 1,
+            borderpad: 2,
+            opacity: 0.8
+        }))
     };
 
-    createResponsiveChart('teamPointsVsCostChart', [trace], layout);
+    // Add a custom hover event to show/hide labels
+    const config = {
+        responsive: true,
+        displayModeBar: false,
+        toImageButtonOptions: {
+            format: 'png',
+            filename: 'team_points_vs_cost',
+            height: 500,
+            width: 700,
+            scale: 2
+        }
+    };
+
+    createResponsiveChart('teamPointsVsCostChart', [trace], layout, config);
+
+    // Add custom hover events
+    const chartElement = document.getElementById('teamPointsVsCostChart');
+    chartElement.on('plotly_hover', function(eventData) {
+        const pointIndex = eventData.points[0].pointIndex;
+        Plotly.relayout('teamPointsVsCostChart', {
+            'annotations[' + pointIndex + '].visible': true
+        });
+    });
+
+    chartElement.on('plotly_unhover', function() {
+        Plotly.relayout('teamPointsVsCostChart', {
+            'annotations[].visible': false
+        });
+    });
 }

@@ -1474,7 +1474,7 @@ function generateNewsContent() {
     newsHtml += '</div>';
     newsHtml += '</div>';
 
-    // Recent Score Changes (right column)
+    // Recent Points Added (right column)
     newsHtml += '<div class="news-column">';
     newsHtml += '<div class="news-section news-score-changes">';
     newsHtml += '<h3>Recent Points Added</h3>';
@@ -1486,7 +1486,7 @@ function generateNewsContent() {
             const previous = previousScores.find(prev => prev.name === latest.name);
             return {
                 name: latest.name,
-                change: latest.points - (previous ? previous.points : 0)
+                change: Math.max(0, latest.points - (previous ? previous.points : latest.points))
             };
         });
 
@@ -1534,8 +1534,8 @@ function generateNewsContent() {
         top10.forEach((rider, index) => {
             newsHtml += `<div class="top-rider-item">
                 <span class="rider-rank">${index + 1}</span>
-                <span class="rider-name">${rider.name}<span class="rider-details">(${rider.team})</span></span>
-                <span class="rider-details">${rider.points} points </span>
+                <span class="rider-name">${rider.name} <span class="rider-details">(${rider.team})</span></span>
+                <span class="rider-details">${rider.points} points</span>
             </div>`;
         });
         newsHtml += '</div>';

@@ -556,3 +556,149 @@ tr:nth-child(odd) {
         grid-template-columns: 1fr;
     }
 }
+/* News Tab Styles */
+#News {
+    padding: 20px;
+}
+
+#News h2 {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+#News h3 {
+    color: var(--secondary-color);
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+#News ol {
+    padding-left: 20px;
+}
+
+#News li {
+    margin-bottom: 10px;
+}
+
+#News p {
+    margin-bottom: 10px;
+}
+
+.news-section {
+    background-color: var(--box-background-color);
+    border: 2px solid var(--border-color);
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 0px;
+}
+
+.news-achievements {
+    margin-bottom: 20px;
+}
+
+.news-achievements p {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.news-achievements .achievement-name {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.news-achievements .achievement-value {
+    color: var(--secondary-color);
+}
+
+/* News Tab Updated Styles */
+.news-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.news-column {
+    width: 48%;
+}
+
+.standings-list,
+.score-changes-list,
+.top-riders-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.standing-item,
+.score-change-item,
+.top-rider-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 5px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.standing-item:last-child,
+.score-change-item:last-child,
+.top-rider-item:last-child {
+    border-bottom: none;
+}
+
+.standing-rank,
+.rider-rank {
+    font-weight: bold;
+    color: var(--secondary-color);
+    width: 30px;
+}
+
+.team-name,
+.rider-name {
+    font-weight: bold;
+    color: var(--primary-color);
+    flex-grow: 1;
+    margin-right: 10px;
+}
+
+.team-points,
+.team-change,
+.rider-details {
+    text-align: right;
+}
+
+.positive-change {
+    color: #32CD32;
+}
+
+.negative-change {
+    color: #FF4500;
+}
+
+@media screen and (max-width: 768px) {
+    .news-row {
+        flex-direction: column;
+    }
+    .news-column {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}
+
+.news-score-changes ol {
+    padding-left: 20px;
+}
+
+.news-score-changes li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.news-score-changes .team-name {
+    font-weight: bold;
+    color: var(--primary-color);
+}

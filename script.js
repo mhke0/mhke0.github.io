@@ -12,10 +12,10 @@ function getColorForRole(role) {
     }
 }
 const customColorScheme = [
-        '#FFB3BA', '#FFDFBA', '#FFFFBA', '#BAFFC9', '#BAE1FF',
-        '#FFB3BA', '#FFC9DE', '#E0BBE4', '#957DAD', '#D291BC',
-        '#FFDFD3', '#C1E7E3', '#B6CFB6', '#C2BBF0', '#F0E6EF',
-        '#E8D3A9', '#F7D6BF', '#C9E4DE', '#FFEEDD', '#F1E0E0'
+        '#FFB3BA', '#FFDFBA', '#FFFFBA', '#BAFFC9', '#BAE1FF', '#FFB3BA', 
+        '#FFC9DE', '#E0BBE4', '#957DAD', '#D291BC', '#FFDFD3', '#C1E7E3', 
+        '#B6CFB6', '#C2BBF0', '#F0E6EF', '#E8D3A9', '#F7D6BF', '#C9E4DE', 
+        '#FFEEDD', '#F1E0E0', '#D4F0F0', '#CCCCFF', '#FFE5B4', '#FFF0F5'
     ];
 
 function createRoleChart(roles) {
@@ -1640,13 +1640,6 @@ function displayTeamPointsVsCostChart() {
 
     teamData.sort((a, b) => b.efficiency - a.efficiency);
 
-    // Define a pastel color palette with 20 colors
-    const pastelPalette = [
-        '#FFB3BA', '#FFDFBA', '#FFFFBA', '#BAFFC9', '#BAE1FF',
-        '#FFB3BA', '#FFC9DE', '#E0BBE4', '#957DAD', '#D291BC',
-        '#FFDFD3', '#C1E7E3', '#B6CFB6', '#C2BBF0', '#F0E6EF',
-        '#E8D3A9', '#F7D6BF', '#C9E4DE', '#FFEEDD', '#F1E0E0'
-    ];
 
     const trace = {
         x: teamData.map(team => team.cost),
@@ -1655,7 +1648,7 @@ function displayTeamPointsVsCostChart() {
         type: 'scatter',
         marker: {
             size: 14,
-            color: teamData.map((_, index) => pastelPalette[index % pastelPalette.length]),
+            color: teamData.map((_, index) => customColorScheme[index % pastelPalette.length]),
             line: {
                 color: '#FF69B4',
                 width: 1

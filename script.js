@@ -919,7 +919,9 @@ function openTab(evt, tabName) {
     } else if (tabName === 'TeamsTab') {
         loadDefaultCyclingTeamChart();
         displayAllTeamsComparison();
-        displayTeamCostsChart(); // Add this line
+        displayTeamCostsChart(); 
+        displayTeamPointsVsCostChart(); 
+
 
     }
 }
@@ -1636,4 +1638,86 @@ function displayTeamCostsChart() {
     };
 
     createResponsiveChart('teamCostsChart', [trace], layout);
+}
+
+function displayTeamPointsVsCostChart() {
+    const teams = {};
+    cyclistData.cyclists.forEach(cyclist => {
+        if (!teams[cyclist.team]) {
+            teams[cyclist.team] = { cost: 0, points: 0 };
+        }
+        teams[cyclist.team].cost += cyclist.cost;
+        teams[cyclist.team].points += cyclist.points;
+    });
+
+    const teamData = Object.entries(teams).map(([name, data]) => ({
+        name,
+        cost: data.cost,
+        points: data.points,
+        efficiency: data.points / data.cost
+    }));
+
+    teamData.sort((a, b) => b.efficiency - a.efficiency);
+
+    const trace = {
+        x: teamData.map(team => team.cost),
+        y: teamData.map(team => team.points),
+        mode: 'markers+text',
+        type: 'scatter',
+        marker: {
+            size: 12,
+            color: teamData.map(team => team.efficiency),
+            colorscale: 'Viridis',
+            showscale: true,
+            colorbar: {
+                title: 'Points per Credit',
+                tickfont: {
+                    family: 'VT323, monospace',
+                    color: '#000000'
+                }
+            }
+        },
+        text: teamData.map(team => team.name),
+        textposition: 'top center',
+        hoverinfo: 'text',
+        hovertext: teamData.map(team => 
+            `${team.name}<br>` +
+            `Cost: ${team.cost.toFixed(2)} credits<br>` +
+            `Points: ${team.points.toFixed(2)}<br>` +
+            `Efficiency: ${team.efficiency.toFixed(2)} points/credit`
+        )
+    };
+
+    const layout = {
+        title: {
+            text: 'Team Points vs Team Cost',
+            font: {
+                family: 'VT323, monospace',
+                color: '#FF1493'
+            }
+        },
+        xaxis: {
+            title: 'Team Cost (Credits)',
+            tickfont: {
+                family: 'VT323, monospace',
+                color: '#000000'
+            }
+        },
+        yaxis: {
+            title: 'Team Points',
+            tickfont: {
+                family: 'VT323, monospace',
+                color: '#000000'
+            }
+        },
+        paper_bgcolor: '#FFF0F5',
+        plot_bgcolor: '#FFF0F5',
+        font: {
+            family: 'VT323, monospace',
+            color: '#000000'
+        },
+        hovermode: 'closest'
+    };
+
+    createResponsiveChart('teamPointsVsCostChart', [trace], layout);
 }

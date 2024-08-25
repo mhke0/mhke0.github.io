@@ -528,7 +528,9 @@ tr:nth-child(odd) {
     font-weight: bold;
     color: var(--primary-color);
 }
-
+.news-achievements{
+    margin-bottom: 20px;
+}
 .news-achievements .achievement-value {
     color: var(--secondary-color);
 }

@@ -915,6 +915,7 @@ function openTab(evt, tabName) {
         displayAllTeamsComparison();
         displayTeamCostsChart(); 
         displayTeamPointsVsCostChart(); 
+        displayTeamEfficiencyChart();
 
 
     }
@@ -1784,4 +1785,84 @@ function displayTeamPointsVsCostChart() {
         Plotly.Plots.resize('teamPointsVsCostChart');
         adjustLabelPositions();
     });
+}
+function displayTeamEfficiencyChart() {
+    const teams = {};
+    cyclistData.cyclists.forEach(cyclist => {
+        if (!teams[cyclist.team]) {
+            teams[cyclist.team] = { cost: 0, points: 0 };
+        }
+        teams[cyclist.team].cost += cyclist.cost;
+        teams[cyclist.team].points += cyclist.points;
+    });
+
+    const teamData = Object.entries(teams).map(([name, data]) => ({
+        name,
+        efficiency: data.points / data.cost
+    }));
+
+    teamData.sort((a, b) => b.efficiency - a.efficiency);
+
+    const trace = {
+        x: teamData.map(team => team.name),
+        y: teamData.map(team => team.efficiency),
+        type: 'bar',
+        marker: {
+            color: customColorScheme,
+            line: {
+                color: '#FF69B4', // Hot Pink for bar outlines
+                width: 1.5
+            }
+        },
+        text: teamData.map(team => team.efficiency.toFixed(2)),
+        textposition: 'auto',
+        hoverinfo: 'text',
+        hovertext: teamData.map(team => 
+            `${team.name}<br>` +
+            `Efficiency: ${team.efficiency.toFixed(2)} points/credit`
+        )
+    };
+
+    const layout = {
+        title: {
+            text: 'Team Efficiency (Points per Credit)',
+            font: {
+                family: 'VT323, monospace',
+                size: 24,
+                color: '#FF1493'
+            }
+        },
+        xaxis: {
+            title: '',
+            tickangle: -45,
+            tickfont: {
+                family: 'VT323, monospace',
+                size: 12,
+                color: '#000000'
+            }
+        },
+        yaxis: {
+            title: 'Efficiency (Points/Credit)',
+            tickfont: {
+                family: 'VT323, monospace',
+                size: 14,
+                color: '#000000'
+            }
+        },
+        paper_bgcolor: '#FFF0F5',
+        plot_bgcolor: '#FFF0F5',
+        font: {
+            family: 'VT323, monospace',
+            color: '#000000'
+        },
+        autosize: true,
+        margin: {t: 50, r: 50, b: 100, l: 50}, // Increased bottom margin for rotated x-axis labels
+    };
+
+    const config = {
+        responsive: true,
+        displayModeBar: false,
+    };
+
+    createResponsiveChart('teamEfficiencyChart', [trace], layout, config);
 }

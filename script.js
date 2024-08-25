@@ -1648,7 +1648,7 @@ function displayTeamPointsVsCostChart() {
         type: 'scatter',
         marker: {
             size: 14,
-            color: teamData.map((_, index) => customColorScheme[index % pastelPalette.length]),
+            color: teamData.map((_, index) => customColorScheme[index % customColorScheme.length]),
             line: {
                 color: '#FF69B4',
                 width: 1
@@ -1707,7 +1707,7 @@ function displayTeamPointsVsCostChart() {
                 color: '#000000'
             },
             showarrow: false,
-            bgcolor: pastelPalette[index % pastelPalette.length],
+            bgcolor: customColorScheme[index % customColorScheme.length],
             bordercolor: '#FF69B4',
             borderwidth: 1,
             borderpad: 2,

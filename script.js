@@ -1514,16 +1514,16 @@ function generateNewsContent() {
 
     // Most Recent MVP and MIP
     newsHtml += '<div class="news-section news-achievements">';
-    newsHtml += '<h3>Recent Achievements</h3>';
+    newsHtml += '<h3>Recent Achievements<span class="news-date">(${mipDate.toDateString()})</span></h3>';
     if (cyclistData && cyclistData.mvp_history && cyclistData.mvp_history.length > 0) {
         const mvp = cyclistData.mvp_history[cyclistData.mvp_history.length - 1];
         const mvpDate = new Date(mvp.date);
-        newsHtml += `<p><span class="achievement-name">MVP <span class="news-date">(${mvpDate.toDateString()})</span>: ${mvp.name}</span><span class="achievement-value">${mvp.points_added.toFixed(2)} points added</span></p>`;
+        newsHtml += `<p><span class="achievement-name">MVP: ${mvp.name}</span><span class="achievement-value">${mvp.points_added.toFixed(2)} points added</span></p>`;
     }
     if (cyclistData && cyclistData.mip_history && cyclistData.mip_history.length > 0) {
         const mip = cyclistData.mip_history[cyclistData.mip_history.length - 1];
         const mipDate = new Date(mip.date);
-        newsHtml += `<p><span class="achievement-name">MIP <span class="news-date">(${mipDate.toDateString()})</span>: ${mip.name}</span><span class="achievement-value">${mip.percentage_increase.toFixed(2)}% increase</span></p>`;
+        newsHtml += `<p><span class="achievement-name">MIP: ${mip.name}</span><span class="achievement-value">${mip.percentage_increase.toFixed(2)}% increase</span></p>`;
     }
     newsHtml += '</div>';
 

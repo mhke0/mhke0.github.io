@@ -2047,6 +2047,24 @@ function calculateRiderRisk(riderName) {
         return null;
     }
 
+    // Calculate mean points per rider across all cyclists
+    const meanPointsPerRider = cyclistData.cyclists.reduce((sum, c) => sum + c.points, 0) / cyclistData.cyclists.length;
+
+    // Calculate mean points per rider for each role
+    const rolePoints = {};
+    cyclistData.cyclists.forEach(c => {
+        if (!rolePoints[c.role]) {
+            rolePoints[c.role] = { total: 0, count: 0 };
+        }
+        rolePoints[c.role].total += c.points;
+        rolePoints[c.role].count++;
+    });
+
+    const roleMeanPoints = Object.keys(rolePoints).reduce((acc, role) => {
+        acc[role] = rolePoints[role].total / rolePoints[role].count;
+        return acc;
+    }, {});
+
     // Factor 1: Cost Efficiency Risk
     const avgCostPerPoint = cyclistData.cyclists.reduce((sum, c) => sum + (c.cost / Math.max(c.points, 1)), 0) / cyclistData.cyclists.length;
     const riderCostPerPoint = rider.cost / Math.max(rider.points, 1);
@@ -2069,13 +2087,7 @@ function calculateRiderRisk(riderName) {
     const trendRisk = avgPoints / Math.max(trend, 1); // Lower if recent performance is better than average
 
     // Factor 5: Role-based Risk
-    const roleFactor = {
-        'All Rounder': 0.8,
-        'Climber': 1.0,
-        'Sprinter': 1.2,
-        'Unclassed': 1.5
-    };
-    const roleRisk = roleFactor[rider.role] || 1.0;
+    const roleRisk = meanPointsPerRider / Math.max(roleMeanPoints[rider.role], 1);
 
     // Combine factors (adjust weights as needed)
     const overallRisk = (

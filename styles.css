@@ -22,8 +22,8 @@ body {
 }
 
 h1, h2 {
-    color: var(--primary-color);
-    text-shadow: 2px 2px var(--secondary-color);
+    color: #ff1493;
+    text-shadow: 2px 2px #00ffff;
     text-align: center;
 }
 

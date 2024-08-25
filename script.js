@@ -894,6 +894,10 @@ function openTab(evt, tabName) {
         displayTeamCostsChart(); 
         displayTeamPointsVsCostChart(); 
         displayTeamEfficiencyChart();
+        displayTeamRiskAssessment();
+        displayTeamOverallRisk(); 
+    }
+
 
 
     }

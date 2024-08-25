@@ -382,6 +382,7 @@ $(document).ready(function() {
 
         // Initialize the trajectory chart with top 10 riders
         updateTrajectoryChart();
+        generateNewsContent();
 
         // Open the default tab
         document.getElementById("defaultOpen").click();

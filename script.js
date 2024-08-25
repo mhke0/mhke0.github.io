@@ -897,10 +897,6 @@ function openTab(evt, tabName) {
         displayTeamRiskAssessment();
         displayTeamOverallRisk(); 
     }
-
-
-
-    }
 }
 
 

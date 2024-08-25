@@ -498,6 +498,9 @@ function createPointsPerNameLengthChart(cyclists) {
 }
 
 function createLeagueScoresChart(leagueScores) {
+        if (cyclistData && cyclistData.league_scores && cyclistData.league_scores.history) {
+        leagueData = cyclistData.league_scores.history;
+    }
     const baseData = {
         "Team Name": 0,
         "Iberische Halbpinsel": 7405,
@@ -908,6 +911,7 @@ function openTab(evt, tabName) {
     if (tabName === 'LeagueScoresTab') {
         loadDefaultLeagueTeamChart();
         createLeagueStandingsChart();
+        createLatestPointsUpdateChart(); // Add this line
     }
 
     if (tabName === 'TeamsTab') {

@@ -1449,6 +1449,7 @@ function createLatestPointsUpdateChart() {
 
 
 function generateNewsContent() {
+    let newsHtml = '<h2>Velo News</h2>';
 
     // First row with two columns
     newsHtml += '<div class="news-row">';
@@ -1463,6 +1464,7 @@ function generateNewsContent() {
     newsHtml += '<div class="news-section news-standings">';
     newsHtml += '<h3>Overall Standings</h3>';
     if (standings.length > 0) {
+        newsHtml += '<ol>';
         standings.slice(0, 5).forEach(team => {
             newsHtml += `<li><span class="team-name">${team.name}</span><span class="team-points">${team.points} points</span></li>`;
         });

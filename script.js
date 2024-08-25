@@ -1569,20 +1569,13 @@ function displayTeamCostsChart() {
 
     const sortedTeams = Object.entries(teams).sort((a, b) => b[1] - a[1]);
 
-    // Define a pastel color palette
-    const pastelPalette = [
-        '#FFB3BA', '#FFDFBA', '#FFFFBA', '#BAFFC9', '#BAE1FF',
-        '#FFB3BA', '#FFC9DE', '#E0BBE4', '#957DAD', '#D291BC',
-        '#FFDFD3', '#C1E7E3', '#B6CFB6', '#C2BBF0', '#F0E6EF',
-        '#E8D3A9', '#F7D6BF', '#C9E4DE', '#FFEEDD', '#F1E0E0'
-    ];
 
     const trace = {
         x: sortedTeams.map(team => team[0]),
         y: sortedTeams.map(team => team[1]),
         type: 'bar',
         marker: {
-            color: pastelColors,
+            color: customColorScheme,
             line: {
                 color: '#FF69B4', // Hot Pink for bar outlines
                 width: 1.5

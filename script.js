@@ -1640,21 +1640,34 @@ function displayTeamPointsVsCostChart() {
 
     teamData.sort((a, b) => b.efficiency - a.efficiency);
 
+    // Define an extended pastel color palette with 24 colors
+    const pastelPalette = [
+        '#FFB3BA', '#FFDFBA', '#FFFFBA', '#BAFFC9', '#BAE1FF', '#FFB3BA', 
+        '#FFC9DE', '#E0BBE4', '#957DAD', '#D291BC', '#FFDFD3', '#C1E7E3', 
+        '#B6CFB6', '#C2BBF0', '#F0E6EF', '#E8D3A9', '#F7D6BF', '#C9E4DE', 
+        '#FFEEDD', '#F1E0E0', '#D4F0F0', '#CCCCFF', '#FFE5B4', '#FFF0F5'
+    ];
 
     const trace = {
         x: teamData.map(team => team.cost),
         y: teamData.map(team => team.points),
-        mode: 'markers',
+        mode: 'markers+text',
         type: 'scatter',
         marker: {
             size: 14,
-            color: teamData.map((_, index) => customColorScheme[index % customColorScheme.length]),
+            color: teamData.map((_, index) => pastelPalette[index % pastelPalette.length]),
             line: {
                 color: '#FF69B4',
                 width: 1
             }
         },
         text: teamData.map(team => team.name),
+        textposition: 'top center',
+        textfont: {
+            family: 'VT323, monospace',
+            size: 10,
+            color: '#000000'
+        },
         hoverinfo: 'text',
         hovertext: teamData.map(team => 
             `${team.name}<br>` +
@@ -1678,7 +1691,7 @@ function displayTeamPointsVsCostChart() {
             tickfont: {
                 family: 'VT323, monospace',
                 size: 14,
-                color: '#FF1493'
+                color: '#000000'
             }
         },
         yaxis: {
@@ -1686,7 +1699,7 @@ function displayTeamPointsVsCostChart() {
             tickfont: {
                 family: 'VT323, monospace',
                 size: 14,
-                color: '#FF1493'
+                color: '#000000'
             }
         },
         paper_bgcolor: '#FFF0F5',
@@ -1696,24 +1709,7 @@ function displayTeamPointsVsCostChart() {
             color: '#000000'
         },
         hovermode: 'closest',
-        showlegend: false,
-        annotations: teamData.map((team, index) => ({
-            x: team.cost,
-            y: team.points,
-            text: team.name,
-            font: {
-                family: 'VT323, monospace',
-                size: 12,
-                color: '#000000'
-            },
-            showarrow: false,
-            bgcolor: customColorScheme[index % customColorScheme.length],
-            bordercolor: '#FF69B4',
-            borderwidth: 1,
-            borderpad: 2,
-            opacity: 0.8,
-            visible: false
-        }))
+        showlegend: false
     };
 
     const config = {
@@ -1723,36 +1719,41 @@ function displayTeamPointsVsCostChart() {
 
     createResponsiveChart('teamPointsVsCostChart', [trace], layout, config);
 
-    // Add custom hover events
-    const chartElement = document.getElementById('teamPointsVsCostChart');
-    
-    let currentHoveredIndex = null;
+    // Function to adjust label positions to avoid overlap
+    function adjustLabelPositions() {
+        const chartElement = document.getElementById('teamPointsVsCostChart');
+        const labels = chartElement.getElementsByClassName('textpoint');
+        const positions = [];
 
-    chartElement.on('plotly_hover', function(eventData) {
-        const pointIndex = eventData.points[0].pointIndex;
-        
-        // Hide the previously hovered label if it exists
-        if (currentHoveredIndex !== null && currentHoveredIndex !== pointIndex) {
-            Plotly.relayout('teamPointsVsCostChart', {
-                [`annotations[${currentHoveredIndex}].visible`]: false
+        for (let label of labels) {
+            const rect = label.getBoundingClientRect();
+            positions.push({
+                element: label,
+                top: rect.top,
+                bottom: rect.bottom,
+                height: rect.height
             });
         }
-        
-        // Show the current hovered label
-        Plotly.relayout('teamPointsVsCostChart', {
-            [`annotations[${pointIndex}].visible`]: true
-        });
-        
-        currentHoveredIndex = pointIndex;
-    });
 
-    chartElement.on('plotly_unhover', function() {
-        // Hide the label when the mouse leaves the point
-        if (currentHoveredIndex !== null) {
-            Plotly.relayout('teamPointsVsCostChart', {
-                [`annotations[${currentHoveredIndex}].visible`]: false
-            });
-            currentHoveredIndex = null;
+        positions.sort((a, b) => a.top - b.top);
+
+        for (let i = 1; i < positions.length; i++) {
+            const current = positions[i];
+            const previous = positions[i - 1];
+            const overlap = previous.bottom - current.top;
+
+            if (overlap > 0) {
+                const offset = overlap + 2; // 2px extra space
+                current.element.style.transform = `translateY(${offset}px)`;
+                current.top += offset;
+                current.bottom += offset;
+            }
         }
-    });
+    }
+
+    // Call adjustLabelPositions after the chart has been rendered
+    setTimeout(adjustLabelPositions, 1000); // Adjust delay as needed
+
+    // Adjust labels on window resize
+    window.addEventListener('resize', adjustLabelPositions);
 }

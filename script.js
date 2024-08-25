@@ -1479,8 +1479,8 @@ function generateNewsContent() {
     newsHtml += '<div class="news-section news-score-changes">';
     newsHtml += '<h3>Recent Points Added</h3>';
     if (cyclistData && cyclistData.league_scores && cyclistData.league_scores.history && cyclistData.league_scores.history.length >= 2) {
-        const latestScores = cyclistData.league_scores.history[0].scores;
-        const previousScores = cyclistData.league_scores.history[1].scores;
+        const latestScores = cyclistData.league_scores.history[cyclistData.league_scores.history.length - 1].scores;
+        const previousScores = cyclistData.league_scores.history[cyclistData.league_scores.history.length - 2].scores;
         
         const scoreChanges = latestScores.map(latest => {
             const previous = previousScores.find(prev => prev.name === latest.name);
@@ -1490,13 +1490,11 @@ function generateNewsContent() {
             };
         });
 
-        // Sort score changes to match the order of overall standings
-        const sortedScoreChanges = standings.map(team => 
-            scoreChanges.find(change => change.name === team.name)
-        ).filter(change => change !== undefined);
+        // Sort score changes by the amount of change (descending)
+        scoreChanges.sort((a, b) => b.change - a.change);
 
         newsHtml += '<div class="score-changes-list">';
-        sortedScoreChanges.slice(0, 5).forEach((team, index) => {
+        scoreChanges.slice(0, 5).forEach((team, index) => {
             newsHtml += `<div class="score-change-item">
                 <span class="standing-rank">${index + 1}</span>
                 <span class="team-name">${team.name}</span>

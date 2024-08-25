@@ -1442,7 +1442,6 @@ function createLatestPointsUpdateChart() {
 
     createResponsiveChart('latestPointsUpdateChart', [trace], layout);
 }
-
 function generateNewsContent() {
     let newsHtml = '';
 
@@ -1477,13 +1476,15 @@ function generateNewsContent() {
     // Recent Points Added (right column)
     newsHtml += '<div class="news-column">';
     newsHtml += '<div class="news-section news-score-changes">';
-    newsHtml += '<h3>Recent Points Added</h3>';
     if (cyclistData && cyclistData.league_scores && cyclistData.league_scores.history && cyclistData.league_scores.history.length >= 2) {
-        const latestScores = cyclistData.league_scores.history[cyclistData.league_scores.history.length - 1].scores;
-        const previousScores = cyclistData.league_scores.history[cyclistData.league_scores.history.length - 2].scores;
+        const latestHistory = cyclistData.league_scores.history[cyclistData.league_scores.history.length - 1];
+        const previousHistory = cyclistData.league_scores.history[cyclistData.league_scores.history.length - 2];
         
-        const scoreChanges = latestScores.map(latest => {
-            const previous = previousScores.find(prev => prev.name === latest.name);
+        const latestDate = new Date(latestHistory.date);
+        newsHtml += `<h3>Recent Points Added (${latestDate.toDateString()})</h3>`;
+        
+        const scoreChanges = latestHistory.scores.map(latest => {
+            const previous = previousHistory.scores.find(prev => prev.name === latest.name);
             return {
                 name: latest.name,
                 change: Math.max(0, latest.points - (previous ? previous.points : latest.points))
@@ -1503,6 +1504,7 @@ function generateNewsContent() {
         });
         newsHtml += '</div>';
     } else {
+        newsHtml += '<h3>Recent Points Added</h3>';
         newsHtml += '<p>Recent score change data not available.</p>';
     }
     newsHtml += '</div>';
@@ -1515,11 +1517,13 @@ function generateNewsContent() {
     newsHtml += '<h3>Recent Achievements</h3>';
     if (cyclistData && cyclistData.mvp_history && cyclistData.mvp_history.length > 0) {
         const mvp = cyclistData.mvp_history[cyclistData.mvp_history.length - 1];
-        newsHtml += `<p><span class="achievement-name">MVP: ${mvp.name}</span><span class="achievement-value">${mvp.points_added.toFixed(2)} points added</span></p>`;
+        const mvpDate = new Date(mvp.date);
+        newsHtml += `<p><span class="achievement-name">MVP (${mvpDate.toDateString()}): ${mvp.name}</span><span class="achievement-value">${mvp.points_added.toFixed(2)} points added</span></p>`;
     }
     if (cyclistData && cyclistData.mip_history && cyclistData.mip_history.length > 0) {
         const mip = cyclistData.mip_history[cyclistData.mip_history.length - 1];
-        newsHtml += `<p><span class="achievement-name">MIP: ${mip.name}</span><span class="achievement-value">${mip.percentage_increase.toFixed(2)}% increase</span></p>`;
+        const mipDate = new Date(mip.date);
+        newsHtml += `<p><span class="achievement-name">MIP (${mipDate.toDateString()}): ${mip.name}</span><span class="achievement-value">${mip.percentage_increase.toFixed(2)}% increase</span></p>`;
     }
     newsHtml += '</div>';
 

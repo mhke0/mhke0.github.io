@@ -1401,9 +1401,46 @@ function createLatestPointsUpdateChart() {
         const previousScore = previousData.scores.find(t => t.name === team.name)?.points || 0;
         return {
             name: team.name,
-            change: team.points - previousScore
+            change: Math.max(0, team.points - previousScore)  // Ensure change is non-negative
         };
     });
+
+    // Sort teams by point change (descending order)
+    pointChanges.sort((a, b) => b.change - a.change);
+
+    const trace = {
+        x: pointChanges.map(team => team.name),
+        y: pointChanges.map(team => team.change),
+        type: 'bar',
+        marker: {
+            color: 'green'  // All changes are now positive, so we use green for all bars
+        },
+        text: pointChanges.map(team => `+${team.change.toFixed(2)}`),
+        textposition: 'auto',
+        hoverinfo: 'x+text'
+    };
+
+    const layout = {
+        title: {
+            text: 'Latest Points Added per Team',
+            font: {
+                family: 'VT323, monospace',
+                color: '#ff1493'
+            }
+        },
+        xaxis: {
+            title: '',
+            tickangle: -45,
+        },
+        yaxis: {
+            title: 'Points Added',
+        },
+        paper_bgcolor: '#fff0f5',
+        plot_bgcolor: '#fff0f5',
+    };
+
+    createResponsiveChart('latestPointsUpdateChart', [trace], layout);
+}
 
     // Sort teams by point change (descending order)
     pointChanges.sort((a, b) => b.change - a.change);

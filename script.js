@@ -1718,7 +1718,8 @@ function displayTeamPointsVsCostChart() {
             bordercolor: '#FF69B4',
             borderwidth: 1,
             borderpad: 2,
-            opacity: 0.8
+            opacity: 0.8,
+            visible: false
         }))
     };
 
@@ -1742,7 +1743,7 @@ function displayTeamPointsVsCostChart() {
     chartElement.on('plotly_hover', function(eventData) {
         const pointIndex = eventData.points[0].pointIndex;
         Plotly.relayout('teamPointsVsCostChart', {
-            'annotations[' + pointIndex + '].visible': true
+            [`annotations[${pointIndex}].visible`]: true
         });
     });
 

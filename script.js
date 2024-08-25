@@ -259,6 +259,8 @@ function updateCyclingTeamRosterDisplay() {
         document.getElementById('selectedTeamInfo').textContent = '';
         document.getElementById('cyclingTeamRosterDisplay').innerHTML = '';
         document.getElementById('teamPointsDistributionChart').innerHTML = '';
+        document.getElementById('teamRiskAssessmentChart').innerHTML = '';
+        document.getElementById('riskAssessmentTable').innerHTML = '';
         return;
     }
 
@@ -289,6 +291,9 @@ function updateCyclingTeamRosterDisplay() {
 
     // Call the function to display the all teams comparison
     displayAllTeamsComparison();
+
+    // Call the function to display the risk assessment
+    displayTeamRiskAssessment();
 }
 
 $(document).ready(function() {
@@ -2011,4 +2016,53 @@ function displayTeamRiskAssessment() {
 
     // Display the table
     displayRiskAssessmentTable(riskData);
+}
+
+function displayRiskAssessmentTable(riskData) {
+    const tableContainer = document.getElementById('riskAssessmentTable');
+    if (!tableContainer) {
+        console.error('Risk assessment table container not found');
+        return;
+    }
+
+    let tableHTML = `
+        <table class="risk-table">
+            <thead>
+                <tr>
+                    <th>Rider</th>
+                    <th>Overall Risk</th>
+                    <th>Cost Efficiency</th>
+                    <th>Ownership</th>
+                    <th>Consistency</th>
+                    <th>Trend</th>
+                    <th>Role</th>
+                    <th>Cost</th>
+                    <th>Points</th>
+                </tr>
+            </thead>
+            <tbody>
+    `;
+
+    riskData.forEach(r => {
+        tableHTML += `
+            <tr>
+                <td>${r.rider}</td>
+                <td>${r.overallRisk.toFixed(2)}</td>
+                <td>${r.costEfficiencyRisk.toFixed(2)}</td>
+                <td>${r.ownershipRisk.toFixed(2)}</td>
+                <td>${r.consistencyRisk.toFixed(2)}</td>
+                <td>${r.trendRisk.toFixed(2)}</td>
+                <td>${r.roleRisk.toFixed(2)}</td>
+                <td>${r.cost}</td>
+                <td>${r.points}</td>
+            </tr>
+        `;
+    });
+
+    tableHTML += `
+            </tbody>
+        </table>
+    `;
+
+    tableContainer.innerHTML = tableHTML;
 }

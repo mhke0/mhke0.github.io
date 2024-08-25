@@ -1451,9 +1451,13 @@ function createLatestPointsUpdateChart() {
 function generateNewsContent() {
     let newsHtml = '<h2>Velo News</h2>';
 
-    // Latest Standings
+    // First row with two columns
+    newsHtml += '<div class="news-row">';
+
+    // Latest Standings (left column)
+    newsHtml += '<div class="news-column">';
     newsHtml += '<div class="news-section news-standings">';
-    newsHtml += '<h3>Latest Standings</h3>';
+    newsHtml += '<h3>Overall Standings</h3>';
     if (cyclistData && cyclistData.league_scores && cyclistData.league_scores.current) {
         const standings = cyclistData.league_scores.current.sort((a, b) => b.points - a.points).slice(0, 5);
         newsHtml += '<ol>';
@@ -1465,6 +1469,38 @@ function generateNewsContent() {
         newsHtml += '<p>Standings data not available.</p>';
     }
     newsHtml += '</div>';
+    newsHtml += '</div>';
+
+    // Recent Score Changes (right column)
+    newsHtml += '<div class="news-column">';
+    newsHtml += '<div class="news-section news-score-changes">';
+    newsHtml += '<h3>Recent Score Changes</h3>';
+    if (cyclistData && cyclistData.league_scores && cyclistData.league_scores.history && cyclistData.league_scores.history.length >= 2) {
+        const latestScores = cyclistData.league_scores.history[0].scores;
+        const previousScores = cyclistData.league_scores.history[1].scores;
+        
+        const scoreChanges = latestScores.map(latest => {
+            const previous = previousScores.find(prev => prev.name === latest.name);
+            return {
+                name: latest.name,
+                change: latest.points - (previous ? previous.points : 0)
+            };
+        }).sort((a, b) => b.change - a.change);
+
+        newsHtml += '<ol>';
+        scoreChanges.slice(0, 5).forEach(team => {
+            const changeClass = team.change >= 0 ? 'positive-change' : 'negative-change';
+            const changeSymbol = team.change >= 0 ? '+' : '';
+            newsHtml += `<li><span class="team-name">${team.name}</span><span class="team-change ${changeClass}">${changeSymbol}${team.change} points</span></li>`;
+        });
+        newsHtml += '</ol>';
+    } else {
+        newsHtml += '<p>Recent score change data not available.</p>';
+    }
+    newsHtml += '</div>';
+    newsHtml += '</div>';
+
+    newsHtml += '</div>'; // Close news-row
 
     // Most Recent MVP and MIP
     newsHtml += '<div class="news-section news-achievements">';

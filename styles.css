@@ -549,6 +549,7 @@ tr:nth-child(odd) {
 }
 
 /* News Tab Updated Styles */
+/* News Tab Updated Styles */
 .news-row {
     display: flex;
     justify-content: space-between;
@@ -557,6 +558,70 @@ tr:nth-child(odd) {
 
 .news-column {
     width: 48%;
+}
+
+.standings-list,
+.score-changes-list,
+.top-riders-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.standing-item,
+.score-change-item,
+.top-rider-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 5px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.standing-item:last-child,
+.score-change-item:last-child,
+.top-rider-item:last-child {
+    border-bottom: none;
+}
+
+.standing-rank,
+.rider-rank {
+    font-weight: bold;
+    color: var(--secondary-color);
+    width: 30px;
+}
+
+.team-name,
+.rider-name {
+    font-weight: bold;
+    color: var(--primary-color);
+    flex-grow: 1;
+    margin-right: 10px;
+}
+
+.team-points,
+.team-change,
+.rider-details {
+    text-align: right;
+}
+
+.positive-change {
+    color: #32CD32;
+}
+
+.negative-change {
+    color: #FF4500;
+}
+
+@media screen and (max-width: 768px) {
+    .news-row {
+        flex-direction: column;
+    }
+
+    .news-column {
+        width: 100%;
+        margin-bottom: 20px;
+    }
 }
 
 .news-score-changes ol {

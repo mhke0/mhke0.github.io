@@ -1481,7 +1481,7 @@ function generateNewsContent() {
         const previousHistory = cyclistData.league_scores.history[cyclistData.league_scores.history.length - 2];
         
         const latestDate = new Date(latestHistory.date);
-        newsHtml += `<h3>Recent Points Added (${latestDate.toDateString()})</h3>`;
+        newsHtml += `<h3>Recent Points Added <span class="news-date">(${latestDate.toDateString()})</span></h3>`;
         
         const scoreChanges = latestHistory.scores.map(latest => {
             const previous = previousHistory.scores.find(prev => prev.name === latest.name);
@@ -1513,10 +1513,13 @@ function generateNewsContent() {
     newsHtml += '</div>'; // Close news-row
 
     // Most Recent MVP and MIP
-           
-    const mipDate = new Date(mip.date);
     newsHtml += '<div class="news-section news-achievements">';
-    newsHtml += '<h3>Recent Achievements<span class="news-date">(${mipDate.toDateString()})</span></h3>';
+    let achievementDate = 'N/A';
+    if (cyclistData && cyclistData.mip_history && cyclistData.mip_history.length > 0) {
+        const mip = cyclistData.mip_history[cyclistData.mip_history.length - 1];
+        achievementDate = new Date(mip.date).toDateString();
+    }
+    newsHtml += `<h3>Recent Achievements <span class="news-date">(${achievementDate})</span></h3>`;
     if (cyclistData && cyclistData.mvp_history && cyclistData.mvp_history.length > 0) {
         const mvp = cyclistData.mvp_history[cyclistData.mvp_history.length - 1];
         newsHtml += `<p><span class="achievement-name">MVP: ${mvp.name}</span><span class="achievement-value">${mvp.points_added.toFixed(2)} points added</span></p>`;

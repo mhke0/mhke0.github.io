@@ -1736,7 +1736,7 @@ function displayTeamPointsVsCostChart() {
         hovermode: 'closest',
         showlegend: false,
         margin: {t: 50, r: 50, b: 50, l: 50}, // Adjusted margins
-        autosize: false,
+        autosize: true,
         width: 600,  // Fixed width
         height: 400  // Fixed height
     };

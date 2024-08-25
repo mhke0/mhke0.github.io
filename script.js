@@ -343,6 +343,8 @@ $(document).ready(function() {
         createRelativePerformanceChart(leagueScores.current);
         createCostVsPointsChart(top50Cyclists);
         createLeagueStandingsChart();
+        document.getElementById('riskInfoButton').addEventListener('click', toggleRiskExplanation);
+
 
         // Initialize the cycling team select dropdown
         initializeCyclingTeamSelect();
@@ -2111,4 +2113,15 @@ function calculateRiderRisk(riderName) {
         ownership: rider.ownership,
         role: rider.role
     };
+}
+function toggleRiskExplanation() {
+    const explanationContainer = document.getElementById('riskExplanationContainer');
+    const button = document.getElementById('riskInfoButton');
+    if (explanationContainer.style.display === 'none') {
+        explanationContainer.style.display = 'block';
+        button.textContent = 'Hide Risk Calculation Info';
+    } else {
+        explanationContainer.style.display = 'none';
+        button.textContent = 'Risk Calculation Info';
+    }
 }

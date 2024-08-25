@@ -1613,7 +1613,7 @@ function displayTeamCostsChart() {
             }
         },
         xaxis: {
-            title: 'Teams',
+            title: '',
             tickangle: -45,
             tickfont: {
                 family: 'VT323, monospace',

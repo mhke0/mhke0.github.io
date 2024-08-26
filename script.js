@@ -83,7 +83,7 @@ function createResponsiveChart(chartId, traces, layout, config = {}) {
     delete layout.width;
     delete layout.height;
     
-    layout.margin = {
+    layout.margin = layout.margin || {
         l: 50,
         r: 50,
         t: 50,
@@ -144,19 +144,19 @@ function createResponsiveChart(chartId, traces, layout, config = {}) {
                 try {
                     const updateLayout = {
                         autosize: true,
-                        font: layout.font,
+                        'font.size': layout.font.size,
                     };
                     if (layout.title && layout.title.font) {
-                        updateLayout['title.font'] = layout.title.font;
+                        updateLayout['title.font.size'] = layout.title.font.size;
                     }
                     if (layout.xaxis && layout.xaxis.title && layout.xaxis.title.font) {
-                        updateLayout['xaxis.title.font'] = layout.xaxis.title.font;
+                        updateLayout['xaxis.title.font.size'] = layout.xaxis.title.font.size;
                     }
                     if (layout.yaxis && layout.yaxis.title && layout.yaxis.title.font) {
-                        updateLayout['yaxis.title.font'] = layout.yaxis.title.font;
+                        updateLayout['yaxis.title.font.size'] = layout.yaxis.title.font.size;
                     }
                     if (layout.legend && layout.legend.font) {
-                        updateLayout['legend.font'] = layout.legend.font;
+                        updateLayout['legend.font.size'] = layout.legend.font.size;
                     }
                     Plotly.relayout(chartId, updateLayout);
                 } catch (error) {

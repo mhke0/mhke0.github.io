@@ -393,12 +393,11 @@ $(document).ready(function() {
             displayDreamTeam(data.dream_team);
         }
 
-        const riderSelect = $('#riderSelect');
-        const sortedCyclists = data.cyclists.sort((a, b) => a.name.localeCompare(b.name));
-        sortedCyclists.forEach(cyclist => {
+          const riderSelect = $('#riderSelect');
+            const sortedCyclists = cyclistData.cyclists.sort((a, b) => a.name.localeCompare(b.name));
+            sortedCyclists.forEach(cyclist => {
             riderSelect.append(`<option value="${cyclist.name}">${cyclist.name}</option>`);
-        });
-
+            });
         // Initialize the trajectory chart with top 10 riders
         updateTrajectoryChart();
 
@@ -893,7 +892,17 @@ function updateMVPandMIP(cyclistData) {
 }
 
 function updateTrajectoryChart(selectedRider = null) {
-    const selectedOption = selectedRider || $('#riderSelect').val();
+    const riderSelect = $('#riderSelect');
+    let selectedOption = selectedRider || riderSelect.val();
+
+    // If a specific rider is selected but not in the dropdown, add it
+    if (selectedRider && !riderSelect.find(`option[value="${selectedRider}"]`).length) {
+        riderSelect.append(`<option value="${selectedRider}">${selectedRider}</option>`);
+    }
+
+    // Set the dropdown value
+    riderSelect.val(selectedOption);
+
     let filteredCyclists;
 
     if (selectedOption === 'top10') {
@@ -911,11 +920,6 @@ function updateTrajectoryChart(selectedRider = null) {
 
     const { mvp, mip } = updateMVPandMIP(cyclistData);
     updateAllTimeMVPMIP(cyclistData);
-
-    // Update the dropdown to reflect the selected rider
-    if (selectedRider) {
-        $('#riderSelect').val(selectedRider);
-    }
 }
 
 // Update the click event handler for rider links
@@ -936,21 +940,24 @@ function openTab(evt, tabName, riderName = null) {
         tablinks[i].className = tablinks[i].className.replace(" active", "");
     }
     document.getElementById(tabName).style.display = "block";
-    if (evt) {
-        evt.currentTarget.className += " active";
-    } else {
-        // Find the correct tab button and set it as active
-        Array.from(tablinks).find(link => link.textContent.includes(tabName)).className += " active";
+    
+    // Find the correct tab button and set it as active
+    const activeTab = Array.from(tablinks).find(link => link.textContent.includes(tabName));
+    if (activeTab) {
+        activeTab.className += " active";
     }
 
     // Call specific functions based on the tab opened
     if (tabName === 'News') {
         generateNewsContent();
     } else if (tabName === 'RiderTrajectoryTab') {
-        if (riderName) {
-            $('#riderSelect').val(riderName);
-        }
-        updateTrajectoryChart(riderName);
+        // Delay the update to ensure the dropdown is populated
+        setTimeout(() => {
+            if (riderName) {
+                $('#riderSelect').val(riderName);
+            }
+            updateTrajectoryChart(riderName);
+        }, 0);
     } else if (tabName === 'LeagueScoresTab') {
         loadDefaultLeagueTeamChart();
         createLeagueStandingsChart();

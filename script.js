@@ -908,9 +908,14 @@ function openTab(evt, tabName) {
         displayTeamPointsVsCostChart(); 
         displayTeamEfficiencyChart();
     } else if (tabName === 'RiskTab') {
+        initializeCyclingTeamSelectForRisk();
         displayTeamOverallRisk();
-        displayTeamRiskAssessment();
-
+        // Initially display risk assessment for the first team
+        const cyclingTeamSelect = document.getElementById('cyclingTeamSelect');
+        if (cyclingTeamSelect.options.length > 1) {
+            cyclingTeamSelect.selectedIndex = 1;
+            displayTeamRiskAssessment();
+        }
     }
 }
 

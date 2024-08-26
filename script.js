@@ -161,7 +161,20 @@ function initializeCyclingTeamSelect() {
     // Load the default cycling team chart
     loadDefaultCyclingTeamChart();
 }
-
+function initializeCyclingTeamSelectForRisk() {
+    const cyclingTeamSelect = document.getElementById('cyclingTeamSelect');
+    if (!cyclingTeamSelect.options.length) {
+        cyclingTeamSelect.innerHTML = '<option value="">Select a Cycling Team</option>';
+        const teams = [...new Set(cyclistData.cyclists.map(cyclist => cyclist.team))].sort();
+        teams.forEach(team => {
+            const option = document.createElement('option');
+            option.value = team;
+            option.textContent = team;
+            cyclingTeamSelect.appendChild(option);
+        });
+    }
+    cyclingTeamSelect.onchange = displayTeamRiskAssessment;
+}
 function updateLeagueTeamRosterChart() {
     const selectedTeam = document.getElementById('leagueTeamSelect').value;
     if (!selectedTeam) return;
@@ -1905,7 +1918,6 @@ function displayRiskAssessmentTable(riskData) {
 }
 
 // ... (keep existing code)
-
 function displayTeamRiskAssessment() {
     const teamSelect = document.getElementById('cyclingTeamSelect');
     const selectedTeam = teamSelect.value;

@@ -14,7 +14,7 @@
     <h1>VELO DATA DASH</h1>
     <div id="loading">LOADING DATA, PLEASE WAIT...</div>
     <div id="error" style="display:none;"></div>
-     <div id="dashboard" style="display:none;">
+    <div id="dashboard" style="display:none;">
         <div class="tab">
             <button class="tablinks" onclick="openTab(event, 'News')" id="defaultOpen">News</button>
             <button class="tablinks" onclick="openTab(event, 'OverviewTab')">Stats</button>
@@ -23,13 +23,11 @@
             <button class="tablinks" onclick="openTab(event, 'CyclistDataTab')">Cyclist Data Table</button>
             <button class="tablinks" onclick="openTab(event, 'RiderTrajectoryTab')">Riders</button>
             <button class="tablinks" onclick="openTab(event, 'TeamsTab')">Teams</button>
-            <button class="tablinks" onclick="openTab(event, 'RiskAssessmentTab')">Risk Assessment</button>
             <button class="tablinks" onclick="openTab(event, 'IdealTeamTab')">Dream Team</button>
         </div>
 
-
         <div id="News" class="tabcontent">
-            <!-- News content will be dynamically populated -->
+
         </div>
 
         <div id="OverviewTab" class="tabcontent">
@@ -39,43 +37,49 @@
             </div>
         </div>
 
-        <div id="LeagueScoresTab" class="tabcontent">
-            <div class="chart-container">
-                <div id="latestPointsUpdateChart"></div>
-            </div>
-            <div class="chart-container">
-                <div id="leagueScoresChart"></div>
-            </div>
-            <div class="league-roster-container">
-                <div class="roster-header">
-                    <div class="dropdown-container">
-                        <select id="leagueTeamSelect" class="styled-select" onchange="updateLeagueTeamRosterChart()">
-                            <option value="">Select a League Team</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="chart-container">
-                    <div id="leagueTeamRosterChart"></div>
-                </div>
-                <div class="balanced-teams-container">
-                    <div id="mostBalancedTeamBox" class="balanced-team-box">
-                        <h3>Most Balanced Team</h3>
-                        <div id="mostBalancedTeamContent"></div>
-                    </div>
-                    <div id="leastBalancedTeamBox" class="balanced-team-box">
-                        <h3>Least Balanced Team</h3>
-                        <div id="leastBalancedTeamContent"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="chart-container">
-                <div id="relativePerformanceChart"></div>
-            </div>
-            <div class="chart-container">
-                <div id="leagueStandingsChart"></div>
+<div id="LeagueScoresTab" class="tabcontent">
+    <div class="chart-container">
+        <div id="latestPointsUpdateChart"></div>
+    </div>
+    <div class="chart-container">
+        <div id="leagueScoresChart"></div>
+    </div>
+   <div class="league-roster-container">
+        <div class="roster-header">
+            <div class="dropdown-container">
+                <select id="leagueTeamSelect" class="styled-select" onchange="updateLeagueTeamRosterChart()">
+                    <option value="">Select a League Team</option>
+                </select>
             </div>
         </div>
+        <div class="chart-container">
+            <div id="leagueTeamRosterChart"></div>
+        </div>
+        <div class="balanced-teams-container">
+            <div id="mostBalancedTeamBox" class="balanced-team-box">
+                <h3>Most Balanced Team</h3>
+                <div id="mostBalancedTeamContent"></div>
+            </div>
+            <div id="leastBalancedTeamBox" class="balanced-team-box">
+                <h3>Least Balanced Team</h3>
+                <div id="leastBalancedTeamContent"></div>
+            </div>
+        </div>
+    </div>
+        <div class="chart-container">
+        <div id="relativePerformanceChart"></div>
+    </div>
+    <div class="chart-container">
+        <div id="leagueStandingsChart"></div>
+    </div>
+</div>
+    
 
+    
+
+
+
+    
         <div id="Top50Tab" class="tabcontent">
             <div class="chart-container">
                 <div id="top50Chart"></div>
@@ -87,6 +91,7 @@
                 <div id="pointsPerNameLengthChart"></div>
             </div>
         </div>
+        
 
         <div id="CyclistDataTab" class="tabcontent">
             <h2>Cyclist Data</h2>
@@ -105,36 +110,142 @@
             </table>
         </div>
         
-        
-        <div id="RiderTrajectoryTab" class="tabcontent">
-            <div class="trajectory-container">
-                <div class="trajectory-header">
-                    <div class="dropdown-container">
-                        <select id="riderSelect" class="styled-select" onchange="updateTrajectoryChart()">
-                            <option value="top10">Top 10 Riders</option>
-                            <option value="all">All Riders</option>
-                            <option disabled>------------------------</option>
-                            <!-- Individual rider options will be populated here -->
-                        </select>
-                    </div>
-                </div>
-                <div class="chart-legend-container">
-                    <div class="chart-container">
-                        <div id="trajectoryChart"></div>
-                    </div>
-                    <div class="legend-container" id="customLegend"></div>
-                </div>
-                <div class="mvp-mip-container">
-                    <div id="mvpInfo" class="info-box-mvp"></div>
-                    <div id="mipInfo" class="info-box-mvp"></div>
-                </div>
-                <div class="stat-box_mvp_all" id="allTimeMVPMIPBox">
-                    <h3>All-Time Records</h3>
-                    <div id="allTimeMVPInfo"></div>
-                    <div id="allTimeMIPInfo"></div>
-                </div>
+<div id="TeamsTab" class="tabcontent">
+    <div class="team-roster-container">
+        <div class="team-roster-header">
+            <div id="selectedTeamInfo" class="selected-team-info"></div>
+            <div class="dropdown-container">
+                <select id="cyclingTeamSelect" class="styled-select" onchange="updateCyclingTeamRosterDisplay()">
+                    <option value="">Select a Cycling Team</option>
+                    <!-- Cycling team options will be populated here -->
+                </select>
             </div>
         </div>
+        <div id="cyclingTeamRosterDisplay"></div>
+        <div class="chart-container">
+            <div id="teamPointsDistributionChart"></div>
+        </div>
+        <div class="chart-container">
+            <div id="allTeamsComparisonChart"></div>
+        </div>
+        <div class="chart-container">
+            <div id="teamCostsChart"></div>
+        </div>
+        <div class="chart-container">
+            <div id="teamPointsVsCostChart"></div>
+        </div>
+        <div class="chart-container">
+            <div id="teamRiskAssessmentChart"></div>
+        </div>
+        <div id="riskAssessmentTable"></div>
+        <div id="risktext"><div class="risk-explanation">
+    <h2>Risk Calculation Breakdown</h2>
+    
+    <div class="risk-factor">
+        <h3>1. Cost Efficiency Risk</h3>
+        <p><strong>Purpose:</strong> Evaluates how efficiently a rider scores points relative to their cost.</p>
+        <p><strong>Calculation:</strong></p>
+        <ol>
+            <li>Calculate the average cost per point across all cyclists.</li>
+            <li>Calculate the rider's cost per point.</li>
+            <li>Divide the rider's cost per point by the average cost per point.</li>
+        </ol>
+        <p><strong>Interpretation:</strong> A value > 1 means the rider is less cost-efficient than average, increasing risk.</p>
+    </div>
+
+    <div class="risk-factor">
+        <h3>2. Ownership Risk</h3>
+        <p><strong>Purpose:</strong> Assesses the risk based on how widely owned a rider is.</p>
+        <p><strong>Calculation:</strong></p>
+        <ol>
+            <li>Find the highest ownership percentage among all cyclists.</li>
+            <li>Calculate 1 - (rider's ownership / max ownership).</li>
+        </ol>
+        <p><strong>Interpretation:</strong> Lower ownership increases risk, as fewer teams owning a rider could mean higher volatility.</p>
+    </div>
+
+    <div class="risk-factor">
+        <h3>3. Consistency Risk</h3>
+        <p><strong>Purpose:</strong> Measures how consistently a rider performs.</p>
+        <p><strong>Calculation:</strong></p>
+        <ol>
+            <li>Calculate the average points from the rider's point history.</li>
+            <li>Calculate the standard deviation of points.</li>
+            <li>Divide the standard deviation by the average points.</li>
+        </ol>
+        <p><strong>Interpretation:</strong> Higher values indicate more inconsistent performance, increasing risk.</p>
+    </div>
+
+    <div class="risk-factor">
+        <h3>4. Recent Performance Trend</h3>
+        <p><strong>Purpose:</strong> Evaluates whether the rider's recent performance is improving or declining.</p>
+        <p><strong>Calculation:</strong></p>
+        <ol>
+            <li>Take the last 3 performances.</li>
+            <li>Calculate a weighted average, giving more weight to recent performances.</li>
+            <li>Divide the overall average points by this weighted recent average.</li>
+        </ol>
+        <p><strong>Interpretation:</strong> Values > 1 indicate recent underperformance, increasing risk.</p>
+    </div>
+
+    <div class="risk-factor">
+        <h3>5. Role-based Risk</h3>
+        <p><strong>Purpose:</strong> Assigns a base risk level to different rider roles.</p>
+        <p><strong>Calculation:</strong> Use a predefined risk factor for each role.</p>
+        <p><strong>Interpretation:</strong></p>
+        <ul>
+            <li>All Rounders: Lowest risk (0.8)</li>
+            <li>Climbers: Medium risk (1.0)</li>
+            <li>Sprinters: Higher risk (1.2)</li>
+            <li>Unclassed: Highest risk (1.5)</li>
+        </ul>
+    </div>
+
+    <div class="overall-risk">
+        <h3>Overall Risk Score</h3>
+        <p>These factors are combined into an overall risk score:</p>
+        <ul>
+            <li>Cost Efficiency: 30%</li>
+            <li>Ownership: 10%</li>
+            <li>Consistency: 20%</li>
+            <li>Recent Performance Trend: 20%</li>
+            <li>Role-based Risk: 20%</li>
+        </ul>
+    </div>
+</div></div>
+
+    </div>
+</div>
+        
+<div id="RiderTrajectoryTab" class="tabcontent">
+    <div class="trajectory-container">
+        <div class="trajectory-header">
+            <div class="dropdown-container">
+                <select id="riderSelect" class="styled-select" onchange="updateTrajectoryChart()">
+                    <option value="top10">Top 10 Riders</option>
+                    <option value="all">All Riders</option>
+                    <option disabled>------------------------</option>
+                    <!-- Individual rider options will be populated here -->
+                </select>
+            </div>
+        </div>
+        <div class="chart-legend-container">
+            <div class="chart-container">
+                <div id="trajectoryChart"></div>
+            </div>
+            <div class="legend-container" id="customLegend"></div>
+        </div>
+        <div class="mvp-mip-container">
+            <div id="mvpInfo" class="info-box-mvp"></div>
+            <div id="mipInfo" class="info-box-mvp"></div>
+        </div>
+        <div class="stat-box_mvp_all" id="allTimeMVPMIPBox">
+            <h3>All-Time Records</h3>
+            <div id="allTimeMVPInfo"></div>
+            <div id="allTimeMIPInfo"></div>
+        </div>
+    </div>
+</div>
 
         <div id="IdealTeamTab" class="tabcontent">
             <h2>Dream Team (Max Cost: 100)</h2>
@@ -143,128 +254,6 @@
             <div class="chart-container">
                 <canvas id="dreamTeamChart"></canvas>
             </div>
-        </div>
-
-         
-                   <div id="TeamsTab" class="tabcontent">
-            <div class="team-roster-container">
-                <div class="team-roster-header">
-                    <div id="selectedTeamInfo" class="selected-team-info"></div>
-                    <div class="dropdown-container">
-                        <select id="cyclingTeamSelect" class="styled-select" onchange="updateCyclingTeamRosterDisplay()">
-                            <option value="">Select a Cycling Team</option>
-                        </select>
-                    </div>
-                </div>
-                <div id="cyclingTeamRosterDisplay"></div>
-                <div class="chart-container">
-                    <div id="teamPointsDistributionChart"></div>
-                </div>
-                <div class="chart-container">
-                    <div id="allTeamsComparisonChart"></div>
-                </div>
-                <div class="chart-container">
-                    <div id="teamCostsChart"></div>
-                </div>
-                <div class="chart-container">
-                    <div id="teamPointsVsCostChart"></div>
-                </div>
-            </div>
-        </div>
-
-        <div id="RiskAssessmentTab" class="tabcontent">
-            <div class="risk-assessment-container">
-                <div class="risk-assessment-header">
-                    <div class="dropdown-container">
-                        <select id="riskTeamSelect" class="styled-select" onchange="updateRiskAssessment()">
-                            <option value="">Select a Cycling Team</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="chart-container">
-                    <div id="teamRiskAssessmentChart"></div>
-                </div>
-                <div id="riskAssessmentTable"></div>
-                <div id="risktext">
-                    <div class="risk-explanation">
-                        <h2>Risk Calculation Breakdown</h2>
-                        
-                        <div class="risk-factor">
-                            <h3>1. Cost Efficiency Risk</h3>
-                            <p><strong>Purpose:</strong> Evaluates how efficiently a rider scores points relative to their cost.</p>
-                            <p><strong>Calculation:</strong></p>
-                            <ol>
-                                <li>Calculate the average cost per point across all cyclists.</li>
-                                <li>Calculate the rider's cost per point.</li>
-                                <li>Divide the rider's cost per point by the average cost per point.</li>
-                            </ol>
-                            <p><strong>Interpretation:</strong> A value > 1 means the rider is less cost-efficient than average, increasing risk.</p>
-                        </div>
-
-                        <div class="risk-factor">
-                            <h3>2. Ownership Risk</h3>
-                            <p><strong>Purpose:</strong> Assesses the risk based on how widely owned a rider is.</p>
-                            <p><strong>Calculation:</strong></p>
-                            <ol>
-                                <li>Find the highest ownership percentage among all cyclists.</li>
-                                <li>Calculate 1 - (rider's ownership / max ownership).</li>
-                            </ol>
-                            <p><strong>Interpretation:</strong> Lower ownership increases risk, as fewer teams owning a rider could mean higher volatility.</p>
-                        </div>
-
-                        <div class="risk-factor">
-                            <h3>3. Consistency Risk</h3>
-                            <p><strong>Purpose:</strong> Measures how consistently a rider performs.</p>
-                            <p><strong>Calculation:</strong></p>
-                            <ol>
-                                <li>Calculate the average points from the rider's point history.</li>
-                                <li>Calculate the standard deviation of points.</li>
-                                <li>Divide the standard deviation by the average points.</li>
-                            </ol>
-                            <p><strong>Interpretation:</strong> Higher values indicate more inconsistent performance, increasing risk.</p>
-                        </div>
-
-                        <div class="risk-factor">
-                            <h3>4. Recent Performance Trend</h3>
-                            <p><strong>Purpose:</strong> Evaluates whether the rider's recent performance is improving or declining.</p>
-                            <p><strong>Calculation:</strong></p>
-                            <ol>
-                                <li>Take the last 3 performances.</li>
-                                <li>Calculate a weighted average, giving more weight to recent performances.</li>
-                                <li>Divide the overall average points by this weighted recent average.</li>
-                            </ol>
-                            <p><strong>Interpretation:</strong> Values > 1 indicate recent underperformance, increasing risk.</p>
-                        </div>
-
-                        <div class="risk-factor">
-                            <h3>5. Role-based Risk</h3>
-                            <p><strong>Purpose:</strong> Assesses the risk based on the average performance of riders in each role.</p>
-                            <p><strong>Calculation:</strong></p>
-                            <ol>
-                                <li>Calculate the mean points per rider across all cyclists.</li>
-                                <li>Calculate the mean points per rider for each specific role.</li>
-                                <li>Divide the overall mean points by the role-specific mean points.</li>
-                            </ol>
-                            <p><strong>Interpretation:</strong></p>
-                            <ul>
-                                <li>Values < 1 indicate that the role typically scores more points than average (lower risk).</li>
-                                <li>Values > 1 indicate that the role typically scores fewer points than average (higher risk).</li>
-                            </ul>
-                        </div>
-
-                        <div class="overall-risk">
-                            <h3>Overall Risk Score</h3>
-                            <p>These factors are combined into an overall risk score:</p>
-                            <ul>
-                                <li>Cost Efficiency: 30%</li>
-                                <li>Ownership: 10%</li>
-                                <li>Consistency: 20%</li>
-                                <li>Recent Performance Trend: 20%</li>
-                                <li>Role-based Risk: 20%</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
         </div>
     </div>
 

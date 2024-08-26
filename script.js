@@ -163,16 +163,20 @@ function initializeCyclingTeamSelect() {
 }
 function initializeCyclingTeamSelectForRisk() {
     const cyclingTeamSelect = document.getElementById('cyclingTeamSelect');
-    if (!cyclingTeamSelect.options.length) {
-        cyclingTeamSelect.innerHTML = '<option value="">Select a Cycling Team</option>';
-        const teams = [...new Set(cyclistData.cyclists.map(cyclist => cyclist.team))].sort();
-        teams.forEach(team => {
-            const option = document.createElement('option');
-            option.value = team;
-            option.textContent = team;
-            cyclingTeamSelect.appendChild(option);
-        });
-    }
+    
+    // Clear existing options
+    cyclingTeamSelect.innerHTML = '<option value="">Select a Cycling Team</option>';
+    
+    // Populate with cycling teams
+    const teams = [...new Set(cyclistData.cyclists.map(cyclist => cyclist.team))].sort();
+    teams.forEach(team => {
+        const option = document.createElement('option');
+        option.value = team;
+        option.textContent = team;
+        cyclingTeamSelect.appendChild(option);
+    });
+
+    // Set the onchange event
     cyclingTeamSelect.onchange = displayTeamRiskAssessment;
 }
 function updateLeagueTeamRosterChart() {
@@ -907,7 +911,7 @@ function openTab(evt, tabName) {
         displayTeamCostsChart(); 
         displayTeamPointsVsCostChart(); 
         displayTeamEfficiencyChart();
-    } else if (tabName === 'RiskTab') {
+    if (tabName === 'RiskTab') {
         initializeCyclingTeamSelectForRisk();
         displayTeamOverallRisk();
         // Initially display risk assessment for the first team
@@ -917,7 +921,6 @@ function openTab(evt, tabName) {
             displayTeamRiskAssessment();
         }
     }
-}
 
 
 document.getElementById("defaultOpen").click();

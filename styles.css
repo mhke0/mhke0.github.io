@@ -837,3 +837,12 @@ tr:nth-child(odd) {
     height: 500px;
     margin-bottom: 20px;
 }
+#cyclistTable a {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#cyclistTable a:hover {
+    text-decoration: underline;
+}

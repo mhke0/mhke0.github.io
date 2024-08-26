@@ -1925,7 +1925,6 @@ function displayRiskAssessmentTable(riskData) {
     tableContainer.innerHTML = tableHTML;
 }
 
-// ... (keep existing code)
 function displayTeamRiskAssessment() {
     const teamSelect = document.getElementById('cyclingTeamSelect');
     const selectedTeam = teamSelect.value;

@@ -147,7 +147,9 @@ tr:nth-child(odd) {
 .dropdown-container {
     width: 170px;
 }
-
+.dropdown-container2 {
+    width: 170px;
+}
 .chart-legend-container {
     display: flex;
     gap: 20px;
@@ -190,7 +192,23 @@ tr:nth-child(odd) {
     outline: none;
     box-shadow: 0 0 5px var(--primary-color);
 }
+.styled-select2 {
+    background-color: var(--box-background-color);
+    border: 2px solid var(--primary-color);
+    border-radius: 5px;
+    font-family: var(--font-family);
+    font-size: 16px;
+    color: var(--primary-color);
+    padding: 5px;
+    margin-bottom: 0px;
+    width: 100%;
+    max-width: 300px;
+}
 
+.styled-select2:focus {
+    outline: none;
+    box-shadow: 0 0 5px var(--primary-color);
+}
 .tab {
     overflow: hidden;
     border: 2px solid var(--border-color);

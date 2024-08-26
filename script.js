@@ -149,13 +149,16 @@ function initializeLeagueTeamSelect() {
 
 function initializeCyclingTeamSelect() {
     const cyclingTeamSelect = document.getElementById('cyclingTeamSelect');
+    const cyclingTeamSelect2 = document.getElementById('cyclingTeamSelect2');
     cyclingTeamSelect.innerHTML = '<option value="">Select a Cycling Team</option>';
+    cyclingTeamSelect2.innerHTML = '<option value="">Select a Cycling Team</option>';
     const teams = [...new Set(cyclistData.cyclists.map(cyclist => cyclist.team))].sort();
     teams.forEach(team => {
         const option = document.createElement('option');
         option.value = team;
         option.textContent = team;
         cyclingTeamSelect.appendChild(option);
+        cyclingTeamSelect2.appendChild(option.cloneNode(true));
     });
 
     // Load the default cycling team chart
@@ -343,7 +346,6 @@ $(document).ready(function() {
         createRelativePerformanceChart(leagueScores.current);
         createCostVsPointsChart(top50Cyclists);
         createLeagueStandingsChart();
-        document.getElementById('riskInfoButton').addEventListener('click', toggleRiskExplanation);
 
 
         // Initialize the cycling team select dropdown
@@ -367,6 +369,7 @@ $(document).ready(function() {
 
         // Open the News tab by default
         document.getElementById("defaultOpen").click();
+        document.getElementById('riskInfoButton').addEventListener('click', toggleRiskExplanation);
 
     }).fail(function(jqxhr, textStatus, error) {
         $('#loading').hide();
@@ -897,6 +900,8 @@ function openTab(evt, tabName) {
         displayTeamRiskAssessment();
         displayTeamOverallRisk(); 
     } else if (tabName === 'RiskTab') {
+        updateRiskAssessment();
+
 
     }
 }
@@ -1906,14 +1911,7 @@ function displayRiskAssessmentTable(riskData) {
 
 // ... (keep existing code)
 
-function displayTeamRiskAssessment() {
-    const teamSelect = document.getElementById('cyclingTeamSelect');
-    const selectedTeam = teamSelect.value;
-    if (!selectedTeam) {
-        console.error('No team selected');
-        return;
-    }
-
+function displayTeamRiskAssessment(selectedTeam) {
     const teamRiders = cyclistData.cyclists.filter(cyclist => cyclist.team === selectedTeam);
     const riskData = teamRiders.map(rider => calculateRiderRisk(rider.name)).filter(risk => risk !== null);
 
@@ -2205,4 +2203,16 @@ function displayTeamOverallRisk() {
     };
 
     createResponsiveChart('teamOverallRiskChart', [trace], layout);
+}
+function updateRiskAssessment() {
+    const selectedTeam = document.getElementById('cyclingTeamSelect2').value;
+    if (!selectedTeam) {
+        document.getElementById('selectedTeamInfo').textContent = '';
+        document.getElementById('teamRiskAssessmentChart').innerHTML = '';
+        document.getElementById('riskAssessmentTable').innerHTML = '';
+        return;
+    }
+
+    document.getElementById('selectedTeamInfo').textContent = selectedTeam;
+    displayTeamRiskAssessment(selectedTeam);
 }

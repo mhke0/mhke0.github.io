@@ -195,6 +195,16 @@ function initializeCyclingTeamSelect() {
     // Load the default cycling team chart
     loadDefaultCyclingTeamChart();
 }
+function initializeLeagueTeamSelect() {
+    const leagueTeamSelect = document.getElementById('leagueTeamSelect');
+    leagueTeamSelect.innerHTML = '<option value="">Select a League Team</option>';
+    leagueData.forEach(team => {
+        const option = document.createElement('option');
+        option.value = team.name;
+        option.textContent = team.name;
+        leagueTeamSelect.appendChild(option);
+    });
+}
 
 function updateLeagueTeamRosterChart() {
     const selectedTeam = document.getElementById('leagueTeamSelect').value;

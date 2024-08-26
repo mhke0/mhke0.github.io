@@ -911,7 +911,7 @@ function openTab(evt, tabName) {
         displayTeamCostsChart(); 
         displayTeamPointsVsCostChart(); 
         displayTeamEfficiencyChart();
-    if (tabName === 'RiskTab') {
+    } else if (tabName === 'RiskTab') {
         initializeCyclingTeamSelectForRisk();
         displayTeamOverallRisk();
         // Initially display risk assessment for the first team
@@ -921,6 +921,7 @@ function openTab(evt, tabName) {
             displayTeamRiskAssessment();
         }
     }
+}
 
 
 document.getElementById("defaultOpen").click();

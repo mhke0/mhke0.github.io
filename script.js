@@ -899,7 +899,7 @@ function openTab(evt, tabName) {
         updateRiskAssessment();
     }
 }
-
+}
 
 document.getElementById("defaultOpen").click();
 

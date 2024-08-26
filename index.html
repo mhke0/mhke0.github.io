@@ -25,7 +25,6 @@
             <button class="tablinks" onclick="openTab(event, 'TeamsTab')">Teams</button>
             <button class="tablinks" onclick="openTab(event, 'IdealTeamTab')">Dream Team</button>
             <button class="tablinks" onclick="openTab(event, 'RiskTab')">Risk</button>
-
         </div>
 
         <div id="News" class="tabcontent">
@@ -105,33 +104,6 @@
             </table>
         </div>
         
-        <div id="TeamsTab" class="tabcontent">
-            <div class="team-roster-container">
-                <div class="team-roster-header">
-                    <div id="selectedTeamInfo" class="selected-team-info"></div>
-                    <div class="dropdown-container">
-                        <select id="cyclingTeamSelect" class="styled-select" onchange="updateCyclingTeamRosterDisplay()">
-                            <option value="">Select a Cycling Team</option>
-                            <!-- Cycling team options will be populated here -->
-                        </select>
-                    </div>
-                </div>
-                <div id="cyclingTeamRosterDisplay"></div>
-                <div class="chart-container">
-                    <div id="teamPointsDistributionChart"></div>
-                </div>
-                <div class="chart-container">
-                    <div id="allTeamsComparisonChart"></div>
-                </div>
-                <div class="chart-container">
-                    <div id="teamCostsChart"></div>
-                </div>
-                <div class="chart-container">
-                    <div id="teamPointsVsCostChart"></div>
-                </div>
-            </div>
-        </div>
-        
         <div id="RiderTrajectoryTab" class="tabcontent">
             <div class="trajectory-container">
                 <div class="trajectory-header">
@@ -162,6 +134,33 @@
             </div>
         </div>
 
+        <div id="TeamsTab" class="tabcontent">
+            <div class="team-roster-container">
+                <div class="team-roster-header">
+                    <div id="selectedTeamInfo" class="selected-team-info"></div>
+                    <div class="dropdown-container">
+                        <select id="cyclingTeamSelect" class="styled-select" onchange="updateCyclingTeamRosterDisplay()">
+                            <option value="">Select a Cycling Team</option>
+                            <!-- Cycling team options will be populated here -->
+                        </select>
+                    </div>
+                </div>
+                <div id="cyclingTeamRosterDisplay"></div>
+                <div class="chart-container">
+                    <div id="teamPointsDistributionChart"></div>
+                </div>
+                <div class="chart-container">
+                    <div id="allTeamsComparisonChart"></div>
+                </div>
+                <div class="chart-container">
+                    <div id="teamCostsChart"></div>
+                </div>
+                <div class="chart-container">
+                    <div id="teamPointsVsCostChart"></div>
+                </div>
+            </div>
+        </div>
+
         <div id="IdealTeamTab" class="tabcontent">
             <h2>Dream Team (Max Cost: 100)</h2>
             <div id="dreamTeamStats"></div>
@@ -175,14 +174,14 @@
             <div class="team-roster-container">
                 <div class="team-roster-header">
                     <div id="selectedTeamInfo" class="selected-team-info"></div>
-                    <div class="dropdown-container">
-                        <select id="cyclingTeamSelect" class="styled-select" onchange="updateCyclingTeamRosterDisplay()">
+                    <div class="dropdown-container2">
+                        <select id="cyclingTeamSelect2" class="styled-select2" onchange="updateRiskAssessment()">
                             <option value="">Select a Cycling Team</option>
                             <!-- Cycling team options will be populated here -->
                         </select>
                     </div>
                 </div>
-             <div class="chart-container">
+                <div class="chart-container">
                     <div id="teamOverallRiskChart"></div>
                 </div>
                 <div class="chart-container">
@@ -272,6 +271,7 @@
                         </div>
                     </div>
                 </div>
+            </div>
         </div>
     </div>
 

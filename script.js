@@ -338,7 +338,7 @@ $(document).ready(function() {
         let totalPoints = 0;
         const roles = {};
 
-        cyclists.forEach(cyclist => {
+         cyclists.forEach(cyclist => {
             totalCost += cyclist.cost;
             totalPoints += cyclist.points;
             roles[cyclist.role] = (roles[cyclist.role] || 0) + 1;
@@ -346,7 +346,7 @@ $(document).ready(function() {
             const costPerPoint = cyclist.points === 0 ? "∞" : (cyclist.cost / cyclist.points).toFixed(2);
             $('#cyclistTable tbody').append(`
                 <tr>
-                    <td>${cyclist.name}</td>
+                    <td><a href="#" class="rider-link" data-rider="${cyclist.name}">${cyclist.name}</a></td>
                     <td>${cyclist.team}</td>
                     <td>${cyclist.role}</td>
                     <td>${cyclist.cost}</td>
@@ -412,6 +412,12 @@ $(document).ready(function() {
     }).fail(function(jqxhr, textStatus, error) {
         $('#loading').hide();
         $('#error').text("Error fetching data: " + error).show();
+    });
+     // Add click event handler for rider links
+    $(document).on('click', '.rider-link', function(e) {
+        e.preventDefault();
+        const riderName = $(this).data('rider');
+        openTab(null, 'RiderTrajectoryTab', riderName);
     });
 });
 
@@ -907,7 +913,7 @@ function updateTrajectoryChart() {
     updateAllTimeMVPMIP(cyclistData);  // Add this line to update all-time records
 }
 
-function openTab(evt, tabName) {
+function openTab(evt, tabName, riderName = null) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
     for (i = 0; i < tabcontent.length; i++) {
@@ -918,12 +924,20 @@ function openTab(evt, tabName) {
         tablinks[i].className = tablinks[i].className.replace(" active", "");
     }
     document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
+    if (evt) {
+        evt.currentTarget.className += " active";
+    } else {
+        // Find the correct tab button and set it as active
+        Array.from(tablinks).find(link => link.textContent.includes(tabName)).className += " active";
+    }
 
     // Call specific functions based on the tab opened
     if (tabName === 'News') {
         generateNewsContent();
     } else if (tabName === 'RiderTrajectoryTab') {
+        if (riderName) {
+            $('#riderSelect').val(riderName);
+        }
         updateTrajectoryChart();
     } else if (tabName === 'LeagueScoresTab') {
         loadDefaultLeagueTeamChart();
@@ -939,8 +953,14 @@ function openTab(evt, tabName) {
         displayTeamOverallRisk(); 
     } else if (tabName === 'RiskTab') {
         updateRiskAssessment();
-
-
+    } else if (tabName === 'OverviewTab') {
+        // You might want to add any specific functions for the Overview tab here
+    } else if (tabName === 'Top50Tab') {
+        // You might want to add any specific functions for the Top 50 Cyclists tab here
+    } else if (tabName === 'CyclistDataTab') {
+        // The cyclist data table is likely already populated, but you might want to refresh it here if needed
+    } else if (tabName === 'IdealTeamTab') {
+        // If you have any specific functions for the Dream Team tab, add them here
     }
 }
 

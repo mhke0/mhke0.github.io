@@ -892,8 +892,8 @@ function updateMVPandMIP(cyclistData) {
     };
 }
 
-function updateTrajectoryChart() {
-    const selectedOption = $('#riderSelect').val();
+function updateTrajectoryChart(selectedRider = null) {
+    const selectedOption = selectedRider || $('#riderSelect').val();
     let filteredCyclists;
 
     if (selectedOption === 'top10') {
@@ -910,8 +910,20 @@ function updateTrajectoryChart() {
     createCustomLegend(filteredCyclists);
 
     const { mvp, mip } = updateMVPandMIP(cyclistData);
-    updateAllTimeMVPMIP(cyclistData);  // Add this line to update all-time records
+    updateAllTimeMVPMIP(cyclistData);
+
+    // Update the dropdown to reflect the selected rider
+    if (selectedRider) {
+        $('#riderSelect').val(selectedRider);
+    }
 }
+
+// Update the click event handler for rider links
+$(document).on('click', '.rider-link', function(e) {
+    e.preventDefault();
+    const riderName = $(this).data('rider');
+    openTab(null, 'RiderTrajectoryTab', riderName);
+});
 
 function openTab(evt, tabName, riderName = null) {
     var i, tabcontent, tablinks;

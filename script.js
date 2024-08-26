@@ -349,6 +349,8 @@ $(document).ready(function() {
 
         // Initialize the cycling team select dropdown
     initializeCyclingTeamSelect();
+    initializeRiskAssessmentTab();
+
 
         if (data.dream_team) {
             displayDreamTeam(data.dream_team);
@@ -881,7 +883,7 @@ function openTab(evt, tabName) {
     evt.currentTarget.className += " active";
 
     // Call specific functions based on the tab opened
-      if (tabName === 'News') {
+    if (tabName === 'News') {
         generateNewsContent();
     } else if (tabName === 'RiderTrajectoryTab') {
         updateTrajectoryChart();
@@ -897,8 +899,8 @@ function openTab(evt, tabName) {
         displayTeamEfficiencyChart();
     } else if (tabName === 'RiskAssessmentTab') {
         updateRiskAssessment();
+        displayTeamOverallRisk(); // Add this line to display the overall risk chart
     }
-}
 }
 
 document.getElementById("defaultOpen").click();
@@ -2201,6 +2203,7 @@ function displayTeamOverallRisk() {
 
     createResponsiveChart('teamOverallRiskChart', [trace], layout);
 }
+
 function updateRiskAssessment() {
     const selectedTeam = document.getElementById('riskTeamSelect').value;
     if (!selectedTeam) {
@@ -2210,4 +2213,22 @@ function updateRiskAssessment() {
     }
 
     displayTeamRiskAssessment(selectedTeam);
+}
+
+function initializeRiskAssessmentTab() {
+    const riskTeamSelect = document.getElementById('riskTeamSelect');
+    if (riskTeamSelect) {
+        riskTeamSelect.addEventListener('change', updateRiskAssessment);
+    }
+
+    const riskInfoButton = document.getElementById('riskInfoButton');
+    if (riskInfoButton) {
+        riskInfoButton.addEventListener('click', toggleRiskExplanation);
+    }
+
+    // Initially hide the risk explanation
+    const explanationContainer = document.getElementById('riskExplanationContainer');
+    if (explanationContainer) {
+        explanationContainer.style.display = 'none';
+    }
 }

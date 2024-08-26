@@ -104,18 +104,27 @@ function createResponsiveChart(chartId, traces, layout, config = {}) {
         layout.font.size = baseSize;
 
         if (layout.title) {
+            if (typeof layout.title === 'string') {
+                layout.title = { text: layout.title };
+            }
             layout.title.font = layout.title.font || {};
             layout.title.font.size = baseSize * 1.5;
         }
 
         if (layout.xaxis) {
             layout.xaxis.title = layout.xaxis.title || {};
+            if (typeof layout.xaxis.title === 'string') {
+                layout.xaxis.title = { text: layout.xaxis.title };
+            }
             layout.xaxis.title.font = layout.xaxis.title.font || {};
             layout.xaxis.title.font.size = baseSize * 1.2;
         }
 
         if (layout.yaxis) {
             layout.yaxis.title = layout.yaxis.title || {};
+            if (typeof layout.yaxis.title === 'string') {
+                layout.yaxis.title = { text: layout.yaxis.title };
+            }
             layout.yaxis.title.font = layout.yaxis.title.font || {};
             layout.yaxis.title.font.size = baseSize * 1.2;
         }

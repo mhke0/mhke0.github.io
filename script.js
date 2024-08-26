@@ -169,18 +169,6 @@ function createResponsiveChart(chartId, traces, layout, config = {}) {
     resizeObserver.observe(container);
 }
 
-
-function initializeLeagueTeamSelect() {
-    const leagueTeamSelect = document.getElementById('leagueTeamSelect');
-    leagueTeamSelect.innerHTML = '<option value="">Select a League Team</option>';
-    leagueData.forEach(team => {
-        const option = document.createElement('option');
-        option.value = team.name;
-        option.textContent = team.name;
-        leagueTeamSelect.appendChild(option);
-    });
-}
-
 function initializeCyclingTeamSelect() {
     const cyclingTeamSelect = document.getElementById('cyclingTeamSelect');
     const cyclingTeamSelect2 = document.getElementById('cyclingTeamSelect2');

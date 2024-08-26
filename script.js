@@ -98,7 +98,32 @@ function createResponsiveChart(chartId, traces, layout, config = {}) {
     layout.yaxis.automargin = true;
     
     function updateFontSizes() {
-        // ... (keep existing updateFontSizes function)
+        const baseSize = Math.min(window.innerWidth, window.innerHeight) / 50;
+        
+        layout.font = layout.font || {};
+        layout.font.size = baseSize;
+
+        if (layout.title) {
+            layout.title.font = layout.title.font || {};
+            layout.title.font.size = baseSize * 1.5;
+        }
+
+        if (layout.xaxis) {
+            layout.xaxis.title = layout.xaxis.title || {};
+            layout.xaxis.title.font = layout.xaxis.title.font || {};
+            layout.xaxis.title.font.size = baseSize * 1.2;
+        }
+
+        if (layout.yaxis) {
+            layout.yaxis.title = layout.yaxis.title || {};
+            layout.yaxis.title.font = layout.yaxis.title.font || {};
+            layout.yaxis.title.font.size = baseSize * 1.2;
+        }
+
+        if (layout.legend) {
+            layout.legend.font = layout.legend.font || {};
+            layout.legend.font.size = baseSize;
+        }
     }
     
     layout.xaxis.tickangle = layout.xaxis.tickangle || -45;
@@ -117,14 +142,23 @@ function createResponsiveChart(chartId, traces, layout, config = {}) {
             if (entry.target.id === chartId) {
                 updateFontSizes();
                 try {
-                    Plotly.relayout(chartId, {
+                    const updateLayout = {
                         autosize: true,
                         font: layout.font,
-                        'title.font': layout.title.font,
-                        'xaxis.title.font': layout.xaxis.title.font,
-                        'yaxis.title.font': layout.yaxis.title.font,
-                        'legend.font': layout.legend.font
-                    });
+                    };
+                    if (layout.title && layout.title.font) {
+                        updateLayout['title.font'] = layout.title.font;
+                    }
+                    if (layout.xaxis && layout.xaxis.title && layout.xaxis.title.font) {
+                        updateLayout['xaxis.title.font'] = layout.xaxis.title.font;
+                    }
+                    if (layout.yaxis && layout.yaxis.title && layout.yaxis.title.font) {
+                        updateLayout['yaxis.title.font'] = layout.yaxis.title.font;
+                    }
+                    if (layout.legend && layout.legend.font) {
+                        updateLayout['legend.font'] = layout.legend.font;
+                    }
+                    Plotly.relayout(chartId, updateLayout);
                 } catch (error) {
                     console.error(`Error resizing chart ${chartId}:`, error);
                 }

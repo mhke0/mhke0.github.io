@@ -161,24 +161,7 @@ function initializeCyclingTeamSelect() {
     // Load the default cycling team chart
     loadDefaultCyclingTeamChart();
 }
-function initializeCyclingTeamSelectForRisk() {
-    const cyclingTeamSelect = document.getElementById('cyclingTeamSelect');
-    
-    // Clear existing options
-    cyclingTeamSelect.innerHTML = '<option value="">Select a Cycling Team</option>';
-    
-    // Populate with cycling teams
-    const teams = [...new Set(cyclistData.cyclists.map(cyclist => cyclist.team))].sort();
-    teams.forEach(team => {
-        const option = document.createElement('option');
-        option.value = team;
-        option.textContent = team;
-        cyclingTeamSelect.appendChild(option);
-    });
 
-    // Set the onchange event
-    cyclingTeamSelect.onchange = displayTeamRiskAssessment;
-}
 function updateLeagueTeamRosterChart() {
     const selectedTeam = document.getElementById('leagueTeamSelect').value;
     if (!selectedTeam) return;
@@ -911,15 +894,10 @@ function openTab(evt, tabName) {
         displayTeamCostsChart(); 
         displayTeamPointsVsCostChart(); 
         displayTeamEfficiencyChart();
+        displayTeamRiskAssessment();
+        displayTeamOverallRisk(); 
     } else if (tabName === 'RiskTab') {
-        initializeCyclingTeamSelectForRisk();
-        displayTeamOverallRisk();
-        // Initially display risk assessment for the first team
-        const cyclingTeamSelect = document.getElementById('cyclingTeamSelect');
-        if (cyclingTeamSelect.options.length > 1) {
-            cyclingTeamSelect.selectedIndex = 1;
-            displayTeamRiskAssessment();
-        }
+
     }
 }
 
@@ -1925,6 +1903,8 @@ function displayRiskAssessmentTable(riskData) {
 
     tableContainer.innerHTML = tableHTML;
 }
+
+// ... (keep existing code)
 
 function displayTeamRiskAssessment() {
     const teamSelect = document.getElementById('cyclingTeamSelect');

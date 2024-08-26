@@ -149,16 +149,13 @@ function initializeLeagueTeamSelect() {
 
 function initializeCyclingTeamSelect() {
     const cyclingTeamSelect = document.getElementById('cyclingTeamSelect');
-    const riskTeamSelect = document.getElementById('riskTeamSelect');
     cyclingTeamSelect.innerHTML = '<option value="">Select a Cycling Team</option>';
-    riskTeamSelect.innerHTML = '<option value="">Select a Cycling Team</option>';
     const teams = [...new Set(cyclistData.cyclists.map(cyclist => cyclist.team))].sort();
     teams.forEach(team => {
         const option = document.createElement('option');
         option.value = team;
         option.textContent = team;
-        cyclingTeamSelect.appendChild(option.cloneNode(true));
-        riskTeamSelect.appendChild(option);
+        cyclingTeamSelect.appendChild(option);
     });
 
     // Load the default cycling team chart
@@ -231,6 +228,8 @@ function updateCyclingTeamRosterDisplay() {
         document.getElementById('selectedTeamInfo').textContent = '';
         document.getElementById('cyclingTeamRosterDisplay').innerHTML = '';
         document.getElementById('teamPointsDistributionChart').innerHTML = '';
+        document.getElementById('teamRiskAssessmentChart').innerHTML = '';
+        document.getElementById('riskAssessmentTable').innerHTML = '';
         return;
     }
 
@@ -344,13 +343,9 @@ $(document).ready(function() {
         createRelativePerformanceChart(leagueScores.current);
         createCostVsPointsChart(top50Cyclists);
         createLeagueStandingsChart();
-        document.getElementById('riskInfoButton').addEventListener('click', toggleRiskExplanation);
-
 
         // Initialize the cycling team select dropdown
-    initializeCyclingTeamSelect();
-    initializeRiskAssessmentTab();
-
+        initializeCyclingTeamSelect();
 
         if (data.dream_team) {
             displayDreamTeam(data.dream_team);
@@ -897,11 +892,11 @@ function openTab(evt, tabName) {
         displayTeamCostsChart(); 
         displayTeamPointsVsCostChart(); 
         displayTeamEfficiencyChart();
-    } else if (tabName === 'RiskAssessmentTab') {
-        updateRiskAssessment();
-        displayTeamOverallRisk(); // Add this line to display the overall risk chart
+
+
     }
 }
+
 
 document.getElementById("defaultOpen").click();
 
@@ -1905,8 +1900,11 @@ function displayRiskAssessmentTable(riskData) {
     tableContainer.innerHTML = tableHTML;
 }
 
+// ... (keep existing code)
 
-function displayTeamRiskAssessment(selectedTeam) {
+function displayTeamRiskAssessment() {
+    const teamSelect = document.getElementById('cyclingTeamSelect');
+    const selectedTeam = teamSelect.value;
     if (!selectedTeam) {
         console.error('No team selected');
         return;
@@ -1991,6 +1989,7 @@ function displayTeamRiskAssessment(selectedTeam) {
     displayRiskAssessmentTable(riskData);
 }
 
+
 function displayRiskAssessmentTable(riskData) {
     const tableContainer = document.getElementById('riskAssessmentTable');
     if (!tableContainer) {
@@ -2011,7 +2010,6 @@ function displayRiskAssessmentTable(riskData) {
                     <th>Role</th>
                     <th>Cost</th>
                     <th>Points</th>
-                    <th>Ownership %</th>
                 </tr>
             </thead>
             <tbody>
@@ -2026,10 +2024,9 @@ function displayRiskAssessmentTable(riskData) {
                 <td>${r.ownershipRisk.toFixed(2)}</td>
                 <td>${r.consistencyRisk.toFixed(2)}</td>
                 <td>${r.trendRisk.toFixed(2)}</td>
-                <td>${r.role}</td>
+                <td>${r.roleRisk.toFixed(2)}</td>
                 <td>${r.cost}</td>
                 <td>${r.points}</td>
-                <td>${r.ownership}%</td>
             </tr>
         `;
     });
@@ -2048,28 +2045,9 @@ function calculateRiderRisk(riderName) {
         return null;
     }
 
-    // Calculate mean points per rider across all cyclists
-    const meanPointsPerRider = cyclistData.cyclists.reduce((sum, c) => sum + c.points, 0) / cyclistData.cyclists.length;
-
-    // Calculate mean points per rider for each role
-    const rolePoints = {};
-    cyclistData.cyclists.forEach(c => {
-        if (!rolePoints[c.role]) {
-            rolePoints[c.role] = { total: 0, count: 0 };
-        }
-        rolePoints[c.role].total += c.points;
-        rolePoints[c.role].count++;
-    });
-
-    const roleMeanPoints = Object.keys(rolePoints).reduce((acc, role) => {
-        acc[role] = rolePoints[role].total / rolePoints[role].count;
-        return acc;
-    }, {});
-
     // Factor 1: Cost Efficiency Risk
-    const avgCostPerPoint = cyclistData.cyclists.reduce((sum, c) => sum + (c.cost / Math.max(c.points, 1)), 0) / cyclistData.cyclists.length;
-    const riderCostPerPoint = rider.cost / Math.max(rider.points, 1);
-    const costEfficiencyRisk = riderCostPerPoint / avgCostPerPoint;
+    const avgCostPerPoint = cyclistData.cyclists.reduce((sum, c) => sum + (c.cost / c.points), 0) / cyclistData.cyclists.length;
+    const costEfficiencyRisk = (rider.cost / rider.points) / avgCostPerPoint;
 
     // Factor 2: Ownership Risk (higher ownership = lower risk)
     const maxOwnership = Math.max(...cyclistData.cyclists.map(c => c.ownership));
@@ -2080,15 +2058,21 @@ function calculateRiderRisk(riderName) {
     const avgPoints = pointHistory.reduce((sum, points) => sum + points, 0) / pointHistory.length;
     const variance = pointHistory.reduce((sum, points) => sum + Math.pow(points - avgPoints, 2), 0) / pointHistory.length;
     const standardDeviation = Math.sqrt(variance);
-    const consistencyRisk = standardDeviation / Math.max(avgPoints, 1);
+    const consistencyRisk = standardDeviation / avgPoints;
 
     // Factor 4: Recent Performance Trend
     const recentPerformance = pointHistory.slice(-3); // Last 3 performances
     const trend = recentPerformance.reduce((sum, points, index) => sum + points * (index + 1), 0) / 6; // Weighted sum
-    const trendRisk = avgPoints / Math.max(trend, 1); // Lower if recent performance is better than average
+    const trendRisk = avgPoints / trend; // Lower if recent performance is better than average
 
     // Factor 5: Role-based Risk
-    const roleRisk = meanPointsPerRider / Math.max(roleMeanPoints[rider.role], 1);
+    const roleFactor = {
+        'All Rounder': 0.8,
+        'Climber': 1.0,
+        'Sprinter': 1.2,
+        'Unclassed': 1.5
+    };
+    const roleRisk = roleFactor[rider.role] || 1.0;
 
     // Combine factors (adjust weights as needed)
     const overallRisk = (
@@ -2112,123 +2096,4 @@ function calculateRiderRisk(riderName) {
         ownership: rider.ownership,
         role: rider.role
     };
-}
-function toggleRiskExplanation() {
-    const explanationContainer = document.getElementById('riskExplanationContainer');
-    const button = document.getElementById('riskInfoButton');
-    if (explanationContainer.style.display === 'none') {
-        explanationContainer.style.display = 'block';
-        button.textContent = 'Hide Risk Calculation Info';
-    } else {
-        explanationContainer.style.display = 'none';
-        button.textContent = 'Risk Calculation Info';
-    }
-}
-function displayTeamOverallRisk() {
-    const teams = {};
-    cyclistData.cyclists.forEach(cyclist => {
-        if (!teams[cyclist.team]) {
-            teams[cyclist.team] = [];
-        }
-        teams[cyclist.team].push(cyclist);
-    });
-
-    const teamRisks = Object.entries(teams).map(([teamName, riders]) => {
-        const teamRisks = riders.map(rider => calculateRiderRisk(rider.name).overallRisk);
-        const avgRisk = teamRisks.reduce((sum, risk) => sum + risk, 0) / teamRisks.length;
-        return { team: teamName, risk: avgRisk };
-    });
-
-    teamRisks.sort((a, b) => b.risk - a.risk);
-
-    const trace = {
-        x: teamRisks.map(t => t.team),
-        y: teamRisks.map(t => t.risk),
-        type: 'bar',
-        marker: {
-            color: teamRisks.map(t => {
-                if (t.risk < 0.8) return 'green';
-                if (t.risk < 1.2) return 'yellow';
-                return 'red';
-            }),
-            line: {
-                color: '#FF69B4',
-                width: 1.5
-            }
-        },
-        text: teamRisks.map(t => t.risk.toFixed(2)),
-        textposition: 'auto',
-        hoverinfo: 'text',
-        hovertext: teamRisks.map(t => 
-            `${t.team}<br>` +
-            `Overall Risk: ${t.risk.toFixed(2)}`
-        )
-    };
-
-    const layout = {
-        title: {
-            text: 'Team Overall Risk (Average Risk of Riders)',
-            font: {
-                family: 'VT323, monospace',
-                size: 24,
-                color: '#FF1493'
-            }
-        },
-        xaxis: {
-            title: 'Teams',
-            tickangle: -45,
-            tickfont: {
-                family: 'VT323, monospace',
-                size: 12,
-                color: '#000000'
-            }
-        },
-        yaxis: {
-            title: 'Risk Score',
-            tickfont: {
-                family: 'VT323, monospace',
-                size: 14,
-                color: '#000000'
-            }
-        },
-        paper_bgcolor: '#FFF0F5',
-        plot_bgcolor: '#FFF0F5',
-        font: {
-            family: 'VT323, monospace',
-            color: '#000000'
-        },
-        autosize: true,
-        margin: {t: 50, r: 50, b: 100, l: 50},
-    };
-
-    createResponsiveChart('teamOverallRiskChart', [trace], layout);
-}
-
-function updateRiskAssessment() {
-    const selectedTeam = document.getElementById('riskTeamSelect').value;
-    if (!selectedTeam) {
-        document.getElementById('teamRiskAssessmentChart').innerHTML = '';
-        document.getElementById('riskAssessmentTable').innerHTML = '';
-        return;
-    }
-
-    displayTeamRiskAssessment(selectedTeam);
-}
-
-function initializeRiskAssessmentTab() {
-    const riskTeamSelect = document.getElementById('riskTeamSelect');
-    if (riskTeamSelect) {
-        riskTeamSelect.addEventListener('change', updateRiskAssessment);
-    }
-
-    const riskInfoButton = document.getElementById('riskInfoButton');
-    if (riskInfoButton) {
-        riskInfoButton.addEventListener('click', toggleRiskExplanation);
-    }
-
-    // Initially hide the risk explanation
-    const explanationContainer = document.getElementById('riskExplanationContainer');
-    if (explanationContainer) {
-        explanationContainer.style.display = 'none';
-    }
 }

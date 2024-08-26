@@ -191,9 +191,6 @@ function initializeCyclingTeamSelect() {
         cyclingTeamSelect.appendChild(option);
         cyclingTeamSelect2.appendChild(option.cloneNode(true));
     });
-
-    // Load the default cycling team chart
-    loadDefaultCyclingTeamChart();
 }
 function initializeLeagueTeamSelect() {
     const leagueTeamSelect = document.getElementById('leagueTeamSelect');
@@ -2246,7 +2243,16 @@ function displayTeamOverallRisk() {
     createResponsiveChart('teamOverallRiskChart', [trace], layout);
 }
 function updateRiskAssessment() {
-    const selectedTeam = document.getElementById('cyclingTeamSelect2').value;
+    const cyclingTeamSelect2 = document.getElementById('cyclingTeamSelect2');
+    
+    // If no team is selected, select the first team
+    if (!cyclingTeamSelect2.value) {
+        if (cyclingTeamSelect2.options.length > 1) {
+            cyclingTeamSelect2.selectedIndex = 1; // Select the first team (index 0 is usually the default "Select a team" option)
+        }
+    }
+
+    const selectedTeam = cyclingTeamSelect2.value;
     if (!selectedTeam) {
         document.getElementById('selectedTeamInfo').textContent = '';
         document.getElementById('teamRiskAssessmentChart').innerHTML = '';
@@ -2256,6 +2262,7 @@ function updateRiskAssessment() {
 
     document.getElementById('selectedTeamInfo').textContent = selectedTeam;
     displayTeamRiskAssessment(selectedTeam);
+    displayTeamOverallRisk();
 }
 function displayTeamEfficiencyChart() {
     const teams = {};

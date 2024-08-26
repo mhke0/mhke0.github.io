@@ -947,6 +947,9 @@ function openTab(evt, tabName, riderName = null) {
         activeTab.className += " active";
     }
 
+    // Scroll to the top of the page
+    window.scrollTo(0, 0);
+
     // Call specific functions based on the tab opened
     if (tabName === 'News') {
         generateNewsContent();

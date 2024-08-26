@@ -896,6 +896,8 @@ function openTab(evt, tabName) {
         displayTeamEfficiencyChart();
         displayTeamRiskAssessment();
         displayTeamOverallRisk(); 
+    } else if (tabName === 'RiskTab') {
+
     }
 }
 

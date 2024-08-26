@@ -938,7 +938,7 @@ function openTab(evt, tabName, riderName = null) {
         if (riderName) {
             $('#riderSelect').val(riderName);
         }
-        updateTrajectoryChart();
+        updateTrajectoryChart(riderName);
     } else if (tabName === 'LeagueScoresTab') {
         loadDefaultLeagueTeamChart();
         createLeagueStandingsChart();
@@ -953,17 +953,8 @@ function openTab(evt, tabName, riderName = null) {
         displayTeamOverallRisk(); 
     } else if (tabName === 'RiskTab') {
         updateRiskAssessment();
-    } else if (tabName === 'OverviewTab') {
-        // You might want to add any specific functions for the Overview tab here
-    } else if (tabName === 'Top50Tab') {
-        // You might want to add any specific functions for the Top 50 Cyclists tab here
-    } else if (tabName === 'CyclistDataTab') {
-        // The cyclist data table is likely already populated, but you might want to refresh it here if needed
-    } else if (tabName === 'IdealTeamTab') {
-        // If you have any specific functions for the Dream Team tab, add them here
     }
 }
-
 
 document.getElementById("defaultOpen").click();
 

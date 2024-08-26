@@ -343,6 +343,8 @@ $(document).ready(function() {
         createRelativePerformanceChart(leagueScores.current);
         createCostVsPointsChart(top50Cyclists);
         createLeagueStandingsChart();
+        document.getElementById('riskInfoButton').addEventListener('click', toggleRiskExplanation);
+
 
         // Initialize the cycling team select dropdown
         initializeCyclingTeamSelect();
@@ -892,7 +894,9 @@ function openTab(evt, tabName) {
         displayTeamCostsChart(); 
         displayTeamPointsVsCostChart(); 
         displayTeamEfficiencyChart();
-
+        displayTeamRiskAssessment();
+        displayTeamOverallRisk(); 
+    } else if (tabName === 'RiskTab') {
 
     }
 }
@@ -2010,6 +2014,7 @@ function displayRiskAssessmentTable(riskData) {
                     <th>Role</th>
                     <th>Cost</th>
                     <th>Points</th>
+                    <th>Ownership %</th>
                 </tr>
             </thead>
             <tbody>
@@ -2024,9 +2029,10 @@ function displayRiskAssessmentTable(riskData) {
                 <td>${r.ownershipRisk.toFixed(2)}</td>
                 <td>${r.consistencyRisk.toFixed(2)}</td>
                 <td>${r.trendRisk.toFixed(2)}</td>
-                <td>${r.roleRisk.toFixed(2)}</td>
+                <td>${r.role}</td>
                 <td>${r.cost}</td>
                 <td>${r.points}</td>
+                <td>${r.ownership}%</td>
             </tr>
         `;
     });
@@ -2045,9 +2051,28 @@ function calculateRiderRisk(riderName) {
         return null;
     }
 
+    // Calculate mean points per rider across all cyclists
+    const meanPointsPerRider = cyclistData.cyclists.reduce((sum, c) => sum + c.points, 0) / cyclistData.cyclists.length;
+
+    // Calculate mean points per rider for each role
+    const rolePoints = {};
+    cyclistData.cyclists.forEach(c => {
+        if (!rolePoints[c.role]) {
+            rolePoints[c.role] = { total: 0, count: 0 };
+        }
+        rolePoints[c.role].total += c.points;
+        rolePoints[c.role].count++;
+    });
+
+    const roleMeanPoints = Object.keys(rolePoints).reduce((acc, role) => {
+        acc[role] = rolePoints[role].total / rolePoints[role].count;
+        return acc;
+    }, {});
+
     // Factor 1: Cost Efficiency Risk
-    const avgCostPerPoint = cyclistData.cyclists.reduce((sum, c) => sum + (c.cost / c.points), 0) / cyclistData.cyclists.length;
-    const costEfficiencyRisk = (rider.cost / rider.points) / avgCostPerPoint;
+    const avgCostPerPoint = cyclistData.cyclists.reduce((sum, c) => sum + (c.cost / Math.max(c.points, 1)), 0) / cyclistData.cyclists.length;
+    const riderCostPerPoint = rider.cost / Math.max(rider.points, 1);
+    const costEfficiencyRisk = riderCostPerPoint / avgCostPerPoint;
 
     // Factor 2: Ownership Risk (higher ownership = lower risk)
     const maxOwnership = Math.max(...cyclistData.cyclists.map(c => c.ownership));
@@ -2058,21 +2083,15 @@ function calculateRiderRisk(riderName) {
     const avgPoints = pointHistory.reduce((sum, points) => sum + points, 0) / pointHistory.length;
     const variance = pointHistory.reduce((sum, points) => sum + Math.pow(points - avgPoints, 2), 0) / pointHistory.length;
     const standardDeviation = Math.sqrt(variance);
-    const consistencyRisk = standardDeviation / avgPoints;
+    const consistencyRisk = standardDeviation / Math.max(avgPoints, 1);
 
     // Factor 4: Recent Performance Trend
     const recentPerformance = pointHistory.slice(-3); // Last 3 performances
     const trend = recentPerformance.reduce((sum, points, index) => sum + points * (index + 1), 0) / 6; // Weighted sum
-    const trendRisk = avgPoints / trend; // Lower if recent performance is better than average
+    const trendRisk = avgPoints / Math.max(trend, 1); // Lower if recent performance is better than average
 
     // Factor 5: Role-based Risk
-    const roleFactor = {
-        'All Rounder': 0.8,
-        'Climber': 1.0,
-        'Sprinter': 1.2,
-        'Unclassed': 1.5
-    };
-    const roleRisk = roleFactor[rider.role] || 1.0;
+    const roleRisk = meanPointsPerRider / Math.max(roleMeanPoints[rider.role], 1);
 
     // Combine factors (adjust weights as needed)
     const overallRisk = (

@@ -749,6 +749,19 @@ tr:nth-child(odd) {
     margin-bottom: 20px;
 }
 
+#RiskTab .chart-container {
+    margin-bottom: 30px;
+}
+
+#teamOverallRiskChart, #teamRiskAssessmentChart {
+    width: 100%;
+    height: 400px;
+}
+
+#riskAssessmentTable {
+    margin-top: 20px;
+    overflow-x: auto;
+}
 /* Responsive adjustments */
 @media screen and (max-width: 768px) {
     .risk-table {

@@ -10,13 +10,13 @@
     --font-family: 'VT323', monospace;
 }
 
-signature { 
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    font-size: 12px;
-    color: #888,
-    opacity: 0.7;
+.signature {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  font-size: 12px;
+  color: #888;
+  opacity: 0.7;
 }
 
 body {

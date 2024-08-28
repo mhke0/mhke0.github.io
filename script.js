@@ -131,7 +131,7 @@ function createResponsiveChart(chartId, traces, layout, config = {}) {
 
         if (layout.legend) {
             layout.legend.font = layout.legend.font || {};
-            layout.legend.font.size = baseSize;
+            layout.legend.font.size = baseSize*0.8;
         }
 
     }

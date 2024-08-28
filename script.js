@@ -1502,7 +1502,7 @@ function generateNewsContent() {
         standings.slice(0, 5).forEach((team, index) => {
             newsHtml += `<div class="standing-item">
                 <span class="standing-rank">${index + 1}</span>
-                <span class="team-name"><a href="#" class="rider-link" data-rider="${team.name}">${team.name}</a></span>
+                <span class="team-name"><a href="#" class="team-link" data-team="${team.name}">${team.name}</a></span>
                 <span class="team-points">${team.points} points</span>
             </div>`;
         });
@@ -1538,7 +1538,7 @@ function generateNewsContent() {
         scoreChanges.slice(0, 5).forEach((team, index) => {
             newsHtml += `<div class="score-change-item">
                 <span class="standing-rank">${index + 1}</span>
-                <span class="team-name"><a href="#" class="rider-link" data-rider="${team.name}">${team.name}</a></span>
+                <span class="team-name"><a href="#" class="team-link" data-team="${team.name}">${team.name}</a></span>
                 <span class="team-change positive-change">+${team.change} points</span>
             </div>`;
         });
@@ -1597,6 +1597,18 @@ function generateNewsContent() {
             e.preventDefault();
             const riderName = this.getAttribute('data-rider');
             openTab(null, 'RiderTrajectoryTab', riderName);
+        });
+    });
+
+    // Add event listeners to the new team links
+    document.querySelectorAll('#News .team-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const teamName = this.getAttribute('data-team');
+            openTab(null, 'LeagueScoresTab');
+            // Set the selected team in the dropdown and update the chart
+            document.getElementById('leagueTeamSelect').value = teamName;
+            updateLeagueTeamRosterChart();
         });
     });
 }

@@ -2412,13 +2412,14 @@ function createDailyPointsChart(dailyPoints, teamName) {
     const dates = Object.keys(dailyPoints).sort();
     const riders = Object.keys(dailyPoints[dates[0]]);
 
-    const traces = riders.map(rider => {
+    const traces = riders.map((rider, index) => {
         return {
             x: dates,
             y: dates.map(date => dailyPoints[date][rider] || 0),
             type: 'scatter',
             mode: 'lines+markers',
             name: rider,
+            legendgroup: `group${Math.floor(index / 3)}`,
             hoverinfo: 'text',
             hovertext: dates.map(date => 
                 `${rider}<br>Date: ${date}<br>Points: ${dailyPoints[date][rider] || 0}`
@@ -2437,8 +2438,8 @@ function createDailyPointsChart(dailyPoints, teamName) {
         xaxis: {
             title: '',
             tickangle: -45,
-             tickfont: {
-                size: 8  // Smaller font size for x-axis labels
+            tickfont: {
+                size: 8
             }
         },
         yaxis: {
@@ -2447,14 +2448,22 @@ function createDailyPointsChart(dailyPoints, teamName) {
         paper_bgcolor: '#fff0f5',
         plot_bgcolor: '#fff0f5',
         legend: {
-            orientation: 'h',
-            y: -0.2,
+            orientation: 'v',
+            traceorder: 'grouped',
+            tracegroupgap: 0,
             font: {
                 family: 'VT323, monospace',
-                size: 10  // Adjust this value to change the legend font size
-            }
+                size: 10
+            },
+            x: 1,
+            y: 1,
+            xanchor: 'left',
+            yanchor: 'top'
         },
-        hovermode: 'closest'
+        hovermode: 'closest',
+        margin: {
+            r: 150  // Increase right margin to accommodate legend
+        }
     };
 
     createResponsiveChart('dailyPointsChart', traces, layout);

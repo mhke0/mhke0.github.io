@@ -2449,9 +2449,10 @@ function createDailyPointsChart(dailyPoints, teamName) {
         legend: {
             orientation: 'h',
             y: -0.2,
-           
-            font-size: 8  // Smaller font size for x-axis labels
-            
+            font: {
+                family: 'VT323, monospace',
+                size: 10  // Adjust this value to change the legend font size
+            }
         },
         hovermode: 'closest'
     };

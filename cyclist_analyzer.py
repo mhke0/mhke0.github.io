@@ -351,6 +351,79 @@ def calculate_mvp_mip(cyclists, previous_data):
 
     return previous_data, mvp, mip
 
+def select_league_all_star_team(league_data, cyclists):
+    # Create a set of all unique riders in the league
+    league_riders = set()
+    for team in league_data:
+        league_riders.update(team['roster'])
+
+    # Filter cyclists to only include those in the league
+    league_cyclists = [c for c in cyclists if c['name'] in league_riders]
+
+    # Create the linear programming problem
+    prob = pulp.LpProblem("League All-Star Team Selection", pulp.LpMaximize)
+
+    # Create binary variables for each cyclist
+    cyclist_vars = pulp.LpVariable.dicts("Cyclist", 
+                                         ((c['name'], c['role']) for c in league_cyclists), 
+                                         cat='Binary')
+
+    # Objective function: maximize total points
+    prob += pulp.lpSum(cyclist['points'] * cyclist_vars[cyclist['name'], cyclist['role']] 
+                       for cyclist in league_cyclists)
+
+    # Constraints
+    constraints = [
+        ("Total cyclists", pulp.lpSum(cyclist_vars) == 9),
+        ("Maximum cost", pulp.lpSum(cyclist['cost'] * cyclist_vars[cyclist['name'], cyclist['role']] 
+                                    for cyclist in league_cyclists) <= 100),
+        ("Sprinters", pulp.lpSum(cyclist_vars[cyclist['name'], cyclist['role']] 
+                                 for cyclist in league_cyclists if cyclist['role'] == 'Sprinter') >= 1),
+        ("All-Rounders", pulp.lpSum(cyclist_vars[cyclist['name'], cyclist['role']] 
+                                    for cyclist in league_cyclists if cyclist['role'] == 'All Rounder') >= 2),
+        ("Climbers", pulp.lpSum(cyclist_vars[cyclist['name'], cyclist['role']] 
+                                for cyclist in league_cyclists if cyclist['role'] == 'Climber') >= 2),
+        ("Unclassed", pulp.lpSum(cyclist_vars[cyclist['name'], cyclist['role']] 
+                                 for cyclist in league_cyclists if cyclist['role'] == 'Unclassed') >= 3)
+    ]
+
+    # Add constraints to the problem
+    for name, constraint in constraints:
+        prob += constraint, name
+
+    # Solve the problem
+    prob.solve()
+
+    # Check if a solution was found
+    if pulp.LpStatus[prob.status] == "Optimal":
+        # Extract the solution
+        all_star_team = []
+        total_points = 0
+        total_cost = 0
+
+        for cyclist in league_cyclists:
+            if cyclist_vars[cyclist['name'], cyclist['role']].value() == 1:
+                all_star_team.append(cyclist)
+                total_points += cyclist['points']
+                total_cost += cyclist['cost']
+
+        return {
+            'riders': [
+                {
+                    'name': rider['name'],
+                    'role': rider['role'],
+                    'cost': rider['cost'],
+                    'points': rider['points'],
+                    'team': rider['team']
+                } for rider in all_star_team
+            ],
+            'total_points': total_points,
+            'total_cost': total_cost
+        }
+    else:
+        print(f"No feasible League All-Star team found. Status: {pulp.LpStatus[prob.status]}", file=sys.stderr)
+        return None
+        
 def main():
     cyclist_url = "https://www.velogames.com/spain/2024/riders.php"
     output_file = "cyclist-data.json"
@@ -381,6 +454,16 @@ def main():
 
         print("Selecting dream team (optimized)", file=sys.stderr)
         dream_team, total_points, total_cost = select_dream_team_optimized(updated_data['cyclists'])
+
+        print("Selecting League All-Star Team", file=sys.stderr)
+        league_all_star_team = select_league_all_star_team(updated_data['league_scores']['current'], updated_data['cyclists'])
+
+        if league_all_star_team:
+            updated_data['league_all_star_team'] = league_all_star_team
+                print(f"League All-Star Team selected. Total points: {league_all_star_team['total_points']}, Total cost: {league_all_star_team['total_cost']}", file=sys.stderr)
+        else:
+            updated_data['league_all_star_team'] = None
+                print("Failed to select League All-Star Team", file=sys.stderr)
         
         if dream_team:
             updated_data['dream_team'] = {

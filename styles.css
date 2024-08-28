@@ -875,6 +875,16 @@ tr:nth-child(odd) {
     height: 400px; /* Adjust this value as needed */
 }
 
+.rider-link {
+    color: #FF1493;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.rider-link:hover {
+    text-decoration: underline;
+}
+
 @media screen and (max-width: 768px) {
     .roster-charts-row {
         flex-direction: column;

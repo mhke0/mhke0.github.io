@@ -257,15 +257,16 @@ function updateLeagueTeamRosterChart() {
     };
 
     createResponsiveChart('leagueTeamRosterChart', [trace], layout);
-    
-    const { mostBalancedTeam, leastBalancedTeam } = calculateBalancedTeams(leagueData);
-    displayBalancedTeam(mostBalancedTeam, 'mostBalancedTeamContent');
-    displayBalancedTeam(leastBalancedTeam, 'leastBalancedTeamContent');
-// Calculate daily points
+
+    // Calculate daily points
     const dailyPoints = calculateDailyPoints(team.roster);
 
     // Create the daily points chart
     createDailyPointsChart(dailyPoints, selectedTeam);
+
+    const { mostBalancedTeam, leastBalancedTeam } = calculateBalancedTeams(leagueData);
+    displayBalancedTeam(mostBalancedTeam, 'mostBalancedTeamContent');
+    displayBalancedTeam(leastBalancedTeam, 'leastBalancedTeamContent');
 }
 
 function updateCyclingTeamRosterDisplay() {
@@ -2426,7 +2427,7 @@ function createDailyPointsChart(dailyPoints, teamName) {
             }
         },
         xaxis: {
-            title: '',
+            title: 'Date',
             tickangle: -45,
         },
         yaxis: {

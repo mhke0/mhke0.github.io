@@ -419,6 +419,7 @@ $(document).ready(function() {
         e.preventDefault();
         const riderName = $(this).data('rider');
         openTab(null, 'RiderTrajectoryTab', riderName);
+        
     });
 });
 
@@ -981,6 +982,9 @@ function openTab(evt, tabName, riderName = null) {
         displayTeamOverallRisk(); 
     } else if (tabName === 'RiskTab') {
         updateRiskAssessment();
+    } else if (tabName === 'AllStarTeamTab') {
+        displayAllStarTeam();
+    }
     }
 }
 
@@ -1597,6 +1601,7 @@ function generateNewsContent() {
             e.preventDefault();
             const riderName = this.getAttribute('data-rider');
             openTab(null, 'RiderTrajectoryTab', riderName);
+});
         });
     });
 
@@ -2494,4 +2499,44 @@ function createDailyPointsChart(dailyPoints, teamName) {
     };
 
     createResponsiveChart('dailyPointsChart', traces, layout);
+}
+function displayAllStarTeam() {
+    if (!cyclistData.league_all_star_team) {
+        document.getElementById('AllStarTeamTab').innerHTML = '<p>All-Star Team data not available.</p>';
+        return;
+    }
+
+    const allStarTeam = cyclistData.league_all_star_team;
+    const twitterComparison = allStarTeam.twitter_league_comparison;
+
+    // Display Twitter League Comparison
+    let comparisonHtml = `
+        <h3>Twitter League Comparison</h3>
+        <p>Rank: ${twitterComparison.rank} out of ${twitterComparison.total_participants}</p>
+        <p>Percentile: ${twitterComparison.percentile.toFixed(2)}%</p>
+    `;
+    document.getElementById('twitterLeagueComparison').innerHTML = comparisonHtml;
+
+    // Display All-Star Team Roster
+    let rosterHtml = '<h3>All-Star Team Roster</h3><ul>';
+    allStarTeam.riders.forEach(rider => {
+        rosterHtml += `
+            <li>
+                <strong>${rider.name}</strong> (${rider.team})
+                <br>Role: ${rider.role}
+                <br>Cost: ${rider.cost}
+                <br>Points: ${rider.points}
+            </li>
+        `;
+    });
+    rosterHtml += '</ul>';
+    document.getElementById('allStarTeamRoster').innerHTML = rosterHtml;
+
+    // Display All-Star Team Stats
+    let statsHtml = `
+        <h3>All-Star Team Stats</h3>
+        <p>Total Points: ${allStarTeam.total_points}</p>
+        <p>Total Cost: ${allStarTeam.total_cost}</p>
+    `;
+    document.getElementById('allStarTeamStats').innerHTML = statsHtml;
 }

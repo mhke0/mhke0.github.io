@@ -10,6 +10,15 @@
     --font-family: 'VT323', monospace;
 }
 
+signature { 
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: 12px;
+    color: #888,
+    opacity: 0.7;
+}
+
 body {
     font-family: var(--font-family);
     line-height: 1.6;
@@ -870,11 +879,4 @@ tr:nth-child(odd) {
         margin-bottom: 0px;
     }
 }
-signature{ 
-                position: fixed;
-                bottom: 20px;
-                right: 20px;
-                font-size: 12px;
-                color: #888,
-                opacity: 0.7;
-             }
+

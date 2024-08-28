@@ -117,7 +117,7 @@ function createResponsiveChart(chartId, traces, layout, config = {}) {
                 layout.xaxis.title = { text: layout.xaxis.title };
             }
             layout.xaxis.title.font = layout.xaxis.title.font || {};
-            layout.xaxis.title.font.size = baseSize * 1.2;
+            layout.xaxis.title.font.size = baseSize * 0.8;
         }
 
         if (layout.yaxis) {

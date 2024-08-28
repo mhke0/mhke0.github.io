@@ -388,23 +388,21 @@ $(document).ready(function() {
         createLeagueStandingsChart();
 
 
-        // Initialize the cycling team select dropdown
+             // Initialize the cycling team select dropdown
         initializeCyclingTeamSelect();
 
         if (data.dream_team) {
             displayDreamTeam(data.dream_team);
         }
 
-          const riderSelect = $('#riderSelect');
-            const sortedCyclists = cyclistData.cyclists.sort((a, b) => a.name.localeCompare(b.name));
-            sortedCyclists.forEach(cyclist => {
-            riderSelect.append(`<option value="${cyclist.name}">${cyclist.name}</option>`);
-            });
         // Initialize the trajectory chart with top 10 riders
         updateTrajectoryChart();
 
         // Generate the news content
         generateNewsContent();
+
+        // Display All-Star Team data
+        displayAllStarTeam();
 
         // Open the News tab by default
         document.getElementById("defaultOpen").click();
@@ -414,12 +412,12 @@ $(document).ready(function() {
         $('#loading').hide();
         $('#error').text("Error fetching data: " + error).show();
     });
-     // Add click event handler for rider links
+
+    // Add click event handler for rider links
     $(document).on('click', '.rider-link', function(e) {
         e.preventDefault();
         const riderName = $(this).data('rider');
         openTab(null, 'RiderTrajectoryTab', riderName);
-        
     });
 });
 
@@ -2500,6 +2498,7 @@ function createDailyPointsChart(dailyPoints, teamName) {
 
     createResponsiveChart('dailyPointsChart', traces, layout);
 }
+
 function displayAllStarTeam() {
     if (!cyclistData.league_all_star_team) {
         document.getElementById('AllStarTeamTab').innerHTML = '<p>All-Star Team data not available.</p>';
@@ -2540,3 +2539,4 @@ function displayAllStarTeam() {
     `;
     document.getElementById('allStarTeamStats').innerHTML = statsHtml;
 }
+

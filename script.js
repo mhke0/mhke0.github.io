@@ -60,25 +60,161 @@ function createRoleChart(roles) {
 }
 
 
-// ... (keep the rest of the code)
+// ... (keep the previous color scheme functions)
+
+function createResponsiveChart(chartId, traces, layout, config = {}) {
+    const defaultConfig = {
+        responsive: true,
+        displayModeBar: false,
+    };
+    const mergedConfig = { ...defaultConfig, ...config };
+    layout.autosize = true;
+    
+    const container = document.getElementById(chartId);
+    if (!container) {
+        console.error(`Container with id ${chartId} not found`);
+        return;
+    }
+    container.style.display = 'block';
+    container.style.height = '400px';
+    container.style.maxWidth = '600px';
+    container.style.margin = 'auto';
+    
+    delete layout.width;
+    delete layout.height;
+    
+    layout.margin = layout.margin || {
+        l: 50,
+        r: 50,
+        t: 50,
+        b: 50,
+        pad: 4,
+        autoexpand: true
+    };
+    
+    layout.xaxis = layout.xaxis || {};
+    layout.yaxis = layout.yaxis || {};
+    layout.xaxis.automargin = true;
+    layout.yaxis.automargin = true;
+    
+    function updateFontSizes() {
+        const baseSize = Math.min(window.innerWidth, window.innerHeight) / 50;
+        
+        layout.font = layout.font || {};
+        layout.font.size = baseSize;
+
+        if (layout.title) {
+            if (typeof layout.title === 'string') {
+                layout.title = { text: layout.title };
+            }
+            layout.title.font = layout.title.font || {};
+            layout.title.font.size = baseSize * 1.5;
+        }
+
+        if (layout.xaxis) {
+            layout.xaxis.title = layout.xaxis.title || {};
+            if (typeof layout.xaxis.title === 'string') {
+                layout.xaxis.title = { text: layout.xaxis.title };
+            }
+            layout.xaxis.title.font = layout.xaxis.title.font || {};
+            layout.xaxis.title.font.size = baseSize * 1.2;
+        }
+
+        if (layout.yaxis) {
+            layout.yaxis.title = layout.yaxis.title || {};
+            if (typeof layout.yaxis.title === 'string') {
+                layout.yaxis.title = { text: layout.yaxis.title };
+            }
+            layout.yaxis.title.font = layout.yaxis.title.font || {};
+            layout.yaxis.title.font.size = baseSize * 1.2;
+        }
+
+        if (layout.legend) {
+            layout.legend.font = layout.legend.font || {};
+            layout.legend.font.size = baseSize;
+        }
+    }
+    
+    layout.xaxis.tickangle = layout.xaxis.tickangle || -45;
+    
+    updateFontSizes();
+    
+    try {
+        Plotly.newPlot(chartId, traces, layout, mergedConfig);
+    } catch (error) {
+        console.error(`Error creating chart ${chartId}:`, error);
+        container.innerHTML = `<p>Error creating chart. Please try refreshing the page.</p>`;
+    }
+    
+    const resizeObserver = new ResizeObserver(entries => {
+        for (let entry of entries) {
+            if (entry.target.id === chartId) {
+                updateFontSizes();
+                try {
+                    const updateLayout = {
+                        autosize: true,
+                        'font.size': layout.font.size,
+                    };
+                    if (layout.title && layout.title.font) {
+                        updateLayout['title.font.size'] = layout.title.font.size;
+                    }
+                    if (layout.xaxis && layout.xaxis.title && layout.xaxis.title.font) {
+                        updateLayout['xaxis.title.font.size'] = layout.xaxis.title.font.size;
+                    }
+                    if (layout.yaxis && layout.yaxis.title && layout.yaxis.title.font) {
+                        updateLayout['yaxis.title.font.size'] = layout.yaxis.title.font.size;
+                    }
+                    if (layout.legend && layout.legend.font) {
+                        updateLayout['legend.font.size'] = layout.legend.font.size;
+                    }
+                    Plotly.relayout(chartId, updateLayout);
+                } catch (error) {
+                    console.error(`Error resizing chart ${chartId}:`, error);
+                }
+            }
+        }
+    });
+    
+    resizeObserver.observe(container);
+}
+
+function initializeCyclingTeamSelect() {
+    const cyclingTeamSelect = document.getElementById('cyclingTeamSelect');
+    const cyclingTeamSelect2 = document.getElementById('cyclingTeamSelect2');
+    cyclingTeamSelect.innerHTML = '<option value="">Select a Cycling Team</option>';
+    cyclingTeamSelect2.innerHTML = '<option value="">Select a Cycling Team</option>';
+    const teams = [...new Set(cyclistData.cyclists.map(cyclist => cyclist.team))].sort();
+    teams.forEach(team => {
+        const option = document.createElement('option');
+        option.value = team;
+        option.textContent = team;
+        cyclingTeamSelect.appendChild(option);
+        cyclingTeamSelect2.appendChild(option.cloneNode(true));
+    });
+}
+function initializeLeagueTeamSelect() {
+    const leagueTeamSelect = document.getElementById('leagueTeamSelect');
+    leagueTeamSelect.innerHTML = '<option value="">Select a League Team</option>';
+    leagueData.forEach(team => {
+        const option = document.createElement('option');
+        option.value = team.name;
+        option.textContent = team.name;
+        leagueTeamSelect.appendChild(option);
+    });
+}
 
 function updateLeagueTeamRosterChart() {
     const selectedTeam = document.getElementById('leagueTeamSelect').value;
-    const selectedDate = document.getElementById('leagueDateSelect').value;
-    if (!selectedTeam || !selectedDate) return;
+    if (!selectedTeam) return;
 
     const team = leagueData.find(t => t.name === selectedTeam);
     if (!team) return;
 
-    const historicalData = cyclistData.league_scores.history.find(h => h.date === selectedDate);
-    if (!historicalData) return;
-
     const rosterData = team.roster.map(riderName => {
         const rider = cyclistData.cyclists.find(c => c.name === riderName);
-        const historicalRider = historicalData.scores.find(s => s.name === selectedTeam)?.roster.find(r => r.name === riderName);
         return {
             name: riderName,
-            points: historicalRider ? historicalRider.points : 0,
+            points: rider ? rider.points : 0,
             role: rider ? rider.role : 'Unknown'
         };
     }).sort((a, b) => b.points - a.points);
@@ -88,7 +224,14 @@ function updateLeagueTeamRosterChart() {
         y: rosterData.map(r => r.points),
         type: 'bar',
         marker: {
-            color: rosterData.map(r => getColorForRole(r.role))
+            color: rosterData.map(r => {
+                switch(r.role) {
+                    case 'All Rounder': return '#ff6384';
+                    case 'Climber': return '#36a2eb';
+                    case 'Sprinter': return '#cc65fe';
+                    default: return '#4bc0c0';
+                }
+            })
         },
         text: rosterData.map(r => `${r.name}<br>Role: ${r.role}<br>Points: ${r.points}`),
         hoverinfo: 'text'
@@ -96,7 +239,7 @@ function updateLeagueTeamRosterChart() {
 
     const layout = {
         title: {
-            text: `${selectedTeam} Roster (${selectedDate})`,
+            text: `${selectedTeam} Roster`,
             font: {
                 family: 'VT323, monospace',
                 color: '#ff1493'
@@ -114,71 +257,525 @@ function updateLeagueTeamRosterChart() {
     };
 
     createResponsiveChart('leagueTeamRosterChart', [trace], layout);
+    
+    const { mostBalancedTeam, leastBalancedTeam } = calculateBalancedTeams(leagueData);
+    displayBalancedTeam(mostBalancedTeam, 'mostBalancedTeamContent');
+    displayBalancedTeam(leastBalancedTeam, 'leastBalancedTeamContent');
+// Calculate daily points
+    const dailyPoints = calculateDailyPoints(team.roster);
+
+    // Create the daily points chart
+    createDailyPointsChart(dailyPoints, selectedTeam);
 }
 
-function initializeLeagueDateSelect() {
-    const leagueDateSelect = document.getElementById('leagueDateSelect');
-    leagueDateSelect.innerHTML = '<option value="">Select a Date</option>';
-    const dates = cyclistData.league_scores.history.map(h => h.date).sort((a, b) => new Date(b) - new Date(a));
-    dates.forEach(date => {
-        const option = document.createElement('option');
-        option.value = date;
-        option.textContent = new Date(date).toLocaleDateString();
-        leagueDateSelect.appendChild(option);
+function updateCyclingTeamRosterDisplay() {
+    const selectedTeam = document.getElementById('cyclingTeamSelect').value;
+    if (!selectedTeam) {
+        document.getElementById('selectedTeamInfo').textContent = '';
+        document.getElementById('cyclingTeamRosterDisplay').innerHTML = '';
+        document.getElementById('teamPointsDistributionChart').innerHTML = '';
+        document.getElementById('teamRiskAssessmentChart').innerHTML = '';
+        document.getElementById('riskAssessmentTable').innerHTML = '';
+        return;
+    }
+
+    const teamRiders = cyclistData.cyclists.filter(cyclist => cyclist.team === selectedTeam);
+    
+    // Calculate total team points
+    const totalTeamPoints = teamRiders.reduce((sum, rider) => sum + rider.points, 0);
+    
+    // Update the selected team info display
+    document.getElementById('selectedTeamInfo').textContent = `${selectedTeam} (${totalTeamPoints} points)`;
+
+    let rosterHtml = '';
+    teamRiders.forEach(rider => {
+        rosterHtml += `
+            <div class="rider-card">
+                <h4>${rider.name}</h4>
+                <p>Role: ${rider.role}</p>
+                <p>Cost: ${rider.cost}</p>
+                <p>Points: ${rider.points}</p>
+            </div>
+        `;
     });
+    
+    document.getElementById('cyclingTeamRosterDisplay').innerHTML = rosterHtml;
+
+    // Call the function to display the points distribution
+    displayTeamPointsDistribution(teamRiders);
+
+    // Call the function to display the all teams comparison
+    displayAllTeamsComparison();
+
+    // Call the function to display the risk assessment
+    displayTeamRiskAssessment();
 }
 
-function initializeLeagueTab() {
-    initializeLeagueTeamSelect();
-    initializeLeagueDateSelect();
-    
-    document.getElementById('leagueTeamSelect').addEventListener('change', updateLeagueTeamRosterChart);
-    document.getElementById('leagueDateSelect').addEventListener('change', updateLeagueTeamRosterChart);
-    
-    // Set default selections
-    if (leagueData && leagueData.length > 0) {
-        document.getElementById('leagueTeamSelect').value = leagueData[0].name;
-    }
-    if (cyclistData.league_scores.history.length > 0) {
-        document.getElementById('leagueDateSelect').value = cyclistData.league_scores.history[0].date;
-    }
-    
-    updateLeagueTeamRosterChart();
-}
-
-// Modify the existing openTab function
-function openTab(evt, tabName, riderName = null) {
-    // ... existing code ...
-
-    if (tabName === 'LeagueScoresTab') {
-        initializeLeagueTab();
-        createLeagueStandingsChart();
-        createLatestPointsUpdateChart();
-    }
-
-    // ... existing code ...
-}
-
-// Modify the $(document).ready function
 $(document).ready(function() {
-    // ... existing code ...
-
     $.getJSON('cyclist-data.json', function(data) {
-        // ... existing code ...
+        $('#loading').hide();
+        $('#dashboard').show();
 
+        if (!data.cyclists || !data.league_scores) {
+            throw new Error("Missing required data in JSON file");
+        }
+
+        // Store the cyclist data globally
         cyclistData = data;
-        leagueData = data.league_scores.current;
 
-        // ... existing code ...
+        let cyclists = data.cyclists;
+        let leagueScores = data.league_scores;
 
-        // Initialize the league tab
-        initializeLeagueTab();
+        // Call the function when the page loads
+        updateVisitCount();
+        
+        // Sort cyclists by cost_per_point (convert "Infinity" to a large number for sorting)
+        cyclists.sort((a, b) => {
+            const costPerPointA = a.cost_per_point === "Infinity" ? Infinity : parseFloat(a.cost_per_point);
+            const costPerPointB = b.cost_per_point === "Infinity" ? Infinity : parseFloat(b.cost_per_point);
+            return costPerPointA - costPerPointB;
+        });
 
-        // ... existing code ...
+        // Get the top 50 cyclists
+        let top50Cyclists = cyclists.slice(0, 50);
+
+        let totalCost = 0;
+        let totalPoints = 0;
+        const roles = {};
+
+         cyclists.forEach(cyclist => {
+            totalCost += cyclist.cost;
+            totalPoints += cyclist.points;
+            roles[cyclist.role] = (roles[cyclist.role] || 0) + 1;
+
+            const costPerPoint = cyclist.points === 0 ? "∞" : (cyclist.cost / cyclist.points).toFixed(2);
+            $('#cyclistTable tbody').append(`
+                <tr>
+                    <td><a href="#" class="rider-link" data-rider="${cyclist.name}">${cyclist.name}</a></td>
+                    <td>${cyclist.team}</td>
+                    <td>${cyclist.role}</td>
+                    <td>${cyclist.cost}</td>
+                    <td>${cyclist.points}</td>
+                    <td>${costPerPoint}</td>
+                </tr>
+            `);
+        });
+
+        // Call this function after the table is populated
+        makeTableResponsive();
+        
+        const avgCost = (totalCost / cyclists.length).toFixed(2);
+        const avgPoints = (totalPoints / cyclists.length).toFixed(2);
+
+        $('#stats').html(`
+            <div class="stat-box">
+                <h3>Total Cyclists</h3>
+                <p>${cyclists.length}</p>
+            </div>
+            <div class="stat-box">
+                <h3>Average Cost</h3>
+                <p>${avgCost}</p>
+            </div>
+            <div class="stat-box">
+                <h3>Average Points</h3>
+                <p>${avgPoints}</p>
+            </div>
+        `);
+
+        createRoleChart(roles);
+        createTop50Chart(top50Cyclists);
+        createPointsPerNameLengthChart(cyclists);
+        createLeagueScoresChart(leagueScores.current);
+        createRelativePerformanceChart(leagueScores.current);
+        createCostVsPointsChart(top50Cyclists);
+        createLeagueStandingsChart();
+
+
+        // Initialize the cycling team select dropdown
+        initializeCyclingTeamSelect();
+
+        if (data.dream_team) {
+            displayDreamTeam(data.dream_team);
+        }
+
+          const riderSelect = $('#riderSelect');
+            const sortedCyclists = cyclistData.cyclists.sort((a, b) => a.name.localeCompare(b.name));
+            sortedCyclists.forEach(cyclist => {
+            riderSelect.append(`<option value="${cyclist.name}">${cyclist.name}</option>`);
+            });
+        // Initialize the trajectory chart with top 10 riders
+        updateTrajectoryChart();
+
+        // Generate the news content
+        generateNewsContent();
+
+        // Open the News tab by default
+        document.getElementById("defaultOpen").click();
+        document.getElementById('riskInfoButton').addEventListener('click', toggleRiskExplanation);
+
+    }).fail(function(jqxhr, textStatus, error) {
+        $('#loading').hide();
+        $('#error').text("Error fetching data: " + error).show();
+    });
+     // Add click event handler for rider links
+    $(document).on('click', '.rider-link', function(e) {
+        e.preventDefault();
+        const riderName = $(this).data('rider');
+        openTab(null, 'RiderTrajectoryTab', riderName);
+    });
+});
+
+
+function createTop50Chart(top50Cyclists) {
+    const trace = {
+        x: top50Cyclists.map(c => c.name),
+        y: top50Cyclists.map(c => c.cost_per_point === "Infinity" ? 0 : c.cost_per_point),
+        type: 'bar',
+        marker: {
+            color: top50Cyclists.map(c => {
+                switch(c.role) {
+                    case 'All Rounder': return '#ff6384';
+                    case 'Climber': return '#36a2eb';
+                    case 'Sprinter': return '#cc65fe';
+                    case 'Unclassed': return '#ffce56';
+                    default: return '#4bc0c0';
+                }
+            })
+        },
+        text: top50Cyclists.map(c => (
+            `Name: ${c.name}<br>` +
+            `Role: ${c.role}<br>` +
+            `Cost: ${c.cost}<br>` +
+            `Points: ${c.points}<br>` +
+            `Cost per Point: ${c.cost_per_point}`
+        )),
+        hoverinfo: 'text+y'
+    };
+
+    const layout = {
+        title: {
+            text: 'Top 50 Cyclists by Cost Efficiency(Lower is better)',
+            font: {
+                family: 'VT323, monospace',
+                color: '#ff1493'
+            }
+        },
+        xaxis: {
+            title: '',
+            tickangle: -45,
+        },
+
+        yaxis: {
+            title: 'Cost per Point',
+        },
+        paper_bgcolor: '#fff0f5',
+        plot_bgcolor: '#fff0f5',
+    };
+
+    createResponsiveChart('top50Chart', [trace], layout);
+}
+
+function createPointsPerNameLengthChart(cyclists) {
+    let cyclistsWithPointsPerNameLength = cyclists.map(c => ({
+        ...c,
+        pointsPerNameLength: c.points / c.name.replace(/\s/g, '').length
+    })).sort((a, b) => b.pointsPerNameLength - a.pointsPerNameLength);
+
+    let top50PointsPerNameLength = cyclistsWithPointsPerNameLength.slice(0, 50);
+
+    const tracePointsPerNameLength = {
+        x: top50PointsPerNameLength.map(c => c.name),
+        y: top50PointsPerNameLength.map(c => c.pointsPerNameLength),
+        type: 'bar',
+        marker: {
+            color: top50PointsPerNameLength.map(c => {
+                switch(c.role) {
+                    case 'All Rounder': return '#ff6384';
+                    case 'Climber': return '#36a2eb';
+                    case 'Sprinter': return '#cc65fe';
+                    case 'Unclassed': return '#ffce56';
+                    default: return '#4bc0c0';
+                }
+            })
+        },
+        text: top50PointsPerNameLength.map(c => (
+            `Name: ${c.name}<br>` +
+            `Role: ${c.role}<br>` +
+            `Points: ${c.points}<br>` +
+            `Name Length: ${c.name.replace(/\s/g, '').length}<br>` +
+            `Points per Name Length: ${c.pointsPerNameLength.toFixed(2)}`
+        )),
+        hoverinfo: 'text'
+    };
+
+    const layoutPointsPerNameLength = {
+        title: {
+            text: 'Top 50 Cyclists by Points per Name Length',
+            font: {
+                family: 'VT323, monospace',
+                color: '#ff1493'
+            }
+        },
+        xaxis: {
+            title: '',
+            tickangle: -45,
+        },
+        yaxis: {
+            title: 'Points per Name Length',
+        },
+        paper_bgcolor: '#fff0f5',
+        plot_bgcolor: '#fff0f5',
+    };
+
+    createResponsiveChart('pointsPerNameLengthChart', [tracePointsPerNameLength], layoutPointsPerNameLength);
+}
+
+function createLeagueScoresChart(leagueScores) {
+        if (cyclistData && cyclistData.league_scores && cyclistData.league_scores.history) {
+        leagueData = cyclistData.league_scores.history;
+    }
+    const baseData = {
+        "Team Name": 0,
+        "Iberische Halbpinsel": 7405,
+        "Ganz anderer Teamname": 9297,
+        "Team Fiestina": 8128
+    };
+    const middleData = {
+        "Team Name": 9062,
+        "Iberische Halbpinsel": 9530,
+        "Ganz anderer Teamname": 7506,
+        "Team Fiestina": 8964
+    };
+
+    function getUniqueTeamNames(baseData, middleData, leagueScores) {
+        const allNames = [
+            ...Object.keys(baseData),
+            ...Object.keys(middleData),
+            ...leagueScores.map(team => team.name)
+        ];
+        return [...new Set(allNames)];
+    }
+
+    const uniqueTeamNames = getUniqueTeamNames(baseData, middleData, leagueScores);
+
+    function findExactOrClosestMatch(obj, searchKey) {
+        if (obj.hasOwnProperty(searchKey)) {
+            return searchKey;
+        }
+        return Object.keys(obj).find(key => 
+            key.toLowerCase().includes(searchKey.toLowerCase()) || 
+            searchKey.toLowerCase().includes(key.toLowerCase())
+        ) || searchKey;
+    }
+
+    const leagueTrace1 = {
+        x: uniqueTeamNames,
+        y: uniqueTeamNames.map(name => baseData[findExactOrClosestMatch(baseData, name)] || 0),
+        name: 'Giro',
+        type: 'bar',
+        marker: { color: 'pink' }
+    };
+
+    const leagueTrace2 = {
+        x: uniqueTeamNames,
+        y: uniqueTeamNames.map(name => middleData[findExactOrClosestMatch(middleData, name)] || 0),
+        name: 'TdF',
+        type: 'bar',
+        marker: { color: 'yellow' }
+    };
+
+    const leagueTrace3 = {
+        x: uniqueTeamNames,
+        y: uniqueTeamNames.map(name => {
+            const team = leagueScores.find(t => t.name === name);
+            return team ? team.points : 0;
+        }),
+        name: 'Vuelta',
+        type: 'bar',
+        marker: { color: 'red' }
+    };
+
+    const leagueLayout = {
+        title: {
+            text: 'League Scores (Stacked)',
+            font: {
+                family: 'VT323, monospace',
+                color: '#ff1493'
+            }
+        },
+        barmode: 'stack',
+        xaxis: {
+            title: '',
+            tickangle: -45,
+        },
+        yaxis: {
+            title: '',
+        },
+        paper_bgcolor: '#fff0f5',
+        plot_bgcolor: '#fff0f5',
+    };
+
+
+
+    let rosterHtml = '<div class="roster-grid">';
+    leagueScores.forEach(team => {
+        rosterHtml += `
+            <div class="roster-card">
+                <h4>${team.name}</h4>
+                <ul>
+                    ${team.roster.map(player => `<li>${player}</li>`).join('')}
+                </ul>
+            </div>
+        `;
+    });
+    rosterHtml += '</div>';
+    $('#teamRosters').html(rosterHtml);
+    
+    // Store the league data globally
+    leagueData = leagueScores;
+
+    // Initialize the league team select dropdown
+    initializeLeagueTeamSelect();
+    // Load the default league team chart
+    loadDefaultLeagueTeamChart();
+
+    createResponsiveChart('leagueScoresChart', [leagueTrace1, leagueTrace2, leagueTrace3], leagueLayout);
+
+
+    
+    const { mostBalancedTeam, leastBalancedTeam } = calculateBalancedTeams(leagueScores);
+    displayBalancedTeam(mostBalancedTeam, 'mostBalancedTeamContent');
+    displayBalancedTeam(leastBalancedTeam, 'leastBalancedTeamContent');
+
+
+}
+
+function createCostVsPointsChart(top50Cyclists) {
+    const costVsPointsTrace = {
+        x: top50Cyclists.map(c => c.points),
+        y: top50Cyclists.map(c => c.cost),
+        mode: 'markers',
+        type: 'scatter',
+        text: top50Cyclists.map(c => c.name),
+        marker: {
+            size: 10,
+            color: top50Cyclists.map(c => {
+                switch(c.role) {
+                    case 'All Rounder': return '#ff6384';
+                    case 'Climber': return '#36a2eb';
+                    case 'Sprinter': return '#cc65fe';
+                    case 'Unclassed': return '#ffce56';
+                    default: return '#4bc0c0';
+                }
+            })
+        },
+        hoverinfo: 'text+x+y'
+    };
+    
+    const costVsPointsLayout = {
+        title: {
+            text: 'Cost vs Points (Top 50)',
+            font: {
+                family: 'VT323, monospace',
+                color: '#ff1493'
+            }
+        },
+        xaxis: {
+            title: 'Points',
+            tickangle: -45,
+        },
+        yaxis: {
+            title: 'Cost',
+        },
+        paper_bgcolor: '#fff0f5',
+        plot_bgcolor: '#fff0f5',
+    };
+
+    createResponsiveChart('costVsPointsChart', [costVsPointsTrace], costVsPointsLayout);
+}
+
+function displayDreamTeam(dreamTeam) {
+    let statsHtml = `<h3>Total Cost: ${dreamTeam.total_cost.toFixed(2)} | Total Points: ${dreamTeam.total_points}</h3>`;
+    $('#dreamTeamStats').html(statsHtml);
+
+    const roleColors = {
+        'All Rounder': '#ff6384',
+        'Climber': '#36a2eb',
+        'Sprinter': '#cc65fe',
+        'Unclassed': '#ffce56',
+        'Other': '#4bc0c0'
+    };
+
+    let allRounders = dreamTeam.riders.filter(r => r.role === 'All Rounder').sort((a, b) => b.points - a.points);
+    let climbers = dreamTeam.riders.filter(r => r.role === 'Climber').sort((a, b) => b.points - a.points);
+    let sprinters = dreamTeam.riders.filter(r => r.role === 'Sprinter').sort((a, b) => b.points - a.points);
+    let unclassed = dreamTeam.riders.filter(r => r.role === 'Unclassed').sort((a, b) => b.points - a.points);
+    
+    let orderedRiders = [
+        ...allRounders.slice(0, 2),
+        ...climbers.slice(0, 2),
+        ...sprinters.slice(0, 1),
+        ...unclassed.slice(0, 3)
+    ];
+
+    let additionalRider = dreamTeam.riders.find(r => !orderedRiders.includes(r));
+    if (additionalRider) {
+        orderedRiders.push(additionalRider);
+    }
+
+    let ridersHtml = '<h4>Riders:</h4><ol style="list-style-type: none; padding: 0;">';
+    orderedRiders.forEach((rider, index) => {
+        let backgroundColor = roleColors[rider.role] || roleColors['Other'];
+        ridersHtml += `
+            <li style="background-color: ${backgroundColor}; color: white; margin-bottom: 5px; padding: 10px; border-radius: 5px;">
+                ${index + 1}. ${rider.name} (${rider.role}) - Cost: ${rider.cost}, Points: ${rider.points}
+            </li>`;
+    });
+    ridersHtml += '</ol>';
+    $('#dreamTeamRiders').html(ridersHtml);
+
+   const ctx = document.getElementById('dreamTeamChart').getContext('2d');
+    const roleData = {};
+    orderedRiders.forEach(rider => {
+        roleData[rider.role] = (roleData[rider.role] || 0) + rider.points;
     });
 
-    // ... existing code ...
-});
+    new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: Object.keys(roleData),
+            datasets: [{
+                data: Object.values(roleData),
+                backgroundColor: Object.keys(roleData).map(getColorForRole),
+                borderColor: '#ffffff',
+                borderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Dream Team Points Distribution by Role',
+                    font: {
+                        family: 'VT323, monospace',
+                        size: 24,
+                        color: '#ff1493'
+                    }
+                },
+                legend: {
+                    labels: {
+                        font: {
+                            family: 'VT323, monospace',
+                            size: 14,
+                            color: '#000000'
+                        }
+                    }
+                }
+            }
+        }
+    });
+}
 
 
 function createTrajectoryChart(cyclists) {
@@ -373,6 +970,9 @@ function openTab(evt, tabName, riderName = null) {
         loadDefaultLeagueTeamChart();
         createLeagueStandingsChart();
         createLatestPointsUpdateChart();
+        // Add this line to create the daily points chart for the default team
+        updateLeagueTeamRosterChart();
+    }
     } else if (tabName === 'TeamsTab') {
         loadDefaultCyclingTeamChart();
         displayAllTeamsComparison();
@@ -1388,6 +1988,8 @@ function displayRiskAssessmentTable(riskData) {
     tableContainer.innerHTML = tableHTML;
 }
 
+// ... (keep existing code)
+
 function displayTeamRiskAssessment(selectedTeam) {
     const teamRiders = cyclistData.cyclists.filter(cyclist => cyclist.team === selectedTeam);
     const riskData = teamRiders.map(rider => calculateRiderRisk(rider.name)).filter(risk => risk !== null);
@@ -1468,132 +2070,57 @@ function displayTeamRiskAssessment(selectedTeam) {
     displayRiskAssessmentTable(riskData);
 }
 
-function initializeLeagueTab() {
-    initializeLeagueTeamSelect();
-    initializeLeagueDateSelect();
-    
-    document.getElementById('leagueTeamSelect').addEventListener('change', updateLeagueTeamRosterChart);
-    document.getElementById('leagueDateSelect').addEventListener('change', updateLeagueTeamRosterChart);
-    
-    // Set default selections
-    if (leagueData && leagueData.length > 0) {
-        document.getElementById('leagueTeamSelect').value = leagueData[0].name;
-    }
-    if (cyclistData.league_scores.history.length > 0) {
-        document.getElementById('leagueDateSelect').value = cyclistData.league_scores.history[0].date;
-    }
-    
-    updateLeagueTeamRosterChart();
-}
 
-function initializeLeagueTeamSelect() {
-    const leagueTeamSelect = document.getElementById('leagueTeamSelect');
-    leagueTeamSelect.innerHTML = '<option value="">Select a Team</option>';
-    leagueData.forEach(team => {
-        const option = document.createElement('option');
-        option.value = team.name;
-        option.textContent = team.name;
-        leagueTeamSelect.appendChild(option);
-    });
-}
-
-function initializeLeagueDateSelect() {
-    const leagueDateSelect = document.getElementById('leagueDateSelect');
-    leagueDateSelect.innerHTML = '<option value="">Select a Date</option>';
-    const dates = cyclistData.league_scores.history.map(h => h.date).sort((a, b) => new Date(b) - new Date(a));
-    dates.forEach(date => {
-        const option = document.createElement('option');
-        option.value = date;
-        option.textContent = new Date(date).toLocaleDateString();
-        leagueDateSelect.appendChild(option);
-    });
-}
-
-function updateLeagueTeamRosterChart() {
-    const selectedTeam = document.getElementById('leagueTeamSelect').value;
-    const selectedDate = document.getElementById('leagueDateSelect').value;
-    if (!selectedTeam || !selectedDate) return;
-
-    const team = leagueData.find(t => t.name === selectedTeam);
-    if (!team) return;
-
-    const historicalData = cyclistData.league_scores.history.find(h => h.date === selectedDate);
-    if (!historicalData) return;
-
-    const rosterData = team.roster.map(riderName => {
-        const rider = cyclistData.cyclists.find(c => c.name === riderName);
-        const historicalRider = historicalData.scores.find(s => s.name === selectedTeam)?.roster.find(r => r.name === riderName);
-        return {
-            name: riderName,
-            points: historicalRider ? historicalRider.points : 0,
-            role: rider ? rider.role : 'Unknown'
-        };
-    }).sort((a, b) => b.points - a.points);
-
-    const trace = {
-        x: rosterData.map(r => r.name),
-        y: rosterData.map(r => r.points),
-        type: 'bar',
-        marker: {
-            color: rosterData.map(r => getColorForRole(r.role))
-        },
-        text: rosterData.map(r => `${r.name}<br>Role: ${r.role}<br>Points: ${r.points}`),
-        hoverinfo: 'text'
-    };
-
-    const layout = {
-        title: {
-            text: `${selectedTeam} Roster (${selectedDate})`,
-            font: {
-                family: 'VT323, monospace',
-                color: '#ff1493'
-            }
-        },
-        xaxis: {
-            title: '',
-            tickangle: -45,
-        },
-        yaxis: {
-            title: 'Points',
-        },
-        paper_bgcolor: '#fff0f5',
-        plot_bgcolor: '#fff0f5'
-    };
-
-    createResponsiveChart('leagueTeamRosterChart', [trace], layout);
-}
-
-// Update the existing openTab function
-function openTab(evt, tabName) {
-    // ... existing code ...
-
-    if (tabName === 'LeagueScoresTab') {
-        initializeLeagueTab();
+function displayRiskAssessmentTable(riskData) {
+    const tableContainer = document.getElementById('riskAssessmentTable');
+    if (!tableContainer) {
+        console.error('Risk assessment table container not found');
+        return;
     }
 
-    // ... existing code ...
-}
+    let tableHTML = `
+        <table class="risk-table">
+            <thead>
+                <tr>
+                    <th>Rider</th>
+                    <th>Overall Risk</th>
+                    <th>Cost Efficiency</th>
+                    <th>Ownership</th>
+                    <th>Consistency</th>
+                    <th>Trend</th>
+                    <th>Role</th>
+                    <th>Cost</th>
+                    <th>Points</th>
+                    <th>Ownership %</th>
+                </tr>
+            </thead>
+            <tbody>
+    `;
 
-// Modify the $(document).ready function
-$(document).ready(function() {
-    // ... existing code ...
-
-    $.getJSON('cyclist-data.json', function(data) {
-        // ... existing code ...
-
-        cyclistData = data;
-        leagueData = data.league_scores.current;
-
-        // ... existing code ...
-
-        // Initialize the league tab
-        initializeLeagueTab();
-
-        // ... existing code ...
+    riskData.forEach(r => {
+        tableHTML += `
+            <tr>
+                <td>${r.rider}</td>
+                <td>${r.overallRisk.toFixed(2)}</td>
+                <td>${r.costEfficiencyRisk.toFixed(2)}</td>
+                <td>${r.ownershipRisk.toFixed(2)}</td>
+                <td>${r.consistencyRisk.toFixed(2)}</td>
+                <td>${r.trendRisk.toFixed(2)}</td>
+                <td>${r.role}</td>
+                <td>${r.cost}</td>
+                <td>${r.points}</td>
+                <td>${r.ownership}%</td>
+            </tr>
+        `;
     });
 
-    // ... existing code ...
-});
+    tableHTML += `
+            </tbody>
+        </table>
+    `;
+
+    tableContainer.innerHTML = tableHTML;
+}
 function calculateRiderRisk(riderName) {
     const rider = cyclistData.cyclists.find(c => c.name === riderName);
     if (!rider) {
@@ -1854,4 +2381,67 @@ function displayTeamEfficiencyChart() {
     };
 
     createResponsiveChart('teamEfficiencyChart', [trace], layout);
+}
+
+function calculateDailyPoints(rosterNames) {
+    const dailyPoints = {};
+    
+    rosterNames.forEach(riderName => {
+        const rider = cyclistData.cyclists.find(c => c.name === riderName);
+        if (rider && rider.pointHistory) {
+            rider.pointHistory.forEach(history => {
+                const date = history.date.split('T')[0];
+                if (!dailyPoints[date]) {
+                    dailyPoints[date] = {};
+                }
+                dailyPoints[date][riderName] = history.points;
+            });
+        }
+    });
+
+    return dailyPoints;
+}
+function createDailyPointsChart(dailyPoints, teamName) {
+    const dates = Object.keys(dailyPoints).sort();
+    const riders = Object.keys(dailyPoints[dates[0]]);
+
+    const traces = riders.map(rider => {
+        return {
+            x: dates,
+            y: dates.map(date => dailyPoints[date][rider] || 0),
+            type: 'scatter',
+            mode: 'lines+markers',
+            name: rider,
+            hoverinfo: 'text',
+            hovertext: dates.map(date => 
+                `${rider}<br>Date: ${date}<br>Points: ${dailyPoints[date][rider] || 0}`
+            )
+        };
+    });
+
+    const layout = {
+        title: {
+            text: `Daily Points for ${teamName}`,
+            font: {
+                family: 'VT323, monospace',
+                color: '#ff1493'
+            }
+        },
+        xaxis: {
+            title: 'Date',
+            tickangle: -45,
+        },
+        yaxis: {
+            title: 'Points',
+        },
+        paper_bgcolor: '#fff0f5',
+        plot_bgcolor: '#fff0f5',
+        legend: {
+            orientation: 'h',
+            y: -0.2
+        },
+        hovermode: 'closest'
+    };
+
+    createResponsiveChart('dailyPointsChart', traces, layout);
 }

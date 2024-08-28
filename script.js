@@ -970,9 +970,7 @@ function openTab(evt, tabName, riderName = null) {
         loadDefaultLeagueTeamChart();
         createLeagueStandingsChart();
         createLatestPointsUpdateChart();
-        // Add this line to create the daily points chart for the default team
         updateLeagueTeamRosterChart();
-    }
     } else if (tabName === 'TeamsTab') {
         loadDefaultCyclingTeamChart();
         displayAllTeamsComparison();

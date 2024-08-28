@@ -849,7 +849,7 @@ tr:nth-child(odd) {
 .roster-charts-row {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 20px;
+    margin-bottom: 0px;
 }
 
 .roster-chart-column {

@@ -129,7 +129,6 @@ function initializeLeagueDateSelect() {
 }
 
 function initializeLeagueTab() {
-    initializeLeagueTeamSelect();
     initializeLeagueDateSelect();
     
     document.getElementById('leagueTeamSelect').addEventListener('change', updateLeagueTeamRosterChart);

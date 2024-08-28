@@ -1598,7 +1598,6 @@ function generateNewsContent() {
             e.preventDefault();
             const riderName = this.getAttribute('data-rider');
             openTab(null, 'RiderTrajectoryTab', riderName);
-});
         });
     });
 

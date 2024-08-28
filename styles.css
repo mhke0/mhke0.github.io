@@ -895,4 +895,23 @@ tr:nth-child(odd) {
         margin-bottom: 0px;
     }
 }
+#AllStarTeamTab ul {
+    list-style-type: none;
+    padding: 0;
+}
 
+#AllStarTeamTab li {
+    background-color: #fff0f5;
+    border: 1px solid #ff69b4;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#twitterLeagueComparison, #allStarTeamStats {
+    background-color: #fff0f5;
+    border: 1px solid #ff69b4;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}

@@ -1064,6 +1064,9 @@ function createRelativePerformanceChart(leagueScores) {
         xaxis: {
             title: '',
             tickangle: -45,
+             tickfont: {
+                size: 8  // Smaller font size for x-axis labels
+            }
         },
         yaxis: {
             title: 'Performance Relative to Average (%)',
@@ -2445,7 +2448,10 @@ function createDailyPointsChart(dailyPoints, teamName) {
         plot_bgcolor: '#fff0f5',
         legend: {
             orientation: 'h',
-            y: -0.2
+            y: -0.2,
+           
+            font-size: 8  // Smaller font size for x-axis labels
+            
         },
         hovermode: 'closest'
     };

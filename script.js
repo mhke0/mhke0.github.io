@@ -116,6 +116,17 @@ function updateLeagueTeamRosterChart() {
     createResponsiveChart('leagueTeamRosterChart', [trace], layout);
 }
 
+function initializeLeagueTeamSelect() {
+    const leagueTeamSelect = document.getElementById('leagueTeamSelect');
+    leagueTeamSelect.innerHTML = '<option value="">Select a Team</option>';
+    leagueData.forEach(team => {
+        const option = document.createElement('option');
+        option.value = team.name;
+        option.textContent = team.name;
+        leagueTeamSelect.appendChild(option);
+    });
+}
+
 function initializeLeagueDateSelect() {
     const leagueDateSelect = document.getElementById('leagueDateSelect');
     leagueDateSelect.innerHTML = '<option value="">Select a Date</option>';

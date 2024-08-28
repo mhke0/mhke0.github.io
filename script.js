@@ -983,7 +983,6 @@ function openTab(evt, tabName, riderName = null) {
     } else if (tabName === 'AllStarTeamTab') {
         displayAllStarTeam();
     }
-    }
 }
 
 document.getElementById("defaultOpen").click();

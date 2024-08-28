@@ -243,6 +243,9 @@ function updateLeagueTeamRosterChart() {
         xaxis: {
             title: '',
             tickangle: -45,
+             tickfont: {
+                size: 8  // Smaller font size for x-axis labels
+            }
         },
         yaxis: {
             title: 'Points',
@@ -601,6 +604,9 @@ function createLeagueScoresChart(leagueScores) {
         xaxis: {
             title: '',
             tickangle: -45,
+             tickfont: {
+                size: 8  // Smaller font size for x-axis labels
+            }
         },
         yaxis: {
             title: '',

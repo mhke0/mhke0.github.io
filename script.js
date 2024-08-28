@@ -219,19 +219,13 @@ function updateLeagueTeamRosterChart() {
         };
     }).sort((a, b) => b.points - a.points);
 
+    // Create the overall roster points chart
     const trace = {
         x: rosterData.map(r => r.name),
         y: rosterData.map(r => r.points),
         type: 'bar',
         marker: {
-            color: rosterData.map(r => {
-                switch(r.role) {
-                    case 'All Rounder': return '#ff6384';
-                    case 'Climber': return '#36a2eb';
-                    case 'Sprinter': return '#cc65fe';
-                    default: return '#4bc0c0';
-                }
-            })
+            color: rosterData.map(r => getColorForRole(r.role))
         },
         text: rosterData.map(r => `${r.name}<br>Role: ${r.role}<br>Points: ${r.points}`),
         hoverinfo: 'text'
@@ -258,17 +252,15 @@ function updateLeagueTeamRosterChart() {
 
     createResponsiveChart('leagueTeamRosterChart', [trace], layout);
 
-    // Calculate daily points
+    // Calculate and create the daily points chart
     const dailyPoints = calculateDailyPoints(team.roster);
-
-    // Create the daily points chart
     createDailyPointsChart(dailyPoints, selectedTeam);
 
+    // Update balanced team information
     const { mostBalancedTeam, leastBalancedTeam } = calculateBalancedTeams(leagueData);
     displayBalancedTeam(mostBalancedTeam, 'mostBalancedTeamContent');
     displayBalancedTeam(leastBalancedTeam, 'leastBalancedTeamContent');
 }
-
 function updateCyclingTeamRosterDisplay() {
     const selectedTeam = document.getElementById('cyclingTeamSelect').value;
     if (!selectedTeam) {

@@ -1479,7 +1479,11 @@ function createLatestPointsUpdateChart() {
 }
 function generateNewsContent() {
     let newsHtml = '';
-
+    // Add the welcome message
+    newsHtml += '<div class="welcome-message">';
+    newsHtml += '<p>Welcome to the Velo Data Dash! A second-hand webapp for Velogames Datascience.</p>';
+    newsHtml += '</div>';
+    
     // First row with two columns
     newsHtml += '<div class="news-row">';
 

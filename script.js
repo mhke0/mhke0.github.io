@@ -129,6 +129,7 @@ function initializeLeagueDateSelect() {
 }
 
 function initializeLeagueTab() {
+    initializeLeagueTeamSelect();
     initializeLeagueDateSelect();
     
     document.getElementById('leagueTeamSelect').addEventListener('change', updateLeagueTeamRosterChart);
@@ -1387,8 +1388,6 @@ function displayRiskAssessmentTable(riskData) {
     tableContainer.innerHTML = tableHTML;
 }
 
-// ... (rest of the code)
-
 function displayTeamRiskAssessment(selectedTeam) {
     const teamRiders = cyclistData.cyclists.filter(cyclist => cyclist.team === selectedTeam);
     const riskData = teamRiders.map(rider => calculateRiderRisk(rider.name)).filter(risk => risk !== null);
@@ -1469,57 +1468,132 @@ function displayTeamRiskAssessment(selectedTeam) {
     displayRiskAssessmentTable(riskData);
 }
 
+function initializeLeagueTab() {
+    initializeLeagueTeamSelect();
+    initializeLeagueDateSelect();
+    
+    document.getElementById('leagueTeamSelect').addEventListener('change', updateLeagueTeamRosterChart);
+    document.getElementById('leagueDateSelect').addEventListener('change', updateLeagueTeamRosterChart);
+    
+    // Set default selections
+    if (leagueData && leagueData.length > 0) {
+        document.getElementById('leagueTeamSelect').value = leagueData[0].name;
+    }
+    if (cyclistData.league_scores.history.length > 0) {
+        document.getElementById('leagueDateSelect').value = cyclistData.league_scores.history[0].date;
+    }
+    
+    updateLeagueTeamRosterChart();
+}
 
-function displayRiskAssessmentTable(riskData) {
-    const tableContainer = document.getElementById('riskAssessmentTable');
-    if (!tableContainer) {
-        console.error('Risk assessment table container not found');
-        return;
+function initializeLeagueTeamSelect() {
+    const leagueTeamSelect = document.getElementById('leagueTeamSelect');
+    leagueTeamSelect.innerHTML = '<option value="">Select a Team</option>';
+    leagueData.forEach(team => {
+        const option = document.createElement('option');
+        option.value = team.name;
+        option.textContent = team.name;
+        leagueTeamSelect.appendChild(option);
+    });
+}
+
+function initializeLeagueDateSelect() {
+    const leagueDateSelect = document.getElementById('leagueDateSelect');
+    leagueDateSelect.innerHTML = '<option value="">Select a Date</option>';
+    const dates = cyclistData.league_scores.history.map(h => h.date).sort((a, b) => new Date(b) - new Date(a));
+    dates.forEach(date => {
+        const option = document.createElement('option');
+        option.value = date;
+        option.textContent = new Date(date).toLocaleDateString();
+        leagueDateSelect.appendChild(option);
+    });
+}
+
+function updateLeagueTeamRosterChart() {
+    const selectedTeam = document.getElementById('leagueTeamSelect').value;
+    const selectedDate = document.getElementById('leagueDateSelect').value;
+    if (!selectedTeam || !selectedDate) return;
+
+    const team = leagueData.find(t => t.name === selectedTeam);
+    if (!team) return;
+
+    const historicalData = cyclistData.league_scores.history.find(h => h.date === selectedDate);
+    if (!historicalData) return;
+
+    const rosterData = team.roster.map(riderName => {
+        const rider = cyclistData.cyclists.find(c => c.name === riderName);
+        const historicalRider = historicalData.scores.find(s => s.name === selectedTeam)?.roster.find(r => r.name === riderName);
+        return {
+            name: riderName,
+            points: historicalRider ? historicalRider.points : 0,
+            role: rider ? rider.role : 'Unknown'
+        };
+    }).sort((a, b) => b.points - a.points);
+
+    const trace = {
+        x: rosterData.map(r => r.name),
+        y: rosterData.map(r => r.points),
+        type: 'bar',
+        marker: {
+            color: rosterData.map(r => getColorForRole(r.role))
+        },
+        text: rosterData.map(r => `${r.name}<br>Role: ${r.role}<br>Points: ${r.points}`),
+        hoverinfo: 'text'
+    };
+
+    const layout = {
+        title: {
+            text: `${selectedTeam} Roster (${selectedDate})`,
+            font: {
+                family: 'VT323, monospace',
+                color: '#ff1493'
+            }
+        },
+        xaxis: {
+            title: '',
+            tickangle: -45,
+        },
+        yaxis: {
+            title: 'Points',
+        },
+        paper_bgcolor: '#fff0f5',
+        plot_bgcolor: '#fff0f5'
+    };
+
+    createResponsiveChart('leagueTeamRosterChart', [trace], layout);
+}
+
+// Update the existing openTab function
+function openTab(evt, tabName) {
+    // ... existing code ...
+
+    if (tabName === 'LeagueScoresTab') {
+        initializeLeagueTab();
     }
 
-    let tableHTML = `
-        <table class="risk-table">
-            <thead>
-                <tr>
-                    <th>Rider</th>
-                    <th>Overall Risk</th>
-                    <th>Cost Efficiency</th>
-                    <th>Ownership</th>
-                    <th>Consistency</th>
-                    <th>Trend</th>
-                    <th>Role</th>
-                    <th>Cost</th>
-                    <th>Points</th>
-                    <th>Ownership %</th>
-                </tr>
-            </thead>
-            <tbody>
-    `;
+    // ... existing code ...
+}
 
-    riskData.forEach(r => {
-        tableHTML += `
-            <tr>
-                <td>${r.rider}</td>
-                <td>${r.overallRisk.toFixed(2)}</td>
-                <td>${r.costEfficiencyRisk.toFixed(2)}</td>
-                <td>${r.ownershipRisk.toFixed(2)}</td>
-                <td>${r.consistencyRisk.toFixed(2)}</td>
-                <td>${r.trendRisk.toFixed(2)}</td>
-                <td>${r.role}</td>
-                <td>${r.cost}</td>
-                <td>${r.points}</td>
-                <td>${r.ownership}%</td>
-            </tr>
-        `;
+// Modify the $(document).ready function
+$(document).ready(function() {
+    // ... existing code ...
+
+    $.getJSON('cyclist-data.json', function(data) {
+        // ... existing code ...
+
+        cyclistData = data;
+        leagueData = data.league_scores.current;
+
+        // ... existing code ...
+
+        // Initialize the league tab
+        initializeLeagueTab();
+
+        // ... existing code ...
     });
 
-    tableHTML += `
-            </tbody>
-        </table>
-    `;
-
-    tableContainer.innerHTML = tableHTML;
-}
+    // ... existing code ...
+});
 function calculateRiderRisk(riderName) {
     const rider = cyclistData.cyclists.find(c => c.name === riderName);
     if (!rider) {

@@ -38,7 +38,7 @@
             </div>
         </div>
 
-       <div id="LeagueScoresTab" class="tabcontent">
+<div id="LeagueScoresTab" class="tabcontent">
     <div class="chart-container">
         <div id="latestPointsUpdateChart"></div>
     </div>
@@ -48,17 +48,22 @@
     <div class="league-roster-container">
         <div class="roster-header">
             <div class="dropdown-container">
-                <select id="leagueTeamSelect" class="styled-select" onchange="updateLeagueTeamRosterChart()">
+                <select id="leagueTeamSelect" class="styled-select" onchange="updateLeagueTeamRosterCharts()">
                     <option value="">Select a League Team</option>
                 </select>
             </div>
         </div>
-        <div class="chart-container">
-            <div id="leagueTeamRosterChart"></div>
-        </div>
-        <!-- New chart container for daily points -->
-        <div class="chart-container">
-            <div id="dailyPointsChart"></div>
+        <div class="roster-charts-row">
+            <div class="roster-chart-column">
+                <div class="chart-container">
+                    <div id="leagueTeamRosterChart"></div>
+                </div>
+            </div>
+            <div class="roster-chart-column">
+                <div class="chart-container">
+                    <div id="dailyPointsChart"></div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="balanced-teams-container">

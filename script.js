@@ -1300,7 +1300,7 @@ function createLeagueStandingsChart() {
         xaxis: {
             title: '',
             tickangle: -45,
-                        hoverformat: '%Y-%m-%d'.
+                        hoverformat: '%Y-%m-%d',
             tickfont: {
                 size: 8  // Smaller font size for x-axis labels
             }

@@ -484,24 +484,23 @@ def main():
             updated_data['league_all_star_team'] = league_all_star_team
             print(f"League All-Star Team selected. Total points: {league_all_star_team['total_points']}, Total cost: {league_all_star_team['total_cost']}", file=sys.stderr)
 
-        print("Fetching Twitter League data", file=sys.stderr)
-        twitter_league_scores = fetch_twitter_league_data()
+            print("Fetching Twitter League data", file=sys.stderr)
+            twitter_league_scores = fetch_twitter_league_data()
 
-        all_star_points = league_all_star_team['total_points']
-        rank, percentile = calculate_rank_and_percentile(all_star_points, twitter_league_scores)
+            all_star_points = league_all_star_team['total_points']
+            rank, percentile = calculate_rank_and_percentile(all_star_points, twitter_league_scores)
 
-        updated_data['league_all_star_team']['twitter_league_comparison'] = {
-            'rank': rank,
-            'percentile': percentile,
-            'total_participants': len(twitter_league_scores)
-        }
+            updated_data['league_all_star_team']['twitter_league_comparison'] = {
+                'rank': rank,
+                'percentile': percentile,
+                'total_participants': len(twitter_league_scores)
+            }
 
-        print(f"All-Star Team Rank in Twitter League: {rank}", file=sys.stderr)
-        print(f"All-Star Team Percentile in Twitter League: {percentile:.2f}%", file=sys.stderr)
+            print(f"All-Star Team Rank in Twitter League: {rank}", file=sys.stderr)
+            print(f"All-Star Team Percentile in Twitter League: {percentile:.2f}%", file=sys.stderr)
         else:
             updated_data['league_all_star_team'] = None
-                print("Failed to select League All-Star Team", file=sys.stderr)
-        
+            print("Failed to select League All-Star Team", file=sys.stderr)
         
         if dream_team:
             updated_data['dream_team'] = {

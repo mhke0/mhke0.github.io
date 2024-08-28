@@ -867,6 +867,6 @@ tr:nth-child(odd) {
 
     .roster-chart-column {
         width: 100%;
-        margin-bottom: 20px;
+        margin-bottom: 0px;
     }
 }

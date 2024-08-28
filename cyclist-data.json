@@ -8018,5 +8018,79 @@
       "date": "2024-08-28",
       "from_zero": true
     }
-  ]
+  ],
+  "league_all_star_team": {
+    "riders": [
+      {
+        "name": "Adam Yates",
+        "role": "All Rounder",
+        "cost": 20.0,
+        "points": 465.0,
+        "team": "UAE Team Emirates"
+      },
+      {
+        "name": "Wout Van Aert",
+        "role": "Sprinter",
+        "cost": 18.0,
+        "points": 1527.0,
+        "team": "Team Visma | Lease a Bike"
+      },
+      {
+        "name": "Kaden Groves",
+        "role": "Sprinter",
+        "cost": 12.0,
+        "points": 708.0,
+        "team": "Alpecin-Deceuninck"
+      },
+      {
+        "name": "Mattias Skjelmose",
+        "role": "All Rounder",
+        "cost": 12.0,
+        "points": 336.0,
+        "team": "Lidl - Trek"
+      },
+      {
+        "name": "Lennert Van Eetvelt",
+        "role": "Climber",
+        "cost": 10.0,
+        "points": 538.0,
+        "team": "Lotto Dstny"
+      },
+      {
+        "name": "Max Poole",
+        "role": "Climber",
+        "cost": 10.0,
+        "points": 258.0,
+        "team": "Team dsm-firmenich PostNL"
+      },
+      {
+        "name": "Stefan Küng",
+        "role": "Unclassed",
+        "cost": 6.0,
+        "points": 629.0,
+        "team": "Groupama - FDJ"
+      },
+      {
+        "name": "Quentin Pacher",
+        "role": "Unclassed",
+        "cost": 6.0,
+        "points": 336.0,
+        "team": "Groupama - FDJ"
+      },
+      {
+        "name": "George Bennett",
+        "role": "Unclassed",
+        "cost": 6.0,
+        "points": 323.0,
+        "team": "Israel - Premier Tech"
+      }
+    ],
+    "total_points": 5120.0,
+    "total_cost": 100.0,
+    "twitter_league_comparison": {
+      "rank": 2,
+      "percentile": 99.92343032159266,
+      "total_participants": 1306
+    }
+  }
 }

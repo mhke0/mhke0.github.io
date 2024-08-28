@@ -1479,11 +1479,12 @@ function createLatestPointsUpdateChart() {
 }
 function generateNewsContent() {
     let newsHtml = '';
+
     // Add the welcome message
     newsHtml += '<div class="welcome-message">';
     newsHtml += '<p>Welcome to the Velo Data Dash! A second-hand webapp for Velogames Datascience.</p>';
     newsHtml += '</div>';
-    
+
     // First row with two columns
     newsHtml += '<div class="news-row">';
 
@@ -1501,7 +1502,7 @@ function generateNewsContent() {
         standings.slice(0, 5).forEach((team, index) => {
             newsHtml += `<div class="standing-item">
                 <span class="standing-rank">${index + 1}</span>
-                <span class="team-name">${team.name}</span>
+                <span class="team-name"><a href="#" class="rider-link" data-rider="${team.name}">${team.name}</a></span>
                 <span class="team-points">${team.points} points</span>
             </div>`;
         });
@@ -1537,7 +1538,7 @@ function generateNewsContent() {
         scoreChanges.slice(0, 5).forEach((team, index) => {
             newsHtml += `<div class="score-change-item">
                 <span class="standing-rank">${index + 1}</span>
-                <span class="team-name">${team.name}</span>
+                <span class="team-name"><a href="#" class="rider-link" data-rider="${team.name}">${team.name}</a></span>
                 <span class="team-change positive-change">+${team.change} points</span>
             </div>`;
         });
@@ -1561,11 +1562,11 @@ function generateNewsContent() {
     newsHtml += `<h3>Recent Achievements <span class="news-date">(${achievementDate})</span></h3>`;
     if (cyclistData && cyclistData.mvp_history && cyclistData.mvp_history.length > 0) {
         const mvp = cyclistData.mvp_history[cyclistData.mvp_history.length - 1];
-        newsHtml += `<p><span class="achievement-name">MVP: ${mvp.name}</span><span class="achievement-value">${mvp.points_added.toFixed(2)} points added</span></p>`;
+        newsHtml += `<p><span class="achievement-name">MVP: <a href="#" class="rider-link" data-rider="${mvp.name}">${mvp.name}</a></span><span class="achievement-value">${mvp.points_added.toFixed(2)} points added</span></p>`;
     }
     if (cyclistData && cyclistData.mip_history && cyclistData.mip_history.length > 0) {
         const mip = cyclistData.mip_history[cyclistData.mip_history.length - 1];
-        newsHtml += `<p><span class="achievement-name">MIP: ${mip.name}</span><span class="achievement-value">${mip.percentage_increase.toFixed(2)}% increase</span></p>`;
+        newsHtml += `<p><span class="achievement-name">MIP: <a href="#" class="rider-link" data-rider="${mip.name}">${mip.name}</a></span><span class="achievement-value">${mip.percentage_increase.toFixed(2)}% increase</span></p>`;
     }
     newsHtml += '</div>';
 
@@ -1578,7 +1579,7 @@ function generateNewsContent() {
         top10.forEach((rider, index) => {
             newsHtml += `<div class="top-rider-item">
                 <span class="rider-rank">${index + 1}</span>
-                <span class="rider-name">${rider.name} <span class="rider-details">(${rider.team})</span></span>
+                <span class="rider-name"><a href="#" class="rider-link" data-rider="${rider.name}">${rider.name}</a> <span class="rider-details">(${rider.team})</span></span>
                 <span class="rider-details">${rider.points} points</span>
             </div>`;
         });
@@ -1589,7 +1590,17 @@ function generateNewsContent() {
     newsHtml += '</div>';
 
     document.getElementById('News').innerHTML = newsHtml;
+
+    // Add event listeners to the new rider links
+    document.querySelectorAll('#News .rider-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const riderName = this.getAttribute('data-rider');
+            openTab(null, 'RiderTrajectoryTab', riderName);
+        });
+    });
 }
+
 function displayTeamCostsChart() {
     const teams = {};
     cyclistData.cyclists.forEach(cyclist => {

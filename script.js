@@ -108,7 +108,7 @@ function createResponsiveChart(chartId, traces, layout, config = {}) {
                 layout.title = { text: layout.title };
             }
             layout.title.font = layout.title.font || {};
-            layout.title.font.size = baseSize * 1.5;
+            layout.title.font.size = baseSize * 1.2;
         }
 
         if (layout.xaxis) {
@@ -126,13 +126,15 @@ function createResponsiveChart(chartId, traces, layout, config = {}) {
                 layout.yaxis.title = { text: layout.yaxis.title };
             }
             layout.yaxis.title.font = layout.yaxis.title.font || {};
-            layout.yaxis.title.font.size = baseSize * 1.2;
+            layout.yaxis.title.font.size = baseSize * 0.8;
         }
 
         if (layout.legend) {
             layout.legend.font = layout.legend.font || {};
             layout.legend.font.size = baseSize;
         }
+            layout.legend.title.font.size = baseSize * 0.8;
+
     }
     
     layout.xaxis.tickangle = layout.xaxis.tickangle || -45;

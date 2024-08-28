@@ -63,8 +63,17 @@ function createRoleChart(roles) {
 // ... (keep the rest of the code)
 
 function updateLeagueTeamRosterChart() {
-    const selectedTeam = document.getElementById('leagueTeamSelect').value;
-    const selectedDate = document.getElementById('leagueDateSelect').value;
+    const leagueTeamSelect = document.getElementById('leagueTeamSelect');
+    const leagueDateSelect = document.getElementById('leagueDateSelect');
+    const leagueTeamRosterChart = document.getElementById('leagueTeamRosterChart');
+
+    if (!leagueTeamSelect || !leagueDateSelect || !leagueTeamRosterChart) {
+        console.error('One or more required elements for league team roster chart not found');
+        return;
+    }
+
+    const selectedTeam = leagueTeamSelect.value;
+    const selectedDate = leagueDateSelect.value;
     if (!selectedTeam || !selectedDate) return;
 
     const team = leagueData.find(t => t.name === selectedTeam);
@@ -118,6 +127,10 @@ function updateLeagueTeamRosterChart() {
 
 function initializeLeagueTeamSelect() {
     const leagueTeamSelect = document.getElementById('leagueTeamSelect');
+    if (!leagueTeamSelect) {
+        console.error('League team select element not found');
+        return;
+    }
     leagueTeamSelect.innerHTML = '<option value="">Select a Team</option>';
     leagueData.forEach(team => {
         const option = document.createElement('option');
@@ -129,6 +142,10 @@ function initializeLeagueTeamSelect() {
 
 function initializeLeagueDateSelect() {
     const leagueDateSelect = document.getElementById('leagueDateSelect');
+    if (!leagueDateSelect) {
+        console.error('League date select element not found');
+        return;
+    }
     leagueDateSelect.innerHTML = '<option value="">Select a Date</option>';
     const dates = cyclistData.league_scores.history.map(h => h.date).sort((a, b) => new Date(b) - new Date(a));
     dates.forEach(date => {
@@ -143,15 +160,22 @@ function initializeLeagueTab() {
     initializeLeagueTeamSelect();
     initializeLeagueDateSelect();
     
-    document.getElementById('leagueTeamSelect').addEventListener('change', updateLeagueTeamRosterChart);
-    document.getElementById('leagueDateSelect').addEventListener('change', updateLeagueTeamRosterChart);
+    const leagueTeamSelect = document.getElementById('leagueTeamSelect');
+    const leagueDateSelect = document.getElementById('leagueDateSelect');
+    
+    if (leagueTeamSelect) {
+        leagueTeamSelect.addEventListener('change', updateLeagueTeamRosterChart);
+    }
+    if (leagueDateSelect) {
+        leagueDateSelect.addEventListener('change', updateLeagueTeamRosterChart);
+    }
     
     // Set default selections
-    if (leagueData && leagueData.length > 0) {
-        document.getElementById('leagueTeamSelect').value = leagueData[0].name;
+    if (leagueData && leagueData.length > 0 && leagueTeamSelect) {
+        leagueTeamSelect.value = leagueData[0].name;
     }
-    if (cyclistData.league_scores.history.length > 0) {
-        document.getElementById('leagueDateSelect').value = cyclistData.league_scores.history[0].date;
+    if (cyclistData.league_scores.history.length > 0 && leagueDateSelect) {
+        leagueDateSelect.value = cyclistData.league_scores.history[0].date;
     }
     
     updateLeagueTeamRosterChart();

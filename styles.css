@@ -846,3 +846,27 @@ tr:nth-child(odd) {
 #cyclistTable a:hover {
     text-decoration: underline;
 }
+.roster-charts-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.roster-chart-column {
+    width: 48%; /* Slightly less than 50% to account for margin */
+}
+
+.roster-chart-column .chart-container {
+    height: 400px; /* Adjust this value as needed */
+}
+
+@media screen and (max-width: 768px) {
+    .roster-charts-row {
+        flex-direction: column;
+    }
+
+    .roster-chart-column {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}

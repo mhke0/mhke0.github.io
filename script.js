@@ -1482,7 +1482,6 @@ function generateNewsContent() {
 
     // First row with two columns
     newsHtml += '<div class="news-row">';
-     <p class="welcome-message">Welcome to the Velo Data Dash! A second-hand webapp for Velogames Datascience.</p>
 
     let standings = [];
     if (cyclistData && cyclistData.league_scores && cyclistData.league_scores.current) {

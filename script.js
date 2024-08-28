@@ -2419,7 +2419,7 @@ function createDailyPointsChart(dailyPoints, teamName) {
             }
         },
         xaxis: {
-            title: 'Date',
+            title: '',
             tickangle: -45,
         },
         yaxis: {

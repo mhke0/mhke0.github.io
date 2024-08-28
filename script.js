@@ -1298,9 +1298,12 @@ function createLeagueStandingsChart() {
             }
         },
         xaxis: {
-            title: 'Date',
+            title: '',
             tickangle: -45,
-            hoverformat: '%Y-%m-%d'
+                        hoverformat: '%Y-%m-%d'.
+            tickfont: {
+                size: 8  // Smaller font size for x-axis labels
+            }
         },
         yaxis: {
             title: 'Points'
@@ -1452,6 +1455,9 @@ function createLatestPointsUpdateChart() {
         xaxis: {
             title: '',
             tickangle: -45,
+             tickfont: {
+                size: 8  // Smaller font size for x-axis labels
+            }
         },
         yaxis: {
             title: 'Points Added',
@@ -2422,6 +2428,9 @@ function createDailyPointsChart(dailyPoints, teamName) {
         xaxis: {
             title: '',
             tickangle: -45,
+             tickfont: {
+                size: 8  // Smaller font size for x-axis labels
+            }
         },
         yaxis: {
             title: 'Points',

@@ -875,13 +875,13 @@ tr:nth-child(odd) {
     height: 400px; /* Adjust this value as needed */
 }
 
-.rider-link {
+.team-link, .rider-link {
     color: #FF1493;
     text-decoration: none;
     cursor: pointer;
 }
 
-.rider-link:hover {
+.team-link:hover, .rider-link:hover {
     text-decoration: underline;
 }
 

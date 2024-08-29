@@ -1475,31 +1475,28 @@ const namePrefixes = ['VAN', 'DE', 'VON', 'DER', 'TEN', 'TER', 'DEN', 'DA', 'DOS
 function convertNameFormat(name) {
     const parts = name.split(' ');
     if (parts.length > 1) {
-        let lastName = '';
-        let firstName = '';
-        let prefixFound = false;
+        let lastName = parts[0];
+        let firstName = parts.slice(1).join(' ');
 
-        // Iterate through the parts in reverse
-        for (let i = parts.length - 1; i >= 0; i--) {
-            if (!prefixFound && namePrefixes.includes(parts[i].toUpperCase())) {
-                prefixFound = true;
-                lastName = parts[i] + ' ' + lastName;
-            } else if (prefixFound || lastName === '') {
-                lastName = parts[i] + ' ' + lastName;
-            } else {
-                firstName = parts[i] + ' ' + firstName;
-            }
+        // Handle prefixes
+        const prefixParts = [];
+        while (namePrefixes.includes(lastName.toUpperCase()) && parts.length > 2) {
+            prefixParts.push(lastName);
+            parts.shift();
+            lastName = parts[0];
+            firstName = parts.slice(1).join(' ');
         }
 
-        // Trim any extra spaces
-        firstName = firstName.trim();
-        lastName = lastName.trim();
-
         // Capitalize the first letter of each name part
-        firstName = firstName.split(' ').map(part => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()).join(' ');
-        lastName = lastName.split(' ').map(part => 
-            namePrefixes.includes(part.toUpperCase()) ? part.toLowerCase() : part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()
-        ).join(' ');
+        firstName = firstName.split(' ')
+            .map(part => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase())
+            .join(' ');
+
+        // Handle last name and prefixes
+        const lastNameParts = [...prefixParts, lastName];
+        lastName = lastNameParts
+            .map(part => namePrefixes.includes(part.toUpperCase()) ? part.toLowerCase() : part.charAt(0).toUpperCase() + part.slice(1).toLowerCase())
+            .join(' ');
 
         // Return in "Firstname Name" format
         return `${firstName} ${lastName}`;

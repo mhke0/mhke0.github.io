@@ -41,7 +41,8 @@
           "date": "2024-08-29",
           "points": 1029.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Sepp Kuss",
@@ -84,7 +85,8 @@
           "date": "2024-08-29",
           "points": 218.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "João Almeida",
@@ -127,7 +129,8 @@
           "date": "2024-08-29",
           "points": 406.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Adam Yates",
@@ -170,7 +173,8 @@
           "date": "2024-08-29",
           "points": 500.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Wout Van Aert",
@@ -213,7 +217,8 @@
           "date": "2024-08-29",
           "points": 1547.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Enric Mas",
@@ -256,7 +261,8 @@
           "date": "2024-08-29",
           "points": 601.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Carlos Rodríguez",
@@ -299,7 +305,8 @@
           "date": "2024-08-29",
           "points": 292.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Daniel Martínez",
@@ -342,7 +349,8 @@
           "date": "2024-08-29",
           "points": 88.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Mikel Landa",
@@ -385,7 +393,8 @@
           "date": "2024-08-29",
           "points": 517.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Kaden Groves",
@@ -428,7 +437,8 @@
           "date": "2024-08-29",
           "points": 716.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Richard Carapaz",
@@ -471,7 +481,8 @@
           "date": "2024-08-29",
           "points": 390.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Mattias Skjelmose",
@@ -514,7 +525,8 @@
           "date": "2024-08-29",
           "points": 395.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Cian Uijtdebroeks",
@@ -557,7 +569,8 @@
           "date": "2024-08-29",
           "points": 52.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Isaac Del Toro",
@@ -600,7 +613,8 @@
           "date": "2024-08-29",
           "points": 206.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Antonio Tiberi",
@@ -643,7 +657,8 @@
           "date": "2024-08-29",
           "points": 373.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Bryan Coquard",
@@ -686,7 +701,8 @@
           "date": "2024-08-29",
           "points": 250.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Felix Gall",
@@ -729,7 +745,8 @@
           "date": "2024-08-29",
           "points": 515.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Ben O'Connor",
@@ -772,7 +789,8 @@
           "date": "2024-08-29",
           "points": 749.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Thymen Arensman",
@@ -815,7 +833,8 @@
           "date": "2024-08-29",
           "points": 0.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Jhonatan Narváez",
@@ -858,7 +877,8 @@
           "date": "2024-08-29",
           "points": 472.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Giulio Ciccone",
@@ -901,7 +921,8 @@
           "date": "2024-08-29",
           "points": 16.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Tao Geoghegan Hart",
@@ -944,7 +965,8 @@
           "date": "2024-08-29",
           "points": 16.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Lennert Van Eetvelt",
@@ -987,7 +1009,8 @@
           "date": "2024-08-29",
           "points": 538.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Aleksandr Vlasov",
@@ -1030,7 +1053,8 @@
           "date": "2024-08-29",
           "points": 312.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Max Poole",
@@ -1073,7 +1097,8 @@
           "date": "2024-08-29",
           "points": 468.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Brandon McNulty",
@@ -1116,7 +1141,8 @@
           "date": "2024-08-29",
           "points": 506.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Jay Vine",
@@ -1159,7 +1185,8 @@
           "date": "2024-08-29",
           "points": 286.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Ide Schelling",
@@ -1202,7 +1229,8 @@
           "date": "2024-08-29",
           "points": 20.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Damiano Caruso",
@@ -1245,7 +1273,8 @@
           "date": "2024-08-29",
           "points": 0.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Guillaume Martin",
@@ -1288,7 +1317,8 @@
           "date": "2024-08-29",
           "points": 95.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Victor Lafay",
@@ -1331,7 +1361,8 @@
           "date": "2024-08-29",
           "points": 108.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Valentin Paret-Peintre",
@@ -1374,7 +1405,8 @@
           "date": "2024-08-29",
           "points": 108.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "David Gaudu",
@@ -1417,7 +1449,8 @@
           "date": "2024-08-29",
           "points": 327.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Joshua Tarling",
@@ -1460,7 +1493,8 @@
           "date": "2024-08-29",
           "points": 141.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Matthew Riccitello",
@@ -1503,7 +1537,8 @@
           "date": "2024-08-29",
           "points": 159.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Corbin Strong",
@@ -1546,7 +1581,8 @@
           "date": "2024-08-29",
           "points": 399.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Michael Woods",
@@ -1589,7 +1625,8 @@
           "date": "2024-08-29",
           "points": 31.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Patrick Konrad",
@@ -1632,7 +1669,8 @@
           "date": "2024-08-29",
           "points": 56.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Oier Lazkano",
@@ -1675,7 +1713,8 @@
           "date": "2024-08-29",
           "points": 34.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Nairo Quintana",
@@ -1718,7 +1757,8 @@
           "date": "2024-08-29",
           "points": 14.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Einer Rubio",
@@ -1761,7 +1801,8 @@
           "date": "2024-08-29",
           "points": 26.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Pelayo Sánchez",
@@ -1804,7 +1845,8 @@
           "date": "2024-08-29",
           "points": 69.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Florian Lipowitz",
@@ -1847,7 +1889,8 @@
           "date": "2024-08-29",
           "points": 592.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Mauri Vansevenant",
@@ -1890,7 +1933,8 @@
           "date": "2024-08-29",
           "points": 271.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Pavel Bittner",
@@ -1933,7 +1977,8 @@
           "date": "2024-08-29",
           "points": 504.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Mauro Schmid",
@@ -1976,7 +2021,8 @@
           "date": "2024-08-29",
           "points": 338.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Pavel Sivakov",
@@ -2019,7 +2065,8 @@
           "date": "2024-08-29",
           "points": 388.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Marc Soler",
@@ -2062,7 +2109,8 @@
           "date": "2024-08-29",
           "points": 508.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Maurice Ballerstedt",
@@ -2105,7 +2153,8 @@
           "date": "2024-08-29",
           "points": 22.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Quinten Hermans",
@@ -2148,7 +2197,8 @@
           "date": "2024-08-29",
           "points": 334.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Xandro Meurisse",
@@ -2191,7 +2241,8 @@
           "date": "2024-08-29",
           "points": 78.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Élie Gesbert",
@@ -2234,7 +2285,8 @@
           "date": "2024-08-29",
           "points": 0.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Thibault Guernalec",
@@ -2277,7 +2329,8 @@
           "date": "2024-08-29",
           "points": 0.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Cristián Rodríguez",
@@ -2320,7 +2373,8 @@
           "date": "2024-08-29",
           "points": 296.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Gleb Brussenskiy",
@@ -2363,7 +2417,8 @@
           "date": "2024-08-29",
           "points": 0.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Lorenzo Fortunato",
@@ -2406,7 +2461,8 @@
           "date": "2024-08-29",
           "points": 54.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Harold Martin López",
@@ -2449,7 +2505,8 @@
           "date": "2024-08-29",
           "points": 0.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Harold Tejada",
@@ -2492,7 +2549,8 @@
           "date": "2024-08-29",
           "points": 439.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Jack Haig",
@@ -2535,7 +2593,8 @@
           "date": "2024-08-29",
           "points": 151.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Torstein Træen",
@@ -2578,7 +2637,8 @@
           "date": "2024-08-29",
           "points": 20.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Kenny Elissonde",
@@ -2621,7 +2681,8 @@
           "date": "2024-08-29",
           "points": 0.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Jesús Herrada",
@@ -2664,7 +2725,8 @@
           "date": "2024-08-29",
           "points": 20.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Ion Izagirre",
@@ -2707,7 +2769,8 @@
           "date": "2024-08-29",
           "points": 135.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Bruno Armirail",
@@ -2750,7 +2813,8 @@
           "date": "2024-08-29",
           "points": 265.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Clément Berthet",
@@ -2793,7 +2857,8 @@
           "date": "2024-08-29",
           "points": 300.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Geoffrey Bouchard",
@@ -2836,7 +2901,8 @@
           "date": "2024-08-29",
           "points": 108.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Sander De Pestel",
@@ -2879,7 +2945,8 @@
           "date": "2024-08-29",
           "points": 108.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Jefferson Alexander Cepeda",
@@ -2922,7 +2989,8 @@
           "date": "2024-08-29",
           "points": 8.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Rui Costa",
@@ -2965,7 +3033,8 @@
           "date": "2024-08-29",
           "points": 0.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Owain Doull",
@@ -3008,7 +3077,8 @@
           "date": "2024-08-29",
           "points": 8.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Darren Rafferty",
@@ -3051,7 +3121,8 @@
           "date": "2024-08-29",
           "points": 28.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "James Shaw",
@@ -3094,7 +3165,8 @@
           "date": "2024-08-29",
           "points": 28.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Harry Sweeny",
@@ -3137,7 +3209,8 @@
           "date": "2024-08-29",
           "points": 8.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Rigoberto Urán",
@@ -3180,7 +3253,8 @@
           "date": "2024-08-29",
           "points": 0.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Pablo Castrillo",
@@ -3223,7 +3297,8 @@
           "date": "2024-08-29",
           "points": 389.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Pau Miquel",
@@ -3266,7 +3341,8 @@
           "date": "2024-08-29",
           "points": 403.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Antonio Jesús Soto",
@@ -3309,7 +3385,8 @@
           "date": "2024-08-29",
           "points": 190.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Jon Aberasturi",
@@ -3352,7 +3429,8 @@
           "date": "2024-08-29",
           "points": 291.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Mikel Bizkarra",
@@ -3395,7 +3473,8 @@
           "date": "2024-08-29",
           "points": 26.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Joan Bou",
@@ -3438,7 +3517,8 @@
           "date": "2024-08-29",
           "points": 52.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Txomin Juaristi",
@@ -3481,7 +3561,8 @@
           "date": "2024-08-29",
           "points": 132.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Gotzon Martín",
@@ -3524,7 +3605,8 @@
           "date": "2024-08-29",
           "points": 53.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Luis Ángel Maté",
@@ -3567,7 +3649,8 @@
           "date": "2024-08-29",
           "points": 124.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Sven Erik Bystrøm",
@@ -3610,7 +3693,8 @@
           "date": "2024-08-29",
           "points": 16.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Kevin Geniets",
@@ -3653,7 +3737,8 @@
           "date": "2024-08-29",
           "points": 4.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Stefan Küng",
@@ -3696,7 +3781,8 @@
           "date": "2024-08-29",
           "points": 629.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Quentin Pacher",
@@ -3739,7 +3825,8 @@
           "date": "2024-08-29",
           "points": 336.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Rémy Rochas",
@@ -3782,7 +3869,8 @@
           "date": "2024-08-29",
           "points": 39.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Laurens De Plus",
@@ -3825,7 +3913,8 @@
           "date": "2024-08-29",
           "points": 0.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Kim Heiduk",
@@ -3868,7 +3957,8 @@
           "date": "2024-08-29",
           "points": 25.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Brandon Smith Rivera",
@@ -3911,7 +4001,8 @@
           "date": "2024-08-29",
           "points": 86.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Óscar Rodríguez",
@@ -3954,7 +4045,8 @@
           "date": "2024-08-29",
           "points": 100.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Vito Braet",
@@ -3997,7 +4089,8 @@
           "date": "2024-08-29",
           "points": 50.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Kobe Goossens",
@@ -4040,7 +4133,8 @@
           "date": "2024-08-29",
           "points": 0.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Arne Marit",
@@ -4083,7 +4177,8 @@
           "date": "2024-08-29",
           "points": 240.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Louis Meintjes",
@@ -4126,7 +4221,8 @@
           "date": "2024-08-29",
           "points": 98.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Lorenzo Rota",
@@ -4169,7 +4265,8 @@
           "date": "2024-08-29",
           "points": 155.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Rein Taaramäe",
@@ -4212,7 +4309,8 @@
           "date": "2024-08-29",
           "points": 0.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "George Bennett",
@@ -4255,7 +4353,8 @@
           "date": "2024-08-29",
           "points": 334.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Marco Frigo",
@@ -4298,7 +4397,8 @@
           "date": "2024-08-29",
           "points": 223.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Riley Sheehan",
@@ -4341,7 +4441,8 @@
           "date": "2024-08-29",
           "points": 6.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Dylan Teuns",
@@ -4384,7 +4485,8 @@
           "date": "2024-08-29",
           "points": 6.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Sam Oomen",
@@ -4427,7 +4529,8 @@
           "date": "2024-08-29",
           "points": 71.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Mathias Vacek",
@@ -4470,7 +4573,8 @@
           "date": "2024-08-29",
           "points": 523.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Carlos Verona",
@@ -4513,7 +4617,8 @@
           "date": "2024-08-29",
           "points": 212.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Victor Campenaerts",
@@ -4556,7 +4661,8 @@
           "date": "2024-08-29",
           "points": 4.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Thomas De Gendt",
@@ -4599,7 +4705,8 @@
           "date": "2024-08-29",
           "points": 4.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Jonas Gregaard",
@@ -4642,7 +4749,8 @@
           "date": "2024-08-29",
           "points": 24.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Andreas Kron",
@@ -4685,7 +4793,8 @@
           "date": "2024-08-29",
           "points": 38.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Sylvain Moniquet",
@@ -4728,7 +4837,8 @@
           "date": "2024-08-29",
           "points": 100.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Eduardo Sepúlveda",
@@ -4771,7 +4881,8 @@
           "date": "2024-08-29",
           "points": 4.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Carlos Canal",
@@ -4814,7 +4925,8 @@
           "date": "2024-08-29",
           "points": 117.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Nelson Oliveira",
@@ -4857,7 +4969,8 @@
           "date": "2024-08-29",
           "points": 115.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Roger Adrià",
@@ -4900,7 +5013,8 @@
           "date": "2024-08-29",
           "points": 148.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Giovanni Aleotti",
@@ -4943,7 +5057,8 @@
           "date": "2024-08-29",
           "points": 88.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Nico Denz",
@@ -4986,7 +5101,8 @@
           "date": "2024-08-29",
           "points": 116.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Patrick Gamper",
@@ -5029,7 +5145,8 @@
           "date": "2024-08-29",
           "points": 88.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Kasper Asgreen",
@@ -5072,7 +5189,8 @@
           "date": "2024-08-29",
           "points": 78.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Mattia Cattaneo",
@@ -5115,7 +5233,8 @@
           "date": "2024-08-29",
           "points": 35.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "James Knox",
@@ -5158,7 +5277,8 @@
           "date": "2024-08-29",
           "points": 6.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "William Junior Lecerf",
@@ -5201,7 +5321,8 @@
           "date": "2024-08-29",
           "points": 180.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Casper Pedersen",
@@ -5244,7 +5365,8 @@
           "date": "2024-08-29",
           "points": 2.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Louis Vervaeke",
@@ -5287,7 +5409,8 @@
           "date": "2024-08-29",
           "points": 2.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Chris Hamilton",
@@ -5330,7 +5453,8 @@
           "date": "2024-08-29",
           "points": 14.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Gijs Leemreize",
@@ -5373,7 +5497,8 @@
           "date": "2024-08-29",
           "points": 184.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Alessandro De Marchi",
@@ -5416,7 +5541,8 @@
           "date": "2024-08-29",
           "points": 8.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Eddie Dunbar",
@@ -5459,7 +5585,8 @@
           "date": "2024-08-29",
           "points": 336.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Felix Engelhardt",
@@ -5502,7 +5629,8 @@
           "date": "2024-08-29",
           "points": 28.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Chris Harper",
@@ -5545,7 +5673,8 @@
           "date": "2024-08-29",
           "points": 52.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Callum Scotson",
@@ -5588,7 +5717,8 @@
           "date": "2024-08-29",
           "points": 8.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Filippo Zana",
@@ -5631,7 +5761,8 @@
           "date": "2024-08-29",
           "points": 185.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Edoardo Affini",
@@ -5674,7 +5805,8 @@
           "date": "2024-08-29",
           "points": 222.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Robert Gesink",
@@ -5717,7 +5849,8 @@
           "date": "2024-08-29",
           "points": 52.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Steven Kruijswijk",
@@ -5760,7 +5893,8 @@
           "date": "2024-08-29",
           "points": 60.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Attila Valter",
@@ -5803,7 +5937,8 @@
           "date": "2024-08-29",
           "points": 122.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Dylan Van Baarle",
@@ -5846,7 +5981,8 @@
           "date": "2024-08-29",
           "points": 14.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Filippo Baroncini",
@@ -5889,7 +6025,8 @@
           "date": "2024-08-29",
           "points": 212.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Juri Hollmann",
@@ -5932,7 +6069,8 @@
           "date": "2024-08-29",
           "points": 168.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Edward Planckaert",
@@ -5975,7 +6113,8 @@
           "date": "2024-08-29",
           "points": 22.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Oscar Riesebeek",
@@ -6018,7 +6157,8 @@
           "date": "2024-08-29",
           "points": 18.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Luca Vergallito",
@@ -6061,7 +6201,8 @@
           "date": "2024-08-29",
           "points": 102.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Simon Guglielmi",
@@ -6104,7 +6245,8 @@
           "date": "2024-08-29",
           "points": 106.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Laurens Huys",
@@ -6147,7 +6289,8 @@
           "date": "2024-08-29",
           "points": 0.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Mathis Le Berre",
@@ -6190,7 +6333,8 @@
           "date": "2024-08-29",
           "points": 44.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Łukasz Owsian",
@@ -6233,7 +6377,8 @@
           "date": "2024-08-29",
           "points": 0.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Michel Ries",
@@ -6276,7 +6421,8 @@
           "date": "2024-08-29",
           "points": 8.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Gianmarco Garofoli",
@@ -6319,7 +6465,8 @@
           "date": "2024-08-29",
           "points": 148.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Santiago Umba",
@@ -6362,7 +6509,8 @@
           "date": "2024-08-29",
           "points": 0.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Nicolas Vinokurov",
@@ -6405,7 +6553,8 @@
           "date": "2024-08-29",
           "points": 0.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Kamil Gradek",
@@ -6448,7 +6597,8 @@
           "date": "2024-08-29",
           "points": 0.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Rainer Kepplinger",
@@ -6491,7 +6641,8 @@
           "date": "2024-08-29",
           "points": 0.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Fran Miholjević",
@@ -6534,7 +6685,8 @@
           "date": "2024-08-29",
           "points": 0.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Jasha Sütterlin",
@@ -6577,7 +6729,8 @@
           "date": "2024-08-29",
           "points": 0.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Thomas Champion",
@@ -6620,7 +6773,8 @@
           "date": "2024-08-29",
           "points": 0.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Rubén Fernández",
@@ -6663,7 +6817,8 @@
           "date": "2024-08-29",
           "points": 20.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Jonathan Lastra",
@@ -6706,7 +6861,8 @@
           "date": "2024-08-29",
           "points": 20.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Urko Berrade",
@@ -6749,7 +6905,8 @@
           "date": "2024-08-29",
           "points": 242.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Jorge Gutiérrez",
@@ -6792,7 +6949,8 @@
           "date": "2024-08-29",
           "points": 10.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Unai Iribar",
@@ -6835,7 +6993,8 @@
           "date": "2024-08-29",
           "points": 38.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "José Félix Parra",
@@ -6878,7 +7037,8 @@
           "date": "2024-08-29",
           "points": 35.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Ibon Ruiz",
@@ -6921,7 +7081,8 @@
           "date": "2024-08-29",
           "points": 130.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Xabier Berasategi",
@@ -6964,7 +7125,8 @@
           "date": "2024-08-29",
           "points": 22.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Xabier Isasa",
@@ -7007,7 +7169,8 @@
           "date": "2024-08-29",
           "points": 90.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Lorenzo Germani",
@@ -7050,7 +7213,8 @@
           "date": "2024-08-29",
           "points": 4.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Reuben Thompson",
@@ -7093,7 +7257,8 @@
           "date": "2024-08-29",
           "points": 4.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Tom Paquot",
@@ -7136,7 +7301,8 @@
           "date": "2024-08-29",
           "points": 0.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Simone Petilli",
@@ -7179,7 +7345,8 @@
           "date": "2024-08-29",
           "points": 0.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Nadav Raisberg",
@@ -7222,7 +7389,8 @@
           "date": "2024-08-29",
           "points": 46.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Otto Vergaerde",
@@ -7265,7 +7433,8 @@
           "date": "2024-08-29",
           "points": 16.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Arjen Livyns",
@@ -7308,7 +7477,8 @@
           "date": "2024-08-29",
           "points": 135.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Jorge Arcas",
@@ -7351,7 +7521,8 @@
           "date": "2024-08-29",
           "points": 18.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Enzo Leijnse",
@@ -7394,7 +7565,8 @@
           "date": "2024-08-29",
           "points": 14.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Tim Naberman",
@@ -7437,7 +7609,8 @@
           "date": "2024-08-29",
           "points": 14.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Martijn Tusveld",
@@ -7480,7 +7653,8 @@
           "date": "2024-08-29",
           "points": 14.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Julius Van Den Berg",
@@ -7523,7 +7697,8 @@
           "date": "2024-08-29",
           "points": 14.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     },
     {
       "name": "Welay Berhe",
@@ -7566,7 +7741,8 @@
           "date": "2024-08-29",
           "points": 8.0
         }
-      ]
+      ],
+      "isWithdrawn": false
     }
   ],
   "top_50_efficiency": [

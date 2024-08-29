@@ -446,6 +446,42 @@ def calculate_rank_and_percentile(all_star_points, league_scores):
     percentile = (1 - (rank - 1) / len(league_scores)) * 100
     return rank, percentile
 
+
+def fetch_withdrawals():
+    url = "https://www.lavuelta.es/en/withdrawal"
+    try:
+        response = requests.get(url)
+        response.raise_for_status()
+        soup = BeautifulSoup(response.content, 'html.parser')
+        
+        withdrawals = []
+        withdrawal_section = soup.find('section', class_='ranking withdraws')
+        
+        if withdrawal_section:
+            tables = withdrawal_section.find_all('table', class_='rankingTable')
+            
+            for table in tables:
+                stage = table.find_previous('div', class_='rankingTables__caption').text.strip()
+                rows = table.find_all('tr')
+                
+                for row in rows[1:]:  # Skip header row
+                    cols = row.find_all('td')
+                    if len(cols) >= 3:
+                        bib = cols[0].text.strip()
+                        rider = cols[1].find('a').text.strip()
+                        team = cols[2].find('a').text.strip()
+                        withdrawals.append({
+                            'stage': stage,
+                            'bib': bib,
+                            'rider': rider,
+                            'team': team
+                        })
+        
+        return withdrawals
+    except requests.RequestException as e:
+        print(f"Error fetching withdrawals from {url}: {e}", file=sys.stderr)
+        return []
+
 def main():
     try:
         print("Loading existing data", file=sys.stderr)
@@ -453,10 +489,10 @@ def main():
 
         print(f"Fetching new cyclist data from {CYCLIST_URL}", file=sys.stderr)
         html_content = fetch_html_content(CYCLIST_URL)
-        
+
         print("Analyzing new cyclist data", file=sys.stderr)
         new_cyclists = analyze_cyclists(html_content)
-        
+
         if not new_cyclists:
             raise ValueError("No new cyclist data was extracted")
 
@@ -498,7 +534,7 @@ def main():
         else:
             updated_data['league_all_star_team'] = None
             print("Failed to select League All-Star Team", file=sys.stderr)
-        
+
         if dream_team:
             updated_data['dream_team'] = {
                 'riders': [
@@ -522,7 +558,12 @@ def main():
         print(f"MVP: {mvp['name']} (Points added: {mvp['points_added']})", file=sys.stderr)
         print(f"MIP: {mip['name']} ({'Points gained' if mip['from_zero'] else 'Percentage increase'}: {mip['percentage_increase']}{'%' if not mip['from_zero'] else ''})", file=sys.stderr)
 
-  print(f"Current working directory: {os.getcwd()}", file=sys.stderr)
+        print("Fetching withdrawals", file=sys.stderr)
+        withdrawals = fetch_withdrawals()
+        updated_data['withdrawals'] = withdrawals
+        print(f"Fetched {len(withdrawals)} withdrawals", file=sys.stderr)
+
+        print(f"Current working directory: {os.getcwd()}", file=sys.stderr)
         try:
             print("Writing updated JSON output to file", file=sys.stderr)
             with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:

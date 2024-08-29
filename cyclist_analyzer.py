@@ -22,6 +22,35 @@ def fetch_html_content(url):
         print(f"Error fetching URL {url}: {e}", file=sys.stderr)
         raise
 
+def fetch_withdrawals():
+    try:
+        response = requests.get(WITHDRAWALS_URL)
+        response.raise_for_status()
+        soup = BeautifulSoup(response.content, 'html.parser')
+        
+        withdrawals = []
+        
+        for stage_div in soup.find_all('div', class_='rankingTables__item'):
+            stage_number = stage_div.find('div', class_='rankingTables__caption').text.strip().split()[1]
+            
+            table = stage_div.find('table', class_='rankingTable')
+            if table:
+                for row in table.find_all('tr')[1:]:  # Skip header row
+                    cells = row.find_all('td')
+                    if len(cells) >= 3:
+                        rider_name = cells[1].text.strip()
+                        team_name = cells[2].text.strip()
+                        withdrawals.append({
+                            'stage': int(stage_number),
+                            'rider': rider_name,
+                            'team': team_name
+                        })
+        
+        return withdrawals
+    except requests.RequestException as e:
+        print(f"Error fetching withdrawals: {e}", file=sys.stderr)
+        return []
+        
 def extract_numeric(value):
     import re
     match = re.search(r'\d+(\.\d+)?', value)
@@ -494,6 +523,11 @@ def main():
 
         print(f"MVP: {mvp['name']} (Points added: {mvp['points_added']})", file=sys.stderr)
         print(f"MIP: {mip['name']} ({'Points gained' if mip['from_zero'] else 'Percentage increase'}: {mip['percentage_increase']}{'%' if not mip['from_zero'] else ''})", file=sys.stderr)
+
+        print("Fetching withdrawal data", file=sys.stderr)
+        withdrawals = fetch_withdrawals()
+        updated_data['withdrawals'] = withdrawals
+        print(f"Fetched {len(withdrawals)} withdrawals", file=sys.stderr)
 
         print(f"Current working directory: {os.getcwd()}", file=sys.stderr)
         try:

@@ -2724,7 +2724,6 @@ function displayAllStarTeam() {
         `;
         rosterDisplay.appendChild(riderCard);
     });
-    applyWithdrawnRiderStyles();
 
     // Create and display the points distribution chart
     displayAllStarTeamPointsDistribution(allStarTeam.riders);

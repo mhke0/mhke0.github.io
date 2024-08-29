@@ -1154,14 +1154,6 @@ function loadDefaultCyclingTeamChart() {
     }
 }
 
-function updateVisitCount() {
-    fetch('https://api.countapi.xyz/update/mhke0.github.io/visits/?amount=1')
-    .then(response => response.json())
-    .then(data => {
-        document.getElementById('visit-count').innerText = data.value;
-    })
-    .catch(error => console.error('Error updating visit count:', error));
-}
 
 function calculateAllTimeMVPMIP(cyclistData) {
     const mvpHistory = cyclistData.mvp_history || [];

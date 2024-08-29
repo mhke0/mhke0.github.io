@@ -1475,7 +1475,7 @@ function generateNewsContent() {
 
     // Add the welcome message
     newsHtml += '<div class="welcome-message">';
-    newsHtml += '<p>This is the Velo Data Dash! A Second-Hand WebApp for Velogames Datascience.</p>';
+    newsHtml += '<p>This is the Velo Data Dash! <br> A Second-Hand WebApp for Velogames Datascience.</p>';
     newsHtml += '</div>';
 
     // First row with two columns

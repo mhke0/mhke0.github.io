@@ -14,6 +14,10 @@ from datetime import datetime, timedelta
 from config import *
 import difflib
 
+
+def calculate_name_similarity(name1, name2):
+    return difflib.SequenceMatcher(None, name1.lower(), name2.lower()).ratio()
+
 def fetch_html_content(url):
     try:
         response = requests.get(url)
@@ -28,12 +32,12 @@ def fetch_withdrawals():
         response = requests.get(WITHDRAWALS_URL)
         response.raise_for_status()
         soup = BeautifulSoup(response.content, 'html.parser')
-        
+
         withdrawals = []
-        
+
         for stage_div in soup.find_all('div', class_='rankingTables__item'):
             stage_number = stage_div.find('div', class_='rankingTables__caption').text.strip().split()[1]
-            
+
             table = stage_div.find('table', class_='rankingTable')
             if table:
                 for row in table.find_all('tr')[1:]:  # Skip header row
@@ -46,7 +50,7 @@ def fetch_withdrawals():
                             'rider': rider_name,
                             'team': team_name
                         })
-        
+
         return withdrawals
     except requests.RequestException as e:
         print(f"Error fetching withdrawals: {e}", file=sys.stderr)
@@ -464,7 +468,7 @@ def format_withdrawal_name(name):
         if part.lower() in prefixes:
             last_name_start = i
             break
-    
+
     if last_name_start == 0:
         # If no prefix found, assume the last word is the last name
         last_name = parts[-1]
@@ -475,7 +479,7 @@ def format_withdrawal_name(name):
         first_name = ' '.join(parts[:last_name_start])
 
     return f"{first_name} {last_name}"
-
+    
 def calculate_name_similarity(name1, name2):
     return difflib.SequenceMatcher(None, name1.lower(), name2.lower()).ratio()
 
@@ -572,6 +576,7 @@ def main():
         print("Marking withdrawn cyclists", file=sys.stderr)
         updated_data['cyclists'] = mark_withdrawn_cyclists(updated_data['cyclists'], withdrawals)
 
+   
         print(f"Current working directory: {os.getcwd()}", file=sys.stderr)
         try:
             print("Writing updated JSON output to file", file=sys.stderr)

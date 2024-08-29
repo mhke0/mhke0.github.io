@@ -915,3 +915,64 @@ tr:nth-child(odd) {
     margin-bottom: 20px;
     border-radius: 5px;
 }
+
+// Add this to your CSS file
+#AllStarTeamTab .team-roster-container {
+    width: 100%;
+}
+
+#AllStarTeamTab .team-stats {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+#AllStarTeamTab .stat-box {
+    flex: 1;
+    text-align: center;
+    background-color: var(--box-background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    padding: 10px;
+    margin: 0 5px;
+}
+
+#AllStarTeamTab .roster-charts-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+#AllStarTeamTab .roster-chart-column {
+    width: 48%;
+}
+
+#AllStarTeamTab #allStarTeamRosterDisplay {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+#AllStarTeamTab .rider-card {
+    background-color: var(--background-color);
+    border: 1px solid var(--primary-color);
+    border-radius: 5px;
+    padding: 10px;
+}
+
+#AllStarTeamTab .chart-container {
+    height: 400px;
+}
+
+@media screen and (max-width: 768px) {
+    #AllStarTeamTab .team-stats,
+    #AllStarTeamTab .roster-charts-row {
+        flex-direction: column;
+    }
+
+    #AllStarTeamTab .stat-box,
+    #AllStarTeamTab .roster-chart-column {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}

@@ -322,9 +322,6 @@ $(document).ready(function() {
 
         let cyclists = data.cyclists;
         let leagueScores = data.league_scores;
-
-        // Call the function when the page loads
-        updateVisitCount();
         
         // Sort cyclists by cost_per_point (convert "Infinity" to a large number for sorting)
         cyclists.sort((a, b) => {

@@ -8908,5 +8908,122 @@
       "percentile": 100.0,
       "total_participants": 1308
     }
-  }
+  },
+  "withdrawals": [
+    {
+      "stage": 2,
+      "rider": "VAN BAARLE Dylan",
+      "team": "TEAM VISMA | LEASE A BIKE"
+    },
+    {
+      "stage": 5,
+      "rider": "COSTA Rui",
+      "team": "EF EDUCATION - EASYPOST"
+    },
+    {
+      "stage": 6,
+      "rider": "URAN Rigoberto",
+      "team": "EF EDUCATION - EASYPOST"
+    },
+    {
+      "stage": 6,
+      "rider": "ELISSONDE Kenny",
+      "team": "COFIDIS"
+    },
+    {
+      "stage": 6,
+      "rider": "ABERASTURI IZAGA Jon",
+      "team": "EUSKALTEL-EUSKADI"
+    },
+    {
+      "stage": 7,
+      "rider": "KRON Andreas",
+      "team": "LOTTO DSTNY"
+    },
+    {
+      "stage": 7,
+      "rider": "CARUSO Damiano",
+      "team": "BAHRAIN VICTORIOUS"
+    },
+    {
+      "stage": 8,
+      "rider": "GESBERT Elie",
+      "team": "ARKEA-B&B HOTELS"
+    },
+    {
+      "stage": 8,
+      "rider": "COQUARD Bryan",
+      "team": "COFIDIS"
+    },
+    {
+      "stage": 9,
+      "rider": "ALMEIDA Joao",
+      "team": "UAE TEAM EMIRATES"
+    },
+    {
+      "stage": 9,
+      "rider": "TARLING Joshua",
+      "team": "INEOS GRENADIERS"
+    },
+    {
+      "stage": 9,
+      "rider": "TIBERI Antonio",
+      "team": "BAHRAIN VICTORIOUS"
+    },
+    {
+      "stage": 9,
+      "rider": "KEPPLINGER Rainer",
+      "team": "BAHRAIN VICTORIOUS"
+    },
+    {
+      "stage": 10,
+      "rider": "DE PLUS Laurens",
+      "team": "INEOS GRENADIERS"
+    },
+    {
+      "stage": 10,
+      "rider": "CICCONE Giulio",
+      "team": "LIDL-TREK"
+    },
+    {
+      "stage": 10,
+      "rider": "GOOSSENS Kobe",
+      "team": "INTERMARCHÉ - WANTY"
+    },
+    {
+      "stage": 10,
+      "rider": "LOPEZ GRANIZO Harold Martin",
+      "team": "ASTANA QAZAQSTAN TEAM"
+    },
+    {
+      "stage": 11,
+      "rider": "ARENSMAN Thymen",
+      "team": "INEOS GRENADIERS"
+    },
+    {
+      "stage": 11,
+      "rider": "KONRAD Patrick",
+      "team": "LIDL-TREK"
+    },
+    {
+      "stage": 11,
+      "rider": "HARPER Chris",
+      "team": "TEAM JAYCO ALULA"
+    },
+    {
+      "stage": 11,
+      "rider": "ROTA Lorenzo",
+      "team": "INTERMARCHÉ - WANTY"
+    },
+    {
+      "stage": 12,
+      "rider": "VAN EETVELT Lennert",
+      "team": "LOTTO DSTNY"
+    },
+    {
+      "stage": 12,
+      "rider": "GENIETS Kévin",
+      "team": "GROUPAMA-FDJ"
+    }
+  ]
 }

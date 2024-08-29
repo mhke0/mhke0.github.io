@@ -263,6 +263,7 @@ function updateLeagueTeamRosterChart() {
     // Calculate and create the daily points chart
     const dailyPoints = calculateDailyPoints(team.roster);
     createDailyPointsChart(dailyPoints, selectedTeam);
+    applyWithdrawnRiderStyles();
 
     // Update balanced team information
     const { mostBalancedTeam, leastBalancedTeam } = calculateBalancedTeams(leagueData);
@@ -301,6 +302,7 @@ function updateCyclingTeamRosterDisplay() {
     });
     
     document.getElementById('cyclingTeamRosterDisplay').innerHTML = rosterHtml;
+    applyWithdrawnRiderStyles();
 
     // Call the function to display the points distribution
     displayTeamPointsDistribution(teamRiders);
@@ -743,6 +745,8 @@ function displayDreamTeam(dreamTeam) {
     ridersHtml += '</ol>';
     $('#dreamTeamRiders').html(ridersHtml);
 
+    applyWithdrawnRiderStyles();
+
    const ctx = document.getElementById('dreamTeamChart').getContext('2d');
     const roleData = {};
     orderedRiders.forEach(rider => {
@@ -993,6 +997,8 @@ function openTab(evt, tabName, riderName = null) {
     } else if (tabName === 'AllStarTeamTab') {
         displayAllStarTeam();
     }
+    applyWithdrawnRiderStyles();
+
 }
 
 document.getElementById("defaultOpen").click();
@@ -2580,6 +2586,7 @@ function displayAllStarTeam() {
     const allStarTeam = cyclistData.league_all_star_team;
     const twitterComparison = allStarTeam.twitter_league_comparison;
 
+
     let allStarHtml = `
         <div class="team-roster-container">
             <h2>All-Star Team</h2>
@@ -2630,6 +2637,7 @@ function displayAllStarTeam() {
         `;
         rosterDisplay.appendChild(riderCard);
     });
+    applyWithdrawnRiderStyles();
 
     // Create and display the points distribution chart
     displayAllStarTeamPointsDistribution(allStarTeam.riders);

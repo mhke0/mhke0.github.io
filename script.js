@@ -140,8 +140,11 @@ function createResponsiveChart(chartId, traces, layout, config = {}) {
     
     updateFontSizes();
     
-    try {
-        Plotly.newPlot(chartId, traces, layout, mergedConfig);
+       try {
+        Plotly.newPlot(chartId, traces, layout, mergedConfig).then(() => {
+            // Apply withdrawn rider styles after the chart is plotted
+            applyWithdrawnRiderStyles();
+        });
     } catch (error) {
         console.error(`Error creating chart ${chartId}:`, error);
         container.innerHTML = `<p>Error creating chart. Please try refreshing the page.</p>`;

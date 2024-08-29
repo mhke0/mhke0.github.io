@@ -213,10 +213,12 @@ function updateLeagueTeamRosterChart() {
 
     const rosterData = team.roster.map(riderName => {
         const rider = cyclistData.cyclists.find(c => c.name === riderName);
+        const isWithdrawn = cyclistData.withdrawals.some(w => convertNameFormat(w.rider) === riderName);
         return {
             name: riderName,
             points: rider ? rider.points : 0,
-            role: rider ? rider.role : 'Unknown'
+            role: rider ? rider.role : 'Unknown',
+            isWithdrawn: isWithdrawn
         };
     }).sort((a, b) => b.points - a.points);
 
@@ -243,9 +245,11 @@ function updateLeagueTeamRosterChart() {
         xaxis: {
             title: '',
             tickangle: -45,
-             tickfont: {
-                size: 8  // Smaller font size for x-axis labels
-            }
+            tickfont: {
+                size: 8
+            },
+            ticktext: rosterData.map(r => r.isWithdrawn ? `<span style="text-decoration:line-through;">${r.name}</span>` : r.name),
+            tickvals: rosterData.map(r => r.name)
         },
         yaxis: {
             title: 'Points',
@@ -2504,16 +2508,17 @@ function createDailyPointsChart(dailyPoints, teamName) {
     const riders = Object.keys(dailyPoints[dates[0]]);
 
     const traces = riders.map((rider, index) => {
+        const isWithdrawn = cyclistData.withdrawals.some(w => convertNameFormat(w.rider) === rider);
         return {
             x: dates,
             y: dates.map(date => dailyPoints[date][rider] || 0),
             type: 'scatter',
             mode: 'lines+markers',
-            name: rider,
+            name: isWithdrawn ? `<span style="text-decoration:line-through;">${rider}</span>` : rider,
             legendgroup: `group${Math.floor(index / 3)}`,
             hoverinfo: 'text',
             hovertext: dates.map(date => 
-                `${rider}<br>Date: ${date}<br>Points: ${dailyPoints[date][rider] || 0}`
+                `${rider}${isWithdrawn ? ' (Withdrawn)' : ''}<br>Date: ${date}<br>Points: ${dailyPoints[date][rider] || 0}`
             )
         };
     });

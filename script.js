@@ -1472,6 +1472,9 @@ function createLatestPointsUpdateChart() {
 // List of common name prefixes
 const namePrefixes = ['VAN', 'DE', 'VON', 'DER', 'TEN', 'TER', 'DEN', 'DA', 'DOS', 'DAS', 'DU', 'LA', 'LE', 'MC', 'MAC'];
 
+// List of common name prefixes
+const namePrefixes = ['VAN', 'DE', 'VON', 'DER', 'TEN', 'TER', 'DEN', 'DA', 'DOS', 'DAS', 'DU', 'LA', 'LE', 'MC', 'MAC'];
+
 function convertNameFormat(name) {
     const parts = name.split(' ');
     if (parts.length > 1) {
@@ -1501,6 +1504,7 @@ function convertNameFormat(name) {
             namePrefixes.includes(part.toUpperCase()) ? part.toLowerCase() : part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()
         ).join(' ');
 
+        // Return in "Firstname Name" format
         return `${firstName} ${lastName}`;
     }
     return name;
@@ -1599,7 +1603,7 @@ function generateNewsContent() {
     }
     newsHtml += '</div>';
 
-    // Add Withdrawals section
+     // Add Withdrawals section
     if (cyclistData.withdrawals && cyclistData.withdrawals.length > 0) {
         newsHtml += '<div class="news-section news-withdrawals">';
         newsHtml += '<h3>Recent Withdrawals</h3>';
@@ -1613,8 +1617,10 @@ function generateNewsContent() {
             const convertedName = convertNameFormat(withdrawal.rider);
             newsHtml += `
                 <div class="withdrawal-item">
-                    <span class="rider-name"><a href="#" class="rider-link" data-rider="${convertedName}">${convertedName}</a></span>
-                    <span class="team-name">(${withdrawal.team})</span>
+                    <span class="rider-name">
+                        <a href="#" class="rider-link" data-rider="${convertedName}">${convertedName}</a>
+                        <span class="team-name">(${withdrawal.team})</span>
+                    </span>
                     <span class="stage-info">Stage ${withdrawal.stage}</span>
                 </div>
             `;
@@ -1623,7 +1629,6 @@ function generateNewsContent() {
         newsHtml += '</div>'; // Close withdrawals-list
         newsHtml += '</div>'; // Close news-section news-withdrawals
     }
-
     // Top 10 Riders
     newsHtml += '<div class="news-section news-top-riders">';
     newsHtml += '<h3>Top 10 Riders</h3>';

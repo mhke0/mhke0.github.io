@@ -1475,8 +1475,8 @@ const namePrefixes = ['VAN', 'DE', 'VON', 'DER', 'TEN', 'TER', 'DEN', 'DA', 'DOS
 function convertNameFormat(name) {
     const parts = name.split(' ');
     if (parts.length > 1) {
-        let firstName = '';
         let lastName = '';
+        let firstName = '';
         let prefixFound = false;
 
         // Iterate through the parts in reverse
@@ -1502,7 +1502,7 @@ function convertNameFormat(name) {
         ).join(' ');
 
         // Return in "Firstname Name" format
-        return `${lastName} ${firstName}`;
+        return `${firstName} ${lastName}`;
     }
     return name;
 }

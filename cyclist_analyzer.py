@@ -12,6 +12,7 @@ import contextlib
 import os
 from datetime import datetime, timedelta
 from config import *
+import difflib
 
 def fetch_html_content(url):
     try:
@@ -38,7 +39,7 @@ def fetch_withdrawals():
                 for row in table.find_all('tr')[1:]:  # Skip header row
                     cells = row.find_all('td')
                     if len(cells) >= 3:
-                        rider_name = cells[1].text.strip()
+                        rider_name = format_withdrawal_name(cells[1].text.strip())
                         team_name = cells[2].text.strip()
                         withdrawals.append({
                             'stage': int(stage_number),
@@ -448,6 +449,45 @@ def calculate_rank_and_percentile(all_star_points, league_scores):
     percentile = (1 - (rank - 1) / len(league_scores)) * 100
     return rank, percentile
 
+def format_withdrawal_name(name):
+    name = name.strip()
+    parts = name.split()
+    if len(parts) <= 1:
+        return name
+
+    # List of common name prefixes
+    prefixes = ['van', 'de', 'der', 'den', 'von', 'le', 'la', 'du', 'des', 'del', 'della', 'di', 'da', 'mac', 'mc']
+
+    # Find the start of the last name
+    last_name_start = 0
+    for i, part in enumerate(parts):
+        if part.lower() in prefixes:
+            last_name_start = i
+            break
+    
+    if last_name_start == 0:
+        # If no prefix found, assume the last word is the last name
+        last_name = parts[-1]
+        first_name = ' '.join(parts[:-1])
+    else:
+        # If prefix found, everything from the prefix onwards is the last name
+        last_name = ' '.join(parts[last_name_start:])
+        first_name = ' '.join(parts[:last_name_start])
+
+    return f"{first_name} {last_name}"
+
+def calculate_name_similarity(name1, name2):
+    return difflib.SequenceMatcher(None, name1.lower(), name2.lower()).ratio()
+
+def mark_withdrawn_cyclists(cyclists, withdrawals):
+    formatted_withdrawals = [format_withdrawal_name(w['rider']) for w in withdrawals]
+    for cyclist in cyclists:
+        cyclist['isWithdrawn'] = any(
+            calculate_name_similarity(cyclist['name'], w) >= 0.85
+            for w in formatted_withdrawals
+        )
+    return cyclists
+
 def main():
     try:
         print("Loading existing data", file=sys.stderr)
@@ -528,6 +568,9 @@ def main():
         withdrawals = fetch_withdrawals()
         updated_data['withdrawals'] = withdrawals
         print(f"Fetched {len(withdrawals)} withdrawals", file=sys.stderr)
+
+        print("Marking withdrawn cyclists", file=sys.stderr)
+        updated_data['cyclists'] = mark_withdrawn_cyclists(updated_data['cyclists'], withdrawals)
 
         print(f"Current working directory: {os.getcwd()}", file=sys.stderr)
         try:

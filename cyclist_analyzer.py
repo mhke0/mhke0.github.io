@@ -169,7 +169,7 @@ def select_dream_team_optimized(cyclists):
                        for cyclist in cyclists)
 
     # Constraints
-        constraints = [
+    constraints = [
         ("Total cyclists", pulp.lpSum(cyclist_vars) == TEAM_SIZE),
         ("Maximum cost", pulp.lpSum(cyclist['cost'] * cyclist_vars[cyclist['name'], cyclist['role']] 
                                     for cyclist in cyclists) <= MAX_TEAM_COST),
@@ -181,7 +181,7 @@ def select_dream_team_optimized(cyclists):
                                 for cyclist in cyclists if cyclist['role'] == 'Climber') >= MIN_CLIMBERS),
         ("Unclassed", pulp.lpSum(cyclist_vars[cyclist['name'], cyclist['role']] 
                                  for cyclist in cyclists if cyclist['role'] == 'Unclassed') >= MIN_UNCLASSED)
-        ]
+    ]
 
     # Add constraints to the problem
     for name, constraint in constraints:
@@ -223,15 +223,13 @@ def select_dream_team_optimized(cyclists):
         return dream_team, total_points, total_cost
     else:
         print(f"No feasible dream team found. Status: {pulp.LpStatus[prob.status]}", file=sys.stderr)
-        
+
         # Check which constraints are violated
         print("Checking constraints:", file=sys.stderr)
         for name, constraint in constraints:
             print(f"{name}: {'Satisfied' if constraint.value() else 'Violated'}", file=sys.stderr)
-        
+
         return None, 0, 0
-
-
 
 def load_existing_data(filename):
     try:

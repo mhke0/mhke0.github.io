@@ -130,7 +130,7 @@
           "points": 406.0
         }
       ],
-      "isWithdrawn": false
+      "isWithdrawn": true
     },
     {
       "name": "Adam Yates",
@@ -658,7 +658,7 @@
           "points": 373.0
         }
       ],
-      "isWithdrawn": false
+      "isWithdrawn": true
     },
     {
       "name": "Bryan Coquard",
@@ -702,7 +702,7 @@
           "points": 250.0
         }
       ],
-      "isWithdrawn": false
+      "isWithdrawn": true
     },
     {
       "name": "Felix Gall",
@@ -834,7 +834,7 @@
           "points": 0.0
         }
       ],
-      "isWithdrawn": false
+      "isWithdrawn": true
     },
     {
       "name": "Jhonatan Narváez",
@@ -922,7 +922,7 @@
           "points": 16.0
         }
       ],
-      "isWithdrawn": false
+      "isWithdrawn": true
     },
     {
       "name": "Tao Geoghegan Hart",
@@ -1274,7 +1274,7 @@
           "points": 0.0
         }
       ],
-      "isWithdrawn": false
+      "isWithdrawn": true
     },
     {
       "name": "Guillaume Martin",
@@ -1494,7 +1494,7 @@
           "points": 141.0
         }
       ],
-      "isWithdrawn": false
+      "isWithdrawn": true
     },
     {
       "name": "Matthew Riccitello",
@@ -1670,7 +1670,7 @@
           "points": 56.0
         }
       ],
-      "isWithdrawn": false
+      "isWithdrawn": true
     },
     {
       "name": "Oier Lazkano",
@@ -2286,7 +2286,7 @@
           "points": 0.0
         }
       ],
-      "isWithdrawn": false
+      "isWithdrawn": true
     },
     {
       "name": "Thibault Guernalec",
@@ -2682,7 +2682,7 @@
           "points": 0.0
         }
       ],
-      "isWithdrawn": false
+      "isWithdrawn": true
     },
     {
       "name": "Jesús Herrada",
@@ -3034,7 +3034,7 @@
           "points": 0.0
         }
       ],
-      "isWithdrawn": false
+      "isWithdrawn": true
     },
     {
       "name": "Owain Doull",
@@ -3254,7 +3254,7 @@
           "points": 0.0
         }
       ],
-      "isWithdrawn": false
+      "isWithdrawn": true
     },
     {
       "name": "Pablo Castrillo",
@@ -3738,7 +3738,7 @@
           "points": 4.0
         }
       ],
-      "isWithdrawn": false
+      "isWithdrawn": true
     },
     {
       "name": "Stefan Küng",
@@ -4134,7 +4134,7 @@
           "points": 0.0
         }
       ],
-      "isWithdrawn": false
+      "isWithdrawn": true
     },
     {
       "name": "Arne Marit",
@@ -4266,7 +4266,7 @@
           "points": 155.0
         }
       ],
-      "isWithdrawn": false
+      "isWithdrawn": true
     },
     {
       "name": "Rein Taaramäe",
@@ -4794,7 +4794,7 @@
           "points": 38.0
         }
       ],
-      "isWithdrawn": false
+      "isWithdrawn": true
     },
     {
       "name": "Sylvain Moniquet",
@@ -5674,7 +5674,7 @@
           "points": 52.0
         }
       ],
-      "isWithdrawn": false
+      "isWithdrawn": true
     },
     {
       "name": "Callum Scotson",
@@ -6642,7 +6642,7 @@
           "points": 0.0
         }
       ],
-      "isWithdrawn": false
+      "isWithdrawn": true
     },
     {
       "name": "Fran Miholjević",
@@ -9088,117 +9088,117 @@
   "withdrawals": [
     {
       "stage": 2,
-      "rider": "VAN BAARLE Dylan",
+      "rider": "BAARLE Dylan VAN",
       "team": "TEAM VISMA | LEASE A BIKE"
     },
     {
       "stage": 5,
-      "rider": "COSTA Rui",
+      "rider": "Rui COSTA",
       "team": "EF EDUCATION - EASYPOST"
     },
     {
       "stage": 6,
-      "rider": "URAN Rigoberto",
+      "rider": "Rigoberto URAN",
       "team": "EF EDUCATION - EASYPOST"
     },
     {
       "stage": 6,
-      "rider": "ELISSONDE Kenny",
+      "rider": "Kenny ELISSONDE",
       "team": "COFIDIS"
     },
     {
       "stage": 6,
-      "rider": "ABERASTURI IZAGA Jon",
+      "rider": "IZAGA Jon ABERASTURI",
       "team": "EUSKALTEL-EUSKADI"
     },
     {
       "stage": 7,
-      "rider": "KRON Andreas",
+      "rider": "Andreas KRON",
       "team": "LOTTO DSTNY"
     },
     {
       "stage": 7,
-      "rider": "CARUSO Damiano",
+      "rider": "Damiano CARUSO",
       "team": "BAHRAIN VICTORIOUS"
     },
     {
       "stage": 8,
-      "rider": "GESBERT Elie",
+      "rider": "Elie GESBERT",
       "team": "ARKEA-B&B HOTELS"
     },
     {
       "stage": 8,
-      "rider": "COQUARD Bryan",
+      "rider": "Bryan COQUARD",
       "team": "COFIDIS"
     },
     {
       "stage": 9,
-      "rider": "ALMEIDA Joao",
+      "rider": "Joao ALMEIDA",
       "team": "UAE TEAM EMIRATES"
     },
     {
       "stage": 9,
-      "rider": "TARLING Joshua",
+      "rider": "Joshua TARLING",
       "team": "INEOS GRENADIERS"
     },
     {
       "stage": 9,
-      "rider": "TIBERI Antonio",
+      "rider": "Antonio TIBERI",
       "team": "BAHRAIN VICTORIOUS"
     },
     {
       "stage": 9,
-      "rider": "KEPPLINGER Rainer",
+      "rider": "Rainer KEPPLINGER",
       "team": "BAHRAIN VICTORIOUS"
     },
     {
       "stage": 10,
-      "rider": "DE PLUS Laurens",
+      "rider": "PLUS Laurens DE",
       "team": "INEOS GRENADIERS"
     },
     {
       "stage": 10,
-      "rider": "CICCONE Giulio",
+      "rider": "Giulio CICCONE",
       "team": "LIDL-TREK"
     },
     {
       "stage": 10,
-      "rider": "GOOSSENS Kobe",
+      "rider": "Kobe GOOSSENS",
       "team": "INTERMARCHÉ - WANTY"
     },
     {
       "stage": 10,
-      "rider": "LOPEZ GRANIZO Harold Martin",
+      "rider": "GRANIZO Harold Martin LOPEZ",
       "team": "ASTANA QAZAQSTAN TEAM"
     },
     {
       "stage": 11,
-      "rider": "ARENSMAN Thymen",
+      "rider": "Thymen ARENSMAN",
       "team": "INEOS GRENADIERS"
     },
     {
       "stage": 11,
-      "rider": "KONRAD Patrick",
+      "rider": "Patrick KONRAD",
       "team": "LIDL-TREK"
     },
     {
       "stage": 11,
-      "rider": "HARPER Chris",
+      "rider": "Chris HARPER",
       "team": "TEAM JAYCO ALULA"
     },
     {
       "stage": 11,
-      "rider": "ROTA Lorenzo",
+      "rider": "Lorenzo ROTA",
       "team": "INTERMARCHÉ - WANTY"
     },
     {
       "stage": 12,
-      "rider": "VAN EETVELT Lennert",
+      "rider": "EETVELT Lennert VAN",
       "team": "LOTTO DSTNY"
     },
     {
       "stage": 12,
-      "rider": "GENIETS Kévin",
+      "rider": "Kévin GENIETS",
       "team": "GROUPAMA-FDJ"
     }
   ]

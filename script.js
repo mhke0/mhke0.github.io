@@ -1467,6 +1467,45 @@ function createLatestPointsUpdateChart() {
 
     createResponsiveChart('latestPointsUpdateChart', [trace], layout);
 }
+
+
+// List of common name prefixes
+const namePrefixes = ['VAN', 'DE', 'VON', 'DER', 'TEN', 'TER', 'DEN', 'DA', 'DOS', 'DAS', 'DU', 'LA', 'LE', 'MC', 'MAC'];
+
+function convertNameFormat(name) {
+    const parts = name.split(' ');
+    if (parts.length > 1) {
+        let firstName = '';
+        let lastName = '';
+        let prefixFound = false;
+
+        // Iterate through the parts in reverse
+        for (let i = parts.length - 1; i >= 0; i--) {
+            if (!prefixFound && namePrefixes.includes(parts[i].toUpperCase())) {
+                prefixFound = true;
+                lastName = parts[i] + ' ' + lastName;
+            } else if (prefixFound || lastName === '') {
+                lastName = parts[i] + ' ' + lastName;
+            } else {
+                firstName = parts[i] + ' ' + firstName;
+            }
+        }
+
+        // Trim any extra spaces
+        firstName = firstName.trim();
+        lastName = lastName.trim();
+
+        // Capitalize the first letter of each name part
+        firstName = firstName.split(' ').map(part => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()).join(' ');
+        lastName = lastName.split(' ').map(part => 
+            namePrefixes.includes(part.toUpperCase()) ? part.toLowerCase() : part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()
+        ).join(' ');
+
+        return `${firstName} ${lastName}`;
+    }
+    return name;
+}
+
 function generateNewsContent() {
     let newsHtml = '';
 
@@ -1509,10 +1548,10 @@ function generateNewsContent() {
     if (cyclistData && cyclistData.league_scores && cyclistData.league_scores.history && cyclistData.league_scores.history.length >= 2) {
         const latestHistory = cyclistData.league_scores.history[cyclistData.league_scores.history.length - 1];
         const previousHistory = cyclistData.league_scores.history[cyclistData.league_scores.history.length - 2];
-        
+
         const latestDate = new Date(latestHistory.date);
         newsHtml += `<h3>Recent Points Added <span class="news-date">(${latestDate.toDateString()})</span></h3>`;
-        
+
         const scoreChanges = latestHistory.scores.map(latest => {
             const previous = previousHistory.scores.find(prev => prev.name === latest.name);
             return {
@@ -1560,7 +1599,7 @@ function generateNewsContent() {
     }
     newsHtml += '</div>';
 
-        // Add Withdrawals section
+    // Add Withdrawals section
     if (cyclistData.withdrawals && cyclistData.withdrawals.length > 0) {
         newsHtml += '<div class="news-section news-withdrawals">';
         newsHtml += '<h3>Recent Withdrawals</h3>';
@@ -1571,9 +1610,10 @@ function generateNewsContent() {
         
         // Display the 5 most recent withdrawals
         sortedWithdrawals.slice(0, 5).forEach(withdrawal => {
+            const convertedName = convertNameFormat(withdrawal.rider);
             newsHtml += `
                 <div class="withdrawal-item">
-                    <span class="rider-name"><a href="#" class="rider-link" data-rider="${withdrawal.rider}">${withdrawal.rider}</a></span>
+                    <span class="rider-name"><a href="#" class="rider-link" data-rider="${convertedName}">${convertedName}</a></span>
                     <span class="team-name">(${withdrawal.team})</span>
                     <span class="stage-info">Stage ${withdrawal.stage}</span>
                 </div>
@@ -2611,3 +2651,4 @@ function displayAllStarTeamPointsDistribution(riders) {
 
     createResponsiveChart('allStarTeamPointsDistributionChart', [trace], layout);
 }
+

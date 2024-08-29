@@ -466,23 +466,24 @@ def format_withdrawal_name(name):
     prefixes = ['van', 'de', 'der', 'den', 'von', 'le', 'la', 'du', 'des', 'del', 'della', 'di', 'da', 'mac', 'mc']
 
     # Find the start of the last name
-    last_name_start = 0
+    last_name_start = -1
     for i, part in enumerate(parts):
         if part.lower() in prefixes:
             last_name_start = i
             break
 
-    if last_name_start == 0:
-        # If no prefix found, assume the first word is the last name
-        last_name = parts[0]
-        first_name = ' '.join(parts[1:])
+    if last_name_start == -1:
+        # If no prefix found, assume the last word is the last name
+        last_name = parts[-1]
+        first_name = ' '.join(parts[:-1])
     else:
-        # If prefix found, everything up to the prefix is the first name
+        # If prefix found, everything from the prefix onward is the last name
         last_name = ' '.join(parts[last_name_start:])
         first_name = ' '.join(parts[:last_name_start])
 
     return f"{first_name} {last_name}"
-    
+
+
 def calculate_name_similarity(name1, name2):
     return difflib.SequenceMatcher(None, name1.lower(), name2.lower()).ratio()
 

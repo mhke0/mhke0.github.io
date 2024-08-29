@@ -1022,3 +1022,7 @@ tr:nth-child(odd) {
 #cyclistTable tbody tr td a[style*="line-through"]:hover {
     color: #333;  /* Darken on hover for better readability */
 }
+
+span[style*="text-decoration: line-through"] {
+    color: #888;
+}

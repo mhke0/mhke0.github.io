@@ -329,12 +329,18 @@ $(document).ready(function() {
         let totalPoints = 0;
         const roles = {};
 
-        // Sort cyclists by cost_per_point (convert "Infinity" to a large number for sorting)
-        cyclists.sort((a, b) => {
-            const costPerPointA = a.cost_per_point === "Infinity" ? Infinity : parseFloat(a.cost_per_point);
-            const costPerPointB = b.cost_per_point === "Infinity" ? Infinity : parseFloat(b.cost_per_point);
-            return costPerPointA - costPerPointB;
-        });
+
+// Sort cyclists by cost per point (convert "Infinity" to a large number for sorting)
+let sortedCyclists = cyclistData.cyclists.sort((a, b) => {
+    const costPerPointA = a.cost_per_point === "Infinity" ? Infinity : parseFloat(a.cost_per_point);
+    const costPerPointB = b.cost_per_point === "Infinity" ? Infinity : parseFloat(b.cost_per_point);
+    return costPerPointA - costPerPointB;
+});
+
+// Get the top 50 cyclists
+const top50Cyclists = sortedCyclists.slice(0, 50);
+
+
 
         cyclists.forEach(cyclist => {
             totalCost += cyclist.cost;

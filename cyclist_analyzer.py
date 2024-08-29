@@ -465,13 +465,7 @@ def format_withdrawal_name(name):
     # List of common name prefixes
     prefixes = ['van', 'de', 'der', 'den', 'von', 'le', 'la', 'du', 'des', 'del', 'della', 'di', 'da', 'mac', 'mc']
 
-    # Check if it's likely a Spanish-style name (two surnames followed by given names)
-    if len(parts) >= 4 and not any(part.lower() in prefixes for part in parts[:2]):
-        surnames = ' '.join(parts[:2])
-        given_names = ' '.join(parts[2:])
-        return f"{given_names} {surnames}"
-
-    # Original logic for other name styles
+    # Find the start of the last name
     last_name_start = -1
     for i, part in enumerate(parts):
         if part.lower() in prefixes:
@@ -479,9 +473,11 @@ def format_withdrawal_name(name):
             break
 
     if last_name_start == -1:
+        # If no prefix found, assume the last word is the last name
         last_name = parts[-1]
         first_name = ' '.join(parts[:-1])
     else:
+        # If prefix found, everything from the prefix onward is the last name
         last_name = ' '.join(parts[last_name_start:])
         first_name = ' '.join(parts[:last_name_start])
 

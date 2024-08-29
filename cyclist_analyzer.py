@@ -14,9 +14,11 @@ from datetime import datetime, timedelta
 from config import *
 import difflib
 
+def normalize_name(name):
+    return ' '.join(sorted(name.lower().split()))
 
 def calculate_name_similarity(name1, name2):
-    return difflib.SequenceMatcher(None, name1.lower(), name2.lower()).ratio()
+    return difflib.SequenceMatcher(None, name1, name2).ratio()
 
 def fetch_html_content(url):
     try:
@@ -43,7 +45,7 @@ def fetch_withdrawals():
                 for row in table.find_all('tr')[1:]:  # Skip header row
                     cells = row.find_all('td')
                     if len(cells) >= 3:
-                        rider_name = format_withdrawal_name(cells[1].text.strip())
+                        rider_name = cells[1].text.strip()
                         team_name = cells[2].text.strip()
                         withdrawals.append({
                             'stage': int(stage_number),
@@ -484,11 +486,12 @@ def calculate_name_similarity(name1, name2):
     return difflib.SequenceMatcher(None, name1.lower(), name2.lower()).ratio()
 
 def mark_withdrawn_cyclists(cyclists, withdrawals):
-    formatted_withdrawals = [format_withdrawal_name(w['rider']) for w in withdrawals]
+    normalized_withdrawals = [normalize_name(w['rider']) for w in withdrawals]
     for cyclist in cyclists:
+        normalized_cyclist_name = normalize_name(cyclist['name'])
         cyclist['isWithdrawn'] = any(
-            calculate_name_similarity(cyclist['name'], w) >= 0.85
-            for w in formatted_withdrawals
+            calculate_name_similarity(normalized_cyclist_name, w) >= 0.85
+            for w in normalized_withdrawals
         )
     return cyclists
 
@@ -575,7 +578,6 @@ def main():
 
         print("Marking withdrawn cyclists", file=sys.stderr)
         updated_data['cyclists'] = mark_withdrawn_cyclists(updated_data['cyclists'], withdrawals)
-
    
         print(f"Current working directory: {os.getcwd()}", file=sys.stderr)
         try:

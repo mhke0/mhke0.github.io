@@ -1496,12 +1496,14 @@ function createLatestPointsUpdateChart() {
 const namePrefixes = ['VAN', 'DE', 'VON', 'DER', 'TEN', 'TER', 'DEN', 'DA', 'DOS', 'DAS', 'DU', 'LA', 'LE', 'MC', 'MAC'];
 
 function convertNameFormat(name) {
-    return name; // Return the name as-is without any modifications
+    // Split the name into parts
+    const parts = name.split(' ');
+    // Capitalize the first letter of each part
+    return parts.map(part => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()).join(' ');
 }
 function applyWithdrawnRiderStyles() {
-    const withdrawnRiders = new Set(cyclistData.withdrawals.map(w => w.rider));
+    const withdrawnRiders = new Set(cyclistData.withdrawals.map(w => convertNameFormat(w.rider)));
     
-    // Function to apply strikethrough to withdrawn rider names
     function strikethroughWithdrawnRiders(element) {
         if (element.nodeType === Node.TEXT_NODE) {
             const parent = element.parentNode;
@@ -1510,7 +1512,7 @@ function applyWithdrawnRiderStyles() {
             const newFragment = document.createDocumentFragment();
             
             parts.forEach(part => {
-                if (withdrawnRiders.has(part.trim())) {
+                if (withdrawnRiders.has(convertNameFormat(part.trim()))) {
                     const span = document.createElement('span');
                     span.style.textDecoration = 'line-through';
                     span.textContent = part;
@@ -1522,11 +1524,13 @@ function applyWithdrawnRiderStyles() {
             
             parent.replaceChild(newFragment, element);
         } else if (element.nodeType === Node.ELEMENT_NODE) {
+            if (element.tagName === 'A' && withdrawnRiders.has(convertNameFormat(element.textContent.trim()))) {
+                element.style.textDecoration = 'line-through';
+            }
             Array.from(element.childNodes).forEach(strikethroughWithdrawnRiders);
         }
     }
 
-    // Apply to the entire body
     strikethroughWithdrawnRiders(document.body);
 }
 

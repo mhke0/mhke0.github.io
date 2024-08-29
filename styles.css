@@ -1014,3 +1014,11 @@ tr:nth-child(odd) {
 .withdrawal-item .stage-info {
     font-style: italic;
 }
+
+#cyclistTable tbody tr td a[style*="line-through"] {
+    color: #888;  /* Grey out the crossed-out names */
+}
+
+#cyclistTable tbody tr td a[style*="line-through"]:hover {
+    color: #333;  /* Darken on hover for better readability */
+}

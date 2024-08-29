@@ -1560,6 +1560,30 @@ function generateNewsContent() {
     }
     newsHtml += '</div>';
 
+        // Add Withdrawals section
+    if (cyclistData.withdrawals && cyclistData.withdrawals.length > 0) {
+        newsHtml += '<div class="news-section news-withdrawals">';
+        newsHtml += '<h3>Recent Withdrawals</h3>';
+        newsHtml += '<div class="withdrawals-list">';
+        
+        // Sort withdrawals by stage in descending order
+        const sortedWithdrawals = cyclistData.withdrawals.sort((a, b) => b.stage - a.stage);
+        
+        // Display the 5 most recent withdrawals
+        sortedWithdrawals.slice(0, 5).forEach(withdrawal => {
+            newsHtml += `
+                <div class="withdrawal-item">
+                    <span class="rider-name"><a href="#" class="rider-link" data-rider="${withdrawal.rider}">${withdrawal.rider}</a></span>
+                    <span class="team-name">(${withdrawal.team})</span>
+                    <span class="stage-info">Stage ${withdrawal.stage}</span>
+                </div>
+            `;
+        });
+        
+        newsHtml += '</div>'; // Close withdrawals-list
+        newsHtml += '</div>'; // Close news-section news-withdrawals
+    }
+
     // Top 10 Riders
     newsHtml += '<div class="news-section news-top-riders">';
     newsHtml += '<h3>Top 10 Riders</h3>';

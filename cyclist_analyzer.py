@@ -169,7 +169,7 @@ def select_dream_team_optimized(cyclists):
                        for cyclist in cyclists)
 
     # Constraints
-     constraints = [
+    constraints = [
         ("Total cyclists", pulp.lpSum(cyclist_vars) == TEAM_SIZE),
         ("Maximum cost", pulp.lpSum(cyclist['cost'] * cyclist_vars[cyclist['name'], cyclist['role']] 
                                     for cyclist in cyclists) <= MAX_TEAM_COST),

@@ -1502,7 +1502,7 @@ function convertNameFormat(name) {
         ).join(' ');
 
         // Return in "Firstname Name" format
-        return `${firstName} ${lastName}`;
+        return `${lastName} ${firstName}`;
     }
     return name;
 }

@@ -317,35 +317,22 @@ $(document).ready(function() {
             throw new Error("Missing required data in JSON file");
         }
 
-        // Store the cyclist data globally
-        cyclistData = data;
-
+      cyclistData = data;
         let cyclists = data.cyclists;
-        let leagueScores = data.league_scores;
-        
-        // Sort cyclists by cost_per_point (convert "Infinity" to a large number for sorting)
-        cyclists.sort((a, b) => {
-            const costPerPointA = a.cost_per_point === "Infinity" ? Infinity : parseFloat(a.cost_per_point);
-            const costPerPointB = b.cost_per_point === "Infinity" ? Infinity : parseFloat(b.cost_per_point);
-            return costPerPointA - costPerPointB;
-        });
+        let withdrawals = data.withdrawals;
 
-        // Get the top 50 cyclists
-        let top50Cyclists = cyclists.slice(0, 50);
-
-        let totalCost = 0;
-        let totalPoints = 0;
-        const roles = {};
-
-         cyclists.forEach(cyclist => {
+        cyclists.forEach(cyclist => {
             totalCost += cyclist.cost;
             totalPoints += cyclist.points;
             roles[cyclist.role] = (roles[cyclist.role] || 0) + 1;
 
             const costPerPoint = cyclist.points === 0 ? "∞" : (cyclist.cost / cyclist.points).toFixed(2);
+            const isAbandoned = withdrawals.some(w => convertNameFormat(w.rider) === cyclist.name);
+            const nameStyle = isAbandoned ? 'text-decoration: line-through;' : '';
+
             $('#cyclistTable tbody').append(`
                 <tr>
-                    <td><a href="#" class="rider-link" data-rider="${cyclist.name}">${cyclist.name}</a></td>
+                    <td><a href="#" class="rider-link" data-rider="${cyclist.name}" style="${nameStyle}">${cyclist.name}</a></td>
                     <td>${cyclist.team}</td>
                     <td>${cyclist.role}</td>
                     <td>${cyclist.cost}</td>
@@ -996,16 +983,20 @@ function sortTable(columnIndex) {
             shouldSwitch = false;
             x = rows[i].getElementsByTagName("TD")[columnIndex];
             y = rows[i + 1].getElementsByTagName("TD")[columnIndex];
-            
+
             let xValue, yValue;
-            if (columnIndex === 3 || columnIndex === 4 || columnIndex === 5) {
+            if (columnIndex === 0) {
+                // For the name column, get the text content
+                xValue = x.textContent.trim().toLowerCase();
+                yValue = y.textContent.trim().toLowerCase();
+            } else if (columnIndex === 3 || columnIndex === 4 || columnIndex === 5) {
                 xValue = parseFloat(x.innerHTML);
                 yValue = parseFloat(y.innerHTML);
             } else {
                 xValue = x.innerHTML.toLowerCase();
                 yValue = y.innerHTML.toLowerCase();
             }
-            
+
             if (dir == "asc") {
                 if (xValue > yValue) {
                     shouldSwitch = true;

@@ -11,6 +11,8 @@ import io
 import contextlib
 import os
 from datetime import datetime, timedelta
+from config import *  # Import all variables from config.py
+
 
 def fetch_html_content(url):
     try:
@@ -104,8 +106,7 @@ def fetch_team_roster(url):
         return []
         
 def fetch_league_scores():
-    url = "https://www.velogames.com/spain/2024/leaguescores.php?league=764413216"
-    response = requests.get(url)
+    response = requests.get(LEAGUE_SCORES_URL)
     soup = BeautifulSoup(response.content, 'html.parser')
 
     teams = []
@@ -114,9 +115,9 @@ def fetch_league_scores():
         points = int(li.select_one('p.born b').text.strip())
         team_url = li.select_one('h3.name a')['href']
         full_team_url = f"https://www.velogames.com/spain/2024/{team_url}"
-        
+
         team_roster = fetch_team_roster(full_team_url)
-        
+
         teams.append({
             "name": team_name,
             "points": points,
@@ -168,18 +169,18 @@ def select_dream_team_optimized(cyclists):
                        for cyclist in cyclists)
 
     # Constraints
-    constraints = [
-        ("Total cyclists", pulp.lpSum(cyclist_vars) == 9),
+ constraints = [
+        ("Total cyclists", pulp.lpSum(cyclist_vars) == TEAM_SIZE),
         ("Maximum cost", pulp.lpSum(cyclist['cost'] * cyclist_vars[cyclist['name'], cyclist['role']] 
-                                    for cyclist in cyclists) <= 100),
+                                    for cyclist in cyclists) <= MAX_TEAM_COST),
         ("Sprinters", pulp.lpSum(cyclist_vars[cyclist['name'], cyclist['role']] 
-                                 for cyclist in cyclists if cyclist['role'] == 'Sprinter') >= 1),
+                                 for cyclist in cyclists if cyclist['role'] == 'Sprinter') >= MIN_SPRINTERS),
         ("All-Rounders", pulp.lpSum(cyclist_vars[cyclist['name'], cyclist['role']] 
-                                    for cyclist in cyclists if cyclist['role'] == 'All Rounder') >= 2),
+                                    for cyclist in cyclists if cyclist['role'] == 'All Rounder') >= MIN_ALL_ROUNDERS),
         ("Climbers", pulp.lpSum(cyclist_vars[cyclist['name'], cyclist['role']] 
-                                for cyclist in cyclists if cyclist['role'] == 'Climber') >= 2),
+                                for cyclist in cyclists if cyclist['role'] == 'Climber') >= MIN_CLIMBERS),
         ("Unclassed", pulp.lpSum(cyclist_vars[cyclist['name'], cyclist['role']] 
-                                 for cyclist in cyclists if cyclist['role'] == 'Unclassed') >= 3)
+                                 for cyclist in cyclists if cyclist['role'] == 'Unclassed') >= MIN_UNCLASSED)
     ]
 
     # Add constraints to the problem
@@ -277,8 +278,8 @@ def update_historical_data(existing_data, new_cyclists, new_league_scores):
             else:
                 existing_cyclist['pointHistory'].append({'date': today, 'points': new_cyclist['points']})
             
-            # Keep only the last 30 days of historical data
-            existing_cyclist['pointHistory'] = sorted(existing_cyclist['pointHistory'], key=lambda x: x['date'])[-30:]
+# Keep only the last HISTORY_DAYS days of historical data
+    existing_cyclist['pointHistory'] = sorted(existing_cyclist['pointHistory'], key=lambda x: x['date'])[-HISTORY_DAYS:]
         else:
             # Add new cyclist
             new_cyclist['pointHistory'] = [{'date': today, 'points': new_cyclist['points']}]
@@ -301,9 +302,9 @@ def update_historical_data(existing_data, new_cyclists, new_league_scores):
     else:
         existing_data['league_scores']['history'].append({'date': today, 'scores': new_league_scores})
     
-    # Keep only the last 30 days of league score history
-    existing_data['league_scores']['history'] = sorted(existing_data['league_scores']['history'], key=lambda x: x['date'])[-30:]
-    
+    # Keep only the last HISTORY_DAYS days of league score history
+    existing_data['league_scores']['history'] = sorted(existing_data['league_scores']['history'], key=lambda x: x['date'])[-HISTORY_DAYS:]
+ 
     # Update the last update timestamp
     existing_data['last_update'] = today
     
@@ -429,8 +430,7 @@ import requests
 from bs4 import BeautifulSoup
 
 def fetch_twitter_league_data():
-    url = "https://www.velogames.com/spain/2024/leaguescores.php?league=23161631"
-    response = requests.get(url)
+    response = requests.get(TWITTER_LEAGUE_URL)
     soup = BeautifulSoup(response.content, 'html.parser')
 
     scores = []
@@ -440,22 +440,19 @@ def fetch_twitter_league_data():
 
     return sorted(scores, reverse=True)
 
+
 def calculate_rank_and_percentile(all_star_points, league_scores):
     rank = next(i for i, score in enumerate(league_scores, 1) if score <= all_star_points)
     percentile = (1 - (rank - 1) / len(league_scores)) * 100
     return rank, percentile
 
-
 def main():
-    cyclist_url = "https://www.velogames.com/spain/2024/riders.php"
-    output_file = "cyclist-data.json"
-    
     try:
         print("Loading existing data", file=sys.stderr)
-        existing_data = load_existing_data(output_file)
+        existing_data = load_existing_data(OUTPUT_FILE)
 
-        print(f"Fetching new cyclist data from {cyclist_url}", file=sys.stderr)
-        html_content = fetch_html_content(cyclist_url)
+        print(f"Fetching new cyclist data from {CYCLIST_URL}", file=sys.stderr)
+        html_content = fetch_html_content(CYCLIST_URL)
         
         print("Analyzing new cyclist data", file=sys.stderr)
         new_cyclists = analyze_cyclists(html_content)
@@ -525,13 +522,13 @@ def main():
         print(f"MVP: {mvp['name']} (Points added: {mvp['points_added']})", file=sys.stderr)
         print(f"MIP: {mip['name']} ({'Points gained' if mip['from_zero'] else 'Percentage increase'}: {mip['percentage_increase']}{'%' if not mip['from_zero'] else ''})", file=sys.stderr)
 
-        print(f"Current working directory: {os.getcwd()}", file=sys.stderr)
+  print(f"Current working directory: {os.getcwd()}", file=sys.stderr)
         try:
             print("Writing updated JSON output to file", file=sys.stderr)
-            with open(output_file, 'w', encoding='utf-8') as f:
+            with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
                 json.dump(updated_data, f, default=numpy_to_python, ensure_ascii=False, indent=2)
-            
-            print(f"Script completed successfully. Output saved to {output_file}", file=sys.stderr)
+
+            print(f"Script completed successfully. Output saved to {OUTPUT_FILE}", file=sys.stderr)
         except IOError as e:
             print(f"Error writing to file: {e}", file=sys.stderr)
         except Exception as e:

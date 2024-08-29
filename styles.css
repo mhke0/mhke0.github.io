@@ -979,7 +979,6 @@ tr:nth-child(odd) {
 
 .news-withdrawals {
     margin-top: 20px;
-    margin-bottom: 20px;
 }
 
 .withdrawals-list {
@@ -1006,8 +1005,9 @@ tr:nth-child(odd) {
 }
 
 .withdrawal-item .team-name {
+    font-weight: normal;
     color: var(--secondary-color);
-    align-item: left;
+    margin-left: 5px;
 }
 
 .withdrawal-item .stage-info {

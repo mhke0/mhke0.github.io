@@ -1472,9 +1472,6 @@ function createLatestPointsUpdateChart() {
 // List of common name prefixes
 const namePrefixes = ['VAN', 'DE', 'VON', 'DER', 'TEN', 'TER', 'DEN', 'DA', 'DOS', 'DAS', 'DU', 'LA', 'LE', 'MC', 'MAC'];
 
-// List of common name prefixes
-const namePrefixes = ['VAN', 'DE', 'VON', 'DER', 'TEN', 'TER', 'DEN', 'DA', 'DOS', 'DAS', 'DU', 'LA', 'LE', 'MC', 'MAC'];
-
 function convertNameFormat(name) {
     const parts = name.split(' ');
     if (parts.length > 1) {
@@ -2081,7 +2078,6 @@ function displayRiskAssessmentTable(riskData) {
     tableContainer.innerHTML = tableHTML;
 }
 
-// ... (keep existing code)
 
 function displayTeamRiskAssessment(selectedTeam) {
     const teamRiders = cyclistData.cyclists.filter(cyclist => cyclist.team === selectedTeam);

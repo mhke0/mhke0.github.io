@@ -140,6 +140,84 @@ function createResponsiveChart(chartId, traces, layout, config = {}) {
     
     updateFontSizes();
     
+ function createResponsiveChart(chartId, traces, layout, config = {}) {
+    const defaultConfig = {
+        responsive: true,
+        displayModeBar: false,
+    };
+    const mergedConfig = { ...defaultConfig, ...config };
+    layout.autosize = true;
+    
+    const container = document.getElementById(chartId);
+    if (!container) {
+        console.error(`Container with id ${chartId} not found`);
+        return;
+    }
+    container.style.display = 'block';
+    container.style.height = '400px';
+    container.style.maxWidth = '600px';
+    container.style.margin = 'auto';
+    
+    delete layout.width;
+    delete layout.height;
+    
+    layout.margin = layout.margin || {
+        l: 50,
+        r: 50,
+        t: 50,
+        b: 50,
+        pad: 4,
+        autoexpand: true
+    };
+    
+    layout.xaxis = layout.xaxis || {};
+    layout.yaxis = layout.yaxis || {};
+    layout.xaxis.automargin = true;
+    layout.yaxis.automargin = true;
+    
+    function updateFontSizes() {
+        const baseSize = Math.min(window.innerWidth, window.innerHeight) / 50;
+        
+        layout.font = layout.font || {};
+        layout.font.size = baseSize;
+
+        if (layout.title) {
+            if (typeof layout.title === 'string') {
+                layout.title = { text: layout.title };
+            }
+            layout.title.font = layout.title.font || {};
+            layout.title.font.size = baseSize * 1.2;
+        }
+
+        if (layout.xaxis) {
+            layout.xaxis.title = layout.xaxis.title || {};
+            if (typeof layout.xaxis.title === 'string') {
+                layout.xaxis.title = { text: layout.xaxis.title };
+            }
+            layout.xaxis.title.font = layout.xaxis.title.font || {};
+            layout.xaxis.title.font.size = baseSize * 0.8;
+        }
+
+        if (layout.yaxis) {
+            layout.yaxis.title = layout.yaxis.title || {};
+            if (typeof layout.yaxis.title === 'string') {
+                layout.yaxis.title = { text: layout.yaxis.title };
+            }
+            layout.yaxis.title.font = layout.yaxis.title.font || {};
+            layout.yaxis.title.font.size = baseSize * 0.8;
+        }
+
+        if (layout.legend) {
+            layout.legend.font = layout.legend.font || {};
+            layout.legend.font.size = baseSize*0.8;
+        }
+
+    }
+    
+    layout.xaxis.tickangle = layout.xaxis.tickangle || -45;
+    
+    updateFontSizes();
+    
    try {
         Plotly.newPlot(chartId, traces, layout, mergedConfig).then(() => {
             // Apply withdrawn rider styles after the chart is plotted
@@ -156,7 +234,20 @@ function createResponsiveChart(chartId, traces, layout, config = {}) {
                 updateFontSizes();
                 try {
                     const updateLayout = {
-                        // ... existing layout updates ...
+                        autosize: true,
+                        'font.size': layout.font.size,
+                    };
+                    if (layout.title && layout.title.font) {
+                        updateLayout['title.font.size'] = layout.title.font.size;
+                    }
+                    if (layout.xaxis && layout.xaxis.title && layout.xaxis.title.font) {
+                        updateLayout['xaxis.title.font.size'] = layout.xaxis.title.font.size;
+                    }
+                    if (layout.yaxis && layout.yaxis.title && layout.yaxis.title.font) {
+                        updateLayout['yaxis.title.font.size'] = layout.yaxis.title.font.size;
+                    }
+                    if (layout.legend && layout.legend.font) {
+                        updateLayout['legend.font.size'] = layout.legend.font.size;
                     };
                     Plotly.relayout(chartId, updateLayout).then(() => {
                         // Apply withdrawn rider styles after the chart is resized
@@ -171,7 +262,6 @@ function createResponsiveChart(chartId, traces, layout, config = {}) {
 
     resizeObserver.observe(container);
 }
-
 function initializeCyclingTeamSelect() {
     const cyclingTeamSelect = document.getElementById('cyclingTeamSelect');
     const cyclingTeamSelect2 = document.getElementById('cyclingTeamSelect2');

@@ -2,6 +2,7 @@
 CYCLIST_URL = "https://www.velogames.com/spain/2024/riders.php"
 LEAGUE_SCORES_URL = "https://www.velogames.com/spain/2024/leaguescores.php?league=764413216"
 TWITTER_LEAGUE_URL = "https://www.velogames.com/spain/2024/leaguescores.php?league=23161631"
+WITHDRAWALS_URL = "https://www.lavuelta.es/en/withdrawal"
 
 # File paths
 OUTPUT_FILE = "cyclist-data.json"

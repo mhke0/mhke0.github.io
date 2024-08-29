@@ -140,42 +140,35 @@ function createResponsiveChart(chartId, traces, layout, config = {}) {
     
     updateFontSizes();
     
-    try {
-        Plotly.newPlot(chartId, traces, layout, mergedConfig);
+   try {
+        Plotly.newPlot(chartId, traces, layout, mergedConfig).then(() => {
+            // Apply withdrawn rider styles after the chart is plotted
+            applyWithdrawnRiderStyles();
+        });
     } catch (error) {
         console.error(`Error creating chart ${chartId}:`, error);
         container.innerHTML = `<p>Error creating chart. Please try refreshing the page.</p>`;
     }
-    
+
     const resizeObserver = new ResizeObserver(entries => {
         for (let entry of entries) {
             if (entry.target.id === chartId) {
                 updateFontSizes();
                 try {
                     const updateLayout = {
-                        autosize: true,
-                        'font.size': layout.font.size,
+                        // ... existing layout updates ...
                     };
-                    if (layout.title && layout.title.font) {
-                        updateLayout['title.font.size'] = layout.title.font.size;
-                    }
-                    if (layout.xaxis && layout.xaxis.title && layout.xaxis.title.font) {
-                        updateLayout['xaxis.title.font.size'] = layout.xaxis.title.font.size;
-                    }
-                    if (layout.yaxis && layout.yaxis.title && layout.yaxis.title.font) {
-                        updateLayout['yaxis.title.font.size'] = layout.yaxis.title.font.size;
-                    }
-                    if (layout.legend && layout.legend.font) {
-                        updateLayout['legend.font.size'] = layout.legend.font.size;
-                    }
-                    Plotly.relayout(chartId, updateLayout);
+                    Plotly.relayout(chartId, updateLayout).then(() => {
+                        // Apply withdrawn rider styles after the chart is resized
+                        applyWithdrawnRiderStyles();
+                    });
                 } catch (error) {
                     console.error(`Error resizing chart ${chartId}:`, error);
                 }
             }
         }
     });
-    
+
     resizeObserver.observe(container);
 }
 

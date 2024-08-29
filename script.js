@@ -2498,35 +2498,86 @@ function displayAllStarTeam() {
     const allStarTeam = cyclistData.league_all_star_team;
     const twitterComparison = allStarTeam.twitter_league_comparison;
 
-    // Display Twitter League Comparison
-    let comparisonHtml = `
-        <h3>Twitter League Comparison</h3>
-        <p>Rank: ${twitterComparison.rank} out of ${twitterComparison.total_participants}</p>
-        <p>Percentile: ${twitterComparison.percentile.toFixed(2)}%</p>
+    let allStarHtml = `
+        <div class="team-roster-container">
+            <h2>All-Star Team</h2>
+            <div class="team-stats">
+                <div class="stat-box">
+                    <h3>Total Points</h3>
+                    <p>${allStarTeam.total_points}</p>
+                </div>
+                <div class="stat-box">
+                    <h3>Total Cost</h3>
+                    <p>${allStarTeam.total_cost}</p>
+                </div>
+                <div class="stat-box">
+                    <h3>Twitter League Rank</h3>
+                    <p>${twitterComparison.rank} / ${twitterComparison.total_participants}</p>
+                </div>
+                <div class="stat-box">
+                    <h3>Percentile</h3>
+                    <p>${twitterComparison.percentile.toFixed(2)}%</p>
+                </div>
+            </div>
+            <div id="allStarTeamRosterDisplay" class="team-roster">
     `;
-    document.getElementById('twitterLeagueComparison').innerHTML = comparisonHtml;
 
-    // Display All-Star Team Roster
-    let rosterHtml = '<h3>All-Star Team Roster</h3><ul>';
     allStarTeam.riders.forEach(rider => {
-        rosterHtml += `
-            <li>
-                <strong>${rider.name}</strong> (${rider.team})
-                <br>Role: ${rider.role}
-                <br>Cost: ${rider.cost}
-                <br>Points: ${rider.points}
-            </li>
+        allStarHtml += `
+            <div class="rider-card">
+                <h4>${rider.name}</h4>
+                <p>Team: ${rider.team}</p>
+                <p>Role: ${rider.role}</p>
+                <p>Cost: ${rider.cost}</p>
+                <p>Points: ${rider.points}</p>
+            </div>
         `;
     });
-    rosterHtml += '</ul>';
-    document.getElementById('allStarTeamRoster').innerHTML = rosterHtml;
 
-    // Display All-Star Team Stats
-    let statsHtml = `
-        <h3>All-Star Team Stats</h3>
-        <p>Total Points: ${allStarTeam.total_points}</p>
-        <p>Total Cost: ${allStarTeam.total_cost}</p>
+    allStarHtml += `
+            </div>
+        </div>
     `;
-    document.getElementById('allStarTeamStats').innerHTML = statsHtml;
-}
 
+    document.getElementById('AllStarTeamTab').innerHTML = allStarHtml;
+
+    // Create and display the points distribution chart
+    displayAllStarTeamPointsDistribution(allStarTeam.riders);
+}
+function displayAllStarTeamPointsDistribution(riders) {
+    const sortedRiders = riders.sort((a, b) => b.points - a.points);
+
+    const trace = {
+        labels: sortedRiders.map(rider => `${rider.name}<br>(${rider.role})`),
+        values: sortedRiders.map(rider => rider.points),
+        type: 'pie',
+        textinfo: 'label+percent',
+        hoverinfo: 'text',
+        hovertext: sortedRiders.map(rider => `Name: ${rider.name}<br>` +
+                                              `Role: ${rider.role}<br>` +
+                                              `Points: ${rider.points}<br>` +
+                                              `Cost: ${rider.cost}`
+        ),
+        marker: {
+            colors: sortedRiders.map(rider => getColorForRole(rider.role)),
+            line: { color: '#ffffff', width: 2 }
+        },
+        textposition: 'outside',
+        automargin: true
+    };
+
+    const layout = {
+        title: {
+            text: 'All-Star Team Points Distribution',
+            font: { family: 'VT323, monospace', color: '#ff1493' }
+        },
+        paper_bgcolor: '#fff0f5',
+        plot_bgcolor: '#fff0f5',
+        showlegend: false,
+        margin: {l: 50, r: 50, t: 50, b: 50, pad: 4},
+        height: 500,
+        width: 700
+    };
+
+    createResponsiveChart('allStarTeamPointsDistributionChart', [trace], layout);
+}

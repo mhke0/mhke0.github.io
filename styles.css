@@ -976,3 +976,38 @@ tr:nth-child(odd) {
         margin-bottom: 20px;
     }
 }
+
+.news-withdrawals {
+    margin-top: 20px;
+}
+
+.withdrawals-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.withdrawal-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 5px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.withdrawal-item:last-child {
+    border-bottom: none;
+}
+
+.withdrawal-item .rider-name {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.withdrawal-item .team-name {
+    color: var(--secondary-color);
+}
+
+.withdrawal-item .stage-info {
+    font-style: italic;
+}

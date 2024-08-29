@@ -448,9 +448,8 @@ def calculate_rank_and_percentile(all_star_points, league_scores):
 
 
 def fetch_withdrawals():
-    url = "https://www.lavuelta.es/en/withdrawal"
     try:
-        response = requests.get(url)
+        response = requests.get(WITHDRAWALS_URL)
         response.raise_for_status()
         soup = BeautifulSoup(response.content, 'html.parser')
         
@@ -479,7 +478,7 @@ def fetch_withdrawals():
         
         return withdrawals
     except requests.RequestException as e:
-        print(f"Error fetching withdrawals from {url}: {e}", file=sys.stderr)
+        print(f"Error fetching withdrawals from {WITHDRAWALS_URL}: {e}", file=sys.stderr)
         return []
 
 def main():
@@ -558,7 +557,7 @@ def main():
         print(f"MVP: {mvp['name']} (Points added: {mvp['points_added']})", file=sys.stderr)
         print(f"MIP: {mip['name']} ({'Points gained' if mip['from_zero'] else 'Percentage increase'}: {mip['percentage_increase']}{'%' if not mip['from_zero'] else ''})", file=sys.stderr)
 
-        print("Fetching withdrawals", file=sys.stderr)
+        print(f"Fetching withdrawals from {WITHDRAWALS_URL}", file=sys.stderr)
         withdrawals = fetch_withdrawals()
         updated_data['withdrawals'] = withdrawals
         print(f"Fetched {len(withdrawals)} withdrawals", file=sys.stderr)

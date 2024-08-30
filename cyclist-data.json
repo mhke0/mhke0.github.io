@@ -130,7 +130,7 @@
           "points": 406.0
         }
       ],
-      "isWithdrawn": false
+      "isWithdrawn": true
     },
     {
       "name": "Adam Yates",
@@ -658,7 +658,7 @@
           "points": 373.0
         }
       ],
-      "isWithdrawn": false
+      "isWithdrawn": true
     },
     {
       "name": "Bryan Coquard",
@@ -834,7 +834,7 @@
           "points": 0.0
         }
       ],
-      "isWithdrawn": false
+      "isWithdrawn": true
     },
     {
       "name": "Jhonatan Narváez",
@@ -922,7 +922,7 @@
           "points": 16.0
         }
       ],
-      "isWithdrawn": false
+      "isWithdrawn": true
     },
     {
       "name": "Tao Geoghegan Hart",
@@ -1010,7 +1010,7 @@
           "points": 538.0
         }
       ],
-      "isWithdrawn": false
+      "isWithdrawn": true
     },
     {
       "name": "Aleksandr Vlasov",

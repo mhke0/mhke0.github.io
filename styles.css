@@ -1023,6 +1023,7 @@ a[style*="text-decoration: line-through"] {
 .best-role-selections {
     margin-top: 20px;
     margin-bottom: 20px;
+    width: 100%;
 }
 
 .best-role-selections h2 {
@@ -1032,12 +1033,15 @@ a[style*="text-decoration: line-through"] {
 }
 
 .best-role-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
     gap: 20px;
 }
 
 .role-card {
+    flex: 1;
+    min-width: calc(25% - 15px);
     background-color: var(--box-background-color);
     border: 2px solid var(--border-color);
     border-radius: 5px;
@@ -1068,10 +1072,17 @@ a[style*="text-decoration: line-through"] {
 
 .role-card li {
     margin-bottom: 5px;
+    font-size: 0.9em;
+}
+
+@media screen and (max-width: 1200px) {
+    .role-card {
+        min-width: calc(50% - 10px);
+    }
 }
 
 @media screen and (max-width: 768px) {
-    .best-role-grid {
-        grid-template-columns: 1fr;
+    .role-card {
+        min-width: 100%;
     }
 }

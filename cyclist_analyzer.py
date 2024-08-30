@@ -491,7 +491,7 @@ def mark_withdrawn_cyclists(cyclists, withdrawals):
     formatted_withdrawals = [w['rider'] for w in withdrawals]
     for cyclist in cyclists:
         cyclist['isWithdrawn'] = any(
-            calculate_name_similarity(cyclist['name'], w) >= 0.85
+            calculate_name_similarity(cyclist['name'], w) >= 0.70
             for w in formatted_withdrawals
         )
     return cyclists

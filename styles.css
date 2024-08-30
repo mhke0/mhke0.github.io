@@ -1037,15 +1037,17 @@ a[style*="text-decoration: line-through"] {
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 20px;
+    width: 100%;
 }
 
 .role-card {
-    flex: 1;
+    flex: 1 1 calc(25% - 15px);
     min-width: calc(25% - 15px);
     background-color: var(--box-background-color);
     border: 2px solid var(--border-color);
     border-radius: 5px;
     padding: 15px;
+    box-sizing: border-box;
 }
 
 .role-card h3 {
@@ -1077,12 +1079,30 @@ a[style*="text-decoration: line-through"] {
 
 @media screen and (max-width: 1200px) {
     .role-card {
+        flex: 1 1 calc(50% - 10px);
         min-width: calc(50% - 10px);
     }
 }
 
 @media screen and (max-width: 768px) {
     .role-card {
+        flex: 1 1 100%;
         min-width: 100%;
     }
+}
+
+/* Ensure the container spans full width */
+#bestRoleSelectionsContainer {
+    width: 100%;
+}
+
+/* Adjust the league-roster-container to full width */
+.league-roster-container {
+    width: 100%;
+}
+
+/* Ensure other elements in the tab are also full width */
+.roster-charts-row,
+.balanced-teams-container {
+    width: 100%;
 }

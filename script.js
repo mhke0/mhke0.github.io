@@ -2718,6 +2718,7 @@ function createBestRoleSelectionsComponent(leagueData, cyclistData) {
 
     const container = document.createElement('div');
     container.className = 'best-role-selections';
+    container.style.width = '100%';  // Ensure full width
     container.innerHTML = `
         <h2>Best Role Selections</h2>
         <div class="best-role-grid">
@@ -2743,6 +2744,7 @@ function updateBestRoleSelections() {
     const container = document.getElementById('bestRoleSelectionsContainer');
     if (container) {
         container.innerHTML = ''; // Clear existing content
+        container.style.width = '100%';  // Ensure full width
         const bestRoleSelectionsComponent = createBestRoleSelectionsComponent(leagueData, cyclistData);
         container.appendChild(bestRoleSelectionsComponent);
     }

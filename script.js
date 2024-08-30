@@ -2720,7 +2720,6 @@ function createBestRoleSelectionsComponent(leagueData, cyclistData) {
     container.className = 'best-role-selections';
     container.style.width = '100%';  // Ensure full width
     container.innerHTML = `
-        <h2>Best Role Selections</h2>
         <div class="best-role-grid">
             ${roles.map(role => `
                 <div class="role-card">

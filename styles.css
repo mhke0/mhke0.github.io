@@ -1021,9 +1021,12 @@ a[style*="text-decoration: line-through"] {
     text-decoration: line-through !important;
 }
 /* Best Role Selections Container */
+/* ... (previous styles remain unchanged) ... */
+
+/* Best Role Selections Container */
 #bestRoleSelectionsContainer {
     width: 100%;
-    margin-top: 0px;
+    margin-top: 20px;
     margin-bottom: 20px;
 }
 
@@ -1042,8 +1045,8 @@ a[style*="text-decoration: line-through"] {
 
 .best-role-grid {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 15px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
 }
 
 .role-card {
@@ -1081,12 +1084,17 @@ a[style*="text-decoration: line-through"] {
     font-size: 0.9em;
 }
 
-@media screen and (min-width: 768px) {
+/* Responsive adjustments */
+@media screen and (max-width: 1200px) {
     .best-role-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (max-width: 768px) {
     .best-role-grid {
-        grid-template-c
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ... (rest of the styles remain unchanged) ... */

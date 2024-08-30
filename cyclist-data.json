@@ -9276,73 +9276,6 @@
           }
         ]
       },
-      {
-        "date": "2024-08-30",
-        "scores": [
-          {
-            "name": "Team Name",
-            "points": 4201,
-            "roster": [
-              "João Almeida",
-              "Mattias Skjelmose",
-              "Lennert Van Eetvelt",
-              "Isaac Del Toro",
-              "Wout Van Aert",
-              "Harold Tejada",
-              "Quentin Pacher",
-              "George Bennett",
-              "Thymen Arensman"
-            ]
-          },
-          {
-            "name": "Iberische Halbpinsel",
-            "points": 2990,
-            "roster": [
-              "João Almeida",
-              "Adam Yates",
-              "Mikel Landa",
-              "Max Poole",
-              "Ide Schelling",
-              "Steven Kruijswijk",
-              "Jasha Sütterlin",
-              "Stefan Küng",
-              "Richard Carapaz"
-            ]
-          },
-          {
-            "name": "Team Fiestina",
-            "points": 2565,
-            "roster": [
-              "João Almeida",
-              "Mattias Skjelmose",
-              "Richard Carapaz",
-              "Enric Mas",
-              "Kim Heiduk",
-              "Patrick Konrad",
-              "Jhonatan Narváez",
-              "Julius Van Den Berg",
-              "Isaac Del Toro"
-            ]
-          },
-          {
-            "name": "Ganz anderer Teamname",
-            "points": 1732,
-            "roster": [
-              "Daniel Martínez",
-              "Tao Geoghegan Hart",
-              "Michael Woods",
-              "Sepp Kuss",
-              "Kaden Groves",
-              "Oier Lazkano",
-              "Jhonatan Narváez",
-              "Joshua Tarling",
-              "Giulio Ciccone"
-            ]
-          }
-        ]
-      }
-    ]
-  },
   "dream_team": {
     "riders": [
       {
@@ -9381,10 +9314,6 @@
           },
           {
             "date": "2024-08-29",
-            "points": 1029.0
-          },
-          {
-            "date": "2024-08-30",
             "points": 1029.0
           }
         ]
@@ -9426,10 +9355,6 @@
           {
             "date": "2024-08-29",
             "points": 1547.0
-          },
-          {
-            "date": "2024-08-30",
-            "points": 1547.0
           }
         ]
       },
@@ -9469,10 +9394,6 @@
           },
           {
             "date": "2024-08-29",
-            "points": 716.0
-          },
-          {
-            "date": "2024-08-30",
             "points": 716.0
           }
         ]
@@ -9514,10 +9435,6 @@
           {
             "date": "2024-08-29",
             "points": 749.0
-          },
-          {
-            "date": "2024-08-30",
-            "points": 749.0
           }
         ]
       },
@@ -9557,10 +9474,6 @@
           },
           {
             "date": "2024-08-29",
-            "points": 592.0
-          },
-          {
-            "date": "2024-08-30",
             "points": 592.0
           }
         ]
@@ -9602,10 +9515,6 @@
           {
             "date": "2024-08-29",
             "points": 508.0
-          },
-          {
-            "date": "2024-08-30",
-            "points": 508.0
           }
         ]
       },
@@ -9645,10 +9554,6 @@
           },
           {
             "date": "2024-08-29",
-            "points": 439.0
-          },
-          {
-            "date": "2024-08-30",
             "points": 439.0
           }
         ]
@@ -9690,10 +9595,6 @@
           {
             "date": "2024-08-29",
             "points": 389.0
-          },
-          {
-            "date": "2024-08-30",
-            "points": 389.0
           }
         ]
       },
@@ -9734,10 +9635,6 @@
           {
             "date": "2024-08-29",
             "points": 629.0
-          },
-          {
-            "date": "2024-08-30",
-            "points": 629.0
           }
         ]
       }
@@ -9776,11 +9673,6 @@
       "name": "Pablo Castrillo",
       "points_added": 261.0,
       "date": "2024-08-29"
-    },
-    {
-      "name": "",
-      "points_added": 0,
-      "date": "2024-08-30"
     }
   ],
   "mip_history": [
@@ -9819,12 +9711,6 @@
       "percentage_increase": 98.0,
       "date": "2024-08-29",
       "from_zero": true
-    },
-    {
-      "name": "",
-      "percentage_increase": 0,
-      "date": "2024-08-30",
-      "from_zero": false
     }
   ],
   "league_all_star_team": {

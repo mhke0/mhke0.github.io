@@ -1020,28 +1020,32 @@ a[style*="text-decoration: line-through"] {
     color: #888 !important;
     text-decoration: line-through !important;
 }
-.best-role-selections {
-    margin-bottom: 20px;
+/* Best Role Selections Container */
+#bestRoleSelectionsContainer {
     width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.best-role-selections {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
 .best-role-selections h2 {
     text-align: center;
     color: var(--primary-color);
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 .best-role-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 20px;
-    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
 }
 
 .role-card {
-    flex: 1 1 calc(25% - 15px);
-    min-width: calc(25% - 15px);
     background-color: var(--box-background-color);
     border: 2px solid var(--border-color);
     border-radius: 5px;
@@ -1076,32 +1080,15 @@ a[style*="text-decoration: line-through"] {
     font-size: 0.9em;
 }
 
-@media screen and (max-width: 1200px) {
-    .role-card {
-        flex: 1 1 calc(50% - 10px);
-        min-width: calc(50% - 10px);
+/* Media query for larger screens */
+@media screen and (min-width: 768px) {
+    .best-role-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
-@media screen and (max-width: 768px) {
-    .role-card {
-        flex: 1 1 100%;
-        min-width: 100%;
+@media screen and (min-width: 1024px) {
+    .best-role-grid {
+        grid-template-columns: repeat(4, 1fr);
     }
-}
-
-/* Ensure the container spans full width */
-#bestRoleSelectionsContainer {
-    width: 100%;
-}
-
-/* Adjust the league-roster-container to full width */
-.league-roster-container {
-    width: 100%;
-}
-
-/* Ensure other elements in the tab are also full width */
-.roster-charts-row,
-.balanced-teams-container {
-    width: 100%;
 }

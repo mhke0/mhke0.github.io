@@ -482,6 +482,7 @@ function createTop50Chart(top50Cyclists) {
         paper_bgcolor: '#fff0f5',
         plot_bgcolor: '#fff0f5',
     };
+    applyWithdrawnRiderStyles();
 
     createResponsiveChart('top50Chart', [trace], layout);
 }
@@ -537,6 +538,7 @@ function createPointsPerNameLengthChart(cyclists) {
         paper_bgcolor: '#fff0f5',
         plot_bgcolor: '#fff0f5',
     };
+    applyWithdrawnRiderStyles();
 
     createResponsiveChart('pointsPerNameLengthChart', [tracePointsPerNameLength], layoutPointsPerNameLength);
 }

@@ -2720,6 +2720,7 @@ function createBestRoleSelectionsComponent(leagueData, cyclistData) {
     container.className = 'best-role-selections';
     container.innerHTML = `
         <div class="best-role-grid">
+                <h2>Best by Category</h2>
             ${roles.map(role => `
                 <div class="role-card">
                     <h3>${role}</h3>

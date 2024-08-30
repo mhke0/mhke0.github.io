@@ -1020,3 +1020,58 @@ a[style*="text-decoration: line-through"] {
     color: #888 !important;
     text-decoration: line-through !important;
 }
+.best-role-selections {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.best-role-selections h2 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.best-role-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.role-card {
+    background-color: var(--box-background-color);
+    border: 2px solid var(--border-color);
+    border-radius: 5px;
+    padding: 15px;
+}
+
+.role-card h3 {
+    color: var(--primary-color);
+    margin-top: 0;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.role-card .team-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.role-card .total-points {
+    color: var(--secondary-color);
+    margin-bottom: 10px;
+}
+
+.role-card ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.role-card li {
+    margin-bottom: 5px;
+}
+
+@media screen and (max-width: 768px) {
+    .best-role-grid {
+        grid-template-columns: 1fr;
+    }
+}

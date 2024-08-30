@@ -1035,7 +1035,7 @@ a[style*="text-decoration: line-through"] {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    gap: 40px;
+    gap: 20px;
     width: 100%;
 }
 

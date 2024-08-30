@@ -267,6 +267,7 @@ function updateLeagueTeamRosterChart() {
     const dailyPoints = calculateDailyPoints(team.roster);
     createDailyPointsChart(dailyPoints, selectedTeam);
     applyWithdrawnRiderStyles();
+    updateBestRoleSelections();
 
     // Update balanced team information
     const { mostBalancedTeam, leastBalancedTeam } = calculateBalancedTeams(leagueData);
@@ -2688,4 +2689,65 @@ function displayAllStarTeamPointsDistribution(riders) {
     };
 
     createResponsiveChart('allStarTeamPointsDistributionChart', [trace], layout);
+}
+function createBestRoleSelectionsComponent(leagueData, cyclistData) {
+    const roles = ['Sprinter', 'Climber', 'All Rounder', 'Unclassed'];
+    const bestByRole = {};
+
+    roles.forEach(role => {
+        let bestScore = 0;
+        let bestTeam = '';
+        let bestRiders = [];
+
+        leagueData.forEach(team => {
+            const roleRiders = team.roster
+                .map(riderName => cyclistData.cyclists.find(c => c.name === riderName))
+                .filter(rider => rider && rider.role === role);
+
+            const totalPoints = roleRiders.reduce((sum, rider) => sum + rider.points, 0);
+
+            if (totalPoints > bestScore) {
+                bestScore = totalPoints;
+                bestTeam = team.name;
+                bestRiders = roleRiders;
+            }
+        });
+
+        bestByRole[role] = { team: bestTeam, score: bestScore, riders: bestRiders };
+    });
+
+    const container = document.createElement('div');
+    container.className = 'best-role-selections mt-4';
+    container.innerHTML = `
+        <h2 class="text-2xl font-bold text-center mb-4">Best Role Selections</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            ${roles.map(role => `
+                <div class="bg-white shadow-md rounded-lg overflow-hidden">
+                    <div class="bg-gray-100 p-4">
+                        <h3 class="text-lg font-semibold">${role}</h3>
+                    </div>
+                    <div class="p-4">
+                        <p class="font-bold">${bestByRole[role].team}</p>
+                        <p class="text-sm text-gray-600">Total Points: ${bestByRole[role].score}</p>
+                        <ul class="mt-2 text-sm">
+                            ${bestByRole[role].riders.map(rider => `
+                                <li>${rider.name} (${rider.points} pts)</li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                </div>
+            `).join('')}
+        </div>
+    `;
+
+    return container;
+}
+
+function updateBestRoleSelections() {
+    const container = document.getElementById('bestRoleSelectionsContainer');
+    if (container) {
+        container.innerHTML = ''; // Clear existing content
+        const bestRoleSelectionsComponent = createBestRoleSelectionsComponent(leagueData, cyclistData);
+        container.appendChild(bestRoleSelectionsComponent);
+    }
 }

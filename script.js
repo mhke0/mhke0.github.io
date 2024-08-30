@@ -2717,24 +2717,20 @@ function createBestRoleSelectionsComponent(leagueData, cyclistData) {
     });
 
     const container = document.createElement('div');
-    container.className = 'best-role-selections mt-4';
+    container.className = 'best-role-selections';
     container.innerHTML = `
-        <h2 class="text-2xl font-bold text-center mb-4">Best Role Selections</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <h2>Best Role Selections</h2>
+        <div class="best-role-grid">
             ${roles.map(role => `
-                <div class="bg-white shadow-md rounded-lg overflow-hidden">
-                    <div class="bg-gray-100 p-4">
-                        <h3 class="text-lg font-semibold">${role}</h3>
-                    </div>
-                    <div class="p-4">
-                        <p class="font-bold">${bestByRole[role].team}</p>
-                        <p class="text-sm text-gray-600">Total Points: ${bestByRole[role].score}</p>
-                        <ul class="mt-2 text-sm">
-                            ${bestByRole[role].riders.map(rider => `
-                                <li>${rider.name} (${rider.points} pts)</li>
-                            `).join('')}
-                        </ul>
-                    </div>
+                <div class="role-card">
+                    <h3>${role}</h3>
+                    <p class="team-name">${bestByRole[role].team}</p>
+                    <p class="total-points">Total Points: ${bestByRole[role].score}</p>
+                    <ul>
+                        ${bestByRole[role].riders.map(rider => `
+                            <li>${rider.name} (${rider.points} pts)</li>
+                        `).join('')}
+                    </ul>
                 </div>
             `).join('')}
         </div>

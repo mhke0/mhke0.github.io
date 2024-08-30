@@ -2691,7 +2691,7 @@ function displayAllStarTeamPointsDistribution(riders) {
     createResponsiveChart('allStarTeamPointsDistributionChart', [trace], layout);
 }
 function createBestRoleSelectionsComponent(leagueData, cyclistData) {
-    const roles = ['Sprinter', 'Climber', 'All Rounder', 'Unclassed'];
+    const roles = ['All Rounder', 'Climber', 'Sprinter', 'Unclassed'];
     const bestByRole = {};
 
     roles.forEach(role => {

@@ -460,29 +460,30 @@ def format_withdrawal_name(name):
     name = name.strip()
     parts = name.split()
     if len(parts) <= 1:
-        return name
+        return name.capitalize()
 
-    # List of common name prefixes
+    # List of common name prefixes (in lowercase)
     prefixes = ['van', 'de', 'der', 'den', 'von', 'le', 'la', 'du', 'des', 'del', 'della', 'di', 'da', 'mac', 'mc']
 
-    # Find the start of the last name
-    last_name_start = -1
-    for i, part in enumerate(parts):
-        if part.lower() in prefixes:
-            last_name_start = i
-            break
-
-    if last_name_start == -1:
-        # If no prefix found, assume the last word is the last name
-        last_name = parts[-1]
-        first_name = ' '.join(parts[:-1])
+    # Check if the name is in all caps (indicating it's in "LastName FirstName" format)
+    if parts[0].isupper():
+        # It's in "LastName FirstName" format, so we need to swap
+        last_name = []
+        first_name = []
+        prefix_ended = False
+        for part in parts:
+            if not prefix_ended and part.lower() in prefixes:
+                last_name.append(part.lower().capitalize())
+            elif not prefix_ended:
+                last_name.append(part.capitalize())
+                prefix_ended = True
+            else:
+                first_name.append(part.capitalize())
+        return f"{' '.join(first_name)} {' '.join(last_name)}"
     else:
-        # If prefix found, everything from the prefix onward is the last name
-        last_name = ' '.join(parts[last_name_start:])
-        first_name = ' '.join(parts[:last_name_start])
-
-    return f"{first_name} {last_name}"
-
+        # It's already in "FirstName LastName" format
+        return ' '.join(part.capitalize() for part in parts)
+    
 def calculate_name_similarity(name1, name2):
     return difflib.SequenceMatcher(None, name1.lower(), name2.lower()).ratio()
 

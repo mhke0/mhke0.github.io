@@ -1508,7 +1508,7 @@ function convertNameFormat(name) {
     return parts.map(part => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()).join(' ');
 }
 function applyWithdrawnRiderStyles() {
-    const withdrawnRiders = new Set(cyclistData.withdrawals.map(w => convertNameFormat(w.rider)));
+    const withdrawnRiders = new Set(cyclistData.withdrawals.map(w => normalizeNameDiacritics(w.rider)));
     
     function strikethroughWithdrawnRiders(element) {
         if (element.nodeType === Node.TEXT_NODE) {
@@ -1518,7 +1518,7 @@ function applyWithdrawnRiderStyles() {
             const newFragment = document.createDocumentFragment();
             
             parts.forEach(part => {
-                if (withdrawnRiders.has(convertNameFormat(part.trim()))) {
+                if (withdrawnRiders.has(normalizeNameDiacritics(part.trim()))) {
                     const span = document.createElement('span');
                     span.style.textDecoration = 'line-through';
                     span.textContent = part;
@@ -1530,7 +1530,7 @@ function applyWithdrawnRiderStyles() {
             
             parent.replaceChild(newFragment, element);
         } else if (element.nodeType === Node.ELEMENT_NODE) {
-            if (element.tagName === 'A' && withdrawnRiders.has(convertNameFormat(element.textContent.trim()))) {
+            if (element.tagName === 'A' && withdrawnRiders.has(normalizeNameDiacritics(element.textContent.trim()))) {
                 element.style.textDecoration = 'line-through';
             }
             Array.from(element.childNodes).forEach(strikethroughWithdrawnRiders);
@@ -2747,4 +2747,12 @@ function updateBestRoleSelections() {
         const bestRoleSelectionsComponent = createBestRoleSelectionsComponent(leagueData, cyclistData);
         container.appendChild(bestRoleSelectionsComponent);
     }
+}
+function normalizeNameDiacritics(name) {
+    // Decompose the name into its base characters and combining marks
+    const decomposed = name.normalize('NFD');
+    // Remove the combining marks
+    const normalized = decomposed.replace(/[\u0300-\u036f]/g, '');
+    // Convert to lowercase for case-insensitive comparison
+    return normalized.toLowerCase();
 }

@@ -800,29 +800,34 @@ function displayDreamTeam(dreamTeam) {
 
 
 function createTrajectoryChart(cyclists) {
-    const traces = cyclists.map((cyclist, index) => ({
-        x: cyclist.pointHistory.map(h => h.date.split('T')[0]),
-        y: cyclist.pointHistory.map(h => h.points),
-        type: 'scatter',
-        mode: 'lines+markers',
-        name: cyclist.name,
-        line: { 
-            width: 2,
-            color: customColorScheme[index % customColorScheme.length]
-        },
-        marker: { 
-            size: 6,
-            color: customColorScheme[index % customColorScheme.length]
-        },
-        hoverinfo: 'text',
-        text: cyclist.pointHistory.map(h => 
-            `${cyclist.name}<br>` +
-            `Role: ${cyclist.role}<br>` +
-            `Date: ${h.date.split('T')[0]}<br>` +
-            `Points: ${h.points}`
-        ),
-        showlegend: false
-    }));
+    const traces = cyclists.map((cyclist, index) => {
+        const normalizedName = normalizeNameDiacritics(cyclist.name);
+        const isWithdrawn = cyclistData.withdrawals.some(w => normalizeNameDiacritics(w.rider) === normalizedName);
+        return {
+            x: cyclist.pointHistory.map(h => h.date.split('T')[0]),
+            y: cyclist.pointHistory.map(h => h.points),
+            type: 'scatter',
+            mode: 'lines+markers',
+            name: isWithdrawn ? `<span style="text-decoration:line-through;">${cyclist.name}</span>` : cyclist.name,
+            line: { 
+                width: 2,
+                color: customColorScheme[index % customColorScheme.length]
+            },
+            marker: { 
+                size: 6,
+                color: customColorScheme[index % customColorScheme.length]
+            },
+            hoverinfo: 'text',
+            text: cyclist.pointHistory.map(h => 
+                `${cyclist.name}${isWithdrawn ? ' (Withdrawn)' : ''}<br>` +
+                `Role: ${cyclist.role}<br>` +
+                `Date: ${h.date.split('T')[0]}<br>` +
+                `Points: ${h.points}`
+            ),
+            showlegend: false
+        };
+    });
+
 
     // Get the min and max dates from all cyclists
     const allDates = cyclists.flatMap(cyclist => cyclist.pointHistory.map(h => new Date(h.date.split('T')[0])));
@@ -869,6 +874,9 @@ function createCustomLegend(cyclists) {
     legendContainer.innerHTML = ''; // Clear existing legend items
 
     cyclists.forEach((cyclist, index) => {
+        const normalizedName = normalizeNameDiacritics(cyclist.name);
+        const isWithdrawn = cyclistData.withdrawals.some(w => normalizeNameDiacritics(w.rider) === normalizedName);
+        
         const legendItem = document.createElement('div');
         legendItem.className = 'legend-item';
         const colorBox = document.createElement('div');
@@ -876,6 +884,9 @@ function createCustomLegend(cyclists) {
         colorBox.style.backgroundColor = customColorScheme[index % customColorScheme.length];
         const nameSpan = document.createElement('span');
         nameSpan.textContent = cyclist.name;
+        if (isWithdrawn) {
+            nameSpan.style.textDecoration = 'line-through';
+        }
         legendItem.appendChild(colorBox);
         legendItem.appendChild(nameSpan);
         legendContainer.appendChild(legendItem);
@@ -938,7 +949,9 @@ function updateTrajectoryChart(selectedRider = null) {
     } else if (selectedOption === 'all') {
         filteredCyclists = cyclistData.cyclists;
     } else {
-        filteredCyclists = cyclistData.cyclists.filter(c => c.name === selectedOption);
+        filteredCyclists = cyclistData.cyclists.filter(c => 
+            normalizeNameDiacritics(c.name) === normalizeNameDiacritics(selectedOption)
+        );
     }
 
     createTrajectoryChart(filteredCyclists);

@@ -1507,75 +1507,30 @@ function convertNameFormat(name) {
     // Capitalize the first letter of each part
     return parts.map(part => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()).join(' ');
 }
-
-
-function calculateStringSimilarity(str1, str2) {
-    const longer = str1.length > str2.length ? str1 : str2;
-    const shorter = str1.length > str2.length ? str2 : str1;
-    const longerLength = longer.length;
-    if (longerLength === 0) {
-        return 1.0;
-    }
-    return (longerLength - editDistance(longer, shorter)) / parseFloat(longerLength);
-}
-
-function editDistance(s1, s2) {
-    s1 = s1.toLowerCase();
-    s2 = s2.toLowerCase();
-    const costs = new Array();
-    for (let i = 0; i <= s1.length; i++) {
-        let lastValue = i;
-        for (let j = 0; j <= s2.length; j++) {
-            if (i == 0) {
-                costs[j] = j;
-            } else {
-                if (j > 0) {
-                    let newValue = costs[j - 1];
-                    if (s1.charAt(i - 1) != s2.charAt(j - 1)) {
-                        newValue = Math.min(Math.min(newValue, lastValue), costs[j]) + 1;
-                    }
-                    costs[j - 1] = lastValue;
-                    lastValue = newValue;
-                }
-            }
-        }
-        if (i > 0) {
-            costs[s2.length] = lastValue;
-        }
-    }
-    return costs[s2.length];
-}
-
 function applyWithdrawnRiderStyles() {
-    const withdrawnRiders = cyclistData.withdrawals.map(w => convertNameFormat(w.rider));
-    
-    function isWithdrawn(name) {
-        return withdrawnRiders.some(withdrawnName => 
-            calculateStringSimilarity(convertNameFormat(name), withdrawnName) >= 0.8
-        );
-    }
+    const withdrawnRiders = new Set(cyclistData.withdrawals.map(w => convertNameFormat(w.rider)));
     
     function strikethroughWithdrawnRiders(element) {
         if (element.nodeType === Node.TEXT_NODE) {
             const parent = element.parentNode;
             const text = element.textContent;
-            const words = text.split(/\s+/);
+            const parts = text.split(/\b/);
             const newFragment = document.createDocumentFragment();
             
-            words.forEach(word => {
-                if (isWithdrawn(word)) {
+            parts.forEach(part => {
+                if (withdrawnRiders.has(convertNameFormat(part.trim()))) {
                     const span = document.createElement('span');
                     span.style.textDecoration = 'line-through';
-                    span.textContent = word + ' ';
+                    span.textContent = part;
                     newFragment.appendChild(span);
                 } else {
-                    newFragment.appendChild(document.createTextNode(word + ' '));
+                    newFragment.appendChild(document.createTextNode(part));
                 }
             });
             
             parent.replaceChild(newFragment, element);
         } else if (element.nodeType === Node.ELEMENT_NODE) {
-            if (element.tagName === 'A' && isWithdrawn(element.textContent.trim())) {
+            if (element.tagName === 'A' && withdrawnRiders.has(convertNameFormat(element.textContent.trim()))) {
                 element.style.textDecoration = 'line-through';
             }
             Array.from(element.childNodes).forEach(strikethroughWithdrawnRiders);

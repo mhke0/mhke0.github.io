@@ -2749,10 +2749,13 @@ function updateBestRoleSelections() {
     }
 }
 function normalizeNameDiacritics(name) {
-    // Decompose the name into its base characters and combining marks
-    const decomposed = name.normalize('NFD');
-    // Remove the combining marks
+    // First, handle the tilde separately
+    const withoutTilde = name.replace(/ñ/gi, 'n').replace(/Ñ/gi, 'N');
+    
+    // Then proceed with the general diacritic removal
+    const decomposed = withoutTilde.normalize('NFD');
     const normalized = decomposed.replace(/[\u0300-\u036f]/g, '');
+    
     // Convert to lowercase for case-insensitive comparison
     return normalized.toLowerCase();
 }

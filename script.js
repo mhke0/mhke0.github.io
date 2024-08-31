@@ -215,8 +215,9 @@ function updateLeagueTeamRosterChart() {
     if (!team) return;
 
     const rosterData = team.roster.map(riderName => {
-        const rider = cyclistData.cyclists.find(c => c.name === riderName);
-        const isWithdrawn = cyclistData.withdrawals.some(w => convertNameFormat(w.rider) === riderName);
+        const normalizedRiderName = normalizeNameDiacritics(riderName);
+        const rider = cyclistData.cyclists.find(c => normalizeNameDiacritics(c.name) === normalizedRiderName);
+        const isWithdrawn = cyclistData.withdrawals.some(w => normalizeNameDiacritics(w.rider) === normalizedRiderName);
         return {
             name: riderName,
             points: rider ? rider.points : 0,
@@ -224,6 +225,7 @@ function updateLeagueTeamRosterChart() {
             isWithdrawn: isWithdrawn
         };
     }).sort((a, b) => b.points - a.points);
+
 
     // Create the overall roster points chart
     const trace = {
@@ -2511,36 +2513,39 @@ function calculateDailyPoints(rosterNames) {
     const dailyPoints = {};
     
     rosterNames.forEach(riderName => {
-        const rider = cyclistData.cyclists.find(c => c.name === riderName);
+        const normalizedRiderName = normalizeNameDiacritics(riderName);
+        const rider = cyclistData.cyclists.find(c => normalizeNameDiacritics(c.name) === normalizedRiderName);
         if (rider && rider.pointHistory) {
             rider.pointHistory.forEach(history => {
                 const date = history.date.split('T')[0];
                 if (!dailyPoints[date]) {
                     dailyPoints[date] = {};
                 }
-                dailyPoints[date][riderName] = history.points;
+                dailyPoints[date][normalizedRiderName] = history.points;
             });
         }
     });
 
     return dailyPoints;
 }
+
 function createDailyPointsChart(dailyPoints, teamName) {
     const dates = Object.keys(dailyPoints).sort();
     const riders = Object.keys(dailyPoints[dates[0]]);
 
     const traces = riders.map((rider, index) => {
-        const isWithdrawn = cyclistData.withdrawals.some(w => convertNameFormat(w.rider) === rider);
+        const originalRiderName = cyclistData.cyclists.find(c => normalizeNameDiacritics(c.name) === rider)?.name || rider;
+        const isWithdrawn = cyclistData.withdrawals.some(w => normalizeNameDiacritics(w.rider) === rider);
         return {
             x: dates,
             y: dates.map(date => dailyPoints[date][rider] || 0),
             type: 'scatter',
             mode: 'lines+markers',
-            name: isWithdrawn ? `<span style="text-decoration:line-through;">${rider}</span>` : rider,
+            name: isWithdrawn ? `<span style="text-decoration:line-through;">${originalRiderName}</span>` : originalRiderName,
             legendgroup: `group${Math.floor(index / 3)}`,
             hoverinfo: 'text',
             hovertext: dates.map(date => 
-                `${rider}${isWithdrawn ? ' (Withdrawn)' : ''}<br>Date: ${date}<br>Points: ${dailyPoints[date][rider] || 0}`
+                `${originalRiderName}${isWithdrawn ? ' (Withdrawn)' : ''}<br>Date: ${date}<br>Points: ${dailyPoints[date][rider] || 0}`
             )
         };
     });

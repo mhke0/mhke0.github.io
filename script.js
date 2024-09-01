@@ -1653,7 +1653,7 @@ function generateNewsContent() {
     }
     newsHtml += '</div>';
     
-    newsHtml += '<div class="news-section news-achievements">';
+    newsHtml += '<div class="rider-day">';
     // Random Rider of the Day
     const riderOfTheDay = getRandomRiderOfTheDay(cyclistData.cyclists);
     if (riderOfTheDay) {

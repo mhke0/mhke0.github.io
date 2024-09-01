@@ -598,7 +598,7 @@ tr:nth-child(odd) {
     color: var(--primary-color);
     border-bottom: 2px solid var(--primary-color);
     padding-bottom: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 0px;
 }
 
 #News h3 {

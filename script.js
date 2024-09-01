@@ -1630,7 +1630,7 @@ function generateNewsContent() {
 
     newsHtml += '</div>'; // Close news-row
 
-    // Most Recent MVP and MIP
+    // Most Recent MVP, MIP, and Rider of the Day
     newsHtml += '<div class="news-section news-achievements">';
     let achievementDate = 'N/A';
     if (cyclistData && cyclistData.mip_history && cyclistData.mip_history.length > 0) {
@@ -1638,14 +1638,33 @@ function generateNewsContent() {
         achievementDate = new Date(mip.date).toDateString();
     }
     newsHtml += `<h3>Recent Achievements <span class="news-date">(${achievementDate})</span></h3>`;
+    
+    // MVP
     if (cyclistData && cyclistData.mvp_history && cyclistData.mvp_history.length > 0) {
         const mvp = cyclistData.mvp_history[cyclistData.mvp_history.length - 1];
         newsHtml += `<p><span class="achievement-name">MVP: <a href="#" class="rider-link" data-rider="${mvp.name}">${mvp.name}</a></span><span class="achievement-value">${mvp.points_added.toFixed(2)} points added</span></p>`;
     }
+    
+    // MIP
     if (cyclistData && cyclistData.mip_history && cyclistData.mip_history.length > 0) {
         const mip = cyclistData.mip_history[cyclistData.mip_history.length - 1];
         newsHtml += `<p><span class="achievement-name">MIP: <a href="#" class="rider-link" data-rider="${mip.name}">${mip.name}</a></span><span class="achievement-value">${mip.percentage_increase.toFixed(2)}% increase</span></p>`;
     }
+    
+    // Random Rider of the Day
+    const riderOfTheDay = getRandomRiderOfTheDay(cyclistData.cyclists);
+    if (riderOfTheDay) {
+        newsHtml += `
+            <p>
+                <span class="achievement-name">Rider of the Day: 
+                    <a href="#" class="rider-link" data-rider="${riderOfTheDay.name}">${riderOfTheDay.name}</a>
+                </span>
+                <span class="achievement-value">${riderOfTheDay.points} points</span>
+            </p>
+            <p class="rider-details">Team: ${riderOfTheDay.team} | Role: ${riderOfTheDay.role}</p>
+        `;
+    }
+    
     newsHtml += '</div>';
 
      // Add Withdrawals section
@@ -2776,4 +2795,9 @@ function normalizeNameDiacritics(name) {
     
     // Convert to lowercase for case-insensitive comparison
     return normalized.toLowerCase();
+}
+function getRandomRiderOfTheDay(cyclists) {
+    const activeRiders = cyclists.filter(rider => rider.points > 0);
+    const randomIndex = Math.floor(Math.random() * activeRiders.length);
+    return activeRiders[randomIndex];
 }

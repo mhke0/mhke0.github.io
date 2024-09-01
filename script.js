@@ -1657,11 +1657,12 @@ function generateNewsContent() {
     newsHtml += '<div class="news-column">';
     newsHtml += '<div class="news-section news-achievements">';
     // Random Rider of the Day
+    newsHtml += `<h3>Random Rider of the Moment</span></h3>`;
     const riderOfTheDay = getRandomRiderOfTheDay(cyclistData.cyclists);
     if (riderOfTheDay) {
         newsHtml += `
             <p>
-                <span class="achievement-name">Rider of the Day: 
+                <span class="achievement-name">
                     <a href="#" class="rider-link" data-rider="${riderOfTheDay.name}">${riderOfTheDay.name}</a>
                 </span>
                 <span class="achievement-value">${riderOfTheDay.points} points</span>

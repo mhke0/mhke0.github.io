@@ -6,8 +6,8 @@
       "role": "All Rounder",
       "cost": 24.0,
       "ownership": 38.1,
-      "points": 1113.0,
-      "cost_per_point": 0.0215633423180593,
+      "points": 1277.0,
+      "cost_per_point": 0.018794048551292093,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -48,6 +48,10 @@
         {
           "date": "2024-08-31",
           "points": 1113.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 1277.0
         }
       ],
       "isWithdrawn": false
@@ -58,8 +62,8 @@
       "role": "Climber",
       "cost": 20.0,
       "ownership": 28.6,
-      "points": 234.0,
-      "cost_per_point": 0.08547008547008547,
+      "points": 323.0,
+      "cost_per_point": 0.06191950464396285,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -100,6 +104,10 @@
         {
           "date": "2024-08-31",
           "points": 234.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 323.0
         }
       ],
       "isWithdrawn": false
@@ -152,6 +160,10 @@
         {
           "date": "2024-08-31",
           "points": 406.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 406.0
         }
       ],
       "isWithdrawn": true
@@ -162,8 +174,8 @@
       "role": "All Rounder",
       "cost": 20.0,
       "ownership": 29.7,
-      "points": 548.0,
-      "cost_per_point": 0.0364963503649635,
+      "points": 605.0,
+      "cost_per_point": 0.03305785123966942,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -204,6 +216,10 @@
         {
           "date": "2024-08-31",
           "points": 548.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 605.0
         }
       ],
       "isWithdrawn": false
@@ -214,8 +230,8 @@
       "role": "Sprinter",
       "cost": 18.0,
       "ownership": 53.5,
-      "points": 1952.0,
-      "cost_per_point": 0.009221311475409836,
+      "points": 1976.0,
+      "cost_per_point": 0.009109311740890687,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -256,6 +272,10 @@
         {
           "date": "2024-08-31",
           "points": 1952.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 1976.0
         }
       ],
       "isWithdrawn": false
@@ -266,8 +286,8 @@
       "role": "Climber",
       "cost": 16.0,
       "ownership": 8.9,
-      "points": 649.0,
-      "cost_per_point": 0.02465331278890601,
+      "points": 826.0,
+      "cost_per_point": 0.01937046004842615,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -308,6 +328,10 @@
         {
           "date": "2024-08-31",
           "points": 649.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 826.0
         }
       ],
       "isWithdrawn": false
@@ -318,8 +342,8 @@
       "role": "All Rounder",
       "cost": 14.0,
       "ownership": 23.4,
-      "points": 326.0,
-      "cost_per_point": 0.04294478527607362,
+      "points": 364.0,
+      "cost_per_point": 0.038461538461538464,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -360,6 +384,10 @@
         {
           "date": "2024-08-31",
           "points": 326.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 364.0
         }
       ],
       "isWithdrawn": false
@@ -370,8 +398,8 @@
       "role": "All Rounder",
       "cost": 14.0,
       "ownership": 12.0,
-      "points": 104.0,
-      "cost_per_point": 0.1346153846153846,
+      "points": 136.0,
+      "cost_per_point": 0.10294117647058823,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -412,6 +440,10 @@
         {
           "date": "2024-08-31",
           "points": 104.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 136.0
         }
       ],
       "isWithdrawn": false
@@ -422,8 +454,8 @@
       "role": "Climber",
       "cost": 14.0,
       "ownership": 26.0,
-      "points": 567.0,
-      "cost_per_point": 0.024691358024691357,
+      "points": 653.0,
+      "cost_per_point": 0.021439509954058193,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -464,6 +496,10 @@
         {
           "date": "2024-08-31",
           "points": 567.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 653.0
         }
       ],
       "isWithdrawn": false
@@ -474,8 +510,8 @@
       "role": "Sprinter",
       "cost": 12.0,
       "ownership": 24.5,
-      "points": 972.0,
-      "cost_per_point": 0.012345679012345678,
+      "points": 980.0,
+      "cost_per_point": 0.012244897959183673,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -516,6 +552,10 @@
         {
           "date": "2024-08-31",
           "points": 972.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 980.0
         }
       ],
       "isWithdrawn": false
@@ -526,8 +566,8 @@
       "role": "Climber",
       "cost": 12.0,
       "ownership": 44.2,
-      "points": 428.0,
-      "cost_per_point": 0.028037383177570093,
+      "points": 541.0,
+      "cost_per_point": 0.022181146025878003,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -568,6 +608,10 @@
         {
           "date": "2024-08-31",
           "points": 428.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 541.0
         }
       ],
       "isWithdrawn": false
@@ -578,8 +622,8 @@
       "role": "All Rounder",
       "cost": 12.0,
       "ownership": 25.2,
-      "points": 423.0,
-      "cost_per_point": 0.028368794326241134,
+      "points": 550.0,
+      "cost_per_point": 0.02181818181818182,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -620,6 +664,10 @@
         {
           "date": "2024-08-31",
           "points": 423.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 550.0
         }
       ],
       "isWithdrawn": false
@@ -672,9 +720,13 @@
         {
           "date": "2024-08-31",
           "points": 56.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 56.0
         }
       ],
-      "isWithdrawn": false
+      "isWithdrawn": true
     },
     {
       "name": "Isaac Del Toro",
@@ -682,8 +734,8 @@
       "role": "Climber",
       "cost": 12.0,
       "ownership": 14.9,
-      "points": 244.0,
-      "cost_per_point": 0.04918032786885246,
+      "points": 254.0,
+      "cost_per_point": 0.047244094488188976,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -724,6 +776,10 @@
         {
           "date": "2024-08-31",
           "points": 244.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 254.0
         }
       ],
       "isWithdrawn": false
@@ -775,6 +831,10 @@
         },
         {
           "date": "2024-08-31",
+          "points": 373.0
+        },
+        {
+          "date": "2024-09-01",
           "points": 373.0
         }
       ],
@@ -828,6 +888,10 @@
         {
           "date": "2024-08-31",
           "points": 250.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 250.0
         }
       ],
       "isWithdrawn": true
@@ -838,8 +902,8 @@
       "role": "Climber",
       "cost": 10.0,
       "ownership": 5.4,
-      "points": 561.0,
-      "cost_per_point": 0.017825311942959002,
+      "points": 571.0,
+      "cost_per_point": 0.017513134851138354,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -880,6 +944,10 @@
         {
           "date": "2024-08-31",
           "points": 561.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 571.0
         }
       ],
       "isWithdrawn": false
@@ -890,8 +958,8 @@
       "role": "Climber",
       "cost": 10.0,
       "ownership": 15.7,
-      "points": 814.0,
-      "cost_per_point": 0.012285012285012284,
+      "points": 896.0,
+      "cost_per_point": 0.011160714285714286,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -932,6 +1000,10 @@
         {
           "date": "2024-08-31",
           "points": 814.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 896.0
         }
       ],
       "isWithdrawn": false
@@ -983,6 +1055,10 @@
         },
         {
           "date": "2024-08-31",
+          "points": 0.0
+        },
+        {
+          "date": "2024-09-01",
           "points": 0.0
         }
       ],
@@ -1036,6 +1112,10 @@
         {
           "date": "2024-08-31",
           "points": 496.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 496.0
         }
       ],
       "isWithdrawn": false
@@ -1087,6 +1167,10 @@
         },
         {
           "date": "2024-08-31",
+          "points": 16.0
+        },
+        {
+          "date": "2024-09-01",
           "points": 16.0
         }
       ],
@@ -1140,6 +1224,10 @@
         {
           "date": "2024-08-31",
           "points": 16.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 16.0
         }
       ],
       "isWithdrawn": false
@@ -1192,6 +1280,10 @@
         {
           "date": "2024-08-31",
           "points": 538.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 538.0
         }
       ],
       "isWithdrawn": true
@@ -1202,8 +1294,8 @@
       "role": "All Rounder",
       "cost": 10.0,
       "ownership": 3.0,
-      "points": 336.0,
-      "cost_per_point": 0.02976190476190476,
+      "points": 599.0,
+      "cost_per_point": 0.01669449081803005,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -1244,6 +1336,10 @@
         {
           "date": "2024-08-31",
           "points": 336.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 599.0
         }
       ],
       "isWithdrawn": false
@@ -1254,8 +1350,8 @@
       "role": "Climber",
       "cost": 10.0,
       "ownership": 4.5,
-      "points": 468.0,
-      "cost_per_point": 0.021367521367521368,
+      "points": 474.0,
+      "cost_per_point": 0.02109704641350211,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -1296,6 +1392,10 @@
         {
           "date": "2024-08-31",
           "points": 468.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 474.0
         }
       ],
       "isWithdrawn": false
@@ -1306,8 +1406,8 @@
       "role": "All Rounder",
       "cost": 10.0,
       "ownership": 4.3,
-      "points": 574.0,
-      "cost_per_point": 0.017421602787456445,
+      "points": 584.0,
+      "cost_per_point": 0.017123287671232876,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -1348,6 +1448,10 @@
         {
           "date": "2024-08-31",
           "points": 574.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 584.0
         }
       ],
       "isWithdrawn": false
@@ -1358,8 +1462,8 @@
       "role": "All Rounder",
       "cost": 10.0,
       "ownership": 3.0,
-      "points": 376.0,
-      "cost_per_point": 0.026595744680851064,
+      "points": 452.0,
+      "cost_per_point": 0.022123893805309734,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -1400,6 +1504,10 @@
         {
           "date": "2024-08-31",
           "points": 376.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 452.0
         }
       ],
       "isWithdrawn": false
@@ -1451,6 +1559,10 @@
         },
         {
           "date": "2024-08-31",
+          "points": 20.0
+        },
+        {
+          "date": "2024-09-01",
           "points": 20.0
         }
       ],
@@ -1504,6 +1616,10 @@
         {
           "date": "2024-08-31",
           "points": 0.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 0.0
         }
       ],
       "isWithdrawn": true
@@ -1514,8 +1630,8 @@
       "role": "Climber",
       "cost": 8.0,
       "ownership": 1.6,
-      "points": 125.0,
-      "cost_per_point": 0.064,
+      "points": 130.0,
+      "cost_per_point": 0.06153846153846154,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -1556,6 +1672,10 @@
         {
           "date": "2024-08-31",
           "points": 125.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 130.0
         }
       ],
       "isWithdrawn": false
@@ -1566,8 +1686,8 @@
       "role": "Unclassed",
       "cost": 8.0,
       "ownership": 6.6,
-      "points": 128.0,
-      "cost_per_point": 0.0625,
+      "points": 138.0,
+      "cost_per_point": 0.057971014492753624,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -1608,6 +1728,10 @@
         {
           "date": "2024-08-31",
           "points": 128.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 138.0
         }
       ],
       "isWithdrawn": false
@@ -1618,8 +1742,8 @@
       "role": "Climber",
       "cost": 8.0,
       "ownership": 5.8,
-      "points": 128.0,
-      "cost_per_point": 0.0625,
+      "points": 158.0,
+      "cost_per_point": 0.05063291139240506,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -1660,6 +1784,10 @@
         {
           "date": "2024-08-31",
           "points": 128.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 158.0
         }
       ],
       "isWithdrawn": false
@@ -1670,8 +1798,8 @@
       "role": "Climber",
       "cost": 8.0,
       "ownership": 4.7,
-      "points": 353.0,
-      "cost_per_point": 0.0226628895184136,
+      "points": 427.0,
+      "cost_per_point": 0.01873536299765808,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -1712,6 +1840,10 @@
         {
           "date": "2024-08-31",
           "points": 353.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 427.0
         }
       ],
       "isWithdrawn": false
@@ -1763,6 +1895,10 @@
         },
         {
           "date": "2024-08-31",
+          "points": 141.0
+        },
+        {
+          "date": "2024-09-01",
           "points": 141.0
         }
       ],
@@ -1816,6 +1952,10 @@
         {
           "date": "2024-08-31",
           "points": 169.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 169.0
         }
       ],
       "isWithdrawn": false
@@ -1867,6 +2007,10 @@
         },
         {
           "date": "2024-08-31",
+          "points": 567.0
+        },
+        {
+          "date": "2024-09-01",
           "points": 567.0
         }
       ],
@@ -1920,6 +2064,10 @@
         {
           "date": "2024-08-31",
           "points": 300.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 300.0
         }
       ],
       "isWithdrawn": false
@@ -1972,6 +2120,10 @@
         {
           "date": "2024-08-31",
           "points": 56.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 56.0
         }
       ],
       "isWithdrawn": true
@@ -1982,8 +2134,8 @@
       "role": "Unclassed",
       "cost": 8.0,
       "ownership": 15.4,
-      "points": 38.0,
-      "cost_per_point": 0.21052631578947367,
+      "points": 60.0,
+      "cost_per_point": 0.13333333333333333,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -2024,6 +2176,10 @@
         {
           "date": "2024-08-31",
           "points": 38.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 60.0
         }
       ],
       "isWithdrawn": false
@@ -2034,8 +2190,8 @@
       "role": "Climber",
       "cost": 8.0,
       "ownership": 3.5,
-      "points": 18.0,
-      "cost_per_point": 0.4444444444444444,
+      "points": 20.0,
+      "cost_per_point": 0.4,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -2076,6 +2232,10 @@
         {
           "date": "2024-08-31",
           "points": 18.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 20.0
         }
       ],
       "isWithdrawn": false
@@ -2086,8 +2246,8 @@
       "role": "Climber",
       "cost": 8.0,
       "ownership": 2.9,
-      "points": 30.0,
-      "cost_per_point": 0.26666666666666666,
+      "points": 32.0,
+      "cost_per_point": 0.25,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -2128,6 +2288,10 @@
         {
           "date": "2024-08-31",
           "points": 30.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 32.0
         }
       ],
       "isWithdrawn": false
@@ -2138,8 +2302,8 @@
       "role": "Unclassed",
       "cost": 8.0,
       "ownership": 9.1,
-      "points": 73.0,
-      "cost_per_point": 0.1095890410958904,
+      "points": 75.0,
+      "cost_per_point": 0.10666666666666667,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -2180,9 +2344,13 @@
         {
           "date": "2024-08-31",
           "points": 73.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 75.0
         }
       ],
-      "isWithdrawn": false
+      "isWithdrawn": true
     },
     {
       "name": "Florian Lipowitz",
@@ -2190,8 +2358,8 @@
       "role": "Climber",
       "cost": 8.0,
       "ownership": 4.3,
-      "points": 636.0,
-      "cost_per_point": 0.012578616352201259,
+      "points": 703.0,
+      "cost_per_point": 0.011379800853485065,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -2232,6 +2400,10 @@
         {
           "date": "2024-08-31",
           "points": 636.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 703.0
         }
       ],
       "isWithdrawn": false
@@ -2284,6 +2456,10 @@
         {
           "date": "2024-08-31",
           "points": 271.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 271.0
         }
       ],
       "isWithdrawn": false
@@ -2294,8 +2470,8 @@
       "role": "Sprinter",
       "cost": 8.0,
       "ownership": 4.8,
-      "points": 514.0,
-      "cost_per_point": 0.01556420233463035,
+      "points": 516.0,
+      "cost_per_point": 0.015503875968992248,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -2336,6 +2512,10 @@
         {
           "date": "2024-08-31",
           "points": 514.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 516.0
         }
       ],
       "isWithdrawn": false
@@ -2388,6 +2568,10 @@
         {
           "date": "2024-08-31",
           "points": 548.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 548.0
         }
       ],
       "isWithdrawn": false
@@ -2398,8 +2582,8 @@
       "role": "Climber",
       "cost": 8.0,
       "ownership": 1.4,
-      "points": 422.0,
-      "cost_per_point": 0.018957345971563982,
+      "points": 671.0,
+      "cost_per_point": 0.011922503725782414,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -2440,6 +2624,10 @@
         {
           "date": "2024-08-31",
           "points": 422.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 671.0
         }
       ],
       "isWithdrawn": false
@@ -2450,8 +2638,8 @@
       "role": "All Rounder",
       "cost": 8.0,
       "ownership": 3.9,
-      "points": 726.0,
-      "cost_per_point": 0.011019283746556474,
+      "points": 760.0,
+      "cost_per_point": 0.010526315789473684,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -2492,6 +2680,10 @@
         {
           "date": "2024-08-31",
           "points": 726.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 760.0
         }
       ],
       "isWithdrawn": false
@@ -2543,6 +2735,10 @@
         },
         {
           "date": "2024-08-31",
+          "points": 30.0
+        },
+        {
+          "date": "2024-09-01",
           "points": 30.0
         }
       ],
@@ -2596,6 +2792,10 @@
         {
           "date": "2024-08-31",
           "points": 342.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 342.0
         }
       ],
       "isWithdrawn": false
@@ -2647,6 +2847,10 @@
         },
         {
           "date": "2024-08-31",
+          "points": 126.0
+        },
+        {
+          "date": "2024-09-01",
           "points": 126.0
         }
       ],
@@ -2700,6 +2904,10 @@
         {
           "date": "2024-08-31",
           "points": 0.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 0.0
         }
       ],
       "isWithdrawn": true
@@ -2752,6 +2960,10 @@
         {
           "date": "2024-08-31",
           "points": 0.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 0.0
         }
       ],
       "isWithdrawn": false
@@ -2762,8 +2974,8 @@
       "role": "Climber",
       "cost": 6.0,
       "ownership": 0.9,
-      "points": 310.0,
-      "cost_per_point": 0.01935483870967742,
+      "points": 337.0,
+      "cost_per_point": 0.017804154302670624,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -2804,6 +3016,10 @@
         {
           "date": "2024-08-31",
           "points": 310.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 337.0
         }
       ],
       "isWithdrawn": false
@@ -2856,6 +3072,10 @@
         {
           "date": "2024-08-31",
           "points": 0.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 0.0
         }
       ],
       "isWithdrawn": false
@@ -2866,8 +3086,8 @@
       "role": "Climber",
       "cost": 6.0,
       "ownership": 5.1,
-      "points": 56.0,
-      "cost_per_point": 0.10714285714285714,
+      "points": 92.0,
+      "cost_per_point": 0.06521739130434782,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -2908,6 +3128,10 @@
         {
           "date": "2024-08-31",
           "points": 56.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 92.0
         }
       ],
       "isWithdrawn": true
@@ -2960,6 +3184,10 @@
         {
           "date": "2024-08-31",
           "points": 0.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 0.0
         }
       ],
       "isWithdrawn": true
@@ -2970,8 +3198,8 @@
       "role": "Unclassed",
       "cost": 6.0,
       "ownership": 4.2,
-      "points": 481.0,
-      "cost_per_point": 0.012474012474012475,
+      "points": 487.0,
+      "cost_per_point": 0.012320328542094456,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -3012,6 +3240,10 @@
         {
           "date": "2024-08-31",
           "points": 481.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 487.0
         }
       ],
       "isWithdrawn": false
@@ -3022,8 +3254,8 @@
       "role": "Climber",
       "cost": 6.0,
       "ownership": 1.9,
-      "points": 163.0,
-      "cost_per_point": 0.03680981595092025,
+      "points": 186.0,
+      "cost_per_point": 0.03225806451612903,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -3064,6 +3296,10 @@
         {
           "date": "2024-08-31",
           "points": 163.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 186.0
         }
       ],
       "isWithdrawn": false
@@ -3115,6 +3351,10 @@
         },
         {
           "date": "2024-08-31",
+          "points": 20.0
+        },
+        {
+          "date": "2024-09-01",
           "points": 20.0
         }
       ],
@@ -3168,6 +3408,10 @@
         {
           "date": "2024-08-31",
           "points": 0.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 0.0
         }
       ],
       "isWithdrawn": true
@@ -3220,6 +3464,10 @@
         {
           "date": "2024-08-31",
           "points": 20.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 20.0
         }
       ],
       "isWithdrawn": false
@@ -3230,8 +3478,8 @@
       "role": "All Rounder",
       "cost": 6.0,
       "ownership": 1.3,
-      "points": 135.0,
-      "cost_per_point": 0.044444444444444446,
+      "points": 157.0,
+      "cost_per_point": 0.03821656050955414,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -3272,6 +3520,10 @@
         {
           "date": "2024-08-31",
           "points": 135.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 157.0
         }
       ],
       "isWithdrawn": false
@@ -3282,8 +3534,8 @@
       "role": "Unclassed",
       "cost": 6.0,
       "ownership": 5.1,
-      "points": 285.0,
-      "cost_per_point": 0.021052631578947368,
+      "points": 321.0,
+      "cost_per_point": 0.018691588785046728,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -3324,6 +3576,10 @@
         {
           "date": "2024-08-31",
           "points": 285.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 321.0
         }
       ],
       "isWithdrawn": false
@@ -3334,8 +3590,8 @@
       "role": "Unclassed",
       "cost": 6.0,
       "ownership": 1.5,
-      "points": 320.0,
-      "cost_per_point": 0.01875,
+      "points": 330.0,
+      "cost_per_point": 0.01818181818181818,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -3376,6 +3632,10 @@
         {
           "date": "2024-08-31",
           "points": 320.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 330.0
         }
       ],
       "isWithdrawn": false
@@ -3386,8 +3646,8 @@
       "role": "Climber",
       "cost": 6.0,
       "ownership": 0.5,
-      "points": 128.0,
-      "cost_per_point": 0.046875,
+      "points": 138.0,
+      "cost_per_point": 0.043478260869565216,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -3428,6 +3688,10 @@
         {
           "date": "2024-08-31",
           "points": 128.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 138.0
         }
       ],
       "isWithdrawn": false
@@ -3438,8 +3702,8 @@
       "role": "Sprinter",
       "cost": 6.0,
       "ownership": 0.2,
-      "points": 128.0,
-      "cost_per_point": 0.046875,
+      "points": 138.0,
+      "cost_per_point": 0.043478260869565216,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -3480,6 +3744,10 @@
         {
           "date": "2024-08-31",
           "points": 128.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 138.0
         }
       ],
       "isWithdrawn": false
@@ -3531,6 +3799,10 @@
         },
         {
           "date": "2024-08-31",
+          "points": 8.0
+        },
+        {
+          "date": "2024-09-01",
           "points": 8.0
         }
       ],
@@ -3584,6 +3856,10 @@
         {
           "date": "2024-08-31",
           "points": 0.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 0.0
         }
       ],
       "isWithdrawn": true
@@ -3635,6 +3911,10 @@
         },
         {
           "date": "2024-08-31",
+          "points": 8.0
+        },
+        {
+          "date": "2024-09-01",
           "points": 8.0
         }
       ],
@@ -3688,6 +3968,10 @@
         {
           "date": "2024-08-31",
           "points": 28.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 28.0
         }
       ],
       "isWithdrawn": false
@@ -3739,6 +4023,10 @@
         },
         {
           "date": "2024-08-31",
+          "points": 28.0
+        },
+        {
+          "date": "2024-09-01",
           "points": 28.0
         }
       ],
@@ -3792,6 +4080,10 @@
         {
           "date": "2024-08-31",
           "points": 8.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 8.0
         }
       ],
       "isWithdrawn": false
@@ -3844,6 +4136,10 @@
         {
           "date": "2024-08-31",
           "points": 0.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 0.0
         }
       ],
       "isWithdrawn": true
@@ -3854,8 +4150,8 @@
       "role": "Unclassed",
       "cost": 6.0,
       "ownership": 3.7,
-      "points": 393.0,
-      "cost_per_point": 0.015267175572519083,
+      "points": 681.0,
+      "cost_per_point": 0.00881057268722467,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -3896,6 +4192,10 @@
         {
           "date": "2024-08-31",
           "points": 393.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 681.0
         }
       ],
       "isWithdrawn": false
@@ -3906,8 +4206,8 @@
       "role": "Sprinter",
       "cost": 6.0,
       "ownership": 0.2,
-      "points": 523.0,
-      "cost_per_point": 0.011472275334608031,
+      "points": 531.0,
+      "cost_per_point": 0.011299435028248588,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -3948,6 +4248,10 @@
         {
           "date": "2024-08-31",
           "points": 523.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 531.0
         }
       ],
       "isWithdrawn": false
@@ -3958,8 +4262,8 @@
       "role": "Sprinter",
       "cost": 6.0,
       "ownership": 0.2,
-      "points": 190.0,
-      "cost_per_point": 0.031578947368421054,
+      "points": 198.0,
+      "cost_per_point": 0.030303030303030304,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -4000,6 +4304,10 @@
         {
           "date": "2024-08-31",
           "points": 190.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 198.0
         }
       ],
       "isWithdrawn": false
@@ -4052,6 +4360,10 @@
         {
           "date": "2024-08-31",
           "points": 291.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 291.0
         }
       ],
       "isWithdrawn": true
@@ -4062,8 +4374,8 @@
       "role": "Unclassed",
       "cost": 6.0,
       "ownership": 2.3,
-      "points": 126.0,
-      "cost_per_point": 0.047619047619047616,
+      "points": 130.0,
+      "cost_per_point": 0.046153846153846156,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -4104,6 +4416,10 @@
         {
           "date": "2024-08-31",
           "points": 126.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 130.0
         }
       ],
       "isWithdrawn": false
@@ -4155,6 +4471,10 @@
         },
         {
           "date": "2024-08-31",
+          "points": 52.0
+        },
+        {
+          "date": "2024-09-01",
           "points": 52.0
         }
       ],
@@ -4208,6 +4528,10 @@
         {
           "date": "2024-08-31",
           "points": 132.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 132.0
         }
       ],
       "isWithdrawn": false
@@ -4259,6 +4583,10 @@
         },
         {
           "date": "2024-08-31",
+          "points": 93.0
+        },
+        {
+          "date": "2024-09-01",
           "points": 93.0
         }
       ],
@@ -4312,6 +4640,10 @@
         {
           "date": "2024-08-31",
           "points": 124.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 124.0
         }
       ],
       "isWithdrawn": false
@@ -4363,6 +4695,10 @@
         },
         {
           "date": "2024-08-31",
+          "points": 16.0
+        },
+        {
+          "date": "2024-09-01",
           "points": 16.0
         }
       ],
@@ -4416,6 +4752,10 @@
         {
           "date": "2024-08-31",
           "points": 4.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 4.0
         }
       ],
       "isWithdrawn": true
@@ -4426,8 +4766,8 @@
       "role": "Unclassed",
       "cost": 6.0,
       "ownership": 8.6,
-      "points": 645.0,
-      "cost_per_point": 0.009302325581395349,
+      "points": 678.0,
+      "cost_per_point": 0.008849557522123894,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -4468,6 +4808,10 @@
         {
           "date": "2024-08-31",
           "points": 645.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 678.0
         }
       ],
       "isWithdrawn": false
@@ -4478,8 +4822,8 @@
       "role": "Unclassed",
       "cost": 6.0,
       "ownership": 3.9,
-      "points": 366.0,
-      "cost_per_point": 0.01639344262295082,
+      "points": 386.0,
+      "cost_per_point": 0.015544041450777202,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -4520,6 +4864,10 @@
         {
           "date": "2024-08-31",
           "points": 366.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 386.0
         }
       ],
       "isWithdrawn": false
@@ -4571,6 +4919,10 @@
         },
         {
           "date": "2024-08-31",
+          "points": 39.0
+        },
+        {
+          "date": "2024-09-01",
           "points": 39.0
         }
       ],
@@ -4624,6 +4976,10 @@
         {
           "date": "2024-08-31",
           "points": 0.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 0.0
         }
       ],
       "isWithdrawn": true
@@ -4675,6 +5031,10 @@
         },
         {
           "date": "2024-08-31",
+          "points": 45.0
+        },
+        {
+          "date": "2024-09-01",
           "points": 45.0
         }
       ],
@@ -4728,6 +5088,10 @@
         {
           "date": "2024-08-31",
           "points": 86.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 86.0
         }
       ],
       "isWithdrawn": false
@@ -4738,8 +5102,8 @@
       "role": "Climber",
       "cost": 6.0,
       "ownership": 1.0,
-      "points": 100.0,
-      "cost_per_point": 0.06,
+      "points": 120.0,
+      "cost_per_point": 0.05,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -4780,6 +5144,10 @@
         {
           "date": "2024-08-31",
           "points": 100.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 120.0
         }
       ],
       "isWithdrawn": false
@@ -4831,6 +5199,10 @@
         },
         {
           "date": "2024-08-31",
+          "points": 50.0
+        },
+        {
+          "date": "2024-09-01",
           "points": 50.0
         }
       ],
@@ -4884,6 +5256,10 @@
         {
           "date": "2024-08-31",
           "points": 0.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 0.0
         }
       ],
       "isWithdrawn": true
@@ -4936,6 +5312,10 @@
         {
           "date": "2024-08-31",
           "points": 240.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 240.0
         }
       ],
       "isWithdrawn": false
@@ -4946,8 +5326,8 @@
       "role": "Climber",
       "cost": 6.0,
       "ownership": 2.0,
-      "points": 98.0,
-      "cost_per_point": 0.061224489795918366,
+      "points": 118.0,
+      "cost_per_point": 0.05084745762711865,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -4988,6 +5368,10 @@
         {
           "date": "2024-08-31",
           "points": 98.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 118.0
         }
       ],
       "isWithdrawn": false
@@ -5039,6 +5423,10 @@
         },
         {
           "date": "2024-08-31",
+          "points": 155.0
+        },
+        {
+          "date": "2024-09-01",
           "points": 155.0
         }
       ],
@@ -5092,6 +5480,10 @@
         {
           "date": "2024-08-31",
           "points": 0.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 0.0
         }
       ],
       "isWithdrawn": false
@@ -5102,8 +5494,8 @@
       "role": "Unclassed",
       "cost": 6.0,
       "ownership": 10.7,
-      "points": 362.0,
-      "cost_per_point": 0.016574585635359115,
+      "points": 403.0,
+      "cost_per_point": 0.01488833746898263,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -5144,6 +5536,10 @@
         {
           "date": "2024-08-31",
           "points": 362.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 403.0
         }
       ],
       "isWithdrawn": false
@@ -5154,8 +5550,8 @@
       "role": "Unclassed",
       "cost": 6.0,
       "ownership": 0.9,
-      "points": 261.0,
-      "cost_per_point": 0.022988505747126436,
+      "points": 292.0,
+      "cost_per_point": 0.02054794520547945,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -5196,6 +5592,10 @@
         {
           "date": "2024-08-31",
           "points": 261.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 292.0
         }
       ],
       "isWithdrawn": false
@@ -5206,8 +5606,8 @@
       "role": "Sprinter",
       "cost": 6.0,
       "ownership": 0.5,
-      "points": 16.0,
-      "cost_per_point": 0.375,
+      "points": 36.0,
+      "cost_per_point": 0.16666666666666666,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -5248,6 +5648,10 @@
         {
           "date": "2024-08-31",
           "points": 16.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 36.0
         }
       ],
       "isWithdrawn": false
@@ -5299,6 +5703,10 @@
         },
         {
           "date": "2024-08-31",
+          "points": 61.0
+        },
+        {
+          "date": "2024-09-01",
           "points": 61.0
         }
       ],
@@ -5352,6 +5760,10 @@
         {
           "date": "2024-08-31",
           "points": 243.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 243.0
         }
       ],
       "isWithdrawn": false
@@ -5403,6 +5815,10 @@
         },
         {
           "date": "2024-08-31",
+          "points": 664.0
+        },
+        {
+          "date": "2024-09-01",
           "points": 664.0
         }
       ],
@@ -5456,6 +5872,10 @@
         {
           "date": "2024-08-31",
           "points": 212.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 212.0
         }
       ],
       "isWithdrawn": false
@@ -5507,6 +5927,10 @@
         },
         {
           "date": "2024-08-31",
+          "points": 60.0
+        },
+        {
+          "date": "2024-09-01",
           "points": 60.0
         }
       ],
@@ -5560,6 +5984,10 @@
         {
           "date": "2024-08-31",
           "points": 4.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 4.0
         }
       ],
       "isWithdrawn": false
@@ -5570,8 +5998,8 @@
       "role": "Unclassed",
       "cost": 6.0,
       "ownership": 0.3,
-      "points": 24.0,
-      "cost_per_point": 0.25,
+      "points": 44.0,
+      "cost_per_point": 0.13636363636363635,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -5612,6 +6040,10 @@
         {
           "date": "2024-08-31",
           "points": 24.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 44.0
         }
       ],
       "isWithdrawn": false
@@ -5663,6 +6095,10 @@
         },
         {
           "date": "2024-08-31",
+          "points": 38.0
+        },
+        {
+          "date": "2024-09-01",
           "points": 38.0
         }
       ],
@@ -5716,6 +6152,10 @@
         {
           "date": "2024-08-31",
           "points": 155.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 155.0
         }
       ],
       "isWithdrawn": false
@@ -5768,6 +6208,10 @@
         {
           "date": "2024-08-31",
           "points": 4.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 4.0
         }
       ],
       "isWithdrawn": false
@@ -5778,8 +6222,8 @@
       "role": "Sprinter",
       "cost": 6.0,
       "ownership": 0.6,
-      "points": 181.0,
-      "cost_per_point": 0.03314917127071823,
+      "points": 183.0,
+      "cost_per_point": 0.03278688524590164,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -5820,6 +6264,10 @@
         {
           "date": "2024-08-31",
           "points": 181.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 183.0
         }
       ],
       "isWithdrawn": false
@@ -5830,8 +6278,8 @@
       "role": "Unclassed",
       "cost": 6.0,
       "ownership": 2.5,
-      "points": 119.0,
-      "cost_per_point": 0.05042016806722689,
+      "points": 121.0,
+      "cost_per_point": 0.049586776859504134,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -5872,6 +6320,10 @@
         {
           "date": "2024-08-31",
           "points": 119.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 121.0
         }
       ],
       "isWithdrawn": false
@@ -5882,8 +6334,8 @@
       "role": "Sprinter",
       "cost": 6.0,
       "ownership": 1.9,
-      "points": 164.0,
-      "cost_per_point": 0.036585365853658534,
+      "points": 176.0,
+      "cost_per_point": 0.03409090909090909,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -5924,6 +6376,10 @@
         {
           "date": "2024-08-31",
           "points": 164.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 176.0
         }
       ],
       "isWithdrawn": false
@@ -5934,8 +6390,8 @@
       "role": "Unclassed",
       "cost": 6.0,
       "ownership": 2.0,
-      "points": 104.0,
-      "cost_per_point": 0.057692307692307696,
+      "points": 116.0,
+      "cost_per_point": 0.05172413793103448,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -5976,6 +6432,10 @@
         {
           "date": "2024-08-31",
           "points": 104.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 116.0
         }
       ],
       "isWithdrawn": false
@@ -5986,8 +6446,8 @@
       "role": "Unclassed",
       "cost": 6.0,
       "ownership": 1.9,
-      "points": 132.0,
-      "cost_per_point": 0.045454545454545456,
+      "points": 144.0,
+      "cost_per_point": 0.041666666666666664,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -6028,6 +6488,10 @@
         {
           "date": "2024-08-31",
           "points": 132.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 144.0
         }
       ],
       "isWithdrawn": false
@@ -6038,8 +6502,8 @@
       "role": "Unclassed",
       "cost": 6.0,
       "ownership": 0.4,
-      "points": 104.0,
-      "cost_per_point": 0.057692307692307696,
+      "points": 116.0,
+      "cost_per_point": 0.05172413793103448,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -6080,6 +6544,10 @@
         {
           "date": "2024-08-31",
           "points": 104.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 116.0
         }
       ],
       "isWithdrawn": false
@@ -6131,6 +6599,10 @@
         },
         {
           "date": "2024-08-31",
+          "points": 130.0
+        },
+        {
+          "date": "2024-09-01",
           "points": 130.0
         }
       ],
@@ -6184,6 +6656,10 @@
         {
           "date": "2024-08-31",
           "points": 45.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 45.0
         }
       ],
       "isWithdrawn": false
@@ -6235,6 +6711,10 @@
         },
         {
           "date": "2024-08-31",
+          "points": 6.0
+        },
+        {
+          "date": "2024-09-01",
           "points": 6.0
         }
       ],
@@ -6288,6 +6768,10 @@
         {
           "date": "2024-08-31",
           "points": 205.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 205.0
         }
       ],
       "isWithdrawn": false
@@ -6339,6 +6823,10 @@
         },
         {
           "date": "2024-08-31",
+          "points": 2.0
+        },
+        {
+          "date": "2024-09-01",
           "points": 2.0
         }
       ],
@@ -6392,6 +6880,10 @@
         {
           "date": "2024-08-31",
           "points": 52.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 52.0
         }
       ],
       "isWithdrawn": false
@@ -6443,6 +6935,10 @@
         },
         {
           "date": "2024-08-31",
+          "points": 14.0
+        },
+        {
+          "date": "2024-09-01",
           "points": 14.0
         }
       ],
@@ -6496,6 +6992,10 @@
         {
           "date": "2024-08-31",
           "points": 318.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 318.0
         }
       ],
       "isWithdrawn": false
@@ -6548,6 +7048,10 @@
         {
           "date": "2024-08-31",
           "points": 12.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 12.0
         }
       ],
       "isWithdrawn": false
@@ -6558,8 +7062,8 @@
       "role": "All Rounder",
       "cost": 6.0,
       "ownership": 2.1,
-      "points": 346.0,
-      "cost_per_point": 0.017341040462427744,
+      "points": 382.0,
+      "cost_per_point": 0.015706806282722512,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -6600,6 +7104,10 @@
         {
           "date": "2024-08-31",
           "points": 346.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 382.0
         }
       ],
       "isWithdrawn": false
@@ -6651,6 +7159,10 @@
         },
         {
           "date": "2024-08-31",
+          "points": 67.0
+        },
+        {
+          "date": "2024-09-01",
           "points": 67.0
         }
       ],
@@ -6704,6 +7216,10 @@
         {
           "date": "2024-08-31",
           "points": 52.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 52.0
         }
       ],
       "isWithdrawn": true
@@ -6755,6 +7271,10 @@
         },
         {
           "date": "2024-08-31",
+          "points": 12.0
+        },
+        {
+          "date": "2024-09-01",
           "points": 12.0
         }
       ],
@@ -6808,6 +7328,10 @@
         {
           "date": "2024-08-31",
           "points": 189.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 189.0
         }
       ],
       "isWithdrawn": false
@@ -6859,6 +7383,10 @@
         },
         {
           "date": "2024-08-31",
+          "points": 226.0
+        },
+        {
+          "date": "2024-09-01",
           "points": 226.0
         }
       ],
@@ -6912,6 +7440,10 @@
         {
           "date": "2024-08-31",
           "points": 56.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 56.0
         }
       ],
       "isWithdrawn": false
@@ -6922,8 +7454,8 @@
       "role": "Unclassed",
       "cost": 6.0,
       "ownership": 3.3,
-      "points": 64.0,
-      "cost_per_point": 0.09375,
+      "points": 84.0,
+      "cost_per_point": 0.07142857142857142,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -6964,6 +7496,10 @@
         {
           "date": "2024-08-31",
           "points": 64.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 84.0
         }
       ],
       "isWithdrawn": false
@@ -6974,8 +7510,8 @@
       "role": "Climber",
       "cost": 6.0,
       "ownership": 1.5,
-      "points": 126.0,
-      "cost_per_point": 0.047619047619047616,
+      "points": 142.0,
+      "cost_per_point": 0.04225352112676056,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -7016,6 +7552,10 @@
         {
           "date": "2024-08-31",
           "points": 126.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 142.0
         }
       ],
       "isWithdrawn": false
@@ -7068,6 +7608,10 @@
         {
           "date": "2024-08-31",
           "points": 14.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 14.0
         }
       ],
       "isWithdrawn": true
@@ -7078,8 +7622,8 @@
       "role": "Unclassed",
       "cost": 6.0,
       "ownership": 2.1,
-      "points": 340.0,
-      "cost_per_point": 0.01764705882352941,
+      "points": 350.0,
+      "cost_per_point": 0.017142857142857144,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -7120,6 +7664,10 @@
         {
           "date": "2024-08-31",
           "points": 340.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 350.0
         }
       ],
       "isWithdrawn": false
@@ -7171,6 +7719,10 @@
         },
         {
           "date": "2024-08-31",
+          "points": 176.0
+        },
+        {
+          "date": "2024-09-01",
           "points": 176.0
         }
       ],
@@ -7224,6 +7776,10 @@
         {
           "date": "2024-08-31",
           "points": 34.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 34.0
         }
       ],
       "isWithdrawn": false
@@ -7275,6 +7831,10 @@
         },
         {
           "date": "2024-08-31",
+          "points": 26.0
+        },
+        {
+          "date": "2024-09-01",
           "points": 26.0
         }
       ],
@@ -7328,6 +7888,10 @@
         {
           "date": "2024-08-31",
           "points": 200.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 200.0
         }
       ],
       "isWithdrawn": false
@@ -7379,6 +7943,10 @@
         },
         {
           "date": "2024-08-31",
+          "points": 271.0
+        },
+        {
+          "date": "2024-09-01",
           "points": 271.0
         }
       ],
@@ -7432,6 +8000,10 @@
         {
           "date": "2024-08-31",
           "points": 0.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 0.0
         }
       ],
       "isWithdrawn": true
@@ -7483,6 +8055,10 @@
         },
         {
           "date": "2024-08-31",
+          "points": 124.0
+        },
+        {
+          "date": "2024-09-01",
           "points": 124.0
         }
       ],
@@ -7536,6 +8112,10 @@
         {
           "date": "2024-08-31",
           "points": 0.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 0.0
         }
       ],
       "isWithdrawn": false
@@ -7587,6 +8167,10 @@
         },
         {
           "date": "2024-08-31",
+          "points": 8.0
+        },
+        {
+          "date": "2024-09-01",
           "points": 8.0
         }
       ],
@@ -7640,6 +8224,10 @@
         {
           "date": "2024-08-31",
           "points": 160.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 160.0
         }
       ],
       "isWithdrawn": false
@@ -7691,6 +8279,10 @@
         },
         {
           "date": "2024-08-31",
+          "points": 0.0
+        },
+        {
+          "date": "2024-09-01",
           "points": 0.0
         }
       ],
@@ -7744,6 +8336,10 @@
         {
           "date": "2024-08-31",
           "points": 20.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 20.0
         }
       ],
       "isWithdrawn": false
@@ -7795,6 +8391,10 @@
         },
         {
           "date": "2024-08-31",
+          "points": 0.0
+        },
+        {
+          "date": "2024-09-01",
           "points": 0.0
         }
       ],
@@ -7848,6 +8448,10 @@
         {
           "date": "2024-08-31",
           "points": 0.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 0.0
         }
       ],
       "isWithdrawn": true
@@ -7899,6 +8503,10 @@
         },
         {
           "date": "2024-08-31",
+          "points": 0.0
+        },
+        {
+          "date": "2024-09-01",
           "points": 0.0
         }
       ],
@@ -7952,6 +8560,10 @@
         {
           "date": "2024-08-31",
           "points": 0.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 0.0
         }
       ],
       "isWithdrawn": false
@@ -8003,6 +8615,10 @@
         },
         {
           "date": "2024-08-31",
+          "points": 0.0
+        },
+        {
+          "date": "2024-09-01",
           "points": 0.0
         }
       ],
@@ -8056,6 +8672,10 @@
         {
           "date": "2024-08-31",
           "points": 40.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 40.0
         }
       ],
       "isWithdrawn": true
@@ -8108,6 +8728,10 @@
         {
           "date": "2024-08-31",
           "points": 20.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 20.0
         }
       ],
       "isWithdrawn": true
@@ -8118,8 +8742,8 @@
       "role": "Unclassed",
       "cost": 4.0,
       "ownership": 8.0,
-      "points": 242.0,
-      "cost_per_point": 0.01652892561983471,
+      "points": 250.0,
+      "cost_per_point": 0.016,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -8160,6 +8784,10 @@
         {
           "date": "2024-08-31",
           "points": 242.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 250.0
         }
       ],
       "isWithdrawn": false
@@ -8170,8 +8798,8 @@
       "role": "Unclassed",
       "cost": 4.0,
       "ownership": 2.4,
-      "points": 10.0,
-      "cost_per_point": 0.4,
+      "points": 18.0,
+      "cost_per_point": 0.2222222222222222,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -8212,6 +8840,10 @@
         {
           "date": "2024-08-31",
           "points": 10.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 18.0
         }
       ],
       "isWithdrawn": false
@@ -8222,8 +8854,8 @@
       "role": "Unclassed",
       "cost": 4.0,
       "ownership": 1.3,
-      "points": 38.0,
-      "cost_per_point": 0.10526315789473684,
+      "points": 46.0,
+      "cost_per_point": 0.08695652173913043,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -8264,6 +8896,10 @@
         {
           "date": "2024-08-31",
           "points": 38.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 46.0
         }
       ],
       "isWithdrawn": false
@@ -8274,8 +8910,8 @@
       "role": "Unclassed",
       "cost": 4.0,
       "ownership": 4.4,
-      "points": 150.0,
-      "cost_per_point": 0.02666666666666667,
+      "points": 168.0,
+      "cost_per_point": 0.023809523809523808,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -8316,6 +8952,10 @@
         {
           "date": "2024-08-31",
           "points": 150.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 168.0
         }
       ],
       "isWithdrawn": false
@@ -8326,8 +8966,8 @@
       "role": "Unclassed",
       "cost": 4.0,
       "ownership": 1.7,
-      "points": 130.0,
-      "cost_per_point": 0.03076923076923077,
+      "points": 138.0,
+      "cost_per_point": 0.028985507246376812,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -8368,6 +9008,10 @@
         {
           "date": "2024-08-31",
           "points": 130.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 138.0
         }
       ],
       "isWithdrawn": false
@@ -8419,6 +9063,10 @@
         },
         {
           "date": "2024-08-31",
+          "points": 92.0
+        },
+        {
+          "date": "2024-09-01",
           "points": 92.0
         }
       ],
@@ -8472,6 +9120,10 @@
         {
           "date": "2024-08-31",
           "points": 90.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 90.0
         }
       ],
       "isWithdrawn": false
@@ -8523,6 +9175,10 @@
         },
         {
           "date": "2024-08-31",
+          "points": 4.0
+        },
+        {
+          "date": "2024-09-01",
           "points": 4.0
         }
       ],
@@ -8576,6 +9232,10 @@
         {
           "date": "2024-08-31",
           "points": 4.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 4.0
         }
       ],
       "isWithdrawn": false
@@ -8627,6 +9287,10 @@
         },
         {
           "date": "2024-08-31",
+          "points": 0.0
+        },
+        {
+          "date": "2024-09-01",
           "points": 0.0
         }
       ],
@@ -8680,6 +9344,10 @@
         {
           "date": "2024-08-31",
           "points": 0.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 0.0
         }
       ],
       "isWithdrawn": false
@@ -8731,6 +9399,10 @@
         },
         {
           "date": "2024-08-31",
+          "points": 56.0
+        },
+        {
+          "date": "2024-09-01",
           "points": 56.0
         }
       ],
@@ -8784,6 +9456,10 @@
         {
           "date": "2024-08-31",
           "points": 16.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 16.0
         }
       ],
       "isWithdrawn": false
@@ -8836,6 +9512,10 @@
         {
           "date": "2024-08-31",
           "points": 215.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 215.0
         }
       ],
       "isWithdrawn": false
@@ -8846,8 +9526,8 @@
       "role": "Unclassed",
       "cost": 4.0,
       "ownership": 7.1,
-      "points": 22.0,
-      "cost_per_point": 0.18181818181818182,
+      "points": 24.0,
+      "cost_per_point": 0.16666666666666666,
       "pointHistory": [
         {
           "date": "2024-08-21",
@@ -8888,6 +9568,10 @@
         {
           "date": "2024-08-31",
           "points": 22.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 24.0
         }
       ],
       "isWithdrawn": false
@@ -8939,6 +9623,10 @@
         },
         {
           "date": "2024-08-31",
+          "points": 34.0
+        },
+        {
+          "date": "2024-09-01",
           "points": 34.0
         }
       ],
@@ -8992,6 +9680,10 @@
         {
           "date": "2024-08-31",
           "points": 14.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 14.0
         }
       ],
       "isWithdrawn": false
@@ -9043,6 +9735,10 @@
         },
         {
           "date": "2024-08-31",
+          "points": 14.0
+        },
+        {
+          "date": "2024-09-01",
           "points": 14.0
         }
       ],
@@ -9096,6 +9792,10 @@
         {
           "date": "2024-08-31",
           "points": 34.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 34.0
         }
       ],
       "isWithdrawn": false
@@ -9148,12 +9848,30 @@
         {
           "date": "2024-08-31",
           "points": 8.0
+        },
+        {
+          "date": "2024-09-01",
+          "points": 8.0
         }
       ],
       "isWithdrawn": true
     }
   ],
   "top_50_efficiency": [
+    {
+      "name": "Pablo Castrillo",
+      "cost_per_point": 0.00881057268722467,
+      "role": "Unclassed",
+      "points": 681.0,
+      "cost": 6.0
+    },
+    {
+      "name": "Stefan Küng",
+      "cost_per_point": 0.008849557522123894,
+      "role": "Unclassed",
+      "points": 678.0,
+      "cost": 6.0
+    },
     {
       "name": "Mathias Vacek",
       "cost_per_point": 0.009036144578313253,
@@ -9163,59 +9881,59 @@
     },
     {
       "name": "Wout Van Aert",
-      "cost_per_point": 0.009221311475409836,
+      "cost_per_point": 0.009109311740890687,
       "role": "Sprinter",
-      "points": 1952.0,
+      "points": 1976.0,
       "cost": 18.0
     },
     {
-      "name": "Stefan Küng",
-      "cost_per_point": 0.009302325581395349,
-      "role": "Unclassed",
-      "points": 645.0,
-      "cost": 6.0
-    },
-    {
       "name": "Marc Soler",
-      "cost_per_point": 0.011019283746556474,
+      "cost_per_point": 0.010526315789473684,
       "role": "All Rounder",
-      "points": 726.0,
+      "points": 760.0,
       "cost": 8.0
     },
     {
-      "name": "Pau Miquel",
-      "cost_per_point": 0.011472275334608031,
-      "role": "Sprinter",
-      "points": 523.0,
-      "cost": 6.0
-    },
-    {
       "name": "Ben O'Connor",
-      "cost_per_point": 0.012285012285012284,
+      "cost_per_point": 0.011160714285714286,
       "role": "Climber",
-      "points": 814.0,
+      "points": 896.0,
       "cost": 10.0
     },
     {
-      "name": "Kaden Groves",
-      "cost_per_point": 0.012345679012345678,
+      "name": "Pau Miquel",
+      "cost_per_point": 0.011299435028248588,
       "role": "Sprinter",
-      "points": 972.0,
-      "cost": 12.0
-    },
-    {
-      "name": "Harold Tejada",
-      "cost_per_point": 0.012474012474012475,
-      "role": "Unclassed",
-      "points": 481.0,
+      "points": 531.0,
       "cost": 6.0
     },
     {
       "name": "Florian Lipowitz",
-      "cost_per_point": 0.012578616352201259,
+      "cost_per_point": 0.011379800853485065,
       "role": "Climber",
-      "points": 636.0,
+      "points": 703.0,
       "cost": 8.0
+    },
+    {
+      "name": "Pavel Sivakov",
+      "cost_per_point": 0.011922503725782414,
+      "role": "Climber",
+      "points": 671.0,
+      "cost": 8.0
+    },
+    {
+      "name": "Kaden Groves",
+      "cost_per_point": 0.012244897959183673,
+      "role": "Sprinter",
+      "points": 980.0,
+      "cost": 12.0
+    },
+    {
+      "name": "Harold Tejada",
+      "cost_per_point": 0.012320328542094456,
+      "role": "Unclassed",
+      "points": 487.0,
+      "cost": 6.0
     },
     {
       "name": "Corbin Strong",
@@ -9239,52 +9957,66 @@
       "cost": 4.0
     },
     {
-      "name": "Pablo Castrillo",
-      "cost_per_point": 0.015267175572519083,
+      "name": "George Bennett",
+      "cost_per_point": 0.01488833746898263,
       "role": "Unclassed",
-      "points": 393.0,
+      "points": 403.0,
       "cost": 6.0
     },
     {
       "name": "Pavel Bittner",
-      "cost_per_point": 0.01556420233463035,
+      "cost_per_point": 0.015503875968992248,
       "role": "Sprinter",
-      "points": 514.0,
+      "points": 516.0,
       "cost": 8.0
     },
     {
       "name": "Quentin Pacher",
-      "cost_per_point": 0.01639344262295082,
+      "cost_per_point": 0.015544041450777202,
       "role": "Unclassed",
-      "points": 366.0,
-      "cost": 6.0
-    },
-    {
-      "name": "Urko Berrade",
-      "cost_per_point": 0.01652892561983471,
-      "role": "Unclassed",
-      "points": 242.0,
-      "cost": 4.0
-    },
-    {
-      "name": "George Bennett",
-      "cost_per_point": 0.016574585635359115,
-      "role": "Unclassed",
-      "points": 362.0,
+      "points": 386.0,
       "cost": 6.0
     },
     {
       "name": "Eddie Dunbar",
-      "cost_per_point": 0.017341040462427744,
+      "cost_per_point": 0.015706806282722512,
       "role": "All Rounder",
-      "points": 346.0,
+      "points": 382.0,
       "cost": 6.0
     },
     {
-      "name": "Brandon McNulty",
-      "cost_per_point": 0.017421602787456445,
+      "name": "Urko Berrade",
+      "cost_per_point": 0.016,
+      "role": "Unclassed",
+      "points": 250.0,
+      "cost": 4.0
+    },
+    {
+      "name": "Aleksandr Vlasov",
+      "cost_per_point": 0.01669449081803005,
       "role": "All Rounder",
-      "points": 574.0,
+      "points": 599.0,
+      "cost": 10.0
+    },
+    {
+      "name": "Brandon McNulty",
+      "cost_per_point": 0.017123287671232876,
+      "role": "All Rounder",
+      "points": 584.0,
+      "cost": 10.0
+    },
+    {
+      "name": "Filippo Baroncini",
+      "cost_per_point": 0.017142857142857144,
+      "role": "Unclassed",
+      "points": 350.0,
+      "cost": 6.0
+    },
+    {
+      "name": "Felix Gall",
+      "cost_per_point": 0.017513134851138354,
+      "role": "Climber",
+      "points": 571.0,
       "cost": 10.0
     },
     {
@@ -9295,18 +10027,18 @@
       "cost": 6.0
     },
     {
-      "name": "Filippo Baroncini",
-      "cost_per_point": 0.01764705882352941,
-      "role": "Unclassed",
-      "points": 340.0,
+      "name": "Cristián Rodríguez",
+      "cost_per_point": 0.017804154302670624,
+      "role": "Climber",
+      "points": 337.0,
       "cost": 6.0
     },
     {
-      "name": "Felix Gall",
-      "cost_per_point": 0.017825311942959002,
-      "role": "Climber",
-      "points": 561.0,
-      "cost": 10.0
+      "name": "Clément Berthet",
+      "cost_per_point": 0.01818181818181818,
+      "role": "Unclassed",
+      "points": 330.0,
+      "cost": 6.0
     },
     {
       "name": "Lennert Van Eetvelt",
@@ -9323,11 +10055,25 @@
       "cost": 4.0
     },
     {
-      "name": "Clément Berthet",
-      "cost_per_point": 0.01875,
+      "name": "Bruno Armirail",
+      "cost_per_point": 0.018691588785046728,
       "role": "Unclassed",
-      "points": 320.0,
+      "points": 321.0,
       "cost": 6.0
+    },
+    {
+      "name": "David Gaudu",
+      "cost_per_point": 0.01873536299765808,
+      "role": "Climber",
+      "points": 427.0,
+      "cost": 8.0
+    },
+    {
+      "name": "Primož Roglič",
+      "cost_per_point": 0.018794048551292093,
+      "role": "All Rounder",
+      "points": 1277.0,
+      "cost": 24.0
     },
     {
       "name": "Gijs Leemreize",
@@ -9337,18 +10083,11 @@
       "cost": 6.0
     },
     {
-      "name": "Pavel Sivakov",
-      "cost_per_point": 0.018957345971563982,
+      "name": "Enric Mas",
+      "cost_per_point": 0.01937046004842615,
       "role": "Climber",
-      "points": 422.0,
-      "cost": 8.0
-    },
-    {
-      "name": "Cristián Rodríguez",
-      "cost_per_point": 0.01935483870967742,
-      "role": "Climber",
-      "points": 310.0,
-      "cost": 6.0
+      "points": 826.0,
+      "cost": 16.0
     },
     {
       "name": "Luca Vergallito",
@@ -9365,6 +10104,13 @@
       "cost": 10.0
     },
     {
+      "name": "Marco Frigo",
+      "cost_per_point": 0.02054794520547945,
+      "role": "Unclassed",
+      "points": 292.0,
+      "cost": 6.0
+    },
+    {
       "name": "Jon Aberasturi",
       "cost_per_point": 0.020618556701030927,
       "role": "Sprinter",
@@ -9372,32 +10118,39 @@
       "cost": 6.0
     },
     {
-      "name": "Bruno Armirail",
-      "cost_per_point": 0.021052631578947368,
-      "role": "Unclassed",
-      "points": 285.0,
-      "cost": 6.0
-    },
-    {
       "name": "Max Poole",
-      "cost_per_point": 0.021367521367521368,
+      "cost_per_point": 0.02109704641350211,
       "role": "Climber",
-      "points": 468.0,
+      "points": 474.0,
       "cost": 10.0
     },
     {
-      "name": "Primož Roglič",
-      "cost_per_point": 0.0215633423180593,
-      "role": "All Rounder",
-      "points": 1113.0,
-      "cost": 24.0
+      "name": "Mikel Landa",
+      "cost_per_point": 0.021439509954058193,
+      "role": "Climber",
+      "points": 653.0,
+      "cost": 14.0
     },
     {
-      "name": "David Gaudu",
-      "cost_per_point": 0.0226628895184136,
+      "name": "Mattias Skjelmose",
+      "cost_per_point": 0.02181818181818182,
+      "role": "All Rounder",
+      "points": 550.0,
+      "cost": 12.0
+    },
+    {
+      "name": "Jay Vine",
+      "cost_per_point": 0.022123893805309734,
+      "role": "All Rounder",
+      "points": 452.0,
+      "cost": 10.0
+    },
+    {
+      "name": "Richard Carapaz",
+      "cost_per_point": 0.022181146025878003,
       "role": "Climber",
-      "points": 353.0,
-      "cost": 8.0
+      "points": 541.0,
+      "cost": 12.0
     },
     {
       "name": "Juri Hollmann",
@@ -9407,25 +10160,11 @@
       "cost": 4.0
     },
     {
-      "name": "Marco Frigo",
-      "cost_per_point": 0.022988505747126436,
+      "name": "José Félix Parra",
+      "cost_per_point": 0.023809523809523808,
       "role": "Unclassed",
-      "points": 261.0,
-      "cost": 6.0
-    },
-    {
-      "name": "Enric Mas",
-      "cost_per_point": 0.02465331278890601,
-      "role": "Climber",
-      "points": 649.0,
-      "cost": 16.0
-    },
-    {
-      "name": "Mikel Landa",
-      "cost_per_point": 0.024691358024691357,
-      "role": "Climber",
-      "points": 567.0,
-      "cost": 14.0
+      "points": 168.0,
+      "cost": 4.0
     },
     {
       "name": "Sam Oomen",
@@ -9456,13 +10195,6 @@
       "cost": 6.0
     },
     {
-      "name": "Jay Vine",
-      "cost_per_point": 0.026595744680851064,
-      "role": "All Rounder",
-      "points": 376.0,
-      "cost": 10.0
-    },
-    {
       "name": "Michael Woods",
       "cost_per_point": 0.02666666666666667,
       "role": "Climber",
@@ -9470,46 +10202,18 @@
       "cost": 8.0
     },
     {
-      "name": "José Félix Parra",
-      "cost_per_point": 0.02666666666666667,
-      "role": "Unclassed",
-      "points": 150.0,
-      "cost": 4.0
-    },
-    {
       "name": "Antonio Tiberi",
       "cost_per_point": 0.02680965147453083,
       "role": "All Rounder",
       "points": 373.0,
       "cost": 10.0
-    },
-    {
-      "name": "Richard Carapaz",
-      "cost_per_point": 0.028037383177570093,
-      "role": "Climber",
-      "points": 428.0,
-      "cost": 12.0
-    },
-    {
-      "name": "Carlos Verona",
-      "cost_per_point": 0.02830188679245283,
-      "role": "Unclassed",
-      "points": 212.0,
-      "cost": 6.0
-    },
-    {
-      "name": "Mattias Skjelmose",
-      "cost_per_point": 0.028368794326241134,
-      "role": "All Rounder",
-      "points": 423.0,
-      "cost": 12.0
     }
   ],
   "league_scores": {
     "current": [
       {
         "name": "Team Name",
-        "points": 4772,
+        "points": 5000,
         "roster": [
           "João Almeida",
           "Mattias Skjelmose",
@@ -9524,7 +10228,7 @@
       },
       {
         "name": "Iberische Halbpinsel",
-        "points": 3146,
+        "points": 3461,
         "roster": [
           "João Almeida",
           "Adam Yates",
@@ -9539,7 +10243,7 @@
       },
       {
         "name": "Team Fiestina",
-        "points": 2781,
+        "points": 3208,
         "roster": [
           "João Almeida",
           "Mattias Skjelmose",
@@ -9554,7 +10258,7 @@
       },
       {
         "name": "Ganz anderer Teamname",
-        "points": 2317,
+        "points": 2468,
         "roster": [
           "Daniel Martínez",
           "Tao Geoghegan Hart",
@@ -10109,6 +10813,71 @@
             ]
           }
         ]
+      },
+      {
+        "date": "2024-09-01",
+        "scores": [
+          {
+            "name": "Team Name",
+            "points": 5000,
+            "roster": [
+              "João Almeida",
+              "Mattias Skjelmose",
+              "Lennert Van Eetvelt",
+              "Isaac Del Toro",
+              "Wout Van Aert",
+              "Harold Tejada",
+              "Quentin Pacher",
+              "George Bennett",
+              "Thymen Arensman"
+            ]
+          },
+          {
+            "name": "Iberische Halbpinsel",
+            "points": 3461,
+            "roster": [
+              "João Almeida",
+              "Adam Yates",
+              "Mikel Landa",
+              "Max Poole",
+              "Ide Schelling",
+              "Steven Kruijswijk",
+              "Jasha Sütterlin",
+              "Stefan Küng",
+              "Richard Carapaz"
+            ]
+          },
+          {
+            "name": "Team Fiestina",
+            "points": 3208,
+            "roster": [
+              "João Almeida",
+              "Mattias Skjelmose",
+              "Richard Carapaz",
+              "Enric Mas",
+              "Kim Heiduk",
+              "Patrick Konrad",
+              "Jhonatan Narváez",
+              "Julius Van Den Berg",
+              "Isaac Del Toro"
+            ]
+          },
+          {
+            "name": "Ganz anderer Teamname",
+            "points": 2468,
+            "roster": [
+              "Daniel Martínez",
+              "Tao Geoghegan Hart",
+              "Michael Woods",
+              "Sepp Kuss",
+              "Kaden Groves",
+              "Oier Lazkano",
+              "Jhonatan Narváez",
+              "Joshua Tarling",
+              "Giulio Ciccone"
+            ]
+          }
+        ]
       }
     ]
   },
@@ -10118,7 +10887,7 @@
         "name": "Primož Roglič",
         "role": "All Rounder",
         "cost": 24.0,
-        "points": 1113.0,
+        "points": 1277.0,
         "pointHistory": [
           {
             "date": "2024-08-21",
@@ -10159,6 +10928,10 @@
           {
             "date": "2024-08-31",
             "points": 1113.0
+          },
+          {
+            "date": "2024-09-01",
+            "points": 1277.0
           }
         ]
       },
@@ -10166,7 +10939,7 @@
         "name": "Wout Van Aert",
         "role": "Sprinter",
         "cost": 18.0,
-        "points": 1952.0,
+        "points": 1976.0,
         "pointHistory": [
           {
             "date": "2024-08-21",
@@ -10207,6 +10980,10 @@
           {
             "date": "2024-08-31",
             "points": 1952.0
+          },
+          {
+            "date": "2024-09-01",
+            "points": 1976.0
           }
         ]
       },
@@ -10214,7 +10991,7 @@
         "name": "Kaden Groves",
         "role": "Sprinter",
         "cost": 12.0,
-        "points": 972.0,
+        "points": 980.0,
         "pointHistory": [
           {
             "date": "2024-08-21",
@@ -10255,6 +11032,10 @@
           {
             "date": "2024-08-31",
             "points": 972.0
+          },
+          {
+            "date": "2024-09-01",
+            "points": 980.0
           }
         ]
       },
@@ -10262,7 +11043,7 @@
         "name": "Ben O'Connor",
         "role": "Climber",
         "cost": 10.0,
-        "points": 814.0,
+        "points": 896.0,
         "pointHistory": [
           {
             "date": "2024-08-21",
@@ -10303,6 +11084,10 @@
           {
             "date": "2024-08-31",
             "points": 814.0
+          },
+          {
+            "date": "2024-09-01",
+            "points": 896.0
           }
         ]
       },
@@ -10310,7 +11095,7 @@
         "name": "Florian Lipowitz",
         "role": "Climber",
         "cost": 8.0,
-        "points": 636.0,
+        "points": 703.0,
         "pointHistory": [
           {
             "date": "2024-08-21",
@@ -10351,6 +11136,10 @@
           {
             "date": "2024-08-31",
             "points": 636.0
+          },
+          {
+            "date": "2024-09-01",
+            "points": 703.0
           }
         ]
       },
@@ -10399,6 +11188,10 @@
           {
             "date": "2024-08-31",
             "points": 548.0
+          },
+          {
+            "date": "2024-09-01",
+            "points": 548.0
           }
         ]
       },
@@ -10406,7 +11199,7 @@
         "name": "Marc Soler",
         "role": "All Rounder",
         "cost": 8.0,
-        "points": 726.0,
+        "points": 760.0,
         "pointHistory": [
           {
             "date": "2024-08-21",
@@ -10447,54 +11240,62 @@
           {
             "date": "2024-08-31",
             "points": 726.0
+          },
+          {
+            "date": "2024-09-01",
+            "points": 760.0
           }
         ]
       },
       {
-        "name": "Harold Tejada",
+        "name": "Pablo Castrillo",
         "role": "Unclassed",
         "cost": 6.0,
-        "points": 481.0,
+        "points": 681.0,
         "pointHistory": [
           {
             "date": "2024-08-21",
-            "points": 0.0
+            "points": 43.0
           },
           {
             "date": "2024-08-22",
-            "points": 25.0
+            "points": 63.0
           },
           {
             "date": "2024-08-23",
-            "points": 105.0
+            "points": 65.0
           },
           {
             "date": "2024-08-24",
-            "points": 246.0
+            "points": 65.0
           },
           {
             "date": "2024-08-25",
-            "points": 246.0
+            "points": 128.0
           },
           {
             "date": "2024-08-27",
-            "points": 306.0
+            "points": 128.0
           },
           {
             "date": "2024-08-28",
-            "points": 306.0
+            "points": 128.0
           },
           {
             "date": "2024-08-29",
-            "points": 439.0
+            "points": 389.0
           },
           {
             "date": "2024-08-30",
-            "points": 443.0
+            "points": 391.0
           },
           {
             "date": "2024-08-31",
-            "points": 481.0
+            "points": 393.0
+          },
+          {
+            "date": "2024-09-01",
+            "points": 681.0
           }
         ]
       },
@@ -10502,7 +11303,7 @@
         "name": "Stefan Küng",
         "role": "Unclassed",
         "cost": 6.0,
-        "points": 645.0,
+        "points": 678.0,
         "pointHistory": [
           {
             "date": "2024-08-21",
@@ -10543,14 +11344,18 @@
           {
             "date": "2024-08-31",
             "points": 645.0
+          },
+          {
+            "date": "2024-09-01",
+            "points": 678.0
           }
         ]
       }
     ],
-    "total_points": 7887.0,
+    "total_points": 8499.0,
     "total_cost": 100.0
   },
-  "last_update": "2024-08-31",
+  "last_update": "2024-09-01",
   "mvp_history": [
     {
       "name": "Wout Van Aert",
@@ -10591,6 +11396,11 @@
       "name": "Kaden Groves",
       "points_added": 228.0,
       "date": "2024-08-31"
+    },
+    {
+      "name": "Pablo Castrillo",
+      "points_added": 288.0,
+      "date": "2024-09-01"
     }
   ],
   "mip_history": [
@@ -10641,6 +11451,12 @@
       "percentage_increase": 2500.0,
       "date": "2024-08-31",
       "from_zero": false
+    },
+    {
+      "name": "Riley Sheehan",
+      "percentage_increase": 125.0,
+      "date": "2024-09-01",
+      "from_zero": false
     }
   ],
   "league_all_star_team": {
@@ -10649,28 +11465,28 @@
         "name": "Adam Yates",
         "role": "All Rounder",
         "cost": 20.0,
-        "points": 548.0,
+        "points": 605.0,
         "team": "UAE Team Emirates"
       },
       {
         "name": "Wout Van Aert",
         "role": "Sprinter",
         "cost": 18.0,
-        "points": 1952.0,
+        "points": 1976.0,
         "team": "Team Visma | Lease a Bike"
       },
       {
         "name": "Kaden Groves",
         "role": "Sprinter",
         "cost": 12.0,
-        "points": 972.0,
+        "points": 980.0,
         "team": "Alpecin-Deceuninck"
       },
       {
         "name": "Mattias Skjelmose",
         "role": "All Rounder",
         "cost": 12.0,
-        "points": 423.0,
+        "points": 550.0,
         "team": "Lidl - Trek"
       },
       {
@@ -10684,32 +11500,32 @@
         "name": "Max Poole",
         "role": "Climber",
         "cost": 10.0,
-        "points": 468.0,
+        "points": 474.0,
         "team": "Team dsm-firmenich PostNL"
       },
       {
         "name": "Harold Tejada",
         "role": "Unclassed",
         "cost": 6.0,
-        "points": 481.0,
+        "points": 487.0,
         "team": "Astana Qazaqstan Team"
       },
       {
         "name": "Stefan Küng",
         "role": "Unclassed",
         "cost": 6.0,
-        "points": 645.0,
+        "points": 678.0,
         "team": "Groupama - FDJ"
       },
       {
-        "name": "Quentin Pacher",
+        "name": "George Bennett",
         "role": "Unclassed",
         "cost": 6.0,
-        "points": 366.0,
-        "team": "Groupama - FDJ"
+        "points": 403.0,
+        "team": "Israel - Premier Tech"
       }
     ],
-    "total_points": 6393.0,
+    "total_points": 6691.0,
     "total_cost": 100.0,
     "twitter_league_comparison": {
       "rank": 1,
@@ -10852,6 +11668,16 @@
       "stage": 14,
       "rider": "Ruben Fernandez",
       "team": "COFIDIS"
+    },
+    {
+      "stage": 15,
+      "rider": "Cian Uijtdebroeks",
+      "team": "TEAM VISMA | LEASE A BIKE"
+    },
+    {
+      "stage": 15,
+      "rider": "Mayo Pelayo Sanchez",
+      "team": "MOVISTAR TEAM"
     }
   ]
 }

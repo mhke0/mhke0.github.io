@@ -1631,6 +1631,7 @@ function generateNewsContent() {
     newsHtml += '</div>'; // Close news-row
 
     // Most Recent MVP, MIP, and Rider of the Day
+    newsHtml += '<div class="news-column">';
     newsHtml += '<div class="news-section news-achievements">';
     let achievementDate = 'N/A';
     if (cyclistData && cyclistData.mip_history && cyclistData.mip_history.length > 0) {
@@ -1650,7 +1651,9 @@ function generateNewsContent() {
         const mip = cyclistData.mip_history[cyclistData.mip_history.length - 1];
         newsHtml += `<p><span class="achievement-name">MIP: <a href="#" class="rider-link" data-rider="${mip.name}">${mip.name}</a></span><span class="achievement-value">${mip.percentage_increase.toFixed(2)}% increase</span></p>`;
     }
+    newsHtml += '</div>';
     
+    newsHtml += '<div class="news-section news-achievements">';
     // Random Rider of the Day
     const riderOfTheDay = getRandomRiderOfTheDay(cyclistData.cyclists);
     if (riderOfTheDay) {
@@ -1665,6 +1668,7 @@ function generateNewsContent() {
         `;
     }
     
+    newsHtml += '</div>';
     newsHtml += '</div>';
 
      // Add Withdrawals section

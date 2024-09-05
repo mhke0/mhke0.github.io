@@ -978,7 +978,7 @@ tr:nth-child(odd) {
 }
 
 .news-withdrawals {
-    margin-top: 20px;
+    margin-top: 0px;
     margin-bottom: 20px;
 }
 
@@ -1020,10 +1020,7 @@ a[style*="text-decoration: line-through"] {
     color: #888 !important;
     text-decoration: line-through !important;
 }
-/* Best Role Selections Container */
-/* ... (previous styles remain unchanged) ... */
 
-/* Best Role Selections Container */
 #bestRoleSelectionsContainer {
     width: 100%;
     margin-bottom: 20px;
@@ -1083,7 +1080,6 @@ a[style*="text-decoration: line-through"] {
     font-size: 0.9em;
 }
 
-/* Responsive adjustments */
 @media screen and (max-width: 1200px) {
     .best-role-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -1096,4 +1092,3 @@ a[style*="text-decoration: line-through"] {
     }
 }
 
-/* ... (rest of the styles remain unchanged) ... */

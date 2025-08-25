@@ -27,7 +27,7 @@
     html, body {
       background: var(--bg);
       color: var(--fg);
-      font: 16px/1.6 "SF Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, "Roboto Mono", "Ubuntu Mono", "Liberation Mono", "Courier New", monospace;
+      font: 16px/1.6 "IBM Plex Mono", "SF Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, "Roboto Mono", "Ubuntu Mono", "Liberation Mono", "Courier New", monospace;
       margin: 0;
     }
 
@@ -127,6 +127,54 @@
       color: var(--muted);
     }
 
+    /* Terminal input styling */
+    #terminal-input {
+      background: transparent;
+      border: none;
+      outline: none;
+      color: var(--fg);
+      font: inherit;
+      font-weight: bold;
+      padding: 0;
+      margin: 0;
+      width: 20ch;
+      caret-color: transparent; /* Hide default cursor */
+      position: relative;
+    }
+    #terminal-input::placeholder {
+      color: var(--muted);
+      opacity: 0.7;
+    }
+
+    /* Block cursor simulation */
+    .terminal-container {
+      position: relative;
+      display: inline;
+    }
+
+    .block-cursor {
+      position: absolute;
+      top: 0;
+      pointer-events: none;
+      background: var(--fg);
+      color: var(--bg);
+      width: 0.65ch;
+      height: 1.05em;
+      animation: blink 1s steps(2, start) infinite;
+      z-index: 1;
+      vertical-align: -0.15em;
+    }
+
+    /* Hide block cursor during typing animation */
+    .typing .block-cursor {
+      display: none;
+    }
+
+    /* Disable input during typing animation */
+    .typing #terminal-input {
+      pointer-events: none;
+    }
+
     /* Utility: screen-reader only text */
     .visually-hidden { position: absolute; clip: rect(0 0 0 0); clip-path: inset(50%); height: 1px; width: 1px; overflow: hidden; white-space: nowrap; }
   </style>
@@ -137,7 +185,7 @@
   </button>
   <div class="container">
     <header>
-      <h1 style="font-weight: normal;" class="typing">[mhke ~]$ <span id="typing-text" class="typing-text"></span><span class="caret" aria-hidden="true"></span><span class="visually-hidden"> Blinking cursor</span></h1>
+      <h1 style="font-weight: normal;" class="typing">[mhke ~]$ <span class="terminal-container"><input type="text" id="terminal-input" autocomplete="off" spellcheck="false"><span class="block-cursor" id="block-cursor"></span></span><span class="visually-hidden"> Interactive terminal input</span></h1>
       <nav class="ascii-nav" aria-label="Primary">
         personal webpage v0.1
       </nav>
@@ -156,7 +204,7 @@
             <p>- <a href="smlms/movie2.mov">Movie 2</a></p>
           </div>
         </li>
-        <li>[2025] <span class="expandable" onclick="toggleSection('seeing')"></span>Seeing is Believing</span>
+        <li>[2025] <span class="expandable" onclick="toggleSection('seeing')">Seeing is Believing</span>
           <div id="seeing" class="collapsible">
           </div>
         </li>
@@ -164,7 +212,7 @@
       </ul>
       <h2 id="contact">/contact</h2>
       <pre>
-mail: moritzhacke [.] gmail [.] com
+mail: moritzhacke [at] gmail [.] com
 github: github.com/mhke0
       </pre>
     </main>
@@ -195,20 +243,49 @@ github: github.com/mhke0
       section.classList.toggle('open');
     }
 
-    // Typing effect function
-    function typeText(text, elementId, speed = 100) {
-      const element = document.getElementById(elementId);
-      const h1Element = element.closest('h1');
+    // Function to update block cursor position
+    function updateBlockCursor() {
+      const input = document.getElementById('terminal-input');
+      const cursor = document.getElementById('block-cursor');
+      const cursorPosition = input.selectionStart;
+      
+      // Create a temporary element to measure text width
+      const tempSpan = document.createElement('span');
+      tempSpan.style.visibility = 'hidden';
+      tempSpan.style.position = 'absolute';
+      tempSpan.style.font = window.getComputedStyle(input).font;
+      tempSpan.textContent = input.value.substring(0, cursorPosition);
+      document.body.appendChild(tempSpan);
+      
+      const textWidth = tempSpan.offsetWidth;
+      document.body.removeChild(tempSpan);
+      
+      cursor.style.left = textWidth + 'px';
+      
+      // Show the character under cursor if there is one
+      if (cursorPosition < input.value.length) {
+        cursor.textContent = input.value.charAt(cursorPosition);
+      } else {
+        cursor.textContent = ' ';
+      }
+    }
+
+    // Typing effect function - now types directly into the input
+    function typeText(text, speed = 100) {
+      const input = document.getElementById('terminal-input');
+      const h1Element = input.closest('h1');
       let i = 0;
       
       function typeChar() {
         if (i < text.length) {
-          element.textContent += text.charAt(i);
+          input.value += text.charAt(i);
           i++;
           setTimeout(typeChar, speed);
         } else {
-          // Show cursor after typing is complete
+          // Enable input after typing is complete
           h1Element.classList.remove('typing');
+          input.focus(); // Focus the input so cursor appears
+          updateBlockCursor(); // Position the block cursor
         }
       }
       
@@ -223,12 +300,16 @@ github: github.com/mhke0
       if (!prefersReducedMotion) {
         // Start typing effect
         setTimeout(() => {
-          typeText('moritz hacke', 'typing-text', 80);
+          typeText('moritz hacke', 80);
         }, 500); // Small delay before starting
       } else {
         // If user prefers reduced motion, show text immediately
-        document.getElementById('typing-text').textContent = 'moritz hacke';
-        document.querySelector('h1').classList.remove('typing');
+        const input = document.getElementById('terminal-input');
+        input.value = 'moritz hacke';
+        const h1Element = document.querySelector('h1');
+        h1Element.classList.remove('typing');
+        input.focus();
+        updateBlockCursor();
       }
     });
 
@@ -238,6 +319,70 @@ github: github.com/mhke0
       document.body.setAttribute('data-theme', 'dark');
       document.getElementById('theme-icon').textContent = '☾';
     }
+
+    // Terminal functionality
+    function handleCommand(command) {
+      const cmd = command.trim().toLowerCase();
+      switch(cmd) {
+        case 'clear':
+          document.getElementById('terminal-input').value = '';
+          return;
+        case 'help':
+          alert('Available commands: help, clear, about, contact, ls, mail');
+          break;
+        case 'about':
+          document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
+          break;
+        case 'contact':
+          document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+          break;
+        case 'ls':
+          alert('about/  work/  contact/');
+          break;
+        case 'steffi':
+          // Easter egg: add heart to the nav
+          const nav = document.querySelector('.ascii-nav');
+          if (!nav.textContent.includes('♥')) {
+            nav.textContent += ' ♥';
+          }
+          break;
+        case 'mail':
+          // Open mailto link
+          window.open('mailto:moritzhacke@gmail.com', '_blank');
+          break;
+        case '':
+          break;
+        default:
+          alert(`Command not found: ${cmd}`);
+      }
+      document.getElementById('terminal-input').value = '';
+    }
+
+    // Add event listener for terminal input
+    setTimeout(() => {
+      const terminalInput = document.getElementById('terminal-input');
+      
+      // Handle commands
+      terminalInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          handleCommand(this.value);
+        }
+      });
+      
+      // Update cursor position on input changes
+      terminalInput.addEventListener('input', updateBlockCursor);
+      terminalInput.addEventListener('keyup', updateBlockCursor);
+      terminalInput.addEventListener('click', updateBlockCursor);
+      terminalInput.addEventListener('focus', updateBlockCursor);
+      
+      // Focus input when clicking anywhere on the header
+      document.querySelector('header').addEventListener('click', function() {
+        if (!document.querySelector('.typing')) {
+          terminalInput.focus();
+          updateBlockCursor();
+        }
+      });
+    }, 100);
   </script>
 </body>
 </html>

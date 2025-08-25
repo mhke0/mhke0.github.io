@@ -153,7 +153,7 @@
 
       <h2 id="contact">/contact</h2>
       <pre>
-email: moritzhacke@gmail.com
+email: moritzhacke [at] gmail [dot] com
 github: github.com/mhke0
       </pre>
     </main>
@@ -184,14 +184,14 @@ github: github.com/mhke0
       section.classList.toggle('open');
     }
 
-    // Load saved theme or default to light
+    // Load saved theme or default to light mode
     const savedTheme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     
-    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+    if (savedTheme === 'dark') {
       document.body.setAttribute('data-theme', 'dark');
       document.getElementById('theme-icon').textContent = '☾';
     }
+    // Always start in light mode if no preference is saved
   </script>
 </body>
 </html>

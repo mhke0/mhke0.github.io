@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ascii‑site</title>
+  <title>mhke.de</title>
   <meta name="description" content="Personal Website." />
   <style>
     :root {
@@ -27,7 +27,7 @@
     html, body {
       background: var(--bg);
       color: var(--fg);
-      font: 16px/1.6 "JetBrains Mono", "Fira Code", "Cascadia Code", "SF Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, "Roboto Mono", "Ubuntu Mono", "Liberation Mono", "Courier New", monospace;
+      font: 16px/1.6 "SF Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, "Roboto Mono", "Ubuntu Mono", "Liberation Mono", "Courier New", monospace;
       margin: 0;
     }
 
@@ -64,6 +64,16 @@
       vertical-align: -0.15em;
     }
     @keyframes blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+
+    /* Typing effect */
+    .typing-text {
+      font-weight: bold;
+    }
+    
+    /* Hide caret during typing animation */
+    .typing .caret {
+      display: none;
+    }
 
     /* Respect users who prefer reduced motion */
     @media (prefers-reduced-motion: reduce) {
@@ -127,11 +137,9 @@
   </button>
   <div class="container">
     <header>
-      <h1 style="font-weight: normal;">mhke:~$ </span><span style="font-weight: bold;">moritz hacke</span><span class="caret" aria-hidden="true"></span><span class="visually-hidden"> Blinking cursor</span></h1>
+      <h1 style="font-weight: normal;" class="typing">mhke:~$ <span id="typing-text" class="typing-text"></span><span class="caret" aria-hidden="true"></span><span class="visually-hidden"> Blinking cursor</span></h1>
       <nav class="ascii-nav" aria-label="Primary">
-        <a href="#about">about</a>
-        <a href="#work">work</a>
-        <a href="#contact">contact</a>
+        Version 0.1
       </nav>
     </header>
 
@@ -148,7 +156,11 @@
             <p>- <a href="smlms/movie2.mov">Movie 2</a></p>
           </div>
         </li>
-        <li>[2025] Seeing is Believing</li>
+        <li>[2025] <span class="expandable" onclick="toggleSection('seeing')"></span>Seeing is Believing</span>
+          <div id="seeing" class="collapsible">
+          </div>
+        </li>
+        <li>[2025] matFLUX (soon)</li>
       </ul>
 
       <h2 id="contact">/contact</h2>
@@ -183,6 +195,43 @@ github: github.com/mhke0
       const section = document.getElementById(id);
       section.classList.toggle('open');
     }
+
+    // Typing effect function
+    function typeText(text, elementId, speed = 100) {
+      const element = document.getElementById(elementId);
+      const h1Element = element.closest('h1');
+      let i = 0;
+      
+      function typeChar() {
+        if (i < text.length) {
+          element.textContent += text.charAt(i);
+          i++;
+          setTimeout(typeChar, speed);
+        } else {
+          // Show cursor after typing is complete
+          h1Element.classList.remove('typing');
+        }
+      }
+      
+      typeChar();
+    }
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      // Check if user prefers reduced motion
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      
+      if (!prefersReducedMotion) {
+        // Start typing effect
+        setTimeout(() => {
+          typeText('moritz hacke', 'typing-text', 80);
+        }, 500); // Small delay before starting
+      } else {
+        // If user prefers reduced motion, show text immediately
+        document.getElementById('typing-text').textContent = 'moritz hacke';
+        document.querySelector('h1').classList.remove('typing');
+      }
+    });
 
     // Load saved theme or default to light mode
     const savedTheme = localStorage.getItem('theme');

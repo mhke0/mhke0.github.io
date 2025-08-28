@@ -53,16 +53,7 @@
     .prompt { display: flex; align-items: baseline; gap: 0.5ch; }
     .prompt .label { color: var(--muted); }
 
-    /* Blinking block caret */
-    .caret {
-      display: inline-block;
-      width: 0.65ch;
-      height: 1.05em;
-      background: var(--fg);
-      margin-left: 0.25ch;
-      animation: blink 1s steps(2, start) infinite;
-      vertical-align: -0.15em;
-    }
+
     @keyframes blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
 
     /* Typing effect */
@@ -160,7 +151,7 @@
       color: var(--bg);
       width: 0.65ch;
       height: 1.05em;
-      animation: blink 1s steps(2, start) infinite;
+      animation: blink 1.5s steps(2, start) infinite;
       z-index: 1;
       vertical-align: -0.15em;
     }
@@ -193,7 +184,7 @@
 
     <main>
       <h2 id="about">/about</h2>
-      <p>Virology. Nanoscopy. Computers.</p>
+      <p>Virology. Nanoscopy. Computation.</p>
       <h2 id="work">/work</h2>
       <ul>
         <li>[2025] <span class="expandable" onclick="toggleSection('smlms')">SMLMS (click)</span>
@@ -300,8 +291,8 @@ github: github.com/mhke0
       if (!prefersReducedMotion) {
         // Start typing effect
         setTimeout(() => {
-          typeText('moritz hacke', 80);
-        }, 500); // Small delay before starting
+          typeText('moritz hacke', 150);
+        }, 800); // Small delay before starting
       } else {
         // If user prefers reduced motion, show text immediately
         const input = document.getElementById('terminal-input');

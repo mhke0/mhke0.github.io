@@ -153,18 +153,34 @@ body:hover .cursor {
     }
 }
 
-/* Responsive */
+/* Responsive - Mobile optimization */
 @media (max-width: 768px) {
     .signature {
-        bottom: 1.5rem;
-        right: 1.5rem;
+        top: 1rem;
+        left: 1rem;
     }
 
-    .signature p {
-        font-size: 0.9rem;
+    .signature img {
+        max-width: 60px; /* Smaller logo on mobile */
     }
 
     .cursor {
         display: none;
+    }
+
+    /* Smaller photos on mobile */
+    .photo-item {
+        transform: scale(0.7) !important;
+        transform-origin: top left;
+    }
+
+    .photo-item:hover {
+        transform: scale(0.75) !important;
+    }
+
+    /* Reduce caption size on mobile */
+    .photo-caption {
+        font-size: 0.55rem;
+        bottom: -12px;
     }
 }

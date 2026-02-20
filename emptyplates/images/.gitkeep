@@ -1,0 +1,17 @@
+# Add your photos here
+
+This folder should contain your portfolio images.
+
+Recommended image formats:
+- JPG for photos
+- PNG for graphics with transparency
+- WebP for optimized file sizes
+
+Example structure:
+```
+images/
+├── photo1.jpg
+├── photo2.jpg
+├── photo3.jpg
+└── ...
+```

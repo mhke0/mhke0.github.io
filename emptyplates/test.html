@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Test</title>
+    <style>
+        body {
+            font-family: monospace;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+        img {
+            max-width: 300px;
+            margin: 10px;
+            border: 2px solid #333;
+        }
+        .info {
+            background: white;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Image Loading Test</h1>
+    <div class="info">If images appear below, the paths are correct:</div>
+
+    <div>
+        <h3>Photo 1:</h3>
+        <img src="images/photo1.jpg" alt="Photo 1">
+    </div>
+
+    <div>
+        <h3>Photo 2:</h3>
+        <img src="images/photo2.jpg" alt="Photo 2">
+    </div>
+
+    <div>
+        <h3>Photo 3:</h3>
+        <img src="images/photo3.jpg" alt="Photo 3">
+    </div>
+
+    <div>
+        <h3>Photo 4:</h3>
+        <img src="images/photo4.jpg" alt="Photo 4">
+    </div>
+
+    <script>
+        const images = document.querySelectorAll('img');
+        images.forEach((img, i) => {
+            img.onload = () => console.log(`✓ Image ${i+1} loaded successfully`);
+            img.onerror = () => console.error(`✗ Image ${i+1} failed to load`);
+        });
+    </script>
+</body>
+</html>
